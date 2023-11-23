@@ -1,0 +1,7 @@
+---
+name: crid_model
+author: David Linke <david.linke@catalysis.de>
+description: LinkML model for Catalyst Resource Idenifier (CRID)
+source_schema_path: src/crid_model/schema/crid_model.yaml
+google_sheet_id: 1wVoaiFg47aT9YWNeRfTZ8tYHN8s8PAuDx5i2HUcDpvQ
+google_sheet_tabs: personinfo enums

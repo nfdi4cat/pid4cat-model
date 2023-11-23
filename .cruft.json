@@ -1,0 +1,27 @@
+{
+  "template": "https://github.com/dalito/linkml-project-cookiecutter",
+  "commit": "50134eef79bd0141f8e3ce6ae037dedb5a79bf41",
+  "checkout": null,
+  "context": {
+    "cookiecutter": {
+      "project_name": "crid-model",
+      "__project_slug": "crid_model",
+      "github_org": "dalito",
+      "__source_path": "src/crid_model/schema/crid_model.yaml",
+      "project_description": "LinkML model for Catalyst Resource Idenifier (CRID)",
+      "full_name": "David Linke",
+      "email": "david.linke@catalysis.de",
+      "__author": "David Linke <david.linke@catalysis.de>",
+      "license": "MIT",
+      "main_schema_class": "CRIDRecord",
+      "create_python_classes": "Yes",
+      "use_schemasheets": "No",
+      "google_sheet_id": "1wVoaiFg47aT9YWNeRfTZ8tYHN8s8PAuDx5i2HUcDpvQ",
+      "google_sheet_tabs": "personinfo enums",
+      "__google_sheet_module": "personinfo_enums",
+      "github_token_for_pypi_deployment": "PYPI_PASSWORD",
+      "_template": "https://github.com/dalito/linkml-project-cookiecutter"
+    }
+  },
+  "directory": null
+}
