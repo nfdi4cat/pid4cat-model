@@ -1,0 +1,263 @@
+{
+    "$defs": {
+        "Agent": {
+            "additionalProperties": false,
+            "description": "Person who plays a role relative to sample collection or curation.",
+            "properties": {
+                "affiliation_ror": {
+                    "description": "The ROR of the affiliation",
+                    "type": "string"
+                },
+                "contact_information": {
+                    "description": "Identification of the agent that registered the PID, with contact information. Should include person name and affiliation, or position name and affiliation, or just organization name. e-mail address is preferred contact information.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "The name of the agent",
+                    "type": "string"
+                },
+                "person_orcid": {
+                    "description": "The ORCID of the person",
+                    "type": "string"
+                },
+                "role": {
+                    "$ref": "#/$defs/PID4CatAgentRoles",
+                    "description": "The role of the agent relative to the resource"
+                }
+            },
+            "title": "Agent",
+            "type": "object"
+        },
+        "ChangeLogFields": {
+            "description": "The field of the PID4Catrecord that was changed.",
+            "enum": [
+                "STATUS",
+                "RESOURCE_INFO",
+                "RELATED_IDS",
+                "CONTACT",
+                "RIGHTS"
+            ],
+            "title": "ChangeLogFields",
+            "type": "string"
+        },
+        "LogRecord": {
+            "additionalProperties": false,
+            "description": "A log record for changes made on a PID4CatRecord starting from registration.",
+            "properties": {
+                "agent": {
+                    "$ref": "#/$defs/Agent",
+                    "description": "The person who registered the resource"
+                },
+                "changed_field": {
+                    "$ref": "#/$defs/ChangeLogFields",
+                    "description": "The field that was changed"
+                },
+                "datetime_log": {
+                    "description": "The date and time of a log record",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "A human-readable description for a thing",
+                    "type": "string"
+                }
+            },
+            "title": "LogRecord",
+            "type": "object"
+        },
+        "PID4CatAgentRoles": {
+            "description": "The role of an agent relative to the resource.",
+            "enum": [
+                "TRUSTEE",
+                "OWNER"
+            ],
+            "title": "PID4CatAgentRoles",
+            "type": "string"
+        },
+        "PID4CatRecord": {
+            "additionalProperties": false,
+            "description": "Represents a PID4CatRecord",
+            "properties": {
+                "change_log": {
+                    "description": "Change log of PID4Cat record",
+                    "items": {
+                        "$ref": "#/$defs/LogRecord"
+                    },
+                    "type": "array"
+                },
+                "curation_contact": {
+                    "description": "The email address of a person or institution responsible for curation of the resource.",
+                    "pattern": "^\\S+@[\\S+\\.]+\\S+",
+                    "type": "string"
+                },
+                "dc_rights": {
+                    "description": "The license for the metadata contained in the PID4Cat record.",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "A unique identifier for a thing",
+                    "type": "string"
+                },
+                "landing_page_url": {
+                    "description": "The URL of the landing page for the resource",
+                    "type": "string"
+                },
+                "related_identifiers": {
+                    "description": "Alternate identifiers for the resource",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "resource_info": {
+                    "description": "Information about the resource.",
+                    "items": {
+                        "$ref": "#/$defs/ResourceInfo"
+                    },
+                    "type": "array"
+                },
+                "status": {
+                    "$ref": "#/$defs/PID4CatStatus",
+                    "description": "The status of the PID4CatRecord."
+                }
+            },
+            "required": [
+                "id",
+                "change_log"
+            ],
+            "title": "PID4CatRecord",
+            "type": "object"
+        },
+        "PID4CatRelation": {
+            "additionalProperties": false,
+            "description": "A relation between PID4CatRecords or between a PID4CatRecord and other resources with a PID.",
+            "properties": {
+                "agent": {
+                    "$ref": "#/$defs/Agent",
+                    "description": "The person who registered the resource"
+                },
+                "datetime_log": {
+                    "description": "The date and time of a log record",
+                    "type": "string"
+                },
+                "related_identifier": {
+                    "description": "Related identifiers for the resource",
+                    "type": "string"
+                },
+                "relation_type": {
+                    "description": "Relation type between the resources",
+                    "items": {
+                        "$ref": "#/$defs/RelationTypes"
+                    },
+                    "type": "array"
+                }
+            },
+            "title": "PID4CatRelation",
+            "type": "object"
+        },
+        "PID4CatStatus": {
+            "description": "The status of the PID4CatRecord.",
+            "enum": [
+                "SUBMITTED",
+                "REGISTERED",
+                "OBSOLETED",
+                "DEPRECATED"
+            ],
+            "title": "PID4CatStatus",
+            "type": "string"
+        },
+        "RelationTypes": {
+            "description": "The type of the relation between the resources",
+            "enum": [
+                "IS_CITED_BY",
+                "CITES",
+                "IS_SUPPLEMENT_TO",
+                "IS_SUPPLEMENTED_BY",
+                "IS_CONTINUED_BY",
+                "CONTINUES",
+                "HAS_METADATA",
+                "IS_METADATA_FOR",
+                "HAS_VERSION",
+                "IS_VERSION_OF",
+                "IS_NEW_VERSION_OF",
+                "IS_PREVIOUS_VERSION_OF",
+                "IS_PART_OF",
+                "HAS_PART",
+                "IS_DESCRIBED_BY",
+                "DESCRIBES",
+                "IS_PUBLISHED_IN",
+                "IS_REFERENCED_BY",
+                "REFERENCES",
+                "IS_DOCUMENTED_BY",
+                "DOCUMENTS",
+                "IS_COMPILED_BY",
+                "COMPILES",
+                "IS_VARIANT_FORM_OF",
+                "IS_ORIGINAL_FORM_OF",
+                "IS_IDENTICAL_TO",
+                "IS_DERIVED_FROM",
+                "IS_SOURCE_OF",
+                "IS_REQUIRED_BY",
+                "REQUIRES",
+                "IS_OBSOLETED_BY",
+                "OBSOLETES"
+            ],
+            "title": "RelationTypes",
+            "type": "string"
+        },
+        "ResourceCategories": {
+            "description": "The category of the resource",
+            "enum": [
+                "COLLECTION",
+                "CATALYST",
+                "MATERIAL",
+                "DEVICE",
+                "DATAOBJECT"
+            ],
+            "title": "ResourceCategories",
+            "type": "string"
+        },
+        "ResourceInfo": {
+            "additionalProperties": false,
+            "description": "Data object to hold information about the resource and its representation.",
+            "properties": {
+                "description": {
+                    "description": "A human-readable description for a thing",
+                    "type": "string"
+                },
+                "label": {
+                    "description": "A human-readable name for a thing",
+                    "type": "string"
+                },
+                "rdf_type": {
+                    "description": "The format of the rdf representation of the resource (xml, turlte, json-ld, ...).",
+                    "type": "string"
+                },
+                "rdf_url": {
+                    "description": "The URI of the rdf represenation of the resource. ",
+                    "type": "string"
+                },
+                "resource_category": {
+                    "$ref": "#/$defs/ResourceCategories",
+                    "description": "The category of the resource"
+                },
+                "schema_type": {
+                    "description": "The type of the scheme used to describe the resource. Examples: XSD, DDT, Turtle Same property as in DataCite:schemeType.",
+                    "type": "string"
+                },
+                "schema_url": {
+                    "description": "The URI of the schema used to describe the resource.  Same property as in DataCite:schemeURI.",
+                    "type": "string"
+                }
+            },
+            "title": "ResourceInfo",
+            "type": "object"
+        }
+    },
+    "$id": "https://w3id.org/dalito/pid4cat-model",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "additionalProperties": true,
+    "metamodel_version": "1.7.0",
+    "title": "pid4cat-model",
+    "type": "object",
+    "version": null
+}

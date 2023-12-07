@@ -1,1 +1,1 @@
-"""Tests for crid-model."""
+"""Tests for pid4cat-model."""

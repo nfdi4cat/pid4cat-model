@@ -1,0 +1,359 @@
+---
+id: https://w3id.org/dalito/pid4cat-model
+name: pid4cat-model  # or ID4Cat or RID4Cat or PID4Cat?
+title: pid4cat-model
+description: >-
+  LinkML model for Catalyst Resource Identifier (PID4Cat). PID4Cat is handle system
+  based persistent identifier (PID) for digital or physical resources used in
+  the catalysis research process. The handle record is used to store metadata
+  about the PID besides the obligatory redirect URL.
+
+  The model define here describes metadata for the PID itself and how to access
+  the identified resource. It does not describe the resource itself with the
+  exception of the resource category, which is a high-level description of 
+  what is identified by the PID4Cat, e.g. sample or device.
+todos:
+  - Refine slots in slot_usage of class instead of globally in slot definitions
+  - Decide about the name for our handle PIDs.
+  - Check and add mappings to other ontologies. (classes, slots, enums)
+
+license: MIT
+see_also:
+  - https://dalito.github.io/pid4cat-model
+
+prefixes:
+  pid4cat_model: https://w3id.org/dalito/pid4cat-model/
+  linkml: https://w3id.org/linkml/
+  schema: http://schema.org/
+  
+  # outer metadata of research data objects
+  dct: http://purl.org/dc/terms/
+  DCAT: http://www.w3.org/ns/dcat#
+  DataCite: http://purl.org/spar/datacite/
+
+default_prefix: pid4cat_model
+default_range: string
+
+imports:
+  - linkml:types
+
+classes:
+
+  PID4CatRecord:
+    description: >-
+      Represents a PID4CatRecord
+    slots:
+      - id
+      - landing_page_url
+      - status
+      - resource_info
+      - related_identifiers
+      - dc_rights
+      - curation_contact
+      - change_log
+    slot_usage:
+      # Refine/constrain the meaning or use of a slot in the context of a particular class.
+      curation_contact:
+        pattern: "^\\S+@[\\S+\\.]+\\S+"
+
+  PID4CatRelation:
+    description: >-
+      A relation between PID4CatRecords or between a PID4CatRecord and other resources with a PID.
+    slots:
+      - relation_type
+      - related_identifier
+      - datetime_log
+      - agent
+  
+  ResourceInfo:
+    description: >-
+      Data object to hold information about the resource and its representation.
+    slots:
+      - label
+      - description
+      - resource_category
+      - rdf_url
+      - rdf_type
+      - schema_url
+      - schema_type
+
+  LogRecord:
+    description: >-
+      A log record for changes made on a PID4CatRecord starting from registration.
+    slots:
+      - datetime_log
+      - agent
+      - changed_field
+      - description
+
+  Agent:
+    description: Person who plays a role relative to sample collection or curation.
+    slots:
+      - name
+      - contact_information
+      - person_orcid
+      - affiliation_ror
+      - role  # e.g. trustee, owner, ...more?  
+  
+slots:
+
+  # Slots for PID4CatRecord
+  id:
+    identifier: true
+    slot_uri: schema:identifier
+    range: uriorcurie
+    description: A unique identifier for a thing
+  landing_page_url:
+    rank: 10
+    slot_uri: schema:url
+    description: The URL of the landing page for the resource
+  status:
+    range: PID4CatStatus
+    description: >-
+      The status of the PID4CatRecord.
+  resource_info:
+    range: ResourceInfo
+    multivalued: true
+    description: Information about the resource.
+  related_identifiers:
+    slot_uri: schema:identifier
+    range: uriorcurie
+    multivalued: true
+    description: Alternate identifiers for the resource
+  dc_rights:
+    slot_uri: schema:license
+    description: The license for the metadata contained in the PID4Cat record.
+  curation_contact:
+    slot_uri: schema:email
+    description: The email address of a person or institution responsible for curation of the resource.
+  change_log:
+    slot_uri: schema:identifier
+    range: LogRecord
+    required: true
+    multivalued: true
+    description: Change log of PID4Cat record
+
+  # Slots for PID4CatRelation
+  relation_type:
+    slot_uri: schema:identifier
+    range: RelationTypes
+    multivalued: true
+    description: Relation type between the resources
+  related_identifier:
+    slot_uri: schema:identifier
+    description: Related identifiers for the resource
+  datetime_log:
+    slot_uri: schema:DateTime
+    description: The date and time of a log record
+  agent:
+    slot_uri: schema:Agent
+    range: Agent
+    description: The person who registered the resource
+
+  # Slots for ResourceInfo
+  label:
+    slot_uri: schema:name
+    description: A human-readable name for a thing  
+  description:
+    slot_uri: schema:description
+    description: A human-readable description for a thing
+  resource_category:
+    slot_uri: schema:additionalType
+    range: ResourceCategories
+    description: The category of the resource
+  rdf_url:
+    slot_uri: schema:additionalType
+    description: >-
+      The URI of the rdf represenation of the resource. 
+  rdf_type:
+    slot_uri: schema:additionalType
+    description: >-
+      The format of the rdf representation of the resource (xml, turlte, json-ld, ...).
+  schema_url:
+    slot_uri: schema:additionalType
+    description: >-
+      The URI of the schema used to describe the resource. 
+      Same property as in DataCite:schemeURI.
+  schema_type:
+    slot_uri: schema:additionalType
+    description: >-
+      The type of the scheme used to describe the resource.
+      Examples: XSD, DDT, Turtle
+      Same property as in DataCite:schemeType.
+
+  # Slots for LogRecord
+  changed_field:
+    slot_uri: schema:identifier
+    range: ChangeLogFields
+    description: The field that was changed
+  
+  # Slots for Agent
+  name:
+    slot_uri: schema:name
+    description: The name of the agent
+  contact_information:
+    slot_uri: schema:email
+    description: Identification of the agent that registered the PID, with
+      contact information. Should include person name and affiliation, or position
+      name and affiliation, or just organization name. e-mail address is preferred
+      contact information.
+  person_orcid:
+    slot_uri: schema:identifier
+    description: The ORCID of the person
+  affiliation_ror:
+    slot_uri: schema:identifier
+    description: The ROR of the affiliation
+  role:
+    slot_uri: schema:identifier
+    range: PID4CatAgentRoles
+    description: The role of the agent relative to the resource
+
+enums:
+
+  ResourceCategories:
+    description: >-
+      The category of the resource
+    permissible_values:
+      # Should be taken from DCMI Type Vocabulary if possible.
+      # https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#section-7
+      COLLECTION:
+        description: A collection is described as a group; its parts may also be separately described.
+        meaning: http://purl.org/dc/dcmitype/Collection
+      CATALYST:
+        description: A physical entity meant to be applied as catalyst.
+        todos:
+          - map this to an ontology
+      MATERIAL:
+        description: A material used in the catalysis research process (except the catalyst itself).
+        todos:
+          - map this to an ontology
+      DEVICE:
+        description: A device used in the catalysis research process.
+        todos:
+          - map this to an ontology
+      DATAOBJECT:
+        description: >-
+          A data object might be a data file, a data set, a data collection, or a data service.
+        todos:
+          - map this to an ontology
+
+  RelationTypes:
+    description: >-
+      The type of the relation between the resources
+    permissible_values:
+      # We adapt nearly all DataCite relations (Metadata Schema V 4.4) with 
+      # the exception of:  IsReviewedBy, Reviews
+
+      # FYI: IGSN used only the relations isCitedBy, isPartOf, hasPart,
+      #   isReferencedBy, references, isDocumentedBy, documents, 
+      #   isCompiledBy, compiles, isVariantFormOf, isOriginalFormOf
+
+      IS_CITED_BY:
+        description: The resource is cited by another resource.
+      CITES:
+        description: The resource cites another resource.
+      IS_SUPPLEMENT_TO:
+        description: The resource is supplemented by another resource.
+      IS_SUPPLEMENTED_BY:
+        description: The resource supplements another resource.
+      IS_CONTINUED_BY:
+        description: The resource is continued by another resource.
+      CONTINUES:
+        description: The resource continues another resource.
+      HAS_METADATA:
+        description: The resource has metadata.
+      IS_METADATA_FOR:
+        description: The resource is metadata for.
+      HAS_VERSION:
+        description: The resource has a version.
+        meaning: dct:hasVersion
+      IS_VERSION_OF:
+        description: The resource is a version of.
+        meaning: dct:isVersionOf
+      IS_NEW_VERSION_OF:
+        description: The resource is a new version of.
+      IS_PREVIOUS_VERSION_OF:
+        description: The resource is a previous version of.
+      IS_PART_OF:
+        description: The resource is part of another resource.
+        meaning: dct:isPartOf
+      HAS_PART:
+        description: The resource has part another resource.
+        meaning: dct:hasPart
+      IS_DESCRIBED_BY:
+        description: The resource is documented by another resource.
+      DESCRIBES:
+        description: The resource documents another resource.
+      IS_PUBLISHED_IN:
+        description: The resource is published in another resource.
+      IS_REFERENCED_BY:
+        description: The resource is referenced by another resource.
+        meaning: dct:isReferencedBy
+      REFERENCES:
+        description: The resource references another resource.
+      IS_DOCUMENTED_BY:
+        description: The resource is documented by another resource.
+      DOCUMENTS:
+        description: The resource documents another resource.
+      IS_COMPILED_BY:
+        description: The resource is compiled by another resource.
+      COMPILES:
+        description: The resource compiles another resource.
+      IS_VARIANT_FORM_OF:
+        description: The resource is variant form of another resource.
+      IS_ORIGINAL_FORM_OF:
+        description: The resource is original form of another resource.
+      IS_IDENTICAL_TO:
+        description: The resource is identical to another resource.
+      IS_DERIVED_FROM:
+        description: The resource is derived from another resource.
+      IS_SOURCE_OF:
+        description: The resource is source of another resource.
+      IS_REQUIRED_BY:
+        description: The resource is required by another resource.
+        meaning: dct:isRequiredBy
+      REQUIRES:
+        description: The resource requires another resource.
+        meaning: dct:requires
+      IS_OBSOLETED_BY:
+        description: >-
+          The resource or PID4Cat is obsoleted by another resource or PID4Cat.
+      OBSOLETES:
+        description: The resource or PID4Cat obsoletes another resource or PID4Cat.
+
+  PID4CatStatus:
+    description: >-
+      The status of the PID4CatRecord.
+    permissible_values:
+      SUBMITTED:
+        description: The PID4CatRecord is reserved but the resource is not yet linked.
+      REGISTERED:
+        description: The PID4CatRecord links to a concrete ressource.
+      OBSOLETED:
+        description: The PID4CatRecord is obsolete, e.g. because the resource is referenced by another PID4Cat.
+      DEPRECATED:
+        description: The PID4CatRecord is deprecated, e.g. because the resource can no longer be found.
+
+  PID4CatAgentRoles:
+    description: >-
+      The role of an agent relative to the resource.
+    permissible_values:
+      TRUSTEE:
+        description: The agent is the trustee of the resource.
+      OWNER:
+        description: The agent is the owner of the resource.
+
+  ChangeLogFields:
+    description: >-
+      The field of the PID4Catrecord that was changed.
+    permissible_values:
+      STATUS:
+        description: The status of the PID4CatRecord was changed.
+      RESOURCE_INFO:
+        description: The resource info of the PID4CatRecord was changed.
+      RELATED_IDS:
+        description: The related identifiers of the PID4CatRecord were changed.
+      CONTACT:
+        description: The contact information of the PID4CatRecord was changed.
+      RIGHTS:
+        description: The rights of the PID4CatRecord were changed.

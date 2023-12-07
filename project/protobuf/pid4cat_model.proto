@@ -1,0 +1,48 @@
+// Person who plays a role relative to sample collection or curation.
+message Agent
+ {
+  string name = 0
+  string contactInformation = 0
+  string personOrcid = 0
+  string affiliationRor = 0
+  pID4CatAgentRoles role = 0
+ }
+// A log record for changes made on a PID4CatRecord starting from registration.
+message LogRecord
+ {
+  string datetimeLog = 0
+  agent agent = 0
+  changeLogFields changedField = 0
+  string description = 0
+ }
+// Represents a PID4CatRecord
+message PID4CatRecord
+ {
+  uriorcurie id = 0
+  string landingPageUrl = 10
+  pID4CatStatus status = 0
+ repeated  resourceInfo resourceInfo = 0
+ repeated  uriorcurie relatedIdentifiers = 0
+  string dcRights = 0
+  string curationContact = 0
+ repeated  logRecord changeLog = 0
+ }
+// A relation between PID4CatRecords or between a PID4CatRecord and other resources with a PID.
+message PID4CatRelation
+ {
+ repeated  relationTypes relationType = 0
+  string relatedIdentifier = 0
+  string datetimeLog = 0
+  agent agent = 0
+ }
+// Data object to hold information about the resource and its representation.
+message ResourceInfo
+ {
+  string label = 0
+  string description = 0
+  resourceCategories resourceCategory = 0
+  string rdfUrl = 0
+  string rdfType = 0
+  string schemaUrl = 0
+  string schemaType = 0
+ }

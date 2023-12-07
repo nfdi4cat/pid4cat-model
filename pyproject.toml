@@ -1,11 +1,11 @@
 [tool.poetry]
-name = "crid_model"
+name = "pid4cat_model"
 version = "0.1.0"
-description = "LinkML model for Catalyst Resource Idenifier (CRID)"
+description = "LinkML model for handle-based PIDs for resources in catalysis (PID4Cat)"
 authors = ["David Linke <david.linke@catalysis.de>"]
 license = "MIT"
 readme = "README.md"
-include = ["README.md", "src/crid_model/schema", "project"]
+include = ["README.md", "src/pid4cat_model/schema", "project"]
 
 [tool.poetry.dependencies]
 python = "^3.9"

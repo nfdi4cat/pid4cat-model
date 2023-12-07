@@ -1,0 +1,1140 @@
+{
+  "name": "pid4cat-model",
+  "description": "LinkML model for Catalyst Resource Identifier (PID4Cat). PID4Cat is handle system based persistent identifier (PID) for digital or physical resources used in the catalysis research process. The handle record is used to store metadata about the PID besides the obligatory redirect URL.\nThe model define here describes metadata for the PID itself and how to access the identified resource. It does not describe the resource itself with the exception of the resource category, which is a high-level description of  what is identified by the PID4Cat, e.g. sample or device.",
+  "title": "pid4cat-model",
+  "todos": [
+    "Refine slots in slot_usage of class instead of globally in slot definitions",
+    "Decide about the name for our handle PIDs.",
+    "Check and add mappings to other ontologies. (classes, slots, enums)"
+  ],
+  "see_also": [
+    "https://dalito.github.io/pid4cat-model"
+  ],
+  "id": "https://w3id.org/dalito/pid4cat-model",
+  "imports": [
+    "linkml:types"
+  ],
+  "license": "MIT",
+  "prefixes": [
+    {
+      "prefix_prefix": "pid4cat_model",
+      "prefix_reference": "https://w3id.org/dalito/pid4cat-model/"
+    },
+    {
+      "prefix_prefix": "linkml",
+      "prefix_reference": "https://w3id.org/linkml/"
+    },
+    {
+      "prefix_prefix": "schema",
+      "prefix_reference": "http://schema.org/"
+    },
+    {
+      "prefix_prefix": "dct",
+      "prefix_reference": "http://purl.org/dc/terms/"
+    },
+    {
+      "prefix_prefix": "DCAT",
+      "prefix_reference": "http://www.w3.org/ns/dcat#"
+    },
+    {
+      "prefix_prefix": "DataCite",
+      "prefix_reference": "http://purl.org/spar/datacite/"
+    }
+  ],
+  "default_prefix": "pid4cat_model",
+  "default_range": "string",
+  "types": [
+    {
+      "name": "string",
+      "definition_uri": "https://w3id.org/linkml/String",
+      "description": "A character string",
+      "notes": [
+        "In RDF serializations, a slot with range of string is treated as a literal or type xsd:string.   If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"string\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "exact_mappings": [
+        "schema:Text"
+      ],
+      "base": "str",
+      "uri": "http://www.w3.org/2001/XMLSchema#string",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "integer",
+      "definition_uri": "https://w3id.org/linkml/Integer",
+      "description": "An integer",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"integer\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "exact_mappings": [
+        "schema:Integer"
+      ],
+      "base": "int",
+      "uri": "http://www.w3.org/2001/XMLSchema#integer",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "boolean",
+      "definition_uri": "https://w3id.org/linkml/Boolean",
+      "description": "A binary (true or false) value",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"boolean\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "exact_mappings": [
+        "schema:Boolean"
+      ],
+      "base": "Bool",
+      "uri": "http://www.w3.org/2001/XMLSchema#boolean",
+      "repr": "bool",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "float",
+      "definition_uri": "https://w3id.org/linkml/Float",
+      "description": "A real number that conforms to the xsd:float specification",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"float\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "exact_mappings": [
+        "schema:Float"
+      ],
+      "base": "float",
+      "uri": "http://www.w3.org/2001/XMLSchema#float",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "double",
+      "definition_uri": "https://w3id.org/linkml/Double",
+      "description": "A real number that conforms to the xsd:double specification",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"double\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "close_mappings": [
+        "schema:Float"
+      ],
+      "base": "float",
+      "uri": "http://www.w3.org/2001/XMLSchema#double",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "decimal",
+      "definition_uri": "https://w3id.org/linkml/Decimal",
+      "description": "A real number with arbitrary precision that conforms to the xsd:decimal specification",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"decimal\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "broad_mappings": [
+        "schema:Number"
+      ],
+      "base": "Decimal",
+      "uri": "http://www.w3.org/2001/XMLSchema#decimal",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "time",
+      "definition_uri": "https://w3id.org/linkml/Time",
+      "description": "A time object represents a (local) time of day, independent of any particular day",
+      "notes": [
+        "URI is dateTime because OWL reasoners do not work with straight date or time",
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"time\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "exact_mappings": [
+        "schema:Time"
+      ],
+      "base": "XSDTime",
+      "uri": "http://www.w3.org/2001/XMLSchema#time",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "date",
+      "definition_uri": "https://w3id.org/linkml/Date",
+      "description": "a date (year, month and day) in an idealized calendar",
+      "notes": [
+        "URI is dateTime because OWL reasoners don't work with straight date or time",
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"date\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "exact_mappings": [
+        "schema:Date"
+      ],
+      "base": "XSDDate",
+      "uri": "http://www.w3.org/2001/XMLSchema#date",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "datetime",
+      "definition_uri": "https://w3id.org/linkml/Datetime",
+      "description": "The combination of a date and time",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"datetime\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "exact_mappings": [
+        "schema:DateTime"
+      ],
+      "base": "XSDDateTime",
+      "uri": "http://www.w3.org/2001/XMLSchema#dateTime",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "date_or_datetime",
+      "definition_uri": "https://w3id.org/linkml/DateOrDatetime",
+      "description": "Either a date or a datetime",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"date_or_datetime\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "base": "str",
+      "uri": "https://w3id.org/linkml/DateOrDatetime",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "uriorcurie",
+      "definition_uri": "https://w3id.org/linkml/Uriorcurie",
+      "description": "a URI or a CURIE",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"uriorcurie\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "base": "URIorCURIE",
+      "uri": "http://www.w3.org/2001/XMLSchema#anyURI",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "curie",
+      "definition_uri": "https://w3id.org/linkml/Curie",
+      "conforms_to": "https://www.w3.org/TR/curie/",
+      "description": "a compact URI",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"curie\"."
+      ],
+      "comments": [
+        "in RDF serializations this MUST be expanded to a URI",
+        "in non-RDF serializations MAY be serialized as the compact representation"
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "base": "Curie",
+      "uri": "http://www.w3.org/2001/XMLSchema#string",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "uri",
+      "definition_uri": "https://w3id.org/linkml/Uri",
+      "conforms_to": "https://www.ietf.org/rfc/rfc3987.txt",
+      "description": "a complete URI",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"uri\"."
+      ],
+      "comments": [
+        "in RDF serializations a slot with range of uri is treated as a literal or type xsd:anyURI unless it is an identifier or a reference to an identifier, in which case it is translated directly to a node"
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "close_mappings": [
+        "schema:URL"
+      ],
+      "base": "URI",
+      "uri": "http://www.w3.org/2001/XMLSchema#anyURI",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "ncname",
+      "definition_uri": "https://w3id.org/linkml/Ncname",
+      "description": "Prefix part of CURIE",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"ncname\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "base": "NCName",
+      "uri": "http://www.w3.org/2001/XMLSchema#string",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "objectidentifier",
+      "definition_uri": "https://w3id.org/linkml/Objectidentifier",
+      "description": "A URI or CURIE that represents an object in the model.",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"objectidentifier\"."
+      ],
+      "comments": [
+        "Used for inheritance and type checking"
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "base": "ElementIdentifier",
+      "uri": "http://www.w3.org/ns/shex#iri",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "nodeidentifier",
+      "definition_uri": "https://w3id.org/linkml/Nodeidentifier",
+      "description": "A URI, CURIE or BNODE that represents a node in a model.",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"nodeidentifier\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "base": "NodeIdentifier",
+      "uri": "http://www.w3.org/ns/shex#nonLiteral",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "jsonpointer",
+      "definition_uri": "https://w3id.org/linkml/Jsonpointer",
+      "conforms_to": "https://datatracker.ietf.org/doc/html/rfc6901",
+      "description": "A string encoding a JSON Pointer. The value of the string MUST conform to JSON Point syntax and SHOULD dereference to a valid object within the current instance document when encoded in tree form.",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"jsonpointer\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "base": "str",
+      "uri": "http://www.w3.org/2001/XMLSchema#string",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "jsonpath",
+      "definition_uri": "https://w3id.org/linkml/Jsonpath",
+      "conforms_to": "https://www.ietf.org/archive/id/draft-goessner-dispatch-jsonpath-00.html",
+      "description": "A string encoding a JSON Path. The value of the string MUST conform to JSON Point syntax and SHOULD dereference to zero or more valid objects within the current instance document when encoded in tree form.",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"jsonpath\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "base": "str",
+      "uri": "http://www.w3.org/2001/XMLSchema#string",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "sparqlpath",
+      "definition_uri": "https://w3id.org/linkml/Sparqlpath",
+      "conforms_to": "https://www.w3.org/TR/sparql11-query/#propertypaths",
+      "description": "A string encoding a SPARQL Property Path. The value of the string MUST conform to SPARQL syntax and SHOULD dereference to zero or more valid objects within the current instance document when encoded as RDF.",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"sparqlpath\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "base": "str",
+      "uri": "http://www.w3.org/2001/XMLSchema#string",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    }
+  ],
+  "enums": [
+    {
+      "name": "ResourceCategories",
+      "definition_uri": "https://w3id.org/dalito/pid4cat-model/ResourceCategories",
+      "description": "The category of the resource",
+      "from_schema": "https://w3id.org/dalito/pid4cat-model",
+      "permissible_values": [
+        {
+          "text": "COLLECTION",
+          "description": "A collection is described as a group; its parts may also be separately described.",
+          "meaning": "http://purl.org/dc/dcmitype/Collection"
+        },
+        {
+          "text": "CATALYST",
+          "description": "A physical entity meant to be applied as catalyst.",
+          "todos": [
+            "map this to an ontology"
+          ]
+        },
+        {
+          "text": "MATERIAL",
+          "description": "A material used in the catalysis research process (except the catalyst itself).",
+          "todos": [
+            "map this to an ontology"
+          ]
+        },
+        {
+          "text": "DEVICE",
+          "description": "A device used in the catalysis research process.",
+          "todos": [
+            "map this to an ontology"
+          ]
+        },
+        {
+          "text": "DATAOBJECT",
+          "description": "A data object might be a data file, a data set, a data collection, or a data service.",
+          "todos": [
+            "map this to an ontology"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "RelationTypes",
+      "definition_uri": "https://w3id.org/dalito/pid4cat-model/RelationTypes",
+      "description": "The type of the relation between the resources",
+      "from_schema": "https://w3id.org/dalito/pid4cat-model",
+      "permissible_values": [
+        {
+          "text": "IS_CITED_BY",
+          "description": "The resource is cited by another resource."
+        },
+        {
+          "text": "CITES",
+          "description": "The resource cites another resource."
+        },
+        {
+          "text": "IS_SUPPLEMENT_TO",
+          "description": "The resource is supplemented by another resource."
+        },
+        {
+          "text": "IS_SUPPLEMENTED_BY",
+          "description": "The resource supplements another resource."
+        },
+        {
+          "text": "IS_CONTINUED_BY",
+          "description": "The resource is continued by another resource."
+        },
+        {
+          "text": "CONTINUES",
+          "description": "The resource continues another resource."
+        },
+        {
+          "text": "HAS_METADATA",
+          "description": "The resource has metadata."
+        },
+        {
+          "text": "IS_METADATA_FOR",
+          "description": "The resource is metadata for."
+        },
+        {
+          "text": "HAS_VERSION",
+          "description": "The resource has a version.",
+          "meaning": "dct:hasVersion"
+        },
+        {
+          "text": "IS_VERSION_OF",
+          "description": "The resource is a version of.",
+          "meaning": "dct:isVersionOf"
+        },
+        {
+          "text": "IS_NEW_VERSION_OF",
+          "description": "The resource is a new version of."
+        },
+        {
+          "text": "IS_PREVIOUS_VERSION_OF",
+          "description": "The resource is a previous version of."
+        },
+        {
+          "text": "IS_PART_OF",
+          "description": "The resource is part of another resource.",
+          "meaning": "dct:isPartOf"
+        },
+        {
+          "text": "HAS_PART",
+          "description": "The resource has part another resource.",
+          "meaning": "dct:hasPart"
+        },
+        {
+          "text": "IS_DESCRIBED_BY",
+          "description": "The resource is documented by another resource."
+        },
+        {
+          "text": "DESCRIBES",
+          "description": "The resource documents another resource."
+        },
+        {
+          "text": "IS_PUBLISHED_IN",
+          "description": "The resource is published in another resource."
+        },
+        {
+          "text": "IS_REFERENCED_BY",
+          "description": "The resource is referenced by another resource.",
+          "meaning": "dct:isReferencedBy"
+        },
+        {
+          "text": "REFERENCES",
+          "description": "The resource references another resource."
+        },
+        {
+          "text": "IS_DOCUMENTED_BY",
+          "description": "The resource is documented by another resource."
+        },
+        {
+          "text": "DOCUMENTS",
+          "description": "The resource documents another resource."
+        },
+        {
+          "text": "IS_COMPILED_BY",
+          "description": "The resource is compiled by another resource."
+        },
+        {
+          "text": "COMPILES",
+          "description": "The resource compiles another resource."
+        },
+        {
+          "text": "IS_VARIANT_FORM_OF",
+          "description": "The resource is variant form of another resource."
+        },
+        {
+          "text": "IS_ORIGINAL_FORM_OF",
+          "description": "The resource is original form of another resource."
+        },
+        {
+          "text": "IS_IDENTICAL_TO",
+          "description": "The resource is identical to another resource."
+        },
+        {
+          "text": "IS_DERIVED_FROM",
+          "description": "The resource is derived from another resource."
+        },
+        {
+          "text": "IS_SOURCE_OF",
+          "description": "The resource is source of another resource."
+        },
+        {
+          "text": "IS_REQUIRED_BY",
+          "description": "The resource is required by another resource.",
+          "meaning": "dct:isRequiredBy"
+        },
+        {
+          "text": "REQUIRES",
+          "description": "The resource requires another resource.",
+          "meaning": "dct:requires"
+        },
+        {
+          "text": "IS_OBSOLETED_BY",
+          "description": "The resource or PID4Cat is obsoleted by another resource or PID4Cat."
+        },
+        {
+          "text": "OBSOLETES",
+          "description": "The resource or PID4Cat obsoletes another resource or PID4Cat."
+        }
+      ]
+    },
+    {
+      "name": "PID4CatStatus",
+      "definition_uri": "https://w3id.org/dalito/pid4cat-model/PID4CatStatus",
+      "description": "The status of the PID4CatRecord.",
+      "from_schema": "https://w3id.org/dalito/pid4cat-model",
+      "permissible_values": [
+        {
+          "text": "SUBMITTED",
+          "description": "The PID4CatRecord is reserved but the resource is not yet linked."
+        },
+        {
+          "text": "REGISTERED",
+          "description": "The PID4CatRecord links to a concrete ressource."
+        },
+        {
+          "text": "OBSOLETED",
+          "description": "The PID4CatRecord is obsolete, e.g. because the resource is referenced by another PID4Cat."
+        },
+        {
+          "text": "DEPRECATED",
+          "description": "The PID4CatRecord is deprecated, e.g. because the resource can no longer be found."
+        }
+      ]
+    },
+    {
+      "name": "PID4CatAgentRoles",
+      "definition_uri": "https://w3id.org/dalito/pid4cat-model/PID4CatAgentRoles",
+      "description": "The role of an agent relative to the resource.",
+      "from_schema": "https://w3id.org/dalito/pid4cat-model",
+      "permissible_values": [
+        {
+          "text": "TRUSTEE",
+          "description": "The agent is the trustee of the resource."
+        },
+        {
+          "text": "OWNER",
+          "description": "The agent is the owner of the resource."
+        }
+      ]
+    },
+    {
+      "name": "ChangeLogFields",
+      "definition_uri": "https://w3id.org/dalito/pid4cat-model/ChangeLogFields",
+      "description": "The field of the PID4Catrecord that was changed.",
+      "from_schema": "https://w3id.org/dalito/pid4cat-model",
+      "permissible_values": [
+        {
+          "text": "STATUS",
+          "description": "The status of the PID4CatRecord was changed."
+        },
+        {
+          "text": "RESOURCE_INFO",
+          "description": "The resource info of the PID4CatRecord was changed."
+        },
+        {
+          "text": "RELATED_IDS",
+          "description": "The related identifiers of the PID4CatRecord were changed."
+        },
+        {
+          "text": "CONTACT",
+          "description": "The contact information of the PID4CatRecord was changed."
+        },
+        {
+          "text": "RIGHTS",
+          "description": "The rights of the PID4CatRecord were changed."
+        }
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "name": "id",
+      "definition_uri": "https://w3id.org/dalito/pid4cat-model/id",
+      "description": "A unique identifier for a thing",
+      "from_schema": "https://w3id.org/dalito/pid4cat-model",
+      "mappings": [
+        "http://schema.org/identifier"
+      ],
+      "slot_uri": "http://schema.org/identifier",
+      "identifier": true,
+      "owner": "PID4CatRecord",
+      "domain_of": [
+        "PID4CatRecord"
+      ],
+      "range": "uriorcurie",
+      "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "landing_page_url",
+      "definition_uri": "https://w3id.org/dalito/pid4cat-model/landing_page_url",
+      "description": "The URL of the landing page for the resource",
+      "from_schema": "https://w3id.org/dalito/pid4cat-model",
+      "mappings": [
+        "http://schema.org/url"
+      ],
+      "rank": 10,
+      "slot_uri": "http://schema.org/url",
+      "owner": "PID4CatRecord",
+      "domain_of": [
+        "PID4CatRecord"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "status",
+      "definition_uri": "https://w3id.org/dalito/pid4cat-model/status",
+      "description": "The status of the PID4CatRecord.",
+      "from_schema": "https://w3id.org/dalito/pid4cat-model",
+      "slot_uri": "https://w3id.org/dalito/pid4cat-model/status",
+      "owner": "PID4CatRecord",
+      "domain_of": [
+        "PID4CatRecord"
+      ],
+      "range": "PID4CatStatus",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "resource_info",
+      "definition_uri": "https://w3id.org/dalito/pid4cat-model/resource_info",
+      "description": "Information about the resource.",
+      "from_schema": "https://w3id.org/dalito/pid4cat-model",
+      "slot_uri": "https://w3id.org/dalito/pid4cat-model/resource_info",
+      "multivalued": true,
+      "owner": "PID4CatRecord",
+      "domain_of": [
+        "PID4CatRecord"
+      ],
+      "range": "ResourceInfo",
+      "inlined": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "related_identifiers",
+      "definition_uri": "https://w3id.org/dalito/pid4cat-model/related_identifiers",
+      "description": "Alternate identifiers for the resource",
+      "from_schema": "https://w3id.org/dalito/pid4cat-model",
+      "mappings": [
+        "http://schema.org/identifier"
+      ],
+      "slot_uri": "http://schema.org/identifier",
+      "multivalued": true,
+      "owner": "PID4CatRecord",
+      "domain_of": [
+        "PID4CatRecord"
+      ],
+      "range": "uriorcurie",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "dc_rights",
+      "definition_uri": "https://w3id.org/dalito/pid4cat-model/dc_rights",
+      "description": "The license for the metadata contained in the PID4Cat record.",
+      "from_schema": "https://w3id.org/dalito/pid4cat-model",
+      "mappings": [
+        "http://schema.org/license"
+      ],
+      "slot_uri": "http://schema.org/license",
+      "owner": "PID4CatRecord",
+      "domain_of": [
+        "PID4CatRecord"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "curation_contact",
+      "definition_uri": "https://w3id.org/dalito/pid4cat-model/curation_contact",
+      "description": "The email address of a person or institution responsible for curation of the resource.",
+      "from_schema": "https://w3id.org/dalito/pid4cat-model",
+      "mappings": [
+        "http://schema.org/email"
+      ],
+      "slot_uri": "http://schema.org/email",
+      "owner": "PID4CatRecord",
+      "domain_of": [
+        "PID4CatRecord"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "change_log",
+      "definition_uri": "https://w3id.org/dalito/pid4cat-model/change_log",
+      "description": "Change log of PID4Cat record",
+      "from_schema": "https://w3id.org/dalito/pid4cat-model",
+      "mappings": [
+        "http://schema.org/identifier"
+      ],
+      "slot_uri": "http://schema.org/identifier",
+      "multivalued": true,
+      "owner": "PID4CatRecord",
+      "domain_of": [
+        "PID4CatRecord"
+      ],
+      "range": "LogRecord",
+      "required": true,
+      "inlined": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "relation_type",
+      "definition_uri": "https://w3id.org/dalito/pid4cat-model/relation_type",
+      "description": "Relation type between the resources",
+      "from_schema": "https://w3id.org/dalito/pid4cat-model",
+      "mappings": [
+        "http://schema.org/identifier"
+      ],
+      "slot_uri": "http://schema.org/identifier",
+      "multivalued": true,
+      "owner": "PID4CatRelation",
+      "domain_of": [
+        "PID4CatRelation"
+      ],
+      "range": "RelationTypes",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "related_identifier",
+      "definition_uri": "https://w3id.org/dalito/pid4cat-model/related_identifier",
+      "description": "Related identifiers for the resource",
+      "from_schema": "https://w3id.org/dalito/pid4cat-model",
+      "mappings": [
+        "http://schema.org/identifier"
+      ],
+      "slot_uri": "http://schema.org/identifier",
+      "owner": "PID4CatRelation",
+      "domain_of": [
+        "PID4CatRelation"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "datetime_log",
+      "definition_uri": "https://w3id.org/dalito/pid4cat-model/datetime_log",
+      "description": "The date and time of a log record",
+      "from_schema": "https://w3id.org/dalito/pid4cat-model",
+      "mappings": [
+        "http://schema.org/DateTime"
+      ],
+      "slot_uri": "http://schema.org/DateTime",
+      "owner": "LogRecord",
+      "domain_of": [
+        "PID4CatRelation",
+        "LogRecord"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "agent",
+      "definition_uri": "https://w3id.org/dalito/pid4cat-model/agent",
+      "description": "The person who registered the resource",
+      "from_schema": "https://w3id.org/dalito/pid4cat-model",
+      "mappings": [
+        "http://schema.org/Agent"
+      ],
+      "slot_uri": "http://schema.org/Agent",
+      "owner": "LogRecord",
+      "domain_of": [
+        "PID4CatRelation",
+        "LogRecord"
+      ],
+      "range": "Agent",
+      "inlined": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "label",
+      "definition_uri": "https://w3id.org/dalito/pid4cat-model/label",
+      "description": "A human-readable name for a thing",
+      "from_schema": "https://w3id.org/dalito/pid4cat-model",
+      "mappings": [
+        "http://schema.org/name"
+      ],
+      "slot_uri": "http://schema.org/name",
+      "owner": "ResourceInfo",
+      "domain_of": [
+        "ResourceInfo"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "description",
+      "definition_uri": "https://w3id.org/dalito/pid4cat-model/description",
+      "description": "A human-readable description for a thing",
+      "from_schema": "https://w3id.org/dalito/pid4cat-model",
+      "mappings": [
+        "http://schema.org/description"
+      ],
+      "slot_uri": "http://schema.org/description",
+      "owner": "LogRecord",
+      "domain_of": [
+        "ResourceInfo",
+        "LogRecord"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "resource_category",
+      "definition_uri": "https://w3id.org/dalito/pid4cat-model/resource_category",
+      "description": "The category of the resource",
+      "from_schema": "https://w3id.org/dalito/pid4cat-model",
+      "mappings": [
+        "http://schema.org/additionalType"
+      ],
+      "slot_uri": "http://schema.org/additionalType",
+      "owner": "ResourceInfo",
+      "domain_of": [
+        "ResourceInfo"
+      ],
+      "range": "ResourceCategories",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "rdf_url",
+      "definition_uri": "https://w3id.org/dalito/pid4cat-model/rdf_url",
+      "description": "The URI of the rdf represenation of the resource. ",
+      "from_schema": "https://w3id.org/dalito/pid4cat-model",
+      "mappings": [
+        "http://schema.org/additionalType"
+      ],
+      "slot_uri": "http://schema.org/additionalType",
+      "owner": "ResourceInfo",
+      "domain_of": [
+        "ResourceInfo"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "rdf_type",
+      "definition_uri": "https://w3id.org/dalito/pid4cat-model/rdf_type",
+      "description": "The format of the rdf representation of the resource (xml, turlte, json-ld, ...).",
+      "from_schema": "https://w3id.org/dalito/pid4cat-model",
+      "mappings": [
+        "http://schema.org/additionalType"
+      ],
+      "slot_uri": "http://schema.org/additionalType",
+      "owner": "ResourceInfo",
+      "domain_of": [
+        "ResourceInfo"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "schema_url",
+      "definition_uri": "https://w3id.org/dalito/pid4cat-model/schema_url",
+      "description": "The URI of the schema used to describe the resource.  Same property as in DataCite:schemeURI.",
+      "from_schema": "https://w3id.org/dalito/pid4cat-model",
+      "mappings": [
+        "http://schema.org/additionalType"
+      ],
+      "slot_uri": "http://schema.org/additionalType",
+      "owner": "ResourceInfo",
+      "domain_of": [
+        "ResourceInfo"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "schema_type",
+      "definition_uri": "https://w3id.org/dalito/pid4cat-model/schema_type",
+      "description": "The type of the scheme used to describe the resource. Examples: XSD, DDT, Turtle Same property as in DataCite:schemeType.",
+      "from_schema": "https://w3id.org/dalito/pid4cat-model",
+      "mappings": [
+        "http://schema.org/additionalType"
+      ],
+      "slot_uri": "http://schema.org/additionalType",
+      "owner": "ResourceInfo",
+      "domain_of": [
+        "ResourceInfo"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "changed_field",
+      "definition_uri": "https://w3id.org/dalito/pid4cat-model/changed_field",
+      "description": "The field that was changed",
+      "from_schema": "https://w3id.org/dalito/pid4cat-model",
+      "mappings": [
+        "http://schema.org/identifier"
+      ],
+      "slot_uri": "http://schema.org/identifier",
+      "owner": "LogRecord",
+      "domain_of": [
+        "LogRecord"
+      ],
+      "range": "ChangeLogFields",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "name",
+      "definition_uri": "https://w3id.org/dalito/pid4cat-model/name",
+      "description": "The name of the agent",
+      "from_schema": "https://w3id.org/dalito/pid4cat-model",
+      "mappings": [
+        "http://schema.org/name"
+      ],
+      "slot_uri": "http://schema.org/name",
+      "owner": "Agent",
+      "domain_of": [
+        "Agent"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "contact_information",
+      "definition_uri": "https://w3id.org/dalito/pid4cat-model/contact_information",
+      "description": "Identification of the agent that registered the PID, with contact information. Should include person name and affiliation, or position name and affiliation, or just organization name. e-mail address is preferred contact information.",
+      "from_schema": "https://w3id.org/dalito/pid4cat-model",
+      "mappings": [
+        "http://schema.org/email"
+      ],
+      "slot_uri": "http://schema.org/email",
+      "owner": "Agent",
+      "domain_of": [
+        "Agent"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "person_orcid",
+      "definition_uri": "https://w3id.org/dalito/pid4cat-model/person_orcid",
+      "description": "The ORCID of the person",
+      "from_schema": "https://w3id.org/dalito/pid4cat-model",
+      "mappings": [
+        "http://schema.org/identifier"
+      ],
+      "slot_uri": "http://schema.org/identifier",
+      "owner": "Agent",
+      "domain_of": [
+        "Agent"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "affiliation_ror",
+      "definition_uri": "https://w3id.org/dalito/pid4cat-model/affiliation_ror",
+      "description": "The ROR of the affiliation",
+      "from_schema": "https://w3id.org/dalito/pid4cat-model",
+      "mappings": [
+        "http://schema.org/identifier"
+      ],
+      "slot_uri": "http://schema.org/identifier",
+      "owner": "Agent",
+      "domain_of": [
+        "Agent"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "role",
+      "definition_uri": "https://w3id.org/dalito/pid4cat-model/role",
+      "description": "The role of the agent relative to the resource",
+      "from_schema": "https://w3id.org/dalito/pid4cat-model",
+      "mappings": [
+        "http://schema.org/identifier"
+      ],
+      "slot_uri": "http://schema.org/identifier",
+      "owner": "Agent",
+      "domain_of": [
+        "Agent"
+      ],
+      "range": "PID4CatAgentRoles",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "PID4CatRecord_curation_contact",
+      "definition_uri": "https://w3id.org/dalito/pid4cat-model/curation_contact",
+      "description": "The email address of a person or institution responsible for curation of the resource.",
+      "from_schema": "https://w3id.org/dalito/pid4cat-model",
+      "mappings": [
+        "http://schema.org/email"
+      ],
+      "is_a": "curation_contact",
+      "domain": "PID4CatRecord",
+      "slot_uri": "http://schema.org/email",
+      "alias": "curation_contact",
+      "owner": "PID4CatRecord",
+      "domain_of": [
+        "PID4CatRecord"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "curation_contact",
+      "range": "string",
+      "pattern": "^\\S+@[\\S+\\.]+\\S+",
+      "@type": "SlotDefinition"
+    }
+  ],
+  "classes": [
+    {
+      "name": "PID4CatRecord",
+      "definition_uri": "https://w3id.org/dalito/pid4cat-model/PID4CatRecord",
+      "description": "Represents a PID4CatRecord",
+      "from_schema": "https://w3id.org/dalito/pid4cat-model",
+      "slots": [
+        "id",
+        "landing_page_url",
+        "status",
+        "resource_info",
+        "related_identifiers",
+        "dc_rights",
+        "PID4CatRecord_curation_contact",
+        "change_log"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/dalito/pid4cat-model/PID4CatRecord",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "PID4CatRelation",
+      "definition_uri": "https://w3id.org/dalito/pid4cat-model/PID4CatRelation",
+      "description": "A relation between PID4CatRecords or between a PID4CatRecord and other resources with a PID.",
+      "from_schema": "https://w3id.org/dalito/pid4cat-model",
+      "slots": [
+        "relation_type",
+        "related_identifier",
+        "datetime_log",
+        "agent"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/dalito/pid4cat-model/PID4CatRelation",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "ResourceInfo",
+      "definition_uri": "https://w3id.org/dalito/pid4cat-model/ResourceInfo",
+      "description": "Data object to hold information about the resource and its representation.",
+      "from_schema": "https://w3id.org/dalito/pid4cat-model",
+      "slots": [
+        "label",
+        "description",
+        "resource_category",
+        "rdf_url",
+        "rdf_type",
+        "schema_url",
+        "schema_type"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/dalito/pid4cat-model/ResourceInfo",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "LogRecord",
+      "definition_uri": "https://w3id.org/dalito/pid4cat-model/LogRecord",
+      "description": "A log record for changes made on a PID4CatRecord starting from registration.",
+      "from_schema": "https://w3id.org/dalito/pid4cat-model",
+      "slots": [
+        "datetime_log",
+        "agent",
+        "changed_field",
+        "description"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/dalito/pid4cat-model/LogRecord",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "Agent",
+      "definition_uri": "https://w3id.org/dalito/pid4cat-model/Agent",
+      "description": "Person who plays a role relative to sample collection or curation.",
+      "from_schema": "https://w3id.org/dalito/pid4cat-model",
+      "slots": [
+        "name",
+        "contact_information",
+        "person_orcid",
+        "affiliation_ror",
+        "role"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/dalito/pid4cat-model/Agent",
+      "@type": "ClassDefinition"
+    }
+  ],
+  "metamodel_version": "1.7.0",
+  "source_file": "pid4cat_model.yaml",
+  "source_file_date": "2023-12-07T17:44:32",
+  "source_file_size": 12073,
+  "generation_date": "2023-12-07T18:08:51",
+  "@type": "SchemaDefinition",
+  "@context": [
+    "project/jsonld/pid4cat_model.context.jsonld",
+    "https://w3id.org/linkml/types.context.jsonld",
+    {
+      "@base": "https://w3id.org/dalito/pid4cat-model/"
+    }
+  ]
+}

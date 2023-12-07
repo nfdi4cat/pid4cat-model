@@ -1,5 +1,5 @@
 ---
-name: Auto-deployment of crid_model Documentation
+name: Auto-deployment of pid4cat_model Documentation
 on:
   push:
     branches: [main]

@@ -1,5 +1,5 @@
 ---
-site_name: "crid-model"
+site_name: "pid4cat-model"
 theme:
   name: material
   # palette:
@@ -14,8 +14,8 @@ nav:
   # - Home: home.md
   - Index: index.md
   - About: about.md
-site_url: https://dalito.github.io/crid-model
-repo_url: https://github.com/dalito/crid-model
+site_url: https://dalito.github.io/pid4cat-model
+repo_url: https://github.com/dalito/pid4cat-model
 
 # Uncomment this block to enable use of Google Analytics.
 # Replace the property value with your own ID.

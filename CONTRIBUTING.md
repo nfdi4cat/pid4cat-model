@@ -1,9 +1,9 @@
-# Contributing to crid-model
+# Contributing to pid4cat-model
 
 :+1: First of all: Thank you for taking the time to contribute!
 
 The following is a set of guidelines for contributing to
-crid-model. These guidelines are not strict rules.
+pid4cat-model. These guidelines are not strict rules.
 Use your best judgment, and feel free to propose changes to this document
 in a pull request.
 
@@ -22,7 +22,7 @@ in a pull request.
 
 ## Code of Conduct
 
-The crid-model team strives to create a
+The pid4cat-model team strives to create a
 welcoming environment for editors, users and other contributors.
 Please carefully read our [Code of Conduct](CODE_OF_CONDUCT.md).
 
@@ -69,7 +69,7 @@ and make your changes on a [new branch][about-branches].
 [about-branches]: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-branches
 [about-issues]: https://docs.github.com/en/issues/tracking-your-work-with-issues/about-issues
 [about-pulls]: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests
-[issues]: https://github.com/dalito/crid-model/issues/
-[pulls]: https://github.com/dalito/crid-model/pulls/
+[issues]: https://github.com/dalito/pid4cat-model/issues/
+[pulls]: https://github.com/dalito/pid4cat-model/pulls/
 
 We recommend also reading [GitHub Pull Requests: 10 Tips to Know](https://blog.mergify.com/github-pull-requests-10-tips-to-know/)

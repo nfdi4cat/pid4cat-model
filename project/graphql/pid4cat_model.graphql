@@ -1,0 +1,48 @@
+type Agent
+  {
+    name: String
+    contactInformation: String
+    personOrcid: String
+    affiliationRor: String
+    role: PID4CatAgentRoles
+  }
+
+type LogRecord
+  {
+    datetimeLog: String
+    agent: Agent
+    changedField: ChangeLogFields
+    description: String
+  }
+
+type PID4CatRecord
+  {
+    id: Uriorcurie!
+    landingPageUrl: String
+    status: PID4CatStatus
+    resourceInfo: [ResourceInfo]
+    relatedIdentifiers: [Uriorcurie]
+    dcRights: String
+    curationContact: String
+    changeLog: [LogRecord]!
+  }
+
+type PID4CatRelation
+  {
+    relationType: [RelationTypes]
+    relatedIdentifier: String
+    datetimeLog: String
+    agent: Agent
+  }
+
+type ResourceInfo
+  {
+    label: String
+    description: String
+    resourceCategory: ResourceCategories
+    rdfUrl: String
+    rdfType: String
+    schemaUrl: String
+    schemaType: String
+  }
+

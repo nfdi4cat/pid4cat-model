@@ -1,3 +1,3 @@
-# crid-model
+# pid4cat-model
 
-LinkML model for Catalyst Resource Idenifier (CRID)
+A LinkML model for handle-based PIDs for resources in catalysis (PID4Cat)

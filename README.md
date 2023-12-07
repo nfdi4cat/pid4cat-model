@@ -1,20 +1,20 @@
-# crid-model
+# PID4cat model
 
-LinkML model for Catalyst Resource Idenifier (CRID)
+A LinkML model for handle-based PIDs for resources in catalysis (PID4Cat)
 
 ## Website
 
-[https://dalito.github.io/crid-model](https://dalito.github.io/crid-model)
+[https://dalito.github.io/pid4cat-model](https://dalito.github.io/pid4cat-model)
 
 ## Repository Structure
 
 * [examples/](examples/) - example data
 * [project/](project/) - project files (do not edit these)
 * [src/](src/) - source files (edit these)
-  * [crid_model](src/crid_model)
-    * [schema](src/crid_model/schema) -- LinkML schema
+  * [pid4cat_model](src/pid4cat_model)
+    * [schema](src/pid4cat_model/schema) -- LinkML schema
       (edit this)
-    * [datamodel](src/crid_model/datamodel) -- generated
+    * [datamodel](src/pid4cat_model/datamodel) -- generated
       Python datamodel
 * [tests/](tests/) - Python tests
 
