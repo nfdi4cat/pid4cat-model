@@ -253,7 +253,7 @@
             "type": "object"
         }
     },
-    "$id": "https://w3id.org/dalito/pid4cat-model",
+    "$id": "https://w3id.org/nfdi4cat/pid4cat-model",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "additionalProperties": true,
     "metamodel_version": "1.7.0",

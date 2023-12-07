@@ -2,7 +2,7 @@
 # Generation date: 2023-12-07T18:08:57
 # Schema: pid4cat-model
 #
-# id: https://w3id.org/dalito/pid4cat-model
+# id: https://w3id.org/nfdi4cat/pid4cat-model
 # description: LinkML model for Catalyst Resource Identifier (PID4Cat). PID4Cat is handle system based persistent identifier (PID) for digital or physical resources used in the catalysis research process. The handle record is used to store metadata about the PID besides the obligatory redirect URL.
 #   The model define here describes metadata for the PID itself and how to access the identified resource. It does not describe the resource itself with the exception of the resource category, which is a high-level description of  what is identified by the PID4Cat, e.g. sample or device.
 # license: MIT
@@ -36,7 +36,7 @@ DCAT = CurieNamespace('DCAT', 'http://www.w3.org/ns/dcat#')
 DATACITE = CurieNamespace('DataCite', 'http://purl.org/spar/datacite/')
 DCT = CurieNamespace('dct', 'http://purl.org/dc/terms/')
 LINKML = CurieNamespace('linkml', 'https://w3id.org/linkml/')
-PID4CAT_MODEL = CurieNamespace('pid4cat_model', 'https://w3id.org/dalito/pid4cat-model/')
+PID4CAT_MODEL = CurieNamespace('pid4cat_model', 'https://w3id.org/nfdi4cat/pid4cat-model/')
 SCHEMA = CurieNamespace('schema', 'http://schema.org/')
 DEFAULT_ = PID4CAT_MODEL
 

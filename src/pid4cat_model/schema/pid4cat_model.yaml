@@ -1,20 +1,19 @@
 ---
-id: https://w3id.org/dalito/pid4cat-model
-name: pid4cat-model  # or ID4Cat or RID4Cat or PID4Cat?
+id: https://w3id.org/nfdi4cat/pid4cat-model
+name: pid4cat-model
 title: pid4cat-model
 description: >-
-  LinkML model for Catalyst Resource Identifier (PID4Cat). PID4Cat is handle system
-  based persistent identifier (PID) for digital or physical resources used in
-  the catalysis research process. The handle record is used to store metadata
-  about the PID besides the obligatory redirect URL.
+  LinkML model for Catalyst Resource Identifier (PID4Cat). PID4Cat is handle
+  system based persistent identifier (PID) for digital or physical resources
+  used in the catalysis research process. The handle record is used to store
+  metadata about the PID besides the obligatory landing page URL.
 
-  The model define here describes metadata for the PID itself and how to access
-  the identified resource. It does not describe the resource itself with the
+  The model describes metadata for the PID itself and how to access the 
+  identified resource. It does not describe the resource itself with the
   exception of the resource category, which is a high-level description of 
-  what is identified by the PID4Cat, e.g. sample or device.
+  what is identified by the PID4Cat handle, e.g. a sample or a device.
 todos:
   - Refine slots in slot_usage of class instead of globally in slot definitions
-  - Decide about the name for our handle PIDs.
   - Check and add mappings to other ontologies. (classes, slots, enums)
 
 license: MIT
@@ -22,7 +21,7 @@ see_also:
   - https://dalito.github.io/pid4cat-model
 
 prefixes:
-  pid4cat_model: https://w3id.org/dalito/pid4cat-model/
+  pid4cat_model: https://w3id.org/nfdi4cat/pid4cat-model/
   linkml: https://w3id.org/linkml/
   schema: http://schema.org/
   
@@ -52,7 +51,6 @@ classes:
       - curation_contact
       - change_log
     slot_usage:
-      # Refine/constrain the meaning or use of a slot in the context of a particular class.
       curation_contact:
         pattern: "^\\S+@[\\S+\\.]+\\S+"
 
@@ -63,7 +61,7 @@ classes:
       - relation_type
       - related_identifier
       - datetime_log
-      - agent
+      - has_agent
   
   ResourceInfo:
     description: >-
@@ -82,12 +80,12 @@ classes:
       A log record for changes made on a PID4CatRecord starting from registration.
     slots:
       - datetime_log
-      - agent
+      - has_agent
       - changed_field
       - description
 
   Agent:
-    description: Person who plays a role relative to sample collection or curation.
+    description: Person who plays a role relative to PID creation or curation.
     slots:
       - name
       - contact_information
@@ -95,6 +93,18 @@ classes:
       - affiliation_ror
       - role  # e.g. trustee, owner, ...more?  
   
+  Container:
+    description: >-
+      A container for all PID4Cat instances.
+    tree_root: true
+    attributes:
+      has_pids:
+        multivalued: true
+        inlined_as_list: true
+        range: PID4CatRecord
+        description: >-
+          The PID4CatRecords contained in the container.
+
 slots:
 
   # Slots for PID4CatRecord
@@ -145,7 +155,7 @@ slots:
   datetime_log:
     slot_uri: schema:DateTime
     description: The date and time of a log record
-  agent:
+  has_agent:
     slot_uri: schema:Agent
     range: Agent
     description: The person who registered the resource

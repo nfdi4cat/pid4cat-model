@@ -10,7 +10,7 @@
   "see_also": [
     "https://dalito.github.io/pid4cat-model"
   ],
-  "id": "https://w3id.org/dalito/pid4cat-model",
+  "id": "https://w3id.org/nfdi4cat/pid4cat-model",
   "imports": [
     "linkml:types"
   ],
@@ -18,7 +18,7 @@
   "prefixes": [
     {
       "prefix_prefix": "pid4cat_model",
-      "prefix_reference": "https://w3id.org/dalito/pid4cat-model/"
+      "prefix_reference": "https://w3id.org/nfdi4cat/pid4cat-model/"
     },
     {
       "prefix_prefix": "linkml",
@@ -356,9 +356,9 @@
   "enums": [
     {
       "name": "ResourceCategories",
-      "definition_uri": "https://w3id.org/dalito/pid4cat-model/ResourceCategories",
+      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/ResourceCategories",
       "description": "The category of the resource",
-      "from_schema": "https://w3id.org/dalito/pid4cat-model",
+      "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "permissible_values": [
         {
           "text": "COLLECTION",
@@ -397,9 +397,9 @@
     },
     {
       "name": "RelationTypes",
-      "definition_uri": "https://w3id.org/dalito/pid4cat-model/RelationTypes",
+      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/RelationTypes",
       "description": "The type of the relation between the resources",
-      "from_schema": "https://w3id.org/dalito/pid4cat-model",
+      "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "permissible_values": [
         {
           "text": "IS_CITED_BY",
@@ -540,9 +540,9 @@
     },
     {
       "name": "PID4CatStatus",
-      "definition_uri": "https://w3id.org/dalito/pid4cat-model/PID4CatStatus",
+      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/PID4CatStatus",
       "description": "The status of the PID4CatRecord.",
-      "from_schema": "https://w3id.org/dalito/pid4cat-model",
+      "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "permissible_values": [
         {
           "text": "SUBMITTED",
@@ -564,9 +564,9 @@
     },
     {
       "name": "PID4CatAgentRoles",
-      "definition_uri": "https://w3id.org/dalito/pid4cat-model/PID4CatAgentRoles",
+      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/PID4CatAgentRoles",
       "description": "The role of an agent relative to the resource.",
-      "from_schema": "https://w3id.org/dalito/pid4cat-model",
+      "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "permissible_values": [
         {
           "text": "TRUSTEE",
@@ -580,9 +580,9 @@
     },
     {
       "name": "ChangeLogFields",
-      "definition_uri": "https://w3id.org/dalito/pid4cat-model/ChangeLogFields",
+      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/ChangeLogFields",
       "description": "The field of the PID4Catrecord that was changed.",
-      "from_schema": "https://w3id.org/dalito/pid4cat-model",
+      "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "permissible_values": [
         {
           "text": "STATUS",
@@ -610,9 +610,9 @@
   "slots": [
     {
       "name": "id",
-      "definition_uri": "https://w3id.org/dalito/pid4cat-model/id",
+      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/id",
       "description": "A unique identifier for a thing",
-      "from_schema": "https://w3id.org/dalito/pid4cat-model",
+      "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "mappings": [
         "http://schema.org/identifier"
       ],
@@ -628,9 +628,9 @@
     },
     {
       "name": "landing_page_url",
-      "definition_uri": "https://w3id.org/dalito/pid4cat-model/landing_page_url",
+      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/landing_page_url",
       "description": "The URL of the landing page for the resource",
-      "from_schema": "https://w3id.org/dalito/pid4cat-model",
+      "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "mappings": [
         "http://schema.org/url"
       ],
@@ -645,10 +645,10 @@
     },
     {
       "name": "status",
-      "definition_uri": "https://w3id.org/dalito/pid4cat-model/status",
+      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/status",
       "description": "The status of the PID4CatRecord.",
-      "from_schema": "https://w3id.org/dalito/pid4cat-model",
-      "slot_uri": "https://w3id.org/dalito/pid4cat-model/status",
+      "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
+      "slot_uri": "https://w3id.org/nfdi4cat/pid4cat-model/status",
       "owner": "PID4CatRecord",
       "domain_of": [
         "PID4CatRecord"
@@ -658,10 +658,10 @@
     },
     {
       "name": "resource_info",
-      "definition_uri": "https://w3id.org/dalito/pid4cat-model/resource_info",
+      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/resource_info",
       "description": "Information about the resource.",
-      "from_schema": "https://w3id.org/dalito/pid4cat-model",
-      "slot_uri": "https://w3id.org/dalito/pid4cat-model/resource_info",
+      "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
+      "slot_uri": "https://w3id.org/nfdi4cat/pid4cat-model/resource_info",
       "multivalued": true,
       "owner": "PID4CatRecord",
       "domain_of": [
@@ -673,9 +673,9 @@
     },
     {
       "name": "related_identifiers",
-      "definition_uri": "https://w3id.org/dalito/pid4cat-model/related_identifiers",
+      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/related_identifiers",
       "description": "Alternate identifiers for the resource",
-      "from_schema": "https://w3id.org/dalito/pid4cat-model",
+      "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "mappings": [
         "http://schema.org/identifier"
       ],
@@ -690,9 +690,9 @@
     },
     {
       "name": "dc_rights",
-      "definition_uri": "https://w3id.org/dalito/pid4cat-model/dc_rights",
+      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/dc_rights",
       "description": "The license for the metadata contained in the PID4Cat record.",
-      "from_schema": "https://w3id.org/dalito/pid4cat-model",
+      "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "mappings": [
         "http://schema.org/license"
       ],
@@ -706,9 +706,9 @@
     },
     {
       "name": "curation_contact",
-      "definition_uri": "https://w3id.org/dalito/pid4cat-model/curation_contact",
+      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/curation_contact",
       "description": "The email address of a person or institution responsible for curation of the resource.",
-      "from_schema": "https://w3id.org/dalito/pid4cat-model",
+      "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "mappings": [
         "http://schema.org/email"
       ],
@@ -722,9 +722,9 @@
     },
     {
       "name": "change_log",
-      "definition_uri": "https://w3id.org/dalito/pid4cat-model/change_log",
+      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/change_log",
       "description": "Change log of PID4Cat record",
-      "from_schema": "https://w3id.org/dalito/pid4cat-model",
+      "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "mappings": [
         "http://schema.org/identifier"
       ],
@@ -741,9 +741,9 @@
     },
     {
       "name": "relation_type",
-      "definition_uri": "https://w3id.org/dalito/pid4cat-model/relation_type",
+      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/relation_type",
       "description": "Relation type between the resources",
-      "from_schema": "https://w3id.org/dalito/pid4cat-model",
+      "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "mappings": [
         "http://schema.org/identifier"
       ],
@@ -758,9 +758,9 @@
     },
     {
       "name": "related_identifier",
-      "definition_uri": "https://w3id.org/dalito/pid4cat-model/related_identifier",
+      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/related_identifier",
       "description": "Related identifiers for the resource",
-      "from_schema": "https://w3id.org/dalito/pid4cat-model",
+      "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "mappings": [
         "http://schema.org/identifier"
       ],
@@ -774,9 +774,9 @@
     },
     {
       "name": "datetime_log",
-      "definition_uri": "https://w3id.org/dalito/pid4cat-model/datetime_log",
+      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/datetime_log",
       "description": "The date and time of a log record",
-      "from_schema": "https://w3id.org/dalito/pid4cat-model",
+      "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "mappings": [
         "http://schema.org/DateTime"
       ],
@@ -791,9 +791,9 @@
     },
     {
       "name": "agent",
-      "definition_uri": "https://w3id.org/dalito/pid4cat-model/agent",
+      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/agent",
       "description": "The person who registered the resource",
-      "from_schema": "https://w3id.org/dalito/pid4cat-model",
+      "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "mappings": [
         "http://schema.org/Agent"
       ],
@@ -809,9 +809,9 @@
     },
     {
       "name": "label",
-      "definition_uri": "https://w3id.org/dalito/pid4cat-model/label",
+      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/label",
       "description": "A human-readable name for a thing",
-      "from_schema": "https://w3id.org/dalito/pid4cat-model",
+      "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "mappings": [
         "http://schema.org/name"
       ],
@@ -825,9 +825,9 @@
     },
     {
       "name": "description",
-      "definition_uri": "https://w3id.org/dalito/pid4cat-model/description",
+      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/description",
       "description": "A human-readable description for a thing",
-      "from_schema": "https://w3id.org/dalito/pid4cat-model",
+      "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "mappings": [
         "http://schema.org/description"
       ],
@@ -842,9 +842,9 @@
     },
     {
       "name": "resource_category",
-      "definition_uri": "https://w3id.org/dalito/pid4cat-model/resource_category",
+      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/resource_category",
       "description": "The category of the resource",
-      "from_schema": "https://w3id.org/dalito/pid4cat-model",
+      "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "mappings": [
         "http://schema.org/additionalType"
       ],
@@ -858,9 +858,9 @@
     },
     {
       "name": "rdf_url",
-      "definition_uri": "https://w3id.org/dalito/pid4cat-model/rdf_url",
+      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/rdf_url",
       "description": "The URI of the rdf represenation of the resource. ",
-      "from_schema": "https://w3id.org/dalito/pid4cat-model",
+      "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "mappings": [
         "http://schema.org/additionalType"
       ],
@@ -874,9 +874,9 @@
     },
     {
       "name": "rdf_type",
-      "definition_uri": "https://w3id.org/dalito/pid4cat-model/rdf_type",
+      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/rdf_type",
       "description": "The format of the rdf representation of the resource (xml, turlte, json-ld, ...).",
-      "from_schema": "https://w3id.org/dalito/pid4cat-model",
+      "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "mappings": [
         "http://schema.org/additionalType"
       ],
@@ -890,9 +890,9 @@
     },
     {
       "name": "schema_url",
-      "definition_uri": "https://w3id.org/dalito/pid4cat-model/schema_url",
+      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/schema_url",
       "description": "The URI of the schema used to describe the resource.  Same property as in DataCite:schemeURI.",
-      "from_schema": "https://w3id.org/dalito/pid4cat-model",
+      "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "mappings": [
         "http://schema.org/additionalType"
       ],
@@ -906,9 +906,9 @@
     },
     {
       "name": "schema_type",
-      "definition_uri": "https://w3id.org/dalito/pid4cat-model/schema_type",
+      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/schema_type",
       "description": "The type of the scheme used to describe the resource. Examples: XSD, DDT, Turtle Same property as in DataCite:schemeType.",
-      "from_schema": "https://w3id.org/dalito/pid4cat-model",
+      "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "mappings": [
         "http://schema.org/additionalType"
       ],
@@ -922,9 +922,9 @@
     },
     {
       "name": "changed_field",
-      "definition_uri": "https://w3id.org/dalito/pid4cat-model/changed_field",
+      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/changed_field",
       "description": "The field that was changed",
-      "from_schema": "https://w3id.org/dalito/pid4cat-model",
+      "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "mappings": [
         "http://schema.org/identifier"
       ],
@@ -938,9 +938,9 @@
     },
     {
       "name": "name",
-      "definition_uri": "https://w3id.org/dalito/pid4cat-model/name",
+      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/name",
       "description": "The name of the agent",
-      "from_schema": "https://w3id.org/dalito/pid4cat-model",
+      "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "mappings": [
         "http://schema.org/name"
       ],
@@ -954,9 +954,9 @@
     },
     {
       "name": "contact_information",
-      "definition_uri": "https://w3id.org/dalito/pid4cat-model/contact_information",
+      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/contact_information",
       "description": "Identification of the agent that registered the PID, with contact information. Should include person name and affiliation, or position name and affiliation, or just organization name. e-mail address is preferred contact information.",
-      "from_schema": "https://w3id.org/dalito/pid4cat-model",
+      "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "mappings": [
         "http://schema.org/email"
       ],
@@ -970,9 +970,9 @@
     },
     {
       "name": "person_orcid",
-      "definition_uri": "https://w3id.org/dalito/pid4cat-model/person_orcid",
+      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/person_orcid",
       "description": "The ORCID of the person",
-      "from_schema": "https://w3id.org/dalito/pid4cat-model",
+      "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "mappings": [
         "http://schema.org/identifier"
       ],
@@ -986,9 +986,9 @@
     },
     {
       "name": "affiliation_ror",
-      "definition_uri": "https://w3id.org/dalito/pid4cat-model/affiliation_ror",
+      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/affiliation_ror",
       "description": "The ROR of the affiliation",
-      "from_schema": "https://w3id.org/dalito/pid4cat-model",
+      "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "mappings": [
         "http://schema.org/identifier"
       ],
@@ -1002,9 +1002,9 @@
     },
     {
       "name": "role",
-      "definition_uri": "https://w3id.org/dalito/pid4cat-model/role",
+      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/role",
       "description": "The role of the agent relative to the resource",
-      "from_schema": "https://w3id.org/dalito/pid4cat-model",
+      "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "mappings": [
         "http://schema.org/identifier"
       ],
@@ -1018,9 +1018,9 @@
     },
     {
       "name": "PID4CatRecord_curation_contact",
-      "definition_uri": "https://w3id.org/dalito/pid4cat-model/curation_contact",
+      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/curation_contact",
       "description": "The email address of a person or institution responsible for curation of the resource.",
-      "from_schema": "https://w3id.org/dalito/pid4cat-model",
+      "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "mappings": [
         "http://schema.org/email"
       ],
@@ -1042,9 +1042,9 @@
   "classes": [
     {
       "name": "PID4CatRecord",
-      "definition_uri": "https://w3id.org/dalito/pid4cat-model/PID4CatRecord",
+      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/PID4CatRecord",
       "description": "Represents a PID4CatRecord",
-      "from_schema": "https://w3id.org/dalito/pid4cat-model",
+      "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "slots": [
         "id",
         "landing_page_url",
@@ -1056,14 +1056,14 @@
         "change_log"
       ],
       "slot_usage": {},
-      "class_uri": "https://w3id.org/dalito/pid4cat-model/PID4CatRecord",
+      "class_uri": "https://w3id.org/nfdi4cat/pid4cat-model/PID4CatRecord",
       "@type": "ClassDefinition"
     },
     {
       "name": "PID4CatRelation",
-      "definition_uri": "https://w3id.org/dalito/pid4cat-model/PID4CatRelation",
+      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/PID4CatRelation",
       "description": "A relation between PID4CatRecords or between a PID4CatRecord and other resources with a PID.",
-      "from_schema": "https://w3id.org/dalito/pid4cat-model",
+      "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "slots": [
         "relation_type",
         "related_identifier",
@@ -1071,14 +1071,14 @@
         "agent"
       ],
       "slot_usage": {},
-      "class_uri": "https://w3id.org/dalito/pid4cat-model/PID4CatRelation",
+      "class_uri": "https://w3id.org/nfdi4cat/pid4cat-model/PID4CatRelation",
       "@type": "ClassDefinition"
     },
     {
       "name": "ResourceInfo",
-      "definition_uri": "https://w3id.org/dalito/pid4cat-model/ResourceInfo",
+      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/ResourceInfo",
       "description": "Data object to hold information about the resource and its representation.",
-      "from_schema": "https://w3id.org/dalito/pid4cat-model",
+      "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "slots": [
         "label",
         "description",
@@ -1089,14 +1089,14 @@
         "schema_type"
       ],
       "slot_usage": {},
-      "class_uri": "https://w3id.org/dalito/pid4cat-model/ResourceInfo",
+      "class_uri": "https://w3id.org/nfdi4cat/pid4cat-model/ResourceInfo",
       "@type": "ClassDefinition"
     },
     {
       "name": "LogRecord",
-      "definition_uri": "https://w3id.org/dalito/pid4cat-model/LogRecord",
+      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/LogRecord",
       "description": "A log record for changes made on a PID4CatRecord starting from registration.",
-      "from_schema": "https://w3id.org/dalito/pid4cat-model",
+      "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "slots": [
         "datetime_log",
         "agent",
@@ -1104,14 +1104,14 @@
         "description"
       ],
       "slot_usage": {},
-      "class_uri": "https://w3id.org/dalito/pid4cat-model/LogRecord",
+      "class_uri": "https://w3id.org/nfdi4cat/pid4cat-model/LogRecord",
       "@type": "ClassDefinition"
     },
     {
       "name": "Agent",
-      "definition_uri": "https://w3id.org/dalito/pid4cat-model/Agent",
+      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/Agent",
       "description": "Person who plays a role relative to sample collection or curation.",
-      "from_schema": "https://w3id.org/dalito/pid4cat-model",
+      "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "slots": [
         "name",
         "contact_information",
@@ -1120,7 +1120,7 @@
         "role"
       ],
       "slot_usage": {},
-      "class_uri": "https://w3id.org/dalito/pid4cat-model/Agent",
+      "class_uri": "https://w3id.org/nfdi4cat/pid4cat-model/Agent",
       "@type": "ClassDefinition"
     }
   ],
@@ -1134,7 +1134,7 @@
     "project/jsonld/pid4cat_model.context.jsonld",
     "https://w3id.org/linkml/types.context.jsonld",
     {
-      "@base": "https://w3id.org/dalito/pid4cat-model/"
+      "@base": "https://w3id.org/nfdi4cat/pid4cat-model/"
     }
   ]
 }

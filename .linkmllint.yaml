@@ -1,0 +1,5 @@
+# Use the recommended rule set except for the standard_naming rule
+extends: recommended
+rules:
+  standard_naming:
+    permissible_values_upper_case: true
