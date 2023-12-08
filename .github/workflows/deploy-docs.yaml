@@ -8,6 +8,11 @@ on:
 jobs:
   build-docs:
     runs-on: ubuntu-latest
+    # set write permissions only for pages
+    # https://docs.github.com/en/actions/using-jobs/assigning-permissions-to-jobs
+    permissions:
+      contents: read
+      pages: write
     steps:
       - name: Checkout
         uses: actions/checkout@v3
