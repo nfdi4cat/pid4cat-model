@@ -11,9 +11,8 @@ jobs:
     # set write permissions only for pages
     # https://docs.github.com/en/actions/using-jobs/assigning-permissions-to-jobs
     permissions:
-      contents: read
-      deployments: write
-      pages: write
+      pages: write      # to deploy to Pages
+      id-token: write   # to verify the deployment originates from an appropriate source
 
     steps:
       - name: Checkout
