@@ -8,11 +8,12 @@ on:
 jobs:
   build-docs:
     runs-on: ubuntu-latest
-    # set write permissions only for pages
-    # https://docs.github.com/en/actions/using-jobs/assigning-permissions-to-jobs
+
+    # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
     permissions:
-      pages: write      # to deploy to Pages
-      id-token: write   # to verify the deployment originates from an appropriate source
+      contents: read   # to read the contents of the repository
+      pages: write     # to deploy to Pages
+      id-token: write  # to verify the deployment originates from an appropriate source
 
     steps:
       - name: Checkout
