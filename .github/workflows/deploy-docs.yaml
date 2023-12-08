@@ -14,13 +14,13 @@ jobs:
         with:
           fetch-depth: 0  # otherwise, you will failed to push refs to dest repo
 
-      - name: Set up Python 3.
+      - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: 3.9
 
-      - name: Install Poetry.
-        uses: snok/install-poetry@v1.3
+      - name: Install Poetry
+        run: pipx install poetry
 
       - name: Install dependencies.
         run: poetry install -E docs
@@ -31,12 +31,4 @@ jobs:
           touch docs/.nojekyll
           make gendoc
           ([ ! -f docs/about.md ] && cp src/docs/about.md docs/) || true
-        # make mkd-gh-deploy # does not work for me
-
-      - name: Deploy updated gh-pages content
-        # Pin third party action (v3.9.3)
-        uses: peaceiris/actions-gh-pages@373f7f263a76c20808c831209c920827a82a2847
-        with:
-          publish_branch: gh-pages
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./docs
+          make mkd-gh-deploy
