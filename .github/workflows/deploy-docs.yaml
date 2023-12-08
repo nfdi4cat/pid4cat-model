@@ -1,8 +1,9 @@
 ---
-name: Auto-deployment of pid4cat_model Documentation
+name: Auto-deployment of pid4cat_model documentation
 on:
   push:
     branches: [main]
+  workflow_dispatch:
 
 jobs:
   build-docs:
@@ -30,6 +31,12 @@ jobs:
           touch docs/.nojekyll
           make gendoc
           ([ ! -f docs/about.md ] && cp src/docs/about.md docs/) || true
-          make mkd-gh-deploy
+        # make mkd-gh-deploy # does not work for me
 
-...
+      - name: Deploy updated gh-pages content
+        # Pin third party action (v3.9.3)
+        uses: peaceiris/actions-gh-pages@373f7f263a76c20808c831209c920827a82a2847
+        with:
+          publish_branch: gh-pages
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs
