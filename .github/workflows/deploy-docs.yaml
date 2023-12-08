@@ -12,7 +12,9 @@ jobs:
     # https://docs.github.com/en/actions/using-jobs/assigning-permissions-to-jobs
     permissions:
       contents: read
+      deployments: write
       pages: write
+
     steps:
       - name: Checkout
         uses: actions/checkout@v3
