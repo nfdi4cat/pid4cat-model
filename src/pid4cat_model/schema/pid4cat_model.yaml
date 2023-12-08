@@ -3,14 +3,14 @@ id: https://w3id.org/nfdi4cat/pid4cat-model
 name: pid4cat-model
 title: pid4cat-model
 description: >-
-  LinkML model for Catalyst Resource Identifier (PID4Cat). PID4Cat is handle
-  system based persistent identifier (PID) for digital or physical resources
-  used in the catalysis research process. The handle record is used to store
-  metadata about the PID besides the obligatory landing page URL.
+  A LinkML model for PIDs for resources in catalysis (PID4Cat). PID4Cat is a
+  handle system based persistent identifier (PID) for digital or physical
+  resources used in the catalysis research process. The handle record is used
+  to store metadata about the PID besides the obligatory landing page URL.
 
-  The model describes metadata for the PID itself and how to access the 
+  The model describes metadata for the PID itself and how to access the
   identified resource. It does not describe the resource itself with the
-  exception of the resource category, which is a high-level description of 
+  exception of the resource category, which is a high-level description of
   what is identified by the PID4Cat handle, e.g. a sample or a device.
 todos:
   - Refine slots in slot_usage of class instead of globally in slot definitions
@@ -24,7 +24,7 @@ prefixes:
   pid4cat_model: https://w3id.org/nfdi4cat/pid4cat-model/
   linkml: https://w3id.org/linkml/
   schema: http://schema.org/
-  
+
   # outer metadata of research data objects
   dct: http://purl.org/dc/terms/
   DCAT: http://www.w3.org/ns/dcat#
@@ -62,7 +62,7 @@ classes:
       - related_identifier
       - datetime_log
       - has_agent
-  
+
   ResourceInfo:
     description: >-
       Data object to hold information about the resource and its representation.
@@ -91,8 +91,8 @@ classes:
       - contact_information
       - person_orcid
       - affiliation_ror
-      - role  # e.g. trustee, owner, ...more?  
-  
+      - role  # e.g. trustee, owner, ...more?
+
   Container:
     description: >-
       A container for all PID4Cat instances.
@@ -163,7 +163,7 @@ slots:
   # Slots for ResourceInfo
   label:
     slot_uri: schema:name
-    description: A human-readable name for a thing  
+    description: A human-readable name for a thing
   description:
     slot_uri: schema:description
     description: A human-readable description for a thing
@@ -174,7 +174,7 @@ slots:
   rdf_url:
     slot_uri: schema:additionalType
     description: >-
-      The URI of the rdf represenation of the resource. 
+      The URI of the rdf represenation of the resource.
   rdf_type:
     slot_uri: schema:additionalType
     description: >-
@@ -182,7 +182,7 @@ slots:
   schema_url:
     slot_uri: schema:additionalType
     description: >-
-      The URI of the schema used to describe the resource. 
+      The URI of the schema used to describe the resource.
       Same property as in DataCite:schemeURI.
   schema_type:
     slot_uri: schema:additionalType
@@ -196,7 +196,7 @@ slots:
     slot_uri: schema:identifier
     range: ChangeLogFields
     description: The field that was changed
-  
+
   # Slots for Agent
   name:
     slot_uri: schema:name
@@ -251,11 +251,11 @@ enums:
     description: >-
       The type of the relation between the resources
     permissible_values:
-      # We adapt nearly all DataCite relations (Metadata Schema V 4.4) with 
+      # We adapt nearly all DataCite relations (Metadata Schema V 4.4) with
       # the exception of:  IsReviewedBy, Reviews
 
       # FYI: IGSN used only the relations isCitedBy, isPartOf, hasPart,
-      #   isReferencedBy, references, isDocumentedBy, documents, 
+      #   isReferencedBy, references, isDocumentedBy, documents,
       #   isCompiledBy, compiles, isVariantFormOf, isOriginalFormOf
 
       IS_CITED_BY:
