@@ -11,7 +11,7 @@ jobs:
 
     # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
     permissions:
-      contents: write  # to read the contents of the repository
+      contents: write  # to let mkdocs write the new docs
       pages: write     # to deploy to Pages
       id-token: write  # to verify the deployment originates from an appropriate source
 
