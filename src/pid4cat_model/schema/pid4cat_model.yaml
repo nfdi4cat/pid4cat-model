@@ -229,12 +229,12 @@ enums:
       COLLECTION:
         description: A collection is described as a group; its parts may also be separately described.
         meaning: http://purl.org/dc/dcmitype/Collection
-      CATALYST:
-        description: A physical entity meant to be applied as catalyst.
-        todos:
-          - map this to an ontology
+      SAMPLE:
+        description: A representative part of an entity of interest on which observations may be made.
+        mappings:
+        - "http://www.w3.org/ns/sosa/Sample"
       MATERIAL:
-        description: A material used in the catalysis research process (except the catalyst itself).
+        description: A material used in the research process (except samples).
         todos:
           - map this to an ontology
       DEVICE:
@@ -251,7 +251,7 @@ enums:
     description: >-
       The type of the relation between the resources
     permissible_values:
-      # We adapt nearly all DataCite relations (Metadata Schema V 4.4) with
+      # We adapt nearly all DataCite relations (Metadata Schema V 4.5) with
       # the exception of:  IsReviewedBy, Reviews
 
       # FYI: IGSN used only the relations isCitedBy, isPartOf, hasPart,
@@ -319,6 +319,10 @@ enums:
         description: The resource is derived from another resource.
       IS_SOURCE_OF:
         description: The resource is source of another resource.
+      IS_COLLECTED_BY:
+        description: The resource is collected by another resource.
+      COLLECTS:
+        description: The resource collects another resource.
       IS_REQUIRED_BY:
         description: The resource is required by another resource.
         meaning: dct:isRequiredBy
