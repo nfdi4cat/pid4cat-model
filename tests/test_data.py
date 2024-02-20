@@ -4,7 +4,7 @@ import glob
 import unittest
 
 from linkml_runtime.loaders import yaml_loader
-from pid4cat_model.datamodel.pid4cat_model import PID4CatRecord
+from pid4cat_model.datamodel.pid4cat_model import PID4CatRecordCollection
 
 ROOT = os.path.join(os.path.dirname(__file__), '..')
 DATA_DIR = os.path.join(ROOT, "src", "data", "examples")
@@ -16,7 +16,7 @@ class TestData(unittest.TestCase):
     """Test data and datamodel."""
 
     def test_data(self):
-        """Date test."""
+        """Data test."""
         for path in EXAMPLE_FILES:
-            obj = yaml_loader.load(path, target_class=PID4CatRecord)
+            obj = yaml_loader.load(path, target_class=PID4CatRecordCollection)
             assert obj

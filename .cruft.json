@@ -1,6 +1,6 @@
 {
   "template": "https://github.com/dalito/linkml-project-cookiecutter",
-  "commit": "50134eef79bd0141f8e3ce6ae037dedb5a79bf41",
+  "commit": "239e92ef0b1865c075446c89dcc315f941b1d60d",
   "checkout": null,
   "context": {
     "cookiecutter": {
