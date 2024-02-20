@@ -231,8 +231,7 @@ enums:
         meaning: http://purl.org/dc/dcmitype/Collection
       SAMPLE:
         description: A representative part of an entity of interest on which observations may be made.
-        mappings:
-        - "http://www.w3.org/ns/sosa/Sample"
+        meaning: http://www.w3.org/ns/sosa/Sample
       MATERIAL:
         description: A material used in the research process (except samples).
         todos:
