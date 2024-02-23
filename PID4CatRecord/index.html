@@ -216,6 +216,8 @@
 
       PID4CatRecord : landing_page_url
 
+      PID4CatRecord : record_version
+
       PID4CatRecord : related_identifiers
 
       PID4CatRecord : resource_info
@@ -256,6 +258,12 @@
 <td><a href="../status/">status</a></td>
 <td>0..1 <br/> <a href="../PID4CatStatus/">PID4CatStatus</a></td>
 <td>The status of the PID4CatRecord</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../record_version/">record_version</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>The data-base version of the PID4CatRecord (e</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -344,6 +352,7 @@ slots:
 - id
 - landing_page_url
 - status
+- record_version
 - resource_info
 - related_identifiers
 - dc_rights
@@ -403,6 +412,18 @@ attributes:
     domain_of:
     - PID4CatRecord
     range: PID4CatStatus
+  record_version:
+    name: record_version
+    description: The data-base version of the PID4CatRecord (e.g. 20240219v0, 20240219v1,
+      ...). The version should be incremented with every change of the PID4CatRecord.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    rank: 1000
+    slot_uri: schema:identifier
+    alias: record_version
+    owner: PID4CatRecord
+    domain_of:
+    - PID4CatRecord
+    range: string
   resource_info:
     name: resource_info
     description: Information about the resource.
