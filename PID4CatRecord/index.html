@@ -263,7 +263,7 @@
 <tr>
 <td><a href="../record_version/">record_version</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
-<td>The data-base version of the PID4CatRecord (e</td>
+<td>Date-based version string of the PID4CatRecord (e</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -414,8 +414,9 @@ attributes:
     range: PID4CatStatus
   record_version:
     name: record_version
-    description: The data-base version of the PID4CatRecord (e.g. 20240219v0, 20240219v1,
-      ...). The version should be incremented with every change of the PID4CatRecord.
+    description: Date-based version string of the PID4CatRecord (e.g. 20240219v0,
+      20240219v1, ...). The version should be incremented with every change of the
+      PID4CatRecord.
     from_schema: https://w3id.org/nfdi4cat/pid4cat-model
     rank: 1000
     slot_uri: schema:identifier
