@@ -45,6 +45,7 @@ classes:
       - id
       - landing_page_url
       - status
+      - record_version
       - resource_info
       - related_identifiers
       - dc_rights
@@ -121,6 +122,11 @@ slots:
     range: PID4CatStatus
     description: >-
       The status of the PID4CatRecord.
+  record_version:
+    slot_uri: schema:identifier
+    description: >-
+      Date-based version string of the PID4CatRecord (e.g. 20240219v0, 20240219v1, ...).
+      The version should be incremented with every change of the PID4CatRecord.
   resource_info:
     range: ResourceInfo
     multivalued: true
