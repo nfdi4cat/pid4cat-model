@@ -216,6 +216,8 @@
 
       PID4CatRecord : landing_page_url
 
+      PID4CatRecord : pid_schema_version
+
       PID4CatRecord : record_version
 
       PID4CatRecord : related_identifiers
@@ -258,6 +260,12 @@
 <td><a href="../status/">status</a></td>
 <td>0..1 <br/> <a href="../PID4CatStatus/">PID4CatStatus</a></td>
 <td>The status of the PID4CatRecord</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../pid_schema_version/">pid_schema_version</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>The version of the PID4Cat schema used for the PID4CatRecord</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -352,6 +360,7 @@ slots:
 - id
 - landing_page_url
 - status
+- pid_schema_version
 - record_version
 - resource_info
 - related_identifiers
@@ -412,6 +421,17 @@ attributes:
     domain_of:
     - PID4CatRecord
     range: PID4CatStatus
+  pid_schema_version:
+    name: pid_schema_version
+    description: The version of the PID4Cat schema used for the PID4CatRecord.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    rank: 1000
+    slot_uri: schema:identifier
+    alias: pid_schema_version
+    owner: PID4CatRecord
+    domain_of:
+    - PID4CatRecord
+    range: string
   record_version:
     name: record_version
     description: Date-based version string of the PID4CatRecord (e.g. 20240219v0,
