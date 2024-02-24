@@ -199,9 +199,9 @@
 <p>URI: <a href="https://w3id.org/nfdi4cat/pid4cat-model/Container">pid4cat_model:Container</a></p>
 <div class="mermaid"> classDiagram
     class Container
-      Container : has_pids
+      Container : contains_pids
 
-          Container --|&gt; PID4CatRecord : has_pids
+          Container --|&gt; PID4CatRecord : contains_pids
 
 
 </div>
@@ -218,7 +218,7 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../has_pids/">has_pids</a></td>
+<td><a href="../contains_pids/">contains_pids</a></td>
 <td>0..* <br/> <a href="../PID4CatRecord/">PID4CatRecord</a></td>
 <td>The PID4CatRecords contained in the container</td>
 <td>direct</td>
@@ -257,8 +257,8 @@
 description: A container for all PID4Cat instances.
 from_schema: https://w3id.org/nfdi4cat/pid4cat-model
 attributes:
-  has_pids:
-    name: has_pids
+  contains_pids:
+    name: contains_pids
     description: The PID4CatRecords contained in the container.
     from_schema: https://w3id.org/nfdi4cat/pid4cat-model
     rank: 1000
@@ -276,13 +276,13 @@ tree_root: true
 description: A container for all PID4Cat instances.
 from_schema: https://w3id.org/nfdi4cat/pid4cat-model
 attributes:
-  has_pids:
-    name: has_pids
+  contains_pids:
+    name: contains_pids
     description: The PID4CatRecords contained in the container.
     from_schema: https://w3id.org/nfdi4cat/pid4cat-model
     rank: 1000
     multivalued: true
-    alias: has_pids
+    alias: contains_pids
     owner: Container
     domain_of:
     - Container
