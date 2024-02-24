@@ -214,7 +214,7 @@
 
       ResourceInfo : resource_category
 
-          ResourceInfo --|&gt; ResourceCategories : resource_category
+          ResourceInfo --|&gt; ResourceCategory : resource_category
 
       ResourceInfo : schema_type
 
@@ -248,7 +248,7 @@
 </tr>
 <tr>
 <td><a href="../resource_category/">resource_category</a></td>
-<td>0..1 <br/> <a href="../ResourceCategories/">ResourceCategories</a></td>
+<td>0..1 <br/> <a href="../ResourceCategory/">ResourceCategory</a></td>
 <td>The category of the resource</td>
 <td>direct</td>
 </tr>
@@ -378,7 +378,7 @@ attributes:
     owner: ResourceInfo
     domain_of:
     - ResourceInfo
-    range: ResourceCategories
+    range: ResourceCategory
   rdf_url:
     name: rdf_url
     description: The URI of the rdf represenation of the resource.

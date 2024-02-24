@@ -209,7 +209,7 @@
 
       PID4CatRelation : relation_type
 
-          PID4CatRelation --|&gt; RelationTypes : relation_type
+          PID4CatRelation --|&gt; RelationType : relation_type
 
 
 </div>
@@ -227,7 +227,7 @@
 <tbody>
 <tr>
 <td><a href="../relation_type/">relation_type</a></td>
-<td>0..* <br/> <a href="../RelationTypes/">RelationTypes</a></td>
+<td>0..* <br/> <a href="../RelationType/">RelationType</a></td>
 <td>Relation type between the resources</td>
 <td>direct</td>
 </tr>
@@ -309,7 +309,7 @@ attributes:
     owner: PID4CatRelation
     domain_of:
     - PID4CatRelation
-    range: RelationTypes
+    range: RelationType
   related_identifier:
     name: related_identifier
     description: Related identifiers for the resource

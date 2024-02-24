@@ -206,7 +206,7 @@
     class LogRecord
       LogRecord : changed_field
 
-          LogRecord --|&gt; ChangeLogFields : changed_field
+          LogRecord --|&gt; ChangeLogField : changed_field
 
       LogRecord : datetime_log
 
@@ -244,7 +244,7 @@
 </tr>
 <tr>
 <td><a href="../changed_field/">changed_field</a></td>
-<td>0..1 <br/> <a href="../ChangeLogFields/">ChangeLogFields</a></td>
+<td>0..1 <br/> <a href="../ChangeLogField/">ChangeLogField</a></td>
 <td>The field that was changed</td>
 <td>direct</td>
 </tr>
@@ -354,7 +354,7 @@ attributes:
     owner: LogRecord
     domain_of:
     - LogRecord
-    range: ChangeLogFields
+    range: ChangeLogField
   description:
     name: description
     description: A human-readable description for a thing
