@@ -21,11 +21,6 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://dalito.github.io/pid4cat-model/ChangeLogFields/</loc>
-         <lastmod>2024-02-25</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
          <loc>https://dalito.github.io/pid4cat-model/Container/</loc>
          <lastmod>2024-02-25</lastmod>
          <changefreq>daily</changefreq>
@@ -106,11 +101,6 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://dalito.github.io/pid4cat-model/PID4CatAgentRoles/</loc>
-         <lastmod>2024-02-25</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
          <loc>https://dalito.github.io/pid4cat-model/PID4CatRecord/</loc>
          <lastmod>2024-02-25</lastmod>
          <changefreq>daily</changefreq>
@@ -126,22 +116,7 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://dalito.github.io/pid4cat-model/PIDContainer/</loc>
-         <lastmod>2024-02-25</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
          <loc>https://dalito.github.io/pid4cat-model/RelationType/</loc>
-         <lastmod>2024-02-25</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://dalito.github.io/pid4cat-model/RelationTypes/</loc>
-         <lastmod>2024-02-25</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://dalito.github.io/pid4cat-model/ResourceCategories/</loc>
          <lastmod>2024-02-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
@@ -232,11 +207,6 @@
     </url>
     <url>
          <loc>https://dalito.github.io/pid4cat-model/has_agent/</loc>
-         <lastmod>2024-02-25</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://dalito.github.io/pid4cat-model/has_pids/</loc>
          <lastmod>2024-02-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
