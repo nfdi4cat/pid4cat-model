@@ -1,7 +1,26 @@
 # Example data object
 ---
-entries:
-  - id: example:PID4CatRecord001
-    name: foo bar
-    primary_email: foo.bar@example.com
-    age_in_years: 33
+contains_pids:
+- id: lik-123
+  landing_page_url: https://pid4cat.example.org/lik-123
+  status: REGISTERED
+  pid_schema_version: 0.1.0
+  record_version: 20240219v-0
+  resource_info:
+    label: Resource label
+    description: Resource description
+    resource_category: SAMPLE
+    rdf_url: https://example.org/resource
+    rdf_type: TURTLE
+    schema_url: https://example.org/schema
+    schema_type: XSD
+  dc_rights: CC0-1.0
+  curation_contact: datafuzzi@example.org
+  change_log:
+  - datetime_log: '2024-02-19T00:00:00Z'
+    has_agent:
+      name: Data Fuzzi
+      person_orcid: 0000-0000-0000-0000
+      role: TRUSTEE
+    changed_field: STATUS
+    description: 'as requested in issue #123'

@@ -4,14 +4,19 @@ type Agent
     contactInformation: String
     personOrcid: String
     affiliationRor: String
-    role: PID4CatAgentRoles
+    role: PID4CatAgentRole
+  }
+
+type Container
+  {
+    containsPids: [PID4CatRecord]
   }
 
 type LogRecord
   {
     datetimeLog: String
-    agent: Agent
-    changedField: ChangeLogFields
+    hasAgent: Agent
+    changedField: ChangeLogField
     description: String
   }
 
@@ -20,26 +25,28 @@ type PID4CatRecord
     id: Uriorcurie!
     landingPageUrl: String
     status: PID4CatStatus
-    resourceInfo: [ResourceInfo]
-    relatedIdentifiers: [Uriorcurie]
+    recordVersion: String
+    pidSchemaVersion: String
     dcRights: String
     curationContact: String
+    resourceInfo: ResourceInfo
+    relatedIdentifiers: [Uriorcurie]
     changeLog: [LogRecord]!
   }
 
 type PID4CatRelation
   {
-    relationType: [RelationTypes]
+    relationType: [RelationType]
     relatedIdentifier: String
     datetimeLog: String
-    agent: Agent
+    hasAgent: Agent
   }
 
 type ResourceInfo
   {
     label: String
     description: String
-    resourceCategory: ResourceCategories
+    resourceCategory: ResourceCategory
     rdfUrl: String
     rdfType: String
     schemaUrl: String

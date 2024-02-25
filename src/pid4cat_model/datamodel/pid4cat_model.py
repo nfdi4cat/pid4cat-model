@@ -1,10 +1,10 @@
 # Auto generated from pid4cat_model.yaml by pythongen.py version: 0.0.1
-# Generation date: 2023-12-07T18:08:57
+# Generation date: 2024-02-25T23:40:32
 # Schema: pid4cat-model
 #
 # id: https://w3id.org/nfdi4cat/pid4cat-model
-# description: LinkML model for PIDs for resources in catalysis(PID4Cat). PID4Cat is handle system based persistent identifier (PID) for digital or physical resources used in the catalysis research process. The handle record is used to store metadata about the PID besides the obligatory redirect URL.
-#   The model define here describes metadata for the PID itself and how to access the identified resource. It does not describe the resource itself with the exception of the resource category, which is a high-level description of  what is identified by the PID4Cat, e.g. sample or device.
+# description: A LinkML model for PIDs for resources in catalysis (PID4Cat). PID4Cat is a handle system based persistent identifier (PID) for digital or physical resources used in the catalysis research process. The handle record is used to store metadata about the PID besides the obligatory landing page URL.
+#   The model describes metadata for the PID itself and how to access the identified resource. It does not describe the resource itself with the exception of the resource category, which is a high-level description of what is identified by the PID4Cat handle, e.g. a sample or a device.
 # license: MIT
 
 import dataclasses
@@ -64,10 +64,12 @@ class PID4CatRecord(YAMLRoot):
     change_log: Union[Union[dict, "LogRecord"], List[Union[dict, "LogRecord"]]] = None
     landing_page_url: Optional[str] = None
     status: Optional[Union[str, "PID4CatStatus"]] = None
-    resource_info: Optional[Union[Union[dict, "ResourceInfo"], List[Union[dict, "ResourceInfo"]]]] = empty_list()
-    related_identifiers: Optional[Union[Union[str, URIorCURIE], List[Union[str, URIorCURIE]]]] = empty_list()
+    record_version: Optional[str] = None
+    pid_schema_version: Optional[str] = None
     dc_rights: Optional[str] = None
     curation_contact: Optional[str] = None
+    resource_info: Optional[Union[dict, "ResourceInfo"]] = None
+    related_identifiers: Optional[Union[Union[str, URIorCURIE], List[Union[str, URIorCURIE]]]] = empty_list()
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self._is_empty(self.id):
@@ -87,19 +89,24 @@ class PID4CatRecord(YAMLRoot):
         if self.status is not None and not isinstance(self.status, PID4CatStatus):
             self.status = PID4CatStatus(self.status)
 
-        if not isinstance(self.resource_info, list):
-            self.resource_info = [self.resource_info] if self.resource_info is not None else []
-        self.resource_info = [v if isinstance(v, ResourceInfo) else ResourceInfo(**as_dict(v)) for v in self.resource_info]
+        if self.record_version is not None and not isinstance(self.record_version, str):
+            self.record_version = str(self.record_version)
 
-        if not isinstance(self.related_identifiers, list):
-            self.related_identifiers = [self.related_identifiers] if self.related_identifiers is not None else []
-        self.related_identifiers = [v if isinstance(v, URIorCURIE) else URIorCURIE(v) for v in self.related_identifiers]
+        if self.pid_schema_version is not None and not isinstance(self.pid_schema_version, str):
+            self.pid_schema_version = str(self.pid_schema_version)
 
         if self.dc_rights is not None and not isinstance(self.dc_rights, str):
             self.dc_rights = str(self.dc_rights)
 
         if self.curation_contact is not None and not isinstance(self.curation_contact, str):
             self.curation_contact = str(self.curation_contact)
+
+        if self.resource_info is not None and not isinstance(self.resource_info, ResourceInfo):
+            self.resource_info = ResourceInfo(**as_dict(self.resource_info))
+
+        if not isinstance(self.related_identifiers, list):
+            self.related_identifiers = [self.related_identifiers] if self.related_identifiers is not None else []
+        self.related_identifiers = [v if isinstance(v, URIorCURIE) else URIorCURIE(v) for v in self.related_identifiers]
 
         super().__post_init__(**kwargs)
 
@@ -116,15 +123,15 @@ class PID4CatRelation(YAMLRoot):
     class_name: ClassVar[str] = "PID4CatRelation"
     class_model_uri: ClassVar[URIRef] = PID4CAT_MODEL.PID4CatRelation
 
-    relation_type: Optional[Union[Union[str, "RelationTypes"], List[Union[str, "RelationTypes"]]]] = empty_list()
+    relation_type: Optional[Union[Union[str, "RelationType"], List[Union[str, "RelationType"]]]] = empty_list()
     related_identifier: Optional[str] = None
     datetime_log: Optional[str] = None
-    agent: Optional[Union[dict, "Agent"]] = None
+    has_agent: Optional[Union[dict, "Agent"]] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if not isinstance(self.relation_type, list):
             self.relation_type = [self.relation_type] if self.relation_type is not None else []
-        self.relation_type = [v if isinstance(v, RelationTypes) else RelationTypes(v) for v in self.relation_type]
+        self.relation_type = [v if isinstance(v, RelationType) else RelationType(v) for v in self.relation_type]
 
         if self.related_identifier is not None and not isinstance(self.related_identifier, str):
             self.related_identifier = str(self.related_identifier)
@@ -132,8 +139,8 @@ class PID4CatRelation(YAMLRoot):
         if self.datetime_log is not None and not isinstance(self.datetime_log, str):
             self.datetime_log = str(self.datetime_log)
 
-        if self.agent is not None and not isinstance(self.agent, Agent):
-            self.agent = Agent(**as_dict(self.agent))
+        if self.has_agent is not None and not isinstance(self.has_agent, Agent):
+            self.has_agent = Agent(**as_dict(self.has_agent))
 
         super().__post_init__(**kwargs)
 
@@ -152,7 +159,7 @@ class ResourceInfo(YAMLRoot):
 
     label: Optional[str] = None
     description: Optional[str] = None
-    resource_category: Optional[Union[str, "ResourceCategories"]] = None
+    resource_category: Optional[Union[str, "ResourceCategory"]] = None
     rdf_url: Optional[str] = None
     rdf_type: Optional[str] = None
     schema_url: Optional[str] = None
@@ -165,8 +172,8 @@ class ResourceInfo(YAMLRoot):
         if self.description is not None and not isinstance(self.description, str):
             self.description = str(self.description)
 
-        if self.resource_category is not None and not isinstance(self.resource_category, ResourceCategories):
-            self.resource_category = ResourceCategories(self.resource_category)
+        if self.resource_category is not None and not isinstance(self.resource_category, ResourceCategory):
+            self.resource_category = ResourceCategory(self.resource_category)
 
         if self.rdf_url is not None and not isinstance(self.rdf_url, str):
             self.rdf_url = str(self.rdf_url)
@@ -196,19 +203,19 @@ class LogRecord(YAMLRoot):
     class_model_uri: ClassVar[URIRef] = PID4CAT_MODEL.LogRecord
 
     datetime_log: Optional[str] = None
-    agent: Optional[Union[dict, "Agent"]] = None
-    changed_field: Optional[Union[str, "ChangeLogFields"]] = None
+    has_agent: Optional[Union[dict, "Agent"]] = None
+    changed_field: Optional[Union[str, "ChangeLogField"]] = None
     description: Optional[str] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self.datetime_log is not None and not isinstance(self.datetime_log, str):
             self.datetime_log = str(self.datetime_log)
 
-        if self.agent is not None and not isinstance(self.agent, Agent):
-            self.agent = Agent(**as_dict(self.agent))
+        if self.has_agent is not None and not isinstance(self.has_agent, Agent):
+            self.has_agent = Agent(**as_dict(self.has_agent))
 
-        if self.changed_field is not None and not isinstance(self.changed_field, ChangeLogFields):
-            self.changed_field = ChangeLogFields(self.changed_field)
+        if self.changed_field is not None and not isinstance(self.changed_field, ChangeLogField):
+            self.changed_field = ChangeLogField(self.changed_field)
 
         if self.description is not None and not isinstance(self.description, str):
             self.description = str(self.description)
@@ -219,7 +226,7 @@ class LogRecord(YAMLRoot):
 @dataclass
 class Agent(YAMLRoot):
     """
-    Person who plays a role relative to sample collection or curation.
+    Person who plays a role relative to PID creation or curation.
     """
     _inherited_slots: ClassVar[List[str]] = []
 
@@ -232,7 +239,7 @@ class Agent(YAMLRoot):
     contact_information: Optional[str] = None
     person_orcid: Optional[str] = None
     affiliation_ror: Optional[str] = None
-    role: Optional[Union[str, "PID4CatAgentRoles"]] = None
+    role: Optional[Union[str, "PID4CatAgentRole"]] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self.name is not None and not isinstance(self.name, str):
@@ -247,14 +254,34 @@ class Agent(YAMLRoot):
         if self.affiliation_ror is not None and not isinstance(self.affiliation_ror, str):
             self.affiliation_ror = str(self.affiliation_ror)
 
-        if self.role is not None and not isinstance(self.role, PID4CatAgentRoles):
-            self.role = PID4CatAgentRoles(self.role)
+        if self.role is not None and not isinstance(self.role, PID4CatAgentRole):
+            self.role = PID4CatAgentRole(self.role)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass
+class Container(YAMLRoot):
+    """
+    A container for all PID4Cat instances.
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = PID4CAT_MODEL["Container"]
+    class_class_curie: ClassVar[str] = "pid4cat_model:Container"
+    class_name: ClassVar[str] = "Container"
+    class_model_uri: ClassVar[URIRef] = PID4CAT_MODEL.Container
+
+    contains_pids: Optional[Union[Dict[Union[str, PID4CatRecordId], Union[dict, PID4CatRecord]], List[Union[dict, PID4CatRecord]]]] = empty_dict()
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        self._normalize_inlined_as_list(slot_name="contains_pids", slot_type=PID4CatRecord, key_name="id", keyed=True)
 
         super().__post_init__(**kwargs)
 
 
 # Enumerations
-class ResourceCategories(EnumDefinitionImpl):
+class ResourceCategory(EnumDefinitionImpl):
     """
     The category of the resource
     """
@@ -262,12 +289,13 @@ class ResourceCategories(EnumDefinitionImpl):
         text="COLLECTION",
         description="A collection is described as a group; its parts may also be separately described.",
         meaning=None)
-    CATALYST = PermissibleValue(
-        text="CATALYST",
-        description="A physical entity meant to be applied as catalyst.")
+    SAMPLE = PermissibleValue(
+        text="SAMPLE",
+        description="A representative part of an entity of interest on which observations may be made.",
+        meaning=None)
     MATERIAL = PermissibleValue(
         text="MATERIAL",
-        description="A material used in the catalysis research process (except the catalyst itself).")
+        description="A material used in the research process (except samples).")
     DEVICE = PermissibleValue(
         text="DEVICE",
         description="A device used in the catalysis research process.")
@@ -276,11 +304,11 @@ class ResourceCategories(EnumDefinitionImpl):
         description="A data object might be a data file, a data set, a data collection, or a data service.")
 
     _defn = EnumDefinition(
-        name="ResourceCategories",
+        name="ResourceCategory",
         description="The category of the resource",
     )
 
-class RelationTypes(EnumDefinitionImpl):
+class RelationType(EnumDefinitionImpl):
     """
     The type of the relation between the resources
     """
@@ -373,6 +401,12 @@ class RelationTypes(EnumDefinitionImpl):
     IS_SOURCE_OF = PermissibleValue(
         text="IS_SOURCE_OF",
         description="The resource is source of another resource.")
+    IS_COLLECTED_BY = PermissibleValue(
+        text="IS_COLLECTED_BY",
+        description="The resource is collected by another resource.")
+    COLLECTS = PermissibleValue(
+        text="COLLECTS",
+        description="The resource collects another resource.")
     IS_REQUIRED_BY = PermissibleValue(
         text="IS_REQUIRED_BY",
         description="The resource is required by another resource.",
@@ -389,7 +423,7 @@ class RelationTypes(EnumDefinitionImpl):
         description="The resource or PID4Cat obsoletes another resource or PID4Cat.")
 
     _defn = EnumDefinition(
-        name="RelationTypes",
+        name="RelationType",
         description="The type of the relation between the resources",
     )
 
@@ -415,7 +449,7 @@ class PID4CatStatus(EnumDefinitionImpl):
         description="The status of the PID4CatRecord.",
     )
 
-class PID4CatAgentRoles(EnumDefinitionImpl):
+class PID4CatAgentRole(EnumDefinitionImpl):
     """
     The role of an agent relative to the resource.
     """
@@ -427,11 +461,11 @@ class PID4CatAgentRoles(EnumDefinitionImpl):
         description="The agent is the owner of the resource.")
 
     _defn = EnumDefinition(
-        name="PID4CatAgentRoles",
+        name="PID4CatAgentRole",
         description="The role of an agent relative to the resource.",
     )
 
-class ChangeLogFields(EnumDefinitionImpl):
+class ChangeLogField(EnumDefinitionImpl):
     """
     The field of the PID4Catrecord that was changed.
     """
@@ -452,7 +486,7 @@ class ChangeLogFields(EnumDefinitionImpl):
         description="The rights of the PID4CatRecord were changed.")
 
     _defn = EnumDefinition(
-        name="ChangeLogFields",
+        name="ChangeLogField",
         description="The field of the PID4Catrecord that was changed.",
     )
 
@@ -469,8 +503,14 @@ slots.landing_page_url = Slot(uri=SCHEMA.url, name="landing_page_url", curie=SCH
 slots.status = Slot(uri=PID4CAT_MODEL.status, name="status", curie=PID4CAT_MODEL.curie('status'),
                    model_uri=PID4CAT_MODEL.status, domain=None, range=Optional[Union[str, "PID4CatStatus"]])
 
+slots.pid_schema_version = Slot(uri=SCHEMA.identifier, name="pid_schema_version", curie=SCHEMA.curie('identifier'),
+                   model_uri=PID4CAT_MODEL.pid_schema_version, domain=None, range=Optional[str])
+
+slots.record_version = Slot(uri=SCHEMA.identifier, name="record_version", curie=SCHEMA.curie('identifier'),
+                   model_uri=PID4CAT_MODEL.record_version, domain=None, range=Optional[str])
+
 slots.resource_info = Slot(uri=PID4CAT_MODEL.resource_info, name="resource_info", curie=PID4CAT_MODEL.curie('resource_info'),
-                   model_uri=PID4CAT_MODEL.resource_info, domain=None, range=Optional[Union[Union[dict, ResourceInfo], List[Union[dict, ResourceInfo]]]])
+                   model_uri=PID4CAT_MODEL.resource_info, domain=None, range=Optional[Union[dict, ResourceInfo]])
 
 slots.related_identifiers = Slot(uri=SCHEMA.identifier, name="related_identifiers", curie=SCHEMA.curie('identifier'),
                    model_uri=PID4CAT_MODEL.related_identifiers, domain=None, range=Optional[Union[Union[str, URIorCURIE], List[Union[str, URIorCURIE]]]])
@@ -485,7 +525,7 @@ slots.change_log = Slot(uri=SCHEMA.identifier, name="change_log", curie=SCHEMA.c
                    model_uri=PID4CAT_MODEL.change_log, domain=None, range=Union[Union[dict, LogRecord], List[Union[dict, LogRecord]]])
 
 slots.relation_type = Slot(uri=SCHEMA.identifier, name="relation_type", curie=SCHEMA.curie('identifier'),
-                   model_uri=PID4CAT_MODEL.relation_type, domain=None, range=Optional[Union[Union[str, "RelationTypes"], List[Union[str, "RelationTypes"]]]])
+                   model_uri=PID4CAT_MODEL.relation_type, domain=None, range=Optional[Union[Union[str, "RelationType"], List[Union[str, "RelationType"]]]])
 
 slots.related_identifier = Slot(uri=SCHEMA.identifier, name="related_identifier", curie=SCHEMA.curie('identifier'),
                    model_uri=PID4CAT_MODEL.related_identifier, domain=None, range=Optional[str])
@@ -493,8 +533,8 @@ slots.related_identifier = Slot(uri=SCHEMA.identifier, name="related_identifier"
 slots.datetime_log = Slot(uri=SCHEMA.DateTime, name="datetime_log", curie=SCHEMA.curie('DateTime'),
                    model_uri=PID4CAT_MODEL.datetime_log, domain=None, range=Optional[str])
 
-slots.agent = Slot(uri=SCHEMA.Agent, name="agent", curie=SCHEMA.curie('Agent'),
-                   model_uri=PID4CAT_MODEL.agent, domain=None, range=Optional[Union[dict, Agent]])
+slots.has_agent = Slot(uri=SCHEMA.Agent, name="has_agent", curie=SCHEMA.curie('Agent'),
+                   model_uri=PID4CAT_MODEL.has_agent, domain=None, range=Optional[Union[dict, Agent]])
 
 slots.label = Slot(uri=SCHEMA.name, name="label", curie=SCHEMA.curie('name'),
                    model_uri=PID4CAT_MODEL.label, domain=None, range=Optional[str])
@@ -503,7 +543,7 @@ slots.description = Slot(uri=SCHEMA.description, name="description", curie=SCHEM
                    model_uri=PID4CAT_MODEL.description, domain=None, range=Optional[str])
 
 slots.resource_category = Slot(uri=SCHEMA.additionalType, name="resource_category", curie=SCHEMA.curie('additionalType'),
-                   model_uri=PID4CAT_MODEL.resource_category, domain=None, range=Optional[Union[str, "ResourceCategories"]])
+                   model_uri=PID4CAT_MODEL.resource_category, domain=None, range=Optional[Union[str, "ResourceCategory"]])
 
 slots.rdf_url = Slot(uri=SCHEMA.additionalType, name="rdf_url", curie=SCHEMA.curie('additionalType'),
                    model_uri=PID4CAT_MODEL.rdf_url, domain=None, range=Optional[str])
@@ -518,7 +558,7 @@ slots.schema_type = Slot(uri=SCHEMA.additionalType, name="schema_type", curie=SC
                    model_uri=PID4CAT_MODEL.schema_type, domain=None, range=Optional[str])
 
 slots.changed_field = Slot(uri=SCHEMA.identifier, name="changed_field", curie=SCHEMA.curie('identifier'),
-                   model_uri=PID4CAT_MODEL.changed_field, domain=None, range=Optional[Union[str, "ChangeLogFields"]])
+                   model_uri=PID4CAT_MODEL.changed_field, domain=None, range=Optional[Union[str, "ChangeLogField"]])
 
 slots.name = Slot(uri=SCHEMA.name, name="name", curie=SCHEMA.curie('name'),
                    model_uri=PID4CAT_MODEL.name, domain=None, range=Optional[str])
@@ -533,7 +573,10 @@ slots.affiliation_ror = Slot(uri=SCHEMA.identifier, name="affiliation_ror", curi
                    model_uri=PID4CAT_MODEL.affiliation_ror, domain=None, range=Optional[str])
 
 slots.role = Slot(uri=SCHEMA.identifier, name="role", curie=SCHEMA.curie('identifier'),
-                   model_uri=PID4CAT_MODEL.role, domain=None, range=Optional[Union[str, "PID4CatAgentRoles"]])
+                   model_uri=PID4CAT_MODEL.role, domain=None, range=Optional[Union[str, "PID4CatAgentRole"]])
+
+slots.container__contains_pids = Slot(uri=PID4CAT_MODEL.contains_pids, name="container__contains_pids", curie=PID4CAT_MODEL.curie('contains_pids'),
+                   model_uri=PID4CAT_MODEL.container__contains_pids, domain=None, range=Optional[Union[Dict[Union[str, PID4CatRecordId], Union[dict, PID4CatRecord]], List[Union[dict, PID4CatRecord]]]])
 
 slots.PID4CatRecord_curation_contact = Slot(uri=SCHEMA.email, name="PID4CatRecord_curation_contact", curie=SCHEMA.curie('email'),
                    model_uri=PID4CAT_MODEL.PID4CatRecord_curation_contact, domain=PID4CatRecord, range=Optional[str],

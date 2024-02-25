@@ -2,7 +2,7 @@
     "$defs": {
         "Agent": {
             "additionalProperties": false,
-            "description": "Person who plays a role relative to sample collection or curation.",
+            "description": "Person who plays a role relative to PID creation or curation.",
             "properties": {
                 "affiliation_ror": {
                     "description": "The ROR of the affiliation",
@@ -21,14 +21,14 @@
                     "type": "string"
                 },
                 "role": {
-                    "$ref": "#/$defs/PID4CatAgentRoles",
+                    "$ref": "#/$defs/PID4CatAgentRole",
                     "description": "The role of the agent relative to the resource"
                 }
             },
             "title": "Agent",
             "type": "object"
         },
-        "ChangeLogFields": {
+        "ChangeLogField": {
             "description": "The field of the PID4Catrecord that was changed.",
             "enum": [
                 "STATUS",
@@ -37,19 +37,30 @@
                 "CONTACT",
                 "RIGHTS"
             ],
-            "title": "ChangeLogFields",
+            "title": "ChangeLogField",
             "type": "string"
+        },
+        "Container": {
+            "additionalProperties": false,
+            "description": "A container for all PID4Cat instances.",
+            "properties": {
+                "contains_pids": {
+                    "description": "The PID4CatRecords contained in the container.",
+                    "items": {
+                        "$ref": "#/$defs/PID4CatRecord"
+                    },
+                    "type": "array"
+                }
+            },
+            "title": "Container",
+            "type": "object"
         },
         "LogRecord": {
             "additionalProperties": false,
             "description": "A log record for changes made on a PID4CatRecord starting from registration.",
             "properties": {
-                "agent": {
-                    "$ref": "#/$defs/Agent",
-                    "description": "The person who registered the resource"
-                },
                 "changed_field": {
-                    "$ref": "#/$defs/ChangeLogFields",
+                    "$ref": "#/$defs/ChangeLogField",
                     "description": "The field that was changed"
                 },
                 "datetime_log": {
@@ -59,18 +70,22 @@
                 "description": {
                     "description": "A human-readable description for a thing",
                     "type": "string"
+                },
+                "has_agent": {
+                    "$ref": "#/$defs/Agent",
+                    "description": "The person who registered the resource"
                 }
             },
             "title": "LogRecord",
             "type": "object"
         },
-        "PID4CatAgentRoles": {
+        "PID4CatAgentRole": {
             "description": "The role of an agent relative to the resource.",
             "enum": [
                 "TRUSTEE",
                 "OWNER"
             ],
-            "title": "PID4CatAgentRoles",
+            "title": "PID4CatAgentRole",
             "type": "string"
         },
         "PID4CatRecord": {
@@ -101,6 +116,14 @@
                     "description": "The URL of the landing page for the resource",
                     "type": "string"
                 },
+                "pid_schema_version": {
+                    "description": "The version of the PID4Cat schema used for the PID4CatRecord.",
+                    "type": "string"
+                },
+                "record_version": {
+                    "description": "Date-based version string of the PID4CatRecord (e.g. 20240219v0, 20240219v1, ...). The version should be incremented with every change of the PID4CatRecord.",
+                    "type": "string"
+                },
                 "related_identifiers": {
                     "description": "Alternate identifiers for the resource",
                     "items": {
@@ -109,11 +132,8 @@
                     "type": "array"
                 },
                 "resource_info": {
-                    "description": "Information about the resource.",
-                    "items": {
-                        "$ref": "#/$defs/ResourceInfo"
-                    },
-                    "type": "array"
+                    "$ref": "#/$defs/ResourceInfo",
+                    "description": "Information about the resource."
                 },
                 "status": {
                     "$ref": "#/$defs/PID4CatStatus",
@@ -131,13 +151,13 @@
             "additionalProperties": false,
             "description": "A relation between PID4CatRecords or between a PID4CatRecord and other resources with a PID.",
             "properties": {
-                "agent": {
-                    "$ref": "#/$defs/Agent",
-                    "description": "The person who registered the resource"
-                },
                 "datetime_log": {
                     "description": "The date and time of a log record",
                     "type": "string"
+                },
+                "has_agent": {
+                    "$ref": "#/$defs/Agent",
+                    "description": "The person who registered the resource"
                 },
                 "related_identifier": {
                     "description": "Related identifiers for the resource",
@@ -146,7 +166,7 @@
                 "relation_type": {
                     "description": "Relation type between the resources",
                     "items": {
-                        "$ref": "#/$defs/RelationTypes"
+                        "$ref": "#/$defs/RelationType"
                     },
                     "type": "array"
                 }
@@ -165,7 +185,7 @@
             "title": "PID4CatStatus",
             "type": "string"
         },
-        "RelationTypes": {
+        "RelationType": {
             "description": "The type of the relation between the resources",
             "enum": [
                 "IS_CITED_BY",
@@ -196,24 +216,26 @@
                 "IS_IDENTICAL_TO",
                 "IS_DERIVED_FROM",
                 "IS_SOURCE_OF",
+                "IS_COLLECTED_BY",
+                "COLLECTS",
                 "IS_REQUIRED_BY",
                 "REQUIRES",
                 "IS_OBSOLETED_BY",
                 "OBSOLETES"
             ],
-            "title": "RelationTypes",
+            "title": "RelationType",
             "type": "string"
         },
-        "ResourceCategories": {
+        "ResourceCategory": {
             "description": "The category of the resource",
             "enum": [
                 "COLLECTION",
-                "CATALYST",
+                "SAMPLE",
                 "MATERIAL",
                 "DEVICE",
                 "DATAOBJECT"
             ],
-            "title": "ResourceCategories",
+            "title": "ResourceCategory",
             "type": "string"
         },
         "ResourceInfo": {
@@ -233,11 +255,11 @@
                     "type": "string"
                 },
                 "rdf_url": {
-                    "description": "The URI of the rdf represenation of the resource. ",
+                    "description": "The URI of the rdf represenation of the resource.",
                     "type": "string"
                 },
                 "resource_category": {
-                    "$ref": "#/$defs/ResourceCategories",
+                    "$ref": "#/$defs/ResourceCategory",
                     "description": "The category of the resource"
                 },
                 "schema_type": {
@@ -245,7 +267,7 @@
                     "type": "string"
                 },
                 "schema_url": {
-                    "description": "The URI of the schema used to describe the resource.  Same property as in DataCite:schemeURI.",
+                    "description": "The URI of the schema used to describe the resource. Same property as in DataCite:schemeURI.",
                     "type": "string"
                 }
             },
@@ -256,7 +278,17 @@
     "$id": "https://w3id.org/nfdi4cat/pid4cat-model",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "additionalProperties": true,
+    "description": "A container for all PID4Cat instances.",
     "metamodel_version": "1.7.0",
+    "properties": {
+        "contains_pids": {
+            "description": "The PID4CatRecords contained in the container.",
+            "items": {
+                "$ref": "#/$defs/PID4CatRecord"
+            },
+            "type": "array"
+        }
+    },
     "title": "pid4cat-model",
     "type": "object",
     "version": null

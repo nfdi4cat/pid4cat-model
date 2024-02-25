@@ -15,6 +15,7 @@ description: >-
 todos:
   - Refine slots in slot_usage of class instead of globally in slot definitions
   - Check and add mappings to other ontologies. (classes, slots, enums)
+  - Add Enums for rdf_type, schema_type
 
 license: MIT
 see_also:
@@ -46,10 +47,11 @@ classes:
       - landing_page_url
       - status
       - record_version
-      - resource_info
-      - related_identifiers
+      - pid_schema_version
       - dc_rights
       - curation_contact
+      - resource_info
+      - related_identifiers
       - change_log
     slot_usage:
       curation_contact:
@@ -99,7 +101,7 @@ classes:
       A container for all PID4Cat instances.
     tree_root: true
     attributes:
-      has_pids:
+      contains_pids:
         multivalued: true
         inlined_as_list: true
         range: PID4CatRecord
@@ -122,6 +124,9 @@ slots:
     range: PID4CatStatus
     description: >-
       The status of the PID4CatRecord.
+  pid_schema_version:
+    slot_uri: schema:identifier
+    description: The version of the PID4Cat schema used for the PID4CatRecord.
   record_version:
     slot_uri: schema:identifier
     description: >-
@@ -129,7 +134,6 @@ slots:
       The version should be incremented with every change of the PID4CatRecord.
   resource_info:
     range: ResourceInfo
-    multivalued: true
     description: Information about the resource.
   related_identifiers:
     slot_uri: schema:identifier
@@ -152,7 +156,7 @@ slots:
   # Slots for PID4CatRelation
   relation_type:
     slot_uri: schema:identifier
-    range: RelationTypes
+    range: RelationType
     multivalued: true
     description: Relation type between the resources
   related_identifier:
@@ -175,7 +179,7 @@ slots:
     description: A human-readable description for a thing
   resource_category:
     slot_uri: schema:additionalType
-    range: ResourceCategories
+    range: ResourceCategory
     description: The category of the resource
   rdf_url:
     slot_uri: schema:additionalType
@@ -200,7 +204,7 @@ slots:
   # Slots for LogRecord
   changed_field:
     slot_uri: schema:identifier
-    range: ChangeLogFields
+    range: ChangeLogField
     description: The field that was changed
 
   # Slots for Agent
@@ -221,12 +225,12 @@ slots:
     description: The ROR of the affiliation
   role:
     slot_uri: schema:identifier
-    range: PID4CatAgentRoles
+    range: PID4CatAgentRole
     description: The role of the agent relative to the resource
 
-enums:
+enums:  # Enumerations use singular form for names
 
-  ResourceCategories:
+  ResourceCategory:
     description: >-
       The category of the resource
     permissible_values:
@@ -252,7 +256,7 @@ enums:
         todos:
           - map this to an ontology
 
-  RelationTypes:
+  RelationType:
     description: >-
       The type of the relation between the resources
     permissible_values:
@@ -353,7 +357,7 @@ enums:
       DEPRECATED:
         description: The PID4CatRecord is deprecated, e.g. because the resource can no longer be found.
 
-  PID4CatAgentRoles:
+  PID4CatAgentRole:
     description: >-
       The role of an agent relative to the resource.
     permissible_values:
@@ -362,7 +366,7 @@ enums:
       OWNER:
         description: The agent is the owner of the resource.
 
-  ChangeLogFields:
+  ChangeLogField:
     description: >-
       The field of the PID4Catrecord that was changed.
     permissible_values:

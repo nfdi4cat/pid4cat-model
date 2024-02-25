@@ -104,7 +104,8 @@ gen-examples:
 
 gen-project: $(PYMODEL)
 	$(RUN) gen-project ${GEN_PARGS} -d $(DEST) $(SOURCE_SCHEMA_PATH) && mv $(DEST)/*.py $(PYMODEL)
-
+	# addition vs. template
+	$(RUN) gen-pydantic --pydantic_version 2 $(SOURCE_SCHEMA_PATH) > $(PYMODEL)/pid4cat_model_pydantic.py
 
 test: test-schema test-python test-examples
 

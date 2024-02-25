@@ -5,7 +5,7 @@ description = "LinkML model for handle-based PIDs for resources in catalysis (PI
 authors = ["David Linke <david.linke@catalysis.de>"]
 license = "MIT"
 readme = "README.md"
-include = ["README.md", "src/pid4cat_model/schema", "project"]
+include = ["README.md", "src/pid4cat_model/schema",  "project"]
 
 [tool.poetry.dependencies]
 python = "^3.9"

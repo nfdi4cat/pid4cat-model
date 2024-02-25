@@ -48,16 +48,22 @@ linkml:Sparqlpath xsd:string
           schema1:email @linkml:String ? ;
           schema1:identifier @linkml:String ? ;
           schema1:identifier @linkml:String ? ;
-          schema1:identifier @<PID4CatAgentRoles> ?
+          schema1:identifier @<PID4CatAgentRole> ?
        ) ;
        rdf:type [ <Agent> ] ?
+    )
+}
+
+<Container> CLOSED {
+    (  $<Container_tes> <contains_pids> @<PID4CatRecord> * ;
+       rdf:type [ <Container> ] ?
     )
 }
 
 <LogRecord> CLOSED {
     (  $<LogRecord_tes> (  schema1:DateTime @linkml:String ? ;
           schema1:Agent @<Agent> ? ;
-          schema1:identifier @<ChangeLogFields> ? ;
+          schema1:identifier @<ChangeLogField> ? ;
           schema1:description @linkml:String ?
        ) ;
        rdf:type [ <LogRecord> ] ?
@@ -67,10 +73,12 @@ linkml:Sparqlpath xsd:string
 <PID4CatRecord> CLOSED {
     (  $<PID4CatRecord_tes> (  schema1:url @linkml:String ? ;
           <status> @<PID4CatStatus> ? ;
-          <resource_info> @<ResourceInfo> * ;
-          schema1:identifier @linkml:Uriorcurie * ;
+          schema1:identifier @linkml:String ? ;
+          schema1:identifier @linkml:String ? ;
           schema1:license @linkml:String ? ;
           schema1:email @linkml:String ? ;
+          <resource_info> @<ResourceInfo> ? ;
+          schema1:identifier @linkml:Uriorcurie * ;
           schema1:identifier @<LogRecord> +
        ) ;
        rdf:type [ <PID4CatRecord> ]
@@ -78,7 +86,7 @@ linkml:Sparqlpath xsd:string
 }
 
 <PID4CatRelation> CLOSED {
-    (  $<PID4CatRelation_tes> (  schema1:identifier @<RelationTypes> * ;
+    (  $<PID4CatRelation_tes> (  schema1:identifier @<RelationType> * ;
           schema1:identifier @linkml:String ? ;
           schema1:DateTime @linkml:String ? ;
           schema1:Agent @<Agent> ?
@@ -90,7 +98,7 @@ linkml:Sparqlpath xsd:string
 <ResourceInfo> CLOSED {
     (  $<ResourceInfo_tes> (  schema1:name @linkml:String ? ;
           schema1:description @linkml:String ? ;
-          schema1:additionalType @<ResourceCategories> ? ;
+          schema1:additionalType @<ResourceCategory> ? ;
           schema1:additionalType @linkml:String ? ;
           schema1:additionalType @linkml:String ? ;
           schema1:additionalType @linkml:String ? ;
