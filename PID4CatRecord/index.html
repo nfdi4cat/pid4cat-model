@@ -263,27 +263,15 @@
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../pid_schema_version/">pid_schema_version</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
-<td>The version of the PID4Cat schema used for the PID4CatRecord</td>
-<td>direct</td>
-</tr>
-<tr>
 <td><a href="../record_version/">record_version</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>Date-based version string of the PID4CatRecord (e</td>
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../resource_info/">resource_info</a></td>
-<td>0..1 <br/> <a href="../ResourceInfo/">ResourceInfo</a></td>
-<td>Information about the resource</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../related_identifiers/">related_identifiers</a></td>
-<td>0..* <br/> <a href="../Uriorcurie/">Uriorcurie</a></td>
-<td>Alternate identifiers for the resource</td>
+<td><a href="../pid_schema_version/">pid_schema_version</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>The version of the PID4Cat schema used for the PID4CatRecord</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -296,6 +284,18 @@
 <td><a href="../curation_contact/">curation_contact</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>The email address of a person or institution responsible for curation of the ...</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../resource_info/">resource_info</a></td>
+<td>0..1 <br/> <a href="../ResourceInfo/">ResourceInfo</a></td>
+<td>Information about the resource</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../related_identifiers/">related_identifiers</a></td>
+<td>0..* <br/> <a href="../Uriorcurie/">Uriorcurie</a></td>
+<td>Alternate identifiers for the resource</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -360,12 +360,12 @@ slots:
 - id
 - landing_page_url
 - status
-- pid_schema_version
 - record_version
-- resource_info
-- related_identifiers
+- pid_schema_version
 - dc_rights
 - curation_contact
+- resource_info
+- related_identifiers
 - change_log
 slot_usage:
   curation_contact:
@@ -421,17 +421,6 @@ attributes:
     domain_of:
     - PID4CatRecord
     range: PID4CatStatus
-  pid_schema_version:
-    name: pid_schema_version
-    description: The version of the PID4Cat schema used for the PID4CatRecord.
-    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
-    rank: 1000
-    slot_uri: schema:identifier
-    alias: pid_schema_version
-    owner: PID4CatRecord
-    domain_of:
-    - PID4CatRecord
-    range: string
   record_version:
     name: record_version
     description: Date-based version string of the PID4CatRecord (e.g. 20240219v0,
@@ -445,28 +434,17 @@ attributes:
     domain_of:
     - PID4CatRecord
     range: string
-  resource_info:
-    name: resource_info
-    description: Information about the resource.
-    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
-    rank: 1000
-    alias: resource_info
-    owner: PID4CatRecord
-    domain_of:
-    - PID4CatRecord
-    range: ResourceInfo
-  related_identifiers:
-    name: related_identifiers
-    description: Alternate identifiers for the resource
+  pid_schema_version:
+    name: pid_schema_version
+    description: The version of the PID4Cat schema used for the PID4CatRecord.
     from_schema: https://w3id.org/nfdi4cat/pid4cat-model
     rank: 1000
     slot_uri: schema:identifier
-    multivalued: true
-    alias: related_identifiers
+    alias: pid_schema_version
     owner: PID4CatRecord
     domain_of:
     - PID4CatRecord
-    range: uriorcurie
+    range: string
   dc_rights:
     name: dc_rights
     description: The license for the metadata contained in the PID4Cat record.
@@ -491,6 +469,28 @@ attributes:
     - PID4CatRecord
     range: string
     pattern: ^\S+@[\S+\.]+\S+
+  resource_info:
+    name: resource_info
+    description: Information about the resource.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    rank: 1000
+    alias: resource_info
+    owner: PID4CatRecord
+    domain_of:
+    - PID4CatRecord
+    range: ResourceInfo
+  related_identifiers:
+    name: related_identifiers
+    description: Alternate identifiers for the resource
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    rank: 1000
+    slot_uri: schema:identifier
+    multivalued: true
+    alias: related_identifiers
+    owner: PID4CatRecord
+    domain_of:
+    - PID4CatRecord
+    range: uriorcurie
   change_log:
     name: change_log
     description: Change log of PID4Cat record
