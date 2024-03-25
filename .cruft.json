@@ -6,9 +6,9 @@
     "cookiecutter": {
       "project_name": "pid4cat-model",
       "__project_slug": "pid4cat_model",
-      "github_org": "dalito",
+      "github_org": "nfid4cat",
       "__source_path": "src/pid4cat_model/schema/pid4cat_model.yaml",
-      "project_description": "LinkML model for Catalyst Resource Idenifier (PID4Cat)",
+      "project_description": "LinkML model for handle-based PIDs for resources in catalysis (PID4Cat)",
       "full_name": "David Linke",
       "email": "david.linke@catalysis.de",
       "__author": "David Linke <david.linke@catalysis.de>",

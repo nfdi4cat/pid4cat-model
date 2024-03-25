@@ -8,7 +8,7 @@
     "Add Enums for rdf_type, schema_type"
   ],
   "see_also": [
-    "https://dalito.github.io/pid4cat-model"
+    "https://nfdi4cat.github.io/pid4cat-model"
   ],
   "id": "https://w3id.org/nfdi4cat/pid4cat-model",
   "imports": [

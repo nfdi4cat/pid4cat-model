@@ -19,7 +19,7 @@ todos:
 
 license: MIT
 see_also:
-  - https://dalito.github.io/pid4cat-model
+  - https://nfdi4cat.github.io/pid4cat-model
 
 prefixes:
   pid4cat_model: https://w3id.org/nfdi4cat/pid4cat-model/

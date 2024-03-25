@@ -9,14 +9,17 @@ in a pull request.
 
 ## Table Of Contents
 
-* [Code of Conduct](#code-of-conduct)
-* [Guidelines for Contributions and Requests](#contributions)
-  * [Reporting problems with the data model](#reporting-bugs)
-  * [Requesting new terms](#requesting-terms)
-  * [Adding new terms yourself](#adding-terms)
-* [Best Practices](#best-practices)
-  * [How to write a great issue](#great-issues)
-  * [How to create a great pull/merge request](#great-pulls)
+- [Contributing to pid4cat-model](#contributing-to-pid4cat-model)
+  - [Table Of Contents](#table-of-contents)
+  - [Code of Conduct](#code-of-conduct)
+  - [Guidelines for Contributions and Requests](#guidelines-for-contributions-and-requests)
+    - [Reporting problems with the data model](#reporting-problems-with-the-data-model)
+    - [Requesting new terms](#requesting-new-terms)
+    - [Adding new terms yourself](#adding-new-terms-yourself)
+  - [Best Practices](#best-practices)
+    - [GitHub Best Practice](#github-best-practice)
+    - [Understanding LinkML](#understanding-linkml)
+    - [Modeling Best Practice](#modeling-best-practice)
 
 <a id="code-of-conduct"></a>
 
@@ -99,7 +102,6 @@ Core developers should read the material on the [LinkML site](https://linkml.io/
 - Include examples and counter-examples (intentionally invalid examples)
     - Rationale: these serve as documentation and unit tests
     - These will be used by the automated test suite
-    - All elements of the nmdc-schema must be illustrated with valid and invalid data examples in src/data. New schema elements will not be merged into the main branch until examples are provided
     - Invalid example data files should be invalid for one single reason, which should be reflected in the filename. It should be possible to render the invalid example files valid by addressing that single fault.
 - Use enums for categorical values
     - Rationale: Open-ended string ranges encourage multiple values to represent the same entity, like “water”, “H2O” and “HOH”
@@ -107,12 +109,12 @@ Core developers should read the material on the [LinkML site](https://linkml.io/
     - Non-categorical values, e.g. descriptive fields like `name` or `description` fall outside of this.
 - Reuse
     - Existing scheme elements should be reused where appropriate, rather than making duplicative elements
-    - More specific classes can be created by refinining classes using inheritance (`is_a`)
+    - More specific classes can be created by refining classes using inheritance (`is_a`)
 
 [about-branches]: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-branches
 [about-issues]: https://docs.github.com/en/issues/tracking-your-work-with-issues/about-issues
 [about-pulls]: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests
-[issues]: https://github.com/dalito/pid4cat-model/issues/
-[pulls]: https://github.com/dalito/pid4cat-model/pulls/
+[issues]: https://github.com/nfdi4cat/pid4cat-model/issues/
+[pulls]: https://github.com/nfdi4cat/pid4cat-model/pulls/
 
 We recommend also reading [GitHub Pull Requests: 10 Tips to Know](https://blog.mergify.com/github-pull-requests-10-tips-to-know/)

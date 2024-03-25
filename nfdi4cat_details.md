@@ -76,7 +76,7 @@ Therefore, PID4Cat handles are similar to [ePIC](http://www.pidconsortium.net/)-
 This has the advantage that these metadata are available directly from the resolver.
 
 PID4Cat comes with a well-defined schema for how and which metadata to store in the handle record. 
-The schema is defined in [LinkML](https://linkml.io/linkml/) and developed in this repo ([NFDI4Cat/PID4Cat](https://github.com/dalito/pid4cat-model/)).
+The schema is defined in [LinkML](https://linkml.io/linkml/) and developed in this repo ([NFDI4Cat/PID4Cat](https://github.com/nfdi4cat/pid4cat-model/)).
 The schema does only require a minimum of information; it does not disclose anything about the resource except its type. Moreover, it is not required to specify an owner/creator but only a curator. Therefore, PID4Cat-handles do not mandate to put resources into context if this is undesired for whatever reasons.
 
 ### Mapping of PID4Cat schema to handle record

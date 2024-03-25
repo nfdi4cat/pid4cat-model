@@ -14,8 +14,8 @@ nav:
   # - Home: home.md
   - Index: index.md
   - About: about.md
-site_url: https://dalito.github.io/pid4cat-model
-repo_url: https://github.com/dalito/pid4cat-model
+site_url: https://nfdi4cat.github.io/pid4cat-model
+repo_url: https://github.com/nfdi4cat/pid4cat-model
 
 # Uncomment this block to enable use of Google Analytics.
 # Replace the property value with your own ID.
