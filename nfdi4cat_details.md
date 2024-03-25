@@ -1,70 +1,63 @@
-
 # PIDs in NFDI4Cat
 
-*David Linke, LIKAT, 2024-02-23 (first draft)*
+*This document is work in progress! (not a reference)*
 
-Persistent identifiers (PIDs) play in important role in achieving FAIR data.
+Persistent identifiers (PIDs) play an important role in achieving FAIR data.
 This text is about the different use cases for PIDs in NFDI4Cat and how each case is solved technically.
 
 ## PIDs for Data Portals
 
-NFDI4cat has selected Dataverse as software for the data portal(s). 
-Dataverse supports two types of PIDs: DOIs and handles. It is not possible to
-use handles and DOIs at the same time in a single Dataverse installation.
+According to the [architecture document](https://zenodo.org/doi/10.5281/zenodo.10391090), different repositories are considered for the NFDI4Cat data infra structure:
 
-According to the architecture document, different repositories are considered for the NFDI4Cat data infra structure.
-Since Researchers expect DOIs for the data publications that they make,
-the Dataverse for publishing final data should use DOIs.
-However, DOIs are not a good fit for earlier stages of research due to
-the metadata requirements and associated costs.
-Therefore, another Dataverse is offered for data shared in an early phase of research which uses handle-PIDs. 
-This Dataverse is especially targeted at helping researchers to collaboratively work with data in joint projects.
+- **Repo4Cat**, the central global repository for publishing data and collaborating on data.
+- Local repositories hosted at various institutions, e.g. BasCat or LARA
 
-To summarize, HLRS offers two central Dataverse installations:
+Since Researchers expect DOIs for their data publications,
+the data sets published in Repo4Cat should get a DOIs from DataCite as PID.
 
-- **Data4Cat** for publishing final datasets that using DataCite DOIs
-- **Colab4Cat** - A Dataverse that uses PID4Cat-Handles. Its purpose is to allow early sharing of data and collaborating on data prior to publishing.
+However, DOIs are not a good fit for earlier stages of research due to the metadata requirements and associated costs.
+Nevertheless researchers want to share research artifacts already in the early stage with collaborators and having PIDs already at this stage would be very useful. 
+Therefore, NFDI4Cat will in addition to DOIs use a handle-based solution **PID4Cat** (see below) 
+to address the need for PIDs in the early phase when data are shared in private with collaborators. Repo4Cat seeks to support this private sharing between collaborators.
 
-In addition there may be other local Dataverse installation like at BasCat
-which also have an interest to use the PID4Cat handle server to mint PIDs.
+NFDI4cat has selected Dataverse as software for Repo4Cat, the global data portal.
+Dataverse supports two types of PIDs: DOIs and handles.
+It is however not possible to use handles and DOIs at the same time in a single Dataverse installation.
 
-Things to think about:
+To address this limitations, two possible solutions are discussed:
 
-- If a data set is published it will get a DOI in addition to the handle.
-  Could this be a problem? 
-  For example, can the handle record be updated to point to the same landing page as the DOI. 
-  This is probably not a standard functionality in Dataverse so requires a custom solution.
-- more?
+- [preferred] Use one Dataverse instance and PID4Cat-handles as primary PID. For data sets being published DOIs will be minted (and linked to the handle).
+- Use two Dataverse instances, one for published data that is configured to use DOIs and another one for early-stage data that is configured to use PID4-Cat-handles.
 
-For the handle-PIDs in Dataverse it is suggested:
+For the handle-PIDs in Dataverse, it is suggested
 
 - To generate individual PIDs for all files in a dataset.
   
   Configuration
   - [:DataFilePIDFormat](https://guides.dataverse.org/en/latest/installation/config.html#datafilepidformat) = independent
 
-- It is suggested to generate the ID-part via a procedure stored in the DB.
+- To generate the ID-part via a procedure stored in the DB.
   What scheme is used does not matter much, but clashes with PID4Cat-handles or other Dataverse (BasCat) must be avoided.
   Via a stored procedure UUID4 (or UUID7) identifiers could be created.
-  An alternative if to add a prefix to the numeric ID used by default.
+  An alternative is to add a prefix to the numeric ID used by default.
   The numeric ID may be base32 encoded to shorten the ID length.
   In this case the start ID should maybe not set to 1 but to 1001 to make the numeric part stick out.
   For example:
-  - d4c-9OH    (prefix and base32 encoded integer number)
+  - r4c-9OH    (prefix and base32 encoded integer number)
     - "9OH" is 10001 using [base-32 alphabet](https://en.wikipedia.org/wiki/Base32#base-32)
-  - d4c-10001  (prefix & integer number)
+  - r4c-10001  (prefix & integer number)
   
-  Preferred is the first scheme, because it is shorter. 
-  Different alphabets for base32 could be used than the one from RFC4648 which uses letters A to Z and numbers 2 to 7.
-  For example, the z-base-32 encoding has the advantage of a more human-friendly alphabet that avoids reading problems by excluding 0, l, v, 2 (number 0 can be confused with letter o, letter l with number 1 or letter i, letter v is close to u or r especially in handwriting, also number 2 is close to z in handwriting).
-  Another alternative is crockford32 which uses 0-9 and uppercase letters without the letters I, L, O, U.
-
-  Current preference: z-base-32 alphabet as it's optimized for lowercase letters
+  Preferred is the first scheme, because it is shorter.
+  
+  It is suggested to not use RFC4648 base32 (letters A to Z and numbers 2 to 7) but another, more human-friendly alphabet, for example z-base-32.
+  The z-base-32 encoding avoids reading problems by excluding 0, l, v, 2 
+  (number 0 may be confused with letter o, letter l with number 1 or letter i, letter v is close to u or r especially in handwriting, also number 2 is close to z in handwriting).
+  It is optimized for lowercase letters.
 
   Configuration:
   - [:IdentifierGenerationStyle](https://guides.dataverse.org/en/latest/installation/config.html#identifiergenerationstyle) = storedProcGenerated
 
-Related Datavers documentation:
+Related Dataverse documentation:
 
 - [General Dataverse PID documentation](https://guides.dataverse.org/en/latest/installation/config.html#persistent-identifiers-and-publishing-datasets)
 - [Dataverse handle configuration](https://guides.dataverse.org/en/latest/installation/config.html#configuring-your-dataverse-installation-for-handles)
@@ -76,13 +69,15 @@ PIDs like the well known DOIs require a certain set of metadata (see DataCite Sc
 DOIs are based on handles, which in principle allow to store additional data in the record.
 However, DOI metadata are stored in a different service and have to be requested via the DataCite API
 which is a different service than the handle-system used for resolving a DOI.
-The reason for DataCite`s approach is performance(? - need to check!).
+The reason for DataCite`s approach is performance(?).
 
 For NFDI4Cat a simpler system that reduces complexity is more attractive.
 Therefore, PID4Cat handles are similar to [ePIC](http://www.pidconsortium.net/)-handles in that they use the handle record itself to store metadata.
 This has the advantage that these metadata are available directly from the resolver.
 
-PID4Cat comes with a well-defined schema for how and which metadata to store in the handle record. The schema is defined in [LinkML](https://linkml.io/linkml/) and developed here ([NFDI4Cat/PID4Cat](https://github.com/dalito/pid4cat-model/)).
+PID4Cat comes with a well-defined schema for how and which metadata to store in the handle record. 
+The schema is defined in [LinkML](https://linkml.io/linkml/) and developed in this repo ([NFDI4Cat/PID4Cat](https://github.com/dalito/pid4cat-model/)).
+The schema does only require a minimum of information; it does not disclose anything about the resource except its type. Moreover, it is not required to specify an owner/creator but only a curator. Therefore, PID4Cat-handles do not mandate to put resources into context if this is undesired for whatever reasons.
 
 ### Mapping of PID4Cat schema to handle record
 
@@ -93,16 +88,16 @@ The PID4Cat schema is mapped to the handle record as follows:
 | Index | Type | Timestamp | Data | *PID4CatRecord* |
 |-------|------|-----------|------|-----------|
 |     1 | URL  | 2024-01-01 10:47:38Z | https://pid4cat.example.org/lik-dfi345 | *landing pageURL* |
-|     2 | DESC | 2024-02-19 13:40:02Z | REGISTERED | *status* |
-|     3 | DESC | 2024-02-19 13:40:02Z | 20240219v0 | *record_version* |
-|     4 | DESC | 2024-01-01 10:47:38Z | 1.0.0 | *pid_schema_version* |
-|     5 | DESC | 2024-01-01 10:47:38Z | CC0-1.0 | *dc_rights* |
+|     2 | STATUS | 2024-02-19 13:40:02Z | REGISTERED | *status* |
+|     3 | REC_VER | 2024-02-19 13:40:02Z | 20240219v0 | *record_version* |
+|     4 | SCH_VER | 2024-01-01 10:47:38Z | 1.0.0 | *pid_schema_version* |
+|     5 | RIGHTS | 2024-01-01 10:47:38Z | CC0-1.0 | *dc_rights* |
 |     6 | EMAIL | 2024-01-01 10:47:38Z | datafuzzi@example.org | *curation_contact* |
-|     7 | DESC | 2024-01-01 10:47:38Z | {json} | *resource_info* |
-|     8 | DESC | 2024-02-19 13:40:02Z | {json} | *related_identifiers* |
-|     9 | DESC | 2024-02-19 13:40:02Z | {json} | *change_log* |
+|     7 | IMFO | 2024-01-01 10:47:38Z | {json} | *resource_info* |
+|     8 | RELATED | 2024-02-19 13:40:02Z | {json} | *related_identifiers* |
+|     9 | CHANGES | 2024-02-19 13:40:02Z | {json} | *change_log* |
 
-In a future version, some "DESC" Types could be refined to reference type declarations in a datatype registry (DTR). Such DTRs are still under development and not yet open for general use.
+In a future version, the non-standard values in Type may be replaced by references to type declarations in a datatype registry (DTR). Such DTRs are still under development and not yet widely used.
 
 Since PID4Cat is a linkML-model we have all tools at hand to create records or an API. For example, we can use the pydantic-model created from the PID4cat schema to create the json-objects for the PID record above, for example the *resource_info* json-object:
 
@@ -231,7 +226,7 @@ Such services should support serving different data to humans and to machines.
 One way to do this is via content-negotiation. Depending on the request that
 is send to the redirect service, the client is redirected to human-oriented representation of the resource of to a machine-oriented one.
 
-NFDI4Cat has selected [w3id.org](https://w3id.org/) for this service. Comparable services are [purl.org]() or [pida.org]() which work in exactly the same way.
+NFDI4Cat has selected [w3id.org](https://w3id.org/) for this service. Comparable services are [purl.org](https://purl.org/) or [pida.org](https://purls.helmholtz-metadaten.de/) which work in the same way.
 
 In principle, it would also be possible to use handle-based PIDs for the terms in ontologies.
 However, the additional features and the more reliable redundant network of the handle-system are of minor importance for this application.
