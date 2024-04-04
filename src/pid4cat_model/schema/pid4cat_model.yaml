@@ -6,7 +6,7 @@ description: >-
   A LinkML model for PIDs for resources in catalysis (PID4Cat). PID4Cat is a
   handle system based persistent identifier (PID) for digital or physical
   resources used in the catalysis research process. The handle record is used
-  to store metadata about the PID besides the obligatory landing page URL.
+  to store additional metadata about the PID besides the obligatory landing page URL.
 
   The model describes metadata for the PID itself and how to access the
   identified resource. It does not describe the resource itself with the

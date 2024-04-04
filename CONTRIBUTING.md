@@ -14,8 +14,7 @@ in a pull request.
   - [Code of Conduct](#code-of-conduct)
   - [Guidelines for Contributions and Requests](#guidelines-for-contributions-and-requests)
     - [Reporting problems with the data model](#reporting-problems-with-the-data-model)
-    - [Requesting new terms](#requesting-new-terms)
-    - [Adding new terms yourself](#adding-new-terms-yourself)
+    - [Adding new elements](#adding-new-elements)
   - [Best Practices](#best-practices)
     - [GitHub Best Practice](#github-best-practice)
     - [Understanding LinkML](#understanding-linkml)
@@ -41,15 +40,9 @@ Please use our [Issue Tracker][issues] to report problems with the data model.
 
 <a id="requesting-terms"></a>
 
-### Requesting new terms
+### Adding new elements
 
-Please use our [Issue Tracker][issues] to request changes to the model.
-
-<a id="adding-terms"></a>
-
-### Adding new terms yourself
-
-Please submit a [Pull Request][pulls] to submit a new term for consideration.
+Please submit a [Pull Request][pulls] with the proposed changes or create an [Issue][issues].
 
 <a id="best-practices"></a>
 

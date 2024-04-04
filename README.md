@@ -5,7 +5,7 @@
 
 > Status: alpha - This is in early development and may change.
 > We are interested in feedback of potential users.
-> Don't hesitate to create an [issue](https://github.com/nfdi4cat/pid4cat-model/issues)!
+> Please use [issues](https://github.com/nfdi4cat/pid4cat-model/issues) for your comments, questions or ideas!
 
 A LinkML model for handle-based PIDs for resources in catalysis.
 
@@ -40,8 +40,7 @@ Use the `make` command to generate project artefacts:
 A big thanks to all [contributors](https://github.com/nfdi4cat/pid4cat-model/graphs/contributors).
 
 Main author:
-
-- David Linke (ORCID: 0000-0002-5898-1820) - Idea and initial setup of repository. Current maintainer.
+- David Linke (ORCID: 0000-0002-5898-1820) - Idea, initial setup of repository and current maintainer.
 
 ## License
 
