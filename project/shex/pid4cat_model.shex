@@ -1,4 +1,8 @@
+# metamodel_version: 1.7.0
 BASE <https://w3id.org/nfdi4cat/pid4cat-model/>
+PREFIX dcmitype: <http://purl.org/dc/dcmitype/>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX sosa: <http://www.w3.org/ns/sosa/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX linkml: <https://w3id.org/linkml/>
@@ -48,7 +52,8 @@ linkml:Sparqlpath xsd:string
           schema1:email @linkml:String ? ;
           schema1:identifier @linkml:String ? ;
           schema1:identifier @linkml:String ? ;
-          schema1:identifier @<PID4CatAgentRole> ?
+          schema1:identifier [ <https://w3id.org/nfdi4cat/pid4cat-model/PID4CatAgentRole#TRUSTEE>
+             <https://w3id.org/nfdi4cat/pid4cat-model/PID4CatAgentRole#OWNER> ] ?
        ) ;
        rdf:type [ <Agent> ] ?
     )
@@ -63,7 +68,11 @@ linkml:Sparqlpath xsd:string
 <LogRecord> CLOSED {
     (  $<LogRecord_tes> (  schema1:DateTime @linkml:String ? ;
           schema1:Agent @<Agent> ? ;
-          schema1:identifier @<ChangeLogField> ? ;
+          schema1:identifier [ <https://w3id.org/nfdi4cat/pid4cat-model/ChangeLogField#STATUS>
+             <https://w3id.org/nfdi4cat/pid4cat-model/ChangeLogField#RESOURCE_INFO>
+             <https://w3id.org/nfdi4cat/pid4cat-model/ChangeLogField#RELATED_IDS>
+             <https://w3id.org/nfdi4cat/pid4cat-model/ChangeLogField#CONTACT>
+             <https://w3id.org/nfdi4cat/pid4cat-model/ChangeLogField#RIGHTS> ] ? ;
           schema1:description @linkml:String ?
        ) ;
        rdf:type [ <LogRecord> ] ?
@@ -72,7 +81,10 @@ linkml:Sparqlpath xsd:string
 
 <PID4CatRecord> CLOSED {
     (  $<PID4CatRecord_tes> (  schema1:url @linkml:String ? ;
-          <status> @<PID4CatStatus> ? ;
+          <status> [ <https://w3id.org/nfdi4cat/pid4cat-model/PID4CatStatus#SUBMITTED>
+             <https://w3id.org/nfdi4cat/pid4cat-model/PID4CatStatus#REGISTERED>
+             <https://w3id.org/nfdi4cat/pid4cat-model/PID4CatStatus#OBSOLETED>
+             <https://w3id.org/nfdi4cat/pid4cat-model/PID4CatStatus#DEPRECATED> ] ? ;
           schema1:identifier @linkml:String ? ;
           schema1:identifier @linkml:String ? ;
           schema1:license @linkml:String ? ;
@@ -86,7 +98,33 @@ linkml:Sparqlpath xsd:string
 }
 
 <PID4CatRelation> CLOSED {
-    (  $<PID4CatRelation_tes> (  schema1:identifier @<RelationType> * ;
+    (  $<PID4CatRelation_tes> (  schema1:identifier [ <https://w3id.org/nfdi4cat/pid4cat-model/RelationType#IS_CITED_BY>
+             <https://w3id.org/nfdi4cat/pid4cat-model/RelationType#CITES>
+             <https://w3id.org/nfdi4cat/pid4cat-model/RelationType#IS_SUPPLEMENT_TO>
+             <https://w3id.org/nfdi4cat/pid4cat-model/RelationType#IS_SUPPLEMENTED_BY>
+             <https://w3id.org/nfdi4cat/pid4cat-model/RelationType#IS_CONTINUED_BY>
+             <https://w3id.org/nfdi4cat/pid4cat-model/RelationType#CONTINUES>
+             <https://w3id.org/nfdi4cat/pid4cat-model/RelationType#HAS_METADATA>
+             <https://w3id.org/nfdi4cat/pid4cat-model/RelationType#IS_METADATA_FOR> dcterms:hasVersion dcterms:isVersionOf
+             <https://w3id.org/nfdi4cat/pid4cat-model/RelationType#IS_NEW_VERSION_OF>
+             <https://w3id.org/nfdi4cat/pid4cat-model/RelationType#IS_PREVIOUS_VERSION_OF> dcterms:isPartOf dcterms:hasPart
+             <https://w3id.org/nfdi4cat/pid4cat-model/RelationType#IS_DESCRIBED_BY>
+             <https://w3id.org/nfdi4cat/pid4cat-model/RelationType#DESCRIBES>
+             <https://w3id.org/nfdi4cat/pid4cat-model/RelationType#IS_PUBLISHED_IN> dcterms:isReferencedBy
+             <https://w3id.org/nfdi4cat/pid4cat-model/RelationType#REFERENCES>
+             <https://w3id.org/nfdi4cat/pid4cat-model/RelationType#IS_DOCUMENTED_BY>
+             <https://w3id.org/nfdi4cat/pid4cat-model/RelationType#DOCUMENTS>
+             <https://w3id.org/nfdi4cat/pid4cat-model/RelationType#IS_COMPILED_BY>
+             <https://w3id.org/nfdi4cat/pid4cat-model/RelationType#COMPILES>
+             <https://w3id.org/nfdi4cat/pid4cat-model/RelationType#IS_VARIANT_FORM_OF>
+             <https://w3id.org/nfdi4cat/pid4cat-model/RelationType#IS_ORIGINAL_FORM_OF>
+             <https://w3id.org/nfdi4cat/pid4cat-model/RelationType#IS_IDENTICAL_TO>
+             <https://w3id.org/nfdi4cat/pid4cat-model/RelationType#IS_DERIVED_FROM>
+             <https://w3id.org/nfdi4cat/pid4cat-model/RelationType#IS_SOURCE_OF>
+             <https://w3id.org/nfdi4cat/pid4cat-model/RelationType#IS_COLLECTED_BY>
+             <https://w3id.org/nfdi4cat/pid4cat-model/RelationType#COLLECTS> dcterms:isRequiredBy dcterms:requires
+             <https://w3id.org/nfdi4cat/pid4cat-model/RelationType#IS_OBSOLETED_BY>
+             <https://w3id.org/nfdi4cat/pid4cat-model/RelationType#OBSOLETES> ] * ;
           schema1:identifier @linkml:String ? ;
           schema1:DateTime @linkml:String ? ;
           schema1:Agent @<Agent> ?
@@ -98,7 +136,10 @@ linkml:Sparqlpath xsd:string
 <ResourceInfo> CLOSED {
     (  $<ResourceInfo_tes> (  schema1:name @linkml:String ? ;
           schema1:description @linkml:String ? ;
-          schema1:additionalType @<ResourceCategory> ? ;
+          schema1:additionalType [ dcmitype:Collection sosa:Sample
+             <https://w3id.org/nfdi4cat/pid4cat-model/ResourceCategory#MATERIAL>
+             <https://w3id.org/nfdi4cat/pid4cat-model/ResourceCategory#DEVICE>
+             <https://w3id.org/nfdi4cat/pid4cat-model/ResourceCategory#DATAOBJECT> ] ? ;
           schema1:additionalType @linkml:String ? ;
           schema1:additionalType @linkml:String ? ;
           schema1:additionalType @linkml:String ? ;
@@ -107,5 +148,4 @@ linkml:Sparqlpath xsd:string
        rdf:type [ <ResourceInfo> ] ?
     )
 }
-
 

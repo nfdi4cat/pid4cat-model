@@ -1,25 +1,49 @@
-from __future__ import annotations
-from datetime import datetime, date
-from enum import Enum
-from typing import List, Dict, Optional, Any, Union
-from pydantic import BaseModel as BaseModel, ConfigDict, Field
+from __future__ import annotations 
+from datetime import (
+    datetime,
+    date
+)
+from decimal import Decimal 
+from enum import Enum 
+import re
 import sys
-if sys.version_info >= (3, 8):
-    from typing import Literal
+from typing import (
+    Any,
+    List,
+    Literal,
+    Dict,
+    Optional,
+    Union
+)
+from pydantic.version import VERSION  as PYDANTIC_VERSION 
+if int(PYDANTIC_VERSION[0])>=2:
+    from pydantic import (
+        BaseModel,
+        ConfigDict,
+        Field,
+        field_validator
+    )
 else:
-    from typing_extensions import Literal
-
+    from pydantic import (
+        BaseModel,
+        Field,
+        validator
+    )
 
 metamodel_version = "None"
 version = "None"
 
+
 class ConfiguredBaseModel(BaseModel):
     model_config = ConfigDict(
-        validate_assignment=True,
-        validate_default=True,
-        extra='forbid',
-        arbitrary_types_allowed=True,
-        use_enum_values = True)
+        validate_assignment = True,
+        validate_default = True,
+        extra = "forbid",
+        arbitrary_types_allowed = True,
+        use_enum_values = True,
+        strict = False,
+    )
+    pass
 
 
 class ResourceCategory(str, Enum):
@@ -36,8 +60,7 @@ class ResourceCategory(str, Enum):
     DEVICE = "DEVICE"
     # A data object might be a data file, a data set, a data collection, or a data service.
     DATAOBJECT = "DATAOBJECT"
-    
-    
+
 
 class RelationType(str, Enum):
     """
@@ -111,8 +134,7 @@ class RelationType(str, Enum):
     IS_OBSOLETED_BY = "IS_OBSOLETED_BY"
     # The resource or PID4Cat obsoletes another resource or PID4Cat.
     OBSOLETES = "OBSOLETES"
-    
-    
+
 
 class PID4CatStatus(str, Enum):
     """
@@ -126,8 +148,7 @@ class PID4CatStatus(str, Enum):
     OBSOLETED = "OBSOLETED"
     # The PID4CatRecord is deprecated, e.g. because the resource can no longer be found.
     DEPRECATED = "DEPRECATED"
-    
-    
+
 
 class PID4CatAgentRole(str, Enum):
     """
@@ -137,8 +158,7 @@ class PID4CatAgentRole(str, Enum):
     TRUSTEE = "TRUSTEE"
     # The agent is the owner of the resource.
     OWNER = "OWNER"
-    
-    
+
 
 class ChangeLogField(str, Enum):
     """
@@ -154,8 +174,7 @@ class ChangeLogField(str, Enum):
     CONTACT = "CONTACT"
     # The rights of the PID4CatRecord were changed.
     RIGHTS = "RIGHTS"
-    
-    
+
 
 class PID4CatRecord(ConfiguredBaseModel):
     """
@@ -171,7 +190,19 @@ class PID4CatRecord(ConfiguredBaseModel):
     resource_info: Optional[ResourceInfo] = Field(None, description="""Information about the resource.""")
     related_identifiers: Optional[List[PID4CatRelation]] = Field(default_factory=list, description="""Relations of the resource to other identifiers""")
     change_log: List[LogRecord] = Field(default_factory=list, description="""Change log of PID4Cat record""")
-    
+
+    @field_validator('curation_contact')
+    def pattern_curation_contact(cls, v):
+        pattern=re.compile(r"^\S+@[\S+\.]+\S+")
+        if isinstance(v,list):
+            for element in v:
+                if not pattern.match(element):
+                    raise ValueError(f"Invalid curation_contact format: {element}")
+        elif isinstance(v,str):
+            if not pattern.match(v):
+                raise ValueError(f"Invalid curation_contact format: {v}")
+        return v
+
 
 class PID4CatRelation(ConfiguredBaseModel):
     """
@@ -181,7 +212,7 @@ class PID4CatRelation(ConfiguredBaseModel):
     related_identifier: Optional[str] = Field(None, description="""Related identifiers for the resource""")
     datetime_log: Optional[str] = Field(None, description="""The date and time of a log record""")
     has_agent: Optional[Agent] = Field(None, description="""The person who registered the resource""")
-    
+
 
 class ResourceInfo(ConfiguredBaseModel):
     """
@@ -194,7 +225,7 @@ class ResourceInfo(ConfiguredBaseModel):
     rdf_type: Optional[str] = Field(None, description="""The format of the rdf representation of the resource (xml, turlte, json-ld, ...).""")
     schema_url: Optional[str] = Field(None, description="""The URI of the schema used to describe the resource. Same property as in DataCite:schemeURI.""")
     schema_type: Optional[str] = Field(None, description="""The type of the scheme used to describe the resource. Examples: XSD, DDT, Turtle Same property as in DataCite:schemeType.""")
-    
+
 
 class LogRecord(ConfiguredBaseModel):
     """
@@ -204,7 +235,7 @@ class LogRecord(ConfiguredBaseModel):
     has_agent: Optional[Agent] = Field(None, description="""The person who registered the resource""")
     changed_field: Optional[ChangeLogField] = Field(None, description="""The field that was changed""")
     description: Optional[str] = Field(None, description="""A human-readable description for a thing""")
-    
+
 
 class Agent(ConfiguredBaseModel):
     """
@@ -215,14 +246,13 @@ class Agent(ConfiguredBaseModel):
     person_orcid: Optional[str] = Field(None, description="""The ORCID of the person""")
     affiliation_ror: Optional[str] = Field(None, description="""The ROR of the affiliation""")
     role: Optional[PID4CatAgentRole] = Field(None, description="""The role of the agent relative to the resource""")
-    
+
 
 class Container(ConfiguredBaseModel):
     """
     A container for all PID4Cat instances.
     """
     contains_pids: Optional[List[PID4CatRecord]] = Field(default_factory=list, description="""The PID4CatRecords contained in the container.""")
-    
 
 
 # Model rebuild
