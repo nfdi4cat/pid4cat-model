@@ -204,17 +204,28 @@
 <p>URI: <a href="https://w3id.org/nfdi4cat/pid4cat-model/PID4CatRelation">pid4cat_model:PID4CatRelation</a></p>
 <div class="mermaid"> classDiagram
     class PID4CatRelation
+    click PID4CatRelation href "../PID4CatRelation"
       PID4CatRelation : datetime_log
 
       PID4CatRelation : has_agent
 
-          PID4CatRelation --|&gt; Agent : has_agent
+
+
+
+    PID4CatRelation --&gt; "0..1" Agent : has_agent
+    click Agent href "../Agent"
+
 
       PID4CatRelation : related_identifier
 
       PID4CatRelation : relation_type
 
-          PID4CatRelation --|&gt; RelationType : relation_type
+
+
+
+    PID4CatRelation --&gt; "*" RelationType : relation_type
+    click RelationType href "../RelationType"
+
 
 
 </div>
@@ -232,7 +243,7 @@
 <tbody>
 <tr>
 <td><a href="../relation_type/">relation_type</a></td>
-<td>0..* <br/> <a href="../RelationType/">RelationType</a></td>
+<td>* <br/> <a href="../RelationType/">RelationType</a></td>
 <td>Relation type between the resources</td>
 <td>direct</td>
 </tr>

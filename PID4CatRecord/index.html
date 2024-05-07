@@ -204,9 +204,15 @@
 <p>URI: <a href="https://w3id.org/nfdi4cat/pid4cat-model/PID4CatRecord">pid4cat_model:PID4CatRecord</a></p>
 <div class="mermaid"> classDiagram
     class PID4CatRecord
+    click PID4CatRecord href "../PID4CatRecord"
       PID4CatRecord : change_log
 
-          PID4CatRecord --|&gt; LogRecord : change_log
+
+
+
+    PID4CatRecord --&gt; "1..*" LogRecord : change_log
+    click LogRecord href "../LogRecord"
+
 
       PID4CatRecord : curation_contact
 
@@ -222,15 +228,30 @@
 
       PID4CatRecord : related_identifiers
 
-          PID4CatRecord --|&gt; PID4CatRelation : related_identifiers
+
+
+
+    PID4CatRecord --&gt; "*" PID4CatRelation : related_identifiers
+    click PID4CatRelation href "../PID4CatRelation"
+
 
       PID4CatRecord : resource_info
 
-          PID4CatRecord --|&gt; ResourceInfo : resource_info
+
+
+
+    PID4CatRecord --&gt; "0..1" ResourceInfo : resource_info
+    click ResourceInfo href "../ResourceInfo"
+
 
       PID4CatRecord : status
 
-          PID4CatRecord --|&gt; PID4CatStatus : status
+
+
+
+    PID4CatRecord --&gt; "0..1" PID4CatStatus : status
+    click PID4CatStatus href "../PID4CatStatus"
+
 
 
 </div>
@@ -248,7 +269,7 @@
 <tbody>
 <tr>
 <td><a href="../id/">id</a></td>
-<td>1..1 <br/> <a href="../Uriorcurie/">Uriorcurie</a></td>
+<td>1 <br/> <a href="../Uriorcurie/">Uriorcurie</a></td>
 <td>A unique identifier for a thing</td>
 <td>direct</td>
 </tr>
@@ -296,7 +317,7 @@
 </tr>
 <tr>
 <td><a href="../related_identifiers/">related_identifiers</a></td>
-<td>0..* <br/> <a href="../PID4CatRelation/">PID4CatRelation</a></td>
+<td>* <br/> <a href="../PID4CatRelation/">PID4CatRelation</a></td>
 <td>Relations of the resource to other identifiers</td>
 <td>direct</td>
 </tr>

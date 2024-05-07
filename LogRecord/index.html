@@ -204,9 +204,15 @@
 <p>URI: <a href="https://w3id.org/nfdi4cat/pid4cat-model/LogRecord">pid4cat_model:LogRecord</a></p>
 <div class="mermaid"> classDiagram
     class LogRecord
+    click LogRecord href "../LogRecord"
       LogRecord : changed_field
 
-          LogRecord --|&gt; ChangeLogField : changed_field
+
+
+
+    LogRecord --&gt; "0..1" ChangeLogField : changed_field
+    click ChangeLogField href "../ChangeLogField"
+
 
       LogRecord : datetime_log
 
@@ -214,7 +220,12 @@
 
       LogRecord : has_agent
 
-          LogRecord --|&gt; Agent : has_agent
+
+
+
+    LogRecord --&gt; "0..1" Agent : has_agent
+    click Agent href "../Agent"
+
 
 
 </div>

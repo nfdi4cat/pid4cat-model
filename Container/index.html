@@ -199,9 +199,15 @@
 <p>URI: <a href="https://w3id.org/nfdi4cat/pid4cat-model/Container">pid4cat_model:Container</a></p>
 <div class="mermaid"> classDiagram
     class Container
+    click Container href "../Container"
       Container : contains_pids
 
-          Container --|&gt; PID4CatRecord : contains_pids
+
+
+
+    Container --&gt; "*" PID4CatRecord : contains_pids
+    click PID4CatRecord href "../PID4CatRecord"
+
 
 
 </div>
@@ -219,7 +225,7 @@
 <tbody>
 <tr>
 <td><a href="../contains_pids/">contains_pids</a></td>
-<td>0..* <br/> <a href="../PID4CatRecord/">PID4CatRecord</a></td>
+<td>* <br/> <a href="../PID4CatRecord/">PID4CatRecord</a></td>
 <td>The PID4CatRecords contained in the container</td>
 <td>direct</td>
 </tr>
@@ -263,6 +269,8 @@ attributes:
     from_schema: https://w3id.org/nfdi4cat/pid4cat-model
     rank: 1000
     multivalued: true
+    domain_of:
+    - Container
     range: PID4CatRecord
     inlined: true
     inlined_as_list: true

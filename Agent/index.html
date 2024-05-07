@@ -204,6 +204,7 @@
 <p>URI: <a href="https://w3id.org/nfdi4cat/pid4cat-model/Agent">pid4cat_model:Agent</a></p>
 <div class="mermaid"> classDiagram
     class Agent
+    click Agent href "../Agent"
       Agent : affiliation_ror
 
       Agent : contact_information
@@ -214,7 +215,12 @@
 
       Agent : role
 
-          Agent --|&gt; PID4CatAgentRole : role
+
+
+
+    Agent --&gt; "0..1" PID4CatAgentRole : role
+    click PID4CatAgentRole href "../PID4CatAgentRole"
+
 
 
 </div>

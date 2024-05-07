@@ -204,6 +204,7 @@
 <p>URI: <a href="https://w3id.org/nfdi4cat/pid4cat-model/ResourceInfo">pid4cat_model:ResourceInfo</a></p>
 <div class="mermaid"> classDiagram
     class ResourceInfo
+    click ResourceInfo href "../ResourceInfo"
       ResourceInfo : description
 
       ResourceInfo : label
@@ -214,7 +215,12 @@
 
       ResourceInfo : resource_category
 
-          ResourceInfo --|&gt; ResourceCategory : resource_category
+
+
+
+    ResourceInfo --&gt; "0..1" ResourceCategory : resource_category
+    click ResourceCategory href "../ResourceCategory"
+
 
       ResourceInfo : schema_type
 
