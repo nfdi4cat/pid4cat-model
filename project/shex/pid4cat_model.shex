@@ -78,7 +78,7 @@ linkml:Sparqlpath xsd:string
           schema1:license @linkml:String ? ;
           schema1:email @linkml:String ? ;
           <resource_info> @<ResourceInfo> ? ;
-          schema1:identifier @linkml:Uriorcurie * ;
+          schema1:identifier @<PID4CatRelation> * ;
           schema1:identifier @<LogRecord> +
        ) ;
        rdf:type [ <PID4CatRecord> ]

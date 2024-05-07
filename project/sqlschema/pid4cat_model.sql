@@ -26,14 +26,6 @@ CREATE TABLE "PID4CatRecord" (
 	PRIMARY KEY (id)
 );
 
-CREATE TABLE "PID4CatRelation" (
-	relation_type VARCHAR(22), 
-	related_identifier TEXT, 
-	datetime_log TEXT, 
-	has_agent TEXT, 
-	PRIMARY KEY (relation_type, related_identifier, datetime_log, has_agent)
-);
-
 CREATE TABLE "ResourceInfo" (
 	label TEXT, 
 	description TEXT, 
@@ -55,9 +47,12 @@ CREATE TABLE "LogRecord" (
 	FOREIGN KEY("PID4CatRecord_id") REFERENCES "PID4CatRecord" (id)
 );
 
-CREATE TABLE "PID4CatRecord_related_identifiers" (
-	backref_id TEXT, 
-	related_identifiers TEXT, 
-	PRIMARY KEY (backref_id, related_identifiers), 
-	FOREIGN KEY(backref_id) REFERENCES "PID4CatRecord" (id)
+CREATE TABLE "PID4CatRelation" (
+	relation_type VARCHAR(22), 
+	related_identifier TEXT, 
+	datetime_log TEXT, 
+	has_agent TEXT, 
+	"PID4CatRecord_id" TEXT, 
+	PRIMARY KEY (relation_type, related_identifier, datetime_log, has_agent, "PID4CatRecord_id"), 
+	FOREIGN KEY("PID4CatRecord_id") REFERENCES "PID4CatRecord" (id)
 );

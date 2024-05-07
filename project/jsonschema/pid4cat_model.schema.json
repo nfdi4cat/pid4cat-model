@@ -125,9 +125,9 @@
                     "type": "string"
                 },
                 "related_identifiers": {
-                    "description": "Alternate identifiers for the resource",
+                    "description": "Relations of the resource to other identifiers",
                     "items": {
-                        "type": "string"
+                        "$ref": "#/$defs/PID4CatRelation"
                     },
                     "type": "array"
                 },

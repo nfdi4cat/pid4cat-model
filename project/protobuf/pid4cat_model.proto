@@ -31,7 +31,7 @@ message PID4CatRecord
   string dcRights = 0
   string curationContact = 0
   resourceInfo resourceInfo = 0
- repeated  uriorcurie relatedIdentifiers = 0
+ repeated  pID4CatRelation relatedIdentifiers = 0
  repeated  logRecord changeLog = 0
  }
 // A relation between PID4CatRecords or between a PID4CatRecord and other resources with a PID.
