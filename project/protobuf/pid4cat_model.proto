@@ -1,3 +1,6 @@
+ syntax="proto3";
+ package
+// metamodel_version: 1.7.0
 // Person who plays a role relative to PID creation or curation.
 message Agent
  {
