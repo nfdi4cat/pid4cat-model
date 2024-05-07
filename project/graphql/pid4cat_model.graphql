@@ -30,7 +30,7 @@ type PID4CatRecord
     dcRights: String
     curationContact: String
     resourceInfo: ResourceInfo
-    relatedIdentifiers: [Uriorcurie]
+    relatedIdentifiers: [PID4CatRelation]
     changeLog: [LogRecord]!
   }
 

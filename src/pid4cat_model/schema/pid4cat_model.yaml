@@ -27,7 +27,7 @@ prefixes:
   schema: http://schema.org/
 
   # outer metadata of research data objects
-  dct: http://purl.org/dc/terms/
+  dcterms: http://purl.org/dc/terms/
   DCAT: http://www.w3.org/ns/dcat#
   DataCite: http://purl.org/spar/datacite/
 
@@ -137,9 +137,9 @@ slots:
     description: Information about the resource.
   related_identifiers:
     slot_uri: schema:identifier
-    range: uriorcurie
+    range: PID4CatRelation
     multivalued: true
-    description: Alternate identifiers for the resource
+    description: Relations of the resource to other identifiers
   dc_rights:
     slot_uri: schema:license
     description: The license for the metadata contained in the PID4Cat record.
@@ -285,20 +285,20 @@ enums:  # Enumerations use singular form for names
         description: The resource is metadata for.
       HAS_VERSION:
         description: The resource has a version.
-        meaning: dct:hasVersion
+        meaning: dcterms:hasVersion
       IS_VERSION_OF:
         description: The resource is a version of.
-        meaning: dct:isVersionOf
+        meaning: dcterms:isVersionOf
       IS_NEW_VERSION_OF:
         description: The resource is a new version of.
       IS_PREVIOUS_VERSION_OF:
         description: The resource is a previous version of.
       IS_PART_OF:
         description: The resource is part of another resource.
-        meaning: dct:isPartOf
+        meaning: dcterms:isPartOf
       HAS_PART:
         description: The resource has part another resource.
-        meaning: dct:hasPart
+        meaning: dcterms:hasPart
       IS_DESCRIBED_BY:
         description: The resource is documented by another resource.
       DESCRIBES:
@@ -307,7 +307,7 @@ enums:  # Enumerations use singular form for names
         description: The resource is published in another resource.
       IS_REFERENCED_BY:
         description: The resource is referenced by another resource.
-        meaning: dct:isReferencedBy
+        meaning: dcterms:isReferencedBy
       REFERENCES:
         description: The resource references another resource.
       IS_DOCUMENTED_BY:
@@ -334,10 +334,10 @@ enums:  # Enumerations use singular form for names
         description: The resource collects another resource.
       IS_REQUIRED_BY:
         description: The resource is required by another resource.
-        meaning: dct:isRequiredBy
+        meaning: dcterms:isRequiredBy
       REQUIRES:
         description: The resource requires another resource.
-        meaning: dct:requires
+        meaning: dcterms:requires
       IS_OBSOLETED_BY:
         description: >-
           The resource or PID4Cat is obsoleted by another resource or PID4Cat.

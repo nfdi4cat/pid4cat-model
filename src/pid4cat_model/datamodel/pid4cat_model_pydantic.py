@@ -169,7 +169,7 @@ class PID4CatRecord(ConfiguredBaseModel):
     dc_rights: Optional[str] = Field(None, description="""The license for the metadata contained in the PID4Cat record.""")
     curation_contact: Optional[str] = Field(None, description="""The email address of a person or institution responsible for curation of the resource.""")
     resource_info: Optional[ResourceInfo] = Field(None, description="""Information about the resource.""")
-    related_identifiers: Optional[List[str]] = Field(default_factory=list, description="""Alternate identifiers for the resource""")
+    related_identifiers: Optional[List[PID4CatRelation]] = Field(default_factory=list, description="""Relations of the resource to other identifiers""")
     change_log: List[LogRecord] = Field(default_factory=list, description="""Change log of PID4Cat record""")
     
 
