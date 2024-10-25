@@ -2,307 +2,246 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/</loc>
-         <lastmod>2024-10-01</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-10-25</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/Agent/</loc>
-         <lastmod>2024-10-01</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-10-25</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/Boolean/</loc>
-         <lastmod>2024-10-01</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-10-25</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/ChangeLogField/</loc>
-         <lastmod>2024-10-01</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-10-25</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/Container/</loc>
-         <lastmod>2024-10-01</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-10-25</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/Curie/</loc>
-         <lastmod>2024-10-01</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-10-25</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/Date/</loc>
-         <lastmod>2024-10-01</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-10-25</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/DateOrDatetime/</loc>
-         <lastmod>2024-10-01</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-10-25</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/Datetime/</loc>
-         <lastmod>2024-10-01</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-10-25</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/Decimal/</loc>
-         <lastmod>2024-10-01</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-10-25</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/Double/</loc>
-         <lastmod>2024-10-01</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-10-25</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/Float/</loc>
-         <lastmod>2024-10-01</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-10-25</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/Integer/</loc>
-         <lastmod>2024-10-01</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-10-25</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/Jsonpath/</loc>
-         <lastmod>2024-10-01</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-10-25</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/Jsonpointer/</loc>
-         <lastmod>2024-10-01</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-10-25</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/LogRecord/</loc>
-         <lastmod>2024-10-01</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-10-25</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/Ncname/</loc>
-         <lastmod>2024-10-01</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-10-25</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/Nodeidentifier/</loc>
-         <lastmod>2024-10-01</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-10-25</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/Objectidentifier/</loc>
-         <lastmod>2024-10-01</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-10-25</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/PID4CatAgentRole/</loc>
-         <lastmod>2024-10-01</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-10-25</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/PID4CatRecord/</loc>
-         <lastmod>2024-10-01</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-10-25</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/PID4CatRelation/</loc>
-         <lastmod>2024-10-01</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-10-25</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/PID4CatStatus/</loc>
-         <lastmod>2024-10-01</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-10-25</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/RelationType/</loc>
-         <lastmod>2024-10-01</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-10-25</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/ResourceCategory/</loc>
-         <lastmod>2024-10-01</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-10-25</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/ResourceInfo/</loc>
-         <lastmod>2024-10-01</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-10-25</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/Sparqlpath/</loc>
-         <lastmod>2024-10-01</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-10-25</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/String/</loc>
-         <lastmod>2024-10-01</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-10-25</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/Time/</loc>
-         <lastmod>2024-10-01</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-10-25</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/Uri/</loc>
-         <lastmod>2024-10-01</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-10-25</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/Uriorcurie/</loc>
-         <lastmod>2024-10-01</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-10-25</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/about/</loc>
-         <lastmod>2024-10-01</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-10-25</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/affiliation_ror/</loc>
-         <lastmod>2024-10-01</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-10-25</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/change_log/</loc>
-         <lastmod>2024-10-01</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-10-25</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/changed_field/</loc>
-         <lastmod>2024-10-01</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-10-25</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/contact_information/</loc>
-         <lastmod>2024-10-01</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-10-25</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/contains_pids/</loc>
-         <lastmod>2024-10-01</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-10-25</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/curation_contact/</loc>
-         <lastmod>2024-10-01</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-10-25</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/datetime_log/</loc>
-         <lastmod>2024-10-01</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-10-25</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/dc_rights/</loc>
-         <lastmod>2024-10-01</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-10-25</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/description/</loc>
-         <lastmod>2024-10-01</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-10-25</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/has_agent/</loc>
-         <lastmod>2024-10-01</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-10-25</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/id/</loc>
-         <lastmod>2024-10-01</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-10-25</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/label/</loc>
-         <lastmod>2024-10-01</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-10-25</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/landing_page_url/</loc>
-         <lastmod>2024-10-01</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-10-25</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/name/</loc>
-         <lastmod>2024-10-01</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-10-25</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/person_orcid/</loc>
-         <lastmod>2024-10-01</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-10-25</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/pid4cat-model/</loc>
-         <lastmod>2024-10-01</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-10-25</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/pid_schema_version/</loc>
-         <lastmod>2024-10-01</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-10-25</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/rdf_type/</loc>
-         <lastmod>2024-10-01</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-10-25</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/rdf_url/</loc>
-         <lastmod>2024-10-01</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-10-25</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/record_version/</loc>
-         <lastmod>2024-10-01</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-10-25</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/related_identifier/</loc>
-         <lastmod>2024-10-01</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-10-25</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/related_identifiers/</loc>
-         <lastmod>2024-10-01</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-10-25</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/relation_type/</loc>
-         <lastmod>2024-10-01</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-10-25</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/resource_category/</loc>
-         <lastmod>2024-10-01</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-10-25</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/resource_info/</loc>
-         <lastmod>2024-10-01</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-10-25</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/role/</loc>
-         <lastmod>2024-10-01</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-10-25</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/schema_type/</loc>
-         <lastmod>2024-10-01</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-10-25</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/schema_url/</loc>
-         <lastmod>2024-10-01</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-10-25</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/status/</loc>
-         <lastmod>2024-10-01</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-10-25</lastmod>
     </url>
 </urlset>
