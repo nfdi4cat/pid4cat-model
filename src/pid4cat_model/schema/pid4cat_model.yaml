@@ -60,6 +60,7 @@ classes:
   PID4CatRelation:
     description: >-
       A relation between PID4CatRecords or between a PID4CatRecord and other resources with a PID.
+      # TODO: please provide and example for this class 
     slots:
       - relation_type
       - related_identifier
@@ -141,9 +142,10 @@ slots:
     multivalued: true
     description: Alternate identifiers for the resource
   dc_rights:
+    # TODO: why not call it just license(s) ? 
     slot_uri: schema:license
     description: The license for the metadata contained in the PID4Cat record.
-  curation_contact:
+  curation_contact_email:
     slot_uri: schema:email
     description: The email address of a person or institution responsible for curation of the resource.
   change_log:
@@ -184,11 +186,11 @@ slots:
   rdf_url:
     slot_uri: schema:additionalType
     description: >-
-      The URI of the rdf represenation of the resource.
+      The URI of the rdf representation of the resource.
   rdf_type:
     slot_uri: schema:additionalType
     description: >-
-      The format of the rdf representation of the resource (xml, turlte, json-ld, ...).
+      The format of the rdf representation of the resource (xml, turtle, json-ld, ...).
   schema_url:
     slot_uri: schema:additionalType
     description: >-
@@ -208,16 +210,17 @@ slots:
     description: The field that was changed
 
   # Slots for Agent
-  name:
+  agent_name:
     slot_uri: schema:name
     description: The name of the agent
-  contact_information:
+  agent_email:
     slot_uri: schema:email
     description: Identification of the agent that registered the PID, with
       contact information. Should include person name and affiliation, or position
       name and affiliation, or just organization name. e-mail address is preferred
       contact information.
-  person_orcid:
+      TODO: should be better defined - to be clearly parsable by machines
+  agent_orcid:
     slot_uri: schema:identifier
     description: The ORCID of the person
   affiliation_ror:
