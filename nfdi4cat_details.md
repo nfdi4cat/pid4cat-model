@@ -85,17 +85,16 @@ The PID4Cat schema is mapped to the handle record as follows:
 
 **Table** Example record for a PID4Cat handle with the suffix "lik-dfi345", URL: https://hdl.handle.net/20.1000/lik-dfi345 <BR> The *PID4CatRecord* column contains the slot name of the LinkML model that is written to the respective line of the handle record; this column is not part of the handle record.
 
-| Index | Type | Timestamp | Data | *PID4CatRecord* |
-|-------|------|-----------|------|-----------|
-|     1 | URL  | 2024-01-01 10:47:38Z | https://pid4cat.example.org/lik-dfi345 | *landing pageURL* |
-|     2 | STATUS | 2024-02-19 13:40:02Z | REGISTERED | *status* |
-|     3 | REC_VER | 2024-02-19 13:40:02Z | 20240219v0 | *record_version* |
-|     4 | SCH_VER | 2024-01-01 10:47:38Z | 1.0.0 | *pid_schema_version* |
-|     5 | RIGHTS | 2024-01-01 10:47:38Z | CC0-1.0 | *dc_rights* |
-|     6 | EMAIL | 2024-01-01 10:47:38Z | datafuzzi@example.org | *curation_contact* |
-|     7 | IMFO | 2024-01-01 10:47:38Z | {json} | *resource_info* |
-|     8 | RELATED | 2024-02-19 13:40:02Z | {json} | *related_identifiers* |
-|     9 | CHANGES | 2024-02-19 13:40:02Z | {json} | *change_log* |
+| Index | Type         | Timestamp | Data | *PID4CatRecord* |
+|-------|--------------|-----------|------|-----------|
+|     1 | URL          | 2024-01-01 10:47:38Z | https://pid4cat.example.org/lik-dfi345 | *landing pageURL* |
+|     2 | STATUS       | 2024-02-19 13:40:02Z | REGISTERED | *status* |
+|     4 | SCHEMA_VER      | 2024-01-01 10:47:38Z | 1.0.0 | *pid_schema_version* |
+|     5 | LICENSE      | 2024-01-01 10:47:38Z | CC0-1.0 | *dc_rights* |
+|     6 | EMAIL        | 2024-01-01 10:47:38Z | datafuzzi@example.org | *curation_contact* |
+|     7 | RESOURCEINFO | 2024-01-01 10:47:38Z | {json} | *resource_info* |
+|     8 | RELATED      | 2024-02-19 13:40:02Z | {json} | *related_identifiers* |
+|     9 | CHANGES      | 2024-02-19 13:40:02Z | {json} | *change_log* |
 
 In a future version, the non-standard values in **Type**-column may be replaced by references to type declarations in a datatype registry (DTR).
 Such DTRs are still under development and not yet widely used.
