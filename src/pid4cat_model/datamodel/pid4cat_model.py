@@ -1,9 +1,9 @@
 # Auto generated from pid4cat_model.yaml by pythongen.py version: 0.0.1
-# Generation date: 2024-02-25T23:40:32
+# Generation date: 2024-05-08T00:12:42
 # Schema: pid4cat-model
 #
 # id: https://w3id.org/nfdi4cat/pid4cat-model
-# description: A LinkML model for PIDs for resources in catalysis (PID4Cat). PID4Cat is a handle system based persistent identifier (PID) for digital or physical resources used in the catalysis research process. The handle record is used to store metadata about the PID besides the obligatory landing page URL.
+# description: A LinkML model for PIDs for resources in catalysis (PID4Cat). PID4Cat is a handle system based persistent identifier (PID) for digital or physical resources used in the catalysis research process. The handle record is used to store additional metadata about the PID besides the obligatory landing page URL.
 #   The model describes metadata for the PID itself and how to access the identified resource. It does not describe the resource itself with the exception of the resource category, which is a high-level description of what is identified by the PID4Cat handle, e.g. a sample or a device.
 # license: MIT
 
@@ -12,6 +12,7 @@ import re
 from jsonasobj2 import JsonObj, as_dict
 from typing import Optional, List, Union, Dict, ClassVar, Any
 from dataclasses import dataclass
+from datetime import date, datetime
 from linkml_runtime.linkml_model.meta import EnumDefinition, PermissibleValue, PvFormulaOptions
 
 from linkml_runtime.utils.slot import Slot
@@ -34,7 +35,7 @@ dataclasses._init_fn = dataclasses_init_fn_with_kwargs
 # Namespaces
 DCAT = CurieNamespace('DCAT', 'http://www.w3.org/ns/dcat#')
 DATACITE = CurieNamespace('DataCite', 'http://purl.org/spar/datacite/')
-DCT = CurieNamespace('dct', 'http://purl.org/dc/terms/')
+DCTERMS = CurieNamespace('dcterms', 'http://purl.org/dc/terms/')
 LINKML = CurieNamespace('linkml', 'https://w3id.org/linkml/')
 PID4CAT_MODEL = CurieNamespace('pid4cat_model', 'https://w3id.org/nfdi4cat/pid4cat-model/')
 SCHEMA = CurieNamespace('schema', 'http://schema.org/')
@@ -69,7 +70,7 @@ class PID4CatRecord(YAMLRoot):
     dc_rights: Optional[str] = None
     curation_contact: Optional[str] = None
     resource_info: Optional[Union[dict, "ResourceInfo"]] = None
-    related_identifiers: Optional[Union[Union[str, URIorCURIE], List[Union[str, URIorCURIE]]]] = empty_list()
+    related_identifiers: Optional[Union[Union[dict, "PID4CatRelation"], List[Union[dict, "PID4CatRelation"]]]] = empty_list()
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self._is_empty(self.id):
@@ -106,7 +107,7 @@ class PID4CatRecord(YAMLRoot):
 
         if not isinstance(self.related_identifiers, list):
             self.related_identifiers = [self.related_identifiers] if self.related_identifiers is not None else []
-        self.related_identifiers = [v if isinstance(v, URIorCURIE) else URIorCURIE(v) for v in self.related_identifiers]
+        self.related_identifiers = [v if isinstance(v, PID4CatRelation) else PID4CatRelation(**as_dict(v)) for v in self.related_identifiers]
 
         super().__post_init__(**kwargs)
 
@@ -339,11 +340,11 @@ class RelationType(EnumDefinitionImpl):
     HAS_VERSION = PermissibleValue(
         text="HAS_VERSION",
         description="The resource has a version.",
-        meaning=DCT["hasVersion"])
+        meaning=DCTERMS["hasVersion"])
     IS_VERSION_OF = PermissibleValue(
         text="IS_VERSION_OF",
         description="The resource is a version of.",
-        meaning=DCT["isVersionOf"])
+        meaning=DCTERMS["isVersionOf"])
     IS_NEW_VERSION_OF = PermissibleValue(
         text="IS_NEW_VERSION_OF",
         description="The resource is a new version of.")
@@ -353,11 +354,11 @@ class RelationType(EnumDefinitionImpl):
     IS_PART_OF = PermissibleValue(
         text="IS_PART_OF",
         description="The resource is part of another resource.",
-        meaning=DCT["isPartOf"])
+        meaning=DCTERMS["isPartOf"])
     HAS_PART = PermissibleValue(
         text="HAS_PART",
         description="The resource has part another resource.",
-        meaning=DCT["hasPart"])
+        meaning=DCTERMS["hasPart"])
     IS_DESCRIBED_BY = PermissibleValue(
         text="IS_DESCRIBED_BY",
         description="The resource is documented by another resource.")
@@ -370,7 +371,7 @@ class RelationType(EnumDefinitionImpl):
     IS_REFERENCED_BY = PermissibleValue(
         text="IS_REFERENCED_BY",
         description="The resource is referenced by another resource.",
-        meaning=DCT["isReferencedBy"])
+        meaning=DCTERMS["isReferencedBy"])
     REFERENCES = PermissibleValue(
         text="REFERENCES",
         description="The resource references another resource.")
@@ -410,11 +411,11 @@ class RelationType(EnumDefinitionImpl):
     IS_REQUIRED_BY = PermissibleValue(
         text="IS_REQUIRED_BY",
         description="The resource is required by another resource.",
-        meaning=DCT["isRequiredBy"])
+        meaning=DCTERMS["isRequiredBy"])
     REQUIRES = PermissibleValue(
         text="REQUIRES",
         description="The resource requires another resource.",
-        meaning=DCT["requires"])
+        meaning=DCTERMS["requires"])
     IS_OBSOLETED_BY = PermissibleValue(
         text="IS_OBSOLETED_BY",
         description="The resource or PID4Cat is obsoleted by another resource or PID4Cat.")
@@ -513,7 +514,7 @@ slots.resource_info = Slot(uri=PID4CAT_MODEL.resource_info, name="resource_info"
                    model_uri=PID4CAT_MODEL.resource_info, domain=None, range=Optional[Union[dict, ResourceInfo]])
 
 slots.related_identifiers = Slot(uri=SCHEMA.identifier, name="related_identifiers", curie=SCHEMA.curie('identifier'),
-                   model_uri=PID4CAT_MODEL.related_identifiers, domain=None, range=Optional[Union[Union[str, URIorCURIE], List[Union[str, URIorCURIE]]]])
+                   model_uri=PID4CAT_MODEL.related_identifiers, domain=None, range=Optional[Union[Union[dict, PID4CatRelation], List[Union[dict, PID4CatRelation]]]])
 
 slots.dc_rights = Slot(uri=SCHEMA.license, name="dc_rights", curie=SCHEMA.curie('license'),
                    model_uri=PID4CAT_MODEL.dc_rights, domain=None, range=Optional[str])

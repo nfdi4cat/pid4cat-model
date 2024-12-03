@@ -125,9 +125,9 @@
                     "type": "string"
                 },
                 "related_identifiers": {
-                    "description": "Alternate identifiers for the resource",
+                    "description": "Relations of the resource to other identifiers",
                     "items": {
-                        "type": "string"
+                        "$ref": "#/$defs/PID4CatRelation"
                     },
                     "type": "array"
                 },
@@ -276,7 +276,7 @@
         }
     },
     "$id": "https://w3id.org/nfdi4cat/pid4cat-model",
-    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
     "additionalProperties": true,
     "description": "A container for all PID4Cat instances.",
     "metamodel_version": "1.7.0",

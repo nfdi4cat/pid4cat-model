@@ -1,6 +1,6 @@
 {
   "name": "pid4cat-model",
-  "description": "A LinkML model for PIDs for resources in catalysis (PID4Cat). PID4Cat is a handle system based persistent identifier (PID) for digital or physical resources used in the catalysis research process. The handle record is used to store metadata about the PID besides the obligatory landing page URL.\nThe model describes metadata for the PID itself and how to access the identified resource. It does not describe the resource itself with the exception of the resource category, which is a high-level description of what is identified by the PID4Cat handle, e.g. a sample or a device.",
+  "description": "A LinkML model for PIDs for resources in catalysis (PID4Cat). PID4Cat is a handle system based persistent identifier (PID) for digital or physical resources used in the catalysis research process. The handle record is used to store additional metadata about the PID besides the obligatory landing page URL.\nThe model describes metadata for the PID itself and how to access the identified resource. It does not describe the resource itself with the exception of the resource category, which is a high-level description of what is identified by the PID4Cat handle, e.g. a sample or a device.",
   "title": "pid4cat-model",
   "todos": [
     "Refine slots in slot_usage of class instead of globally in slot definitions",
@@ -29,7 +29,7 @@
       "prefix_reference": "http://schema.org/"
     },
     {
-      "prefix_prefix": "dct",
+      "prefix_prefix": "dcterms",
       "prefix_reference": "http://purl.org/dc/terms/"
     },
     {
@@ -434,12 +434,12 @@
         {
           "text": "HAS_VERSION",
           "description": "The resource has a version.",
-          "meaning": "dct:hasVersion"
+          "meaning": "dcterms:hasVersion"
         },
         {
           "text": "IS_VERSION_OF",
           "description": "The resource is a version of.",
-          "meaning": "dct:isVersionOf"
+          "meaning": "dcterms:isVersionOf"
         },
         {
           "text": "IS_NEW_VERSION_OF",
@@ -452,12 +452,12 @@
         {
           "text": "IS_PART_OF",
           "description": "The resource is part of another resource.",
-          "meaning": "dct:isPartOf"
+          "meaning": "dcterms:isPartOf"
         },
         {
           "text": "HAS_PART",
           "description": "The resource has part another resource.",
-          "meaning": "dct:hasPart"
+          "meaning": "dcterms:hasPart"
         },
         {
           "text": "IS_DESCRIBED_BY",
@@ -474,7 +474,7 @@
         {
           "text": "IS_REFERENCED_BY",
           "description": "The resource is referenced by another resource.",
-          "meaning": "dct:isReferencedBy"
+          "meaning": "dcterms:isReferencedBy"
         },
         {
           "text": "REFERENCES",
@@ -527,12 +527,12 @@
         {
           "text": "IS_REQUIRED_BY",
           "description": "The resource is required by another resource.",
-          "meaning": "dct:isRequiredBy"
+          "meaning": "dcterms:isRequiredBy"
         },
         {
           "text": "REQUIRES",
           "description": "The resource requires another resource.",
-          "meaning": "dct:requires"
+          "meaning": "dcterms:requires"
         },
         {
           "text": "IS_OBSOLETED_BY",
@@ -711,7 +711,7 @@
     {
       "name": "related_identifiers",
       "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/related_identifiers",
-      "description": "Alternate identifiers for the resource",
+      "description": "Relations of the resource to other identifiers",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "mappings": [
         "http://schema.org/identifier"
@@ -722,7 +722,8 @@
       "domain_of": [
         "PID4CatRecord"
       ],
-      "range": "uriorcurie",
+      "range": "PID4CatRelation",
+      "inlined": true,
       "@type": "SlotDefinition"
     },
     {
@@ -1204,9 +1205,9 @@
   ],
   "metamodel_version": "1.7.0",
   "source_file": "pid4cat_model.yaml",
-  "source_file_date": "2024-02-25T18:17:54",
-  "source_file_size": 12852,
-  "generation_date": "2024-02-25T23:40:29",
+  "source_file_date": "2024-05-07T23:35:24",
+  "source_file_size": 12910,
+  "generation_date": "2024-05-08T00:12:41",
   "@type": "SchemaDefinition",
   "@context": [
     "project/jsonld/pid4cat_model.context.jsonld",
