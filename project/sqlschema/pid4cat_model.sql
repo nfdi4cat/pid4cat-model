@@ -1,57 +1,56 @@
 -- # Class: "PID4CatRecord" Description: "Represents a PID4CatRecord"
---     * Slot: id Description: A unique identifier for a thing
---     * Slot: landing_page_url Description: The URL of the landing page for the resource
+--     * Slot: id Description: A unique identifier for a thing.
+--     * Slot: landing_page_url Description: The URL of the landing page for the resource.
 --     * Slot: status Description: The status of the PID4CatRecord.
---     * Slot: record_version Description: Date-based version string of the PID4CatRecord (e.g. 20240219v0, 20240219v1, ...). The version should be incremented with every change of the PID4CatRecord.
 --     * Slot: pid_schema_version Description: The version of the PID4Cat schema used for the PID4CatRecord.
---     * Slot: dc_rights Description: The license for the metadata contained in the PID4Cat record.
---     * Slot: curation_contact Description: The email address of a person or institution responsible for curation of the resource.
+--     * Slot: license Description: The license for the metadata contained in the PID4Cat record.
+--     * Slot: curation_contact_email Description: The email address of a person or institution currently responsible for the curation of the PID record.
 --     * Slot: Container_id Description: Autocreated FK slot
 --     * Slot: resource_info_id Description: Information about the resource.
 -- # Class: "PID4CatRelation" Description: "A relation between PID4CatRecords or between a PID4CatRecord and other resources with a PID."
 --     * Slot: id Description: 
---     * Slot: related_identifier Description: Related identifiers for the resource
---     * Slot: datetime_log Description: The date and time of a log record
---     * Slot: has_agent_id Description: The person who registered the resource
+--     * Slot: related_identifier Description: Related identifiers for the resource.
+--     * Slot: datetime_log Description: The date and time of a log record.
+--     * Slot: has_agent_id Description: The person who registered the resource.
 -- # Class: "ResourceInfo" Description: "Data object to hold information about the resource and its representation."
 --     * Slot: id Description: 
---     * Slot: label Description: A human-readable name for a thing
---     * Slot: description Description: A human-readable description for a thing
---     * Slot: resource_category Description: The category of the resource
---     * Slot: rdf_url Description: The URI of the rdf represenation of the resource.
---     * Slot: rdf_type Description: The format of the rdf representation of the resource (xml, turlte, json-ld, ...).
---     * Slot: schema_url Description: The URI of the schema used to describe the resource. Same property as in DataCite:schemeURI.
---     * Slot: schema_type Description: The type of the scheme used to describe the resource. Examples: XSD, DDT, Turtle Same property as in DataCite:schemeType.
+--     * Slot: label Description: A human-readable name for a resource.
+--     * Slot: description Description: A human-readable description for a resource.
+--     * Slot: resource_category Description: The category of the resource.
+--     * Slot: rdf_url Description: The URI of the rdf representation of the resource.
+--     * Slot: rdf_type Description: The format of the rdf representation of the resource (xml, turtle, json-ld, ...).
+--     * Slot: schema_url Description: The URI of the schema to which the resource conforms. Same property as in DataCite:schemeURI.
+--     * Slot: schema_type Description: The type of the schema to which the resource conforms. Examples: XSD, DDT, SHACL Same property as in DataCite:schemeType.
 -- # Class: "LogRecord" Description: "A log record for changes made on a PID4CatRecord starting from registration."
 --     * Slot: id Description: 
---     * Slot: datetime_log Description: The date and time of a log record
+--     * Slot: datetime_log Description: The date and time of a log record.
 --     * Slot: changed_field Description: The field that was changed
---     * Slot: description Description: A human-readable description for a thing
---     * Slot: has_agent_id Description: The person who registered the resource
+--     * Slot: description Description: A human-readable description for a resource.
+--     * Slot: has_agent_id Description: The person who registered the resource.
 -- # Class: "Agent" Description: "Person who plays a role relative to PID creation or curation."
 --     * Slot: id Description: 
---     * Slot: name Description: The name of the agent
---     * Slot: contact_information Description: Identification of the agent that registered the PID, with contact information. Should include person name and affiliation, or position name and affiliation, or just organization name. e-mail address is preferred contact information.
---     * Slot: person_orcid Description: The ORCID of the person
---     * Slot: affiliation_ror Description: The ROR of the affiliation
+--     * Slot: name Description: The name of the agent that created or modified the PID record.
+--     * Slot: email Description: Email address of the agent that created or modified the PID record.
+--     * Slot: orcid Description: The ORCID of the person
+--     * Slot: affiliation_ror Description: The ROR of the agent's affiliation.
 --     * Slot: role Description: The role of the agent relative to the resource
 -- # Class: "Container" Description: "A container for all PID4Cat instances."
 --     * Slot: id Description: 
 -- # Class: "PID4CatRecord_related_identifiers" Description: ""
 --     * Slot: PID4CatRecord_id Description: Autocreated FK slot
---     * Slot: related_identifiers_id Description: Relations of the resource to other identifiers
+--     * Slot: related_identifiers_id Description: Relations of the resource to other identifiers.
 -- # Class: "PID4CatRecord_change_log" Description: ""
 --     * Slot: PID4CatRecord_id Description: Autocreated FK slot
---     * Slot: change_log_id Description: Change log of PID4Cat record
+--     * Slot: change_log_id Description: Change log of PID4Cat record.
 -- # Class: "PID4CatRelation_relation_type" Description: ""
 --     * Slot: PID4CatRelation_id Description: Autocreated FK slot
---     * Slot: relation_type Description: Relation type between the resources
+--     * Slot: relation_type Description: Relation type between the resources.
 
 CREATE TABLE "ResourceInfo" (
 	id INTEGER NOT NULL, 
 	label TEXT, 
 	description TEXT, 
-	resource_category VARCHAR(10), 
+	resource_category VARCHAR(12), 
 	rdf_url TEXT, 
 	rdf_type TEXT, 
 	schema_url TEXT, 
@@ -61,8 +60,8 @@ CREATE TABLE "ResourceInfo" (
 CREATE TABLE "Agent" (
 	id INTEGER NOT NULL, 
 	name TEXT, 
-	contact_information TEXT, 
-	person_orcid TEXT, 
+	email TEXT, 
+	orcid TEXT, 
 	affiliation_ror TEXT, 
 	role VARCHAR(7), 
 	PRIMARY KEY (id)
@@ -75,10 +74,9 @@ CREATE TABLE "PID4CatRecord" (
 	id TEXT NOT NULL, 
 	landing_page_url TEXT, 
 	status VARCHAR(10), 
-	record_version TEXT, 
 	pid_schema_version TEXT, 
-	dc_rights TEXT, 
-	curation_contact TEXT, 
+	license TEXT, 
+	curation_contact_email TEXT, 
 	"Container_id" INTEGER, 
 	resource_info_id INTEGER, 
 	PRIMARY KEY (id), 

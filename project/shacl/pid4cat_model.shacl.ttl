@@ -1,3 +1,4 @@
+@prefix DCAT: <http://www.w3.org/ns/dcat#> .
 @prefix dcmitype: <http://purl.org/dc/dcmitype/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix pid4cat_model: <https://w3id.org/nfdi4cat/pid4cat-model/> .
@@ -22,50 +23,57 @@ pid4cat_model:LogRecord a sh:NodeShape ;
     sh:closed true ;
     sh:description "A log record for changes made on a PID4CatRecord starting from registration." ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:description "The field that was changed" ;
-            sh:in ( "STATUS" "RESOURCE_INFO" "RELATED_IDS" "CONTACT" "RIGHTS" ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "The date and time of a log record." ;
+            sh:maxCount 1 ;
+            sh:order 0 ;
+            sh:path schema1:DateTime ],
+        [ sh:description "The field that was changed" ;
+            sh:in ( "STATUS" "RESOURCE_INFO" "RELATED_IDS" "CONTACT" "LICENSE" ) ;
             sh:maxCount 1 ;
             sh:order 2 ;
             sh:path schema1:identifier ],
-        [ sh:datatype xsd:string ;
-            sh:description "A human-readable description for a thing" ;
-            sh:maxCount 1 ;
-            sh:order 3 ;
-            sh:path schema1:description ],
         [ sh:class pid4cat_model:Agent ;
-            sh:description "The person who registered the resource" ;
+            sh:description "The person who registered the resource." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:BlankNodeOrIRI ;
             sh:order 1 ;
             sh:path schema1:Agent ],
         [ sh:datatype xsd:string ;
-            sh:description "The date and time of a log record" ;
+            sh:description "A human-readable description for a resource." ;
             sh:maxCount 1 ;
-            sh:order 0 ;
-            sh:path schema1:DateTime ] ;
+            sh:order 3 ;
+            sh:path schema1:description ] ;
     sh:targetClass pid4cat_model:LogRecord .
 
 pid4cat_model:PID4CatRecord a sh:NodeShape ;
     sh:closed true ;
     sh:description "Represents a PID4CatRecord" ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:description "A unique identifier for a thing" ;
+    sh:property [ sh:description "The status of the PID4CatRecord." ;
+            sh:in ( "SUBMITTED" "REGISTERED" "OBSOLETED" "DEPRECATED" ) ;
             sh:maxCount 1 ;
-            sh:order 0 ;
-            sh:path schema1:identifier ],
+            sh:order 2 ;
+            sh:path pid4cat_model:status ],
         [ sh:class pid4cat_model:LogRecord ;
-            sh:description "Change log of PID4Cat record" ;
+            sh:description "Change log of PID4Cat record." ;
             sh:minCount 1 ;
             sh:nodeKind sh:BlankNodeOrIRI ;
-            sh:order 9 ;
+            sh:order 8 ;
             sh:path schema1:identifier ],
         [ sh:datatype xsd:string ;
-            sh:description "Date-based version string of the PID4CatRecord (e.g. 20240219v0, 20240219v1, ...). The version should be incremented with every change of the PID4CatRecord." ;
+            sh:description "The version of the PID4Cat schema used for the PID4CatRecord." ;
             sh:maxCount 1 ;
             sh:order 3 ;
             sh:path schema1:identifier ],
         [ sh:datatype xsd:string ;
-            sh:description "The URL of the landing page for the resource" ;
+            sh:description "The email address of a person or institution currently responsible for the curation of the PID record." ;
+            sh:maxCount 1 ;
+            sh:order 5 ;
+            sh:path schema1:email ;
+            sh:pattern "^\\S+@[\\S+\\.]+\\S+" ],
+        [ sh:datatype xsd:string ;
+            sh:description "The URL of the landing page for the resource." ;
             sh:maxCount 1 ;
             sh:order 1 ;
             sh:path schema1:url ],
@@ -73,34 +81,22 @@ pid4cat_model:PID4CatRecord a sh:NodeShape ;
             sh:description "Information about the resource." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:BlankNodeOrIRI ;
-            sh:order 7 ;
+            sh:order 6 ;
             sh:path pid4cat_model:resource_info ],
-        [ sh:datatype xsd:string ;
-            sh:description "The version of the PID4Cat schema used for the PID4CatRecord." ;
-            sh:maxCount 1 ;
-            sh:order 4 ;
-            sh:path schema1:identifier ],
         [ sh:class pid4cat_model:PID4CatRelation ;
-            sh:description "Relations of the resource to other identifiers" ;
+            sh:description "Relations of the resource to other identifiers." ;
             sh:nodeKind sh:BlankNodeOrIRI ;
-            sh:order 8 ;
+            sh:order 7 ;
             sh:path schema1:identifier ],
-        [ sh:description "The status of the PID4CatRecord." ;
-            sh:in ( "SUBMITTED" "REGISTERED" "OBSOLETED" "DEPRECATED" ) ;
+        [ sh:description "A unique identifier for a thing." ;
             sh:maxCount 1 ;
-            sh:order 2 ;
-            sh:path pid4cat_model:status ],
+            sh:order 0 ;
+            sh:path schema1:identifier ],
         [ sh:datatype xsd:string ;
             sh:description "The license for the metadata contained in the PID4Cat record." ;
             sh:maxCount 1 ;
-            sh:order 5 ;
-            sh:path schema1:license ],
-        [ sh:datatype xsd:string ;
-            sh:description "The email address of a person or institution responsible for curation of the resource." ;
-            sh:maxCount 1 ;
-            sh:order 6 ;
-            sh:path schema1:email ;
-            sh:pattern "^\\S+@[\\S+\\.]+\\S+" ] ;
+            sh:order 4 ;
+            sh:path schema1:license ] ;
     sh:targetClass pid4cat_model:PID4CatRecord .
 
 pid4cat_model:PID4CatRelation a sh:NodeShape ;
@@ -108,22 +104,22 @@ pid4cat_model:PID4CatRelation a sh:NodeShape ;
     sh:description "A relation between PID4CatRecords or between a PID4CatRecord and other resources with a PID." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:class pid4cat_model:Agent ;
-            sh:description "The person who registered the resource" ;
+            sh:description "The person who registered the resource." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:BlankNodeOrIRI ;
             sh:order 3 ;
             sh:path schema1:Agent ],
         [ sh:datatype xsd:string ;
-            sh:description "Related identifiers for the resource" ;
-            sh:maxCount 1 ;
-            sh:order 1 ;
-            sh:path schema1:identifier ],
-        [ sh:datatype xsd:string ;
-            sh:description "The date and time of a log record" ;
+            sh:description "The date and time of a log record." ;
             sh:maxCount 1 ;
             sh:order 2 ;
             sh:path schema1:DateTime ],
-        [ sh:description "Relation type between the resources" ;
+        [ sh:datatype xsd:string ;
+            sh:description "Related identifiers for the resource." ;
+            sh:maxCount 1 ;
+            sh:order 1 ;
+            sh:path schema1:identifier ],
+        [ sh:description "Relation type between the resources." ;
             sh:in ( "IS_CITED_BY" "CITES" "IS_SUPPLEMENT_TO" "IS_SUPPLEMENTED_BY" "IS_CONTINUED_BY" "CONTINUES" "HAS_METADATA" "IS_METADATA_FOR" dcterms:hasVersion dcterms:isVersionOf "IS_NEW_VERSION_OF" "IS_PREVIOUS_VERSION_OF" dcterms:isPartOf dcterms:hasPart "IS_DESCRIBED_BY" "DESCRIBES" "IS_PUBLISHED_IN" dcterms:isReferencedBy "REFERENCES" "IS_DOCUMENTED_BY" "DOCUMENTS" "IS_COMPILED_BY" "COMPILES" "IS_VARIANT_FORM_OF" "IS_ORIGINAL_FORM_OF" "IS_IDENTICAL_TO" "IS_DERIVED_FROM" "IS_SOURCE_OF" "IS_COLLECTED_BY" "COLLECTS" dcterms:isRequiredBy dcterms:requires "IS_OBSOLETED_BY" "OBSOLETES" ) ;
             sh:order 0 ;
             sh:path schema1:identifier ] ;
@@ -134,37 +130,37 @@ pid4cat_model:ResourceInfo a sh:NodeShape ;
     sh:description "Data object to hold information about the resource and its representation." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:string ;
-            sh:description "The URI of the schema used to describe the resource. Same property as in DataCite:schemeURI." ;
+            sh:description "The URI of the schema to which the resource conforms. Same property as in DataCite:schemeURI." ;
             sh:maxCount 1 ;
             sh:order 5 ;
             sh:path schema1:additionalType ],
         [ sh:datatype xsd:string ;
-            sh:description "A human-readable description for a thing" ;
+            sh:description "A human-readable description for a resource." ;
             sh:maxCount 1 ;
             sh:order 1 ;
             sh:path schema1:description ],
         [ sh:datatype xsd:string ;
-            sh:description "The type of the scheme used to describe the resource. Examples: XSD, DDT, Turtle Same property as in DataCite:schemeType." ;
-            sh:maxCount 1 ;
-            sh:order 6 ;
-            sh:path schema1:additionalType ],
-        [ sh:description "The category of the resource" ;
-            sh:in ( dcmitype:Collection sosa:Sample "MATERIAL" "DEVICE" "DATAOBJECT" ) ;
-            sh:maxCount 1 ;
-            sh:order 2 ;
-            sh:path schema1:additionalType ],
-        [ sh:datatype xsd:string ;
-            sh:description "The format of the rdf representation of the resource (xml, turlte, json-ld, ...)." ;
-            sh:maxCount 1 ;
-            sh:order 4 ;
-            sh:path schema1:additionalType ],
-        [ sh:datatype xsd:string ;
-            sh:description "A human-readable name for a thing" ;
+            sh:description "A human-readable name for a resource." ;
             sh:maxCount 1 ;
             sh:order 0 ;
             sh:path schema1:name ],
         [ sh:datatype xsd:string ;
-            sh:description "The URI of the rdf represenation of the resource." ;
+            sh:description "The format of the rdf representation of the resource (xml, turtle, json-ld, ...)." ;
+            sh:maxCount 1 ;
+            sh:order 4 ;
+            sh:path schema1:additionalType ],
+        [ sh:datatype xsd:string ;
+            sh:description "The type of the schema to which the resource conforms. Examples: XSD, DDT, SHACL Same property as in DataCite:schemeType." ;
+            sh:maxCount 1 ;
+            sh:order 6 ;
+            sh:path schema1:additionalType ],
+        [ sh:description "The category of the resource." ;
+            sh:in ( dcmitype:Collection sosa:Sample "MATERIAL" "DEVICE" DCAT:dataset DCAT:DataService ) ;
+            sh:maxCount 1 ;
+            sh:order 2 ;
+            sh:path schema1:additionalType ],
+        [ sh:datatype xsd:string ;
+            sh:description "The URI of the rdf representation of the resource." ;
             sh:maxCount 1 ;
             sh:order 3 ;
             sh:path schema1:additionalType ] ;
@@ -175,29 +171,30 @@ pid4cat_model:Agent a sh:NodeShape ;
     sh:description "Person who plays a role relative to PID creation or curation." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:string ;
-            sh:description "Identification of the agent that registered the PID, with contact information. Should include person name and affiliation, or position name and affiliation, or just organization name. e-mail address is preferred contact information." ;
+            sh:description "The ROR of the agent's affiliation." ;
             sh:maxCount 1 ;
-            sh:order 1 ;
-            sh:path schema1:email ],
+            sh:order 3 ;
+            sh:path schema1:identifier ],
+        [ sh:datatype xsd:string ;
+            sh:description "The ORCID of the person" ;
+            sh:maxCount 1 ;
+            sh:order 2 ;
+            sh:path schema1:identifier ],
+        [ sh:datatype xsd:string ;
+            sh:description "The name of the agent that created or modified the PID record." ;
+            sh:maxCount 1 ;
+            sh:order 0 ;
+            sh:path schema1:name ],
         [ sh:description "The role of the agent relative to the resource" ;
             sh:in ( "TRUSTEE" "OWNER" ) ;
             sh:maxCount 1 ;
             sh:order 4 ;
             sh:path schema1:identifier ],
         [ sh:datatype xsd:string ;
-            sh:description "The ROR of the affiliation" ;
+            sh:description "Email address of the agent that created or modified the PID record." ;
             sh:maxCount 1 ;
-            sh:order 3 ;
-            sh:path schema1:identifier ],
-        [ sh:datatype xsd:string ;
-            sh:description "The name of the agent" ;
-            sh:maxCount 1 ;
-            sh:order 0 ;
-            sh:path schema1:name ],
-        [ sh:datatype xsd:string ;
-            sh:description "The ORCID of the person" ;
-            sh:maxCount 1 ;
-            sh:order 2 ;
-            sh:path schema1:identifier ] ;
+            sh:order 1 ;
+            sh:path schema1:email ;
+            sh:pattern "^\\S+@[\\S+\\.]+\\S+" ] ;
     sh:targetClass pid4cat_model:Agent .
 

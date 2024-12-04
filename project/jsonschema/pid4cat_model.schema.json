@@ -5,18 +5,19 @@
             "description": "Person who plays a role relative to PID creation or curation.",
             "properties": {
                 "affiliation_ror": {
-                    "description": "The ROR of the affiliation",
+                    "description": "The ROR of the agent's affiliation.",
                     "type": "string"
                 },
-                "contact_information": {
-                    "description": "Identification of the agent that registered the PID, with contact information. Should include person name and affiliation, or position name and affiliation, or just organization name. e-mail address is preferred contact information.",
+                "email": {
+                    "description": "Email address of the agent that created or modified the PID record.",
+                    "pattern": "^\\S+@[\\S+\\.]+\\S+",
                     "type": "string"
                 },
                 "name": {
-                    "description": "The name of the agent",
+                    "description": "The name of the agent that created or modified the PID record.",
                     "type": "string"
                 },
-                "person_orcid": {
+                "orcid": {
                     "description": "The ORCID of the person",
                     "type": "string"
                 },
@@ -35,7 +36,7 @@
                 "RESOURCE_INFO",
                 "RELATED_IDS",
                 "CONTACT",
-                "RIGHTS"
+                "LICENSE"
             ],
             "title": "ChangeLogField",
             "type": "string"
@@ -64,16 +65,16 @@
                     "description": "The field that was changed"
                 },
                 "datetime_log": {
-                    "description": "The date and time of a log record",
+                    "description": "The date and time of a log record.",
                     "type": "string"
                 },
                 "description": {
-                    "description": "A human-readable description for a thing",
+                    "description": "A human-readable description for a resource.",
                     "type": "string"
                 },
                 "has_agent": {
                     "$ref": "#/$defs/Agent",
-                    "description": "The person who registered the resource"
+                    "description": "The person who registered the resource."
                 }
             },
             "title": "LogRecord",
@@ -93,39 +94,35 @@
             "description": "Represents a PID4CatRecord",
             "properties": {
                 "change_log": {
-                    "description": "Change log of PID4Cat record",
+                    "description": "Change log of PID4Cat record.",
                     "items": {
                         "$ref": "#/$defs/LogRecord"
                     },
                     "type": "array"
                 },
-                "curation_contact": {
-                    "description": "The email address of a person or institution responsible for curation of the resource.",
+                "curation_contact_email": {
+                    "description": "The email address of a person or institution currently responsible for the curation of the PID record.",
                     "pattern": "^\\S+@[\\S+\\.]+\\S+",
                     "type": "string"
                 },
-                "dc_rights": {
-                    "description": "The license for the metadata contained in the PID4Cat record.",
-                    "type": "string"
-                },
                 "id": {
-                    "description": "A unique identifier for a thing",
+                    "description": "A unique identifier for a thing.",
                     "type": "string"
                 },
                 "landing_page_url": {
-                    "description": "The URL of the landing page for the resource",
+                    "description": "The URL of the landing page for the resource.",
+                    "type": "string"
+                },
+                "license": {
+                    "description": "The license for the metadata contained in the PID4Cat record.",
                     "type": "string"
                 },
                 "pid_schema_version": {
                     "description": "The version of the PID4Cat schema used for the PID4CatRecord.",
                     "type": "string"
                 },
-                "record_version": {
-                    "description": "Date-based version string of the PID4CatRecord (e.g. 20240219v0, 20240219v1, ...). The version should be incremented with every change of the PID4CatRecord.",
-                    "type": "string"
-                },
                 "related_identifiers": {
-                    "description": "Relations of the resource to other identifiers",
+                    "description": "Relations of the resource to other identifiers.",
                     "items": {
                         "$ref": "#/$defs/PID4CatRelation"
                     },
@@ -152,19 +149,19 @@
             "description": "A relation between PID4CatRecords or between a PID4CatRecord and other resources with a PID.",
             "properties": {
                 "datetime_log": {
-                    "description": "The date and time of a log record",
+                    "description": "The date and time of a log record.",
                     "type": "string"
                 },
                 "has_agent": {
                     "$ref": "#/$defs/Agent",
-                    "description": "The person who registered the resource"
+                    "description": "The person who registered the resource."
                 },
                 "related_identifier": {
-                    "description": "Related identifiers for the resource",
+                    "description": "Related identifiers for the resource.",
                     "type": "string"
                 },
                 "relation_type": {
-                    "description": "Relation type between the resources",
+                    "description": "Relation type between the resources.",
                     "items": {
                         "$ref": "#/$defs/RelationType"
                     },
@@ -233,7 +230,8 @@
                 "SAMPLE",
                 "MATERIAL",
                 "DEVICE",
-                "DATAOBJECT"
+                "DATA_OBJECT",
+                "DATA_SERVICE"
             ],
             "title": "ResourceCategory",
             "type": "string"
@@ -243,31 +241,31 @@
             "description": "Data object to hold information about the resource and its representation.",
             "properties": {
                 "description": {
-                    "description": "A human-readable description for a thing",
+                    "description": "A human-readable description for a resource.",
                     "type": "string"
                 },
                 "label": {
-                    "description": "A human-readable name for a thing",
+                    "description": "A human-readable name for a resource.",
                     "type": "string"
                 },
                 "rdf_type": {
-                    "description": "The format of the rdf representation of the resource (xml, turlte, json-ld, ...).",
+                    "description": "The format of the rdf representation of the resource (xml, turtle, json-ld, ...).",
                     "type": "string"
                 },
                 "rdf_url": {
-                    "description": "The URI of the rdf represenation of the resource.",
+                    "description": "The URI of the rdf representation of the resource.",
                     "type": "string"
                 },
                 "resource_category": {
                     "$ref": "#/$defs/ResourceCategory",
-                    "description": "The category of the resource"
+                    "description": "The category of the resource."
                 },
                 "schema_type": {
-                    "description": "The type of the scheme used to describe the resource. Examples: XSD, DDT, Turtle Same property as in DataCite:schemeType.",
+                    "description": "The type of the schema to which the resource conforms. Examples: XSD, DDT, SHACL Same property as in DataCite:schemeType.",
                     "type": "string"
                 },
                 "schema_url": {
-                    "description": "The URI of the schema used to describe the resource. Same property as in DataCite:schemeURI.",
+                    "description": "The URI of the schema to which the resource conforms. Same property as in DataCite:schemeURI.",
                     "type": "string"
                 }
             },

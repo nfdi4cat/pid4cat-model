@@ -2,8 +2,8 @@
 type Agent
   {
     name: String
-    contactInformation: String
-    personOrcid: String
+    email: String
+    orcid: String
     affiliationRor: String
     role: PID4CatAgentRole
   }
@@ -26,10 +26,9 @@ type PID4CatRecord
     id: Uriorcurie!
     landingPageUrl: String
     status: PID4CatStatus
-    recordVersion: String
     pidSchemaVersion: String
-    dcRights: String
-    curationContact: String
+    license: String
+    curationContactEmail: String
     resourceInfo: ResourceInfo
     relatedIdentifiers: [PID4CatRelation]
     changeLog: [LogRecord]!

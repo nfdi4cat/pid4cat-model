@@ -34,15 +34,16 @@ metamodel_version = "None"
 version = "None"
 
 
-class ConfiguredBaseModel(BaseModel):
-    model_config = ConfigDict(
-        validate_assignment = True,
-        validate_default = True,
-        extra = "forbid",
-        arbitrary_types_allowed = True,
-        use_enum_values = True,
-        strict = False,
-    )
+class WeakRefShimBaseModel(BaseModel):
+    __slots__ = '__weakref__'
+
+class ConfiguredBaseModel(WeakRefShimBaseModel,
+                validate_assignment = True,
+                validate_all = True,
+                underscore_attrs_are_private = True,
+                extra = "forbid",
+                arbitrary_types_allowed = True,
+                use_enum_values = True):
     pass
 
 
@@ -50,16 +51,18 @@ class ResourceCategory(str, Enum):
     """
     The category of the resource
     """
-    # A collection is described as a group; its parts may also be separately described.
+    # A collection is a group of resources and/or other collections.
     COLLECTION = "COLLECTION"
     # A representative part of an entity of interest on which observations may be made.
     SAMPLE = "SAMPLE"
     # A material used in the research process (except samples).
     MATERIAL = "MATERIAL"
-    # A device used in the catalysis research process.
+    # A physical device used in the research process.
     DEVICE = "DEVICE"
-    # A data object might be a data file, a data set, a data collection, or a data service.
-    DATAOBJECT = "DATAOBJECT"
+    # A collection of data available for access or download. A data set might be a data file, a data set, a data collection.
+    DATA_OBJECT = "DATA_OBJECT"
+    # An organized system of operations that provide data processing functions or access to datasets.
+    DATA_SERVICE = "DATA_SERVICE"
 
 
 class RelationType(str, Enum):
@@ -78,13 +81,13 @@ class RelationType(str, Enum):
     IS_CONTINUED_BY = "IS_CONTINUED_BY"
     # The resource continues another resource.
     CONTINUES = "CONTINUES"
-    # The resource has metadata.
+    # The resource has metadata in another resource.
     HAS_METADATA = "HAS_METADATA"
-    # The resource is metadata for.
+    # The resource is metadata for another resource.
     IS_METADATA_FOR = "IS_METADATA_FOR"
     # The resource has a version.
     HAS_VERSION = "HAS_VERSION"
-    # The resource is a version of.
+    # The resource is a version of another resource. This is useful to refer to an abstract resource that has different versions, for example, "Python 3.12 is a version of Python".
     IS_VERSION_OF = "IS_VERSION_OF"
     # The resource is a new version of.
     IS_NEW_VERSION_OF = "IS_NEW_VERSION_OF"
@@ -142,7 +145,7 @@ class PID4CatStatus(str, Enum):
     """
     # The PID4CatRecord is reserved but the resource is not yet linked.
     SUBMITTED = "SUBMITTED"
-    # The PID4CatRecord links to a concrete ressource.
+    # The PID4CatRecord links to a concrete resource.
     REGISTERED = "REGISTERED"
     # The PID4CatRecord is obsolete, e.g. because the resource is referenced by another PID4Cat.
     OBSOLETED = "OBSOLETED"
@@ -172,35 +175,34 @@ class ChangeLogField(str, Enum):
     RELATED_IDS = "RELATED_IDS"
     # The contact information of the PID4CatRecord was changed.
     CONTACT = "CONTACT"
-    # The rights of the PID4CatRecord were changed.
-    RIGHTS = "RIGHTS"
+    # The license of the PID4CatRecord was changed.
+    LICENSE = "LICENSE"
 
 
 class PID4CatRecord(ConfiguredBaseModel):
     """
     Represents a PID4CatRecord
     """
-    id: str = Field(..., description="""A unique identifier for a thing""")
-    landing_page_url: Optional[str] = Field(None, description="""The URL of the landing page for the resource""")
+    id: str = Field(..., description="""A unique identifier for a thing.""")
+    landing_page_url: Optional[str] = Field(None, description="""The URL of the landing page for the resource.""")
     status: Optional[PID4CatStatus] = Field(None, description="""The status of the PID4CatRecord.""")
-    record_version: Optional[str] = Field(None, description="""Date-based version string of the PID4CatRecord (e.g. 20240219v0, 20240219v1, ...). The version should be incremented with every change of the PID4CatRecord.""")
     pid_schema_version: Optional[str] = Field(None, description="""The version of the PID4Cat schema used for the PID4CatRecord.""")
-    dc_rights: Optional[str] = Field(None, description="""The license for the metadata contained in the PID4Cat record.""")
-    curation_contact: Optional[str] = Field(None, description="""The email address of a person or institution responsible for curation of the resource.""")
+    license: Optional[str] = Field(None, description="""The license for the metadata contained in the PID4Cat record.""")
+    curation_contact_email: Optional[str] = Field(None, description="""The email address of a person or institution currently responsible for the curation of the PID record.""")
     resource_info: Optional[ResourceInfo] = Field(None, description="""Information about the resource.""")
-    related_identifiers: Optional[List[PID4CatRelation]] = Field(default_factory=list, description="""Relations of the resource to other identifiers""")
-    change_log: List[LogRecord] = Field(default_factory=list, description="""Change log of PID4Cat record""")
+    related_identifiers: Optional[List[PID4CatRelation]] = Field(default_factory=list, description="""Relations of the resource to other identifiers.""")
+    change_log: List[LogRecord] = Field(default_factory=list, description="""Change log of PID4Cat record.""")
 
-    @field_validator('curation_contact')
-    def pattern_curation_contact(cls, v):
+    @validator('curation_contact_email', allow_reuse=True)
+    def pattern_curation_contact_email(cls, v):
         pattern=re.compile(r"^\S+@[\S+\.]+\S+")
         if isinstance(v,list):
             for element in v:
                 if not pattern.match(element):
-                    raise ValueError(f"Invalid curation_contact format: {element}")
+                    raise ValueError(f"Invalid curation_contact_email format: {element}")
         elif isinstance(v,str):
             if not pattern.match(v):
-                raise ValueError(f"Invalid curation_contact format: {v}")
+                raise ValueError(f"Invalid curation_contact_email format: {v}")
         return v
 
 
@@ -208,44 +210,56 @@ class PID4CatRelation(ConfiguredBaseModel):
     """
     A relation between PID4CatRecords or between a PID4CatRecord and other resources with a PID.
     """
-    relation_type: Optional[List[RelationType]] = Field(default_factory=list, description="""Relation type between the resources""")
-    related_identifier: Optional[str] = Field(None, description="""Related identifiers for the resource""")
-    datetime_log: Optional[str] = Field(None, description="""The date and time of a log record""")
-    has_agent: Optional[Agent] = Field(None, description="""The person who registered the resource""")
+    relation_type: Optional[List[RelationType]] = Field(default_factory=list, description="""Relation type between the resources.""")
+    related_identifier: Optional[str] = Field(None, description="""Related identifiers for the resource.""")
+    datetime_log: Optional[str] = Field(None, description="""The date and time of a log record.""")
+    has_agent: Optional[Agent] = Field(None, description="""The person who registered the resource.""")
 
 
 class ResourceInfo(ConfiguredBaseModel):
     """
     Data object to hold information about the resource and its representation.
     """
-    label: Optional[str] = Field(None, description="""A human-readable name for a thing""")
-    description: Optional[str] = Field(None, description="""A human-readable description for a thing""")
-    resource_category: Optional[ResourceCategory] = Field(None, description="""The category of the resource""")
-    rdf_url: Optional[str] = Field(None, description="""The URI of the rdf represenation of the resource.""")
-    rdf_type: Optional[str] = Field(None, description="""The format of the rdf representation of the resource (xml, turlte, json-ld, ...).""")
-    schema_url: Optional[str] = Field(None, description="""The URI of the schema used to describe the resource. Same property as in DataCite:schemeURI.""")
-    schema_type: Optional[str] = Field(None, description="""The type of the scheme used to describe the resource. Examples: XSD, DDT, Turtle Same property as in DataCite:schemeType.""")
+    label: Optional[str] = Field(None, description="""A human-readable name for a resource.""")
+    description: Optional[str] = Field(None, description="""A human-readable description for a resource.""")
+    resource_category: Optional[ResourceCategory] = Field(None, description="""The category of the resource.""")
+    rdf_url: Optional[str] = Field(None, description="""The URI of the rdf representation of the resource.""")
+    rdf_type: Optional[str] = Field(None, description="""The format of the rdf representation of the resource (xml, turtle, json-ld, ...).""")
+    schema_url: Optional[str] = Field(None, description="""The URI of the schema to which the resource conforms. Same property as in DataCite:schemeURI.""")
+    schema_type: Optional[str] = Field(None, description="""The type of the schema to which the resource conforms. Examples: XSD, DDT, SHACL Same property as in DataCite:schemeType.""")
 
 
 class LogRecord(ConfiguredBaseModel):
     """
     A log record for changes made on a PID4CatRecord starting from registration.
     """
-    datetime_log: Optional[str] = Field(None, description="""The date and time of a log record""")
-    has_agent: Optional[Agent] = Field(None, description="""The person who registered the resource""")
+    datetime_log: Optional[str] = Field(None, description="""The date and time of a log record.""")
+    has_agent: Optional[Agent] = Field(None, description="""The person who registered the resource.""")
     changed_field: Optional[ChangeLogField] = Field(None, description="""The field that was changed""")
-    description: Optional[str] = Field(None, description="""A human-readable description for a thing""")
+    description: Optional[str] = Field(None, description="""A human-readable description for a resource.""")
 
 
 class Agent(ConfiguredBaseModel):
     """
     Person who plays a role relative to PID creation or curation.
     """
-    name: Optional[str] = Field(None, description="""The name of the agent""")
-    contact_information: Optional[str] = Field(None, description="""Identification of the agent that registered the PID, with contact information. Should include person name and affiliation, or position name and affiliation, or just organization name. e-mail address is preferred contact information.""")
-    person_orcid: Optional[str] = Field(None, description="""The ORCID of the person""")
-    affiliation_ror: Optional[str] = Field(None, description="""The ROR of the affiliation""")
+    name: Optional[str] = Field(None, description="""The name of the agent that created or modified the PID record.""")
+    email: Optional[str] = Field(None, description="""Email address of the agent that created or modified the PID record.""")
+    orcid: Optional[str] = Field(None, description="""The ORCID of the person""")
+    affiliation_ror: Optional[str] = Field(None, description="""The ROR of the agent's affiliation.""")
     role: Optional[PID4CatAgentRole] = Field(None, description="""The role of the agent relative to the resource""")
+
+    @validator('email', allow_reuse=True)
+    def pattern_email(cls, v):
+        pattern=re.compile(r"^\S+@[\S+\.]+\S+")
+        if isinstance(v,list):
+            for element in v:
+                if not pattern.match(element):
+                    raise ValueError(f"Invalid email format: {element}")
+        elif isinstance(v,str):
+            if not pattern.match(v):
+                raise ValueError(f"Invalid email format: {v}")
+        return v
 
 
 class Container(ConfiguredBaseModel):
@@ -255,12 +269,12 @@ class Container(ConfiguredBaseModel):
     contains_pids: Optional[List[PID4CatRecord]] = Field(default_factory=list, description="""The PID4CatRecords contained in the container.""")
 
 
-# Model rebuild
-# see https://pydantic-docs.helpmanual.io/usage/models/#rebuilding-a-model
-PID4CatRecord.model_rebuild()
-PID4CatRelation.model_rebuild()
-ResourceInfo.model_rebuild()
-LogRecord.model_rebuild()
-Agent.model_rebuild()
-Container.model_rebuild()
+# Update forward refs
+# see https://pydantic-docs.helpmanual.io/usage/postponed_annotations/
+PID4CatRecord.update_forward_refs()
+PID4CatRelation.update_forward_refs()
+ResourceInfo.update_forward_refs()
+LogRecord.update_forward_refs()
+Agent.update_forward_refs()
+Container.update_forward_refs()
 
