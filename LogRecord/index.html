@@ -262,7 +262,7 @@
 <tr>
 <td><a href="../description/">description</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
-<td>A human-readable description for a thing</td>
+<td>A human-readable description for a resource</td>
 <td>direct</td>
 </tr>
 </tbody>
@@ -333,7 +333,7 @@ from_schema: https://w3id.org/nfdi4cat/pid4cat-model
 attributes:
   datetime_log:
     name: datetime_log
-    description: The date and time of a log record
+    description: The date and time of a log record.
     from_schema: https://w3id.org/nfdi4cat/pid4cat-model
     rank: 1000
     slot_uri: schema:DateTime
@@ -345,7 +345,7 @@ attributes:
     range: string
   has_agent:
     name: has_agent
-    description: The person who registered the resource
+    description: The person who registered the resource.
     from_schema: https://w3id.org/nfdi4cat/pid4cat-model
     rank: 1000
     slot_uri: schema:Agent
@@ -368,7 +368,7 @@ attributes:
     range: ChangeLogField
   description:
     name: description
-    description: A human-readable description for a thing
+    description: A human-readable description for a resource.
     from_schema: https://w3id.org/nfdi4cat/pid4cat-model
     rank: 1000
     slot_uri: schema:description

@@ -430,7 +430,7 @@ The model describes metadata for the PID itself and how to access the identified
 <tbody>
 <tr>
 <td><a href="affiliation_ror/">affiliation_ror</a></td>
-<td>The ROR of the affiliation</td>
+<td>The ROR of the agent's affiliation</td>
 </tr>
 <tr>
 <td><a href="change_log/">change_log</a></td>
@@ -441,28 +441,24 @@ The model describes metadata for the PID itself and how to access the identified
 <td>The field that was changed</td>
 </tr>
 <tr>
-<td><a href="contact_information/">contact_information</a></td>
-<td>Identification of the agent that registered the PID, with contact information</td>
-</tr>
-<tr>
 <td><a href="contains_pids/">contains_pids</a></td>
 <td>The PID4CatRecords contained in the container</td>
 </tr>
 <tr>
-<td><a href="curation_contact/">curation_contact</a></td>
-<td>The email address of a person or institution responsible for curation of the ...</td>
+<td><a href="curation_contact_email/">curation_contact_email</a></td>
+<td>The email address of a person or institution currently responsible for the cu...</td>
 </tr>
 <tr>
 <td><a href="datetime_log/">datetime_log</a></td>
 <td>The date and time of a log record</td>
 </tr>
 <tr>
-<td><a href="dc_rights/">dc_rights</a></td>
-<td>The license for the metadata contained in the PID4Cat record</td>
+<td><a href="description/">description</a></td>
+<td>A human-readable description for a resource</td>
 </tr>
 <tr>
-<td><a href="description/">description</a></td>
-<td>A human-readable description for a thing</td>
+<td><a href="email/">email</a></td>
+<td>Email address of the agent that created or modified the PID record</td>
 </tr>
 <tr>
 <td><a href="has_agent/">has_agent</a></td>
@@ -474,18 +470,22 @@ The model describes metadata for the PID itself and how to access the identified
 </tr>
 <tr>
 <td><a href="label/">label</a></td>
-<td>A human-readable name for a thing</td>
+<td>A human-readable name for a resource</td>
 </tr>
 <tr>
 <td><a href="landing_page_url/">landing_page_url</a></td>
 <td>The URL of the landing page for the resource</td>
 </tr>
 <tr>
-<td><a href="name/">name</a></td>
-<td>The name of the agent</td>
+<td><a href="license/">license</a></td>
+<td>The license for the metadata contained in the PID4Cat record</td>
 </tr>
 <tr>
-<td><a href="person_orcid/">person_orcid</a></td>
+<td><a href="name/">name</a></td>
+<td>The name of the agent that created or modified the PID record</td>
+</tr>
+<tr>
+<td><a href="orcid/">orcid</a></td>
 <td>The ORCID of the person</td>
 </tr>
 <tr>
@@ -494,15 +494,11 @@ The model describes metadata for the PID itself and how to access the identified
 </tr>
 <tr>
 <td><a href="rdf_type/">rdf_type</a></td>
-<td>The format of the rdf representation of the resource (xml, turlte, json-ld,</td>
+<td>The format of the rdf representation of the resource (xml, turtle, json-ld,</td>
 </tr>
 <tr>
 <td><a href="rdf_url/">rdf_url</a></td>
-<td>The URI of the rdf represenation of the resource</td>
-</tr>
-<tr>
-<td><a href="record_version/">record_version</a></td>
-<td>Date-based version string of the PID4CatRecord (e</td>
+<td>The URI of the rdf representation of the resource</td>
 </tr>
 <tr>
 <td><a href="related_identifier/">related_identifier</a></td>
@@ -530,11 +526,11 @@ The model describes metadata for the PID itself and how to access the identified
 </tr>
 <tr>
 <td><a href="schema_type/">schema_type</a></td>
-<td>The type of the scheme used to describe the resource</td>
+<td>The type of the schema to which the resource conforms</td>
 </tr>
 <tr>
 <td><a href="schema_url/">schema_url</a></td>
-<td>The URI of the schema used to describe the resource</td>
+<td>The URI of the schema to which the resource conforms</td>
 </tr>
 <tr>
 <td><a href="status/">status</a></td>

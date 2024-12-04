@@ -332,7 +332,7 @@
 <tr>
 <td>COLLECTION</td>
 <td>http://purl.org/dc/dcmitype/Collection</td>
-<td>A collection is described as a group; its parts may also be separately descri...</td>
+<td>A collection is a group of resources and/or other collections</td>
 </tr>
 <tr>
 <td>SAMPLE</td>
@@ -347,12 +347,17 @@
 <tr>
 <td>DEVICE</td>
 <td>None</td>
-<td>A device used in the catalysis research process</td>
+<td>A physical device used in the research process</td>
 </tr>
 <tr>
-<td>DATAOBJECT</td>
-<td>None</td>
-<td>A data object might be a data file, a data set, a data collection, or a data ...</td>
+<td>DATA_OBJECT</td>
+<td>dcat:dataset</td>
+<td>A collection of data available for access or download</td>
+</tr>
+<tr>
+<td>DATA_SERVICE</td>
+<td>dcat:DataService</td>
+<td>An organized system of operations that provide data processing functions or a...</td>
 </tr>
 </tbody>
 </table>
@@ -386,8 +391,7 @@ rank: 1000
 permissible_values:
   COLLECTION:
     text: COLLECTION
-    description: A collection is described as a group; its parts may also be separately
-      described.
+    description: A collection is a group of resources and/or other collections.
     meaning: http://purl.org/dc/dcmitype/Collection
   SAMPLE:
     text: SAMPLE
@@ -401,15 +405,19 @@ permissible_values:
     - map this to an ontology
   DEVICE:
     text: DEVICE
-    description: A device used in the catalysis research process.
+    description: A physical device used in the research process.
     todos:
     - map this to an ontology
-  DATAOBJECT:
-    text: DATAOBJECT
-    description: A data object might be a data file, a data set, a data collection,
-      or a data service.
-    todos:
-    - map this to an ontology
+  DATA_OBJECT:
+    text: DATA_OBJECT
+    description: A collection of data available for access or download. A data set
+      might be a data file, a data set, a data collection.
+    meaning: dcat:dataset
+  DATA_SERVICE:
+    text: DATA_SERVICE
+    description: An organized system of operations that provide data processing functions
+      or access to datasets.
+    meaning: dcat:DataService
 
 </code></pre>
 

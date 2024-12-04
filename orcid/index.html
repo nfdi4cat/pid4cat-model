@@ -8,14 +8,14 @@
       
       
       
-        <link rel="canonical" href="https://nfdi4cat.github.io/pid4cat-model/record_version/">
+        <link rel="canonical" href="https://nfdi4cat.github.io/pid4cat-model/orcid/">
       
       <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-8.5.10">
     
     
       
-        <title>Slot: record_version - pid4cat-model</title>
+        <title>Slot: orcid - pid4cat-model</title>
       
     
     
@@ -64,7 +64,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-record_version" class="md-skip">
+        <a href="#slot-orcid" class="md-skip">
           Skip to content
         </a>
       
@@ -97,7 +97,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: record_version
+              Slot: orcid
             
           </span>
         </div>
@@ -317,14 +317,14 @@
                 
                   
 
-  <a href="https://github.com/nfdi4cat/pid4cat-model/edit/master/docs/record_version.md" title="Edit this page" class="md-content__button md-icon">
+  <a href="https://github.com/nfdi4cat/pid4cat-model/edit/master/docs/orcid.md" title="Edit this page" class="md-content__button md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
   </a>
 
 
-<h1 id="slot-record_version">Slot: record_version</h1>
-<p><em>Date-based version string of the PID4CatRecord (e.g. 20240219v0, 20240219v1, ...). The version should be incremented with every change of the PID4CatRecord.</em></p>
+<h1 id="slot-orcid">Slot: orcid</h1>
+<p><em>The ORCID of the person</em></p>
 <p>URI: <a href="http://schema.org/identifier">schema:identifier</a></p>
 <!-- no inheritance hierarchy -->
 
@@ -339,8 +339,8 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../PID4CatRecord/">PID4CatRecord</a></td>
-<td>Represents a PID4CatRecord</td>
+<td><a href="../Agent/">Agent</a></td>
+<td>Person who plays a role relative to PID creation or curation</td>
 <td>no</td>
 </tr>
 </tbody>
@@ -369,22 +369,21 @@
 </tr>
 <tr>
 <td>native</td>
-<td>pid4cat_model:record_version</td>
+<td>pid4cat_model:orcid</td>
 </tr>
 </tbody>
 </table>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 
-<pre><code class="language-yaml">name: record_version
-description: Date-based version string of the PID4CatRecord (e.g. 20240219v0, 20240219v1,
-  ...). The version should be incremented with every change of the PID4CatRecord.
+<pre><code class="language-yaml">name: orcid
+description: The ORCID of the person
 from_schema: https://w3id.org/nfdi4cat/pid4cat-model
 rank: 1000
 slot_uri: schema:identifier
-alias: record_version
+alias: orcid
 domain_of:
-- PID4CatRecord
+- Agent
 range: string
 
 </code></pre>

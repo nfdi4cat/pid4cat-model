@@ -207,11 +207,11 @@
     click Agent href "../Agent"
       Agent : affiliation_ror
 
-      Agent : contact_information
+      Agent : email
 
       Agent : name
 
-      Agent : person_orcid
+      Agent : orcid
 
       Agent : role
 
@@ -239,17 +239,17 @@
 <tr>
 <td><a href="../name/">name</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
-<td>The name of the agent</td>
+<td>The name of the agent that created or modified the PID record</td>
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../contact_information/">contact_information</a></td>
+<td><a href="../email/">email</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
-<td>Identification of the agent that registered the PID, with contact information</td>
+<td>Email address of the agent that created or modified the PID record</td>
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../person_orcid/">person_orcid</a></td>
+<td><a href="../orcid/">orcid</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>The ORCID of the person</td>
 <td>direct</td>
@@ -257,7 +257,7 @@
 <tr>
 <td><a href="../affiliation_ror/">affiliation_ror</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
-<td>The ROR of the affiliation</td>
+<td>The ROR of the agent's affiliation</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -326,10 +326,14 @@ description: Person who plays a role relative to PID creation or curation.
 from_schema: https://w3id.org/nfdi4cat/pid4cat-model
 slots:
 - name
-- contact_information
-- person_orcid
+- email
+- orcid
 - affiliation_ror
 - role
+slot_usage:
+  email:
+    name: email
+    pattern: ^\S+@[\S+\.]+\S+
 
 </code></pre>
 </details>
@@ -338,10 +342,14 @@ slots:
 <pre><code class="language-yaml">name: Agent
 description: Person who plays a role relative to PID creation or curation.
 from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+slot_usage:
+  email:
+    name: email
+    pattern: ^\S+@[\S+\.]+\S+
 attributes:
   name:
     name: name
-    description: The name of the agent
+    description: The name of the agent that created or modified the PID record.
     from_schema: https://w3id.org/nfdi4cat/pid4cat-model
     rank: 1000
     slot_uri: schema:name
@@ -350,34 +358,32 @@ attributes:
     domain_of:
     - Agent
     range: string
-  contact_information:
-    name: contact_information
-    description: Identification of the agent that registered the PID, with contact
-      information. Should include person name and affiliation, or position name and
-      affiliation, or just organization name. e-mail address is preferred contact
-      information.
+  email:
+    name: email
+    description: Email address of the agent that created or modified the PID record.
     from_schema: https://w3id.org/nfdi4cat/pid4cat-model
     rank: 1000
     slot_uri: schema:email
-    alias: contact_information
+    alias: email
     owner: Agent
     domain_of:
     - Agent
     range: string
-  person_orcid:
-    name: person_orcid
+    pattern: ^\S+@[\S+\.]+\S+
+  orcid:
+    name: orcid
     description: The ORCID of the person
     from_schema: https://w3id.org/nfdi4cat/pid4cat-model
     rank: 1000
     slot_uri: schema:identifier
-    alias: person_orcid
+    alias: orcid
     owner: Agent
     domain_of:
     - Agent
     range: string
   affiliation_ror:
     name: affiliation_ror
-    description: The ROR of the affiliation
+    description: The ROR of the agent's affiliation.
     from_schema: https://w3id.org/nfdi4cat/pid4cat-model
     rank: 1000
     slot_uri: schema:identifier

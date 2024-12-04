@@ -362,12 +362,12 @@
 <tr>
 <td>HAS_METADATA</td>
 <td>None</td>
-<td>The resource has metadata</td>
+<td>The resource has metadata in another resource</td>
 </tr>
 <tr>
 <td>IS_METADATA_FOR</td>
 <td>None</td>
-<td>The resource is metadata for</td>
+<td>The resource is metadata for another resource</td>
 </tr>
 <tr>
 <td>HAS_VERSION</td>
@@ -377,7 +377,7 @@
 <tr>
 <td>IS_VERSION_OF</td>
 <td>dcterms:isVersionOf</td>
-<td>The resource is a version of</td>
+<td>The resource is a version of another resource</td>
 </tr>
 <tr>
 <td>IS_NEW_VERSION_OF</td>
@@ -549,17 +549,19 @@ permissible_values:
     description: The resource continues another resource.
   HAS_METADATA:
     text: HAS_METADATA
-    description: The resource has metadata.
+    description: The resource has metadata in another resource.
   IS_METADATA_FOR:
     text: IS_METADATA_FOR
-    description: The resource is metadata for.
+    description: The resource is metadata for another resource.
   HAS_VERSION:
     text: HAS_VERSION
     description: The resource has a version.
     meaning: dcterms:hasVersion
   IS_VERSION_OF:
     text: IS_VERSION_OF
-    description: The resource is a version of.
+    description: The resource is a version of another resource. This is useful to
+      refer to an abstract resource that has different versions, for example, &quot;Python
+      3.12 is a version of Python&quot;.
     meaning: dcterms:isVersionOf
   IS_NEW_VERSION_OF:
     text: IS_NEW_VERSION_OF
