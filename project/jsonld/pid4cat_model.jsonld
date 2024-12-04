@@ -362,7 +362,7 @@
       "permissible_values": [
         {
           "text": "COLLECTION",
-          "description": "A collection is described as a group; its parts may also be separately described.",
+          "description": "A collection is a group of resources and/or other collections.",
           "meaning": "http://purl.org/dc/dcmitype/Collection"
         },
         {
@@ -379,17 +379,20 @@
         },
         {
           "text": "DEVICE",
-          "description": "A device used in the catalysis research process.",
+          "description": "A physical device used in the research process.",
           "todos": [
             "map this to an ontology"
           ]
         },
         {
-          "text": "DATAOBJECT",
-          "description": "A data object might be a data file, a data set, a data collection, or a data service.",
-          "todos": [
-            "map this to an ontology"
-          ]
+          "text": "DATA_OBJECT",
+          "description": "A collection of data available for access or download. A data set might be a data file, a data set, a data collection.",
+          "meaning": "dcat:dataset"
+        },
+        {
+          "text": "DATA_SERVICE",
+          "description": "An organized system of operations that provide data processing functions or access to datasets.",
+          "meaning": "dcat:DataService"
         }
       ]
     },
@@ -425,11 +428,11 @@
         },
         {
           "text": "HAS_METADATA",
-          "description": "The resource has metadata."
+          "description": "The resource has metadata in another resource."
         },
         {
           "text": "IS_METADATA_FOR",
-          "description": "The resource is metadata for."
+          "description": "The resource is metadata for another resource."
         },
         {
           "text": "HAS_VERSION",
@@ -438,7 +441,7 @@
         },
         {
           "text": "IS_VERSION_OF",
-          "description": "The resource is a version of.",
+          "description": "The resource is a version of another resource. This is useful to refer to an abstract resource that has different versions, for example, \"Python 3.12 is a version of Python\".",
           "meaning": "dcterms:isVersionOf"
         },
         {
@@ -556,7 +559,7 @@
         },
         {
           "text": "REGISTERED",
-          "description": "The PID4CatRecord links to a concrete ressource."
+          "description": "The PID4CatRecord links to a concrete resource."
         },
         {
           "text": "OBSOLETED",
@@ -607,8 +610,8 @@
           "description": "The contact information of the PID4CatRecord was changed."
         },
         {
-          "text": "RIGHTS",
-          "description": "The rights of the PID4CatRecord were changed."
+          "text": "LICENSE",
+          "description": "The license of the PID4CatRecord was changed."
         }
       ]
     }
@@ -617,7 +620,7 @@
     {
       "name": "id",
       "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/id",
-      "description": "A unique identifier for a thing",
+      "description": "A unique identifier for a thing.",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "mappings": [
         "http://schema.org/identifier"
@@ -635,7 +638,7 @@
     {
       "name": "landing_page_url",
       "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/landing_page_url",
-      "description": "The URL of the landing page for the resource",
+      "description": "The URL of the landing page for the resource.",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "mappings": [
         "http://schema.org/url"
@@ -679,22 +682,6 @@
       "@type": "SlotDefinition"
     },
     {
-      "name": "record_version",
-      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/record_version",
-      "description": "Date-based version string of the PID4CatRecord (e.g. 20240219v0, 20240219v1, ...). The version should be incremented with every change of the PID4CatRecord.",
-      "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
-      "mappings": [
-        "http://schema.org/identifier"
-      ],
-      "slot_uri": "http://schema.org/identifier",
-      "owner": "PID4CatRecord",
-      "domain_of": [
-        "PID4CatRecord"
-      ],
-      "range": "string",
-      "@type": "SlotDefinition"
-    },
-    {
       "name": "resource_info",
       "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/resource_info",
       "description": "Information about the resource.",
@@ -711,7 +698,7 @@
     {
       "name": "related_identifiers",
       "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/related_identifiers",
-      "description": "Relations of the resource to other identifiers",
+      "description": "Relations of the resource to other identifiers.",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "mappings": [
         "http://schema.org/identifier"
@@ -727,8 +714,8 @@
       "@type": "SlotDefinition"
     },
     {
-      "name": "dc_rights",
-      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/dc_rights",
+      "name": "license",
+      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/license",
       "description": "The license for the metadata contained in the PID4Cat record.",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "mappings": [
@@ -743,9 +730,9 @@
       "@type": "SlotDefinition"
     },
     {
-      "name": "curation_contact",
-      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/curation_contact",
-      "description": "The email address of a person or institution responsible for curation of the resource.",
+      "name": "curation_contact_email",
+      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/curation_contact_email",
+      "description": "The email address of a person or institution currently responsible for the curation of the PID record.",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "mappings": [
         "http://schema.org/email"
@@ -761,7 +748,7 @@
     {
       "name": "change_log",
       "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/change_log",
-      "description": "Change log of PID4Cat record",
+      "description": "Change log of PID4Cat record.",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "mappings": [
         "http://schema.org/identifier"
@@ -780,7 +767,7 @@
     {
       "name": "relation_type",
       "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/relation_type",
-      "description": "Relation type between the resources",
+      "description": "Relation type between the resources.",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "mappings": [
         "http://schema.org/identifier"
@@ -797,7 +784,7 @@
     {
       "name": "related_identifier",
       "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/related_identifier",
-      "description": "Related identifiers for the resource",
+      "description": "Related identifiers for the resource.",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "mappings": [
         "http://schema.org/identifier"
@@ -813,7 +800,7 @@
     {
       "name": "datetime_log",
       "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/datetime_log",
-      "description": "The date and time of a log record",
+      "description": "The date and time of a log record.",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "mappings": [
         "http://schema.org/DateTime"
@@ -830,7 +817,7 @@
     {
       "name": "has_agent",
       "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/has_agent",
-      "description": "The person who registered the resource",
+      "description": "The person who registered the resource.",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "mappings": [
         "http://schema.org/Agent"
@@ -848,7 +835,7 @@
     {
       "name": "label",
       "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/label",
-      "description": "A human-readable name for a thing",
+      "description": "A human-readable name for a resource.",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "mappings": [
         "http://schema.org/name"
@@ -864,7 +851,7 @@
     {
       "name": "description",
       "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/description",
-      "description": "A human-readable description for a thing",
+      "description": "A human-readable description for a resource.",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "mappings": [
         "http://schema.org/description"
@@ -881,7 +868,7 @@
     {
       "name": "resource_category",
       "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/resource_category",
-      "description": "The category of the resource",
+      "description": "The category of the resource.",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "mappings": [
         "http://schema.org/additionalType"
@@ -897,7 +884,7 @@
     {
       "name": "rdf_url",
       "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/rdf_url",
-      "description": "The URI of the rdf represenation of the resource.",
+      "description": "The URI of the rdf representation of the resource.",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "mappings": [
         "http://schema.org/additionalType"
@@ -913,7 +900,7 @@
     {
       "name": "rdf_type",
       "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/rdf_type",
-      "description": "The format of the rdf representation of the resource (xml, turlte, json-ld, ...).",
+      "description": "The format of the rdf representation of the resource (xml, turtle, json-ld, ...).",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "mappings": [
         "http://schema.org/additionalType"
@@ -929,7 +916,7 @@
     {
       "name": "schema_url",
       "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/schema_url",
-      "description": "The URI of the schema used to describe the resource. Same property as in DataCite:schemeURI.",
+      "description": "The URI of the schema to which the resource conforms. Same property as in DataCite:schemeURI.",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "mappings": [
         "http://schema.org/additionalType"
@@ -945,7 +932,7 @@
     {
       "name": "schema_type",
       "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/schema_type",
-      "description": "The type of the scheme used to describe the resource. Examples: XSD, DDT, Turtle Same property as in DataCite:schemeType.",
+      "description": "The type of the schema to which the resource conforms. Examples: XSD, DDT, SHACL Same property as in DataCite:schemeType.",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "mappings": [
         "http://schema.org/additionalType"
@@ -977,7 +964,7 @@
     {
       "name": "name",
       "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/name",
-      "description": "The name of the agent",
+      "description": "The name of the agent that created or modified the PID record.",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "mappings": [
         "http://schema.org/name"
@@ -991,9 +978,9 @@
       "@type": "SlotDefinition"
     },
     {
-      "name": "contact_information",
-      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/contact_information",
-      "description": "Identification of the agent that registered the PID, with contact information. Should include person name and affiliation, or position name and affiliation, or just organization name. e-mail address is preferred contact information.",
+      "name": "email",
+      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/email",
+      "description": "Email address of the agent that created or modified the PID record.",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "mappings": [
         "http://schema.org/email"
@@ -1007,8 +994,8 @@
       "@type": "SlotDefinition"
     },
     {
-      "name": "person_orcid",
-      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/person_orcid",
+      "name": "orcid",
+      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/orcid",
       "description": "The ORCID of the person",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "mappings": [
@@ -1025,7 +1012,7 @@
     {
       "name": "affiliation_ror",
       "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/affiliation_ror",
-      "description": "The ROR of the affiliation",
+      "description": "The ROR of the agent's affiliation.",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "mappings": [
         "http://schema.org/identifier"
@@ -1071,23 +1058,45 @@
       "@type": "SlotDefinition"
     },
     {
-      "name": "PID4CatRecord_curation_contact",
-      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/curation_contact",
-      "description": "The email address of a person or institution responsible for curation of the resource.",
+      "name": "PID4CatRecord_curation_contact_email",
+      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/curation_contact_email",
+      "description": "The email address of a person or institution currently responsible for the curation of the PID record.",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "mappings": [
         "http://schema.org/email"
       ],
-      "is_a": "curation_contact",
+      "is_a": "curation_contact_email",
       "domain": "PID4CatRecord",
       "slot_uri": "http://schema.org/email",
-      "alias": "curation_contact",
+      "alias": "curation_contact_email",
       "owner": "PID4CatRecord",
       "domain_of": [
         "PID4CatRecord"
       ],
       "is_usage_slot": true,
-      "usage_slot_name": "curation_contact",
+      "usage_slot_name": "curation_contact_email",
+      "range": "string",
+      "pattern": "^\\S+@[\\S+\\.]+\\S+",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "Agent_email",
+      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/email",
+      "description": "Email address of the agent that created or modified the PID record.",
+      "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
+      "mappings": [
+        "http://schema.org/email"
+      ],
+      "is_a": "email",
+      "domain": "Agent",
+      "slot_uri": "http://schema.org/email",
+      "alias": "email",
+      "owner": "Agent",
+      "domain_of": [
+        "Agent"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "email",
       "range": "string",
       "pattern": "^\\S+@[\\S+\\.]+\\S+",
       "@type": "SlotDefinition"
@@ -1103,10 +1112,9 @@
         "id",
         "landing_page_url",
         "status",
-        "record_version",
         "pid_schema_version",
-        "dc_rights",
-        "PID4CatRecord_curation_contact",
+        "license",
+        "PID4CatRecord_curation_contact_email",
         "resource_info",
         "related_identifiers",
         "change_log"
@@ -1170,8 +1178,8 @@
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "slots": [
         "name",
-        "contact_information",
-        "person_orcid",
+        "Agent_email",
+        "orcid",
         "affiliation_ror",
         "role"
       ],
@@ -1205,9 +1213,9 @@
   ],
   "metamodel_version": "1.7.0",
   "source_file": "pid4cat_model.yaml",
-  "source_file_date": "2024-05-07T23:35:24",
-  "source_file_size": 12910,
-  "generation_date": "2024-05-08T00:12:41",
+  "source_file_date": "2024-12-04T23:36:00",
+  "source_file_size": 13015,
+  "generation_date": "2024-12-05T00:27:03",
   "@type": "SchemaDefinition",
   "@context": [
     "project/jsonld/pid4cat_model.context.jsonld",

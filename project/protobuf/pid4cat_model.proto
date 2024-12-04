@@ -5,8 +5,8 @@
 message Agent
  {
   string name = 0
-  string contactInformation = 0
-  string personOrcid = 0
+  string email = 0
+  string orcid = 0
   string affiliationRor = 0
   pID4CatAgentRole role = 0
  }
@@ -29,10 +29,9 @@ message PID4CatRecord
   uriorcurie id = 0
   string landingPageUrl = 10
   pID4CatStatus status = 0
-  string recordVersion = 0
   string pidSchemaVersion = 0
-  string dcRights = 0
-  string curationContact = 0
+  string license = 0
+  string curationContactEmail = 0
   resourceInfo resourceInfo = 0
  repeated  pID4CatRelation relatedIdentifiers = 0
  repeated  logRecord changeLog = 0

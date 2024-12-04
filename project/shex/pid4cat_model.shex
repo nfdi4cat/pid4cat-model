@@ -7,6 +7,7 @@ PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX linkml: <https://w3id.org/linkml/>
 PREFIX schema1: <http://schema.org/>
+PREFIX DCAT: <http://www.w3.org/ns/dcat#>
 
 
 linkml:String xsd:string
@@ -72,7 +73,7 @@ linkml:Sparqlpath xsd:string
              <https://w3id.org/nfdi4cat/pid4cat-model/ChangeLogField#RESOURCE_INFO>
              <https://w3id.org/nfdi4cat/pid4cat-model/ChangeLogField#RELATED_IDS>
              <https://w3id.org/nfdi4cat/pid4cat-model/ChangeLogField#CONTACT>
-             <https://w3id.org/nfdi4cat/pid4cat-model/ChangeLogField#RIGHTS> ] ? ;
+             <https://w3id.org/nfdi4cat/pid4cat-model/ChangeLogField#LICENSE> ] ? ;
           schema1:description @linkml:String ?
        ) ;
        rdf:type [ <LogRecord> ] ?
@@ -85,7 +86,6 @@ linkml:Sparqlpath xsd:string
              <https://w3id.org/nfdi4cat/pid4cat-model/PID4CatStatus#REGISTERED>
              <https://w3id.org/nfdi4cat/pid4cat-model/PID4CatStatus#OBSOLETED>
              <https://w3id.org/nfdi4cat/pid4cat-model/PID4CatStatus#DEPRECATED> ] ? ;
-          schema1:identifier @linkml:String ? ;
           schema1:identifier @linkml:String ? ;
           schema1:license @linkml:String ? ;
           schema1:email @linkml:String ? ;
@@ -138,8 +138,7 @@ linkml:Sparqlpath xsd:string
           schema1:description @linkml:String ? ;
           schema1:additionalType [ dcmitype:Collection sosa:Sample
              <https://w3id.org/nfdi4cat/pid4cat-model/ResourceCategory#MATERIAL>
-             <https://w3id.org/nfdi4cat/pid4cat-model/ResourceCategory#DEVICE>
-             <https://w3id.org/nfdi4cat/pid4cat-model/ResourceCategory#DATAOBJECT> ] ? ;
+             <https://w3id.org/nfdi4cat/pid4cat-model/ResourceCategory#DEVICE> DCAT:dataset DCAT:DataService ] ? ;
           schema1:additionalType @linkml:String ? ;
           schema1:additionalType @linkml:String ? ;
           schema1:additionalType @linkml:String ? ;
