@@ -89,24 +89,27 @@ The PID4Cat schema is mapped to the handle record as follows:
 |-------|------|-----------|------|-----------|
 |     1 | URL  | 2024-01-01 10:47:38Z | https://pid4cat.example.org/lik-dfi345 | *landing pageURL* |
 |     2 | STATUS | 2024-02-19 13:40:02Z | REGISTERED | *status* |
-|     3 | REC_VER | 2024-02-19 13:40:02Z | 20240219v0 | *record_version* |
-|     4 | SCH_VER | 2024-01-01 10:47:38Z | 1.0.0 | *pid_schema_version* |
-|     5 | RIGHTS | 2024-01-01 10:47:38Z | CC0-1.0 | *dc_rights* |
-|     6 | EMAIL | 2024-01-01 10:47:38Z | datafuzzi@example.org | *curation_contact* |
-|     7 | IMFO | 2024-01-01 10:47:38Z | {json} | *resource_info* |
-|     8 | RELATED | 2024-02-19 13:40:02Z | {json} | *related_identifiers* |
-|     9 | CHANGES | 2024-02-19 13:40:02Z | {json} | *change_log* |
+|     3 | SCHEMA_VER | 2024-01-01 10:47:38Z | 1.0.0 | *pid_schema_version* |
+|     4 | LICENSE | 2024-01-01 10:47:38Z | CC0-1.0 | *license* |
+|     5 | EMAIL | 2024-01-01 10:47:38Z | datafuzzi@example.org | *curation_contact_email* |
+|     6 | RESOURCE_INFO | 2024-01-01 10:47:38Z | {json} | *resource_info* |
+|     7 | RELATED | 2024-02-19 13:40:02Z | {json} | *related_identifiers* |
+|     8 | CHANGES | 2024-02-19 13:40:02Z | {json} | *change_log* |
 
-In a future version, the non-standard values in **Type**-column may be replaced by references to type declarations in a datatype registry (DTR).
+In a future version, the non-standard values the in **Type**-column may be replaced by references to type declarations in a datatype registry (DTR).
 Such DTRs are still under development and not yet widely used.
 
-Since PID4Cat is a linkML-model we have all tools at hand to create records or an API. For example, we can use the pydantic-model created from the PID4cat schema to create the json-objects for the PID record above, for example the *resource_info* json-object:
+The LICENSE specifies the licence for the metadata in the PID-record.
+It will be fixed to CC0-1.0 in the NFDICat service to facilitate reuse.
+
+Since PID4Cat is a linkML-model we have all tools at hand to create records or an API.
+For example, we can use the pydantic-model created from the PID4cat schema to create the json-objects for the PID record above, for example the *resource_info* json-object:
 
 ```python
 from linkml_runtime.dumpers import json_dumper
 from pid4cat_model.datamodel import pid4cat_model_pydantic as p4c
 
-pid1_ressource_info = p4c.ResourceInfo(
+pid1_resource_info = p4c.ResourceInfo(
     label="Resource label",
     description="Resource description",
     resource_category=p4c.ResourceCategory.SAMPLE,
@@ -116,7 +119,7 @@ pid1_ressource_info = p4c.ResourceInfo(
     schema_type="XSD",
 )
 
-print(json_dumper.dumps(pid1_ressource_info, inject_type=False))
+print(json_dumper.dumps(pid1_resource_info, inject_type=False))
 ```
 
 which will print the json-object to be stored under index 7 in the handle-record:
@@ -165,7 +168,10 @@ Examples for PID4Cat handles (non-resolvable):
 
 ### API of handle server gateway
 
-The role of the handle-server-gateway (HSG) is to restrict and manage write access to the handle-server and to add PID4Cat-specific validation for the handles. The HSG provides an API only.
+> This section is work in progress! It does not yet reflect the final implementation.
+
+The role of the handle-server-gateway (HSG) is to restrict and manage write access to the handle-server and to add PID4Cat-specific validation for the handles.
+The HSG provides an API only.
 Create and updating PID4Cat-handles will exclusively managed via the HSG. 
 Suggested URLs for the HSG are https://pid4cat.nfdi4cat.org or https://pid.nfdi4cat.org
 
@@ -180,7 +186,9 @@ Suggested minimal API of the HSG:
 
 *[unedited copy from internal OpenProject]*
 
-Here is a tentative minimal API (to be discussed). API access is limited to special users &quot;namespace-owners&quot; (read-write), and &quot;viewers&quot; (read-only). Anonymous users have no access.
+Here is a tentative minimal API (to be discussed). 
+API access is limited to special users &quot;namespace-owners&quot; (read-write), and &quot;viewers&quot; (read-only).
+Anonymous users have no access.
 
 * _Regarding permissions and the minimal API we like to get your feedback. Is this OK? Do you see gaps or need more functionality?_
 
@@ -215,7 +223,6 @@ The API may be extended to make the information in the handle record more access
 
 - Routes to retrieve all PIDs by category [GET]
 - Routes to retrieve all PIDs by status [GET]
-
 
 ## Permanent IRIs for terminology or ontology terms
 

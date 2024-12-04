@@ -46,20 +46,20 @@ classes:
       - id
       - landing_page_url
       - status
-      - record_version
       - pid_schema_version
-      - dc_rights
-      - curation_contact
+      - license
+      - curation_contact_email
       - resource_info
       - related_identifiers
       - change_log
     slot_usage:
-      curation_contact:
+      curation_contact_email:
         pattern: "^\\S+@[\\S+\\.]+\\S+"
 
   PID4CatRelation:
     description: >-
-      A relation between PID4CatRecords or between a PID4CatRecord and other resources with a PID.
+      A relation between PID4CatRecords or between a PID4CatRecord and other
+      resources with a PID.
     slots:
       - relation_type
       - related_identifier
@@ -91,10 +91,14 @@ classes:
     description: Person who plays a role relative to PID creation or curation.
     slots:
       - name
-      - contact_information
-      - person_orcid
+      - email
+      - orcid
       - affiliation_ror
-      - role  # e.g. trustee, owner, ...more?
+      - role
+    slot_usage:
+      email:
+        pattern: "^\\S+@[\\S+\\.]+\\S+"
+
 
   Container:
     description: >-
@@ -115,11 +119,11 @@ slots:
     identifier: true
     slot_uri: schema:identifier
     range: uriorcurie
-    description: A unique identifier for a thing
+    description: A unique identifier for a thing.
   landing_page_url:
     rank: 10
     slot_uri: schema:url
-    description: The URL of the landing page for the resource
+    description: The URL of the landing page for the resource.
   status:
     range: PID4CatStatus
     description: >-
@@ -127,11 +131,6 @@ slots:
   pid_schema_version:
     slot_uri: schema:identifier
     description: The version of the PID4Cat schema used for the PID4CatRecord.
-  record_version:
-    slot_uri: schema:identifier
-    description: >-
-      Date-based version string of the PID4CatRecord (e.g. 20240219v0, 20240219v1, ...).
-      The version should be incremented with every change of the PID4CatRecord.
   resource_info:
     range: ResourceInfo
     description: Information about the resource.
@@ -139,66 +138,68 @@ slots:
     slot_uri: schema:identifier
     range: PID4CatRelation
     multivalued: true
-    description: Relations of the resource to other identifiers
-  dc_rights:
+    description: Relations of the resource to other identifiers.
+  license:
     slot_uri: schema:license
     description: The license for the metadata contained in the PID4Cat record.
-  curation_contact:
+  curation_contact_email:
     slot_uri: schema:email
-    description: The email address of a person or institution responsible for curation of the resource.
+    description: >-
+      The email address of a person or institution currently responsible for the
+      curation of the PID record.
   change_log:
     slot_uri: schema:identifier
     range: LogRecord
     required: true
     multivalued: true
-    description: Change log of PID4Cat record
+    description: Change log of PID4Cat record.
 
   # Slots for PID4CatRelation
   relation_type:
     slot_uri: schema:identifier
     range: RelationType
     multivalued: true
-    description: Relation type between the resources
+    description: Relation type between the resources.
   related_identifier:
     slot_uri: schema:identifier
-    description: Related identifiers for the resource
+    description: Related identifiers for the resource.
   datetime_log:
     slot_uri: schema:DateTime
-    description: The date and time of a log record
+    description: The date and time of a log record.
   has_agent:
     slot_uri: schema:Agent
     range: Agent
-    description: The person who registered the resource
+    description: The person who registered the resource.
 
   # Slots for ResourceInfo
   label:
     slot_uri: schema:name
-    description: A human-readable name for a thing
+    description: A human-readable name for a resource.
   description:
     slot_uri: schema:description
-    description: A human-readable description for a thing
+    description: A human-readable description for a resource.
   resource_category:
     slot_uri: schema:additionalType
     range: ResourceCategory
-    description: The category of the resource
+    description: The category of the resource.
   rdf_url:
     slot_uri: schema:additionalType
     description: >-
-      The URI of the rdf represenation of the resource.
+      The URI of the rdf representation of the resource.
   rdf_type:
     slot_uri: schema:additionalType
     description: >-
-      The format of the rdf representation of the resource (xml, turlte, json-ld, ...).
+      The format of the rdf representation of the resource (xml, turtle, json-ld, ...).
   schema_url:
     slot_uri: schema:additionalType
     description: >-
-      The URI of the schema used to describe the resource.
+      The URI of the schema to which the resource conforms.
       Same property as in DataCite:schemeURI.
   schema_type:
     slot_uri: schema:additionalType
     description: >-
-      The type of the scheme used to describe the resource.
-      Examples: XSD, DDT, Turtle
+      The type of the schema to which the resource conforms.
+      Examples: XSD, DDT, SHACL
       Same property as in DataCite:schemeType.
 
   # Slots for LogRecord
@@ -210,19 +211,16 @@ slots:
   # Slots for Agent
   name:
     slot_uri: schema:name
-    description: The name of the agent
-  contact_information:
+    description: The name of the agent that created or modified the PID record.
+  email:
     slot_uri: schema:email
-    description: Identification of the agent that registered the PID, with
-      contact information. Should include person name and affiliation, or position
-      name and affiliation, or just organization name. e-mail address is preferred
-      contact information.
-  person_orcid:
+    description: Email address of the agent that created or modified the PID record.
+  orcid:
     slot_uri: schema:identifier
     description: The ORCID of the person
   affiliation_ror:
     slot_uri: schema:identifier
-    description: The ROR of the affiliation
+    description: The ROR of the agent's affiliation.
   role:
     slot_uri: schema:identifier
     range: PID4CatAgentRole
@@ -237,24 +235,31 @@ enums:  # Enumerations use singular form for names
       # Should be taken from DCMI Type Vocabulary if possible.
       # https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#section-7
       COLLECTION:
-        description: A collection is described as a group; its parts may also be separately described.
+        description: A collection is a group of resources and/or other collections.
         meaning: http://purl.org/dc/dcmitype/Collection
       SAMPLE:
-        description: A representative part of an entity of interest on which observations may be made.
+        description: >-
+          A representative part of an entity of interest on which observations may
+          be made.
         meaning: http://www.w3.org/ns/sosa/Sample
       MATERIAL:
         description: A material used in the research process (except samples).
         todos:
           - map this to an ontology
       DEVICE:
-        description: A device used in the catalysis research process.
+        description: A physical device used in the research process.
         todos:
           - map this to an ontology
-      DATAOBJECT:
+      DATA_OBJECT:
         description: >-
-          A data object might be a data file, a data set, a data collection, or a data service.
-        todos:
-          - map this to an ontology
+          A collection of data available for access or download.
+          A data set might be a data file, a data set, a data collection.
+        meaning: dcat:dataset
+      DATA_SERVICE:
+        description: >-
+          An organized system of operations that provide data processing
+          functions or access to datasets.
+        meaning: dcat:DataService
 
   RelationType:
     description: >-
@@ -280,14 +285,17 @@ enums:  # Enumerations use singular form for names
       CONTINUES:
         description: The resource continues another resource.
       HAS_METADATA:
-        description: The resource has metadata.
+        description: The resource has metadata in another resource.
       IS_METADATA_FOR:
-        description: The resource is metadata for.
+        description: The resource is metadata for another resource.
       HAS_VERSION:
         description: The resource has a version.
         meaning: dcterms:hasVersion
       IS_VERSION_OF:
-        description: The resource is a version of.
+        description: >-
+          The resource is a version of another resource.
+          This is useful to refer to an abstract resource that has different
+          versions, for example, "Python 3.12 is a version of Python".
         meaning: dcterms:isVersionOf
       IS_NEW_VERSION_OF:
         description: The resource is a new version of.
@@ -351,7 +359,7 @@ enums:  # Enumerations use singular form for names
       SUBMITTED:
         description: The PID4CatRecord is reserved but the resource is not yet linked.
       REGISTERED:
-        description: The PID4CatRecord links to a concrete ressource.
+        description: The PID4CatRecord links to a concrete resource.
       OBSOLETED:
         description: The PID4CatRecord is obsolete, e.g. because the resource is referenced by another PID4Cat.
       DEPRECATED:
@@ -378,5 +386,5 @@ enums:  # Enumerations use singular form for names
         description: The related identifiers of the PID4CatRecord were changed.
       CONTACT:
         description: The contact information of the PID4CatRecord was changed.
-      RIGHTS:
-        description: The rights of the PID4CatRecord were changed.
+      LICENSE:
+        description: The license of the PID4CatRecord was changed.
