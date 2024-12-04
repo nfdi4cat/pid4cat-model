@@ -1,7 +1,7 @@
 from linkml_runtime.dumpers import json_dumper
 from pid4cat_model.datamodel import pid4cat_model_pydantic as p4c
 
-pid1_ressource_info = p4c.ResourceInfo(
+pid1_resource_info = p4c.ResourceInfo(
     label="Resource label",
     description="Resource description",
     resource_category=p4c.ResourceCategory.SAMPLE,
@@ -11,4 +11,4 @@ pid1_ressource_info = p4c.ResourceInfo(
     schema_type="XSD",
 )
 
-print(json_dumper.dumps(pid1_ressource_info, inject_type=False))
+print(json_dumper.dumps(pid1_resource_info, inject_type=False))
