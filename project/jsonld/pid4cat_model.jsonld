@@ -882,67 +882,18 @@
       "@type": "SlotDefinition"
     },
     {
-      "name": "rdf_url",
-      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/rdf_url",
-      "description": "The URI of the rdf representation of the resource.",
+      "name": "representation_variants",
+      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/representation_variants",
+      "description": "The representations of the resource in other media types than text/html.",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
-      "mappings": [
-        "http://schema.org/additionalType"
-      ],
-      "slot_uri": "http://schema.org/additionalType",
+      "slot_uri": "https://w3id.org/nfdi4cat/pid4cat-model/representation_variants",
+      "multivalued": true,
       "owner": "ResourceInfo",
       "domain_of": [
         "ResourceInfo"
       ],
-      "range": "string",
-      "@type": "SlotDefinition"
-    },
-    {
-      "name": "rdf_type",
-      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/rdf_type",
-      "description": "The format of the rdf representation of the resource (xml, turtle, json-ld, ...).",
-      "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
-      "mappings": [
-        "http://schema.org/additionalType"
-      ],
-      "slot_uri": "http://schema.org/additionalType",
-      "owner": "ResourceInfo",
-      "domain_of": [
-        "ResourceInfo"
-      ],
-      "range": "string",
-      "@type": "SlotDefinition"
-    },
-    {
-      "name": "schema_url",
-      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/schema_url",
-      "description": "The URI of the schema to which the resource conforms. Same property as in DataCite:schemeURI.",
-      "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
-      "mappings": [
-        "http://schema.org/additionalType"
-      ],
-      "slot_uri": "http://schema.org/additionalType",
-      "owner": "ResourceInfo",
-      "domain_of": [
-        "ResourceInfo"
-      ],
-      "range": "string",
-      "@type": "SlotDefinition"
-    },
-    {
-      "name": "schema_type",
-      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/schema_type",
-      "description": "The type of the schema to which the resource conforms. Examples: XSD, DDT, SHACL Same property as in DataCite:schemeType.",
-      "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
-      "mappings": [
-        "http://schema.org/additionalType"
-      ],
-      "slot_uri": "http://schema.org/additionalType",
-      "owner": "ResourceInfo",
-      "domain_of": [
-        "ResourceInfo"
-      ],
-      "range": "string",
+      "range": "RepresentationVariant",
+      "inlined": true,
       "@type": "SlotDefinition"
     },
     {
@@ -1039,6 +990,68 @@
         "Agent"
       ],
       "range": "PID4CatAgentRole",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "media_type",
+      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/media_type",
+      "description": "The media type of the representation as defined by [IANA](https://www.iana.org/assignments/media-types/media-types.xhtml)",
+      "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
+      "mappings": [
+        "http://schema.org/encodingFormat"
+      ],
+      "slot_uri": "http://schema.org/encodingFormat",
+      "owner": "RepresentationVariant",
+      "domain_of": [
+        "RepresentationVariant"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "encoding_format",
+      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/encoding_format",
+      "description": "The encoding of the representation. https://encoding.spec.whatwg.org/#names-and-labels",
+      "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
+      "slot_uri": "https://w3id.org/nfdi4cat/pid4cat-model/encoding_format",
+      "owner": "RepresentationVariant",
+      "domain_of": [
+        "RepresentationVariant"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "size",
+      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/size",
+      "description": "The size of the representation in bytes.",
+      "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
+      "mappings": [
+        "http://schema.org/fileSize"
+      ],
+      "slot_uri": "http://schema.org/fileSize",
+      "owner": "RepresentationVariant",
+      "domain_of": [
+        "RepresentationVariant"
+      ],
+      "range": "integer",
+      "minimum_value": 0,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "url",
+      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/url",
+      "description": "The URL of the representation.",
+      "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
+      "mappings": [
+        "http://schema.org/URL"
+      ],
+      "slot_uri": "http://schema.org/URL",
+      "owner": "RepresentationVariant",
+      "domain_of": [
+        "RepresentationVariant"
+      ],
+      "range": "string",
       "@type": "SlotDefinition"
     },
     {
@@ -1147,10 +1160,7 @@
         "label",
         "description",
         "resource_category",
-        "rdf_url",
-        "rdf_type",
-        "schema_url",
-        "schema_type"
+        "representation_variants"
       ],
       "slot_usage": {},
       "class_uri": "https://w3id.org/nfdi4cat/pid4cat-model/ResourceInfo",
@@ -1188,6 +1198,21 @@
       "@type": "ClassDefinition"
     },
     {
+      "name": "RepresentationVariant",
+      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/RepresentationVariant",
+      "description": "A representation of the resource in other media types than text/html which is the default for landing_page_url.",
+      "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
+      "slots": [
+        "url",
+        "media_type",
+        "encoding_format",
+        "size"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/nfdi4cat/pid4cat-model/RepresentationVariant",
+      "@type": "ClassDefinition"
+    },
+    {
       "name": "Container",
       "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/Container",
       "description": "A container for all PID4Cat instances.",
@@ -1213,9 +1238,9 @@
   ],
   "metamodel_version": "1.7.0",
   "source_file": "pid4cat_model.yaml",
-  "source_file_date": "2024-12-04T23:36:00",
-  "source_file_size": 13015,
-  "generation_date": "2024-12-05T00:27:03",
+  "source_file_date": "2024-12-05T19:05:07",
+  "source_file_size": 13348,
+  "generation_date": "2024-12-05T19:20:01",
   "@type": "SchemaDefinition",
   "@context": [
     "project/jsonld/pid4cat_model.context.jsonld",

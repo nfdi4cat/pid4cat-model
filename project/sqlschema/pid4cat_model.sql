@@ -17,10 +17,6 @@
 --     * Slot: label Description: A human-readable name for a resource.
 --     * Slot: description Description: A human-readable description for a resource.
 --     * Slot: resource_category Description: The category of the resource.
---     * Slot: rdf_url Description: The URI of the rdf representation of the resource.
---     * Slot: rdf_type Description: The format of the rdf representation of the resource (xml, turtle, json-ld, ...).
---     * Slot: schema_url Description: The URI of the schema to which the resource conforms. Same property as in DataCite:schemeURI.
---     * Slot: schema_type Description: The type of the schema to which the resource conforms. Examples: XSD, DDT, SHACL Same property as in DataCite:schemeType.
 -- # Class: "LogRecord" Description: "A log record for changes made on a PID4CatRecord starting from registration."
 --     * Slot: id Description: 
 --     * Slot: datetime_log Description: The date and time of a log record.
@@ -34,6 +30,12 @@
 --     * Slot: orcid Description: The ORCID of the person
 --     * Slot: affiliation_ror Description: The ROR of the agent's affiliation.
 --     * Slot: role Description: The role of the agent relative to the resource
+-- # Class: "RepresentationVariant" Description: "A representation of the resource in other media types than text/html which is the default for landing_page_url."
+--     * Slot: id Description: 
+--     * Slot: url Description: The URL of the representation.
+--     * Slot: media_type Description: The media type of the representation as defined by [IANA](https://www.iana.org/assignments/media-types/media-types.xhtml)
+--     * Slot: encoding_format Description: The encoding of the representation. https://encoding.spec.whatwg.org/#names-and-labels
+--     * Slot: size Description: The size of the representation in bytes.
 -- # Class: "Container" Description: "A container for all PID4Cat instances."
 --     * Slot: id Description: 
 -- # Class: "PID4CatRecord_related_identifiers" Description: ""
@@ -45,16 +47,15 @@
 -- # Class: "PID4CatRelation_relation_type" Description: ""
 --     * Slot: PID4CatRelation_id Description: Autocreated FK slot
 --     * Slot: relation_type Description: Relation type between the resources.
+-- # Class: "ResourceInfo_representation_variants" Description: ""
+--     * Slot: ResourceInfo_id Description: Autocreated FK slot
+--     * Slot: representation_variants_id Description: The representations of the resource in other media types than text/html.
 
 CREATE TABLE "ResourceInfo" (
 	id INTEGER NOT NULL, 
 	label TEXT, 
 	description TEXT, 
 	resource_category VARCHAR(12), 
-	rdf_url TEXT, 
-	rdf_type TEXT, 
-	schema_url TEXT, 
-	schema_type TEXT, 
 	PRIMARY KEY (id)
 );
 CREATE TABLE "Agent" (
@@ -64,6 +65,14 @@ CREATE TABLE "Agent" (
 	orcid TEXT, 
 	affiliation_ror TEXT, 
 	role VARCHAR(7), 
+	PRIMARY KEY (id)
+);
+CREATE TABLE "RepresentationVariant" (
+	id INTEGER NOT NULL, 
+	url TEXT, 
+	media_type TEXT, 
+	encoding_format TEXT, 
+	size INTEGER, 
 	PRIMARY KEY (id)
 );
 CREATE TABLE "Container" (
@@ -99,6 +108,13 @@ CREATE TABLE "LogRecord" (
 	has_agent_id INTEGER, 
 	PRIMARY KEY (id), 
 	FOREIGN KEY(has_agent_id) REFERENCES "Agent" (id)
+);
+CREATE TABLE "ResourceInfo_representation_variants" (
+	"ResourceInfo_id" INTEGER, 
+	representation_variants_id INTEGER, 
+	PRIMARY KEY ("ResourceInfo_id", representation_variants_id), 
+	FOREIGN KEY("ResourceInfo_id") REFERENCES "ResourceInfo" (id), 
+	FOREIGN KEY(representation_variants_id) REFERENCES "RepresentationVariant" (id)
 );
 CREATE TABLE "PID4CatRecord_related_identifiers" (
 	"PID4CatRecord_id" TEXT, 

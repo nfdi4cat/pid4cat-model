@@ -42,14 +42,19 @@ type PID4CatRelation
     hasAgent: Agent
   }
 
+type RepresentationVariant
+  {
+    url: String
+    mediaType: String
+    encodingFormat: String
+    size: Integer
+  }
+
 type ResourceInfo
   {
     label: String
     description: String
     resourceCategory: ResourceCategory
-    rdfUrl: String
-    rdfType: String
-    schemaUrl: String
-    schemaType: String
+    representationVariants: [RepresentationVariant]
   }
 

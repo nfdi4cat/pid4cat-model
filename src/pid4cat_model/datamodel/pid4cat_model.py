@@ -1,5 +1,5 @@
 # Auto generated from pid4cat_model.yaml by pythongen.py version: 0.0.1
-# Generation date: 2024-12-05T00:27:05
+# Generation date: 2024-12-05T19:20:02
 # Schema: pid4cat-model
 #
 # id: https://w3id.org/nfdi4cat/pid4cat-model
@@ -23,7 +23,7 @@ from linkml_runtime.utils.formatutils import camelcase, underscore, sfx
 from linkml_runtime.utils.enumerations import EnumDefinitionImpl
 from rdflib import Namespace, URIRef
 from linkml_runtime.utils.curienamespace import CurieNamespace
-from linkml_runtime.linkml_model.types import String, Uriorcurie
+from linkml_runtime.linkml_model.types import Integer, String, Uriorcurie
 from linkml_runtime.utils.metamodelcore import URIorCURIE
 
 metamodel_version = "1.7.0"
@@ -157,10 +157,7 @@ class ResourceInfo(YAMLRoot):
     label: Optional[str] = None
     description: Optional[str] = None
     resource_category: Optional[Union[str, "ResourceCategory"]] = None
-    rdf_url: Optional[str] = None
-    rdf_type: Optional[str] = None
-    schema_url: Optional[str] = None
-    schema_type: Optional[str] = None
+    representation_variants: Optional[Union[Union[dict, "RepresentationVariant"], List[Union[dict, "RepresentationVariant"]]]] = empty_list()
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self.label is not None and not isinstance(self.label, str):
@@ -172,17 +169,9 @@ class ResourceInfo(YAMLRoot):
         if self.resource_category is not None and not isinstance(self.resource_category, ResourceCategory):
             self.resource_category = ResourceCategory(self.resource_category)
 
-        if self.rdf_url is not None and not isinstance(self.rdf_url, str):
-            self.rdf_url = str(self.rdf_url)
-
-        if self.rdf_type is not None and not isinstance(self.rdf_type, str):
-            self.rdf_type = str(self.rdf_type)
-
-        if self.schema_url is not None and not isinstance(self.schema_url, str):
-            self.schema_url = str(self.schema_url)
-
-        if self.schema_type is not None and not isinstance(self.schema_type, str):
-            self.schema_type = str(self.schema_type)
+        if not isinstance(self.representation_variants, list):
+            self.representation_variants = [self.representation_variants] if self.representation_variants is not None else []
+        self.representation_variants = [v if isinstance(v, RepresentationVariant) else RepresentationVariant(**as_dict(v)) for v in self.representation_variants]
 
         super().__post_init__(**kwargs)
 
@@ -253,6 +242,39 @@ class Agent(YAMLRoot):
 
         if self.role is not None and not isinstance(self.role, PID4CatAgentRole):
             self.role = PID4CatAgentRole(self.role)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass
+class RepresentationVariant(YAMLRoot):
+    """
+    A representation of the resource in other media types than text/html which is the default for landing_page_url.
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = PID4CAT_MODEL["RepresentationVariant"]
+    class_class_curie: ClassVar[str] = "pid4cat_model:RepresentationVariant"
+    class_name: ClassVar[str] = "RepresentationVariant"
+    class_model_uri: ClassVar[URIRef] = PID4CAT_MODEL.RepresentationVariant
+
+    url: Optional[str] = None
+    media_type: Optional[str] = None
+    encoding_format: Optional[str] = None
+    size: Optional[int] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self.url is not None and not isinstance(self.url, str):
+            self.url = str(self.url)
+
+        if self.media_type is not None and not isinstance(self.media_type, str):
+            self.media_type = str(self.media_type)
+
+        if self.encoding_format is not None and not isinstance(self.encoding_format, str):
+            self.encoding_format = str(self.encoding_format)
+
+        if self.size is not None and not isinstance(self.size, int):
+            self.size = int(self.size)
 
         super().__post_init__(**kwargs)
 
@@ -544,17 +566,8 @@ slots.description = Slot(uri=SCHEMA.description, name="description", curie=SCHEM
 slots.resource_category = Slot(uri=SCHEMA.additionalType, name="resource_category", curie=SCHEMA.curie('additionalType'),
                    model_uri=PID4CAT_MODEL.resource_category, domain=None, range=Optional[Union[str, "ResourceCategory"]])
 
-slots.rdf_url = Slot(uri=SCHEMA.additionalType, name="rdf_url", curie=SCHEMA.curie('additionalType'),
-                   model_uri=PID4CAT_MODEL.rdf_url, domain=None, range=Optional[str])
-
-slots.rdf_type = Slot(uri=SCHEMA.additionalType, name="rdf_type", curie=SCHEMA.curie('additionalType'),
-                   model_uri=PID4CAT_MODEL.rdf_type, domain=None, range=Optional[str])
-
-slots.schema_url = Slot(uri=SCHEMA.additionalType, name="schema_url", curie=SCHEMA.curie('additionalType'),
-                   model_uri=PID4CAT_MODEL.schema_url, domain=None, range=Optional[str])
-
-slots.schema_type = Slot(uri=SCHEMA.additionalType, name="schema_type", curie=SCHEMA.curie('additionalType'),
-                   model_uri=PID4CAT_MODEL.schema_type, domain=None, range=Optional[str])
+slots.representation_variants = Slot(uri=PID4CAT_MODEL.representation_variants, name="representation_variants", curie=PID4CAT_MODEL.curie('representation_variants'),
+                   model_uri=PID4CAT_MODEL.representation_variants, domain=None, range=Optional[Union[Union[dict, RepresentationVariant], List[Union[dict, RepresentationVariant]]]])
 
 slots.changed_field = Slot(uri=SCHEMA.identifier, name="changed_field", curie=SCHEMA.curie('identifier'),
                    model_uri=PID4CAT_MODEL.changed_field, domain=None, range=Optional[Union[str, "ChangeLogField"]])
@@ -573,6 +586,18 @@ slots.affiliation_ror = Slot(uri=SCHEMA.identifier, name="affiliation_ror", curi
 
 slots.role = Slot(uri=SCHEMA.identifier, name="role", curie=SCHEMA.curie('identifier'),
                    model_uri=PID4CAT_MODEL.role, domain=None, range=Optional[Union[str, "PID4CatAgentRole"]])
+
+slots.media_type = Slot(uri=SCHEMA.encodingFormat, name="media_type", curie=SCHEMA.curie('encodingFormat'),
+                   model_uri=PID4CAT_MODEL.media_type, domain=None, range=Optional[str])
+
+slots.encoding_format = Slot(uri=PID4CAT_MODEL.encoding_format, name="encoding_format", curie=PID4CAT_MODEL.curie('encoding_format'),
+                   model_uri=PID4CAT_MODEL.encoding_format, domain=None, range=Optional[str])
+
+slots.size = Slot(uri=SCHEMA.fileSize, name="size", curie=SCHEMA.curie('fileSize'),
+                   model_uri=PID4CAT_MODEL.size, domain=None, range=Optional[int])
+
+slots.url = Slot(uri=SCHEMA.URL, name="url", curie=SCHEMA.curie('URL'),
+                   model_uri=PID4CAT_MODEL.url, domain=None, range=Optional[str])
 
 slots.container__contains_pids = Slot(uri=PID4CAT_MODEL.contains_pids, name="container__contains_pids", curie=PID4CAT_MODEL.curie('contains_pids'),
                    model_uri=PID4CAT_MODEL.container__contains_pids, domain=None, range=Optional[Union[Dict[Union[str, PID4CatRecordId], Union[dict, PID4CatRecord]], List[Union[dict, PID4CatRecord]]]])
