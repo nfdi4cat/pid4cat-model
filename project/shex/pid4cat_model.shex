@@ -133,16 +133,23 @@ linkml:Sparqlpath xsd:string
     )
 }
 
+<RepresentationVariant> CLOSED {
+    (  $<RepresentationVariant_tes> (  schema1:URL @linkml:String ? ;
+          schema1:encodingFormat @linkml:String ? ;
+          <encoding_format> @linkml:String ? ;
+          schema1:fileSize @linkml:Integer ?
+       ) ;
+       rdf:type [ <RepresentationVariant> ] ?
+    )
+}
+
 <ResourceInfo> CLOSED {
     (  $<ResourceInfo_tes> (  schema1:name @linkml:String ? ;
           schema1:description @linkml:String ? ;
           schema1:additionalType [ dcmitype:Collection sosa:Sample
              <https://w3id.org/nfdi4cat/pid4cat-model/ResourceCategory#MATERIAL>
              <https://w3id.org/nfdi4cat/pid4cat-model/ResourceCategory#DEVICE> DCAT:dataset DCAT:DataService ] ? ;
-          schema1:additionalType @linkml:String ? ;
-          schema1:additionalType @linkml:String ? ;
-          schema1:additionalType @linkml:String ? ;
-          schema1:additionalType @linkml:String ?
+          <representation_variants> @<RepresentationVariant> *
        ) ;
        rdf:type [ <ResourceInfo> ] ?
     )

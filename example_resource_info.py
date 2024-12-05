@@ -5,10 +5,14 @@ pid1_resource_info = p4c.ResourceInfo(
     label="Resource label",
     description="Resource description",
     resource_category=p4c.ResourceCategory.SAMPLE,
-    rdf_url="https://example.org/resource",
-    rdf_type="TURTLE",
-    schema_url="https://example.org/schema",
-    schema_type="XSD",
+    representation_variants = [
+        p4c.RepresentationVariant(
+            url="https://example.org/resource",
+            media_type="text/turtle",
+            encoding_format="UTF-8",
+            size=12345,
+        ),
+    ],
 )
 
 print(json_dumper.dumps(pid1_resource_info, inject_type=False))

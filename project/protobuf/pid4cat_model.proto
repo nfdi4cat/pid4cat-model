@@ -44,14 +44,19 @@ message PID4CatRelation
   string datetimeLog = 0
   agent hasAgent = 0
  }
+// A representation of the resource in other media types than text/html which is the default for landing_page_url.
+message RepresentationVariant
+ {
+  string url = 0
+  string mediaType = 0
+  string encodingFormat = 0
+  integer size = 0
+ }
 // Data object to hold information about the resource and its representation.
 message ResourceInfo
  {
   string label = 0
   string description = 0
   resourceCategory resourceCategory = 0
-  string rdfUrl = 0
-  string rdfType = 0
-  string schemaUrl = 0
-  string schemaType = 0
+ repeated  representationVariant representationVariants = 0
  }

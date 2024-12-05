@@ -15,12 +15,26 @@ p1_log = p4c.LogRecord(
     description="as requested in issue #234",
 )
 
+p1_resource_info = p4c.ResourceInfo(
+    label="Resource label",
+    description="Resource description",
+    resource_category=p4c.ResourceCategory.SAMPLE,
+    representation_variants = [
+        p4c.RepresentationVariant(
+            url="https://example.org/resource",
+            media_type="text/turtle",
+            encoding_format="UTF-8",
+            size=12345,
+        ),
+    ],
+)
+
 p1 = p4c.PID4CatRecord(
     id="lik-1",
     change_log=p1_log,
     landing_page_url="https://pid4cat.example.org/lik-1",
     status=p4c.PID4CatStatus.REGISTERED,  # "REGISTERED",
-    resource_info={},
+    resource_info=p1_resource_info,
     related_identifiers=None,
     license="CC0-1.0",
     curation_contact_email="datafuzzi@example.org",

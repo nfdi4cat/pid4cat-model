@@ -223,6 +223,31 @@
             "title": "RelationType",
             "type": "string"
         },
+        "RepresentationVariant": {
+            "additionalProperties": false,
+            "description": "A representation of the resource in other media types than text/html which is the default for landing_page_url.",
+            "properties": {
+                "encoding_format": {
+                    "description": "The encoding of the representation. https://encoding.spec.whatwg.org/#names-and-labels",
+                    "type": "string"
+                },
+                "media_type": {
+                    "description": "The media type of the representation as defined by [IANA](https://www.iana.org/assignments/media-types/media-types.xhtml)",
+                    "type": "string"
+                },
+                "size": {
+                    "description": "The size of the representation in bytes.",
+                    "minimum": 0,
+                    "type": "integer"
+                },
+                "url": {
+                    "description": "The URL of the representation.",
+                    "type": "string"
+                }
+            },
+            "title": "RepresentationVariant",
+            "type": "object"
+        },
         "ResourceCategory": {
             "description": "The category of the resource",
             "enum": [
@@ -248,25 +273,16 @@
                     "description": "A human-readable name for a resource.",
                     "type": "string"
                 },
-                "rdf_type": {
-                    "description": "The format of the rdf representation of the resource (xml, turtle, json-ld, ...).",
-                    "type": "string"
-                },
-                "rdf_url": {
-                    "description": "The URI of the rdf representation of the resource.",
-                    "type": "string"
+                "representation_variants": {
+                    "description": "The representations of the resource in other media types than text/html.",
+                    "items": {
+                        "$ref": "#/$defs/RepresentationVariant"
+                    },
+                    "type": "array"
                 },
                 "resource_category": {
                     "$ref": "#/$defs/ResourceCategory",
                     "description": "The category of the resource."
-                },
-                "schema_type": {
-                    "description": "The type of the schema to which the resource conforms. Examples: XSD, DDT, SHACL Same property as in DataCite:schemeType.",
-                    "type": "string"
-                },
-                "schema_url": {
-                    "description": "The URI of the schema to which the resource conforms. Same property as in DataCite:schemeURI.",
-                    "type": "string"
                 }
             },
             "title": "ResourceInfo",

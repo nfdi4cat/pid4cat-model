@@ -34,16 +34,15 @@ metamodel_version = "None"
 version = "None"
 
 
-class WeakRefShimBaseModel(BaseModel):
-    __slots__ = '__weakref__'
-
-class ConfiguredBaseModel(WeakRefShimBaseModel,
-                validate_assignment = True,
-                validate_all = True,
-                underscore_attrs_are_private = True,
-                extra = "forbid",
-                arbitrary_types_allowed = True,
-                use_enum_values = True):
+class ConfiguredBaseModel(BaseModel):
+    model_config = ConfigDict(
+        validate_assignment = True,
+        validate_default = True,
+        extra = "forbid",
+        arbitrary_types_allowed = True,
+        use_enum_values = True,
+        strict = False,
+    )
     pass
 
 
@@ -193,7 +192,7 @@ class PID4CatRecord(ConfiguredBaseModel):
     related_identifiers: Optional[List[PID4CatRelation]] = Field(default_factory=list, description="""Relations of the resource to other identifiers.""")
     change_log: List[LogRecord] = Field(default_factory=list, description="""Change log of PID4Cat record.""")
 
-    @validator('curation_contact_email', allow_reuse=True)
+    @field_validator('curation_contact_email')
     def pattern_curation_contact_email(cls, v):
         pattern=re.compile(r"^\S+@[\S+\.]+\S+")
         if isinstance(v,list):
@@ -223,10 +222,7 @@ class ResourceInfo(ConfiguredBaseModel):
     label: Optional[str] = Field(None, description="""A human-readable name for a resource.""")
     description: Optional[str] = Field(None, description="""A human-readable description for a resource.""")
     resource_category: Optional[ResourceCategory] = Field(None, description="""The category of the resource.""")
-    rdf_url: Optional[str] = Field(None, description="""The URI of the rdf representation of the resource.""")
-    rdf_type: Optional[str] = Field(None, description="""The format of the rdf representation of the resource (xml, turtle, json-ld, ...).""")
-    schema_url: Optional[str] = Field(None, description="""The URI of the schema to which the resource conforms. Same property as in DataCite:schemeURI.""")
-    schema_type: Optional[str] = Field(None, description="""The type of the schema to which the resource conforms. Examples: XSD, DDT, SHACL Same property as in DataCite:schemeType.""")
+    representation_variants: Optional[List[RepresentationVariant]] = Field(default_factory=list, description="""The representations of the resource in other media types than text/html.""")
 
 
 class LogRecord(ConfiguredBaseModel):
@@ -249,7 +245,7 @@ class Agent(ConfiguredBaseModel):
     affiliation_ror: Optional[str] = Field(None, description="""The ROR of the agent's affiliation.""")
     role: Optional[PID4CatAgentRole] = Field(None, description="""The role of the agent relative to the resource""")
 
-    @validator('email', allow_reuse=True)
+    @field_validator('email')
     def pattern_email(cls, v):
         pattern=re.compile(r"^\S+@[\S+\.]+\S+")
         if isinstance(v,list):
@@ -262,6 +258,16 @@ class Agent(ConfiguredBaseModel):
         return v
 
 
+class RepresentationVariant(ConfiguredBaseModel):
+    """
+    A representation of the resource in other media types than text/html which is the default for landing_page_url.
+    """
+    url: Optional[str] = Field(None, description="""The URL of the representation.""")
+    media_type: Optional[str] = Field(None, description="""The media type of the representation as defined by [IANA](https://www.iana.org/assignments/media-types/media-types.xhtml)""")
+    encoding_format: Optional[str] = Field(None, description="""The encoding of the representation. https://encoding.spec.whatwg.org/#names-and-labels""")
+    size: Optional[int] = Field(None, description="""The size of the representation in bytes.""", ge=0)
+
+
 class Container(ConfiguredBaseModel):
     """
     A container for all PID4Cat instances.
@@ -269,12 +275,13 @@ class Container(ConfiguredBaseModel):
     contains_pids: Optional[List[PID4CatRecord]] = Field(default_factory=list, description="""The PID4CatRecords contained in the container.""")
 
 
-# Update forward refs
-# see https://pydantic-docs.helpmanual.io/usage/postponed_annotations/
-PID4CatRecord.update_forward_refs()
-PID4CatRelation.update_forward_refs()
-ResourceInfo.update_forward_refs()
-LogRecord.update_forward_refs()
-Agent.update_forward_refs()
-Container.update_forward_refs()
+# Model rebuild
+# see https://pydantic-docs.helpmanual.io/usage/models/#rebuilding-a-model
+PID4CatRecord.model_rebuild()
+PID4CatRelation.model_rebuild()
+ResourceInfo.model_rebuild()
+LogRecord.model_rebuild()
+Agent.model_rebuild()
+RepresentationVariant.model_rebuild()
+Container.model_rebuild()
 
