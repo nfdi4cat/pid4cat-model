@@ -73,10 +73,7 @@ classes:
       - label
       - description
       - resource_category
-      - rdf_url
-      - rdf_type
-      - schema_url
-      - schema_type
+      - representation_variants
 
   LogRecord:
     description: >-
@@ -99,6 +96,14 @@ classes:
       email:
         pattern: "^\\S+@[\\S+\\.]+\\S+"
 
+  RepresentationVariant:
+    description: A representation of the resource in other media types than
+      text/html which is the default for landing_page_url.
+    slots:
+      - url
+      - media_type
+      - encoding_format
+      - size
 
   Container:
     description: >-
@@ -182,25 +187,12 @@ slots:
     slot_uri: schema:additionalType
     range: ResourceCategory
     description: The category of the resource.
-  rdf_url:
-    slot_uri: schema:additionalType
+  representation_variants:
+    # slot_uri: ?
+    range: RepresentationVariant
+    multivalued: true
     description: >-
-      The URI of the rdf representation of the resource.
-  rdf_type:
-    slot_uri: schema:additionalType
-    description: >-
-      The format of the rdf representation of the resource (xml, turtle, json-ld, ...).
-  schema_url:
-    slot_uri: schema:additionalType
-    description: >-
-      The URI of the schema to which the resource conforms.
-      Same property as in DataCite:schemeURI.
-  schema_type:
-    slot_uri: schema:additionalType
-    description: >-
-      The type of the schema to which the resource conforms.
-      Examples: XSD, DDT, SHACL
-      Same property as in DataCite:schemeType.
+      The representations of the resource in other media types than text/html.
 
   # Slots for LogRecord
   changed_field:
@@ -225,6 +217,24 @@ slots:
     slot_uri: schema:identifier
     range: PID4CatAgentRole
     description: The role of the agent relative to the resource
+
+  # Slots for RepresentationVariants
+  media_type:
+    slot_uri: schema:encodingFormat
+    description: >-
+      The media type of the representation as defined by [IANA](https://www.iana.org/assignments/media-types/media-types.xhtml)
+  encoding_format:
+    # slot_uri: ?
+    description: >-
+      The encoding of the representation. https://encoding.spec.whatwg.org/#names-and-labels
+  size:
+    slot_uri: schema:fileSize
+    description: The size of the representation in bytes.
+    range: integer
+    minimum_value: 0
+  url:
+    slot_uri: schema:URL
+    description: The URL of the representation.
 
 enums:  # Enumerations use singular form for names
 
