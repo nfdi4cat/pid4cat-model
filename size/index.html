@@ -8,14 +8,14 @@
       
       
       
-        <link rel="canonical" href="https://nfdi4cat.github.io/pid4cat-model/schema_url/">
+        <link rel="canonical" href="https://nfdi4cat.github.io/pid4cat-model/size/">
       
       <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-8.5.10">
     
     
       
-        <title>Slot: schema_url - pid4cat-model</title>
+        <title>Slot: size - pid4cat-model</title>
       
     
     
@@ -64,7 +64,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-schema_url" class="md-skip">
+        <a href="#slot-size" class="md-skip">
           Skip to content
         </a>
       
@@ -97,7 +97,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: schema_url
+              Slot: size
             
           </span>
         </div>
@@ -317,15 +317,15 @@
                 
                   
 
-  <a href="https://github.com/nfdi4cat/pid4cat-model/edit/master/docs/schema_url.md" title="Edit this page" class="md-content__button md-icon">
+  <a href="https://github.com/nfdi4cat/pid4cat-model/edit/master/docs/size.md" title="Edit this page" class="md-content__button md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
   </a>
 
 
-<h1 id="slot-schema_url">Slot: schema_url</h1>
-<p><em>The URI of the schema to which the resource conforms. Same property as in DataCite:schemeURI.</em></p>
-<p>URI: <a href="http://schema.org/additionalType">schema:additionalType</a></p>
+<h1 id="slot-size">Slot: size</h1>
+<p><em>The size of the representation in bytes.</em></p>
+<p>URI: <a href="http://schema.org/fileSize">schema:fileSize</a></p>
 <!-- no inheritance hierarchy -->
 
 <h2 id="applicable-classes">Applicable Classes</h2>
@@ -339,15 +339,20 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../ResourceInfo/">ResourceInfo</a></td>
-<td>Data object to hold information about the resource and its representation</td>
+<td><a href="../RepresentationVariant/">RepresentationVariant</a></td>
+<td>A representation of the resource in other media types than text/html which is...</td>
 <td>no</td>
 </tr>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
 <ul>
-<li>Range: <a href="../String/">String</a></li>
+<li>
+<p>Range: <a href="../Integer/">Integer</a></p>
+</li>
+<li>
+<p>Minimum Value: 0</p>
+</li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
@@ -365,27 +370,27 @@
 <tbody>
 <tr>
 <td>self</td>
-<td>schema:additionalType</td>
+<td>schema:fileSize</td>
 </tr>
 <tr>
 <td>native</td>
-<td>pid4cat_model:schema_url</td>
+<td>pid4cat_model:size</td>
 </tr>
 </tbody>
 </table>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 
-<pre><code class="language-yaml">name: schema_url
-description: The URI of the schema to which the resource conforms. Same property as
-  in DataCite:schemeURI.
+<pre><code class="language-yaml">name: size
+description: The size of the representation in bytes.
 from_schema: https://w3id.org/nfdi4cat/pid4cat-model
 rank: 1000
-slot_uri: schema:additionalType
-alias: schema_url
+slot_uri: schema:fileSize
+alias: size
 domain_of:
-- ResourceInfo
-range: string
+- RepresentationVariant
+range: integer
+minimum_value: 0
 
 </code></pre>
 

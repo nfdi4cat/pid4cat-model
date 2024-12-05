@@ -5,10 +5,10 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<link href="https://nfdi4cat.github.io/pid4cat-model/ResourceInfo/" rel="canonical"/>
+<link href="https://nfdi4cat.github.io/pid4cat-model/RepresentationVariant/" rel="canonical"/>
 <link href="../assets/images/favicon.png" rel="icon"/>
 <meta content="mkdocs-1.6.1, mkdocs-material-8.5.10" name="generator"/>
-<title>Class: ResourceInfo - pid4cat-model</title>
+<title>Class: RepresentationVariant - pid4cat-model</title>
 <link href="../assets/stylesheets/main.975780f9.min.css" rel="stylesheet"/>
 <link href="../assets/stylesheets/palette.2505c338.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -21,7 +21,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#class-resourceinfo">
+<a class="md-skip" href="#class-representationvariant">
           Skip to content
         </a>
 </div>
@@ -45,7 +45,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              Class: ResourceInfo
+              Class: RepresentationVariant
             
           </span>
 </div>
@@ -196,36 +196,22 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<a class="md-content__button md-icon" href="https://github.com/nfdi4cat/pid4cat-model/edit/master/docs/ResourceInfo.md" title="Edit this page">
+<a class="md-content__button md-icon" href="https://github.com/nfdi4cat/pid4cat-model/edit/master/docs/RepresentationVariant.md" title="Edit this page">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"></path></svg>
 </a>
-<h1 id="class-resourceinfo">Class: ResourceInfo</h1>
-<p><em>Data object to hold information about the resource and its representation.</em></p>
-<p>URI: <a href="https://w3id.org/nfdi4cat/pid4cat-model/ResourceInfo">pid4cat_model:ResourceInfo</a></p>
+<h1 id="class-representationvariant">Class: RepresentationVariant</h1>
+<p><em>A representation of the resource in other media types than text/html which is the default for landing_page_url.</em></p>
+<p>URI: <a href="https://w3id.org/nfdi4cat/pid4cat-model/RepresentationVariant">pid4cat_model:RepresentationVariant</a></p>
 <div class="mermaid"> classDiagram
-    class ResourceInfo
-    click ResourceInfo href "../ResourceInfo"
-      ResourceInfo : description
-
-      ResourceInfo : label
-
-      ResourceInfo : representation_variants
-
-
-
-
-    ResourceInfo --&gt; "*" RepresentationVariant : representation_variants
+    class RepresentationVariant
     click RepresentationVariant href "../RepresentationVariant"
+      RepresentationVariant : encoding_format
 
+      RepresentationVariant : media_type
 
-      ResourceInfo : resource_category
+      RepresentationVariant : size
 
-
-
-
-    ResourceInfo --&gt; "0..1" ResourceCategory : resource_category
-    click ResourceCategory href "../ResourceCategory"
-
+      RepresentationVariant : url
 
 
 </div>
@@ -242,27 +228,27 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../label/">label</a></td>
+<td><a href="../url/">url</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
-<td>A human-readable name for a resource</td>
+<td>The URL of the representation</td>
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../description/">description</a></td>
+<td><a href="../media_type/">media_type</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
-<td>A human-readable description for a resource</td>
+<td>The media type of the representation as defined by [IANA](https://www</td>
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../resource_category/">resource_category</a></td>
-<td>0..1 <br/> <a href="../ResourceCategory/">ResourceCategory</a></td>
-<td>The category of the resource</td>
+<td><a href="../encoding_format/">encoding_format</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>The encoding of the representation</td>
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../representation_variants/">representation_variants</a></td>
-<td>* <br/> <a href="../RepresentationVariant/">RepresentationVariant</a></td>
-<td>The representations of the resource in other media types than text/html</td>
+<td><a href="../size/">size</a></td>
+<td>0..1 <br/> <a href="../Integer/">Integer</a></td>
+<td>The size of the representation in bytes</td>
 <td>direct</td>
 </tr>
 </tbody>
@@ -279,10 +265,10 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../PID4CatRecord/">PID4CatRecord</a></td>
-<td><a href="../resource_info/">resource_info</a></td>
+<td><a href="../ResourceInfo/">ResourceInfo</a></td>
+<td><a href="../representation_variants/">representation_variants</a></td>
 <td>range</td>
-<td><a href="./">ResourceInfo</a></td>
+<td><a href="./">RepresentationVariant</a></td>
 </tr>
 </tbody>
 </table>
@@ -302,11 +288,11 @@
 <tbody>
 <tr>
 <td>self</td>
-<td>pid4cat_model:ResourceInfo</td>
+<td>pid4cat_model:RepresentationVariant</td>
 </tr>
 <tr>
 <td>native</td>
-<td>pid4cat_model:ResourceInfo</td>
+<td>pid4cat_model:RepresentationVariant</td>
 </tr>
 </tbody>
 </table>
@@ -314,68 +300,69 @@
 <!-- TODO: investigate https://stackoverflow.com/questions/37606292/how-to-create-tabbed-code-blocks-in-mkdocs-or-sphinx -->
 <h3 id="direct">Direct</h3>
 <details>
-<pre><code class="language-yaml">name: ResourceInfo
-description: Data object to hold information about the resource and its representation.
+<pre><code class="language-yaml">name: RepresentationVariant
+description: A representation of the resource in other media types than text/html
+  which is the default for landing_page_url.
 from_schema: https://w3id.org/nfdi4cat/pid4cat-model
 slots:
-- label
-- description
-- resource_category
-- representation_variants
+- url
+- media_type
+- encoding_format
+- size
 
 </code></pre>
 </details>
 <h3 id="induced">Induced</h3>
 <details>
-<pre><code class="language-yaml">name: ResourceInfo
-description: Data object to hold information about the resource and its representation.
+<pre><code class="language-yaml">name: RepresentationVariant
+description: A representation of the resource in other media types than text/html
+  which is the default for landing_page_url.
 from_schema: https://w3id.org/nfdi4cat/pid4cat-model
 attributes:
-  label:
-    name: label
-    description: A human-readable name for a resource.
+  url:
+    name: url
+    description: The URL of the representation.
     from_schema: https://w3id.org/nfdi4cat/pid4cat-model
     rank: 1000
-    slot_uri: schema:name
-    alias: label
-    owner: ResourceInfo
+    slot_uri: schema:URL
+    alias: url
+    owner: RepresentationVariant
     domain_of:
-    - ResourceInfo
+    - RepresentationVariant
     range: string
-  description:
-    name: description
-    description: A human-readable description for a resource.
+  media_type:
+    name: media_type
+    description: The media type of the representation as defined by [IANA](https://www.iana.org/assignments/media-types/media-types.xhtml)
     from_schema: https://w3id.org/nfdi4cat/pid4cat-model
     rank: 1000
-    slot_uri: schema:description
-    alias: description
-    owner: ResourceInfo
+    slot_uri: schema:encodingFormat
+    alias: media_type
+    owner: RepresentationVariant
     domain_of:
-    - ResourceInfo
-    - LogRecord
+    - RepresentationVariant
     range: string
-  resource_category:
-    name: resource_category
-    description: The category of the resource.
+  encoding_format:
+    name: encoding_format
+    description: The encoding of the representation. https://encoding.spec.whatwg.org/#names-and-labels
     from_schema: https://w3id.org/nfdi4cat/pid4cat-model
     rank: 1000
-    slot_uri: schema:additionalType
-    alias: resource_category
-    owner: ResourceInfo
+    alias: encoding_format
+    owner: RepresentationVariant
     domain_of:
-    - ResourceInfo
-    range: ResourceCategory
-  representation_variants:
-    name: representation_variants
-    description: The representations of the resource in other media types than text/html.
+    - RepresentationVariant
+    range: string
+  size:
+    name: size
+    description: The size of the representation in bytes.
     from_schema: https://w3id.org/nfdi4cat/pid4cat-model
     rank: 1000
-    alias: representation_variants
-    owner: ResourceInfo
+    slot_uri: schema:fileSize
+    alias: size
+    owner: RepresentationVariant
     domain_of:
-    - ResourceInfo
-    range: RepresentationVariant
-    multivalued: true
+    - RepresentationVariant
+    range: integer
+    minimum_value: 0
 
 </code></pre>
 </details>
