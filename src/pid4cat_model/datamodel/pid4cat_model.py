@@ -1,9 +1,9 @@
 # Auto generated from pid4cat_model.yaml by pythongen.py version: 0.0.1
-# Generation date: 2024-02-25T23:40:32
+# Generation date: 2024-12-05T00:27:05
 # Schema: pid4cat-model
 #
 # id: https://w3id.org/nfdi4cat/pid4cat-model
-# description: A LinkML model for PIDs for resources in catalysis (PID4Cat). PID4Cat is a handle system based persistent identifier (PID) for digital or physical resources used in the catalysis research process. The handle record is used to store metadata about the PID besides the obligatory landing page URL.
+# description: A LinkML model for PIDs for resources in catalysis (PID4Cat). PID4Cat is a handle system based persistent identifier (PID) for digital or physical resources used in the catalysis research process. The handle record is used to store additional metadata about the PID besides the obligatory landing page URL.
 #   The model describes metadata for the PID itself and how to access the identified resource. It does not describe the resource itself with the exception of the resource category, which is a high-level description of what is identified by the PID4Cat handle, e.g. a sample or a device.
 # license: MIT
 
@@ -12,6 +12,7 @@ import re
 from jsonasobj2 import JsonObj, as_dict
 from typing import Optional, List, Union, Dict, ClassVar, Any
 from dataclasses import dataclass
+from datetime import date, datetime
 from linkml_runtime.linkml_model.meta import EnumDefinition, PermissibleValue, PvFormulaOptions
 
 from linkml_runtime.utils.slot import Slot
@@ -34,7 +35,7 @@ dataclasses._init_fn = dataclasses_init_fn_with_kwargs
 # Namespaces
 DCAT = CurieNamespace('DCAT', 'http://www.w3.org/ns/dcat#')
 DATACITE = CurieNamespace('DataCite', 'http://purl.org/spar/datacite/')
-DCT = CurieNamespace('dct', 'http://purl.org/dc/terms/')
+DCTERMS = CurieNamespace('dcterms', 'http://purl.org/dc/terms/')
 LINKML = CurieNamespace('linkml', 'https://w3id.org/linkml/')
 PID4CAT_MODEL = CurieNamespace('pid4cat_model', 'https://w3id.org/nfdi4cat/pid4cat-model/')
 SCHEMA = CurieNamespace('schema', 'http://schema.org/')
@@ -64,12 +65,11 @@ class PID4CatRecord(YAMLRoot):
     change_log: Union[Union[dict, "LogRecord"], List[Union[dict, "LogRecord"]]] = None
     landing_page_url: Optional[str] = None
     status: Optional[Union[str, "PID4CatStatus"]] = None
-    record_version: Optional[str] = None
     pid_schema_version: Optional[str] = None
-    dc_rights: Optional[str] = None
-    curation_contact: Optional[str] = None
+    license: Optional[str] = None
+    curation_contact_email: Optional[str] = None
     resource_info: Optional[Union[dict, "ResourceInfo"]] = None
-    related_identifiers: Optional[Union[Union[str, URIorCURIE], List[Union[str, URIorCURIE]]]] = empty_list()
+    related_identifiers: Optional[Union[Union[dict, "PID4CatRelation"], List[Union[dict, "PID4CatRelation"]]]] = empty_list()
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self._is_empty(self.id):
@@ -89,24 +89,21 @@ class PID4CatRecord(YAMLRoot):
         if self.status is not None and not isinstance(self.status, PID4CatStatus):
             self.status = PID4CatStatus(self.status)
 
-        if self.record_version is not None and not isinstance(self.record_version, str):
-            self.record_version = str(self.record_version)
-
         if self.pid_schema_version is not None and not isinstance(self.pid_schema_version, str):
             self.pid_schema_version = str(self.pid_schema_version)
 
-        if self.dc_rights is not None and not isinstance(self.dc_rights, str):
-            self.dc_rights = str(self.dc_rights)
+        if self.license is not None and not isinstance(self.license, str):
+            self.license = str(self.license)
 
-        if self.curation_contact is not None and not isinstance(self.curation_contact, str):
-            self.curation_contact = str(self.curation_contact)
+        if self.curation_contact_email is not None and not isinstance(self.curation_contact_email, str):
+            self.curation_contact_email = str(self.curation_contact_email)
 
         if self.resource_info is not None and not isinstance(self.resource_info, ResourceInfo):
             self.resource_info = ResourceInfo(**as_dict(self.resource_info))
 
         if not isinstance(self.related_identifiers, list):
             self.related_identifiers = [self.related_identifiers] if self.related_identifiers is not None else []
-        self.related_identifiers = [v if isinstance(v, URIorCURIE) else URIorCURIE(v) for v in self.related_identifiers]
+        self.related_identifiers = [v if isinstance(v, PID4CatRelation) else PID4CatRelation(**as_dict(v)) for v in self.related_identifiers]
 
         super().__post_init__(**kwargs)
 
@@ -236,8 +233,8 @@ class Agent(YAMLRoot):
     class_model_uri: ClassVar[URIRef] = PID4CAT_MODEL.Agent
 
     name: Optional[str] = None
-    contact_information: Optional[str] = None
-    person_orcid: Optional[str] = None
+    email: Optional[str] = None
+    orcid: Optional[str] = None
     affiliation_ror: Optional[str] = None
     role: Optional[Union[str, "PID4CatAgentRole"]] = None
 
@@ -245,11 +242,11 @@ class Agent(YAMLRoot):
         if self.name is not None and not isinstance(self.name, str):
             self.name = str(self.name)
 
-        if self.contact_information is not None and not isinstance(self.contact_information, str):
-            self.contact_information = str(self.contact_information)
+        if self.email is not None and not isinstance(self.email, str):
+            self.email = str(self.email)
 
-        if self.person_orcid is not None and not isinstance(self.person_orcid, str):
-            self.person_orcid = str(self.person_orcid)
+        if self.orcid is not None and not isinstance(self.orcid, str):
+            self.orcid = str(self.orcid)
 
         if self.affiliation_ror is not None and not isinstance(self.affiliation_ror, str):
             self.affiliation_ror = str(self.affiliation_ror)
@@ -287,7 +284,7 @@ class ResourceCategory(EnumDefinitionImpl):
     """
     COLLECTION = PermissibleValue(
         text="COLLECTION",
-        description="A collection is described as a group; its parts may also be separately described.",
+        description="A collection is a group of resources and/or other collections.",
         meaning=None)
     SAMPLE = PermissibleValue(
         text="SAMPLE",
@@ -298,10 +295,15 @@ class ResourceCategory(EnumDefinitionImpl):
         description="A material used in the research process (except samples).")
     DEVICE = PermissibleValue(
         text="DEVICE",
-        description="A device used in the catalysis research process.")
-    DATAOBJECT = PermissibleValue(
-        text="DATAOBJECT",
-        description="A data object might be a data file, a data set, a data collection, or a data service.")
+        description="A physical device used in the research process.")
+    DATA_OBJECT = PermissibleValue(
+        text="DATA_OBJECT",
+        description="""A collection of data available for access or download. A data set might be a data file, a data set, a data collection.""",
+        meaning=DCAT["dataset"])
+    DATA_SERVICE = PermissibleValue(
+        text="DATA_SERVICE",
+        description="""An organized system of operations that provide data processing functions or access to datasets.""",
+        meaning=DCAT["DataService"])
 
     _defn = EnumDefinition(
         name="ResourceCategory",
@@ -332,18 +334,18 @@ class RelationType(EnumDefinitionImpl):
         description="The resource continues another resource.")
     HAS_METADATA = PermissibleValue(
         text="HAS_METADATA",
-        description="The resource has metadata.")
+        description="The resource has metadata in another resource.")
     IS_METADATA_FOR = PermissibleValue(
         text="IS_METADATA_FOR",
-        description="The resource is metadata for.")
+        description="The resource is metadata for another resource.")
     HAS_VERSION = PermissibleValue(
         text="HAS_VERSION",
         description="The resource has a version.",
-        meaning=DCT["hasVersion"])
+        meaning=DCTERMS["hasVersion"])
     IS_VERSION_OF = PermissibleValue(
         text="IS_VERSION_OF",
-        description="The resource is a version of.",
-        meaning=DCT["isVersionOf"])
+        description="""The resource is a version of another resource. This is useful to refer to an abstract resource that has different versions, for example, \"Python 3.12 is a version of Python\".""",
+        meaning=DCTERMS["isVersionOf"])
     IS_NEW_VERSION_OF = PermissibleValue(
         text="IS_NEW_VERSION_OF",
         description="The resource is a new version of.")
@@ -353,11 +355,11 @@ class RelationType(EnumDefinitionImpl):
     IS_PART_OF = PermissibleValue(
         text="IS_PART_OF",
         description="The resource is part of another resource.",
-        meaning=DCT["isPartOf"])
+        meaning=DCTERMS["isPartOf"])
     HAS_PART = PermissibleValue(
         text="HAS_PART",
         description="The resource has part another resource.",
-        meaning=DCT["hasPart"])
+        meaning=DCTERMS["hasPart"])
     IS_DESCRIBED_BY = PermissibleValue(
         text="IS_DESCRIBED_BY",
         description="The resource is documented by another resource.")
@@ -370,7 +372,7 @@ class RelationType(EnumDefinitionImpl):
     IS_REFERENCED_BY = PermissibleValue(
         text="IS_REFERENCED_BY",
         description="The resource is referenced by another resource.",
-        meaning=DCT["isReferencedBy"])
+        meaning=DCTERMS["isReferencedBy"])
     REFERENCES = PermissibleValue(
         text="REFERENCES",
         description="The resource references another resource.")
@@ -410,11 +412,11 @@ class RelationType(EnumDefinitionImpl):
     IS_REQUIRED_BY = PermissibleValue(
         text="IS_REQUIRED_BY",
         description="The resource is required by another resource.",
-        meaning=DCT["isRequiredBy"])
+        meaning=DCTERMS["isRequiredBy"])
     REQUIRES = PermissibleValue(
         text="REQUIRES",
         description="The resource requires another resource.",
-        meaning=DCT["requires"])
+        meaning=DCTERMS["requires"])
     IS_OBSOLETED_BY = PermissibleValue(
         text="IS_OBSOLETED_BY",
         description="The resource or PID4Cat is obsoleted by another resource or PID4Cat.")
@@ -436,7 +438,7 @@ class PID4CatStatus(EnumDefinitionImpl):
         description="The PID4CatRecord is reserved but the resource is not yet linked.")
     REGISTERED = PermissibleValue(
         text="REGISTERED",
-        description="The PID4CatRecord links to a concrete ressource.")
+        description="The PID4CatRecord links to a concrete resource.")
     OBSOLETED = PermissibleValue(
         text="OBSOLETED",
         description="The PID4CatRecord is obsolete, e.g. because the resource is referenced by another PID4Cat.")
@@ -481,9 +483,9 @@ class ChangeLogField(EnumDefinitionImpl):
     CONTACT = PermissibleValue(
         text="CONTACT",
         description="The contact information of the PID4CatRecord was changed.")
-    RIGHTS = PermissibleValue(
-        text="RIGHTS",
-        description="The rights of the PID4CatRecord were changed.")
+    LICENSE = PermissibleValue(
+        text="LICENSE",
+        description="The license of the PID4CatRecord was changed.")
 
     _defn = EnumDefinition(
         name="ChangeLogField",
@@ -506,20 +508,17 @@ slots.status = Slot(uri=PID4CAT_MODEL.status, name="status", curie=PID4CAT_MODEL
 slots.pid_schema_version = Slot(uri=SCHEMA.identifier, name="pid_schema_version", curie=SCHEMA.curie('identifier'),
                    model_uri=PID4CAT_MODEL.pid_schema_version, domain=None, range=Optional[str])
 
-slots.record_version = Slot(uri=SCHEMA.identifier, name="record_version", curie=SCHEMA.curie('identifier'),
-                   model_uri=PID4CAT_MODEL.record_version, domain=None, range=Optional[str])
-
 slots.resource_info = Slot(uri=PID4CAT_MODEL.resource_info, name="resource_info", curie=PID4CAT_MODEL.curie('resource_info'),
                    model_uri=PID4CAT_MODEL.resource_info, domain=None, range=Optional[Union[dict, ResourceInfo]])
 
 slots.related_identifiers = Slot(uri=SCHEMA.identifier, name="related_identifiers", curie=SCHEMA.curie('identifier'),
-                   model_uri=PID4CAT_MODEL.related_identifiers, domain=None, range=Optional[Union[Union[str, URIorCURIE], List[Union[str, URIorCURIE]]]])
+                   model_uri=PID4CAT_MODEL.related_identifiers, domain=None, range=Optional[Union[Union[dict, PID4CatRelation], List[Union[dict, PID4CatRelation]]]])
 
-slots.dc_rights = Slot(uri=SCHEMA.license, name="dc_rights", curie=SCHEMA.curie('license'),
-                   model_uri=PID4CAT_MODEL.dc_rights, domain=None, range=Optional[str])
+slots.license = Slot(uri=SCHEMA.license, name="license", curie=SCHEMA.curie('license'),
+                   model_uri=PID4CAT_MODEL.license, domain=None, range=Optional[str])
 
-slots.curation_contact = Slot(uri=SCHEMA.email, name="curation_contact", curie=SCHEMA.curie('email'),
-                   model_uri=PID4CAT_MODEL.curation_contact, domain=None, range=Optional[str])
+slots.curation_contact_email = Slot(uri=SCHEMA.email, name="curation_contact_email", curie=SCHEMA.curie('email'),
+                   model_uri=PID4CAT_MODEL.curation_contact_email, domain=None, range=Optional[str])
 
 slots.change_log = Slot(uri=SCHEMA.identifier, name="change_log", curie=SCHEMA.curie('identifier'),
                    model_uri=PID4CAT_MODEL.change_log, domain=None, range=Union[Union[dict, LogRecord], List[Union[dict, LogRecord]]])
@@ -563,11 +562,11 @@ slots.changed_field = Slot(uri=SCHEMA.identifier, name="changed_field", curie=SC
 slots.name = Slot(uri=SCHEMA.name, name="name", curie=SCHEMA.curie('name'),
                    model_uri=PID4CAT_MODEL.name, domain=None, range=Optional[str])
 
-slots.contact_information = Slot(uri=SCHEMA.email, name="contact_information", curie=SCHEMA.curie('email'),
-                   model_uri=PID4CAT_MODEL.contact_information, domain=None, range=Optional[str])
+slots.email = Slot(uri=SCHEMA.email, name="email", curie=SCHEMA.curie('email'),
+                   model_uri=PID4CAT_MODEL.email, domain=None, range=Optional[str])
 
-slots.person_orcid = Slot(uri=SCHEMA.identifier, name="person_orcid", curie=SCHEMA.curie('identifier'),
-                   model_uri=PID4CAT_MODEL.person_orcid, domain=None, range=Optional[str])
+slots.orcid = Slot(uri=SCHEMA.identifier, name="orcid", curie=SCHEMA.curie('identifier'),
+                   model_uri=PID4CAT_MODEL.orcid, domain=None, range=Optional[str])
 
 slots.affiliation_ror = Slot(uri=SCHEMA.identifier, name="affiliation_ror", curie=SCHEMA.curie('identifier'),
                    model_uri=PID4CAT_MODEL.affiliation_ror, domain=None, range=Optional[str])
@@ -578,6 +577,10 @@ slots.role = Slot(uri=SCHEMA.identifier, name="role", curie=SCHEMA.curie('identi
 slots.container__contains_pids = Slot(uri=PID4CAT_MODEL.contains_pids, name="container__contains_pids", curie=PID4CAT_MODEL.curie('contains_pids'),
                    model_uri=PID4CAT_MODEL.container__contains_pids, domain=None, range=Optional[Union[Dict[Union[str, PID4CatRecordId], Union[dict, PID4CatRecord]], List[Union[dict, PID4CatRecord]]]])
 
-slots.PID4CatRecord_curation_contact = Slot(uri=SCHEMA.email, name="PID4CatRecord_curation_contact", curie=SCHEMA.curie('email'),
-                   model_uri=PID4CAT_MODEL.PID4CatRecord_curation_contact, domain=PID4CatRecord, range=Optional[str],
+slots.PID4CatRecord_curation_contact_email = Slot(uri=SCHEMA.email, name="PID4CatRecord_curation_contact_email", curie=SCHEMA.curie('email'),
+                   model_uri=PID4CAT_MODEL.PID4CatRecord_curation_contact_email, domain=PID4CatRecord, range=Optional[str],
+                   pattern=re.compile(r'^\S+@[\S+\.]+\S+'))
+
+slots.Agent_email = Slot(uri=SCHEMA.email, name="Agent_email", curie=SCHEMA.curie('email'),
+                   model_uri=PID4CAT_MODEL.Agent_email, domain=Agent, range=Optional[str],
                    pattern=re.compile(r'^\S+@[\S+\.]+\S+'))
