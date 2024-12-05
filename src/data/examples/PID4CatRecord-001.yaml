@@ -9,10 +9,11 @@ contains_pids:
     label: Resource label
     description: Resource description
     resource_category: SAMPLE
-    rdf_url: https://example.org/resource
-    rdf_type: TURTLE
-    schema_url: https://example.org/schema
-    schema_type: XSD
+    representation_variants:
+    - url: https://example.org/resource
+      media_type: text/turtle
+      encoding_format: UTF-8
+      size: 12345
   license: CC0-1.0
   curation_contact_email: datafuzzi@example.org
   change_log:
