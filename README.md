@@ -3,7 +3,7 @@
 
 # PID4cat model
 
-> Status: alpha - This is in early development and may change.
+> Status: beta - This is in development and may still change.
 > We are interested in feedback of potential users.
 > Please use [issues](https://github.com/nfdi4cat/pid4cat-model/issues) for your comments, questions or ideas!
 
@@ -16,7 +16,7 @@ A LinkML model for handle-based PIDs for resources in catalysis.
 
 ## Repository Structure
 
-- [examples/](examples/) - example data
+- [examples/](examples/) - example data & python scripts
 - [project/](project/) - project files (do not edit these)
 - [src/](src/) - source files (edit these)
   - [pid4cat_model](src/pid4cat_model)
