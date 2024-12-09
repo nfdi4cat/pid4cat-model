@@ -1,0 +1,74 @@
+{
+  "id": "lik-1",
+  "landing_page_url": "https://pid4cat.example.org/lik-1",
+  "status": "REGISTERED",
+  "pid_schema_version": "0.1.0",
+  "license": "CC0-1.0",
+  "curation_contact_email": "datafuzzi@example.org",
+  "resource_info": {
+    "label": "Resource label",
+    "description": "Resource description",
+    "resource_category": "SAMPLE",
+    "representation_variants": [
+      {
+        "url": "https://example.org/resource",
+        "media_type": "text/turtle",
+        "encoding_format": "UTF-8",
+        "size": 12345
+      }
+    ]
+  },
+  "related_identifiers": [
+    {
+      "relation_type": "IS_PART_OF",
+      "related_identifier": "https://example.org/related",
+      "datetime_log": "2024-02-19T00:00:00Z",
+      "has_agent": {
+        "name": "Data Fuzzi",
+        "email": "data.fuzzi@example.org",
+        "orcid": "0000-0000-0000-0000",
+        "affiliation_ror": "https://ror.org/01abcde",
+        "role": "TRUSTEE"
+      }
+    },
+    {
+      "relation_type": "IS_REFERENCED_BY",
+      "related_identifier": "https://example.org/referenced",
+      "datetime_log": "2024-02-19T00:00:00Z",
+      "has_agent": {
+        "name": "Data Fuzzi",
+        "email": "data.fuzzi@example.org",
+        "orcid": "0000-0000-0000-0000",
+        "affiliation_ror": "https://ror.org/01abcde",
+        "role": "TRUSTEE"
+      }
+    }
+  ],
+  "change_log": [
+    {
+      "datetime_log": "2024-02-19T00:00:00Z",
+      "has_agent": {
+        "name": "Data Fuzzi",
+        "email": "data.fuzzi@example.org",
+        "orcid": "0000-0000-0000-0000",
+        "affiliation_ror": "https://ror.org/01abcde",
+        "role": "TRUSTEE"
+      },
+      "changed_field": "STATUS",
+      "description": "Registration completed."
+    },
+    {
+      "datetime_log": "2024-05-15T15:51:15Z",
+      "has_agent": {
+        "name": "Data Fuzzi",
+        "email": "data.fuzzi@example.org",
+        "orcid": "0000-0000-0000-0000",
+        "affiliation_ror": "https://ror.org/01abcde",
+        "role": "TRUSTEE"
+      },
+      "changed_field": "RESOURCE_INFO",
+      "description": "as requested in issue #234"
+    }
+  ],
+  "@type": "dict"
+}
