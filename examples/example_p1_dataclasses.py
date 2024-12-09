@@ -14,15 +14,13 @@ p1_Agent = p4c.Agent(
 p1_related = [
     p4c.PID4CatRelation(
         relation_type=p4c.RelationType.IS_PART_OF,
-        related_identifier="https://example.org/related",
+        related_identifier="https://example.org/collection",
         datetime_log="2024-02-19T00:00:00Z",
-        has_agent=p1_Agent,
     ),
     p4c.PID4CatRelation(
         relation_type=p4c.RelationType.IS_REFERENCED_BY,
         related_identifier="https://example.org/referenced",
         datetime_log="2024-02-19T00:00:00Z",
-        has_agent=p1_Agent,
     ),
 ]
 
@@ -61,6 +59,7 @@ p1_log = [
 p1 = p4c.PID4CatRecord(
     id="lik-1",
     landing_page_url="https://pid4cat.example.org/lik-1",
+    status=p4c.PID4CatStatus.REGISTERED,
     pid_schema_version="0.1.0",
     license="CC0-1.0",
     curation_contact_email="datafuzzi@example.org",

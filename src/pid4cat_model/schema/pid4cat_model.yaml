@@ -12,10 +12,11 @@ description: >-
   identified resource. It does not describe the resource itself with the
   exception of the resource category, which is a high-level description of
   what is identified by the PID4Cat handle, e.g. a sample or a device.
+
 todos:
   - Refine slots in slot_usage of class instead of globally in slot definitions
   - Check and add mappings to other ontologies. (classes, slots, enums)
-  - Add Enums for rdf_type, schema_type
+  - Add ranges (types information) to slots
 
 license: MIT
 see_also:
@@ -64,7 +65,6 @@ classes:
       - relation_type
       - related_identifier
       - datetime_log
-      - has_agent
 
   ResourceInfo:
     description: >-
@@ -170,10 +170,6 @@ slots:
   datetime_log:
     slot_uri: schema:DateTime
     description: The date and time of a log record.
-  has_agent:
-    slot_uri: schema:Agent
-    range: Agent
-    description: The person who registered the resource.
 
   # Slots for ResourceInfo
   label:
@@ -198,6 +194,10 @@ slots:
     slot_uri: schema:identifier
     range: ChangeLogField
     description: The field that was changed
+  has_agent:
+    slot_uri: schema:Agent
+    range: Agent
+    description: The person who registered or modified the PID record.
 
   # Slots for Agent
   name:
@@ -389,6 +389,8 @@ enums:  # Enumerations use singular form for names
     permissible_values:
       STATUS:
         description: The status of the PID4CatRecord was changed.
+      LANDING_PAGE:
+        description: The URL of the landing page in the PID4CatRecord was changed.
       RESOURCE_INFO:
         description: The resource info of the PID4CatRecord was changed.
       RELATED_IDS:

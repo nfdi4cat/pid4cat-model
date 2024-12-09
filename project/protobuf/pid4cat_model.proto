@@ -42,7 +42,6 @@ message PID4CatRelation
   relationType relationType = 0
   string relatedIdentifier = 0
   string datetimeLog = 0
-  agent hasAgent = 0
  }
 // A representation of the resource in other media types than text/html which is the default for landing_page_url.
 message RepresentationVariant

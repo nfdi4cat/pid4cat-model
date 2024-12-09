@@ -33,6 +33,7 @@
             "description": "The field of the PID4Catrecord that was changed.",
             "enum": [
                 "STATUS",
+                "LANDING_PAGE",
                 "RESOURCE_INFO",
                 "RELATED_IDS",
                 "CONTACT",
@@ -74,7 +75,7 @@
                 },
                 "has_agent": {
                     "$ref": "#/$defs/Agent",
-                    "description": "The person who registered the resource."
+                    "description": "The person who registered or modified the PID record."
                 }
             },
             "title": "LogRecord",
@@ -151,10 +152,6 @@
                 "datetime_log": {
                     "description": "The date and time of a log record.",
                     "type": "string"
-                },
-                "has_agent": {
-                    "$ref": "#/$defs/Agent",
-                    "description": "The person who registered the resource."
                 },
                 "related_identifier": {
                     "description": "Related identifiers for the resource.",

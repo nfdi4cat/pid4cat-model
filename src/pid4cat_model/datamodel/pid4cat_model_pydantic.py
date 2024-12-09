@@ -168,6 +168,8 @@ class ChangeLogField(str, Enum):
     """
     # The status of the PID4CatRecord was changed.
     STATUS = "STATUS"
+    # The URL of the landing page in the PID4CatRecord was changed.
+    LANDING_PAGE = "LANDING_PAGE"
     # The resource info of the PID4CatRecord was changed.
     RESOURCE_INFO = "RESOURCE_INFO"
     # The related identifiers of the PID4CatRecord were changed.
@@ -212,7 +214,6 @@ class PID4CatRelation(ConfiguredBaseModel):
     relation_type: Optional[RelationType] = Field(None, description="""Relation type between the resources.""")
     related_identifier: Optional[str] = Field(None, description="""Related identifiers for the resource.""")
     datetime_log: Optional[str] = Field(None, description="""The date and time of a log record.""")
-    has_agent: Optional[Agent] = Field(None, description="""The person who registered the resource.""")
 
 
 class ResourceInfo(ConfiguredBaseModel):
@@ -230,7 +231,7 @@ class LogRecord(ConfiguredBaseModel):
     A log record for changes made on a PID4CatRecord starting from registration.
     """
     datetime_log: Optional[str] = Field(None, description="""The date and time of a log record.""")
-    has_agent: Optional[Agent] = Field(None, description="""The person who registered the resource.""")
+    has_agent: Optional[Agent] = Field(None, description="""The person who registered or modified the PID record.""")
     changed_field: Optional[ChangeLogField] = Field(None, description="""The field that was changed""")
     description: Optional[str] = Field(None, description="""A human-readable description for a resource.""")
 
