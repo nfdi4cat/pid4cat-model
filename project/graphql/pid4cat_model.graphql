@@ -39,7 +39,6 @@ type PID4CatRelation
     relationType: RelationType
     relatedIdentifier: String
     datetimeLog: String
-    hasAgent: Agent
   }
 
 type RepresentationVariant

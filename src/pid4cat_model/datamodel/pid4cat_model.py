@@ -1,5 +1,5 @@
 # Auto generated from pid4cat_model.yaml by pythongen.py version: 0.0.1
-# Generation date: 2024-12-09T13:45:37
+# Generation date: 2024-12-09T20:21:32
 # Schema: pid4cat-model
 #
 # id: https://w3id.org/nfdi4cat/pid4cat-model
@@ -123,7 +123,6 @@ class PID4CatRelation(YAMLRoot):
     relation_type: Optional[Union[str, "RelationType"]] = None
     related_identifier: Optional[str] = None
     datetime_log: Optional[str] = None
-    has_agent: Optional[Union[dict, "Agent"]] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self.relation_type is not None and not isinstance(self.relation_type, RelationType):
@@ -134,9 +133,6 @@ class PID4CatRelation(YAMLRoot):
 
         if self.datetime_log is not None and not isinstance(self.datetime_log, str):
             self.datetime_log = str(self.datetime_log)
-
-        if self.has_agent is not None and not isinstance(self.has_agent, Agent):
-            self.has_agent = Agent(**as_dict(self.has_agent))
 
         super().__post_init__(**kwargs)
 
@@ -495,6 +491,9 @@ class ChangeLogField(EnumDefinitionImpl):
     STATUS = PermissibleValue(
         text="STATUS",
         description="The status of the PID4CatRecord was changed.")
+    LANDING_PAGE = PermissibleValue(
+        text="LANDING_PAGE",
+        description="The URL of the landing page in the PID4CatRecord was changed.")
     RESOURCE_INFO = PermissibleValue(
         text="RESOURCE_INFO",
         description="The resource info of the PID4CatRecord was changed.")
@@ -553,9 +552,6 @@ slots.related_identifier = Slot(uri=SCHEMA.identifier, name="related_identifier"
 slots.datetime_log = Slot(uri=SCHEMA.DateTime, name="datetime_log", curie=SCHEMA.curie('DateTime'),
                    model_uri=PID4CAT_MODEL.datetime_log, domain=None, range=Optional[str])
 
-slots.has_agent = Slot(uri=SCHEMA.Agent, name="has_agent", curie=SCHEMA.curie('Agent'),
-                   model_uri=PID4CAT_MODEL.has_agent, domain=None, range=Optional[Union[dict, Agent]])
-
 slots.label = Slot(uri=SCHEMA.name, name="label", curie=SCHEMA.curie('name'),
                    model_uri=PID4CAT_MODEL.label, domain=None, range=Optional[str])
 
@@ -570,6 +566,9 @@ slots.representation_variants = Slot(uri=PID4CAT_MODEL.representation_variants, 
 
 slots.changed_field = Slot(uri=SCHEMA.identifier, name="changed_field", curie=SCHEMA.curie('identifier'),
                    model_uri=PID4CAT_MODEL.changed_field, domain=None, range=Optional[Union[str, "ChangeLogField"]])
+
+slots.has_agent = Slot(uri=SCHEMA.Agent, name="has_agent", curie=SCHEMA.curie('Agent'),
+                   model_uri=PID4CAT_MODEL.has_agent, domain=None, range=Optional[Union[dict, Agent]])
 
 slots.name = Slot(uri=SCHEMA.name, name="name", curie=SCHEMA.curie('name'),
                    model_uri=PID4CAT_MODEL.name, domain=None, range=Optional[str])

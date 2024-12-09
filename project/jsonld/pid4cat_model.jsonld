@@ -5,7 +5,7 @@
   "todos": [
     "Refine slots in slot_usage of class instead of globally in slot definitions",
     "Check and add mappings to other ontologies. (classes, slots, enums)",
-    "Add Enums for rdf_type, schema_type"
+    "Add ranges (types information) to slots"
   ],
   "see_also": [
     "https://nfdi4cat.github.io/pid4cat-model"
@@ -598,6 +598,10 @@
           "description": "The status of the PID4CatRecord was changed."
         },
         {
+          "text": "LANDING_PAGE",
+          "description": "The URL of the landing page in the PID4CatRecord was changed."
+        },
+        {
           "text": "RESOURCE_INFO",
           "description": "The resource info of the PID4CatRecord was changed."
         },
@@ -814,24 +818,6 @@
       "@type": "SlotDefinition"
     },
     {
-      "name": "has_agent",
-      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/has_agent",
-      "description": "The person who registered the resource.",
-      "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
-      "mappings": [
-        "http://schema.org/Agent"
-      ],
-      "slot_uri": "http://schema.org/Agent",
-      "owner": "LogRecord",
-      "domain_of": [
-        "PID4CatRelation",
-        "LogRecord"
-      ],
-      "range": "Agent",
-      "inlined": true,
-      "@type": "SlotDefinition"
-    },
-    {
       "name": "label",
       "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/label",
       "description": "A human-readable name for a resource.",
@@ -909,6 +895,23 @@
         "LogRecord"
       ],
       "range": "ChangeLogField",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "has_agent",
+      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/has_agent",
+      "description": "The person who registered or modified the PID record.",
+      "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
+      "mappings": [
+        "http://schema.org/Agent"
+      ],
+      "slot_uri": "http://schema.org/Agent",
+      "owner": "LogRecord",
+      "domain_of": [
+        "LogRecord"
+      ],
+      "range": "Agent",
+      "inlined": true,
       "@type": "SlotDefinition"
     },
     {
@@ -1143,8 +1146,7 @@
       "slots": [
         "relation_type",
         "related_identifier",
-        "datetime_log",
-        "has_agent"
+        "datetime_log"
       ],
       "slot_usage": {},
       "class_uri": "https://w3id.org/nfdi4cat/pid4cat-model/PID4CatRelation",
@@ -1237,9 +1239,9 @@
   ],
   "metamodel_version": "1.7.0",
   "source_file": "pid4cat_model.yaml",
-  "source_file_date": "2024-12-09T13:45:04",
-  "source_file_size": 13326,
-  "generation_date": "2024-12-09T13:45:36",
+  "source_file_date": "2024-12-09T20:21:12",
+  "source_file_size": 13430,
+  "generation_date": "2024-12-09T20:21:31",
   "@type": "SchemaDefinition",
   "@context": [
     "project/jsonld/pid4cat_model.context.jsonld",

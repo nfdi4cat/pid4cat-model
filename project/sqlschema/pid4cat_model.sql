@@ -12,7 +12,6 @@
 --     * Slot: relation_type Description: Relation type between the resources.
 --     * Slot: related_identifier Description: Related identifiers for the resource.
 --     * Slot: datetime_log Description: The date and time of a log record.
---     * Slot: has_agent_id Description: The person who registered the resource.
 -- # Class: "ResourceInfo" Description: "Data object to hold information about the resource and its representation."
 --     * Slot: id Description: 
 --     * Slot: label Description: A human-readable name for a resource.
@@ -23,7 +22,7 @@
 --     * Slot: datetime_log Description: The date and time of a log record.
 --     * Slot: changed_field Description: The field that was changed
 --     * Slot: description Description: A human-readable description for a resource.
---     * Slot: has_agent_id Description: The person who registered the resource.
+--     * Slot: has_agent_id Description: The person who registered or modified the PID record.
 -- # Class: "Agent" Description: "Person who plays a role relative to PID creation or curation."
 --     * Slot: id Description: 
 --     * Slot: name Description: The name of the agent that created or modified the PID record.
@@ -49,6 +48,13 @@
 --     * Slot: ResourceInfo_id Description: Autocreated FK slot
 --     * Slot: representation_variants_id Description: The representations of the resource in other media types than text/html.
 
+CREATE TABLE "PID4CatRelation" (
+	id INTEGER NOT NULL, 
+	relation_type VARCHAR(22), 
+	related_identifier TEXT, 
+	datetime_log TEXT, 
+	PRIMARY KEY (id)
+);
 CREATE TABLE "ResourceInfo" (
 	id INTEGER NOT NULL, 
 	label TEXT, 
@@ -89,15 +95,6 @@ CREATE TABLE "PID4CatRecord" (
 	PRIMARY KEY (id), 
 	FOREIGN KEY("Container_id") REFERENCES "Container" (id), 
 	FOREIGN KEY(resource_info_id) REFERENCES "ResourceInfo" (id)
-);
-CREATE TABLE "PID4CatRelation" (
-	id INTEGER NOT NULL, 
-	relation_type VARCHAR(22), 
-	related_identifier TEXT, 
-	datetime_log TEXT, 
-	has_agent_id INTEGER, 
-	PRIMARY KEY (id), 
-	FOREIGN KEY(has_agent_id) REFERENCES "Agent" (id)
 );
 CREATE TABLE "LogRecord" (
 	id INTEGER NOT NULL, 
