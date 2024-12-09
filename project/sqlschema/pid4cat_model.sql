@@ -9,6 +9,7 @@
 --     * Slot: resource_info_id Description: Information about the resource.
 -- # Class: "PID4CatRelation" Description: "A relation between PID4CatRecords or between a PID4CatRecord and other resources with a PID."
 --     * Slot: id Description: 
+--     * Slot: relation_type Description: Relation type between the resources.
 --     * Slot: related_identifier Description: Related identifiers for the resource.
 --     * Slot: datetime_log Description: The date and time of a log record.
 --     * Slot: has_agent_id Description: The person who registered the resource.
@@ -44,9 +45,6 @@
 -- # Class: "PID4CatRecord_change_log" Description: ""
 --     * Slot: PID4CatRecord_id Description: Autocreated FK slot
 --     * Slot: change_log_id Description: Change log of PID4Cat record.
--- # Class: "PID4CatRelation_relation_type" Description: ""
---     * Slot: PID4CatRelation_id Description: Autocreated FK slot
---     * Slot: relation_type Description: Relation type between the resources.
 -- # Class: "ResourceInfo_representation_variants" Description: ""
 --     * Slot: ResourceInfo_id Description: Autocreated FK slot
 --     * Slot: representation_variants_id Description: The representations of the resource in other media types than text/html.
@@ -94,6 +92,7 @@ CREATE TABLE "PID4CatRecord" (
 );
 CREATE TABLE "PID4CatRelation" (
 	id INTEGER NOT NULL, 
+	relation_type VARCHAR(22), 
 	related_identifier TEXT, 
 	datetime_log TEXT, 
 	has_agent_id INTEGER, 
@@ -129,10 +128,4 @@ CREATE TABLE "PID4CatRecord_change_log" (
 	PRIMARY KEY ("PID4CatRecord_id", change_log_id), 
 	FOREIGN KEY("PID4CatRecord_id") REFERENCES "PID4CatRecord" (id), 
 	FOREIGN KEY(change_log_id) REFERENCES "LogRecord" (id)
-);
-CREATE TABLE "PID4CatRelation_relation_type" (
-	"PID4CatRelation_id" INTEGER, 
-	relation_type VARCHAR(22), 
-	PRIMARY KEY ("PID4CatRelation_id", relation_type), 
-	FOREIGN KEY("PID4CatRelation_id") REFERENCES "PID4CatRelation" (id)
 );

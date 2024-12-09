@@ -163,7 +163,6 @@ slots:
   relation_type:
     slot_uri: schema:identifier
     range: RelationType
-    multivalued: true
     description: Relation type between the resources.
   related_identifier:
     slot_uri: schema:identifier

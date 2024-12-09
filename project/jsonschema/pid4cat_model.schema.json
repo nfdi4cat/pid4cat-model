@@ -161,11 +161,8 @@
                     "type": "string"
                 },
                 "relation_type": {
-                    "description": "Relation type between the resources.",
-                    "items": {
-                        "$ref": "#/$defs/RelationType"
-                    },
-                    "type": "array"
+                    "$ref": "#/$defs/RelationType",
+                    "description": "Relation type between the resources."
                 }
             },
             "title": "PID4CatRelation",

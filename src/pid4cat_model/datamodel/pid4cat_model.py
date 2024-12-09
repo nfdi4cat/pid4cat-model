@@ -1,5 +1,5 @@
 # Auto generated from pid4cat_model.yaml by pythongen.py version: 0.0.1
-# Generation date: 2024-12-05T19:20:02
+# Generation date: 2024-12-09T13:45:37
 # Schema: pid4cat-model
 #
 # id: https://w3id.org/nfdi4cat/pid4cat-model
@@ -120,15 +120,14 @@ class PID4CatRelation(YAMLRoot):
     class_name: ClassVar[str] = "PID4CatRelation"
     class_model_uri: ClassVar[URIRef] = PID4CAT_MODEL.PID4CatRelation
 
-    relation_type: Optional[Union[Union[str, "RelationType"], List[Union[str, "RelationType"]]]] = empty_list()
+    relation_type: Optional[Union[str, "RelationType"]] = None
     related_identifier: Optional[str] = None
     datetime_log: Optional[str] = None
     has_agent: Optional[Union[dict, "Agent"]] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if not isinstance(self.relation_type, list):
-            self.relation_type = [self.relation_type] if self.relation_type is not None else []
-        self.relation_type = [v if isinstance(v, RelationType) else RelationType(v) for v in self.relation_type]
+        if self.relation_type is not None and not isinstance(self.relation_type, RelationType):
+            self.relation_type = RelationType(self.relation_type)
 
         if self.related_identifier is not None and not isinstance(self.related_identifier, str):
             self.related_identifier = str(self.related_identifier)
@@ -546,7 +545,7 @@ slots.change_log = Slot(uri=SCHEMA.identifier, name="change_log", curie=SCHEMA.c
                    model_uri=PID4CAT_MODEL.change_log, domain=None, range=Union[Union[dict, LogRecord], List[Union[dict, LogRecord]]])
 
 slots.relation_type = Slot(uri=SCHEMA.identifier, name="relation_type", curie=SCHEMA.curie('identifier'),
-                   model_uri=PID4CAT_MODEL.relation_type, domain=None, range=Optional[Union[Union[str, "RelationType"], List[Union[str, "RelationType"]]]])
+                   model_uri=PID4CAT_MODEL.relation_type, domain=None, range=Optional[Union[str, "RelationType"]])
 
 slots.related_identifier = Slot(uri=SCHEMA.identifier, name="related_identifier", curie=SCHEMA.curie('identifier'),
                    model_uri=PID4CAT_MODEL.related_identifier, domain=None, range=Optional[str])
