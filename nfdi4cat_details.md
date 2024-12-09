@@ -103,20 +103,31 @@ The LICENSE specifies the licence for the metadata in the PID-record.
 It will be fixed to CC0-1.0 in the NFDICat service to facilitate reuse.
 
 Since PID4Cat is a linkML-model we have all tools at hand to create records or an API.
-For example, we can use the pydantic-model created from the PID4cat schema to create the json-objects for the PID record above, for example the *resource_info* json-object:
+
+The folder `examples` has a full example of creating a model instance from Python and
+how the relsulting `json` looks like; the example uses all key elements of the model (all classes and slots).
+
+Below you you can see a basic example, of using the pydantic-model created from the PID4cat schema to create a json-objects for PID records (code in `nfdi4cat_details_ex.py`):
 
 ```python
 from linkml_runtime.dumpers import json_dumper
 from pid4cat_model.datamodel import pid4cat_model_pydantic as p4c
 
+p1_repr_variants = [
+    p4c.RepresentationVariant(
+        url="https://example.org/resource",
+        media_type="text/turtle",
+        encoding_format="UTF-8",
+        size=12345,
+    ),
+    # could be more than one representation variant
+]
+
 pid1_resource_info = p4c.ResourceInfo(
     label="Resource label",
     description="Resource description",
     resource_category=p4c.ResourceCategory.SAMPLE,
-    rdf_url="https://example.org/resource/pid1",
-    rdf_type="TURTLE",
-    schema_url="https://example.org/resource_schema",
-    schema_type="XSD",
+    representation_variants=p1_repr_variants,
 )
 
 print(json_dumper.dumps(pid1_resource_info, inject_type=False))
@@ -126,13 +137,17 @@ which will print the json-object to be stored under index 7 in the handle-record
 
 ```json
 {                                            
-  "label": "Resource label",                 
-  "description": "Resource description",     
-  "resource_category": "SAMPLE",             
-  "rdf_url": "https://example.org/resource", 
-  "rdf_type": "TURTLE",                      
-  "schema_url": "https://example.org/schema",
-  "schema_type": "XSD"                       
+  "label": "Resource label",
+  "description": "Resource description",
+  "resource_category": "SAMPLE",
+  "representation_variants": [
+    {
+      "url": "https://example.org/resource",
+      "media_type": "text/turtle",
+      "encoding_format": "UTF-8",
+      "size": 12345
+    }
+  ]
 }                                            
 ```
 The pydantic model can also be used to create web APIs with other Python-based tools like django-ninja or fastapi.
