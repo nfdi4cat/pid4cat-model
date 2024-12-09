@@ -36,7 +36,7 @@ type PID4CatRecord
 
 type PID4CatRelation
   {
-    relationType: [RelationType]
+    relationType: RelationType
     relatedIdentifier: String
     datetimeLog: String
     hasAgent: Agent

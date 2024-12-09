@@ -124,7 +124,7 @@ linkml:Sparqlpath xsd:string
              <https://w3id.org/nfdi4cat/pid4cat-model/RelationType#IS_COLLECTED_BY>
              <https://w3id.org/nfdi4cat/pid4cat-model/RelationType#COLLECTS> dcterms:isRequiredBy dcterms:requires
              <https://w3id.org/nfdi4cat/pid4cat-model/RelationType#IS_OBSOLETED_BY>
-             <https://w3id.org/nfdi4cat/pid4cat-model/RelationType#OBSOLETES> ] * ;
+             <https://w3id.org/nfdi4cat/pid4cat-model/RelationType#OBSOLETES> ] ? ;
           schema1:identifier @linkml:String ? ;
           schema1:DateTime @linkml:String ? ;
           schema1:Agent @<Agent> ?

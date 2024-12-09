@@ -209,7 +209,7 @@ class PID4CatRelation(ConfiguredBaseModel):
     """
     A relation between PID4CatRecords or between a PID4CatRecord and other resources with a PID.
     """
-    relation_type: Optional[List[RelationType]] = Field(default_factory=list, description="""Relation type between the resources.""")
+    relation_type: Optional[RelationType] = Field(None, description="""Relation type between the resources.""")
     related_identifier: Optional[str] = Field(None, description="""Related identifiers for the resource.""")
     datetime_log: Optional[str] = Field(None, description="""The date and time of a log record.""")
     has_agent: Optional[Agent] = Field(None, description="""The person who registered the resource.""")

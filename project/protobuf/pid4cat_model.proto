@@ -39,7 +39,7 @@ message PID4CatRecord
 // A relation between PID4CatRecords or between a PID4CatRecord and other resources with a PID.
 message PID4CatRelation
  {
- repeated  relationType relationType = 0
+  relationType relationType = 0
   string relatedIdentifier = 0
   string datetimeLog = 0
   agent hasAgent = 0
