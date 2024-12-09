@@ -207,15 +207,6 @@
     click PID4CatRelation href "../PID4CatRelation"
       PID4CatRelation : datetime_log
 
-      PID4CatRelation : has_agent
-
-
-
-
-    PID4CatRelation --&gt; "0..1" Agent : has_agent
-    click Agent href "../Agent"
-
-
       PID4CatRelation : related_identifier
 
       PID4CatRelation : relation_type
@@ -223,7 +214,7 @@
 
 
 
-    PID4CatRelation --&gt; "*" RelationType : relation_type
+    PID4CatRelation --&gt; "0..1" RelationType : relation_type
     click RelationType href "../RelationType"
 
 
@@ -243,7 +234,7 @@
 <tbody>
 <tr>
 <td><a href="../relation_type/">relation_type</a></td>
-<td>* <br/> <a href="../RelationType/">RelationType</a></td>
+<td>0..1 <br/> <a href="../RelationType/">RelationType</a></td>
 <td>Relation type between the resources</td>
 <td>direct</td>
 </tr>
@@ -257,12 +248,6 @@
 <td><a href="../datetime_log/">datetime_log</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>The date and time of a log record</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../has_agent/">has_agent</a></td>
-<td>0..1 <br/> <a href="../Agent/">Agent</a></td>
-<td>The person who registered the resource</td>
 <td>direct</td>
 </tr>
 </tbody>
@@ -322,7 +307,6 @@ slots:
 - relation_type
 - related_identifier
 - datetime_log
-- has_agent
 
 </code></pre>
 </details>
@@ -344,7 +328,6 @@ attributes:
     domain_of:
     - PID4CatRelation
     range: RelationType
-    multivalued: true
   related_identifier:
     name: related_identifier
     description: Related identifiers for the resource.
@@ -368,18 +351,6 @@ attributes:
     - PID4CatRelation
     - LogRecord
     range: string
-  has_agent:
-    name: has_agent
-    description: The person who registered the resource.
-    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
-    rank: 1000
-    slot_uri: schema:Agent
-    alias: has_agent
-    owner: PID4CatRelation
-    domain_of:
-    - PID4CatRelation
-    - LogRecord
-    range: Agent
 
 </code></pre>
 </details>

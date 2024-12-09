@@ -324,7 +324,7 @@
 
 
 <h1 id="slot-has_agent">Slot: has_agent</h1>
-<p><em>The person who registered the resource.</em></p>
+<p><em>The person who registered or modified the PID record.</em></p>
 <p>URI: <a href="http://schema.org/Agent">schema:Agent</a></p>
 <!-- no inheritance hierarchy -->
 
@@ -341,11 +341,6 @@
 <tr>
 <td><a href="../LogRecord/">LogRecord</a></td>
 <td>A log record for changes made on a PID4CatRecord starting from registration</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../PID4CatRelation/">PID4CatRelation</a></td>
-<td>A relation between PID4CatRecords or between a PID4CatRecord and other resour...</td>
 <td>no</td>
 </tr>
 </tbody>
@@ -382,13 +377,12 @@
 <details>
 
 <pre><code class="language-yaml">name: has_agent
-description: The person who registered the resource.
+description: The person who registered or modified the PID record.
 from_schema: https://w3id.org/nfdi4cat/pid4cat-model
 rank: 1000
 slot_uri: schema:Agent
 alias: has_agent
 domain_of:
-- PID4CatRelation
 - LogRecord
 range: Agent
 
