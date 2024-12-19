@@ -10,7 +10,9 @@ theme:
 plugins:
   - search
   - mermaid2:
-      version: 10.9.0
+      version: 11.4.1
+      # if you want/have to use a local copy of the mermaid.js library, uncomment the next line
+      #javascript: local-js-pkgs/mermaid.min.js
 nav:
   # - Home: home.md
   - Index: index.md

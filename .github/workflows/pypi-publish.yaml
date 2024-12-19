@@ -11,12 +11,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@0b93645e9fea7318ecaed2b359559ac225c90a2b
         with:
-          python-version: 3.9
+          python-version: 3.12
 
       - name: Install Poetry
         run: |
@@ -30,7 +30,7 @@ jobs:
         run: poetry build
 
       - name: Publish distribution 📦 to PyPI
-        uses: pypa/gh-action-pypi-publish@v1.12.2
+        uses: pypa/gh-action-pypi-publish@fb13cb306901256ace3dab689990e13a5550ffaa
         with:
           user: __token__
           password: ${{ secrets.PYPI_PASSWORD }}

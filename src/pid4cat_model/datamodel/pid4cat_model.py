@@ -1,5 +1,5 @@
 # Auto generated from pid4cat_model.yaml by pythongen.py version: 0.0.1
-# Generation date: 2024-12-09T20:21:32
+# Generation date: 2024-12-19T15:21:02
 # Schema: pid4cat-model
 #
 # id: https://w3id.org/nfdi4cat/pid4cat-model
@@ -9,20 +9,55 @@
 
 import dataclasses
 import re
-from jsonasobj2 import JsonObj, as_dict
-from typing import Optional, List, Union, Dict, ClassVar, Any
 from dataclasses import dataclass
-from datetime import date, datetime
-from linkml_runtime.linkml_model.meta import EnumDefinition, PermissibleValue, PvFormulaOptions
+from datetime import (
+    date,
+    datetime,
+    time
+)
+from typing import (
+    Any,
+    ClassVar,
+    Dict,
+    List,
+    Optional,
+    Union
+)
 
-from linkml_runtime.utils.slot import Slot
-from linkml_runtime.utils.metamodelcore import empty_list, empty_dict, bnode
-from linkml_runtime.utils.yamlutils import YAMLRoot, extended_str, extended_float, extended_int
-from linkml_runtime.utils.dataclass_extensions_376 import dataclasses_init_fn_with_kwargs
-from linkml_runtime.utils.formatutils import camelcase, underscore, sfx
-from linkml_runtime.utils.enumerations import EnumDefinitionImpl
-from rdflib import Namespace, URIRef
+from jsonasobj2 import (
+    JsonObj,
+    as_dict
+)
+from linkml_runtime.linkml_model.meta import (
+    EnumDefinition,
+    PermissibleValue,
+    PvFormulaOptions
+)
 from linkml_runtime.utils.curienamespace import CurieNamespace
+from linkml_runtime.utils.dataclass_extensions_376 import dataclasses_init_fn_with_kwargs
+from linkml_runtime.utils.enumerations import EnumDefinitionImpl
+from linkml_runtime.utils.formatutils import (
+    camelcase,
+    sfx,
+    underscore
+)
+from linkml_runtime.utils.metamodelcore import (
+    bnode,
+    empty_dict,
+    empty_list
+)
+from linkml_runtime.utils.slot import Slot
+from linkml_runtime.utils.yamlutils import (
+    YAMLRoot,
+    extended_float,
+    extended_int,
+    extended_str
+)
+from rdflib import (
+    Namespace,
+    URIRef
+)
+
 from linkml_runtime.linkml_model.types import Integer, String, Uriorcurie
 from linkml_runtime.utils.metamodelcore import URIorCURIE
 
@@ -49,7 +84,7 @@ class PID4CatRecordId(URIorCURIE):
     pass
 
 
-@dataclass
+@dataclass(repr=False)
 class PID4CatRecord(YAMLRoot):
     """
     Represents a PID4CatRecord
@@ -108,7 +143,7 @@ class PID4CatRecord(YAMLRoot):
         super().__post_init__(**kwargs)
 
 
-@dataclass
+@dataclass(repr=False)
 class PID4CatRelation(YAMLRoot):
     """
     A relation between PID4CatRecords or between a PID4CatRecord and other resources with a PID.
@@ -137,7 +172,7 @@ class PID4CatRelation(YAMLRoot):
         super().__post_init__(**kwargs)
 
 
-@dataclass
+@dataclass(repr=False)
 class ResourceInfo(YAMLRoot):
     """
     Data object to hold information about the resource and its representation.
@@ -171,7 +206,7 @@ class ResourceInfo(YAMLRoot):
         super().__post_init__(**kwargs)
 
 
-@dataclass
+@dataclass(repr=False)
 class LogRecord(YAMLRoot):
     """
     A log record for changes made on a PID4CatRecord starting from registration.
@@ -204,7 +239,7 @@ class LogRecord(YAMLRoot):
         super().__post_init__(**kwargs)
 
 
-@dataclass
+@dataclass(repr=False)
 class Agent(YAMLRoot):
     """
     Person who plays a role relative to PID creation or curation.
@@ -241,7 +276,7 @@ class Agent(YAMLRoot):
         super().__post_init__(**kwargs)
 
 
-@dataclass
+@dataclass(repr=False)
 class RepresentationVariant(YAMLRoot):
     """
     A representation of the resource in other media types than text/html which is the default for landing_page_url.
@@ -274,7 +309,7 @@ class RepresentationVariant(YAMLRoot):
         super().__post_init__(**kwargs)
 
 
-@dataclass
+@dataclass(repr=False)
 class Container(YAMLRoot):
     """
     A container for all PID4Cat instances.

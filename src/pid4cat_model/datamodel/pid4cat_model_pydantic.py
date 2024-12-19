@@ -1,34 +1,32 @@
 from __future__ import annotations 
+
+import re
+import sys
 from datetime import (
+    date,
     datetime,
-    date
+    time
 )
 from decimal import Decimal 
 from enum import Enum 
-import re
-import sys
 from typing import (
     Any,
+    ClassVar,
+    Dict,
     List,
     Literal,
-    Dict,
     Optional,
     Union
 )
-from pydantic.version import VERSION  as PYDANTIC_VERSION 
-if int(PYDANTIC_VERSION[0])>=2:
-    from pydantic import (
-        BaseModel,
-        ConfigDict,
-        Field,
-        field_validator
-    )
-else:
-    from pydantic import (
-        BaseModel,
-        Field,
-        validator
-    )
+
+from pydantic import (
+    BaseModel,
+    ConfigDict,
+    Field,
+    RootModel,
+    field_validator
+)
+
 
 metamodel_version = "None"
 version = "None"
@@ -45,6 +43,63 @@ class ConfiguredBaseModel(BaseModel):
     )
     pass
 
+
+
+
+class LinkMLMeta(RootModel):
+    root: Dict[str, Any] = {}
+    model_config = ConfigDict(frozen=True)
+
+    def __getattr__(self, key:str):
+        return getattr(self.root, key)
+
+    def __getitem__(self, key:str):
+        return self.root[key]
+
+    def __setitem__(self, key:str, value):
+        self.root[key] = value
+
+    def __contains__(self, key:str) -> bool:
+        return key in self.root
+
+
+linkml_meta = LinkMLMeta({'default_prefix': 'pid4cat_model',
+     'default_range': 'string',
+     'description': 'A LinkML model for PIDs for resources in catalysis (PID4Cat). '
+                    'PID4Cat is a handle system based persistent identifier (PID) '
+                    'for digital or physical resources used in the catalysis '
+                    'research process. The handle record is used to store '
+                    'additional metadata about the PID besides the obligatory '
+                    'landing page URL.\n'
+                    'The model describes metadata for the PID itself and how to '
+                    'access the identified resource. It does not describe the '
+                    'resource itself with the exception of the resource category, '
+                    'which is a high-level description of what is identified by '
+                    'the PID4Cat handle, e.g. a sample or a device.',
+     'id': 'https://w3id.org/nfdi4cat/pid4cat-model',
+     'imports': ['linkml:types'],
+     'license': 'MIT',
+     'name': 'pid4cat-model',
+     'prefixes': {'DCAT': {'prefix_prefix': 'DCAT',
+                           'prefix_reference': 'http://www.w3.org/ns/dcat#'},
+                  'DataCite': {'prefix_prefix': 'DataCite',
+                               'prefix_reference': 'http://purl.org/spar/datacite/'},
+                  'dcterms': {'prefix_prefix': 'dcterms',
+                              'prefix_reference': 'http://purl.org/dc/terms/'},
+                  'linkml': {'prefix_prefix': 'linkml',
+                             'prefix_reference': 'https://w3id.org/linkml/'},
+                  'pid4cat_model': {'prefix_prefix': 'pid4cat_model',
+                                    'prefix_reference': 'https://w3id.org/nfdi4cat/pid4cat-model/'},
+                  'schema': {'prefix_prefix': 'schema',
+                             'prefix_reference': 'http://schema.org/'}},
+     'see_also': ['https://nfdi4cat.github.io/pid4cat-model'],
+     'source_file': 'src/pid4cat_model/schema/pid4cat_model.yaml',
+     'title': 'pid4cat-model',
+     'todos': ['Refine slots in slot_usage of class instead of globally in slot '
+               'definitions',
+               'Check and add mappings to other ontologies. (classes, slots, '
+               'enums)',
+               'Add ranges (types information) to slots']} )
 
 class ResourceCategory(str, Enum):
     """
@@ -180,26 +235,44 @@ class ChangeLogField(str, Enum):
     LICENSE = "LICENSE"
 
 
+
 class PID4CatRecord(ConfiguredBaseModel):
     """
     Represents a PID4CatRecord
     """
-    id: str = Field(..., description="""A unique identifier for a thing.""")
-    landing_page_url: Optional[str] = Field(None, description="""The URL of the landing page for the resource.""")
-    status: Optional[PID4CatStatus] = Field(None, description="""The status of the PID4CatRecord.""")
-    pid_schema_version: Optional[str] = Field(None, description="""The version of the PID4Cat schema used for the PID4CatRecord.""")
-    license: Optional[str] = Field(None, description="""The license for the metadata contained in the PID4Cat record.""")
-    curation_contact_email: Optional[str] = Field(None, description="""The email address of a person or institution currently responsible for the curation of the PID record.""")
-    resource_info: Optional[ResourceInfo] = Field(None, description="""Information about the resource.""")
-    related_identifiers: Optional[List[PID4CatRelation]] = Field(default_factory=list, description="""Relations of the resource to other identifiers.""")
-    change_log: List[LogRecord] = Field(default_factory=list, description="""Change log of PID4Cat record.""")
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/nfdi4cat/pid4cat-model',
+         'slot_usage': {'curation_contact_email': {'name': 'curation_contact_email',
+                                                   'pattern': '^\\S+@[\\S+\\.]+\\S+'}}})
+
+    id: str = Field(..., description="""A unique identifier for a thing.""", json_schema_extra = { "linkml_meta": {'alias': 'id', 'domain_of': ['PID4CatRecord'], 'slot_uri': 'schema:identifier'} })
+    landing_page_url: Optional[str] = Field(None, description="""The URL of the landing page for the resource.""", json_schema_extra = { "linkml_meta": {'alias': 'landing_page_url',
+         'domain_of': ['PID4CatRecord'],
+         'rank': 10,
+         'slot_uri': 'schema:url'} })
+    status: Optional[PID4CatStatus] = Field(None, description="""The status of the PID4CatRecord.""", json_schema_extra = { "linkml_meta": {'alias': 'status', 'domain_of': ['PID4CatRecord']} })
+    pid_schema_version: Optional[str] = Field(None, description="""The version of the PID4Cat schema used for the PID4CatRecord.""", json_schema_extra = { "linkml_meta": {'alias': 'pid_schema_version',
+         'domain_of': ['PID4CatRecord'],
+         'slot_uri': 'schema:identifier'} })
+    license: Optional[str] = Field(None, description="""The license for the metadata contained in the PID4Cat record.""", json_schema_extra = { "linkml_meta": {'alias': 'license',
+         'domain_of': ['PID4CatRecord'],
+         'slot_uri': 'schema:license'} })
+    curation_contact_email: Optional[str] = Field(None, description="""The email address of a person or institution currently responsible for the curation of the PID record.""", json_schema_extra = { "linkml_meta": {'alias': 'curation_contact_email',
+         'domain_of': ['PID4CatRecord'],
+         'slot_uri': 'schema:email'} })
+    resource_info: Optional[ResourceInfo] = Field(None, description="""Information about the resource.""", json_schema_extra = { "linkml_meta": {'alias': 'resource_info', 'domain_of': ['PID4CatRecord']} })
+    related_identifiers: Optional[List[PID4CatRelation]] = Field(None, description="""Relations of the resource to other identifiers.""", json_schema_extra = { "linkml_meta": {'alias': 'related_identifiers',
+         'domain_of': ['PID4CatRecord'],
+         'slot_uri': 'schema:identifier'} })
+    change_log: List[LogRecord] = Field(..., description="""Change log of PID4Cat record.""", json_schema_extra = { "linkml_meta": {'alias': 'change_log',
+         'domain_of': ['PID4CatRecord'],
+         'slot_uri': 'schema:identifier'} })
 
     @field_validator('curation_contact_email')
     def pattern_curation_contact_email(cls, v):
         pattern=re.compile(r"^\S+@[\S+\.]+\S+")
         if isinstance(v,list):
             for element in v:
-                if not pattern.match(element):
+                if isinstance(v, str) and not pattern.match(element):
                     raise ValueError(f"Invalid curation_contact_email format: {element}")
         elif isinstance(v,str):
             if not pattern.match(v):
@@ -211,47 +284,74 @@ class PID4CatRelation(ConfiguredBaseModel):
     """
     A relation between PID4CatRecords or between a PID4CatRecord and other resources with a PID.
     """
-    relation_type: Optional[RelationType] = Field(None, description="""Relation type between the resources.""")
-    related_identifier: Optional[str] = Field(None, description="""Related identifiers for the resource.""")
-    datetime_log: Optional[str] = Field(None, description="""The date and time of a log record.""")
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/nfdi4cat/pid4cat-model'})
+
+    relation_type: Optional[RelationType] = Field(None, description="""Relation type between the resources.""", json_schema_extra = { "linkml_meta": {'alias': 'relation_type',
+         'domain_of': ['PID4CatRelation'],
+         'slot_uri': 'schema:identifier'} })
+    related_identifier: Optional[str] = Field(None, description="""Related identifiers for the resource.""", json_schema_extra = { "linkml_meta": {'alias': 'related_identifier',
+         'domain_of': ['PID4CatRelation'],
+         'slot_uri': 'schema:identifier'} })
+    datetime_log: Optional[str] = Field(None, description="""The date and time of a log record.""", json_schema_extra = { "linkml_meta": {'alias': 'datetime_log',
+         'domain_of': ['PID4CatRelation', 'LogRecord'],
+         'slot_uri': 'schema:DateTime'} })
 
 
 class ResourceInfo(ConfiguredBaseModel):
     """
     Data object to hold information about the resource and its representation.
     """
-    label: Optional[str] = Field(None, description="""A human-readable name for a resource.""")
-    description: Optional[str] = Field(None, description="""A human-readable description for a resource.""")
-    resource_category: Optional[ResourceCategory] = Field(None, description="""The category of the resource.""")
-    representation_variants: Optional[List[RepresentationVariant]] = Field(default_factory=list, description="""The representations of the resource in other media types than text/html.""")
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/nfdi4cat/pid4cat-model'})
+
+    label: Optional[str] = Field(None, description="""A human-readable name for a resource.""", json_schema_extra = { "linkml_meta": {'alias': 'label', 'domain_of': ['ResourceInfo'], 'slot_uri': 'schema:name'} })
+    description: Optional[str] = Field(None, description="""A human-readable description for a resource.""", json_schema_extra = { "linkml_meta": {'alias': 'description',
+         'domain_of': ['ResourceInfo', 'LogRecord'],
+         'slot_uri': 'schema:description'} })
+    resource_category: Optional[ResourceCategory] = Field(None, description="""The category of the resource.""", json_schema_extra = { "linkml_meta": {'alias': 'resource_category',
+         'domain_of': ['ResourceInfo'],
+         'slot_uri': 'schema:additionalType'} })
+    representation_variants: Optional[List[RepresentationVariant]] = Field(None, description="""The representations of the resource in other media types than text/html.""", json_schema_extra = { "linkml_meta": {'alias': 'representation_variants', 'domain_of': ['ResourceInfo']} })
 
 
 class LogRecord(ConfiguredBaseModel):
     """
     A log record for changes made on a PID4CatRecord starting from registration.
     """
-    datetime_log: Optional[str] = Field(None, description="""The date and time of a log record.""")
-    has_agent: Optional[Agent] = Field(None, description="""The person who registered or modified the PID record.""")
-    changed_field: Optional[ChangeLogField] = Field(None, description="""The field that was changed""")
-    description: Optional[str] = Field(None, description="""A human-readable description for a resource.""")
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/nfdi4cat/pid4cat-model'})
+
+    datetime_log: Optional[str] = Field(None, description="""The date and time of a log record.""", json_schema_extra = { "linkml_meta": {'alias': 'datetime_log',
+         'domain_of': ['PID4CatRelation', 'LogRecord'],
+         'slot_uri': 'schema:DateTime'} })
+    has_agent: Optional[Agent] = Field(None, description="""The person who registered or modified the PID record.""", json_schema_extra = { "linkml_meta": {'alias': 'has_agent', 'domain_of': ['LogRecord'], 'slot_uri': 'schema:Agent'} })
+    changed_field: Optional[ChangeLogField] = Field(None, description="""The field that was changed""", json_schema_extra = { "linkml_meta": {'alias': 'changed_field',
+         'domain_of': ['LogRecord'],
+         'slot_uri': 'schema:identifier'} })
+    description: Optional[str] = Field(None, description="""A human-readable description for a resource.""", json_schema_extra = { "linkml_meta": {'alias': 'description',
+         'domain_of': ['ResourceInfo', 'LogRecord'],
+         'slot_uri': 'schema:description'} })
 
 
 class Agent(ConfiguredBaseModel):
     """
     Person who plays a role relative to PID creation or curation.
     """
-    name: Optional[str] = Field(None, description="""The name of the agent that created or modified the PID record.""")
-    email: Optional[str] = Field(None, description="""Email address of the agent that created or modified the PID record.""")
-    orcid: Optional[str] = Field(None, description="""The ORCID of the person""")
-    affiliation_ror: Optional[str] = Field(None, description="""The ROR of the agent's affiliation.""")
-    role: Optional[PID4CatAgentRole] = Field(None, description="""The role of the agent relative to the resource""")
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/nfdi4cat/pid4cat-model',
+         'slot_usage': {'email': {'name': 'email', 'pattern': '^\\S+@[\\S+\\.]+\\S+'}}})
+
+    name: Optional[str] = Field(None, description="""The name of the agent that created or modified the PID record.""", json_schema_extra = { "linkml_meta": {'alias': 'name', 'domain_of': ['Agent'], 'slot_uri': 'schema:name'} })
+    email: Optional[str] = Field(None, description="""Email address of the agent that created or modified the PID record.""", json_schema_extra = { "linkml_meta": {'alias': 'email', 'domain_of': ['Agent'], 'slot_uri': 'schema:email'} })
+    orcid: Optional[str] = Field(None, description="""The ORCID of the person""", json_schema_extra = { "linkml_meta": {'alias': 'orcid', 'domain_of': ['Agent'], 'slot_uri': 'schema:identifier'} })
+    affiliation_ror: Optional[str] = Field(None, description="""The ROR of the agent's affiliation.""", json_schema_extra = { "linkml_meta": {'alias': 'affiliation_ror',
+         'domain_of': ['Agent'],
+         'slot_uri': 'schema:identifier'} })
+    role: Optional[PID4CatAgentRole] = Field(None, description="""The role of the agent relative to the resource""", json_schema_extra = { "linkml_meta": {'alias': 'role', 'domain_of': ['Agent'], 'slot_uri': 'schema:identifier'} })
 
     @field_validator('email')
     def pattern_email(cls, v):
         pattern=re.compile(r"^\S+@[\S+\.]+\S+")
         if isinstance(v,list):
             for element in v:
-                if not pattern.match(element):
+                if isinstance(v, str) and not pattern.match(element):
                     raise ValueError(f"Invalid email format: {element}")
         elif isinstance(v,str):
             if not pattern.match(v):
@@ -263,17 +363,27 @@ class RepresentationVariant(ConfiguredBaseModel):
     """
     A representation of the resource in other media types than text/html which is the default for landing_page_url.
     """
-    url: Optional[str] = Field(None, description="""The URL of the representation.""")
-    media_type: Optional[str] = Field(None, description="""The media type of the representation as defined by [IANA](https://www.iana.org/assignments/media-types/media-types.xhtml)""")
-    encoding_format: Optional[str] = Field(None, description="""The encoding of the representation. https://encoding.spec.whatwg.org/#names-and-labels""")
-    size: Optional[int] = Field(None, description="""The size of the representation in bytes.""", ge=0)
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/nfdi4cat/pid4cat-model'})
+
+    url: Optional[str] = Field(None, description="""The URL of the representation.""", json_schema_extra = { "linkml_meta": {'alias': 'url',
+         'domain_of': ['RepresentationVariant'],
+         'slot_uri': 'schema:URL'} })
+    media_type: Optional[str] = Field(None, description="""The media type of the representation as defined by [IANA](https://www.iana.org/assignments/media-types/media-types.xhtml)""", json_schema_extra = { "linkml_meta": {'alias': 'media_type',
+         'domain_of': ['RepresentationVariant'],
+         'slot_uri': 'schema:encodingFormat'} })
+    encoding_format: Optional[str] = Field(None, description="""The encoding of the representation. https://encoding.spec.whatwg.org/#names-and-labels""", json_schema_extra = { "linkml_meta": {'alias': 'encoding_format', 'domain_of': ['RepresentationVariant']} })
+    size: Optional[int] = Field(None, description="""The size of the representation in bytes.""", ge=0, json_schema_extra = { "linkml_meta": {'alias': 'size',
+         'domain_of': ['RepresentationVariant'],
+         'slot_uri': 'schema:fileSize'} })
 
 
 class Container(ConfiguredBaseModel):
     """
     A container for all PID4Cat instances.
     """
-    contains_pids: Optional[List[PID4CatRecord]] = Field(default_factory=list, description="""The PID4CatRecords contained in the container.""")
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/nfdi4cat/pid4cat-model', 'tree_root': True})
+
+    contains_pids: Optional[List[PID4CatRecord]] = Field(None, description="""The PID4CatRecords contained in the container.""", json_schema_extra = { "linkml_meta": {'alias': 'contains_pids', 'domain_of': ['Container']} })
 
 
 # Model rebuild
