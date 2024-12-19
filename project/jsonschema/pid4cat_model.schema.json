@@ -6,20 +6,32 @@
             "properties": {
                 "affiliation_ror": {
                     "description": "The ROR of the agent's affiliation.",
-                    "type": "string"
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 },
                 "email": {
                     "description": "Email address of the agent that created or modified the PID record.",
                     "pattern": "^\\S+@[\\S+\\.]+\\S+",
-                    "type": "string"
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 },
                 "name": {
                     "description": "The name of the agent that created or modified the PID record.",
-                    "type": "string"
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 },
                 "orcid": {
                     "description": "The ORCID of the person",
-                    "type": "string"
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 },
                 "role": {
                     "$ref": "#/$defs/PID4CatAgentRole",
@@ -51,7 +63,10 @@
                     "items": {
                         "$ref": "#/$defs/PID4CatRecord"
                     },
-                    "type": "array"
+                    "type": [
+                        "array",
+                        "null"
+                    ]
                 }
             },
             "title": "Container",
@@ -67,14 +82,27 @@
                 },
                 "datetime_log": {
                     "description": "The date and time of a log record.",
-                    "type": "string"
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 },
                 "description": {
                     "description": "A human-readable description for a resource.",
-                    "type": "string"
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 },
                 "has_agent": {
-                    "$ref": "#/$defs/Agent",
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/Agent"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
                     "description": "The person who registered or modified the PID record."
                 }
             },
@@ -104,33 +132,58 @@
                 "curation_contact_email": {
                     "description": "The email address of a person or institution currently responsible for the curation of the PID record.",
                     "pattern": "^\\S+@[\\S+\\.]+\\S+",
-                    "type": "string"
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 },
                 "id": {
                     "description": "A unique identifier for a thing.",
-                    "type": "string"
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 },
                 "landing_page_url": {
                     "description": "The URL of the landing page for the resource.",
-                    "type": "string"
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 },
                 "license": {
                     "description": "The license for the metadata contained in the PID4Cat record.",
-                    "type": "string"
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 },
                 "pid_schema_version": {
                     "description": "The version of the PID4Cat schema used for the PID4CatRecord.",
-                    "type": "string"
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 },
                 "related_identifiers": {
                     "description": "Relations of the resource to other identifiers.",
                     "items": {
                         "$ref": "#/$defs/PID4CatRelation"
                     },
-                    "type": "array"
+                    "type": [
+                        "array",
+                        "null"
+                    ]
                 },
                 "resource_info": {
-                    "$ref": "#/$defs/ResourceInfo",
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/ResourceInfo"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
                     "description": "Information about the resource."
                 },
                 "status": {
@@ -151,11 +204,17 @@
             "properties": {
                 "datetime_log": {
                     "description": "The date and time of a log record.",
-                    "type": "string"
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 },
                 "related_identifier": {
                     "description": "Related identifiers for the resource.",
-                    "type": "string"
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 },
                 "relation_type": {
                     "$ref": "#/$defs/RelationType",
@@ -223,20 +282,32 @@
             "properties": {
                 "encoding_format": {
                     "description": "The encoding of the representation. https://encoding.spec.whatwg.org/#names-and-labels",
-                    "type": "string"
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 },
                 "media_type": {
                     "description": "The media type of the representation as defined by [IANA](https://www.iana.org/assignments/media-types/media-types.xhtml)",
-                    "type": "string"
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 },
                 "size": {
                     "description": "The size of the representation in bytes.",
                     "minimum": 0,
-                    "type": "integer"
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
                 },
                 "url": {
                     "description": "The URL of the representation.",
-                    "type": "string"
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 }
             },
             "title": "RepresentationVariant",
@@ -261,18 +332,27 @@
             "properties": {
                 "description": {
                     "description": "A human-readable description for a resource.",
-                    "type": "string"
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 },
                 "label": {
                     "description": "A human-readable name for a resource.",
-                    "type": "string"
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 },
                 "representation_variants": {
                     "description": "The representations of the resource in other media types than text/html.",
                     "items": {
                         "$ref": "#/$defs/RepresentationVariant"
                     },
-                    "type": "array"
+                    "type": [
+                        "array",
+                        "null"
+                    ]
                 },
                 "resource_category": {
                     "$ref": "#/$defs/ResourceCategory",
@@ -294,7 +374,10 @@
             "items": {
                 "$ref": "#/$defs/PID4CatRecord"
             },
-            "type": "array"
+            "type": [
+                "array",
+                "null"
+            ]
         }
     },
     "title": "pid4cat-model",

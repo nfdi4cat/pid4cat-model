@@ -708,12 +708,12 @@
         "http://schema.org/identifier"
       ],
       "slot_uri": "http://schema.org/identifier",
-      "multivalued": true,
       "owner": "PID4CatRecord",
       "domain_of": [
         "PID4CatRecord"
       ],
       "range": "PID4CatRelation",
+      "multivalued": true,
       "inlined": true,
       "@type": "SlotDefinition"
     },
@@ -758,13 +758,13 @@
         "http://schema.org/identifier"
       ],
       "slot_uri": "http://schema.org/identifier",
-      "multivalued": true,
       "owner": "PID4CatRecord",
       "domain_of": [
         "PID4CatRecord"
       ],
       "range": "LogRecord",
       "required": true,
+      "multivalued": true,
       "inlined": true,
       "@type": "SlotDefinition"
     },
@@ -872,12 +872,12 @@
       "description": "The representations of the resource in other media types than text/html.",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "slot_uri": "https://w3id.org/nfdi4cat/pid4cat-model/representation_variants",
-      "multivalued": true,
       "owner": "ResourceInfo",
       "domain_of": [
         "ResourceInfo"
       ],
       "range": "RepresentationVariant",
+      "multivalued": true,
       "inlined": true,
       "@type": "SlotDefinition"
     },
@@ -1061,13 +1061,13 @@
       "description": "The PID4CatRecords contained in the container.",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "slot_uri": "https://w3id.org/nfdi4cat/pid4cat-model/contains_pids",
-      "multivalued": true,
       "alias": "contains_pids",
       "owner": "Container",
       "domain_of": [
         "Container"
       ],
       "range": "PID4CatRecord",
+      "multivalued": true,
       "inlined": true,
       "inlined_as_list": true,
       "@type": "SlotDefinition"
@@ -1226,8 +1226,8 @@
         {
           "name": "contains_pids",
           "description": "The PID4CatRecords contained in the container.",
-          "multivalued": true,
           "range": "PID4CatRecord",
+          "multivalued": true,
           "inlined_as_list": true,
           "@type": "SlotDefinition"
         }
@@ -1239,9 +1239,9 @@
   ],
   "metamodel_version": "1.7.0",
   "source_file": "pid4cat_model.yaml",
-  "source_file_date": "2024-12-09T20:21:12",
+  "source_file_date": "2024-12-09T21:30:49",
   "source_file_size": 13430,
-  "generation_date": "2024-12-09T20:21:31",
+  "generation_date": "2024-12-19T15:21:00",
   "@type": "SchemaDefinition",
   "@context": [
     "project/jsonld/pid4cat_model.context.jsonld",
