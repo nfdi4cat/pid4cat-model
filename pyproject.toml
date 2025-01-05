@@ -29,4 +29,4 @@ schemasheets = "^0.1.14"
 
 [tool.poetry.extras]
 # This part is invalid. Will fix for poerty 2.0.0.
-# docs = ["linkml", "mkdocs-material"]
+docs = ["linkml", "mkdocs-material"]
