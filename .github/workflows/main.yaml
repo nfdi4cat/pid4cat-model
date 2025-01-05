@@ -28,11 +28,8 @@ jobs:
       - name: Install Poetry
         run: pipx install poetry
 
-      - name: Install dependencies
-        run: poetry install --no-interaction --no-root
-
       - name: Install project
-        run: poetry install --no-interaction
+        run: poetry install --no-interaction -E docs -E dev
 
       - name: Run test suite
         run: make test
