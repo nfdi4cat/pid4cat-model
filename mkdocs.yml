@@ -7,6 +7,9 @@ theme:
   #  primary: cyan
   features:
     - content.tabs.link
+  favicon: images/favicon.svg
+  logo: images/logo-icon.svg
+
 plugins:
   - search
   - mermaid2:
