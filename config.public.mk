@@ -8,16 +8,16 @@
 
 # Note: makefile variables should not be quoted, as makefile handles quoting differently than bash
 LINKML_SCHEMA_NAME=pid4cat_model
-LINKML_SCHEMA_AUTHOR=David Linke <david.linke@catalysis.de>
-LINKML_SCHEMA_DESCRIPTION=LinkML model for handle-based PIDs for resources in catalysis (PID4Cat)
+LINKML_SCHEMA_AUTHOR="David Linke <david.linke@catalysis.de>"
+LINKML_SCHEMA_DESCRIPTION="LinkML model for handle-based PIDs for resources in catalysis (PID4Cat)"
 LINKML_SCHEMA_SOURCE_PATH=src/pid4cat_model/schema/pid4cat_model.yaml
 LINKML_SCHEMA_GOOGLE_SHEET_ID=1wVoaiFg47aT9YWNeRfTZ8tYHN8s8PAuDx5i2HUcDpvQ
-LINKML_SCHEMA_GOOGLE_SHEET_TABS=personinfo enums
+LINKML_SCHEMA_GOOGLE_SHEET_TABS="personinfo enums"
 
 ###### linkml generator variables, used by makefile
 
 ## gen-project configuration file
-LINKML_GENERATORS_CONFIG_YAML= --config-file config.yaml
+LINKML_GENERATORS_CONFIG_YAML=config.yaml
 
 ## pass args if gendoc ignores config.yaml (i.e. --no-mergeimports)
 LINKML_GENERATORS_DOC_ARGS=
