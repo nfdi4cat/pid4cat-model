@@ -1,17 +1,23 @@
 [![CI - main](https://github.com/nfdi4cat/pid4cat-model/actions/workflows/main.yaml/badge.svg)](https://github.com/nfdi4cat/pid4cat-model/actions/workflows/main.yaml)
 [![CI - docs](https://github.com/nfdi4cat/pid4cat-model/actions/workflows/deploy-docs.yaml/badge.svg?branch=main)](https://github.com/nfdi4cat/pid4cat-model/actions/workflows/deploy-docs.yaml)
 
-# PID4cat model
+# Persistent Identifiers for FAIR data in Catalysis
+
+![pid4cat logo](src/docs/files/logo-with-text.svg)
+
+**pid4cat** is NFDI4Cat´s service for metadata rich, universal persistent identifiers. PID4Cat builds upon the handle-system (as DOIs do). PID4Cat adds a **custom API** to a handle server and provides a **LinkML model for  PID-related metadata**. The metadata are stored in the handle records. **pid4cat**  persistent identifiers are used for samples, devices, and more, to ensure consistent tracking, integration, and accessibility of resources across both central and local RDM systems.
+
+## pid4cat metadata model
+
+This repository contains the **pid4cat model** expressed as a [LinkML](https://linkml.io/) model. The model is generic and may be useful beyond catalysis.
 
 > Status: beta - This is in development and may still change.
 > We are interested in feedback of potential users.
 > Please use [issues](https://github.com/nfdi4cat/pid4cat-model/issues) for your comments, questions or ideas!
 
-A LinkML model for handle-based PIDs for resources in catalysis.
-
 ## Documentation
 
-- [PID4Cat model](https://nfdi4cat.github.io/pid4cat-model) documentation
+- [pid4cat model](https://nfdi4cat.github.io/pid4cat-model) documentation
 - [NFDI4Cat PID concept](nfdi4cat_details.md) - more information about the  role and use of this model.
 
 ## Repository Structure
@@ -28,12 +34,15 @@ A LinkML model for handle-based PIDs for resources in catalysis.
 
 ## Developer Documentation
 
-<details>
 Use the `make` command to generate project artefacts:
 
+- `make`: list all commands
 - `make all`: make everything
 - `make deploy`: deploys site
-</details>
+
+Instead of `make` you may use [just](https://just.systems/man/en/) (especially on Windows where make is not easily available). The `justfile` contains the same commands as the make file. `just` is available for all major platforms and supports many install options. It can even be installed with [pipx](https://pipx.pypa.io/).
+
+- `just`: list all commands
 
 ## Contributors
 
