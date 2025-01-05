@@ -32,6 +32,7 @@ SHEET_MODULE_PATH = $(SOURCE_SCHEMA_DIR)/$(SHEET_MODULE).yaml
 # Use += to append variables from the variables file
 CONFIG_YAML =
 ifdef LINKML_GENERATORS_CONFIG_YAML
+CONFIG_YAML += "--config-file"
 CONFIG_YAML += ${LINKML_GENERATORS_CONFIG_YAML}
 endif
 
@@ -222,7 +223,7 @@ git-status:
 clean:
 	rm -rf $(DEST)
 	rm -rf tmp
-	rm -fr docs/*
+	rm -fr $(docdir)/*
 	rm -fr $(PYMODEL)/*
 
 include project.Makefile
