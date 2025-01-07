@@ -3,7 +3,7 @@
 
 # Persistent Identifiers for FAIR data in Catalysis
 
-![pid4cat logo](src/docs/files/logo-with-text.svg)
+![pid4cat logo](src/docs/files/images/logo-with-text.svg)
 
 **pid4cat** is NFDI4Cat´s service for metadata rich, universal persistent identifiers. PID4Cat builds upon the handle-system (as DOIs do). PID4Cat adds a **custom API** to a handle server and provides a **LinkML model for  PID-related metadata**. The metadata are stored in the handle records. **pid4cat**  persistent identifiers are used for samples, devices, and more, to ensure consistent tracking, integration, and accessibility of resources across both central and local RDM systems.
 
