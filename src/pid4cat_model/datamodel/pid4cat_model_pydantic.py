@@ -1,4 +1,4 @@
-from __future__ import annotations 
+from __future__ import annotations
 
 import re
 import sys
@@ -7,8 +7,8 @@ from datetime import (
     datetime,
     time
 )
-from decimal import Decimal 
-from enum import Enum 
+from decimal import Decimal
+from enum import Enum
 from typing import (
     Any,
     ClassVar,
@@ -64,7 +64,6 @@ class LinkMLMeta(RootModel):
 
 
 linkml_meta = LinkMLMeta({'default_prefix': 'pid4cat_model',
-     'default_range': 'string',
      'description': 'A LinkML model for PIDs for resources in catalysis (PID4Cat). '
                     'PID4Cat is a handle system based persistent identifier (PID) '
                     'for digital or physical resources used in the catalysis '
@@ -250,22 +249,12 @@ class PID4CatRecord(ConfiguredBaseModel):
          'rank': 10,
          'slot_uri': 'schema:url'} })
     status: Optional[PID4CatStatus] = Field(None, description="""The status of the PID4CatRecord.""", json_schema_extra = { "linkml_meta": {'alias': 'status', 'domain_of': ['PID4CatRecord']} })
-    pid_schema_version: Optional[str] = Field(None, description="""The version of the PID4Cat schema used for the PID4CatRecord.""", json_schema_extra = { "linkml_meta": {'alias': 'pid_schema_version',
-         'domain_of': ['PID4CatRecord'],
-         'slot_uri': 'schema:identifier'} })
-    license: Optional[str] = Field(None, description="""The license for the metadata contained in the PID4Cat record.""", json_schema_extra = { "linkml_meta": {'alias': 'license',
-         'domain_of': ['PID4CatRecord'],
-         'slot_uri': 'schema:license'} })
-    curation_contact_email: Optional[str] = Field(None, description="""The email address of a person or institution currently responsible for the curation of the PID record.""", json_schema_extra = { "linkml_meta": {'alias': 'curation_contact_email',
-         'domain_of': ['PID4CatRecord'],
-         'slot_uri': 'schema:email'} })
+    pid_schema_version: Optional[str] = Field(None, description="""The version of the PID4Cat schema used for the PID4CatRecord.""", json_schema_extra = { "linkml_meta": {'alias': 'pid_schema_version', 'domain_of': ['PID4CatRecord']} })
+    license: Optional[str] = Field(None, description="""The license for the metadata contained in the PID4Cat record.""", json_schema_extra = { "linkml_meta": {'alias': 'license', 'domain_of': ['PID4CatRecord']} })
+    curation_contact_email: Optional[str] = Field(None, description="""The email address of a person or institution currently responsible for the curation of the PID record.""", json_schema_extra = { "linkml_meta": {'alias': 'curation_contact_email', 'domain_of': ['PID4CatRecord']} })
     resource_info: Optional[ResourceInfo] = Field(None, description="""Information about the resource.""", json_schema_extra = { "linkml_meta": {'alias': 'resource_info', 'domain_of': ['PID4CatRecord']} })
-    related_identifiers: Optional[List[PID4CatRelation]] = Field(None, description="""Relations of the resource to other identifiers.""", json_schema_extra = { "linkml_meta": {'alias': 'related_identifiers',
-         'domain_of': ['PID4CatRecord'],
-         'slot_uri': 'schema:identifier'} })
-    change_log: List[LogRecord] = Field(..., description="""Change log of PID4Cat record.""", json_schema_extra = { "linkml_meta": {'alias': 'change_log',
-         'domain_of': ['PID4CatRecord'],
-         'slot_uri': 'schema:identifier'} })
+    related_identifiers: Optional[List[PID4CatRelation]] = Field(None, description="""Relations of the resource to other identifiers.""", json_schema_extra = { "linkml_meta": {'alias': 'related_identifiers', 'domain_of': ['PID4CatRecord']} })
+    change_log: List[LogRecord] = Field(..., description="""Change log of PID4Cat record.""", json_schema_extra = { "linkml_meta": {'alias': 'change_log', 'domain_of': ['PID4CatRecord']} })
 
     @field_validator('curation_contact_email')
     def pattern_curation_contact_email(cls, v):
@@ -286,15 +275,9 @@ class PID4CatRelation(ConfiguredBaseModel):
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/nfdi4cat/pid4cat-model'})
 
-    relation_type: Optional[RelationType] = Field(None, description="""Relation type between the resources.""", json_schema_extra = { "linkml_meta": {'alias': 'relation_type',
-         'domain_of': ['PID4CatRelation'],
-         'slot_uri': 'schema:identifier'} })
-    related_identifier: Optional[str] = Field(None, description="""Related identifiers for the resource.""", json_schema_extra = { "linkml_meta": {'alias': 'related_identifier',
-         'domain_of': ['PID4CatRelation'],
-         'slot_uri': 'schema:identifier'} })
-    datetime_log: Optional[str] = Field(None, description="""The date and time of a log record.""", json_schema_extra = { "linkml_meta": {'alias': 'datetime_log',
-         'domain_of': ['PID4CatRelation', 'LogRecord'],
-         'slot_uri': 'schema:DateTime'} })
+    relation_type: Optional[RelationType] = Field(None, description="""Relation type between the resources.""", json_schema_extra = { "linkml_meta": {'alias': 'relation_type', 'domain_of': ['PID4CatRelation']} })
+    related_identifier: Optional[str] = Field(None, description="""Related identifiers for the resource.""", json_schema_extra = { "linkml_meta": {'alias': 'related_identifier', 'domain_of': ['PID4CatRelation']} })
+    datetime_log: Optional[datetime ] = Field(None, description="""The date and time of a log record.""", json_schema_extra = { "linkml_meta": {'alias': 'datetime_log', 'domain_of': ['PID4CatRelation', 'LogRecord']} })
 
 
 class ResourceInfo(ConfiguredBaseModel):
@@ -303,13 +286,9 @@ class ResourceInfo(ConfiguredBaseModel):
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/nfdi4cat/pid4cat-model'})
 
-    label: Optional[str] = Field(None, description="""A human-readable name for a resource.""", json_schema_extra = { "linkml_meta": {'alias': 'label', 'domain_of': ['ResourceInfo'], 'slot_uri': 'schema:name'} })
-    description: Optional[str] = Field(None, description="""A human-readable description for a resource.""", json_schema_extra = { "linkml_meta": {'alias': 'description',
-         'domain_of': ['ResourceInfo', 'LogRecord'],
-         'slot_uri': 'schema:description'} })
-    resource_category: Optional[ResourceCategory] = Field(None, description="""The category of the resource.""", json_schema_extra = { "linkml_meta": {'alias': 'resource_category',
-         'domain_of': ['ResourceInfo'],
-         'slot_uri': 'schema:additionalType'} })
+    label: Optional[str] = Field(None, description="""A human-readable name for a resource.""", json_schema_extra = { "linkml_meta": {'alias': 'label', 'domain_of': ['ResourceInfo']} })
+    description: Optional[str] = Field(None, description="""A human-readable description for a resource.""", json_schema_extra = { "linkml_meta": {'alias': 'description', 'domain_of': ['ResourceInfo', 'LogRecord']} })
+    resource_category: Optional[ResourceCategory] = Field(None, description="""The category of the resource.""", json_schema_extra = { "linkml_meta": {'alias': 'resource_category', 'domain_of': ['ResourceInfo']} })
     representation_variants: Optional[List[RepresentationVariant]] = Field(None, description="""The representations of the resource in other media types than text/html.""", json_schema_extra = { "linkml_meta": {'alias': 'representation_variants', 'domain_of': ['ResourceInfo']} })
 
 
@@ -319,32 +298,25 @@ class LogRecord(ConfiguredBaseModel):
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/nfdi4cat/pid4cat-model'})
 
-    datetime_log: Optional[str] = Field(None, description="""The date and time of a log record.""", json_schema_extra = { "linkml_meta": {'alias': 'datetime_log',
-         'domain_of': ['PID4CatRelation', 'LogRecord'],
-         'slot_uri': 'schema:DateTime'} })
-    has_agent: Optional[Agent] = Field(None, description="""The person who registered or modified the PID record.""", json_schema_extra = { "linkml_meta": {'alias': 'has_agent', 'domain_of': ['LogRecord'], 'slot_uri': 'schema:Agent'} })
-    changed_field: Optional[ChangeLogField] = Field(None, description="""The field that was changed""", json_schema_extra = { "linkml_meta": {'alias': 'changed_field',
-         'domain_of': ['LogRecord'],
-         'slot_uri': 'schema:identifier'} })
-    description: Optional[str] = Field(None, description="""A human-readable description for a resource.""", json_schema_extra = { "linkml_meta": {'alias': 'description',
-         'domain_of': ['ResourceInfo', 'LogRecord'],
-         'slot_uri': 'schema:description'} })
+    datetime_log: Optional[datetime ] = Field(None, description="""The date and time of a log record.""", json_schema_extra = { "linkml_meta": {'alias': 'datetime_log', 'domain_of': ['PID4CatRelation', 'LogRecord']} })
+    has_agent: Optional[Agent] = Field(None, description="""The person who registered or modified the PID record.""", json_schema_extra = { "linkml_meta": {'alias': 'has_agent', 'domain_of': ['LogRecord']} })
+    changed_field: Optional[ChangeLogField] = Field(None, description="""The field that was changed""", json_schema_extra = { "linkml_meta": {'alias': 'changed_field', 'domain_of': ['LogRecord']} })
+    description: Optional[str] = Field(None, description="""A human-readable description for a resource.""", json_schema_extra = { "linkml_meta": {'alias': 'description', 'domain_of': ['ResourceInfo', 'LogRecord']} })
 
 
 class Agent(ConfiguredBaseModel):
     """
     Person who plays a role relative to PID creation or curation.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/nfdi4cat/pid4cat-model',
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'prov:Agent',
+         'from_schema': 'https://w3id.org/nfdi4cat/pid4cat-model',
          'slot_usage': {'email': {'name': 'email', 'pattern': '^\\S+@[\\S+\\.]+\\S+'}}})
 
-    name: Optional[str] = Field(None, description="""The name of the agent that created or modified the PID record.""", json_schema_extra = { "linkml_meta": {'alias': 'name', 'domain_of': ['Agent'], 'slot_uri': 'schema:name'} })
-    email: Optional[str] = Field(None, description="""Email address of the agent that created or modified the PID record.""", json_schema_extra = { "linkml_meta": {'alias': 'email', 'domain_of': ['Agent'], 'slot_uri': 'schema:email'} })
-    orcid: Optional[str] = Field(None, description="""The ORCID of the person""", json_schema_extra = { "linkml_meta": {'alias': 'orcid', 'domain_of': ['Agent'], 'slot_uri': 'schema:identifier'} })
-    affiliation_ror: Optional[str] = Field(None, description="""The ROR of the agent's affiliation.""", json_schema_extra = { "linkml_meta": {'alias': 'affiliation_ror',
-         'domain_of': ['Agent'],
-         'slot_uri': 'schema:identifier'} })
-    role: Optional[PID4CatAgentRole] = Field(None, description="""The role of the agent relative to the resource""", json_schema_extra = { "linkml_meta": {'alias': 'role', 'domain_of': ['Agent'], 'slot_uri': 'schema:identifier'} })
+    name: Optional[str] = Field(None, description="""The name of the agent that created or modified the PID record.""", json_schema_extra = { "linkml_meta": {'alias': 'name', 'domain_of': ['Agent']} })
+    email: Optional[str] = Field(None, description="""Email address of the agent that created or modified the PID record.""", json_schema_extra = { "linkml_meta": {'alias': 'email', 'domain_of': ['Agent']} })
+    orcid: Optional[str] = Field(None, description="""The ORCID of the person""", json_schema_extra = { "linkml_meta": {'alias': 'orcid', 'domain_of': ['Agent']} })
+    affiliation_ror: Optional[str] = Field(None, description="""The ROR of the agent's affiliation.""", json_schema_extra = { "linkml_meta": {'alias': 'affiliation_ror', 'domain_of': ['Agent']} })
+    role: Optional[PID4CatAgentRole] = Field(None, description="""The role of the agent relative to the resource""", json_schema_extra = { "linkml_meta": {'alias': 'role', 'domain_of': ['Agent']} })
 
     @field_validator('email')
     def pattern_email(cls, v):
@@ -365,16 +337,10 @@ class RepresentationVariant(ConfiguredBaseModel):
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/nfdi4cat/pid4cat-model'})
 
-    url: Optional[str] = Field(None, description="""The URL of the representation.""", json_schema_extra = { "linkml_meta": {'alias': 'url',
-         'domain_of': ['RepresentationVariant'],
-         'slot_uri': 'schema:URL'} })
-    media_type: Optional[str] = Field(None, description="""The media type of the representation as defined by [IANA](https://www.iana.org/assignments/media-types/media-types.xhtml)""", json_schema_extra = { "linkml_meta": {'alias': 'media_type',
-         'domain_of': ['RepresentationVariant'],
-         'slot_uri': 'schema:encodingFormat'} })
+    url: Optional[str] = Field(None, description="""The URL of the representation.""", json_schema_extra = { "linkml_meta": {'alias': 'url', 'domain_of': ['RepresentationVariant']} })
+    media_type: Optional[str] = Field(None, description="""The media type of the representation as defined by [IANA](https://www.iana.org/assignments/media-types/media-types.xhtml)""", json_schema_extra = { "linkml_meta": {'alias': 'media_type', 'domain_of': ['RepresentationVariant']} })
     encoding_format: Optional[str] = Field(None, description="""The encoding of the representation. https://encoding.spec.whatwg.org/#names-and-labels""", json_schema_extra = { "linkml_meta": {'alias': 'encoding_format', 'domain_of': ['RepresentationVariant']} })
-    size: Optional[int] = Field(None, description="""The size of the representation in bytes.""", ge=0, json_schema_extra = { "linkml_meta": {'alias': 'size',
-         'domain_of': ['RepresentationVariant'],
-         'slot_uri': 'schema:fileSize'} })
+    size: Optional[int] = Field(None, description="""The size of the representation in bytes.""", ge=0, json_schema_extra = { "linkml_meta": {'alias': 'size', 'domain_of': ['RepresentationVariant']} })
 
 
 class Container(ConfiguredBaseModel):

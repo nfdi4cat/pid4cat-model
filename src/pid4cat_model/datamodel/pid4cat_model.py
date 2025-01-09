@@ -1,5 +1,5 @@
 # Auto generated from pid4cat_model.yaml by pythongen.py version: 0.0.1
-# Generation date: 2025-01-05T16:58:06
+# Generation date: 2025-01-09T12:28:46
 # Schema: pid4cat-model
 #
 # id: https://w3id.org/nfdi4cat/pid4cat-model
@@ -58,8 +58,8 @@ from rdflib import (
     URIRef
 )
 
-from linkml_runtime.linkml_model.types import Integer, String, Uriorcurie
-from linkml_runtime.utils.metamodelcore import URIorCURIE
+from linkml_runtime.linkml_model.types import Datetime, Integer, String, Uri, Uriorcurie
+from linkml_runtime.utils.metamodelcore import URI, URIorCURIE, XSDDateTime
 
 metamodel_version = "1.7.0"
 version = None
@@ -73,6 +73,7 @@ DATACITE = CurieNamespace('DataCite', 'http://purl.org/spar/datacite/')
 DCTERMS = CurieNamespace('dcterms', 'http://purl.org/dc/terms/')
 LINKML = CurieNamespace('linkml', 'https://w3id.org/linkml/')
 PID4CAT_MODEL = CurieNamespace('pid4cat_model', 'https://w3id.org/nfdi4cat/pid4cat-model/')
+PROV = CurieNamespace('prov', 'http://example.org/UNKNOWN/prov/')
 SCHEMA = CurieNamespace('schema', 'http://schema.org/')
 DEFAULT_ = PID4CAT_MODEL
 
@@ -98,7 +99,7 @@ class PID4CatRecord(YAMLRoot):
 
     id: Union[str, PID4CatRecordId] = None
     change_log: Union[Union[dict, "LogRecord"], List[Union[dict, "LogRecord"]]] = None
-    landing_page_url: Optional[str] = None
+    landing_page_url: Optional[Union[str, URI]] = None
     status: Optional[Union[str, "PID4CatStatus"]] = None
     pid_schema_version: Optional[str] = None
     license: Optional[str] = None
@@ -118,8 +119,8 @@ class PID4CatRecord(YAMLRoot):
             self.change_log = [self.change_log] if self.change_log is not None else []
         self.change_log = [v if isinstance(v, LogRecord) else LogRecord(**as_dict(v)) for v in self.change_log]
 
-        if self.landing_page_url is not None and not isinstance(self.landing_page_url, str):
-            self.landing_page_url = str(self.landing_page_url)
+        if self.landing_page_url is not None and not isinstance(self.landing_page_url, URI):
+            self.landing_page_url = URI(self.landing_page_url)
 
         if self.status is not None and not isinstance(self.status, PID4CatStatus):
             self.status = PID4CatStatus(self.status)
@@ -156,18 +157,18 @@ class PID4CatRelation(YAMLRoot):
     class_model_uri: ClassVar[URIRef] = PID4CAT_MODEL.PID4CatRelation
 
     relation_type: Optional[Union[str, "RelationType"]] = None
-    related_identifier: Optional[str] = None
-    datetime_log: Optional[str] = None
+    related_identifier: Optional[Union[str, URI]] = None
+    datetime_log: Optional[Union[str, XSDDateTime]] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self.relation_type is not None and not isinstance(self.relation_type, RelationType):
             self.relation_type = RelationType(self.relation_type)
 
-        if self.related_identifier is not None and not isinstance(self.related_identifier, str):
-            self.related_identifier = str(self.related_identifier)
+        if self.related_identifier is not None and not isinstance(self.related_identifier, URI):
+            self.related_identifier = URI(self.related_identifier)
 
-        if self.datetime_log is not None and not isinstance(self.datetime_log, str):
-            self.datetime_log = str(self.datetime_log)
+        if self.datetime_log is not None and not isinstance(self.datetime_log, XSDDateTime):
+            self.datetime_log = XSDDateTime(self.datetime_log)
 
         super().__post_init__(**kwargs)
 
@@ -218,14 +219,14 @@ class LogRecord(YAMLRoot):
     class_name: ClassVar[str] = "LogRecord"
     class_model_uri: ClassVar[URIRef] = PID4CAT_MODEL.LogRecord
 
-    datetime_log: Optional[str] = None
+    datetime_log: Optional[Union[str, XSDDateTime]] = None
     has_agent: Optional[Union[dict, "Agent"]] = None
     changed_field: Optional[Union[str, "ChangeLogField"]] = None
     description: Optional[str] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self.datetime_log is not None and not isinstance(self.datetime_log, str):
-            self.datetime_log = str(self.datetime_log)
+        if self.datetime_log is not None and not isinstance(self.datetime_log, XSDDateTime):
+            self.datetime_log = XSDDateTime(self.datetime_log)
 
         if self.has_agent is not None and not isinstance(self.has_agent, Agent):
             self.has_agent = Agent(**as_dict(self.has_agent))
@@ -246,15 +247,15 @@ class Agent(YAMLRoot):
     """
     _inherited_slots: ClassVar[List[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = PID4CAT_MODEL["Agent"]
-    class_class_curie: ClassVar[str] = "pid4cat_model:Agent"
+    class_class_uri: ClassVar[URIRef] = PROV["Agent"]
+    class_class_curie: ClassVar[str] = "prov:Agent"
     class_name: ClassVar[str] = "Agent"
     class_model_uri: ClassVar[URIRef] = PID4CAT_MODEL.Agent
 
     name: Optional[str] = None
     email: Optional[str] = None
     orcid: Optional[str] = None
-    affiliation_ror: Optional[str] = None
+    affiliation_ror: Optional[Union[str, URI]] = None
     role: Optional[Union[str, "PID4CatAgentRole"]] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
@@ -267,8 +268,8 @@ class Agent(YAMLRoot):
         if self.orcid is not None and not isinstance(self.orcid, str):
             self.orcid = str(self.orcid)
 
-        if self.affiliation_ror is not None and not isinstance(self.affiliation_ror, str):
-            self.affiliation_ror = str(self.affiliation_ror)
+        if self.affiliation_ror is not None and not isinstance(self.affiliation_ror, URI):
+            self.affiliation_ror = URI(self.affiliation_ror)
 
         if self.role is not None and not isinstance(self.role, PID4CatAgentRole):
             self.role = PID4CatAgentRole(self.role)
@@ -288,14 +289,14 @@ class RepresentationVariant(YAMLRoot):
     class_name: ClassVar[str] = "RepresentationVariant"
     class_model_uri: ClassVar[URIRef] = PID4CAT_MODEL.RepresentationVariant
 
-    url: Optional[str] = None
+    url: Optional[Union[str, URI]] = None
     media_type: Optional[str] = None
     encoding_format: Optional[str] = None
     size: Optional[int] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self.url is not None and not isinstance(self.url, str):
-            self.url = str(self.url)
+        if self.url is not None and not isinstance(self.url, URI):
+            self.url = URI(self.url)
 
         if self.media_type is not None and not isinstance(self.media_type, str):
             self.media_type = str(self.media_type)
@@ -555,90 +556,90 @@ slots.id = Slot(uri=SCHEMA.identifier, name="id", curie=SCHEMA.curie('identifier
                    model_uri=PID4CAT_MODEL.id, domain=None, range=URIRef)
 
 slots.landing_page_url = Slot(uri=SCHEMA.url, name="landing_page_url", curie=SCHEMA.curie('url'),
-                   model_uri=PID4CAT_MODEL.landing_page_url, domain=None, range=Optional[str])
+                   model_uri=PID4CAT_MODEL.landing_page_url, domain=None, range=Optional[Union[str, URI]])
 
 slots.status = Slot(uri=PID4CAT_MODEL.status, name="status", curie=PID4CAT_MODEL.curie('status'),
                    model_uri=PID4CAT_MODEL.status, domain=None, range=Optional[Union[str, "PID4CatStatus"]])
 
-slots.pid_schema_version = Slot(uri=SCHEMA.identifier, name="pid_schema_version", curie=SCHEMA.curie('identifier'),
+slots.pid_schema_version = Slot(uri=PID4CAT_MODEL.pid_schema_version, name="pid_schema_version", curie=PID4CAT_MODEL.curie('pid_schema_version'),
                    model_uri=PID4CAT_MODEL.pid_schema_version, domain=None, range=Optional[str])
 
 slots.resource_info = Slot(uri=PID4CAT_MODEL.resource_info, name="resource_info", curie=PID4CAT_MODEL.curie('resource_info'),
                    model_uri=PID4CAT_MODEL.resource_info, domain=None, range=Optional[Union[dict, ResourceInfo]])
 
-slots.related_identifiers = Slot(uri=SCHEMA.identifier, name="related_identifiers", curie=SCHEMA.curie('identifier'),
+slots.related_identifiers = Slot(uri=PID4CAT_MODEL.related_identifiers, name="related_identifiers", curie=PID4CAT_MODEL.curie('related_identifiers'),
                    model_uri=PID4CAT_MODEL.related_identifiers, domain=None, range=Optional[Union[Union[dict, PID4CatRelation], List[Union[dict, PID4CatRelation]]]])
 
-slots.license = Slot(uri=SCHEMA.license, name="license", curie=SCHEMA.curie('license'),
+slots.license = Slot(uri=PID4CAT_MODEL.license, name="license", curie=PID4CAT_MODEL.curie('license'),
                    model_uri=PID4CAT_MODEL.license, domain=None, range=Optional[str])
 
-slots.curation_contact_email = Slot(uri=SCHEMA.email, name="curation_contact_email", curie=SCHEMA.curie('email'),
+slots.curation_contact_email = Slot(uri=PID4CAT_MODEL.curation_contact_email, name="curation_contact_email", curie=PID4CAT_MODEL.curie('curation_contact_email'),
                    model_uri=PID4CAT_MODEL.curation_contact_email, domain=None, range=Optional[str])
 
-slots.change_log = Slot(uri=SCHEMA.identifier, name="change_log", curie=SCHEMA.curie('identifier'),
+slots.change_log = Slot(uri=PID4CAT_MODEL.change_log, name="change_log", curie=PID4CAT_MODEL.curie('change_log'),
                    model_uri=PID4CAT_MODEL.change_log, domain=None, range=Union[Union[dict, LogRecord], List[Union[dict, LogRecord]]])
 
-slots.relation_type = Slot(uri=SCHEMA.identifier, name="relation_type", curie=SCHEMA.curie('identifier'),
+slots.relation_type = Slot(uri=PID4CAT_MODEL.relation_type, name="relation_type", curie=PID4CAT_MODEL.curie('relation_type'),
                    model_uri=PID4CAT_MODEL.relation_type, domain=None, range=Optional[Union[str, "RelationType"]])
 
-slots.related_identifier = Slot(uri=SCHEMA.identifier, name="related_identifier", curie=SCHEMA.curie('identifier'),
-                   model_uri=PID4CAT_MODEL.related_identifier, domain=None, range=Optional[str])
+slots.related_identifier = Slot(uri=PID4CAT_MODEL.related_identifier, name="related_identifier", curie=PID4CAT_MODEL.curie('related_identifier'),
+                   model_uri=PID4CAT_MODEL.related_identifier, domain=None, range=Optional[Union[str, URI]])
 
-slots.datetime_log = Slot(uri=SCHEMA.DateTime, name="datetime_log", curie=SCHEMA.curie('DateTime'),
-                   model_uri=PID4CAT_MODEL.datetime_log, domain=None, range=Optional[str])
+slots.datetime_log = Slot(uri=PID4CAT_MODEL.datetime_log, name="datetime_log", curie=PID4CAT_MODEL.curie('datetime_log'),
+                   model_uri=PID4CAT_MODEL.datetime_log, domain=None, range=Optional[Union[str, XSDDateTime]])
 
-slots.label = Slot(uri=SCHEMA.name, name="label", curie=SCHEMA.curie('name'),
+slots.label = Slot(uri=PID4CAT_MODEL.label, name="label", curie=PID4CAT_MODEL.curie('label'),
                    model_uri=PID4CAT_MODEL.label, domain=None, range=Optional[str])
 
-slots.description = Slot(uri=SCHEMA.description, name="description", curie=SCHEMA.curie('description'),
+slots.description = Slot(uri=PID4CAT_MODEL.description, name="description", curie=PID4CAT_MODEL.curie('description'),
                    model_uri=PID4CAT_MODEL.description, domain=None, range=Optional[str])
 
-slots.resource_category = Slot(uri=SCHEMA.additionalType, name="resource_category", curie=SCHEMA.curie('additionalType'),
+slots.resource_category = Slot(uri=PID4CAT_MODEL.resource_category, name="resource_category", curie=PID4CAT_MODEL.curie('resource_category'),
                    model_uri=PID4CAT_MODEL.resource_category, domain=None, range=Optional[Union[str, "ResourceCategory"]])
 
 slots.representation_variants = Slot(uri=PID4CAT_MODEL.representation_variants, name="representation_variants", curie=PID4CAT_MODEL.curie('representation_variants'),
                    model_uri=PID4CAT_MODEL.representation_variants, domain=None, range=Optional[Union[Union[dict, RepresentationVariant], List[Union[dict, RepresentationVariant]]]])
 
-slots.changed_field = Slot(uri=SCHEMA.identifier, name="changed_field", curie=SCHEMA.curie('identifier'),
+slots.changed_field = Slot(uri=PID4CAT_MODEL.changed_field, name="changed_field", curie=PID4CAT_MODEL.curie('changed_field'),
                    model_uri=PID4CAT_MODEL.changed_field, domain=None, range=Optional[Union[str, "ChangeLogField"]])
 
-slots.has_agent = Slot(uri=SCHEMA.Agent, name="has_agent", curie=SCHEMA.curie('Agent'),
+slots.has_agent = Slot(uri=PID4CAT_MODEL.has_agent, name="has_agent", curie=PID4CAT_MODEL.curie('has_agent'),
                    model_uri=PID4CAT_MODEL.has_agent, domain=None, range=Optional[Union[dict, Agent]])
 
-slots.name = Slot(uri=SCHEMA.name, name="name", curie=SCHEMA.curie('name'),
+slots.name = Slot(uri=PID4CAT_MODEL.name, name="name", curie=PID4CAT_MODEL.curie('name'),
                    model_uri=PID4CAT_MODEL.name, domain=None, range=Optional[str])
 
-slots.email = Slot(uri=SCHEMA.email, name="email", curie=SCHEMA.curie('email'),
+slots.email = Slot(uri=PID4CAT_MODEL.email, name="email", curie=PID4CAT_MODEL.curie('email'),
                    model_uri=PID4CAT_MODEL.email, domain=None, range=Optional[str])
 
-slots.orcid = Slot(uri=SCHEMA.identifier, name="orcid", curie=SCHEMA.curie('identifier'),
+slots.orcid = Slot(uri=PID4CAT_MODEL.orcid, name="orcid", curie=PID4CAT_MODEL.curie('orcid'),
                    model_uri=PID4CAT_MODEL.orcid, domain=None, range=Optional[str])
 
-slots.affiliation_ror = Slot(uri=SCHEMA.identifier, name="affiliation_ror", curie=SCHEMA.curie('identifier'),
-                   model_uri=PID4CAT_MODEL.affiliation_ror, domain=None, range=Optional[str])
+slots.affiliation_ror = Slot(uri=PID4CAT_MODEL.affiliation_ror, name="affiliation_ror", curie=PID4CAT_MODEL.curie('affiliation_ror'),
+                   model_uri=PID4CAT_MODEL.affiliation_ror, domain=None, range=Optional[Union[str, URI]])
 
-slots.role = Slot(uri=SCHEMA.identifier, name="role", curie=SCHEMA.curie('identifier'),
+slots.role = Slot(uri=PID4CAT_MODEL.role, name="role", curie=PID4CAT_MODEL.curie('role'),
                    model_uri=PID4CAT_MODEL.role, domain=None, range=Optional[Union[str, "PID4CatAgentRole"]])
 
-slots.media_type = Slot(uri=SCHEMA.encodingFormat, name="media_type", curie=SCHEMA.curie('encodingFormat'),
+slots.media_type = Slot(uri=PID4CAT_MODEL.media_type, name="media_type", curie=PID4CAT_MODEL.curie('media_type'),
                    model_uri=PID4CAT_MODEL.media_type, domain=None, range=Optional[str])
 
 slots.encoding_format = Slot(uri=PID4CAT_MODEL.encoding_format, name="encoding_format", curie=PID4CAT_MODEL.curie('encoding_format'),
                    model_uri=PID4CAT_MODEL.encoding_format, domain=None, range=Optional[str])
 
-slots.size = Slot(uri=SCHEMA.fileSize, name="size", curie=SCHEMA.curie('fileSize'),
+slots.size = Slot(uri=PID4CAT_MODEL.size, name="size", curie=PID4CAT_MODEL.curie('size'),
                    model_uri=PID4CAT_MODEL.size, domain=None, range=Optional[int])
 
-slots.url = Slot(uri=SCHEMA.URL, name="url", curie=SCHEMA.curie('URL'),
-                   model_uri=PID4CAT_MODEL.url, domain=None, range=Optional[str])
+slots.url = Slot(uri=PID4CAT_MODEL.url, name="url", curie=PID4CAT_MODEL.curie('url'),
+                   model_uri=PID4CAT_MODEL.url, domain=None, range=Optional[Union[str, URI]])
 
 slots.container__contains_pids = Slot(uri=PID4CAT_MODEL.contains_pids, name="container__contains_pids", curie=PID4CAT_MODEL.curie('contains_pids'),
                    model_uri=PID4CAT_MODEL.container__contains_pids, domain=None, range=Optional[Union[Dict[Union[str, PID4CatRecordId], Union[dict, PID4CatRecord]], List[Union[dict, PID4CatRecord]]]])
 
-slots.PID4CatRecord_curation_contact_email = Slot(uri=SCHEMA.email, name="PID4CatRecord_curation_contact_email", curie=SCHEMA.curie('email'),
+slots.PID4CatRecord_curation_contact_email = Slot(uri=PID4CAT_MODEL.curation_contact_email, name="PID4CatRecord_curation_contact_email", curie=PID4CAT_MODEL.curie('curation_contact_email'),
                    model_uri=PID4CAT_MODEL.PID4CatRecord_curation_contact_email, domain=PID4CatRecord, range=Optional[str],
                    pattern=re.compile(r'^\S+@[\S+\.]+\S+'))
 
-slots.Agent_email = Slot(uri=SCHEMA.email, name="Agent_email", curie=SCHEMA.curie('email'),
+slots.Agent_email = Slot(uri=PID4CAT_MODEL.email, name="Agent_email", curie=PID4CAT_MODEL.curie('email'),
                    model_uri=PID4CAT_MODEL.Agent_email, domain=Agent, range=Optional[str],
                    pattern=re.compile(r'^\S+@[\S+\.]+\S+'))
