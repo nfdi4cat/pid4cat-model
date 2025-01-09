@@ -19,6 +19,7 @@ plugins:
 nav:
   # - Home: home.md
   - Index: index.md
+  - Principles: principles.md
   - About: about.md
 site_url: https://nfdi4cat.github.io/pid4cat-model
 repo_url: https://github.com/nfdi4cat/pid4cat-model
