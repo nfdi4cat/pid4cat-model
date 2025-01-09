@@ -22,17 +22,17 @@
     {
       "relation_type": "IS_PART_OF",
       "related_identifier": "https://example.org/collection",
-      "datetime_log": "2024-02-19T00:00:00Z"
+      "datetime_log": "2024-02-19T00:00:00+00:00"
     },
     {
       "relation_type": "IS_REFERENCED_BY",
       "related_identifier": "https://example.org/referenced",
-      "datetime_log": "2024-02-19T00:00:00Z"
+      "datetime_log": "2024-02-19T00:00:00+00:00"
     }
   ],
   "change_log": [
     {
-      "datetime_log": "2024-02-19T00:00:00Z",
+      "datetime_log": "2024-02-19T00:00:00+00:00",
       "has_agent": {
         "name": "Data Fuzzi",
         "email": "data.fuzzi@example.org",
@@ -44,7 +44,7 @@
       "description": "Registration completed."
     },
     {
-      "datetime_log": "2024-05-15T15:51:15Z",
+      "datetime_log": "2024-05-15T15:51:15+00:00",
       "has_agent": {
         "name": "Data Fuzzi",
         "email": "data.fuzzi@example.org",

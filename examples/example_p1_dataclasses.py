@@ -1,7 +1,12 @@
+import sys
+from datetime import datetime
 from linkml_runtime.dumpers import json_dumper
 from pid4cat_model.datamodel import pid4cat_model as p4c
 
 # Demonstrate the use of Python DataClass-based model
+
+if sys.version_info < (3, 11):
+    raise RuntimeError("Python 3.11 or higher is required due to the use of datetime.fromisoformat")
 
 p1_Agent = p4c.Agent(
     name="Data Fuzzi",
@@ -15,12 +20,12 @@ p1_related = [
     p4c.PID4CatRelation(
         relation_type=p4c.RelationType.IS_PART_OF,
         related_identifier="https://example.org/collection",
-        datetime_log="2024-02-19T00:00:00Z",
+        datetime_log=datetime.fromisoformat("2024-02-19T00:00:00Z"),
     ),
     p4c.PID4CatRelation(
         relation_type=p4c.RelationType.IS_REFERENCED_BY,
         related_identifier="https://example.org/referenced",
-        datetime_log="2024-02-19T00:00:00Z",
+        datetime_log=datetime.fromisoformat("2024-02-19T00:00:00Z"),
     ),
 ]
 
@@ -43,13 +48,13 @@ p1_res_info = p4c.ResourceInfo(
 
 p1_log = [
     p4c.LogRecord(
-        datetime_log="2024-02-19T00:00:00Z",
+        datetime_log=datetime.fromisoformat("2024-02-19T00:00:00Z"),
         has_agent=p1_Agent,
         changed_field=p4c.ChangeLogField.STATUS,
         description="Registration completed.",
     ),
     p4c.LogRecord(
-        datetime_log="2024-05-15T15:51:15Z",
+        datetime_log=datetime.fromisoformat("2024-05-15T15:51:15Z"),
         has_agent=p1_Agent,
         changed_field=p4c.ChangeLogField.RESOURCE_INFO,
         description="as requested in issue #234",
