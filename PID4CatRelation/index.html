@@ -240,13 +240,13 @@
 </tr>
 <tr>
 <td><a href="../related_identifier/">related_identifier</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>0..1 <br/> <a href="../Uri/">Uri</a></td>
 <td>Related identifiers for the resource</td>
 <td>direct</td>
 </tr>
 <tr>
 <td><a href="../datetime_log/">datetime_log</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>0..1 <br/> <a href="../Datetime/">Datetime</a></td>
 <td>The date and time of a log record</td>
 <td>direct</td>
 </tr>
@@ -322,7 +322,6 @@ attributes:
     description: Relation type between the resources.
     from_schema: https://w3id.org/nfdi4cat/pid4cat-model
     rank: 1000
-    slot_uri: schema:identifier
     alias: relation_type
     owner: PID4CatRelation
     domain_of:
@@ -333,24 +332,22 @@ attributes:
     description: Related identifiers for the resource.
     from_schema: https://w3id.org/nfdi4cat/pid4cat-model
     rank: 1000
-    slot_uri: schema:identifier
     alias: related_identifier
     owner: PID4CatRelation
     domain_of:
     - PID4CatRelation
-    range: string
+    range: uri
   datetime_log:
     name: datetime_log
     description: The date and time of a log record.
     from_schema: https://w3id.org/nfdi4cat/pid4cat-model
     rank: 1000
-    slot_uri: schema:DateTime
     alias: datetime_log
     owner: PID4CatRelation
     domain_of:
     - PID4CatRelation
     - LogRecord
-    range: string
+    range: datetime
 
 </code></pre>
 </details>

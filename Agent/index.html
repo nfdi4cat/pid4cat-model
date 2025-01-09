@@ -201,7 +201,7 @@
 </a>
 <h1 id="class-agent">Class: Agent</h1>
 <p><em>Person who plays a role relative to PID creation or curation.</em></p>
-<p>URI: <a href="https://w3id.org/nfdi4cat/pid4cat-model/Agent">pid4cat_model:Agent</a></p>
+<p>URI: <a href="prov:Agent">prov:Agent</a></p>
 <div class="mermaid"> classDiagram
     class Agent
     click Agent href "../Agent"
@@ -256,7 +256,7 @@
 </tr>
 <tr>
 <td><a href="../affiliation_ror/">affiliation_ror</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>0..1 <br/> <a href="../Uri/">Uri</a></td>
 <td>The ROR of the agent's affiliation</td>
 <td>direct</td>
 </tr>
@@ -303,7 +303,7 @@
 <tbody>
 <tr>
 <td>self</td>
-<td>pid4cat_model:Agent</td>
+<td>prov:Agent</td>
 </tr>
 <tr>
 <td>native</td>
@@ -328,6 +328,7 @@ slot_usage:
   email:
     name: email
     pattern: ^\S+@[\S+\.]+\S+
+class_uri: prov:Agent
 
 </code></pre>
 </details>
@@ -346,7 +347,6 @@ attributes:
     description: The name of the agent that created or modified the PID record.
     from_schema: https://w3id.org/nfdi4cat/pid4cat-model
     rank: 1000
-    slot_uri: schema:name
     alias: name
     owner: Agent
     domain_of:
@@ -357,7 +357,6 @@ attributes:
     description: Email address of the agent that created or modified the PID record.
     from_schema: https://w3id.org/nfdi4cat/pid4cat-model
     rank: 1000
-    slot_uri: schema:email
     alias: email
     owner: Agent
     domain_of:
@@ -369,7 +368,6 @@ attributes:
     description: The ORCID of the person
     from_schema: https://w3id.org/nfdi4cat/pid4cat-model
     rank: 1000
-    slot_uri: schema:identifier
     alias: orcid
     owner: Agent
     domain_of:
@@ -380,23 +378,22 @@ attributes:
     description: The ROR of the agent's affiliation.
     from_schema: https://w3id.org/nfdi4cat/pid4cat-model
     rank: 1000
-    slot_uri: schema:identifier
     alias: affiliation_ror
     owner: Agent
     domain_of:
     - Agent
-    range: string
+    range: uri
   role:
     name: role
     description: The role of the agent relative to the resource
     from_schema: https://w3id.org/nfdi4cat/pid4cat-model
     rank: 1000
-    slot_uri: schema:identifier
     alias: role
     owner: Agent
     domain_of:
     - Agent
     range: PID4CatAgentRole
+class_uri: prov:Agent
 
 </code></pre>
 </details>

@@ -273,7 +273,7 @@
 </tr>
 <tr>
 <td><a href="../landing_page_url/">landing_page_url</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>0..1 <br/> <a href="../Uri/">Uri</a></td>
 <td>The URL of the landing page for the resource</td>
 <td>direct</td>
 </tr>
@@ -420,7 +420,7 @@ attributes:
     owner: PID4CatRecord
     domain_of:
     - PID4CatRecord
-    range: string
+    range: uri
   status:
     name: status
     description: The status of the PID4CatRecord.
@@ -436,7 +436,6 @@ attributes:
     description: The version of the PID4Cat schema used for the PID4CatRecord.
     from_schema: https://w3id.org/nfdi4cat/pid4cat-model
     rank: 1000
-    slot_uri: schema:identifier
     alias: pid_schema_version
     owner: PID4CatRecord
     domain_of:
@@ -447,7 +446,6 @@ attributes:
     description: The license for the metadata contained in the PID4Cat record.
     from_schema: https://w3id.org/nfdi4cat/pid4cat-model
     rank: 1000
-    slot_uri: schema:license
     alias: license
     owner: PID4CatRecord
     domain_of:
@@ -459,7 +457,6 @@ attributes:
       for the curation of the PID record.
     from_schema: https://w3id.org/nfdi4cat/pid4cat-model
     rank: 1000
-    slot_uri: schema:email
     alias: curation_contact_email
     owner: PID4CatRecord
     domain_of:
@@ -481,7 +478,6 @@ attributes:
     description: Relations of the resource to other identifiers.
     from_schema: https://w3id.org/nfdi4cat/pid4cat-model
     rank: 1000
-    slot_uri: schema:identifier
     alias: related_identifiers
     owner: PID4CatRecord
     domain_of:
@@ -493,7 +489,6 @@ attributes:
     description: Change log of PID4Cat record.
     from_schema: https://w3id.org/nfdi4cat/pid4cat-model
     rank: 1000
-    slot_uri: schema:identifier
     alias: change_log
     owner: PID4CatRecord
     domain_of:

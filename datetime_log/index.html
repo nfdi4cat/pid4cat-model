@@ -323,7 +323,7 @@
 
 <h1 id="slot-datetime_log">Slot: datetime_log</h1>
 <p><em>The date and time of a log record.</em></p>
-<p>URI: <a href="http://schema.org/DateTime">schema:DateTime</a></p>
+<p>URI: <a href="https://w3id.org/nfdi4cat/pid4cat-model/datetime_log">pid4cat_model:datetime_log</a></p>
 <!-- no inheritance hierarchy -->
 
 <h2 id="applicable-classes">Applicable Classes</h2>
@@ -337,20 +337,20 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../LogRecord/">LogRecord</a></td>
-<td>A log record for changes made on a PID4CatRecord starting from registration</td>
+<td><a href="../PID4CatRelation/">PID4CatRelation</a></td>
+<td>A relation between PID4CatRecords or between a PID4CatRecord and other resour...</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../PID4CatRelation/">PID4CatRelation</a></td>
-<td>A relation between PID4CatRecords or between a PID4CatRecord and other resour...</td>
+<td><a href="../LogRecord/">LogRecord</a></td>
+<td>A log record for changes made on a PID4CatRecord starting from registration</td>
 <td>no</td>
 </tr>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
 <ul>
-<li>Range: <a href="../String/">String</a></li>
+<li>Range: <a href="../Datetime/">Datetime</a></li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
@@ -368,7 +368,7 @@
 <tbody>
 <tr>
 <td>self</td>
-<td>schema:DateTime</td>
+<td>pid4cat_model:datetime_log</td>
 </tr>
 <tr>
 <td>native</td>
@@ -383,12 +383,11 @@
 description: The date and time of a log record.
 from_schema: https://w3id.org/nfdi4cat/pid4cat-model
 rank: 1000
-slot_uri: schema:DateTime
 alias: datetime_log
 domain_of:
 - PID4CatRelation
 - LogRecord
-range: string
+range: datetime
 
 </code></pre>
 
