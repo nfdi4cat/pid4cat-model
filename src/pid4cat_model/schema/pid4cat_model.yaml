@@ -33,7 +33,6 @@ prefixes:
   DataCite: http://purl.org/spar/datacite/
 
 default_prefix: pid4cat_model
-default_range: string
 
 imports:
   - linkml:types
@@ -41,6 +40,7 @@ imports:
 classes:
 
   PID4CatRecord:
+    # TODO class_uri: ...
     description: >-
       Represents a PID4CatRecord
     slots:
@@ -58,6 +58,7 @@ classes:
         pattern: "^\\S+@[\\S+\\.]+\\S+"
 
   PID4CatRelation:
+    # TODO class_uri: ...
     description: >-
       A relation between PID4CatRecords or between a PID4CatRecord and other
       resources with a PID.
@@ -67,6 +68,7 @@ classes:
       - datetime_log
 
   ResourceInfo:
+    # TODO class_uri: ...
     description: >-
       Data object to hold information about the resource and its representation.
     slots:
@@ -76,6 +78,7 @@ classes:
       - representation_variants
 
   LogRecord:
+    # TODO class_uri: ...
     description: >-
       A log record for changes made on a PID4CatRecord starting from registration.
     slots:
@@ -85,6 +88,7 @@ classes:
       - description
 
   Agent:
+    class_uri: prov:Agent
     description: Person who plays a role relative to PID creation or curation.
     slots:
       - name
@@ -97,6 +101,7 @@ classes:
         pattern: "^\\S+@[\\S+\\.]+\\S+"
 
   RepresentationVariant:
+    # TODO class_uri: ...
     description: A representation of the resource in other media types than
       text/html which is the default for landing_page_url.
     slots:
@@ -106,6 +111,7 @@ classes:
       - size
 
   Container:
+    # TODO class_uri: ... maybe schema:Dataset?
     description: >-
       A container for all PID4Cat instances.
     tree_root: true
@@ -128,32 +134,38 @@ slots:
   landing_page_url:
     rank: 10
     slot_uri: schema:url
+    range: uri
     description: The URL of the landing page for the resource.
   status:
+    # TODO slot_uri: ...
     range: PID4CatStatus
     description: >-
       The status of the PID4CatRecord.
   pid_schema_version:
-    slot_uri: schema:identifier
+    # TODO slot_uri: ...
+    range: string
     description: The version of the PID4Cat schema used for the PID4CatRecord.
   resource_info:
+    # TODO slot_uri: ...
     range: ResourceInfo
     description: Information about the resource.
   related_identifiers:
-    slot_uri: schema:identifier
+    # TODO slot_uri: ...
     range: PID4CatRelation
     multivalued: true
     description: Relations of the resource to other identifiers.
   license:
-    slot_uri: schema:license
+    # TODO slot_uri: ...
+    range: string
     description: The license for the metadata contained in the PID4Cat record.
   curation_contact_email:
-    slot_uri: schema:email
+    # TODO slot_uri: ...
+    range: string
     description: >-
       The email address of a person or institution currently responsible for the
       curation of the PID record.
   change_log:
-    slot_uri: schema:identifier
+    # TODO slot_uri: ...
     range: LogRecord
     required: true
     multivalued: true
@@ -161,29 +173,33 @@ slots:
 
   # Slots for PID4CatRelation
   relation_type:
-    slot_uri: schema:identifier
+    # TODO slot_uri: ...
     range: RelationType
     description: Relation type between the resources.
   related_identifier:
-    slot_uri: schema:identifier
+    # TODO slot_uri: ...
+    range: uri
     description: Related identifiers for the resource.
   datetime_log:
-    slot_uri: schema:DateTime
+    # TODO slot_uri: ...
+    range: datetime
     description: The date and time of a log record.
 
   # Slots for ResourceInfo
   label:
-    slot_uri: schema:name
+    # TODO slot_uri: ...
+    range: string
     description: A human-readable name for a resource.
   description:
-    slot_uri: schema:description
+    # TODO slot_uri: ...
+    range: string
     description: A human-readable description for a resource.
   resource_category:
-    slot_uri: schema:additionalType
+    # TODO slot_uri: ...
     range: ResourceCategory
     description: The category of the resource.
   representation_variants:
-    # slot_uri: ?
+    # TODO slot_uri: ...
     range: RepresentationVariant
     multivalued: true
     description: >-
@@ -191,48 +207,56 @@ slots:
 
   # Slots for LogRecord
   changed_field:
-    slot_uri: schema:identifier
+    # TODO slot_uri: ...
     range: ChangeLogField
     description: The field that was changed
   has_agent:
-    slot_uri: schema:Agent
+    # TODO slot_uri: ...
     range: Agent
     description: The person who registered or modified the PID record.
+  # datetime_log is already defined in PID4CatRelation
 
   # Slots for Agent
   name:
-    slot_uri: schema:name
+    # TODO slot_uri: ...
+    range: string
     description: The name of the agent that created or modified the PID record.
   email:
-    slot_uri: schema:email
+    # TODO slot_uri: ...
+    range: string
     description: Email address of the agent that created or modified the PID record.
   orcid:
-    slot_uri: schema:identifier
+    # TODO slot_uri: ...
+    range: string
     description: The ORCID of the person
   affiliation_ror:
-    slot_uri: schema:identifier
+    # TODO slot_uri: ...
+    range: uri
     description: The ROR of the agent's affiliation.
   role:
-    slot_uri: schema:identifier
+    # TODO slot_uri: ...
     range: PID4CatAgentRole
     description: The role of the agent relative to the resource
 
   # Slots for RepresentationVariants
   media_type:
-    slot_uri: schema:encodingFormat
+    # TODO slot_uri: ...    slot_uri: schema:encodingFormat ?
+    range: string
     description: >-
       The media type of the representation as defined by [IANA](https://www.iana.org/assignments/media-types/media-types.xhtml)
   encoding_format:
     # slot_uri: ?
+    range: string
     description: >-
       The encoding of the representation. https://encoding.spec.whatwg.org/#names-and-labels
   size:
-    slot_uri: schema:fileSize
-    description: The size of the representation in bytes.
+    # TODO slot_uri: ...    slot_uri: schema:fileSize ?
     range: integer
     minimum_value: 0
+    description: The size of the representation in bytes.
   url:
-    slot_uri: schema:URL
+    # TODO slot_uri: ...
+    range: uri
     description: The URL of the representation.
 
 enums:  # Enumerations use singular form for names
@@ -253,22 +277,24 @@ enums:  # Enumerations use singular form for names
         meaning: http://www.w3.org/ns/sosa/Sample
       MATERIAL:
         description: A material used in the research process (except samples).
+        # TODO meaning:...
         todos:
-          - map this to an ontology
+          - map to an ontology/vocabulary
       DEVICE:
         description: A physical device used in the research process.
+        # TODO meaning:...
         todos:
-          - map this to an ontology
+          - map to an ontology/vocabulary
       DATA_OBJECT:
         description: >-
           A collection of data available for access or download.
           A data set might be a data file, a data set, a data collection.
-        meaning: dcat:dataset
+        meaning: DCAT:dataset
       DATA_SERVICE:
         description: >-
           An organized system of operations that provide data processing
           functions or access to datasets.
-        meaning: dcat:DataService
+        meaning: DCAT:DataService
 
   RelationType:
     description: >-
@@ -283,20 +309,44 @@ enums:  # Enumerations use singular form for names
 
       IS_CITED_BY:
         description: The resource is cited by another resource.
+        # TODO meaning:...
+        todos:
+          - map to an ontology/vocabulary
       CITES:
         description: The resource cites another resource.
+        # TODO meaning:...
+        todos:
+          - map to an ontology/vocabulary
       IS_SUPPLEMENT_TO:
         description: The resource is supplemented by another resource.
+        # TODO meaning:...
+        todos:
+          - map to an ontology/vocabulary
       IS_SUPPLEMENTED_BY:
         description: The resource supplements another resource.
+        # TODO meaning:...
+        todos:
+          - map to an ontology/vocabulary
       IS_CONTINUED_BY:
         description: The resource is continued by another resource.
+        # TODO meaning:...
+        todos:
+          - map to an ontology/vocabulary
       CONTINUES:
         description: The resource continues another resource.
+        # TODO meaning:...
+        todos:
+          - map to an ontology/vocabulary
       HAS_METADATA:
         description: The resource has metadata in another resource.
+        # TODO meaning:...
+        todos:
+          - map to an ontology/vocabulary
       IS_METADATA_FOR:
         description: The resource is metadata for another resource.
+        # TODO meaning:...
+        todos:
+          - map to an ontology/vocabulary
       HAS_VERSION:
         description: The resource has a version.
         meaning: dcterms:hasVersion
@@ -308,8 +358,14 @@ enums:  # Enumerations use singular form for names
         meaning: dcterms:isVersionOf
       IS_NEW_VERSION_OF:
         description: The resource is a new version of.
+        # TODO meaning:...
+        todos:
+          - map to an ontology/vocabulary
       IS_PREVIOUS_VERSION_OF:
         description: The resource is a previous version of.
+        # TODO meaning:...
+        todos:
+          - map to an ontology/vocabulary
       IS_PART_OF:
         description: The resource is part of another resource.
         meaning: dcterms:isPartOf
@@ -318,48 +374,103 @@ enums:  # Enumerations use singular form for names
         meaning: dcterms:hasPart
       IS_DESCRIBED_BY:
         description: The resource is documented by another resource.
+        # TODO meaning:...
+        todos:
+          - map to an ontology/vocabulary
       DESCRIBES:
         description: The resource documents another resource.
+        # TODO meaning:...
+        todos:
+          - map to an ontology/vocabulary
       IS_PUBLISHED_IN:
         description: The resource is published in another resource.
+        # TODO meaning:...
+        todos:
+          - map to an ontology/vocabulary
       IS_REFERENCED_BY:
         description: The resource is referenced by another resource.
         meaning: dcterms:isReferencedBy
       REFERENCES:
         description: The resource references another resource.
+        # TODO meaning:...
+        todos:
+          - map to an ontology/vocabulary
       IS_DOCUMENTED_BY:
         description: The resource is documented by another resource.
+        # TODO meaning:...
+        todos:
+          - map to an ontology/vocabulary
       DOCUMENTS:
         description: The resource documents another resource.
+        # TODO meaning:...
+        todos:
+          - map to an ontology/vocabulary
       IS_COMPILED_BY:
         description: The resource is compiled by another resource.
+        # TODO meaning:...
+        todos:
+          - map to an ontology/vocabulary
       COMPILES:
         description: The resource compiles another resource.
+        # TODO meaning:...
+        todos:
+          - map to an ontology/vocabulary
       IS_VARIANT_FORM_OF:
+        # TODO meaning:...
         description: The resource is variant form of another resource.
+        # TODO meaning:...
+        todos:
+          - map to an ontology/vocabulary
       IS_ORIGINAL_FORM_OF:
         description: The resource is original form of another resource.
+        # TODO meaning:...
+        todos:
+          - map to an ontology/vocabulary
       IS_IDENTICAL_TO:
         description: The resource is identical to another resource.
+        # TODO meaning:...
+        todos:
+          - map to an ontology/vocabulary
       IS_DERIVED_FROM:
         description: The resource is derived from another resource.
+        # TODO meaning:...
+        todos:
+          - map to an ontology/vocabulary
       IS_SOURCE_OF:
         description: The resource is source of another resource.
+        # TODO meaning:...
+        todos:
+          - map to an ontology/vocabulary
       IS_COLLECTED_BY:
         description: The resource is collected by another resource.
+        # TODO meaning:...
+        todos:
+          - map to an ontology/vocabulary
       COLLECTS:
         description: The resource collects another resource.
+        # TODO meaning:...
+
+        todos:
+          - map to an ontology/vocabulary
       IS_REQUIRED_BY:
         description: The resource is required by another resource.
         meaning: dcterms:isRequiredBy
+        todos:
+          - map to an ontology/vocabulary
       REQUIRES:
         description: The resource requires another resource.
         meaning: dcterms:requires
+        todos:
+          - map to an ontology/vocabulary
       IS_OBSOLETED_BY:
         description: >-
           The resource or PID4Cat is obsoleted by another resource or PID4Cat.
+        # TODO meaning:...
       OBSOLETES:
         description: The resource or PID4Cat obsoletes another resource or PID4Cat.
+        todos:
+          - map to an ontology/vocabulary
+        # TODO meaning:...
 
   PID4CatStatus:
     description: >-
