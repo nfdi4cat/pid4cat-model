@@ -4,5 +4,9 @@
    "dcterms": "http://purl.org/dc/terms/",
    "linkml": "https://w3id.org/linkml/",
    "pid4cat_model": "https://w3id.org/nfdi4cat/pid4cat-model/",
-   "schema": "http://schema.org/"
+   "prov": "http://example.org/UNKNOWN/prov/",
+   "schema": "http://schema.org/",
+   "Agent": {
+      "@id": "prov:Agent"
+   }
 }

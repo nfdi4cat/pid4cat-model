@@ -52,7 +52,7 @@ CREATE TABLE "PID4CatRelation" (
 	id INTEGER NOT NULL, 
 	relation_type VARCHAR(22), 
 	related_identifier TEXT, 
-	datetime_log TEXT, 
+	datetime_log DATETIME, 
 	PRIMARY KEY (id)
 );
 CREATE TABLE "ResourceInfo" (
@@ -98,7 +98,7 @@ CREATE TABLE "PID4CatRecord" (
 );
 CREATE TABLE "LogRecord" (
 	id INTEGER NOT NULL, 
-	datetime_log TEXT, 
+	datetime_log DATETIME, 
 	changed_field VARCHAR(13), 
 	description TEXT, 
 	has_agent_id INTEGER, 

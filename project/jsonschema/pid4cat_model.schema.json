@@ -82,6 +82,7 @@
                 },
                 "datetime_log": {
                     "description": "The date and time of a log record.",
+                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
@@ -204,6 +205,7 @@
             "properties": {
                 "datetime_log": {
                     "description": "The date and time of a log record.",
+                    "format": "date-time",
                     "type": [
                         "string",
                         "null"

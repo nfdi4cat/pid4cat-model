@@ -8,6 +8,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX linkml: <https://w3id.org/linkml/>
 PREFIX schema1: <http://schema.org/>
 PREFIX DCAT: <http://www.w3.org/ns/dcat#>
+PREFIX prov1: <http://example.org/UNKNOWN/prov/>
 
 
 linkml:String xsd:string
@@ -49,14 +50,14 @@ linkml:Jsonpath xsd:string
 linkml:Sparqlpath xsd:string
 
 <Agent> CLOSED {
-    (  $<Agent_tes> (  schema1:name @linkml:String ? ;
-          schema1:email @linkml:String ? ;
-          schema1:identifier @linkml:String ? ;
-          schema1:identifier @linkml:String ? ;
-          schema1:identifier [ <https://w3id.org/nfdi4cat/pid4cat-model/PID4CatAgentRole#TRUSTEE>
+    (  $<Agent_tes> (  <name> @linkml:String ? ;
+          <email> @linkml:String ? ;
+          <orcid> @linkml:String ? ;
+          <affiliation_ror> @linkml:Uri ? ;
+          <role> [ <https://w3id.org/nfdi4cat/pid4cat-model/PID4CatAgentRole#TRUSTEE>
              <https://w3id.org/nfdi4cat/pid4cat-model/PID4CatAgentRole#OWNER> ] ?
        ) ;
-       rdf:type [ <Agent> ] ?
+       rdf:type [ prov1:Agent ] ?
     )
 }
 
@@ -67,39 +68,39 @@ linkml:Sparqlpath xsd:string
 }
 
 <LogRecord> CLOSED {
-    (  $<LogRecord_tes> (  schema1:DateTime @linkml:String ? ;
-          schema1:Agent @<Agent> ? ;
-          schema1:identifier [ <https://w3id.org/nfdi4cat/pid4cat-model/ChangeLogField#STATUS>
+    (  $<LogRecord_tes> (  <datetime_log> @linkml:Datetime ? ;
+          <has_agent> @<Agent> ? ;
+          <changed_field> [ <https://w3id.org/nfdi4cat/pid4cat-model/ChangeLogField#STATUS>
              <https://w3id.org/nfdi4cat/pid4cat-model/ChangeLogField#LANDING_PAGE>
              <https://w3id.org/nfdi4cat/pid4cat-model/ChangeLogField#RESOURCE_INFO>
              <https://w3id.org/nfdi4cat/pid4cat-model/ChangeLogField#RELATED_IDS>
              <https://w3id.org/nfdi4cat/pid4cat-model/ChangeLogField#CONTACT>
              <https://w3id.org/nfdi4cat/pid4cat-model/ChangeLogField#LICENSE> ] ? ;
-          schema1:description @linkml:String ?
+          <description> @linkml:String ?
        ) ;
        rdf:type [ <LogRecord> ] ?
     )
 }
 
 <PID4CatRecord> CLOSED {
-    (  $<PID4CatRecord_tes> (  schema1:url @linkml:String ? ;
+    (  $<PID4CatRecord_tes> (  schema1:url @linkml:Uri ? ;
           <status> [ <https://w3id.org/nfdi4cat/pid4cat-model/PID4CatStatus#SUBMITTED>
              <https://w3id.org/nfdi4cat/pid4cat-model/PID4CatStatus#REGISTERED>
              <https://w3id.org/nfdi4cat/pid4cat-model/PID4CatStatus#OBSOLETED>
              <https://w3id.org/nfdi4cat/pid4cat-model/PID4CatStatus#DEPRECATED> ] ? ;
-          schema1:identifier @linkml:String ? ;
-          schema1:license @linkml:String ? ;
-          schema1:email @linkml:String ? ;
+          <pid_schema_version> @linkml:String ? ;
+          <license> @linkml:String ? ;
+          <curation_contact_email> @linkml:String ? ;
           <resource_info> @<ResourceInfo> ? ;
-          schema1:identifier @<PID4CatRelation> * ;
-          schema1:identifier @<LogRecord> +
+          <related_identifiers> @<PID4CatRelation> * ;
+          <change_log> @<LogRecord> +
        ) ;
        rdf:type [ <PID4CatRecord> ]
     )
 }
 
 <PID4CatRelation> CLOSED {
-    (  $<PID4CatRelation_tes> (  schema1:identifier [ <https://w3id.org/nfdi4cat/pid4cat-model/RelationType#IS_CITED_BY>
+    (  $<PID4CatRelation_tes> (  <relation_type> [ <https://w3id.org/nfdi4cat/pid4cat-model/RelationType#IS_CITED_BY>
              <https://w3id.org/nfdi4cat/pid4cat-model/RelationType#CITES>
              <https://w3id.org/nfdi4cat/pid4cat-model/RelationType#IS_SUPPLEMENT_TO>
              <https://w3id.org/nfdi4cat/pid4cat-model/RelationType#IS_SUPPLEMENTED_BY>
@@ -126,28 +127,27 @@ linkml:Sparqlpath xsd:string
              <https://w3id.org/nfdi4cat/pid4cat-model/RelationType#COLLECTS> dcterms:isRequiredBy dcterms:requires
              <https://w3id.org/nfdi4cat/pid4cat-model/RelationType#IS_OBSOLETED_BY>
              <https://w3id.org/nfdi4cat/pid4cat-model/RelationType#OBSOLETES> ] ? ;
-          schema1:identifier @linkml:String ? ;
-          schema1:DateTime @linkml:String ?
+          <related_identifier> @linkml:Uri ? ;
+          <datetime_log> @linkml:Datetime ?
        ) ;
        rdf:type [ <PID4CatRelation> ] ?
     )
 }
 
 <RepresentationVariant> CLOSED {
-    (  $<RepresentationVariant_tes> (  schema1:URL @linkml:String ? ;
-          schema1:encodingFormat @linkml:String ? ;
+    (  $<RepresentationVariant_tes> (  <url> @linkml:Uri ? ;
+          <media_type> @linkml:String ? ;
           <encoding_format> @linkml:String ? ;
-          schema1:fileSize @linkml:Integer ?
+          <size> @linkml:Integer ?
        ) ;
        rdf:type [ <RepresentationVariant> ] ?
     )
 }
 
 <ResourceInfo> CLOSED {
-    (  $<ResourceInfo_tes> (  schema1:name @linkml:String ? ;
-          schema1:description @linkml:String ? ;
-          schema1:additionalType [ dcmitype:Collection sosa:Sample
-             <https://w3id.org/nfdi4cat/pid4cat-model/ResourceCategory#MATERIAL>
+    (  $<ResourceInfo_tes> (  <label> @linkml:String ? ;
+          <description> @linkml:String ? ;
+          <resource_category> [ dcmitype:Collection sosa:Sample <https://w3id.org/nfdi4cat/pid4cat-model/ResourceCategory#MATERIAL>
              <https://w3id.org/nfdi4cat/pid4cat-model/ResourceCategory#DEVICE> DCAT:dataset DCAT:DataService ] ? ;
           <representation_variants> @<RepresentationVariant> *
        ) ;

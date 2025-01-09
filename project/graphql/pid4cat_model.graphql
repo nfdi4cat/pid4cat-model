@@ -76,7 +76,7 @@ type Agent
     name: String
     email: String
     orcid: String
-    affiliationRor: String
+    affiliationRor: Uri
     role: PID4CatAgentRole
   }
 
@@ -87,7 +87,7 @@ type Container
 
 type LogRecord
   {
-    datetimeLog: String
+    datetimeLog: Datetime
     hasAgent: Agent
     changedField: ChangeLogField
     description: String
@@ -96,7 +96,7 @@ type LogRecord
 type PID4CatRecord
   {
     id: Uriorcurie!
-    landingPageUrl: String
+    landingPageUrl: Uri
     status: PID4CatStatus
     pidSchemaVersion: String
     license: String
@@ -109,13 +109,13 @@ type PID4CatRecord
 type PID4CatRelation
   {
     relationType: RelationType
-    relatedIdentifier: String
-    datetimeLog: String
+    relatedIdentifier: Uri
+    datetimeLog: Datetime
   }
 
 type RepresentationVariant
   {
-    url: String
+    url: Uri
     mediaType: String
     encodingFormat: String
     size: Integer

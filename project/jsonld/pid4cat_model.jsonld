@@ -374,25 +374,25 @@
           "text": "MATERIAL",
           "description": "A material used in the research process (except samples).",
           "todos": [
-            "map this to an ontology"
+            "map to an ontology/vocabulary"
           ]
         },
         {
           "text": "DEVICE",
           "description": "A physical device used in the research process.",
           "todos": [
-            "map this to an ontology"
+            "map to an ontology/vocabulary"
           ]
         },
         {
           "text": "DATA_OBJECT",
           "description": "A collection of data available for access or download. A data set might be a data file, a data set, a data collection.",
-          "meaning": "dcat:dataset"
+          "meaning": "DCAT:dataset"
         },
         {
           "text": "DATA_SERVICE",
           "description": "An organized system of operations that provide data processing functions or access to datasets.",
-          "meaning": "dcat:DataService"
+          "meaning": "DCAT:DataService"
         }
       ]
     },
@@ -404,35 +404,59 @@
       "permissible_values": [
         {
           "text": "IS_CITED_BY",
-          "description": "The resource is cited by another resource."
+          "description": "The resource is cited by another resource.",
+          "todos": [
+            "map to an ontology/vocabulary"
+          ]
         },
         {
           "text": "CITES",
-          "description": "The resource cites another resource."
+          "description": "The resource cites another resource.",
+          "todos": [
+            "map to an ontology/vocabulary"
+          ]
         },
         {
           "text": "IS_SUPPLEMENT_TO",
-          "description": "The resource is supplemented by another resource."
+          "description": "The resource is supplemented by another resource.",
+          "todos": [
+            "map to an ontology/vocabulary"
+          ]
         },
         {
           "text": "IS_SUPPLEMENTED_BY",
-          "description": "The resource supplements another resource."
+          "description": "The resource supplements another resource.",
+          "todos": [
+            "map to an ontology/vocabulary"
+          ]
         },
         {
           "text": "IS_CONTINUED_BY",
-          "description": "The resource is continued by another resource."
+          "description": "The resource is continued by another resource.",
+          "todos": [
+            "map to an ontology/vocabulary"
+          ]
         },
         {
           "text": "CONTINUES",
-          "description": "The resource continues another resource."
+          "description": "The resource continues another resource.",
+          "todos": [
+            "map to an ontology/vocabulary"
+          ]
         },
         {
           "text": "HAS_METADATA",
-          "description": "The resource has metadata in another resource."
+          "description": "The resource has metadata in another resource.",
+          "todos": [
+            "map to an ontology/vocabulary"
+          ]
         },
         {
           "text": "IS_METADATA_FOR",
-          "description": "The resource is metadata for another resource."
+          "description": "The resource is metadata for another resource.",
+          "todos": [
+            "map to an ontology/vocabulary"
+          ]
         },
         {
           "text": "HAS_VERSION",
@@ -446,11 +470,17 @@
         },
         {
           "text": "IS_NEW_VERSION_OF",
-          "description": "The resource is a new version of."
+          "description": "The resource is a new version of.",
+          "todos": [
+            "map to an ontology/vocabulary"
+          ]
         },
         {
           "text": "IS_PREVIOUS_VERSION_OF",
-          "description": "The resource is a previous version of."
+          "description": "The resource is a previous version of.",
+          "todos": [
+            "map to an ontology/vocabulary"
+          ]
         },
         {
           "text": "IS_PART_OF",
@@ -464,15 +494,24 @@
         },
         {
           "text": "IS_DESCRIBED_BY",
-          "description": "The resource is documented by another resource."
+          "description": "The resource is documented by another resource.",
+          "todos": [
+            "map to an ontology/vocabulary"
+          ]
         },
         {
           "text": "DESCRIBES",
-          "description": "The resource documents another resource."
+          "description": "The resource documents another resource.",
+          "todos": [
+            "map to an ontology/vocabulary"
+          ]
         },
         {
           "text": "IS_PUBLISHED_IN",
-          "description": "The resource is published in another resource."
+          "description": "The resource is published in another resource.",
+          "todos": [
+            "map to an ontology/vocabulary"
+          ]
         },
         {
           "text": "IS_REFERENCED_BY",
@@ -481,61 +520,103 @@
         },
         {
           "text": "REFERENCES",
-          "description": "The resource references another resource."
+          "description": "The resource references another resource.",
+          "todos": [
+            "map to an ontology/vocabulary"
+          ]
         },
         {
           "text": "IS_DOCUMENTED_BY",
-          "description": "The resource is documented by another resource."
+          "description": "The resource is documented by another resource.",
+          "todos": [
+            "map to an ontology/vocabulary"
+          ]
         },
         {
           "text": "DOCUMENTS",
-          "description": "The resource documents another resource."
+          "description": "The resource documents another resource.",
+          "todos": [
+            "map to an ontology/vocabulary"
+          ]
         },
         {
           "text": "IS_COMPILED_BY",
-          "description": "The resource is compiled by another resource."
+          "description": "The resource is compiled by another resource.",
+          "todos": [
+            "map to an ontology/vocabulary"
+          ]
         },
         {
           "text": "COMPILES",
-          "description": "The resource compiles another resource."
+          "description": "The resource compiles another resource.",
+          "todos": [
+            "map to an ontology/vocabulary"
+          ]
         },
         {
           "text": "IS_VARIANT_FORM_OF",
-          "description": "The resource is variant form of another resource."
+          "description": "The resource is variant form of another resource.",
+          "todos": [
+            "map to an ontology/vocabulary"
+          ]
         },
         {
           "text": "IS_ORIGINAL_FORM_OF",
-          "description": "The resource is original form of another resource."
+          "description": "The resource is original form of another resource.",
+          "todos": [
+            "map to an ontology/vocabulary"
+          ]
         },
         {
           "text": "IS_IDENTICAL_TO",
-          "description": "The resource is identical to another resource."
+          "description": "The resource is identical to another resource.",
+          "todos": [
+            "map to an ontology/vocabulary"
+          ]
         },
         {
           "text": "IS_DERIVED_FROM",
-          "description": "The resource is derived from another resource."
+          "description": "The resource is derived from another resource.",
+          "todos": [
+            "map to an ontology/vocabulary"
+          ]
         },
         {
           "text": "IS_SOURCE_OF",
-          "description": "The resource is source of another resource."
+          "description": "The resource is source of another resource.",
+          "todos": [
+            "map to an ontology/vocabulary"
+          ]
         },
         {
           "text": "IS_COLLECTED_BY",
-          "description": "The resource is collected by another resource."
+          "description": "The resource is collected by another resource.",
+          "todos": [
+            "map to an ontology/vocabulary"
+          ]
         },
         {
           "text": "COLLECTS",
-          "description": "The resource collects another resource."
+          "description": "The resource collects another resource.",
+          "todos": [
+            "map to an ontology/vocabulary"
+          ]
         },
         {
           "text": "IS_REQUIRED_BY",
           "description": "The resource is required by another resource.",
-          "meaning": "dcterms:isRequiredBy"
+          "meaning": "dcterms:isRequiredBy",
+          "todos": [
+            "map to an ontology/vocabulary"
+          ]
         },
         {
           "text": "REQUIRES",
           "description": "The resource requires another resource.",
-          "meaning": "dcterms:requires"
+          "meaning": "dcterms:requires",
+          "todos": [
+            "map to an ontology/vocabulary"
+          ]
         },
         {
           "text": "IS_OBSOLETED_BY",
@@ -543,7 +624,10 @@
         },
         {
           "text": "OBSOLETES",
-          "description": "The resource or PID4Cat obsoletes another resource or PID4Cat."
+          "description": "The resource or PID4Cat obsoletes another resource or PID4Cat.",
+          "todos": [
+            "map to an ontology/vocabulary"
+          ]
         }
       ]
     },
@@ -653,7 +737,7 @@
       "domain_of": [
         "PID4CatRecord"
       ],
-      "range": "string",
+      "range": "uri",
       "@type": "SlotDefinition"
     },
     {
@@ -674,10 +758,7 @@
       "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/pid_schema_version",
       "description": "The version of the PID4Cat schema used for the PID4CatRecord.",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
-      "mappings": [
-        "http://schema.org/identifier"
-      ],
-      "slot_uri": "http://schema.org/identifier",
+      "slot_uri": "https://w3id.org/nfdi4cat/pid4cat-model/pid_schema_version",
       "owner": "PID4CatRecord",
       "domain_of": [
         "PID4CatRecord"
@@ -704,10 +785,7 @@
       "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/related_identifiers",
       "description": "Relations of the resource to other identifiers.",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
-      "mappings": [
-        "http://schema.org/identifier"
-      ],
-      "slot_uri": "http://schema.org/identifier",
+      "slot_uri": "https://w3id.org/nfdi4cat/pid4cat-model/related_identifiers",
       "owner": "PID4CatRecord",
       "domain_of": [
         "PID4CatRecord"
@@ -722,10 +800,7 @@
       "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/license",
       "description": "The license for the metadata contained in the PID4Cat record.",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
-      "mappings": [
-        "http://schema.org/license"
-      ],
-      "slot_uri": "http://schema.org/license",
+      "slot_uri": "https://w3id.org/nfdi4cat/pid4cat-model/license",
       "owner": "PID4CatRecord",
       "domain_of": [
         "PID4CatRecord"
@@ -738,10 +813,7 @@
       "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/curation_contact_email",
       "description": "The email address of a person or institution currently responsible for the curation of the PID record.",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
-      "mappings": [
-        "http://schema.org/email"
-      ],
-      "slot_uri": "http://schema.org/email",
+      "slot_uri": "https://w3id.org/nfdi4cat/pid4cat-model/curation_contact_email",
       "owner": "PID4CatRecord",
       "domain_of": [
         "PID4CatRecord"
@@ -754,10 +826,7 @@
       "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/change_log",
       "description": "Change log of PID4Cat record.",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
-      "mappings": [
-        "http://schema.org/identifier"
-      ],
-      "slot_uri": "http://schema.org/identifier",
+      "slot_uri": "https://w3id.org/nfdi4cat/pid4cat-model/change_log",
       "owner": "PID4CatRecord",
       "domain_of": [
         "PID4CatRecord"
@@ -773,10 +842,7 @@
       "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/relation_type",
       "description": "Relation type between the resources.",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
-      "mappings": [
-        "http://schema.org/identifier"
-      ],
-      "slot_uri": "http://schema.org/identifier",
+      "slot_uri": "https://w3id.org/nfdi4cat/pid4cat-model/relation_type",
       "owner": "PID4CatRelation",
       "domain_of": [
         "PID4CatRelation"
@@ -789,15 +855,12 @@
       "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/related_identifier",
       "description": "Related identifiers for the resource.",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
-      "mappings": [
-        "http://schema.org/identifier"
-      ],
-      "slot_uri": "http://schema.org/identifier",
+      "slot_uri": "https://w3id.org/nfdi4cat/pid4cat-model/related_identifier",
       "owner": "PID4CatRelation",
       "domain_of": [
         "PID4CatRelation"
       ],
-      "range": "string",
+      "range": "uri",
       "@type": "SlotDefinition"
     },
     {
@@ -805,16 +868,13 @@
       "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/datetime_log",
       "description": "The date and time of a log record.",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
-      "mappings": [
-        "http://schema.org/DateTime"
-      ],
-      "slot_uri": "http://schema.org/DateTime",
+      "slot_uri": "https://w3id.org/nfdi4cat/pid4cat-model/datetime_log",
       "owner": "LogRecord",
       "domain_of": [
         "PID4CatRelation",
         "LogRecord"
       ],
-      "range": "string",
+      "range": "datetime",
       "@type": "SlotDefinition"
     },
     {
@@ -822,10 +882,7 @@
       "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/label",
       "description": "A human-readable name for a resource.",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
-      "mappings": [
-        "http://schema.org/name"
-      ],
-      "slot_uri": "http://schema.org/name",
+      "slot_uri": "https://w3id.org/nfdi4cat/pid4cat-model/label",
       "owner": "ResourceInfo",
       "domain_of": [
         "ResourceInfo"
@@ -838,10 +895,7 @@
       "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/description",
       "description": "A human-readable description for a resource.",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
-      "mappings": [
-        "http://schema.org/description"
-      ],
-      "slot_uri": "http://schema.org/description",
+      "slot_uri": "https://w3id.org/nfdi4cat/pid4cat-model/description",
       "owner": "LogRecord",
       "domain_of": [
         "ResourceInfo",
@@ -855,10 +909,7 @@
       "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/resource_category",
       "description": "The category of the resource.",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
-      "mappings": [
-        "http://schema.org/additionalType"
-      ],
-      "slot_uri": "http://schema.org/additionalType",
+      "slot_uri": "https://w3id.org/nfdi4cat/pid4cat-model/resource_category",
       "owner": "ResourceInfo",
       "domain_of": [
         "ResourceInfo"
@@ -886,10 +937,7 @@
       "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/changed_field",
       "description": "The field that was changed",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
-      "mappings": [
-        "http://schema.org/identifier"
-      ],
-      "slot_uri": "http://schema.org/identifier",
+      "slot_uri": "https://w3id.org/nfdi4cat/pid4cat-model/changed_field",
       "owner": "LogRecord",
       "domain_of": [
         "LogRecord"
@@ -902,10 +950,7 @@
       "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/has_agent",
       "description": "The person who registered or modified the PID record.",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
-      "mappings": [
-        "http://schema.org/Agent"
-      ],
-      "slot_uri": "http://schema.org/Agent",
+      "slot_uri": "https://w3id.org/nfdi4cat/pid4cat-model/has_agent",
       "owner": "LogRecord",
       "domain_of": [
         "LogRecord"
@@ -919,10 +964,7 @@
       "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/name",
       "description": "The name of the agent that created or modified the PID record.",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
-      "mappings": [
-        "http://schema.org/name"
-      ],
-      "slot_uri": "http://schema.org/name",
+      "slot_uri": "https://w3id.org/nfdi4cat/pid4cat-model/name",
       "owner": "Agent",
       "domain_of": [
         "Agent"
@@ -935,10 +977,7 @@
       "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/email",
       "description": "Email address of the agent that created or modified the PID record.",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
-      "mappings": [
-        "http://schema.org/email"
-      ],
-      "slot_uri": "http://schema.org/email",
+      "slot_uri": "https://w3id.org/nfdi4cat/pid4cat-model/email",
       "owner": "Agent",
       "domain_of": [
         "Agent"
@@ -951,10 +990,7 @@
       "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/orcid",
       "description": "The ORCID of the person",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
-      "mappings": [
-        "http://schema.org/identifier"
-      ],
-      "slot_uri": "http://schema.org/identifier",
+      "slot_uri": "https://w3id.org/nfdi4cat/pid4cat-model/orcid",
       "owner": "Agent",
       "domain_of": [
         "Agent"
@@ -967,15 +1003,12 @@
       "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/affiliation_ror",
       "description": "The ROR of the agent's affiliation.",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
-      "mappings": [
-        "http://schema.org/identifier"
-      ],
-      "slot_uri": "http://schema.org/identifier",
+      "slot_uri": "https://w3id.org/nfdi4cat/pid4cat-model/affiliation_ror",
       "owner": "Agent",
       "domain_of": [
         "Agent"
       ],
-      "range": "string",
+      "range": "uri",
       "@type": "SlotDefinition"
     },
     {
@@ -983,10 +1016,7 @@
       "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/role",
       "description": "The role of the agent relative to the resource",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
-      "mappings": [
-        "http://schema.org/identifier"
-      ],
-      "slot_uri": "http://schema.org/identifier",
+      "slot_uri": "https://w3id.org/nfdi4cat/pid4cat-model/role",
       "owner": "Agent",
       "domain_of": [
         "Agent"
@@ -999,10 +1029,7 @@
       "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/media_type",
       "description": "The media type of the representation as defined by [IANA](https://www.iana.org/assignments/media-types/media-types.xhtml)",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
-      "mappings": [
-        "http://schema.org/encodingFormat"
-      ],
-      "slot_uri": "http://schema.org/encodingFormat",
+      "slot_uri": "https://w3id.org/nfdi4cat/pid4cat-model/media_type",
       "owner": "RepresentationVariant",
       "domain_of": [
         "RepresentationVariant"
@@ -1028,10 +1055,7 @@
       "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/size",
       "description": "The size of the representation in bytes.",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
-      "mappings": [
-        "http://schema.org/fileSize"
-      ],
-      "slot_uri": "http://schema.org/fileSize",
+      "slot_uri": "https://w3id.org/nfdi4cat/pid4cat-model/size",
       "owner": "RepresentationVariant",
       "domain_of": [
         "RepresentationVariant"
@@ -1045,15 +1069,12 @@
       "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/url",
       "description": "The URL of the representation.",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
-      "mappings": [
-        "http://schema.org/URL"
-      ],
-      "slot_uri": "http://schema.org/URL",
+      "slot_uri": "https://w3id.org/nfdi4cat/pid4cat-model/url",
       "owner": "RepresentationVariant",
       "domain_of": [
         "RepresentationVariant"
       ],
-      "range": "string",
+      "range": "uri",
       "@type": "SlotDefinition"
     },
     {
@@ -1077,12 +1098,9 @@
       "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/curation_contact_email",
       "description": "The email address of a person or institution currently responsible for the curation of the PID record.",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
-      "mappings": [
-        "http://schema.org/email"
-      ],
       "is_a": "curation_contact_email",
       "domain": "PID4CatRecord",
-      "slot_uri": "http://schema.org/email",
+      "slot_uri": "https://w3id.org/nfdi4cat/pid4cat-model/curation_contact_email",
       "alias": "curation_contact_email",
       "owner": "PID4CatRecord",
       "domain_of": [
@@ -1099,12 +1117,9 @@
       "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/email",
       "description": "Email address of the agent that created or modified the PID record.",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
-      "mappings": [
-        "http://schema.org/email"
-      ],
       "is_a": "email",
       "domain": "Agent",
-      "slot_uri": "http://schema.org/email",
+      "slot_uri": "https://w3id.org/nfdi4cat/pid4cat-model/email",
       "alias": "email",
       "owner": "Agent",
       "domain_of": [
@@ -1187,6 +1202,9 @@
       "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/Agent",
       "description": "Person who plays a role relative to PID creation or curation.",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
+      "mappings": [
+        "prov:Agent"
+      ],
       "slots": [
         "name",
         "Agent_email",
@@ -1195,7 +1213,7 @@
         "role"
       ],
       "slot_usage": {},
-      "class_uri": "https://w3id.org/nfdi4cat/pid4cat-model/Agent",
+      "class_uri": "http://example.org/UNKNOWN/prov/Agent",
       "@type": "ClassDefinition"
     },
     {
@@ -1239,9 +1257,9 @@
   ],
   "metamodel_version": "1.7.0",
   "source_file": "pid4cat_model.yaml",
-  "source_file_date": "2024-12-21T19:52:46",
-  "source_file_size": 13831,
-  "generation_date": "2025-01-05T16:58:06",
+  "source_file_date": "2025-01-09T12:28:13",
+  "source_file_size": 16356,
+  "generation_date": "2025-01-09T12:28:45",
   "@type": "SchemaDefinition",
   "@context": [
     "project/jsonld/pid4cat_model.context.jsonld",
