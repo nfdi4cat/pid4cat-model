@@ -8,14 +8,14 @@
       
       
       
-        <link rel="canonical" href="https://nfdi4cat.github.io/pid4cat-model/RelationType/">
+        <link rel="canonical" href="https://nfdi4cat.github.io/pid4cat-model/principles/">
       
       <link rel="icon" href="../images/favicon.svg">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-8.5.10">
     
     
       
-        <title>Enum: RelationType - pid4cat-model</title>
+        <title>Principles - pid4cat-model</title>
       
     
     
@@ -64,7 +64,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#enum-relationtype" class="md-skip">
+        <a href="#versioning-of-pid4cat-model" class="md-skip">
           Skip to content
         </a>
       
@@ -96,7 +96,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Enum: RelationType
+              Principles
             
           </span>
         </div>
@@ -218,11 +218,21 @@
 
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../principles/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Principles
       </a>
+      
     </li>
   
 
@@ -262,55 +272,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#permissible-values" class="md-nav__link">
-    Permissible Values
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#slots" class="md-nav__link">
-    Slots
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#identifier-and-mapping-information" class="md-nav__link">
-    Identifier and Mapping Information
-  </a>
-  
-    <nav class="md-nav" aria-label="Identifier and Mapping Information">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#schema-source" class="md-nav__link">
-    Schema Source
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#linkml-source" class="md-nav__link">
-    LinkML Source
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -323,396 +284,22 @@
                 
                   
 
-  <a href="https://github.com/nfdi4cat/pid4cat-model/edit/master/docs/RelationType.md" title="Edit this page" class="md-content__button md-icon">
+  <a href="https://github.com/nfdi4cat/pid4cat-model/edit/master/docs/principles.md" title="Edit this page" class="md-content__button md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
   </a>
 
 
-<h1 id="enum-relationtype">Enum: RelationType</h1>
-<p><em>The type of the relation between the resources</em></p>
-<p>URI: <a href="./">RelationType</a></p>
-<h2 id="permissible-values">Permissible Values</h2>
-<table>
-<thead>
-<tr>
-<th>Value</th>
-<th>Meaning</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>IS_CITED_BY</td>
-<td>None</td>
-<td>The resource is cited by another resource</td>
-</tr>
-<tr>
-<td>CITES</td>
-<td>None</td>
-<td>The resource cites another resource</td>
-</tr>
-<tr>
-<td>IS_SUPPLEMENT_TO</td>
-<td>None</td>
-<td>The resource is supplemented by another resource</td>
-</tr>
-<tr>
-<td>IS_SUPPLEMENTED_BY</td>
-<td>None</td>
-<td>The resource supplements another resource</td>
-</tr>
-<tr>
-<td>IS_CONTINUED_BY</td>
-<td>None</td>
-<td>The resource is continued by another resource</td>
-</tr>
-<tr>
-<td>CONTINUES</td>
-<td>None</td>
-<td>The resource continues another resource</td>
-</tr>
-<tr>
-<td>HAS_METADATA</td>
-<td>None</td>
-<td>The resource has metadata in another resource</td>
-</tr>
-<tr>
-<td>IS_METADATA_FOR</td>
-<td>None</td>
-<td>The resource is metadata for another resource</td>
-</tr>
-<tr>
-<td>HAS_VERSION</td>
-<td>dcterms:hasVersion</td>
-<td>The resource has a version</td>
-</tr>
-<tr>
-<td>IS_VERSION_OF</td>
-<td>dcterms:isVersionOf</td>
-<td>The resource is a version of another resource</td>
-</tr>
-<tr>
-<td>IS_NEW_VERSION_OF</td>
-<td>None</td>
-<td>The resource is a new version of</td>
-</tr>
-<tr>
-<td>IS_PREVIOUS_VERSION_OF</td>
-<td>None</td>
-<td>The resource is a previous version of</td>
-</tr>
-<tr>
-<td>IS_PART_OF</td>
-<td>dcterms:isPartOf</td>
-<td>The resource is part of another resource</td>
-</tr>
-<tr>
-<td>HAS_PART</td>
-<td>dcterms:hasPart</td>
-<td>The resource has part another resource</td>
-</tr>
-<tr>
-<td>IS_DESCRIBED_BY</td>
-<td>None</td>
-<td>The resource is documented by another resource</td>
-</tr>
-<tr>
-<td>DESCRIBES</td>
-<td>None</td>
-<td>The resource documents another resource</td>
-</tr>
-<tr>
-<td>IS_PUBLISHED_IN</td>
-<td>None</td>
-<td>The resource is published in another resource</td>
-</tr>
-<tr>
-<td>IS_REFERENCED_BY</td>
-<td>dcterms:isReferencedBy</td>
-<td>The resource is referenced by another resource</td>
-</tr>
-<tr>
-<td>REFERENCES</td>
-<td>None</td>
-<td>The resource references another resource</td>
-</tr>
-<tr>
-<td>IS_DOCUMENTED_BY</td>
-<td>None</td>
-<td>The resource is documented by another resource</td>
-</tr>
-<tr>
-<td>DOCUMENTS</td>
-<td>None</td>
-<td>The resource documents another resource</td>
-</tr>
-<tr>
-<td>IS_COMPILED_BY</td>
-<td>None</td>
-<td>The resource is compiled by another resource</td>
-</tr>
-<tr>
-<td>COMPILES</td>
-<td>None</td>
-<td>The resource compiles another resource</td>
-</tr>
-<tr>
-<td>IS_VARIANT_FORM_OF</td>
-<td>None</td>
-<td>The resource is variant form of another resource</td>
-</tr>
-<tr>
-<td>IS_ORIGINAL_FORM_OF</td>
-<td>None</td>
-<td>The resource is original form of another resource</td>
-</tr>
-<tr>
-<td>IS_IDENTICAL_TO</td>
-<td>None</td>
-<td>The resource is identical to another resource</td>
-</tr>
-<tr>
-<td>IS_DERIVED_FROM</td>
-<td>None</td>
-<td>The resource is derived from another resource</td>
-</tr>
-<tr>
-<td>IS_SOURCE_OF</td>
-<td>None</td>
-<td>The resource is source of another resource</td>
-</tr>
-<tr>
-<td>IS_COLLECTED_BY</td>
-<td>None</td>
-<td>The resource is collected by another resource</td>
-</tr>
-<tr>
-<td>COLLECTS</td>
-<td>None</td>
-<td>The resource collects another resource</td>
-</tr>
-<tr>
-<td>IS_REQUIRED_BY</td>
-<td>dcterms:isRequiredBy</td>
-<td>The resource is required by another resource</td>
-</tr>
-<tr>
-<td>REQUIRES</td>
-<td>dcterms:requires</td>
-<td>The resource requires another resource</td>
-</tr>
-<tr>
-<td>IS_OBSOLETED_BY</td>
-<td>None</td>
-<td>The resource or PID4Cat is obsoleted by another resource or PID4Cat</td>
-</tr>
-<tr>
-<td>OBSOLETES</td>
-<td>None</td>
-<td>The resource or PID4Cat obsoletes another resource or PID4Cat</td>
-</tr>
-</tbody>
-</table>
-<h2 id="slots">Slots</h2>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="../relation_type/">relation_type</a></td>
-<td>Relation type between the resources</td>
-</tr>
-</tbody>
-</table>
-<h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
-<h3 id="schema-source">Schema Source</h3>
+<h1 id="versioning-of-pid4cat-model">Versioning of PID4Cat-model</h1>
+<p>The versioning of the PID4Cat-model is following the <strong>SchemaVer</strong> scheme proposed in a <a href="https://snowplow.io/blog/introducing-schemaver-for-semantic-versioning-of-schemas">snowplow blog post</a>. This also matches with the <a href="https://github.com/HumanCellAtlas/metadata-schema/blob/master/docs/evolution.md#schema-versioning">HCA schema versioning</a> and is also adapted by <a href="https://github.com/OpenLineage/OpenLineage/blob/main/spec/Versioning.md">openlinaeage</a>.</p>
+<p><strong>SchemaVer</strong>: Given a version number MODEL.REVISION.ADDITION, increment the</p>
 <ul>
-<li>from schema: https://w3id.org/nfdi4cat/pid4cat-model</li>
+<li>MODEL when you make a breaking schema change which will prevent interaction with any historical data</li>
+<li>REVISION when you make a schema change which may prevent interaction with some historical data</li>
+<li>ADDITION when you make a schema change that is compatible with all historical data</li>
 </ul>
-<h2 id="linkml-source">LinkML Source</h2>
-<details>
-
-<pre><code class="language-yaml">name: RelationType
-description: The type of the relation between the resources
-from_schema: https://w3id.org/nfdi4cat/pid4cat-model
-rank: 1000
-permissible_values:
-  IS_CITED_BY:
-    text: IS_CITED_BY
-    description: The resource is cited by another resource.
-    todos:
-    - map to an ontology/vocabulary
-  CITES:
-    text: CITES
-    description: The resource cites another resource.
-    todos:
-    - map to an ontology/vocabulary
-  IS_SUPPLEMENT_TO:
-    text: IS_SUPPLEMENT_TO
-    description: The resource is supplemented by another resource.
-    todos:
-    - map to an ontology/vocabulary
-  IS_SUPPLEMENTED_BY:
-    text: IS_SUPPLEMENTED_BY
-    description: The resource supplements another resource.
-    todos:
-    - map to an ontology/vocabulary
-  IS_CONTINUED_BY:
-    text: IS_CONTINUED_BY
-    description: The resource is continued by another resource.
-    todos:
-    - map to an ontology/vocabulary
-  CONTINUES:
-    text: CONTINUES
-    description: The resource continues another resource.
-    todos:
-    - map to an ontology/vocabulary
-  HAS_METADATA:
-    text: HAS_METADATA
-    description: The resource has metadata in another resource.
-    todos:
-    - map to an ontology/vocabulary
-  IS_METADATA_FOR:
-    text: IS_METADATA_FOR
-    description: The resource is metadata for another resource.
-    todos:
-    - map to an ontology/vocabulary
-  HAS_VERSION:
-    text: HAS_VERSION
-    description: The resource has a version.
-    meaning: dcterms:hasVersion
-  IS_VERSION_OF:
-    text: IS_VERSION_OF
-    description: The resource is a version of another resource. This is useful to
-      refer to an abstract resource that has different versions, for example, &quot;Python
-      3.12 is a version of Python&quot;.
-    meaning: dcterms:isVersionOf
-  IS_NEW_VERSION_OF:
-    text: IS_NEW_VERSION_OF
-    description: The resource is a new version of.
-    todos:
-    - map to an ontology/vocabulary
-  IS_PREVIOUS_VERSION_OF:
-    text: IS_PREVIOUS_VERSION_OF
-    description: The resource is a previous version of.
-    todos:
-    - map to an ontology/vocabulary
-  IS_PART_OF:
-    text: IS_PART_OF
-    description: The resource is part of another resource.
-    meaning: dcterms:isPartOf
-  HAS_PART:
-    text: HAS_PART
-    description: The resource has part another resource.
-    meaning: dcterms:hasPart
-  IS_DESCRIBED_BY:
-    text: IS_DESCRIBED_BY
-    description: The resource is documented by another resource.
-    todos:
-    - map to an ontology/vocabulary
-  DESCRIBES:
-    text: DESCRIBES
-    description: The resource documents another resource.
-    todos:
-    - map to an ontology/vocabulary
-  IS_PUBLISHED_IN:
-    text: IS_PUBLISHED_IN
-    description: The resource is published in another resource.
-    todos:
-    - map to an ontology/vocabulary
-  IS_REFERENCED_BY:
-    text: IS_REFERENCED_BY
-    description: The resource is referenced by another resource.
-    meaning: dcterms:isReferencedBy
-  REFERENCES:
-    text: REFERENCES
-    description: The resource references another resource.
-    todos:
-    - map to an ontology/vocabulary
-  IS_DOCUMENTED_BY:
-    text: IS_DOCUMENTED_BY
-    description: The resource is documented by another resource.
-    todos:
-    - map to an ontology/vocabulary
-  DOCUMENTS:
-    text: DOCUMENTS
-    description: The resource documents another resource.
-    todos:
-    - map to an ontology/vocabulary
-  IS_COMPILED_BY:
-    text: IS_COMPILED_BY
-    description: The resource is compiled by another resource.
-    todos:
-    - map to an ontology/vocabulary
-  COMPILES:
-    text: COMPILES
-    description: The resource compiles another resource.
-    todos:
-    - map to an ontology/vocabulary
-  IS_VARIANT_FORM_OF:
-    text: IS_VARIANT_FORM_OF
-    description: The resource is variant form of another resource.
-    todos:
-    - map to an ontology/vocabulary
-  IS_ORIGINAL_FORM_OF:
-    text: IS_ORIGINAL_FORM_OF
-    description: The resource is original form of another resource.
-    todos:
-    - map to an ontology/vocabulary
-  IS_IDENTICAL_TO:
-    text: IS_IDENTICAL_TO
-    description: The resource is identical to another resource.
-    todos:
-    - map to an ontology/vocabulary
-  IS_DERIVED_FROM:
-    text: IS_DERIVED_FROM
-    description: The resource is derived from another resource.
-    todos:
-    - map to an ontology/vocabulary
-  IS_SOURCE_OF:
-    text: IS_SOURCE_OF
-    description: The resource is source of another resource.
-    todos:
-    - map to an ontology/vocabulary
-  IS_COLLECTED_BY:
-    text: IS_COLLECTED_BY
-    description: The resource is collected by another resource.
-    todos:
-    - map to an ontology/vocabulary
-  COLLECTS:
-    text: COLLECTS
-    description: The resource collects another resource.
-    todos:
-    - map to an ontology/vocabulary
-  IS_REQUIRED_BY:
-    text: IS_REQUIRED_BY
-    description: The resource is required by another resource.
-    meaning: dcterms:isRequiredBy
-    todos:
-    - map to an ontology/vocabulary
-  REQUIRES:
-    text: REQUIRES
-    description: The resource requires another resource.
-    meaning: dcterms:requires
-    todos:
-    - map to an ontology/vocabulary
-  IS_OBSOLETED_BY:
-    text: IS_OBSOLETED_BY
-    description: The resource or PID4Cat is obsoleted by another resource or PID4Cat.
-  OBSOLETES:
-    text: OBSOLETES
-    description: The resource or PID4Cat obsoletes another resource or PID4Cat.
-    todos:
-    - map to an ontology/vocabulary
-
-</code></pre>
-
-</details>
+<p>The versions are tagged in git (for example "v1.2.3"). 
+Based on the tags we also create GitHub releases to provide easy access to all versions and to document the changes between versions.</p>
 
 
 
@@ -730,6 +317,42 @@ permissible_values:
       </main>
       
         <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href=".." class="md-footer__link md-footer__link--prev" aria-label="Previous: Index" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Index
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../about/" class="md-footer__link md-footer__link--next" aria-label="Next: About" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              About
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
