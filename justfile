@@ -118,7 +118,7 @@ _test-schema:
 
 # Run Python unit tests
 _test-python:
-    poetry run python -m unittest discover
+    poetry run python -m pytest
 
 # Run example tests
 _test-examples: _ensure_examples_output

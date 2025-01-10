@@ -48,7 +48,7 @@ version = "0.0.0"
 python = ">=3.9,<4.0"  # poetry needs an upper bound for locking
 
 [tool.poetry.requires-plugins]
-poetry-dynamic-versioning = ">=1.5.0"
+poetry-dynamic-versioning = ">=1.6.0"
 
 [tool.poetry-dynamic-versioning]
 enable = true

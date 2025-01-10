@@ -3,3 +3,6 @@ extends: recommended
 rules:
   standard_naming:
     permissible_values_upper_case: true
+  canonical_prefixes:
+    # Superfluous warnings for https-refixes, https://github.com/linkml/linkml/issues/2492
+    level: disabled
