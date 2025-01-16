@@ -1,14 +1,13 @@
 # metamodel_version: 1.7.0
 BASE <https://w3id.org/nfdi4cat/pid4cat-model/>
 PREFIX dcmitype: <http://purl.org/dc/dcmitype/>
-PREFIX dcterms: <http://purl.org/dc/terms/>
 PREFIX sosa: <http://www.w3.org/ns/sosa/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX linkml: <https://w3id.org/linkml/>
-PREFIX schema1: <http://schema.org/>
-PREFIX DCAT: <http://www.w3.org/ns/dcat#>
-PREFIX prov1: <http://example.org/UNKNOWN/prov/>
+PREFIX dcterms1: <https://purl.org/dc/terms/>
+PREFIX dcat1: <https://www.w3.org/ns/dcat#>
+PREFIX prov1: <https://www.w3.org/ns/prov#>
 
 
 linkml:String xsd:string
@@ -61,9 +60,44 @@ linkml:Sparqlpath xsd:string
     )
 }
 
-<Container> CLOSED {
-    (  $<Container_tes> <contains_pids> @<PID4CatRecord> * ;
-       rdf:type [ <Container> ] ?
+<HandleAPIRecord> CLOSED {
+    (  $<HandleAPIRecord_tes> (  <responseCode> @linkml:Integer ? ;
+          <handle> @linkml:String ? ;
+          <values> @<HandleRecord> *
+       ) ;
+       rdf:type [ <HandleAPIRecord> ] ?
+    )
+}
+
+<HandleData> CLOSED {
+    (  $<HandleData_tes> (  <format> @linkml:String ? ;
+          <value> @linkml:String ?
+       ) ;
+       rdf:type [ <HandleData> ] ?
+    )
+}
+
+<HandleRecord> CLOSED {
+    (  $<HandleRecord_tes> (  <index> @linkml:Integer ? ;
+          <type> [ <https://w3id.org/nfdi4cat/pid4cat-model/HandleDataType#URL>
+             <https://w3id.org/nfdi4cat/pid4cat-model/HandleDataType#STATUS>
+             <https://w3id.org/nfdi4cat/pid4cat-model/HandleDataType#SCHEMA_VER>
+             <https://w3id.org/nfdi4cat/pid4cat-model/HandleDataType#LICENSE>
+             <https://w3id.org/nfdi4cat/pid4cat-model/HandleDataType#EMAIL>
+             <https://w3id.org/nfdi4cat/pid4cat-model/HandleDataType#RESOURCE_INFO>
+             <https://w3id.org/nfdi4cat/pid4cat-model/HandleDataType#RELATED>
+             <https://w3id.org/nfdi4cat/pid4cat-model/HandleDataType#LOG> ] ? ;
+          <data> @<HandleData> ? ;
+          <ttl> @linkml:Integer ? ;
+          <timestamp> @linkml:Datetime ?
+       ) ;
+       rdf:type [ <HandleRecord> ] ?
+    )
+}
+
+<HandleRecordContainer> CLOSED {
+    (  $<HandleRecordContainer_tes> <contains_pids> @<HandleAPIRecord> * ;
+       rdf:type [ <HandleRecordContainer> ] ?
     )
 }
 
@@ -82,23 +116,6 @@ linkml:Sparqlpath xsd:string
     )
 }
 
-<PID4CatRecord> CLOSED {
-    (  $<PID4CatRecord_tes> (  schema1:url @linkml:Uri ? ;
-          <status> [ <https://w3id.org/nfdi4cat/pid4cat-model/PID4CatStatus#SUBMITTED>
-             <https://w3id.org/nfdi4cat/pid4cat-model/PID4CatStatus#REGISTERED>
-             <https://w3id.org/nfdi4cat/pid4cat-model/PID4CatStatus#OBSOLETED>
-             <https://w3id.org/nfdi4cat/pid4cat-model/PID4CatStatus#DEPRECATED> ] ? ;
-          <pid_schema_version> @linkml:String ? ;
-          <license> @linkml:String ? ;
-          <curation_contact_email> @linkml:String ? ;
-          <resource_info> @<ResourceInfo> ? ;
-          <related_identifiers> @<PID4CatRelation> * ;
-          <change_log> @<LogRecord> +
-       ) ;
-       rdf:type [ <PID4CatRecord> ]
-    )
-}
-
 <PID4CatRelation> CLOSED {
     (  $<PID4CatRelation_tes> (  <relation_type> [ <https://w3id.org/nfdi4cat/pid4cat-model/RelationType#IS_CITED_BY>
              <https://w3id.org/nfdi4cat/pid4cat-model/RelationType#CITES>
@@ -107,12 +124,12 @@ linkml:Sparqlpath xsd:string
              <https://w3id.org/nfdi4cat/pid4cat-model/RelationType#IS_CONTINUED_BY>
              <https://w3id.org/nfdi4cat/pid4cat-model/RelationType#CONTINUES>
              <https://w3id.org/nfdi4cat/pid4cat-model/RelationType#HAS_METADATA>
-             <https://w3id.org/nfdi4cat/pid4cat-model/RelationType#IS_METADATA_FOR> dcterms:hasVersion dcterms:isVersionOf
+             <https://w3id.org/nfdi4cat/pid4cat-model/RelationType#IS_METADATA_FOR> dcterms1:hasVersion dcterms1:isVersionOf
              <https://w3id.org/nfdi4cat/pid4cat-model/RelationType#IS_NEW_VERSION_OF>
-             <https://w3id.org/nfdi4cat/pid4cat-model/RelationType#IS_PREVIOUS_VERSION_OF> dcterms:isPartOf dcterms:hasPart
+             <https://w3id.org/nfdi4cat/pid4cat-model/RelationType#IS_PREVIOUS_VERSION_OF> dcterms1:isPartOf dcterms1:hasPart
              <https://w3id.org/nfdi4cat/pid4cat-model/RelationType#IS_DESCRIBED_BY>
              <https://w3id.org/nfdi4cat/pid4cat-model/RelationType#DESCRIBES>
-             <https://w3id.org/nfdi4cat/pid4cat-model/RelationType#IS_PUBLISHED_IN> dcterms:isReferencedBy
+             <https://w3id.org/nfdi4cat/pid4cat-model/RelationType#IS_PUBLISHED_IN> dcterms1:isReferencedBy
              <https://w3id.org/nfdi4cat/pid4cat-model/RelationType#REFERENCES>
              <https://w3id.org/nfdi4cat/pid4cat-model/RelationType#IS_DOCUMENTED_BY>
              <https://w3id.org/nfdi4cat/pid4cat-model/RelationType#DOCUMENTS>
@@ -124,7 +141,7 @@ linkml:Sparqlpath xsd:string
              <https://w3id.org/nfdi4cat/pid4cat-model/RelationType#IS_DERIVED_FROM>
              <https://w3id.org/nfdi4cat/pid4cat-model/RelationType#IS_SOURCE_OF>
              <https://w3id.org/nfdi4cat/pid4cat-model/RelationType#IS_COLLECTED_BY>
-             <https://w3id.org/nfdi4cat/pid4cat-model/RelationType#COLLECTS> dcterms:isRequiredBy dcterms:requires
+             <https://w3id.org/nfdi4cat/pid4cat-model/RelationType#COLLECTS> dcterms1:isRequiredBy dcterms1:requires
              <https://w3id.org/nfdi4cat/pid4cat-model/RelationType#IS_OBSOLETED_BY>
              <https://w3id.org/nfdi4cat/pid4cat-model/RelationType#OBSOLETES> ] ? ;
           <related_identifier> @linkml:Uri ? ;
@@ -148,7 +165,7 @@ linkml:Sparqlpath xsd:string
     (  $<ResourceInfo_tes> (  <label> @linkml:String ? ;
           <description> @linkml:String ? ;
           <resource_category> [ dcmitype:Collection sosa:Sample <https://w3id.org/nfdi4cat/pid4cat-model/ResourceCategory#MATERIAL>
-             <https://w3id.org/nfdi4cat/pid4cat-model/ResourceCategory#DEVICE> DCAT:dataset DCAT:DataService ] ? ;
+             <https://w3id.org/nfdi4cat/pid4cat-model/ResourceCategory#DEVICE> dcat1:dataset dcat1:DataService ] ? ;
           <representation_variants> @<RepresentationVariant> *
        ) ;
        rdf:type [ <ResourceInfo> ] ?

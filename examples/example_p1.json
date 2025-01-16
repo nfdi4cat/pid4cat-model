@@ -1,60 +1,91 @@
 {
-  "id": "lik-1",
-  "landing_page_url": "https://pid4cat.example.org/lik-1",
-  "status": "REGISTERED",
-  "pid_schema_version": "0.1.0",
-  "license": "CC0-1.0",
-  "curation_contact_email": "datafuzzi@example.org",
-  "resource_info": {
-    "label": "Resource label",
-    "description": "Resource description",
-    "resource_category": "SAMPLE",
-    "representation_variants": [
-      {
-        "url": "https://example.org/resource",
-        "media_type": "text/turtle",
-        "encoding_format": "UTF-8",
-        "size": 12345
-      }
-    ]
-  },
-  "related_identifiers": [
+  "contains_pids": [
     {
-      "relation_type": "IS_PART_OF",
-      "related_identifier": "https://example.org/collection",
-      "datetime_log": "2024-02-19T00:00:00+00:00"
-    },
-    {
-      "relation_type": "IS_REFERENCED_BY",
-      "related_identifier": "https://example.org/referenced",
-      "datetime_log": "2024-02-19T00:00:00+00:00"
+      "responseCode": 1,
+      "handle": "21.T12995/lik-1",
+      "values": [
+        {
+          "index": 1,
+          "type": "URL",
+          "data": {
+            "format": "string",
+            "value": "https://pid4cat.example.org/lik-1"
+          },
+          "ttl": 86400,
+          "timestamp": "2024-05-15T15:51:15+00:00"
+        },
+        {
+          "index": 2,
+          "type": "STATUS",
+          "data": {
+            "format": "string",
+            "value": "PermissibleValue({\n  'text': 'REGISTERED',\n  'description': 'The PID4CatRecord links to a concrete resource.'\n})"
+          },
+          "ttl": 86400,
+          "timestamp": "2024-05-15T15:51:15+00:00"
+        },
+        {
+          "index": 3,
+          "type": "SCHEMA_VER",
+          "data": {
+            "format": "string",
+            "value": "v0.1.0"
+          },
+          "ttl": 86400,
+          "timestamp": "2024-05-15T15:51:15+00:00"
+        },
+        {
+          "index": 4,
+          "type": "LICENSE",
+          "data": {
+            "format": "string",
+            "value": "CC0-1.0"
+          },
+          "ttl": 86400,
+          "timestamp": "2024-05-15T15:51:15+00:00"
+        },
+        {
+          "index": 5,
+          "type": "EMAIL",
+          "data": {
+            "format": "string",
+            "value": "datafuzzi@example.org"
+          },
+          "ttl": 86400,
+          "timestamp": "2024-05-15T15:51:15+00:00"
+        },
+        {
+          "index": 6,
+          "type": "RESOURCE_INFO",
+          "data": {
+            "format": "string",
+            "value": "ResourceInfo({\n  'label': 'Resource label',\n  'description': 'Resource description',\n  'resource_category': ResourceCategory(text='SAMPLE', description='A representative part of an entity of interest on which observations may be made.'),\n  'representation_variants': [RepresentationVariant({\n      'url': 'https://example.org/resource',\n      'media_type': 'text/turtle',\n      'encoding_format': 'UTF-8',\n      'size': 12345\n    })]\n})"
+          },
+          "ttl": 86400,
+          "timestamp": "2024-05-15T15:51:15+00:00"
+        },
+        {
+          "index": 7,
+          "type": "RELATED",
+          "data": {
+            "format": "string",
+            "value": "[PID4CatRelation({\n  'relation_type': RelationType(text='IS_PART_OF', description='The resource is part of another resource.', meaning='https://purl.org/dc/terms/isPartOf'),\n  'related_identifier': 'https://example.org/collection',\n  'datetime_log': '2024-02-19T00:00:00+00:00'\n}), PID4CatRelation({\n  'relation_type': RelationType(text='IS_REFERENCED_BY', description='The resource is referenced by another resource.', meaning='https://purl.org/dc/terms/isReferencedBy'),\n  'related_identifier': 'https://example.org/referenced',\n  'datetime_log': '2024-02-19T00:00:00+00:00'\n})]"
+          },
+          "ttl": 86400,
+          "timestamp": "2024-05-15T15:51:15+00:00"
+        },
+        {
+          "index": 8,
+          "type": "LOG",
+          "data": {
+            "format": "string",
+            "value": "[LogRecord({\n  'datetime_log': '2024-02-19T00:00:00+00:00',\n  'has_agent': Agent({\n      'name': 'Data Fuzzi',\n      'email': 'data.fuzzi@example.org',\n      'orcid': '0000-0000-0000-0000',\n      'affiliation_ror': 'https://ror.org/01abcde',\n      'role': PID4CatAgentRole(text='TRUSTEE', description='The agent is the trustee of the resource.')\n    }),\n  'changed_field': ChangeLogField(text='STATUS', description='The status of the PID4CatRecord was changed.'),\n  'description': 'Registration completed.'\n}), LogRecord({\n  'datetime_log': '2024-05-15T15:51:15+00:00',\n  'has_agent': Agent({\n      'name': 'Data Fuzzi',\n      'email': 'data.fuzzi@example.org',\n      'orcid': '0000-0000-0000-0000',\n      'affiliation_ror': 'https://ror.org/01abcde',\n      'role': PID4CatAgentRole(text='TRUSTEE', description='The agent is the trustee of the resource.')\n    }),\n  'changed_field': ChangeLogField(text='RESOURCE_INFO', description='The resource info of the PID4CatRecord was changed.'),\n  'description': 'as requested in issue #234'\n})]"
+          },
+          "ttl": 86400,
+          "timestamp": "2024-05-15T15:51:15+00:00"
+        }
+      ]
     }
   ],
-  "change_log": [
-    {
-      "datetime_log": "2024-02-19T00:00:00+00:00",
-      "has_agent": {
-        "name": "Data Fuzzi",
-        "email": "data.fuzzi@example.org",
-        "orcid": "0000-0000-0000-0000",
-        "affiliation_ror": "https://ror.org/01abcde",
-        "role": "TRUSTEE"
-      },
-      "changed_field": "STATUS",
-      "description": "Registration completed."
-    },
-    {
-      "datetime_log": "2024-05-15T15:51:15+00:00",
-      "has_agent": {
-        "name": "Data Fuzzi",
-        "email": "data.fuzzi@example.org",
-        "orcid": "0000-0000-0000-0000",
-        "affiliation_ror": "https://ror.org/01abcde",
-        "role": "TRUSTEE"
-      },
-      "changed_field": "RESOURCE_INFO",
-      "description": "as requested in issue #234"
-    }
-  ],
-  "@type": "dict"
+  "@type": "HandleRecordContainer"
 }

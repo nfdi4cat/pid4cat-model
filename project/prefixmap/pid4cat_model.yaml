@@ -1,10 +1,10 @@
 {
-   "DCAT": "http://www.w3.org/ns/dcat#",
-   "DataCite": "http://purl.org/spar/datacite/",
-   "dcterms": "http://purl.org/dc/terms/",
+   "DataCite": "https://purl.org/spar/datacite/",
+   "dcat": "https://www.w3.org/ns/dcat#",
+   "dcterms": "https://purl.org/dc/terms/",
    "linkml": "https://w3id.org/linkml/",
    "pid4cat_model": "https://w3id.org/nfdi4cat/pid4cat-model/",
-   "prov": "http://example.org/UNKNOWN/prov/",
+   "prov": "https://www.w3.org/ns/prov#",
    "schema": "http://schema.org/",
    "Agent": {
       "@id": "prov:Agent"

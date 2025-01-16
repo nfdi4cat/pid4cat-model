@@ -89,7 +89,7 @@ The PID4Cat schema is mapped to the handle record as follows:
 |-------|------|-----------|------|-----------|
 |     1 | URL  | 2024-01-01 10:47:38Z | https://pid4cat.example.org/lik-dfi345 | *landing pageURL* |
 |     2 | STATUS | 2024-02-19 13:40:02Z | REGISTERED | *status* |
-|     3 | SCHEMA_VER | 2024-01-01 10:47:38Z | 1.0.0 | *pid_schema_version* |
+|     3 | SCHEMA_VER | 2024-01-01 10:47:38Z | v1.0.0 | *pid_schema_version* |
 |     4 | LICENSE | 2024-01-01 10:47:38Z | CC0-1.0 | *license* |
 |     5 | EMAIL | 2024-01-01 10:47:38Z | datafuzzi@example.org | *curation_contact_email* |
 |     6 | RESOURCE_INFO | 2024-01-01 10:47:38Z | {json} | *resource_info* |
