@@ -8,14 +8,14 @@
       
       
       
-        <link rel="canonical" href="https://nfdi4cat.github.io/pid4cat-model/landing_page_url/">
+        <link rel="canonical" href="https://nfdi4cat.github.io/pid4cat-model/ttl/">
       
       <link rel="icon" href="../images/favicon.svg">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-8.5.10">
     
     
       
-        <title>Slot: landing_page_url - pid4cat-model</title>
+        <title>Slot: ttl - pid4cat-model</title>
       
     
     
@@ -64,7 +64,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-landing_page_url" class="md-skip">
+        <a href="#slot-ttl" class="md-skip">
           Skip to content
         </a>
       
@@ -96,7 +96,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: landing_page_url
+              Slot: ttl
             
           </span>
         </div>
@@ -269,6 +269,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#applicable-classes" class="md-nav__link">
+    Applicable Classes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#properties" class="md-nav__link">
     Properties
   </a>
@@ -323,20 +330,39 @@
                 
                   
 
-  <a href="https://github.com/nfdi4cat/pid4cat-model/edit/master/docs/landing_page_url.md" title="Edit this page" class="md-content__button md-icon">
+  <a href="https://github.com/nfdi4cat/pid4cat-model/edit/master/docs/ttl.md" title="Edit this page" class="md-content__button md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
   </a>
 
 
-<h1 id="slot-landing_page_url">Slot: landing_page_url</h1>
-<p><em>The URL of the landing page for the resource.</em></p>
-<p>URI: <a href="http://schema.org/url">schema:url</a></p>
+<h1 id="slot-ttl">Slot: ttl</h1>
+<p><em>A time to live in seconds for the handle record. Typically: 86400 =&gt; 1 day</em></p>
+<p><em>TODO: Research details of ttl meaning for handle API.</em></p>
+<p>__</p>
+<p>URI: <a href="https://w3id.org/nfdi4cat/pid4cat-model/ttl">pid4cat_model:ttl</a></p>
 <!-- no inheritance hierarchy -->
 
+<h2 id="applicable-classes">Applicable Classes</h2>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Modifies Slot</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../HandleRecord/">HandleRecord</a></td>
+<td>A handle record for a PID4CatRecord</td>
+<td>no</td>
+</tr>
+</tbody>
+</table>
 <h2 id="properties">Properties</h2>
 <ul>
-<li>Range: <a href="../Uri/">Uri</a></li>
+<li>Range: <a href="../Integer/">Integer</a></li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
@@ -354,24 +380,30 @@
 <tbody>
 <tr>
 <td>self</td>
-<td>schema:url</td>
+<td>pid4cat_model:ttl</td>
 </tr>
 <tr>
 <td>native</td>
-<td>pid4cat_model:landing_page_url</td>
+<td>pid4cat_model:ttl</td>
 </tr>
 </tbody>
 </table>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 
-<pre><code class="language-yaml">name: landing_page_url
-description: The URL of the landing page for the resource.
+<pre><code class="language-yaml">name: ttl
+description: 'A time to live in seconds for the handle record. Typically: 86400 =&gt;
+  1 day
+
+  TODO: Research details of ttl meaning for handle API.
+
+  '
 from_schema: https://w3id.org/nfdi4cat/pid4cat-model
-rank: 10
-slot_uri: schema:url
-alias: landing_page_url
-range: uri
+rank: 1000
+alias: ttl
+domain_of:
+- HandleRecord
+range: integer
 
 </code></pre>
 

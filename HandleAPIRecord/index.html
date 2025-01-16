@@ -5,10 +5,10 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<link href="https://nfdi4cat.github.io/pid4cat-model/PID4CatRelation/" rel="canonical"/>
+<link href="https://nfdi4cat.github.io/pid4cat-model/HandleAPIRecord/" rel="canonical"/>
 <link href="../images/favicon.svg" rel="icon"/>
 <meta content="mkdocs-1.6.1, mkdocs-material-8.5.10" name="generator"/>
-<title>Class: PID4CatRelation - pid4cat-model</title>
+<title>Class: HandleAPIRecord - pid4cat-model</title>
 <link href="../assets/stylesheets/main.975780f9.min.css" rel="stylesheet"/>
 <link href="../assets/stylesheets/palette.2505c338.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -21,7 +21,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#class-pid4catrelation">
+<a class="md-skip" href="#class-handleapirecord">
           Skip to content
         </a>
 </div>
@@ -45,7 +45,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              Class: PID4CatRelation
+              Class: HandleAPIRecord
             
           </span>
 </div>
@@ -201,26 +201,26 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<a class="md-content__button md-icon" href="https://github.com/nfdi4cat/pid4cat-model/edit/master/docs/PID4CatRelation.md" title="Edit this page">
+<a class="md-content__button md-icon" href="https://github.com/nfdi4cat/pid4cat-model/edit/master/docs/HandleAPIRecord.md" title="Edit this page">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"></path></svg>
 </a>
-<h1 id="class-pid4catrelation">Class: PID4CatRelation</h1>
-<p><em>A relation between PID4CatRecords or between a PID4CatRecord and other resources with a PID.</em></p>
-<p>URI: <a href="https://w3id.org/nfdi4cat/pid4cat-model/PID4CatRelation">pid4cat_model:PID4CatRelation</a></p>
+<h1 id="class-handleapirecord">Class: HandleAPIRecord</h1>
+<p><em>A handle record for a PID4CatRecord.</em></p>
+<p>URI: <a href="https://w3id.org/nfdi4cat/pid4cat-model/HandleAPIRecord">pid4cat_model:HandleAPIRecord</a></p>
 <div class="mermaid"> classDiagram
-    class PID4CatRelation
-    click PID4CatRelation href "../PID4CatRelation"
-      PID4CatRelation : datetime_log
+    class HandleAPIRecord
+    click HandleAPIRecord href "../HandleAPIRecord"
+      HandleAPIRecord : handle
 
-      PID4CatRelation : related_identifier
+      HandleAPIRecord : response_code
 
-      PID4CatRelation : relation_type
-
-
+      HandleAPIRecord : values
 
 
-    PID4CatRelation --&gt; "0..1" RelationType : relation_type
-    click RelationType href "../RelationType"
+
+
+    HandleAPIRecord --&gt; "*" HandleRecord : values
+    click HandleRecord href "../HandleRecord"
 
 
 
@@ -238,21 +238,21 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../relation_type/">relation_type</a></td>
-<td>0..1 <br/> <a href="../RelationType/">RelationType</a></td>
-<td>Relation type between the resources</td>
+<td><a href="../response_code/">response_code</a></td>
+<td>0..1 <br/> <a href="../Integer/">Integer</a></td>
+<td>The response code of the handle API</td>
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../related_identifier/">related_identifier</a></td>
-<td>0..1 <br/> <a href="../Uri/">Uri</a></td>
-<td>Related identifiers for the resource</td>
+<td><a href="../handle/">handle</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>The handle of the PID4CatRecord</td>
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../datetime_log/">datetime_log</a></td>
-<td>0..1 <br/> <a href="../Datetime/">Datetime</a></td>
-<td>The date and time of a log record</td>
+<td><a href="../values/">values</a></td>
+<td>* <br/> <a href="../HandleRecord/">HandleRecord</a></td>
+<td>The values of the PID4CatRecord</td>
 <td>direct</td>
 </tr>
 </tbody>
@@ -269,16 +269,10 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../HandleData/">HandleData</a></td>
-<td><a href="../value/">value</a></td>
-<td>exactly_one_of[range]</td>
-<td><a href="./">PID4CatRelation</a></td>
-</tr>
-<tr>
-<td><a href="../HandleData/">HandleData</a></td>
-<td><a href="../value/">value</a></td>
-<td>exactly_one_of[range]</td>
-<td><a href="./">PID4CatRelation</a></td>
+<td><a href="../HandleRecordContainer/">HandleRecordContainer</a></td>
+<td><a href="../contains_pids/">contains_pids</a></td>
+<td>range</td>
+<td><a href="./">HandleAPIRecord</a></td>
 </tr>
 </tbody>
 </table>
@@ -298,11 +292,11 @@
 <tbody>
 <tr>
 <td>self</td>
-<td>pid4cat_model:PID4CatRelation</td>
+<td>pid4cat_model:HandleAPIRecord</td>
 </tr>
 <tr>
 <td>native</td>
-<td>pid4cat_model:PID4CatRelation</td>
+<td>pid4cat_model:HandleAPIRecord</td>
 </tr>
 </tbody>
 </table>
@@ -310,55 +304,53 @@
 <!-- TODO: investigate https://stackoverflow.com/questions/37606292/how-to-create-tabbed-code-blocks-in-mkdocs-or-sphinx -->
 <h3 id="direct">Direct</h3>
 <details>
-<pre><code class="language-yaml">name: PID4CatRelation
-description: A relation between PID4CatRecords or between a PID4CatRecord and other
-  resources with a PID.
+<pre><code class="language-yaml">name: HandleAPIRecord
+description: A handle record for a PID4CatRecord.
 from_schema: https://w3id.org/nfdi4cat/pid4cat-model
 slots:
-- relation_type
-- related_identifier
-- datetime_log
+- response_code
+- handle
+- values
 
 </code></pre>
 </details>
 <h3 id="induced">Induced</h3>
 <details>
-<pre><code class="language-yaml">name: PID4CatRelation
-description: A relation between PID4CatRecords or between a PID4CatRecord and other
-  resources with a PID.
+<pre><code class="language-yaml">name: HandleAPIRecord
+description: A handle record for a PID4CatRecord.
 from_schema: https://w3id.org/nfdi4cat/pid4cat-model
 attributes:
-  relation_type:
-    name: relation_type
-    description: Relation type between the resources.
+  response_code:
+    name: response_code
+    description: The response code of the handle API.
     from_schema: https://w3id.org/nfdi4cat/pid4cat-model
     rank: 1000
-    alias: relation_type
-    owner: PID4CatRelation
+    alias: responseCode
+    owner: HandleAPIRecord
     domain_of:
-    - PID4CatRelation
-    range: RelationType
-  related_identifier:
-    name: related_identifier
-    description: Related identifiers for the resource.
+    - HandleAPIRecord
+    range: integer
+  handle:
+    name: handle
+    description: The handle of the PID4CatRecord.
     from_schema: https://w3id.org/nfdi4cat/pid4cat-model
     rank: 1000
-    alias: related_identifier
-    owner: PID4CatRelation
+    alias: handle
+    owner: HandleAPIRecord
     domain_of:
-    - PID4CatRelation
-    range: uri
-  datetime_log:
-    name: datetime_log
-    description: The date and time of a log record.
+    - HandleAPIRecord
+    range: string
+  values:
+    name: values
+    description: The values of the PID4CatRecord.
     from_schema: https://w3id.org/nfdi4cat/pid4cat-model
     rank: 1000
-    alias: datetime_log
-    owner: PID4CatRelation
+    alias: values
+    owner: HandleAPIRecord
     domain_of:
-    - PID4CatRelation
-    - LogRecord
-    range: datetime
+    - HandleAPIRecord
+    range: HandleRecord
+    multivalued: true
 
 </code></pre>
 </details>

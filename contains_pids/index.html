@@ -337,7 +337,7 @@
 
 
 <h1 id="slot-contains_pids">Slot: contains_pids</h1>
-<p><em>The PID4CatRecords contained in the container.</em></p>
+<p><em>The HandleRecords contained in the container.</em></p>
 <p>URI: <a href="https://w3id.org/nfdi4cat/pid4cat-model/contains_pids">pid4cat_model:contains_pids</a></p>
 <!-- no inheritance hierarchy -->
 
@@ -352,8 +352,8 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../Container/">Container</a></td>
-<td>A container for all PID4Cat instances</td>
+<td><a href="../HandleRecordContainer/">HandleRecordContainer</a></td>
+<td>A container for all HandleRecords</td>
 <td>no</td>
 </tr>
 </tbody>
@@ -361,7 +361,7 @@
 <h2 id="properties">Properties</h2>
 <ul>
 <li>
-<p>Range: <a href="../PID4CatRecord/">PID4CatRecord</a></p>
+<p>Range: <a href="../HandleAPIRecord/">HandleAPIRecord</a></p>
 </li>
 <li>
 <p>Multivalued: True</p>
@@ -395,14 +395,14 @@
 <details>
 
 <pre><code class="language-yaml">name: contains_pids
-description: The PID4CatRecords contained in the container.
+description: The HandleRecords contained in the container.
 from_schema: https://w3id.org/nfdi4cat/pid4cat-model
 rank: 1000
 alias: contains_pids
-owner: Container
+owner: HandleRecordContainer
 domain_of:
-- Container
-range: PID4CatRecord
+- HandleRecordContainer
+range: HandleAPIRecord
 multivalued: true
 inlined: true
 inlined_as_list: true

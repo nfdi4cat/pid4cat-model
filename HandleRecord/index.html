@@ -5,10 +5,10 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<link href="https://nfdi4cat.github.io/pid4cat-model/PID4CatRecord/" rel="canonical"/>
+<link href="https://nfdi4cat.github.io/pid4cat-model/HandleRecord/" rel="canonical"/>
 <link href="../images/favicon.svg" rel="icon"/>
 <meta content="mkdocs-1.6.1, mkdocs-material-8.5.10" name="generator"/>
-<title>Class: PID4CatRecord - pid4cat-model</title>
+<title>Class: HandleRecord - pid4cat-model</title>
 <link href="../assets/stylesheets/main.975780f9.min.css" rel="stylesheet"/>
 <link href="../assets/stylesheets/palette.2505c338.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -21,7 +21,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#class-pid4catrecord">
+<a class="md-skip" href="#class-handlerecord">
           Skip to content
         </a>
 </div>
@@ -45,7 +45,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              Class: PID4CatRecord
+              Class: HandleRecord
             
           </span>
 </div>
@@ -201,59 +201,37 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<a class="md-content__button md-icon" href="https://github.com/nfdi4cat/pid4cat-model/edit/master/docs/PID4CatRecord.md" title="Edit this page">
+<a class="md-content__button md-icon" href="https://github.com/nfdi4cat/pid4cat-model/edit/master/docs/HandleRecord.md" title="Edit this page">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"></path></svg>
 </a>
-<h1 id="class-pid4catrecord">Class: PID4CatRecord</h1>
-<p><em>Represents a PID4CatRecord</em></p>
-<p>URI: <a href="https://w3id.org/nfdi4cat/pid4cat-model/PID4CatRecord">pid4cat_model:PID4CatRecord</a></p>
+<h1 id="class-handlerecord">Class: HandleRecord</h1>
+<p><em>A handle record for a PID4CatRecord.</em></p>
+<p>URI: <a href="https://w3id.org/nfdi4cat/pid4cat-model/HandleRecord">pid4cat_model:HandleRecord</a></p>
 <div class="mermaid"> classDiagram
-    class PID4CatRecord
-    click PID4CatRecord href "../PID4CatRecord"
-      PID4CatRecord : change_log
+    class HandleRecord
+    click HandleRecord href "../HandleRecord"
+      HandleRecord : data
 
 
 
 
-    PID4CatRecord --&gt; "1..*" LogRecord : change_log
-    click LogRecord href "../LogRecord"
+    HandleRecord --&gt; "0..1" HandleData : data
+    click HandleData href "../HandleData"
 
 
-      PID4CatRecord : curation_contact_email
+      HandleRecord : index
 
-      PID4CatRecord : id
+      HandleRecord : timestamp
 
-      PID4CatRecord : landing_page_url
+      HandleRecord : ttl
 
-      PID4CatRecord : license
-
-      PID4CatRecord : pid_schema_version
-
-      PID4CatRecord : related_identifiers
+      HandleRecord : type
 
 
 
 
-    PID4CatRecord --&gt; "*" PID4CatRelation : related_identifiers
-    click PID4CatRelation href "../PID4CatRelation"
-
-
-      PID4CatRecord : resource_info
-
-
-
-
-    PID4CatRecord --&gt; "0..1" ResourceInfo : resource_info
-    click ResourceInfo href "../ResourceInfo"
-
-
-      PID4CatRecord : status
-
-
-
-
-    PID4CatRecord --&gt; "0..1" PID4CatStatus : status
-    click PID4CatStatus href "../PID4CatStatus"
+    HandleRecord --&gt; "0..1" HandleDataType : type
+    click HandleDataType href "../HandleDataType"
 
 
 
@@ -271,57 +249,33 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../id/">id</a></td>
-<td>1 <br/> <a href="../Uriorcurie/">Uriorcurie</a></td>
-<td>A unique identifier for a thing</td>
+<td><a href="../">index</a></td>
+<td>0..1 <br/> <a href="../Integer/">Integer</a></td>
+<td>The index of the handle record</td>
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../landing_page_url/">landing_page_url</a></td>
-<td>0..1 <br/> <a href="../Uri/">Uri</a></td>
-<td>The URL of the landing page for the resource</td>
+<td><a href="../type/">type</a></td>
+<td>0..1 <br/> <a href="../HandleDataType/">HandleDataType</a></td>
+<td>The type of the handle record</td>
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../status/">status</a></td>
-<td>0..1 <br/> <a href="../PID4CatStatus/">PID4CatStatus</a></td>
-<td>The status of the PID4CatRecord</td>
+<td><a href="../data/">data</a></td>
+<td>0..1 <br/> <a href="../HandleData/">HandleData</a></td>
+<td>The meta data stored in PID4CatRecord</td>
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../pid_schema_version/">pid_schema_version</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
-<td>The version of the PID4Cat schema used for the PID4CatRecord</td>
+<td><a href="../ttl/">ttl</a></td>
+<td>0..1 <br/> <a href="../Integer/">Integer</a></td>
+<td>A time to live in seconds for the handle record</td>
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../license/">license</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
-<td>The license for the metadata contained in the PID4Cat record</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../curation_contact_email/">curation_contact_email</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
-<td>The email address of a person or institution currently responsible for the cu...</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../resource_info/">resource_info</a></td>
-<td>0..1 <br/> <a href="../ResourceInfo/">ResourceInfo</a></td>
-<td>Information about the resource</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../related_identifiers/">related_identifiers</a></td>
-<td>* <br/> <a href="../PID4CatRelation/">PID4CatRelation</a></td>
-<td>Relations of the resource to other identifiers</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../change_log/">change_log</a></td>
-<td>1..* <br/> <a href="../LogRecord/">LogRecord</a></td>
-<td>Change log of PID4Cat record</td>
+<td><a href="../timestamp/">timestamp</a></td>
+<td>0..1 <br/> <a href="../Datetime/">Datetime</a></td>
+<td>The iso datetime for the last update of the handle data</td>
 <td>direct</td>
 </tr>
 </tbody>
@@ -338,10 +292,10 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../Container/">Container</a></td>
-<td><a href="../contains_pids/">contains_pids</a></td>
+<td><a href="../HandleAPIRecord/">HandleAPIRecord</a></td>
+<td><a href="../values/">values</a></td>
 <td>range</td>
-<td><a href="./">PID4CatRecord</a></td>
+<td><a href="./">HandleRecord</a></td>
 </tr>
 </tbody>
 </table>
@@ -361,11 +315,11 @@
 <tbody>
 <tr>
 <td>self</td>
-<td>pid4cat_model:PID4CatRecord</td>
+<td>pid4cat_model:HandleRecord</td>
 </tr>
 <tr>
 <td>native</td>
-<td>pid4cat_model:PID4CatRecord</td>
+<td>pid4cat_model:HandleRecord</td>
 </tr>
 </tbody>
 </table>
@@ -373,134 +327,79 @@
 <!-- TODO: investigate https://stackoverflow.com/questions/37606292/how-to-create-tabbed-code-blocks-in-mkdocs-or-sphinx -->
 <h3 id="direct">Direct</h3>
 <details>
-<pre><code class="language-yaml">name: PID4CatRecord
-description: Represents a PID4CatRecord
+<pre><code class="language-yaml">name: HandleRecord
+description: A handle record for a PID4CatRecord.
 from_schema: https://w3id.org/nfdi4cat/pid4cat-model
 slots:
-- id
-- landing_page_url
-- status
-- pid_schema_version
-- license
-- curation_contact_email
-- resource_info
-- related_identifiers
-- change_log
-slot_usage:
-  curation_contact_email:
-    name: curation_contact_email
-    pattern: ^\S+@[\S+\.]+\S+
+- index
+- type
+- data
+- ttl
+- timestamp
 
 </code></pre>
 </details>
 <h3 id="induced">Induced</h3>
 <details>
-<pre><code class="language-yaml">name: PID4CatRecord
-description: Represents a PID4CatRecord
+<pre><code class="language-yaml">name: HandleRecord
+description: A handle record for a PID4CatRecord.
 from_schema: https://w3id.org/nfdi4cat/pid4cat-model
-slot_usage:
-  curation_contact_email:
-    name: curation_contact_email
-    pattern: ^\S+@[\S+\.]+\S+
 attributes:
-  id:
-    name: id
-    description: A unique identifier for a thing.
+  index:
+    name: index
+    description: The index of the handle record.
     from_schema: https://w3id.org/nfdi4cat/pid4cat-model
     rank: 1000
-    slot_uri: schema:identifier
-    identifier: true
-    alias: id
-    owner: PID4CatRecord
+    alias: index
+    owner: HandleRecord
     domain_of:
-    - PID4CatRecord
-    range: uriorcurie
-  landing_page_url:
-    name: landing_page_url
-    description: The URL of the landing page for the resource.
-    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
-    rank: 10
-    slot_uri: schema:url
-    alias: landing_page_url
-    owner: PID4CatRecord
-    domain_of:
-    - PID4CatRecord
-    range: uri
-  status:
-    name: status
-    description: The status of the PID4CatRecord.
+    - HandleRecord
+    range: integer
+  type:
+    name: type
+    description: The type of the handle record.
     from_schema: https://w3id.org/nfdi4cat/pid4cat-model
     rank: 1000
-    alias: status
-    owner: PID4CatRecord
+    alias: type
+    owner: HandleRecord
     domain_of:
-    - PID4CatRecord
-    range: PID4CatStatus
-  pid_schema_version:
-    name: pid_schema_version
-    description: The version of the PID4Cat schema used for the PID4CatRecord.
+    - HandleRecord
+    range: HandleDataType
+  data:
+    name: data
+    description: The meta data stored in PID4CatRecord.
     from_schema: https://w3id.org/nfdi4cat/pid4cat-model
     rank: 1000
-    alias: pid_schema_version
-    owner: PID4CatRecord
+    alias: data
+    owner: HandleRecord
     domain_of:
-    - PID4CatRecord
-    range: string
-  license:
-    name: license
-    description: The license for the metadata contained in the PID4Cat record.
+    - HandleRecord
+    range: HandleData
+  ttl:
+    name: ttl
+    description: 'A time to live in seconds for the handle record. Typically: 86400
+      =&gt; 1 day
+
+      TODO: Research details of ttl meaning for handle API.
+
+      '
     from_schema: https://w3id.org/nfdi4cat/pid4cat-model
     rank: 1000
-    alias: license
-    owner: PID4CatRecord
+    alias: ttl
+    owner: HandleRecord
     domain_of:
-    - PID4CatRecord
-    range: string
-  curation_contact_email:
-    name: curation_contact_email
-    description: The email address of a person or institution currently responsible
-      for the curation of the PID record.
+    - HandleRecord
+    range: integer
+  timestamp:
+    name: timestamp
+    description: The iso datetime for the last update of the handle data.
     from_schema: https://w3id.org/nfdi4cat/pid4cat-model
     rank: 1000
-    alias: curation_contact_email
-    owner: PID4CatRecord
+    alias: timestamp
+    owner: HandleRecord
     domain_of:
-    - PID4CatRecord
-    range: string
-    pattern: ^\S+@[\S+\.]+\S+
-  resource_info:
-    name: resource_info
-    description: Information about the resource.
-    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
-    rank: 1000
-    alias: resource_info
-    owner: PID4CatRecord
-    domain_of:
-    - PID4CatRecord
-    range: ResourceInfo
-  related_identifiers:
-    name: related_identifiers
-    description: Relations of the resource to other identifiers.
-    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
-    rank: 1000
-    alias: related_identifiers
-    owner: PID4CatRecord
-    domain_of:
-    - PID4CatRecord
-    range: PID4CatRelation
-    multivalued: true
-  change_log:
-    name: change_log
-    description: Change log of PID4Cat record.
-    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
-    rank: 1000
-    alias: change_log
-    owner: PID4CatRecord
-    domain_of:
-    - PID4CatRecord
-    range: LogRecord
-    required: true
-    multivalued: true
+    - HandleRecord
+    range: datetime
 
 </code></pre>
 </details>
