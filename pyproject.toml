@@ -16,7 +16,7 @@ license = {text = "MIT"}
 readme = "README.md"
 include = ["README.md", "src/pid4cat_model/schema",  "project"]
 
-requires-python = ">=3.9"
+requires-python = ">=3.11"  # due to linkml-runtime bug, https://github.com/linkml/linkml-runtime/pull/357
 
 dynamic = ["version"]
 
@@ -45,7 +45,7 @@ requires-poetry = ">=2.0"
 version = "0.0.0"
 
 [tool.poetry.dependencies]
-python = ">=3.9,<4.0"  # poetry needs an upper bound for locking
+python = ">=3.11,<4.0"  # poetry needs an upper bound for locking
 
 [tool.poetry.requires-plugins]
 poetry-dynamic-versioning = ">=1.6.0"
