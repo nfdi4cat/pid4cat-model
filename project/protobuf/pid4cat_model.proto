@@ -10,10 +10,32 @@ message Agent
   uri affiliationRor = 0
   pID4CatAgentRole role = 0
  }
-// A container for all PID4Cat instances.
-message Container
+// A handle record for a PID4CatRecord.
+message HandleAPIRecord
  {
- repeated  pID4CatRecord containsPids = 0
+  integer responseCode = 0
+  string handle = 0
+ repeated  handleRecord values = 0
+ }
+// The data element in the handle API.
+message HandleData
+ {
+  string format = 0
+  string value = 0
+ }
+// A handle record for a PID4CatRecord.
+message HandleRecord
+ {
+  integer index = 0
+  handleDataType type = 0
+  handleData data = 0
+  integer ttl = 0
+  datetime timestamp = 0
+ }
+// A container for all HandleRecords.
+message HandleRecordContainer
+ {
+ repeated  handleAPIRecord containsPids = 0
  }
 // A log record for changes made on a PID4CatRecord starting from registration.
 message LogRecord
@@ -22,19 +44,6 @@ message LogRecord
   agent hasAgent = 0
   changeLogField changedField = 0
   string description = 0
- }
-// Represents a PID4CatRecord
-message PID4CatRecord
- {
-  uriorcurie id = 0
-  uri landingPageUrl = 10
-  pID4CatStatus status = 0
-  string pidSchemaVersion = 0
-  string license = 0
-  string curationContactEmail = 0
-  resourceInfo resourceInfo = 0
- repeated  pID4CatRelation relatedIdentifiers = 0
- repeated  logRecord changeLog = 0
  }
 // A relation between PID4CatRecords or between a PID4CatRecord and other resources with a PID.
 message PID4CatRelation

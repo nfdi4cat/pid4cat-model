@@ -25,37 +25,89 @@ see_also:
 prefixes:
   pid4cat_model: https://w3id.org/nfdi4cat/pid4cat-model/
   linkml: https://w3id.org/linkml/
-  schema: http://schema.org/
 
-  # outer metadata of research data objects
-  dcterms: http://purl.org/dc/terms/
-  DCAT: http://www.w3.org/ns/dcat#
-  DataCite: http://purl.org/spar/datacite/
+  # linkml-lint warns on https as non-canonical prefix so we use http
+  dcterms: https://purl.org/dc/terms/
+  dcat: https://www.w3.org/ns/dcat#
+  DataCite: https://purl.org/spar/datacite/
+  prov: https://www.w3.org/ns/prov#
 
 default_prefix: pid4cat_model
 
 imports:
   - linkml:types
 
+# This is only added to prevent triggering a gen-doc bug
+default_range: string
+
 classes:
 
-  PID4CatRecord:
-    # TODO class_uri: ...
+  # classes for mapping to handle API
+
+  HandleAPIRecord:
     description: >-
-      Represents a PID4CatRecord
+      A handle record for a PID4CatRecord.
     slots:
-      - id
-      - landing_page_url
-      - status
-      - pid_schema_version
-      - license
-      - curation_contact_email
-      - resource_info
-      - related_identifiers
-      - change_log
-    slot_usage:
-      curation_contact_email:
-        pattern: "^\\S+@[\\S+\\.]+\\S+"
+      - response_code
+      - handle
+      - values
+    #slot_usage:
+    #  handle:
+    #    pattern: "^\\d+/\\d+$"
+
+  HandleRecord:
+    description: >-
+      A handle record for a PID4CatRecord.
+    slots:
+      - index
+      - type
+      - data
+      - ttl
+      - timestamp
+
+  HandleData:
+    description: >-
+      The data element in the handle API.
+    slots:
+      - format
+      - value
+
+  HandleRecordContainer:
+    description: >-
+      A container for all HandleRecords.
+    tree_root: true
+    attributes:
+      contains_pids:
+        multivalued: true
+        inlined_as_list: true
+        range: HandleAPIRecord
+        description: >-
+          The HandleRecords contained in the container.
+
+  # classes of the PID4Cat data model
+
+  # PID4CatRecord:
+  #   This class represents the handle record in a compact form but this
+  #   representation does not match the handle-server-API structure so it
+  #   is not immediately usedful. If we still want it we may create it via
+  #   transformation with linkml-map.
+  #
+  #   class_uri: ...
+  #   description: >-
+  #     Represents a PID4CatRecord
+  #   slots:
+  #     - id
+  #     - landing_page_url
+  #     - status
+  #     - pid_schema_version
+  #     - license
+  #     - curation_contact_email
+  #     - resource_info
+  #     - related_identifiers
+  #     - change_log
+  #   slot_usage:
+  #     curation_contact_email:
+  #       pattern: "^\\S+@[\\S+\\.]+\\S+"
 
   PID4CatRelation:
     # TODO class_uri: ...
@@ -110,20 +162,77 @@ classes:
       - encoding_format
       - size
 
-  Container:
-    # TODO class_uri: ... maybe schema:Dataset?
-    description: >-
-      A container for all PID4Cat instances.
-    tree_root: true
-    attributes:
-      contains_pids:
-        multivalued: true
-        inlined_as_list: true
-        range: PID4CatRecord
-        description: >-
-          The PID4CatRecords contained in the container.
+  # Container:
+  #   # TODO class_uri: ... maybe schema:Dataset?
+  #   description: >-
+  #     A container for all PID4Cat instances.
+  #   tree_root: true
+  #   attributes:
+  #     contains_pids:
+  #       multivalued: true
+  #       inlined_as_list: true
+  #       range: PID4CatRecord
+  #       description: >-
+  #         The PID4CatRecords contained in the container.
 
 slots:
+
+  # Slots for HandleAPIRecord
+  response_code:
+    # TODO slot_uri: ...
+    range: integer
+    alias: responseCode
+    description: The response code of the handle API.
+  handle:
+    # TODO slot_uri: ...
+    range: string
+    description: The handle of the PID4CatRecord.
+  values:
+    # TODO slot_uri: ...
+    range: HandleRecord
+    multivalued: true
+    description: The values of the PID4CatRecord.
+
+  # Slots for HandleRecord
+  index:
+    # TODO slot_uri: ...
+    range: integer
+    description: The index of the handle record.
+  type:
+    # TODO slot_uri: ...
+    range: HandleDataType
+    description: The type of the handle record.
+  data:
+    # TODO slot_uri: ...
+    range: HandleData
+    description: The meta data stored in PID4CatRecord.
+  ttl:
+    # TODO slot_uri: ...
+    range: integer
+    description: |
+      A time to live in seconds for the handle record. Typically: 86400 => 1 day
+      TODO: Research details of ttl meaning for handle API.
+  timestamp:
+    # TODO slot_uri: ...
+    range: datetime
+    description: The iso datetime for the last update of the handle data.
+
+  # Slots for HandleData
+  format:
+    # TODO slot_uri: ...
+    range: string
+    description: The format of the handle data.
+  value:
+    # TODO slot_uri: ...
+    description: The value of the handle data.
+    exactly_one_of:
+      - range: PID4CatStatus
+      - range: string  # pid_schema_version, license, curation_contact_email
+      - range: PID4CatRelation
+      - range: ResourceInfo
+      - range: PID4CatRelation
+      - range: LogRecord
+      # TODO add other ranges
 
   # Slots for PID4CatRecord
   id:
@@ -289,12 +398,12 @@ enums:  # Enumerations use singular form for names
         description: >-
           A collection of data available for access or download.
           A data set might be a data file, a data set, a data collection.
-        meaning: DCAT:dataset
+        meaning: dcat:dataset
       DATA_SERVICE:
         description: >-
           An organized system of operations that provide data processing
           functions or access to datasets.
-        meaning: DCAT:DataService
+        meaning: dcat:DataService
 
   RelationType:
     description: >-
@@ -510,3 +619,24 @@ enums:  # Enumerations use singular form for names
         description: The contact information of the PID4CatRecord was changed.
       LICENSE:
         description: The license of the PID4CatRecord was changed.
+
+  HandleDataType:
+    description: >-
+      The type of the handle record element.
+    permissible_values:
+      URL:
+        description: The handle record element is of type URL.
+      STATUS:
+        description: The handle record element is of custom type STATUS.
+      SCHEMA_VER:
+        description: The handle record element is of type SCHEMA_VER.
+      LICENSE:
+        description: The handle record element is of type LICENSE.
+      EMAIL:
+        description: The handle record element is of type EMAIL.
+      RESOURCE_INFO:
+        description: The handle record element is of custom type JSON.
+      RELATED:
+        description: The handle record element is of custom type JSON.
+      LOG:
+        description: The handle record element is of custom type JSON.

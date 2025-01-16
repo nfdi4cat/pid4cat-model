@@ -9,6 +9,18 @@ enum ChangeLogField
     LICENSE
   }
 
+enum HandleDataType
+  {
+    URL
+    STATUS
+    SCHEMA_VER
+    LICENSE
+    EMAIL
+    RESOURCE_INFO
+    RELATED
+    LOG
+  }
+
 enum PID4CatAgentRole
   {
     TRUSTEE
@@ -80,9 +92,31 @@ type Agent
     role: PID4CatAgentRole
   }
 
-type Container
+type HandleAPIRecord
   {
-    containsPids: [PID4CatRecord]
+    responseCode: Integer
+    handle: String
+    values: [HandleRecord]
+  }
+
+type HandleData
+  {
+    format: String
+    value: String
+  }
+
+type HandleRecord
+  {
+    index: Integer
+    type: HandleDataType
+    data: HandleData
+    ttl: Integer
+    timestamp: Datetime
+  }
+
+type HandleRecordContainer
+  {
+    containsPids: [HandleAPIRecord]
   }
 
 type LogRecord
@@ -91,19 +125,6 @@ type LogRecord
     hasAgent: Agent
     changedField: ChangeLogField
     description: String
-  }
-
-type PID4CatRecord
-  {
-    id: Uriorcurie!
-    landingPageUrl: Uri
-    status: PID4CatStatus
-    pidSchemaVersion: String
-    license: String
-    curationContactEmail: String
-    resourceInfo: ResourceInfo
-    relatedIdentifiers: [PID4CatRelation]
-    changeLog: [LogRecord]!
   }
 
 type PID4CatRelation

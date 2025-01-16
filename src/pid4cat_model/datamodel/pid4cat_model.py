@@ -1,5 +1,5 @@
 # Auto generated from pid4cat_model.yaml by pythongen.py version: 0.0.1
-# Generation date: 2025-01-09T12:28:46
+# Generation date: 2025-01-16T23:37:49
 # Schema: pid4cat-model
 #
 # id: https://w3id.org/nfdi4cat/pid4cat-model
@@ -68,12 +68,12 @@ version = None
 dataclasses._init_fn = dataclasses_init_fn_with_kwargs
 
 # Namespaces
-DCAT = CurieNamespace('DCAT', 'http://www.w3.org/ns/dcat#')
-DATACITE = CurieNamespace('DataCite', 'http://purl.org/spar/datacite/')
-DCTERMS = CurieNamespace('dcterms', 'http://purl.org/dc/terms/')
+DATACITE = CurieNamespace('DataCite', 'https://purl.org/spar/datacite/')
+DCAT = CurieNamespace('dcat', 'https://www.w3.org/ns/dcat#')
+DCTERMS = CurieNamespace('dcterms', 'https://purl.org/dc/terms/')
 LINKML = CurieNamespace('linkml', 'https://w3id.org/linkml/')
 PID4CAT_MODEL = CurieNamespace('pid4cat_model', 'https://w3id.org/nfdi4cat/pid4cat-model/')
-PROV = CurieNamespace('prov', 'http://example.org/UNKNOWN/prov/')
+PROV = CurieNamespace('prov', 'https://www.w3.org/ns/prov#')
 SCHEMA = CurieNamespace('schema', 'http://schema.org/')
 DEFAULT_ = PID4CAT_MODEL
 
@@ -81,65 +81,119 @@ DEFAULT_ = PID4CAT_MODEL
 # Types
 
 # Class references
-class PID4CatRecordId(URIorCURIE):
-    pass
+
 
 
 @dataclass(repr=False)
-class PID4CatRecord(YAMLRoot):
+class HandleAPIRecord(YAMLRoot):
     """
-    Represents a PID4CatRecord
+    A handle record for a PID4CatRecord.
     """
     _inherited_slots: ClassVar[List[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = PID4CAT_MODEL["PID4CatRecord"]
-    class_class_curie: ClassVar[str] = "pid4cat_model:PID4CatRecord"
-    class_name: ClassVar[str] = "PID4CatRecord"
-    class_model_uri: ClassVar[URIRef] = PID4CAT_MODEL.PID4CatRecord
+    class_class_uri: ClassVar[URIRef] = PID4CAT_MODEL["HandleAPIRecord"]
+    class_class_curie: ClassVar[str] = "pid4cat_model:HandleAPIRecord"
+    class_name: ClassVar[str] = "HandleAPIRecord"
+    class_model_uri: ClassVar[URIRef] = PID4CAT_MODEL.HandleAPIRecord
 
-    id: Union[str, PID4CatRecordId] = None
-    change_log: Union[Union[dict, "LogRecord"], List[Union[dict, "LogRecord"]]] = None
-    landing_page_url: Optional[Union[str, URI]] = None
-    status: Optional[Union[str, "PID4CatStatus"]] = None
-    pid_schema_version: Optional[str] = None
-    license: Optional[str] = None
-    curation_contact_email: Optional[str] = None
-    resource_info: Optional[Union[dict, "ResourceInfo"]] = None
-    related_identifiers: Optional[Union[Union[dict, "PID4CatRelation"], List[Union[dict, "PID4CatRelation"]]]] = empty_list()
+    responseCode: Optional[int] = None
+    handle: Optional[str] = None
+    values: Optional[Union[Union[dict, "HandleRecord"], List[Union[dict, "HandleRecord"]]]] = empty_list()
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self._is_empty(self.id):
-            self.MissingRequiredField("id")
-        if not isinstance(self.id, PID4CatRecordId):
-            self.id = PID4CatRecordId(self.id)
+        if self.responseCode is not None and not isinstance(self.responseCode, int):
+            self.responseCode = int(self.responseCode)
 
-        if self._is_empty(self.change_log):
-            self.MissingRequiredField("change_log")
-        if not isinstance(self.change_log, list):
-            self.change_log = [self.change_log] if self.change_log is not None else []
-        self.change_log = [v if isinstance(v, LogRecord) else LogRecord(**as_dict(v)) for v in self.change_log]
+        if self.handle is not None and not isinstance(self.handle, str):
+            self.handle = str(self.handle)
 
-        if self.landing_page_url is not None and not isinstance(self.landing_page_url, URI):
-            self.landing_page_url = URI(self.landing_page_url)
+        if not isinstance(self.values, list):
+            self.values = [self.values] if self.values is not None else []
+        self.values = [v if isinstance(v, HandleRecord) else HandleRecord(**as_dict(v)) for v in self.values]
 
-        if self.status is not None and not isinstance(self.status, PID4CatStatus):
-            self.status = PID4CatStatus(self.status)
+        super().__post_init__(**kwargs)
 
-        if self.pid_schema_version is not None and not isinstance(self.pid_schema_version, str):
-            self.pid_schema_version = str(self.pid_schema_version)
 
-        if self.license is not None and not isinstance(self.license, str):
-            self.license = str(self.license)
+@dataclass(repr=False)
+class HandleRecord(YAMLRoot):
+    """
+    A handle record for a PID4CatRecord.
+    """
+    _inherited_slots: ClassVar[List[str]] = []
 
-        if self.curation_contact_email is not None and not isinstance(self.curation_contact_email, str):
-            self.curation_contact_email = str(self.curation_contact_email)
+    class_class_uri: ClassVar[URIRef] = PID4CAT_MODEL["HandleRecord"]
+    class_class_curie: ClassVar[str] = "pid4cat_model:HandleRecord"
+    class_name: ClassVar[str] = "HandleRecord"
+    class_model_uri: ClassVar[URIRef] = PID4CAT_MODEL.HandleRecord
 
-        if self.resource_info is not None and not isinstance(self.resource_info, ResourceInfo):
-            self.resource_info = ResourceInfo(**as_dict(self.resource_info))
+    index: Optional[int] = None
+    type: Optional[Union[str, "HandleDataType"]] = None
+    data: Optional[Union[dict, "HandleData"]] = None
+    ttl: Optional[int] = None
+    timestamp: Optional[Union[str, XSDDateTime]] = None
 
-        if not isinstance(self.related_identifiers, list):
-            self.related_identifiers = [self.related_identifiers] if self.related_identifiers is not None else []
-        self.related_identifiers = [v if isinstance(v, PID4CatRelation) else PID4CatRelation(**as_dict(v)) for v in self.related_identifiers]
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self.index is not None and not isinstance(self.index, int):
+            self.index = int(self.index)
+
+        if self.type is not None and not isinstance(self.type, HandleDataType):
+            self.type = HandleDataType(self.type)
+
+        if self.data is not None and not isinstance(self.data, HandleData):
+            self.data = HandleData(**as_dict(self.data))
+
+        if self.ttl is not None and not isinstance(self.ttl, int):
+            self.ttl = int(self.ttl)
+
+        if self.timestamp is not None and not isinstance(self.timestamp, XSDDateTime):
+            self.timestamp = XSDDateTime(self.timestamp)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class HandleData(YAMLRoot):
+    """
+    The data element in the handle API.
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = PID4CAT_MODEL["HandleData"]
+    class_class_curie: ClassVar[str] = "pid4cat_model:HandleData"
+    class_name: ClassVar[str] = "HandleData"
+    class_model_uri: ClassVar[URIRef] = PID4CAT_MODEL.HandleData
+
+    format: Optional[str] = None
+    value: Optional[str] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self.format is not None and not isinstance(self.format, str):
+            self.format = str(self.format)
+
+        if self.value is not None and not isinstance(self.value, str):
+            self.value = str(self.value)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class HandleRecordContainer(YAMLRoot):
+    """
+    A container for all HandleRecords.
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = PID4CAT_MODEL["HandleRecordContainer"]
+    class_class_curie: ClassVar[str] = "pid4cat_model:HandleRecordContainer"
+    class_name: ClassVar[str] = "HandleRecordContainer"
+    class_model_uri: ClassVar[URIRef] = PID4CAT_MODEL.HandleRecordContainer
+
+    contains_pids: Optional[Union[Union[dict, HandleAPIRecord], List[Union[dict, HandleAPIRecord]]]] = empty_list()
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if not isinstance(self.contains_pids, list):
+            self.contains_pids = [self.contains_pids] if self.contains_pids is not None else []
+        self.contains_pids = [v if isinstance(v, HandleAPIRecord) else HandleAPIRecord(**as_dict(v)) for v in self.contains_pids]
 
         super().__post_init__(**kwargs)
 
@@ -306,26 +360,6 @@ class RepresentationVariant(YAMLRoot):
 
         if self.size is not None and not isinstance(self.size, int):
             self.size = int(self.size)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class Container(YAMLRoot):
-    """
-    A container for all PID4Cat instances.
-    """
-    _inherited_slots: ClassVar[List[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = PID4CAT_MODEL["Container"]
-    class_class_curie: ClassVar[str] = "pid4cat_model:Container"
-    class_name: ClassVar[str] = "Container"
-    class_model_uri: ClassVar[URIRef] = PID4CAT_MODEL.Container
-
-    contains_pids: Optional[Union[Dict[Union[str, PID4CatRecordId], Union[dict, PID4CatRecord]], List[Union[dict, PID4CatRecord]]]] = empty_dict()
-
-    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        self._normalize_inlined_as_list(slot_name="contains_pids", slot_type=PID4CatRecord, key_name="id", keyed=True)
 
         super().__post_init__(**kwargs)
 
@@ -548,9 +582,73 @@ class ChangeLogField(EnumDefinitionImpl):
         description="The field of the PID4Catrecord that was changed.",
     )
 
+class HandleDataType(EnumDefinitionImpl):
+    """
+    The type of the handle record element.
+    """
+    URL = PermissibleValue(
+        text="URL",
+        description="The handle record element is of type URL.")
+    STATUS = PermissibleValue(
+        text="STATUS",
+        description="The handle record element is of custom type STATUS.")
+    SCHEMA_VER = PermissibleValue(
+        text="SCHEMA_VER",
+        description="The handle record element is of type SCHEMA_VER.")
+    LICENSE = PermissibleValue(
+        text="LICENSE",
+        description="The handle record element is of type LICENSE.")
+    EMAIL = PermissibleValue(
+        text="EMAIL",
+        description="The handle record element is of type EMAIL.")
+    RESOURCE_INFO = PermissibleValue(
+        text="RESOURCE_INFO",
+        description="The handle record element is of custom type JSON.")
+    RELATED = PermissibleValue(
+        text="RELATED",
+        description="The handle record element is of custom type JSON.")
+    LOG = PermissibleValue(
+        text="LOG",
+        description="The handle record element is of custom type JSON.")
+
+    _defn = EnumDefinition(
+        name="HandleDataType",
+        description="The type of the handle record element.",
+    )
+
 # Slots
 class slots:
     pass
+
+slots.response_code = Slot(uri=PID4CAT_MODEL.responseCode, name="response_code", curie=PID4CAT_MODEL.curie('responseCode'),
+                   model_uri=PID4CAT_MODEL.response_code, domain=None, range=Optional[int])
+
+slots.handle = Slot(uri=PID4CAT_MODEL.handle, name="handle", curie=PID4CAT_MODEL.curie('handle'),
+                   model_uri=PID4CAT_MODEL.handle, domain=None, range=Optional[str])
+
+slots.values = Slot(uri=PID4CAT_MODEL.values, name="values", curie=PID4CAT_MODEL.curie('values'),
+                   model_uri=PID4CAT_MODEL.values, domain=None, range=Optional[Union[Union[dict, HandleRecord], List[Union[dict, HandleRecord]]]])
+
+slots.index = Slot(uri=PID4CAT_MODEL.index, name="index", curie=PID4CAT_MODEL.curie('index'),
+                   model_uri=PID4CAT_MODEL.index, domain=None, range=Optional[int])
+
+slots.type = Slot(uri=PID4CAT_MODEL.type, name="type", curie=PID4CAT_MODEL.curie('type'),
+                   model_uri=PID4CAT_MODEL.type, domain=None, range=Optional[Union[str, "HandleDataType"]])
+
+slots.data = Slot(uri=PID4CAT_MODEL.data, name="data", curie=PID4CAT_MODEL.curie('data'),
+                   model_uri=PID4CAT_MODEL.data, domain=None, range=Optional[Union[dict, HandleData]])
+
+slots.ttl = Slot(uri=PID4CAT_MODEL.ttl, name="ttl", curie=PID4CAT_MODEL.curie('ttl'),
+                   model_uri=PID4CAT_MODEL.ttl, domain=None, range=Optional[int])
+
+slots.timestamp = Slot(uri=PID4CAT_MODEL.timestamp, name="timestamp", curie=PID4CAT_MODEL.curie('timestamp'),
+                   model_uri=PID4CAT_MODEL.timestamp, domain=None, range=Optional[Union[str, XSDDateTime]])
+
+slots.format = Slot(uri=PID4CAT_MODEL.format, name="format", curie=PID4CAT_MODEL.curie('format'),
+                   model_uri=PID4CAT_MODEL.format, domain=None, range=Optional[str])
+
+slots.value = Slot(uri=PID4CAT_MODEL.value, name="value", curie=PID4CAT_MODEL.curie('value'),
+                   model_uri=PID4CAT_MODEL.value, domain=None, range=Optional[str])
 
 slots.id = Slot(uri=SCHEMA.identifier, name="id", curie=SCHEMA.curie('identifier'),
                    model_uri=PID4CAT_MODEL.id, domain=None, range=URIRef)
@@ -633,12 +731,8 @@ slots.size = Slot(uri=PID4CAT_MODEL.size, name="size", curie=PID4CAT_MODEL.curie
 slots.url = Slot(uri=PID4CAT_MODEL.url, name="url", curie=PID4CAT_MODEL.curie('url'),
                    model_uri=PID4CAT_MODEL.url, domain=None, range=Optional[Union[str, URI]])
 
-slots.container__contains_pids = Slot(uri=PID4CAT_MODEL.contains_pids, name="container__contains_pids", curie=PID4CAT_MODEL.curie('contains_pids'),
-                   model_uri=PID4CAT_MODEL.container__contains_pids, domain=None, range=Optional[Union[Dict[Union[str, PID4CatRecordId], Union[dict, PID4CatRecord]], List[Union[dict, PID4CatRecord]]]])
-
-slots.PID4CatRecord_curation_contact_email = Slot(uri=PID4CAT_MODEL.curation_contact_email, name="PID4CatRecord_curation_contact_email", curie=PID4CAT_MODEL.curie('curation_contact_email'),
-                   model_uri=PID4CAT_MODEL.PID4CatRecord_curation_contact_email, domain=PID4CatRecord, range=Optional[str],
-                   pattern=re.compile(r'^\S+@[\S+\.]+\S+'))
+slots.handleRecordContainer__contains_pids = Slot(uri=PID4CAT_MODEL.contains_pids, name="handleRecordContainer__contains_pids", curie=PID4CAT_MODEL.curie('contains_pids'),
+                   model_uri=PID4CAT_MODEL.handleRecordContainer__contains_pids, domain=None, range=Optional[Union[Union[dict, HandleAPIRecord], List[Union[dict, HandleAPIRecord]]]])
 
 slots.Agent_email = Slot(uri=PID4CAT_MODEL.email, name="Agent_email", curie=PID4CAT_MODEL.curie('email'),
                    model_uri=PID4CAT_MODEL.Agent_email, domain=Agent, range=Optional[str],

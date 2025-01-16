@@ -1,12 +1,15 @@
+from pathlib import Path
 import sys
 from datetime import datetime
-from linkml_runtime.dumpers import json_dumper
+from linkml_runtime.dumpers import json_dumper, yaml_dumper
 from pid4cat_model.datamodel import pid4cat_model as p4c
 
 # Demonstrate the use of Python DataClass-based model
 
 if sys.version_info < (3, 11):
-    raise RuntimeError("Python 3.11 or higher is required due to the use of datetime.fromisoformat")
+    raise RuntimeError(
+        "Python >= 3.11 is required until merging of https://github.com/linkml/linkml-runtime/pull/357"
+    )
 
 p1_Agent = p4c.Agent(
     name="Data Fuzzi",
@@ -61,20 +64,105 @@ p1_log = [
     ),
 ]
 
-p1 = p4c.PID4CatRecord(
-    id="lik-1",
-    landing_page_url="https://pid4cat.example.org/lik-1",
-    status=p4c.PID4CatStatus.REGISTERED,
-    pid_schema_version="0.1.0",
-    license="CC0-1.0",
-    curation_contact_email="datafuzzi@example.org",
-    resource_info=p1_res_info,
-    related_identifiers=p1_related,
-    change_log=p1_log,
+# HandleData
+
+p1_api = p4c.HandleAPIRecord(
+    responseCode = 1,
+    handle = "21.T12995/lik-1",
+    values = [
+        p4c.HandleRecord(
+            index = 1,
+            type = p4c.HandleDataType.URL,
+            ttl = 86400,
+            timestamp = datetime.fromisoformat("2024-05-15T15:51:15Z"),
+            data = p4c.HandleData(
+                format = "string",
+                value = "https://pid4cat.example.org/lik-1",
+            ),
+        ),
+        p4c.HandleRecord(
+            index = 2,
+            type = p4c.HandleDataType.STATUS,
+            ttl = 86400,
+            timestamp = datetime.fromisoformat("2024-05-15T15:51:15Z"),
+            data = p4c.HandleData(
+                format = "string",
+                value = p4c.PID4CatStatus.REGISTERED,
+            ),
+        ),
+        p4c.HandleRecord(
+            index = 3,
+            type = p4c.HandleDataType.SCHEMA_VER,
+            ttl = 86400,
+            timestamp = datetime.fromisoformat("2024-05-15T15:51:15Z"),
+            data = p4c.HandleData(
+                format = "string",
+                value = "v0.1.0",
+            ),
+        ),
+        p4c.HandleRecord(
+            index = 4,
+            type = p4c.HandleDataType.LICENSE,
+            ttl = 86400,
+            timestamp = datetime.fromisoformat("2024-05-15T15:51:15Z"),
+            data = p4c.HandleData(
+                format = "string",
+                value = "CC0-1.0",
+            ),
+        ),
+        p4c.HandleRecord(
+            index = 5,
+            type = p4c.HandleDataType.EMAIL,
+            ttl = 86400,
+            timestamp = datetime.fromisoformat("2024-05-15T15:51:15Z"),
+            data = p4c.HandleData(
+                format = "string",
+                value = "datafuzzi@example.org",
+            ),
+        ),
+        p4c.HandleRecord(
+            index = 6,
+            type = p4c.HandleDataType.RESOURCE_INFO,
+            ttl = 86400,
+            timestamp = datetime.fromisoformat("2024-05-15T15:51:15Z"),
+            data = p4c.HandleData(
+                format = "string",
+                value = p1_res_info,
+            ),
+        ),
+        p4c.HandleRecord(
+            index = 7,
+            type = p4c.HandleDataType.RELATED,
+            ttl = 86400,
+            timestamp = datetime.fromisoformat("2024-05-15T15:51:15Z"),
+            data = p4c.HandleData(
+                format = "string",
+                value = p1_related,
+            ),
+        ),
+        p4c.HandleRecord(
+            index = 8,
+            type = p4c.HandleDataType.LOG,
+            ttl = 86400,
+            timestamp = datetime.fromisoformat("2024-05-15T15:51:15Z"),
+            data = p4c.HandleData(
+                format = "string",
+                value = p1_log,
+            ),
+        ),
+    ],
 )
 
-print(p1)
+print(p1_api)
 
-print(json_dumper.dumps(p1))
+print(json_dumper.dumps(p1_api))
 
-c = p4c.Container(contains_pids=[p1])
+container = p4c.HandleRecordContainer(contains_pids=[p1_api])
+
+# write json to file
+script_folder = Path(__file__).parent
+with open(script_folder / "example_p1.json", "w", encoding="utf-8") as f:
+    f.write(json_dumper.dumps(container))
+with open(script_folder / "example_p1.yaml", "w", encoding="utf-8") as f:
+    f.write(yaml_dumper.dumps(container))
+

@@ -1,12 +1,21 @@
--- # Class: "PID4CatRecord" Description: "Represents a PID4CatRecord"
---     * Slot: id Description: A unique identifier for a thing.
---     * Slot: landing_page_url Description: The URL of the landing page for the resource.
---     * Slot: status Description: The status of the PID4CatRecord.
---     * Slot: pid_schema_version Description: The version of the PID4Cat schema used for the PID4CatRecord.
---     * Slot: license Description: The license for the metadata contained in the PID4Cat record.
---     * Slot: curation_contact_email Description: The email address of a person or institution currently responsible for the curation of the PID record.
---     * Slot: Container_id Description: Autocreated FK slot
---     * Slot: resource_info_id Description: Information about the resource.
+-- # Class: "HandleAPIRecord" Description: "A handle record for a PID4CatRecord."
+--     * Slot: id Description: 
+--     * Slot: responseCode Description: The response code of the handle API.
+--     * Slot: handle Description: The handle of the PID4CatRecord.
+--     * Slot: HandleRecordContainer_id Description: Autocreated FK slot
+-- # Class: "HandleRecord" Description: "A handle record for a PID4CatRecord."
+--     * Slot: id Description: 
+--     * Slot: index Description: The index of the handle record.
+--     * Slot: type Description: The type of the handle record.
+--     * Slot: ttl Description: A time to live in seconds for the handle record. Typically: 86400 => 1 dayTODO: Research details of ttl meaning for handle API.
+--     * Slot: timestamp Description: The iso datetime for the last update of the handle data.
+--     * Slot: data_id Description: The meta data stored in PID4CatRecord.
+-- # Class: "HandleData" Description: "The data element in the handle API."
+--     * Slot: id Description: 
+--     * Slot: format Description: The format of the handle data.
+--     * Slot: value Description: The value of the handle data.
+-- # Class: "HandleRecordContainer" Description: "A container for all HandleRecords."
+--     * Slot: id Description: 
 -- # Class: "PID4CatRelation" Description: "A relation between PID4CatRecords or between a PID4CatRecord and other resources with a PID."
 --     * Slot: id Description: 
 --     * Slot: relation_type Description: Relation type between the resources.
@@ -36,18 +45,23 @@
 --     * Slot: media_type Description: The media type of the representation as defined by [IANA](https://www.iana.org/assignments/media-types/media-types.xhtml)
 --     * Slot: encoding_format Description: The encoding of the representation. https://encoding.spec.whatwg.org/#names-and-labels
 --     * Slot: size Description: The size of the representation in bytes.
--- # Class: "Container" Description: "A container for all PID4Cat instances."
---     * Slot: id Description: 
--- # Class: "PID4CatRecord_related_identifiers" Description: ""
---     * Slot: PID4CatRecord_id Description: Autocreated FK slot
---     * Slot: related_identifiers_id Description: Relations of the resource to other identifiers.
--- # Class: "PID4CatRecord_change_log" Description: ""
---     * Slot: PID4CatRecord_id Description: Autocreated FK slot
---     * Slot: change_log_id Description: Change log of PID4Cat record.
+-- # Class: "HandleAPIRecord_values" Description: ""
+--     * Slot: HandleAPIRecord_id Description: Autocreated FK slot
+--     * Slot: values_id Description: The values of the PID4CatRecord.
 -- # Class: "ResourceInfo_representation_variants" Description: ""
 --     * Slot: ResourceInfo_id Description: Autocreated FK slot
 --     * Slot: representation_variants_id Description: The representations of the resource in other media types than text/html.
 
+CREATE TABLE "HandleData" (
+	id INTEGER NOT NULL, 
+	format TEXT, 
+	value TEXT, 
+	PRIMARY KEY (id)
+);
+CREATE TABLE "HandleRecordContainer" (
+	id INTEGER NOT NULL, 
+	PRIMARY KEY (id)
+);
 CREATE TABLE "PID4CatRelation" (
 	id INTEGER NOT NULL, 
 	relation_type VARCHAR(22), 
@@ -79,22 +93,23 @@ CREATE TABLE "RepresentationVariant" (
 	size INTEGER, 
 	PRIMARY KEY (id)
 );
-CREATE TABLE "Container" (
+CREATE TABLE "HandleAPIRecord" (
 	id INTEGER NOT NULL, 
-	PRIMARY KEY (id)
-);
-CREATE TABLE "PID4CatRecord" (
-	id TEXT NOT NULL, 
-	landing_page_url TEXT, 
-	status VARCHAR(10), 
-	pid_schema_version TEXT, 
-	license TEXT, 
-	curation_contact_email TEXT, 
-	"Container_id" INTEGER, 
-	resource_info_id INTEGER, 
+	"responseCode" INTEGER, 
+	handle TEXT, 
+	"HandleRecordContainer_id" INTEGER, 
 	PRIMARY KEY (id), 
-	FOREIGN KEY("Container_id") REFERENCES "Container" (id), 
-	FOREIGN KEY(resource_info_id) REFERENCES "ResourceInfo" (id)
+	FOREIGN KEY("HandleRecordContainer_id") REFERENCES "HandleRecordContainer" (id)
+);
+CREATE TABLE "HandleRecord" (
+	id INTEGER NOT NULL, 
+	"index" INTEGER, 
+	type VARCHAR(13), 
+	ttl INTEGER, 
+	timestamp DATETIME, 
+	data_id INTEGER, 
+	PRIMARY KEY (id), 
+	FOREIGN KEY(data_id) REFERENCES "HandleData" (id)
 );
 CREATE TABLE "LogRecord" (
 	id INTEGER NOT NULL, 
@@ -112,17 +127,10 @@ CREATE TABLE "ResourceInfo_representation_variants" (
 	FOREIGN KEY("ResourceInfo_id") REFERENCES "ResourceInfo" (id), 
 	FOREIGN KEY(representation_variants_id) REFERENCES "RepresentationVariant" (id)
 );
-CREATE TABLE "PID4CatRecord_related_identifiers" (
-	"PID4CatRecord_id" TEXT, 
-	related_identifiers_id INTEGER, 
-	PRIMARY KEY ("PID4CatRecord_id", related_identifiers_id), 
-	FOREIGN KEY("PID4CatRecord_id") REFERENCES "PID4CatRecord" (id), 
-	FOREIGN KEY(related_identifiers_id) REFERENCES "PID4CatRelation" (id)
-);
-CREATE TABLE "PID4CatRecord_change_log" (
-	"PID4CatRecord_id" TEXT, 
-	change_log_id INTEGER NOT NULL, 
-	PRIMARY KEY ("PID4CatRecord_id", change_log_id), 
-	FOREIGN KEY("PID4CatRecord_id") REFERENCES "PID4CatRecord" (id), 
-	FOREIGN KEY(change_log_id) REFERENCES "LogRecord" (id)
+CREATE TABLE "HandleAPIRecord_values" (
+	"HandleAPIRecord_id" INTEGER, 
+	values_id INTEGER, 
+	PRIMARY KEY ("HandleAPIRecord_id", values_id), 
+	FOREIGN KEY("HandleAPIRecord_id") REFERENCES "HandleAPIRecord" (id), 
+	FOREIGN KEY(values_id) REFERENCES "HandleRecord" (id)
 );
