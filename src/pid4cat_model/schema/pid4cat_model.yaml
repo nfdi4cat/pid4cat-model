@@ -34,6 +34,7 @@ default_prefix: pid4cat_model
 
 imports:
   - linkml:types
+  - media_types
 
 # This is only added to prevent triggering a gen-doc bug for a slot
 # using "exactly_one_of" to selcect the range of the value slot.
@@ -275,7 +276,7 @@ slots:
 
   # Slots for RepresentationVariants
   media_type:
-    range: string
+    range: MEDIA_Types
     description: >-
       The media type of the representation as defined by [IANA](https://www.iana.org/assignments/media-types/media-types.xhtml)
   encoding_format:
@@ -454,7 +455,6 @@ enums:  # Enumerations use singular form for names
           - map to an ontology/vocabulary
       COLLECTS:
         description: The resource collects another resource.
-
         todos:
           - map to an ontology/vocabulary
       IS_REQUIRED_BY:
