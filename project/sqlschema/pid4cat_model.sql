@@ -88,7 +88,7 @@ CREATE TABLE "Agent" (
 CREATE TABLE "RepresentationVariant" (
 	id INTEGER NOT NULL, 
 	url TEXT, 
-	media_type TEXT, 
+	media_type VARCHAR(84), 
 	encoding_format TEXT, 
 	size INTEGER, 
 	PRIMARY KEY (id)
