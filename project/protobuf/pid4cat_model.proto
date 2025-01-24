@@ -56,7 +56,7 @@ message PID4CatRelation
 message RepresentationVariant
  {
   uri url = 0
-  string mediaType = 0
+  mEDIATypes mediaType = 0
   string encodingFormat = 0
   integer size = 0
  }
