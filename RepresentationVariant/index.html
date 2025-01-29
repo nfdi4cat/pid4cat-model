@@ -214,6 +214,13 @@
 
       RepresentationVariant : media_type
 
+
+
+
+    RepresentationVariant --&gt; "0..1" MEDIATypes : media_type
+    click MEDIATypes href "../MEDIATypes"
+
+
       RepresentationVariant : size
 
       RepresentationVariant : url
@@ -240,7 +247,7 @@
 </tr>
 <tr>
 <td><a href="../media_type/">media_type</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>0..1 <br/> <a href="../MEDIATypes/">MEDIATypes</a></td>
 <td>The media type of the representation as defined by [IANA](https://www</td>
 <td>direct</td>
 </tr>
@@ -343,7 +350,7 @@ attributes:
     owner: RepresentationVariant
     domain_of:
     - RepresentationVariant
-    range: string
+    range: MEDIA_Types
   encoding_format:
     name: encoding_format
     description: The encoding of the representation. https://encoding.spec.whatwg.org/#names-and-labels

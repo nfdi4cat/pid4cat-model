@@ -330,7 +330,7 @@
 
 
 <h1 id="enum-pid4catstatus">Enum: PID4CatStatus</h1>
-<p><em>The status of the PID4CatRecord.</em></p>
+<p><em>The usage status of the PID4CatRecord.</em></p>
 <p>URI: <a href="./">PID4CatStatus</a></p>
 <h2 id="permissible-values">Permissible Values</h2>
 <table>
@@ -344,22 +344,22 @@
 <tbody>
 <tr>
 <td>SUBMITTED</td>
-<td>None</td>
+<td>voc4cat:0005052</td>
 <td>The PID4CatRecord is reserved but the resource is not yet linked</td>
 </tr>
 <tr>
 <td>REGISTERED</td>
-<td>None</td>
-<td>The PID4CatRecord links to a concrete resource</td>
+<td>voc4cat:0005053</td>
+<td>The PID4CatRecord is linked to a concrete resource</td>
 </tr>
 <tr>
 <td>OBSOLETED</td>
-<td>None</td>
+<td>voc4cat:0005054</td>
 <td>The PID4CatRecord is obsolete, e</td>
 </tr>
 <tr>
 <td>DEPRECATED</td>
-<td>None</td>
+<td>voc4cat:0005055</td>
 <td>The PID4CatRecord is deprecated, e</td>
 </tr>
 </tbody>
@@ -388,24 +388,28 @@
 <details>
 
 <pre><code class="language-yaml">name: PID4CatStatus
-description: The status of the PID4CatRecord.
+description: The usage status of the PID4CatRecord.
 from_schema: https://w3id.org/nfdi4cat/pid4cat-model
 rank: 1000
 permissible_values:
   SUBMITTED:
     text: SUBMITTED
     description: The PID4CatRecord is reserved but the resource is not yet linked.
+    meaning: voc4cat:0005052
   REGISTERED:
     text: REGISTERED
-    description: The PID4CatRecord links to a concrete resource.
+    description: The PID4CatRecord is linked to a concrete resource.
+    meaning: voc4cat:0005053
   OBSOLETED:
     text: OBSOLETED
     description: The PID4CatRecord is obsolete, e.g. because the resource is referenced
       by another PID4Cat.
+    meaning: voc4cat:0005054
   DEPRECATED:
     text: DEPRECATED
     description: The PID4CatRecord is deprecated, e.g. because the resource can no
       longer be found.
+    meaning: voc4cat:0005055
 
 </code></pre>
 

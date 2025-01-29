@@ -330,7 +330,7 @@
 
 
 <h1 id="enum-resourcecategory">Enum: ResourceCategory</h1>
-<p><em>The category of the resource</em></p>
+<p><em>The ResourceCategory expresses for which type of resource the PID is used, e.g. if the PID is for a sample or a device.</em></p>
 <p>URI: <a href="./">ResourceCategory</a></p>
 <h2 id="permissible-values">Permissible Values</h2>
 <table>
@@ -344,32 +344,32 @@
 <tbody>
 <tr>
 <td>COLLECTION</td>
-<td>http://purl.org/dc/dcmitype/Collection</td>
+<td>voc4cat:0005012</td>
 <td>A collection is a group of resources and/or other collections</td>
 </tr>
 <tr>
 <td>SAMPLE</td>
-<td>http://www.w3.org/ns/sosa/Sample</td>
-<td>A representative part of an entity of interest on which observations may be m...</td>
+<td>voc4cat:0005013</td>
+<td>A representative part of a material of interest on which observations are mad...</td>
 </tr>
 <tr>
 <td>MATERIAL</td>
-<td>None</td>
+<td>voc4cat:0005014</td>
 <td>A material used in the research process (except samples)</td>
 </tr>
 <tr>
 <td>DEVICE</td>
-<td>None</td>
-<td>A physical device used in the research process</td>
+<td>voc4cat:0005015</td>
+<td>A physical device used in a research or manufacturing process</td>
 </tr>
 <tr>
 <td>DATA_OBJECT</td>
-<td>dcat:dataset</td>
+<td>voc4cat:0005016</td>
 <td>A collection of data available for access or download</td>
 </tr>
 <tr>
 <td>DATA_SERVICE</td>
-<td>dcat:DataService</td>
+<td>voc4cat:0005017</td>
 <td>An organized system of operations that provide data processing functions or a...</td>
 </tr>
 </tbody>
@@ -398,39 +398,48 @@
 <details>
 
 <pre><code class="language-yaml">name: ResourceCategory
-description: The category of the resource
+description: The ResourceCategory expresses for which type of resource the PID is
+  used, e.g. if the PID is for a sample or a device.
 from_schema: https://w3id.org/nfdi4cat/pid4cat-model
 rank: 1000
 permissible_values:
   COLLECTION:
     text: COLLECTION
     description: A collection is a group of resources and/or other collections.
-    meaning: http://purl.org/dc/dcmitype/Collection
+    meaning: voc4cat:0005012
+    close_mappings:
+    - http://purl.org/dc/dcmitype/Collection
   SAMPLE:
     text: SAMPLE
-    description: A representative part of an entity of interest on which observations
-      may be made.
-    meaning: http://www.w3.org/ns/sosa/Sample
+    description: A representative part of a material of interest on which observations
+      are made.
+    meaning: voc4cat:0005013
+    close_mappings:
+    - voc4cat:0005056
+    broad_mappings:
+    - https://www.w3.org/ns/sosa/Sample
   MATERIAL:
     text: MATERIAL
     description: A material used in the research process (except samples).
-    todos:
-    - map to an ontology/vocabulary
+    meaning: voc4cat:0005014
   DEVICE:
     text: DEVICE
-    description: A physical device used in the research process.
-    todos:
-    - map to an ontology/vocabulary
+    description: A physical device used in a research or manufacturing process.
+    meaning: voc4cat:0005015
   DATA_OBJECT:
     text: DATA_OBJECT
-    description: A collection of data available for access or download. A data set
+    description: A collection of data available for access or download. A data object
       might be a data file, a data set, a data collection.
-    meaning: dcat:dataset
+    meaning: voc4cat:0005016
+    close_mappings:
+    - dcat:dataset
   DATA_SERVICE:
     text: DATA_SERVICE
     description: An organized system of operations that provide data processing functions
       or access to datasets.
-    meaning: dcat:DataService
+    meaning: voc4cat:0005017
+    close_mappings:
+    - dcat:DataService
 
 </code></pre>
 
