@@ -24,7 +24,7 @@ PYMODEL = $(SRC)/$(SCHEMA_NAME)/datamodel
 DOCDIR = docs
 DOCTEMPLATES = $(SRC)/docs/templates
 EXAMPLEDIR = examples
-SHEET_MODULE = personinfo_enums
+SHEET_MODULE = $(LINKML_SCHEMA_GOOGLE_SHEET_MODULE)
 SHEET_ID = $(LINKML_SCHEMA_GOOGLE_SHEET_ID)
 SHEET_TABS = $(LINKML_SCHEMA_GOOGLE_SHEET_TABS)
 SHEET_MODULE_PATH = $(SOURCE_SCHEMA_DIR)/$(SHEET_MODULE).yaml
@@ -92,15 +92,13 @@ install:
 # ---
 #
 # check we are up to date
-check: cruft-check
-cruft-check:
-	cruft check
-cruft-diff:
-	cruft diff
+check: copier-check
+copier-check:
+	copier update --trust --skip-answered --skip-tasks --pretend
 
 update: update-template update-linkml
 update-template:
-	cruft update
+	copier update --trust --skip-answered --skip-tasks
 
 # todo: consider pinning to template
 update-linkml:
@@ -174,7 +172,7 @@ examples/%.ttl: src/data/examples/%.yaml
 
 test-examples: examples/output
 
-examples/output: src/pid4cat_model/schema/pid4cat_model.yaml
+examples/output: src/$(SCHEMA_NAME)/schema/$(SCHEMA_NAME).yaml
 	mkdir -p $@
 	$(RUN) linkml-run-examples \
 		--output-formats json \
@@ -208,22 +206,16 @@ mkd-%:
 git-init-add: git-init git-add git-commit git-status
 git-init:
 	git init
-git-add: .cruft.json
 	git add .
 git-commit:
 	git commit -m 'chore: make setup was run' -a
 git-status:
 	git status
 
-# only necessary if setting up via cookiecutter
-.cruft.json:
-	echo "creating a stub for .cruft.json. IMPORTANT: setup via cruft not cookiecutter recommended!" ; \
-	touch $@
-
 clean:
 	rm -rf $(DEST)
 	rm -rf tmp
-	rm -fr $(docdir)/*
+	rm -fr $(DOCDIR)/*
 	rm -fr $(PYMODEL)/*
 
 include project.Makefile

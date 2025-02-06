@@ -12,6 +12,8 @@ theme:
 
 plugins:
   - search
+  - mknotebooks:
+      execute: false
   - mermaid2:
       version: 11.4.1
       # if you want/have to use a local copy of the mermaid.js library, uncomment the next line

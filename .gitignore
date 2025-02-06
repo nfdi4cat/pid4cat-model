@@ -133,5 +133,7 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-# Local editor config
+# pycharm
+.idea/
+# Local vscode editor config
 .vscode/
