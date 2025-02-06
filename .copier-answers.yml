@@ -1,0 +1,16 @@
+# Changes here will be overwritten by Copier
+_commit: v0.1.2
+_src_path: gh:dalito/linkml-project-copier
+copyright_year: '2023'
+create_python_classes: 'Yes'
+email: david.linke@catalysis.de
+full_name: David Linke
+github_org: nfdi4cat
+license: MIT
+main_schema_class: PID4CatRecord
+project_description: LinkML model for handle-based PIDs for resources in catalysis
+    (pid4cat)
+project_name: pid4cat-model
+project_slug: pid4cat_model
+use_schemasheets: 'No'
+
