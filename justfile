@@ -176,13 +176,29 @@ _git-commit:
 _git-status:
     git status
 
+_clean_project:
+    #!{{shebang}}
+    import shutil, pathlib
+    # remove the generated project files
+    for d in pathlib.Path("{{dest}}").iterdir():
+        if d.is_dir():
+            print(f'removing "{d}"')
+            shutil.rmtree(d, ignore_errors=True)
+    # remove the generated python data model
+    for d in pathlib.Path("{{pymodel}}").iterdir():
+        if str(d) == "__init__.py":
+            continue
+        print(f'removing "{d}"')
+        if d.is_dir():
+            shutil.rmtree(d, ignore_errors=True)
+        else:
+            d.unlink()
+
 # Clean all generated files
 [group('project management')]
-clean:
-    rm -rf {{dest}}
+clean: _clean_project
     rm -rf tmp
     rm -rf {{docdir}}/*
-    rm -rf {{pymodel}}
 
 # Private recipes
 _ensure_pymodel_dir:
