@@ -1,7 +1,7 @@
 # Built from:
 # https://docs.github.com/en/actions/guides/building-and-testing-python
 ---
-name: Build & test pid4cat_model
+name: Build and test
 
 on: [pull_request]
 
