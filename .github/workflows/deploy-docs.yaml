@@ -13,7 +13,7 @@ jobs:
 
     # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
     permissions:
-      contents: write  # to let mkdocs write the new docs
+      contents: read   # to let mkdocs write the new docs
       pages: write     # to deploy to Pages
       id-token: write  # to verify the deployment originates from an appropriate source
 
@@ -24,7 +24,7 @@ jobs:
           fetch-depth: 0  # otherwise, you will failed to push refs to dest repo
           persist-credentials: false
 
-      - name: Configure Git Credentials
+      - name: Configure Git
         run: |
           git config user.name github-actions[bot]
           git config user.email github-actions[bot]@users.noreply.github.com
