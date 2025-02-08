@@ -38,7 +38,7 @@ jobs:
           pipx inject poetry poetry-dynamic-versioning
 
       - name: Install dependencies
-        run: poetry install docs
+        run: poetry install
 
       - name: Build documentation
         run: |
