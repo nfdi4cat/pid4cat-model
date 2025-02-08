@@ -1,5 +1,5 @@
 ---
-name: Auto-deployment of pid4cat-model documentation
+name: Deploy docs
 on:
   push:
     branches: [main]
