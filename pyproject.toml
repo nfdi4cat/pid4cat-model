@@ -29,10 +29,6 @@ dependencies = [
 requires-poetry = ">=2.0"
 version = "0.0.0"
 
-[tool.poetry.dependencies]
-python = "^3.11"  # see above for why we can't be 3.9 compatible
-linkml-runtime = "^1.1.24"
-
 [tool.poetry.requires-plugins]
 poetry-dynamic-versioning = ">=1.7.0"
 
