@@ -1,4 +1,4 @@
-# On Windows the bash shell that comes with Git for Windows should be used.
+# On Windows the "sh" shell that comes with Git for Windows should be used.
 # If it is not on path, give the path to the executable in the following line.
 #set windows-shell := ["C:/Program Files/Git/usr/bin/sh", "-cu"]
 
@@ -170,7 +170,7 @@ _git-add:
 
 # Commit files to git
 _git-commit:
-    git commit -m 'chore: make setup was run' -a
+    git commit -m 'chore: just setup was run' -a
 
 # Show git status
 _git-status:
@@ -186,7 +186,7 @@ _clean_project:
             shutil.rmtree(d, ignore_errors=True)
     # remove the generated python data model
     for d in pathlib.Path("{{pymodel}}").iterdir():
-        if str(d) == "__init__.py":
+        if d.name == "__init__.py":
             continue
         print(f'removing "{d}"')
         if d.is_dir():
@@ -210,4 +210,5 @@ _ensure_docdir:
 _ensure_examples_output:
     -mkdir -p examples/output
 
+# Include project-specific recipes
 import "project.justfile"

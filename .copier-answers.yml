@@ -1,5 +1,5 @@
 # Changes here will be overwritten by Copier
-_commit: v0.1.5
+_commit: v0.1.6
 _src_path: gh:dalito/linkml-project-copier
 copyright_year: '2023'
 create_python_classes: 'Yes'
