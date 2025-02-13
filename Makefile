@@ -118,7 +118,7 @@ compile-sheets:
 
 # In future this will be done by conversion
 gen-examples:
-	cp src/data/examples/* $(EXAMPLEDIR)
+	cp -r src/data/examples/* $(EXAMPLEDIR)
 
 # generates all project files
 
