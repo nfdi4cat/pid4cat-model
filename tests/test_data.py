@@ -8,7 +8,7 @@ from linkml_runtime.loaders import yaml_loader, json_loader
 from pid4cat_model.datamodel.pid4cat_model import HandleRecordContainer
 
 ROOT = os.path.join(os.path.dirname(__file__), "..")
-DATA_DIR = os.path.join(ROOT, "src", "data", "examples")
+DATA_DIR = os.path.join(ROOT, "src", "data", "examples", "valid")
 
 EXAMPLE_FILES_YAML = glob.glob(os.path.join(DATA_DIR, "*.yaml"))
 EXAMPLE_FILES_JSON = glob.glob(os.path.join(DATA_DIR, "*.json"))
