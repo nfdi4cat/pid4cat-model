@@ -4,7 +4,7 @@ build-backend = "poetry_dynamic_versioning.backend"
 
 [project]
 name = "pid4cat_model"
-description = "LinkML model for handle-based PIDs for resources in catalysis (PID4Cat)"
+description = "LinkML model for handle-based PIDs for resources in catalysis (pid4cat)"
 authors = [
   # Authors sorted by number of commits
   {name = "David Linke", email = "david.linke@catalysis.de"},
