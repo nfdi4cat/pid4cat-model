@@ -19,7 +19,7 @@
           "type": "STATUS",
           "data": {
             "format": "string",
-            "value": "PermissibleValue({\n  'text': 'REGISTERED',\n  'description': 'The PID4CatRecord links to a concrete resource.'\n})"
+            "value": "PermissibleValue({\n  'text': 'REGISTERED',\n  'description': 'The pid4cat record links to a concrete resource.'\n})"
           },
           "ttl": 86400,
           "timestamp": "2024-05-15T15:51:15+00:00"

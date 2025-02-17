@@ -3,7 +3,7 @@ id: https://w3id.org/nfdi4cat/pid4cat-model
 name: pid4cat-model
 title: pid4cat-model
 description: >-
-  A LinkML model for PIDs for resources in catalysis (PID4Cat). PID4Cat is a
+  A LinkML model for PIDs for resources in catalysis (pid4cat). pid4cat is a
   handle system based persistent identifier (PID) for digital or physical
   resources used in the catalysis research process. The handle record is used
   to store additional metadata about the PID besides the obligatory landing page URL.
@@ -11,7 +11,7 @@ description: >-
   The model describes metadata for the PID itself and how to access the
   identified resource. It does not describe the resource itself with the
   exception of the resource category, which is a high-level description of
-  what is identified by the PID4Cat handle, e.g. a sample or a device.
+  what is identified by the pid4cat handle, e.g. a sample or a device.
 
 todos:
   - Refine slots in slot_usage of class instead of globally in slot definitions
@@ -46,7 +46,8 @@ classes:
 
   HandleAPIRecord:
     description: >-
-      A handle record for a PID4CatRecord.
+      A class representing a handle record query response of the REST (json)
+      API of a handle server.
     slots:
       - response_code
       - handle
@@ -57,7 +58,8 @@ classes:
 
   HandleRecord:
     description: >-
-      A handle record for a PID4CatRecord.
+      A class representing a handle record in the same way as in the REST
+      (json) API of a handle server.
     slots:
       - index
       - type
@@ -67,7 +69,7 @@ classes:
 
   HandleData:
     description: >-
-      The data element in the handle API.
+      A data element in the handle API.
     slots:
       - format
       - value
@@ -84,10 +86,10 @@ classes:
         description: >-
           The HandleRecords contained in the container.
 
-  PID4CatRelation:
+  Pid4CatRelation:
     description: >-
-      A relation between PID4CatRecords or between a PID4CatRecord and other
-      resources with a PID.
+      A relation between pid4cat handles or between a pid4cat handle and
+      other resources identified by a PID.
     slots:
       - relation_type
       - related_identifier
@@ -104,7 +106,8 @@ classes:
 
   LogRecord:
     description: >-
-      A log record for changes made on a PID4CatRecord starting from registration.
+      A log record for changes made in a pid4cat handle record starting from
+      registration.
     slots:
       - datetime_log
       - has_agent
@@ -142,11 +145,11 @@ slots:
     description: The response code of the handle API.
   handle:
     range: string
-    description: The handle of the PID4CatRecord.
+    description: The handle of the pid4cat record.
   values:
     range: HandleRecord
     multivalued: true
-    description: The values of the PID4CatRecord.
+    description: The values of the pid4cat record.
 
   # Slots for HandleRecord
   index:
@@ -157,7 +160,7 @@ slots:
     description: The type of the handle record.
   data:
     range: HandleData
-    description: The meta data stored in PID4CatRecord.
+    description: The meta data stored in pid4cat record.
   ttl:
     range: integer
     description: |
@@ -174,51 +177,50 @@ slots:
   value:
     description: The value of the handle data.
     exactly_one_of:
-      - range: PID4CatStatus
+      - range: Pid4CatStatus
       - range: string  # pid_schema_version, license, curation_contact_email
-      - range: PID4CatRelation
       - range: ResourceInfo
-      - range: PID4CatRelation
+      - range: Pid4CatRelation
       - range: LogRecord
 
-  # Slots for PID4CatRecord
-  id:
-    identifier: true
-    slot_uri: schema:identifier
-    range: uriorcurie
-    description: A unique identifier for a thing.
-  landing_page_url:
-    rank: 10
-    slot_uri: schema:url
-    range: uri
-    description: The URL of the landing page for the resource.
+  # Slots for pid4cat record -- TODO: Remove obsolete slots
+  # id:
+  #   identifier: true
+  #   slot_uri: schema:identifier
+  #   range: uriorcurie
+  #   description: A unique identifier for a thing.
+  # landing_page_url:
+  #   rank: 10
+  #   slot_uri: schema:url
+  #   range: uri
+  #   description: The URL of the landing page for the resource.
   status:
-    range: PID4CatStatus
+    range: Pid4CatStatus
     description: >-
-      The status of the PID4CatRecord.
+      The status of the pid4cat record.
   pid_schema_version:
     range: string
-    description: The version of the PID4Cat schema used for the PID4CatRecord.
+    description: The version of the pid4cat schema used for the pid4cat record.
   resource_info:
     range: ResourceInfo
     description: Information about the resource.
   related_identifiers:
-    range: PID4CatRelation
+    range: Pid4CatRelation
     multivalued: true
     description: Relations of the resource to other identifiers.
   license:
     range: string
-    description: The license for the metadata contained in the PID4Cat record.
+    description: The license for the metadata contained in the pid4cat record.
   curation_contact_email:
     range: string
     description: >-
       The email address of a person or institution currently responsible for the
-      curation of the PID record.
+      curation of the pid4cat record.
   change_log:
     range: LogRecord
     required: true
     multivalued: true
-    description: Change log of PID4Cat record.
+    description: Change log of pid4cat record.
 
   # Slots for PID4CatRelation
   relation_type:
@@ -254,7 +256,7 @@ slots:
   has_agent:
     range: Agent
     description: The person who registered or modified the PID record.
-    # datetime_log is already defined in PID4CatRelation
+    # datetime_log is already defined in Pid4CatRelation
 
   # Slots for Agent
   name:
@@ -270,18 +272,20 @@ slots:
     range: uri
     description: The ROR of the agent's affiliation.
   role:
-    range: PID4CatAgentRole
+    range: Pid4CatAgentRole
     description: The role of the agent relative to the resource
 
   # Slots for RepresentationVariants
   media_type:
     range: MEDIA_Types
     description: >-
-      The media type of the representation as defined by [IANA](https://www.iana.org/assignments/media-types/media-types.xhtml)
+      The media type of the representation as defined by
+      [IANA](https://www.iana.org/assignments/media-types/media-types.xhtml)
   encoding_format:
     range: string
     description: >-
-      The encoding of the representation. https://encoding.spec.whatwg.org/#names-and-labels
+      The encoding of the representation.
+      https://encoding.spec.whatwg.org/#names-and-labels
   size:
     range: integer
     minimum_value: 0
@@ -459,26 +463,32 @@ enums:
         description: The resource obsoletes another resource.
         meaning: voc4cat:0005050
 
-  PID4CatStatus:
+  Pid4CatStatus:
     description: >-
-      The usage status of the PID4CatRecord.
+      The usage status of the pid4cat record.
     # could reference to parent concept to voc4cat:0005051
     # but unclear how/if it is possible in current LinkML version (1.8.5).
     permissible_values:
       SUBMITTED:
-        description: The PID4CatRecord is reserved but the resource is not yet linked.
+        description: >-
+          The pid4cat handle is reserved but the resource is not yet linked.
         meaning: voc4cat:0005052
       REGISTERED:
-        description: The PID4CatRecord is linked to a concrete resource.
+        description: >-
+          The pid4cat handle is linked to a concrete resource.
         meaning: voc4cat:0005053
       OBSOLETED:
-        description: The PID4CatRecord is obsolete, e.g. because the resource is referenced by another PID4Cat.
+        description: >-
+          The pid4cat handle is obsolete, e.g. because the resource is
+          referenced by another pid4cat.
         meaning: voc4cat:0005054
       DEPRECATED:
-        description: The PID4CatRecord is deprecated, e.g. because the resource can no longer be found.
+        description: >-
+          The pid4cat record is deprecated, e.g. because the resource can no
+          longer be found.
         meaning: voc4cat:0005055
 
-  PID4CatAgentRole:
+  Pid4CatAgentRole:
     description: >-
       The role of an agent relative to the resource.
     permissible_values:
@@ -489,20 +499,22 @@ enums:
 
   ChangeLogField:
     description: >-
-      The field of the PID4Catrecord that was changed.
+      The field of the pid4cat record that was changed.
     permissible_values:
       STATUS:
-        description: The status of the PID4CatRecord was changed.
+        description: The status of the pid4cat record was changed.
       LANDING_PAGE:
-        description: The URL of the landing page in the PID4CatRecord was changed.
+        description: >-
+          The URL of the landing page in the pid4cat record was changed.
       RESOURCE_INFO:
-        description: The resource info of the PID4CatRecord was changed.
+        description: The resource info of the pid4cat record was changed.
       RELATED_IDS:
-        description: The related identifiers of the PID4CatRecord were changed.
+        description: >-
+          The related identifiers of the pid4cat record were changed.
       CONTACT:
-        description: The contact information of the PID4CatRecord was changed.
+        description: The contact information of the pid4cat record was changed.
       LICENSE:
-        description: The license of the PID4CatRecord was changed.
+        description: The license of the pid4cat record was changed.
 
   HandleDataType:
     description: >-

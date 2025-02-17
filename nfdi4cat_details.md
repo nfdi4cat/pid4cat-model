@@ -17,7 +17,7 @@ the data sets published in Repo4Cat should get a DOIs from DataCite as PID.
 
 However, DOIs are not a good fit for earlier stages of research due to the metadata requirements and associated costs.
 Nevertheless researchers want to share research artifacts already in the early stage with collaborators and having PIDs already at this stage would be very useful. 
-Therefore, NFDI4Cat will in addition to DOIs use a handle-based solution **PID4Cat** (see below) 
+Therefore, NFDI4Cat will in addition to DOIs use a handle-based solution **pid4cat** (see below) 
 to address the need for PIDs in the early phase when data are shared in private with collaborators. Repo4Cat seeks to support this private sharing between collaborators.
 
 NFDI4cat has selected Dataverse as software for Repo4Cat, the global data portal.
@@ -26,7 +26,7 @@ It is however not possible to use handles and DOIs at the same time in a single 
 
 To address this limitations, two possible solutions are discussed:
 
-- [preferred] Use one Dataverse instance and PID4Cat-handles as primary PID. For data sets being published DOIs will be minted (and linked to the handle).
+- [preferred] Use one Dataverse instance and pid4cat-handles as primary PID. For data sets being published DOIs will be minted (and linked to the handle).
 - Use two Dataverse instances, one for published data that is configured to use DOIs and another one for early-stage data that is configured to use PID4-Cat-handles.
 
 For the handle-PIDs in Dataverse, it is suggested
@@ -37,7 +37,7 @@ For the handle-PIDs in Dataverse, it is suggested
   - [:DataFilePIDFormat](https://guides.dataverse.org/en/latest/installation/config.html#datafilepidformat) = independent
 
 - To generate the ID-part via a procedure stored in the DB.
-  What scheme is used does not matter much, but clashes with PID4Cat-handles or other Dataverse (BasCat) must be avoided.
+  What scheme is used does not matter much, but clashes with pid4cat-handles or other Dataverse (BasCat) must be avoided.
   Via a stored procedure UUID4 (or UUID7) identifiers could be created.
   An alternative is to add a prefix to the numeric ID used by default.
   The numeric ID may be base32 encoded to shorten the ID length.
@@ -63,7 +63,7 @@ Related Dataverse documentation:
 - [Dataverse handle configuration](https://guides.dataverse.org/en/latest/installation/config.html#configuring-your-dataverse-installation-for-handles)
 
 
-## PIDs for Catalysis Research Resources (PID4Cat)
+## PIDs for Catalysis Research Resources (pid4cat)
 
 PIDs like the well known DOIs require a certain set of metadata (see DataCite Schema).
 DOIs are based on handles, which in principle allow to store additional data in the record.
@@ -72,18 +72,18 @@ which is a different service than the handle-system used for resolving a DOI.
 The reason for DataCite`s approach is performance(?).
 
 For NFDI4Cat a simpler system that reduces complexity is more attractive.
-Therefore, PID4Cat handles are similar to [ePIC](http://www.pidconsortium.net/)-handles in that they use the handle record itself to store metadata.
+Therefore, pid4cathandles are similar to [ePIC](http://www.pidconsortium.net/)-handles in that they use the handle record itself to store metadata.
 This has the advantage that these metadata are available directly from the resolver.
 
-PID4Cat comes with a well-defined schema for how and which metadata to store in the handle record. 
+pid4cat comes with a well-defined schema for how and which metadata to store in the handle record. 
 The schema is defined in [LinkML](https://linkml.io/linkml/) and developed in this repo ([NFDI4Cat/PID4Cat](https://github.com/nfdi4cat/pid4cat-model/)).
-The schema does only require a minimum of information; it does not disclose anything about the resource except its type. Moreover, it is not required to specify an owner/creator but only a curator. Therefore, PID4Cat-handles do not mandate to put resources into context if this is undesired for whatever reasons.
+The schema does only require a minimum of information; it does not disclose anything about the resource except its type. Moreover, it is not required to specify an owner/creator but only a curator. Therefore, pid4cat-handles do not mandate to put resources into context if this is undesired for whatever reasons.
 
-### Mapping of PID4Cat schema to handle record
+### Mapping of pid4cat schema to handle record
 
-The PID4Cat schema is mapped to the handle record as follows:
+The pid4cat schema is mapped to the handle record as follows:
 
-**Table** Example record for a PID4Cat handle with the suffix "lik-dfi345", URL: https://hdl.handle.net/20.1000/lik-dfi345 <BR> The *PID4CatRecord* column contains the slot name of the LinkML model that is written to the respective line of the handle record; this column is not part of the handle record.
+**Table** Example record for a pid4cat handle with the suffix "lik-dfi345", URL: https://hdl.handle.net/20.1000/lik-dfi345 <BR> The *PID4CatRecord* column contains the slot name of the LinkML model that is written to the respective line of the handle record; this column is not part of the handle record.
 
 | Index | Type | Timestamp | Data | *PID4CatRecord* |
 |-------|------|-----------|------|-----------|
@@ -102,7 +102,7 @@ Such DTRs are still under development and not yet widely used.
 The LICENSE specifies the licence for the metadata in the PID-record.
 It will be fixed to CC0-1.0 in the NFDICat service to facilitate reuse.
 
-Since PID4Cat is a linkML-model we have all tools at hand to create records or an API.
+Since pid4cat is a linkML-model we have all tools at hand to create records or an API.
 
 The folder `examples` has a full example of creating a model instance from Python and
 how the relsulting `json` looks like; the example uses all key elements of the model (all classes and slots).
@@ -168,7 +168,7 @@ Two handle-suffix schemes are supported:
   - The `local_ID` can be freely chosen by the namespace owner but is limited to ASCII letters [a-zA-Z], numbers [0-9] and symbols `.-`. *OK or too restrictive?*
   - The request for becoming the owner of a new namespace should be made by email.
 
-Examples for PID4Cat handles (non-resolvable):
+Examples for pid4cat handles (non-resolvable):
 
 - **UUID4 pid4cat**: `https://hdl.handle.net/21.T11978/pid4cat/7e82d892-6acf-41a8-9c91-df826f67a806`
 - **name-spaced pid4cat** in the example-namespace &quot;`k3a`&quot;:
@@ -185,9 +185,9 @@ Examples for PID4Cat handles (non-resolvable):
 
 > This section is work in progress! It does not yet reflect the final implementation.
 
-The role of the handle-server-gateway (HSG) is to restrict and manage write access to the handle-server and to add PID4Cat-specific validation for the handles.
+The role of the handle-server-gateway (HSG) is to restrict and manage write access to the handle-server and to add pid4cat-specific validation for the handles.
 The HSG provides an API only.
-Create and updating PID4Cat-handles will exclusively managed via the HSG. 
+Create and updating pid4cat-handles will exclusively managed via the HSG. 
 Suggested URLs for the HSG are https://pid4cat.nfdi4cat.org or https://pid.nfdi4cat.org
 
 > Note: Dataverse will not use the HSG but interface the handle-server directly.
@@ -195,7 +195,7 @@ Suggested URLs for the HSG are https://pid4cat.nfdi4cat.org or https://pid.nfdi4
 The HSG controls which users are allowed to create and update handle records.
 Except for sysadmins, HSG users will only be allowed to create and update handles for named-spaced PIDs.
 All PID name-spaces will have at least one name-space admin user.
-Institutions that like to manage a PID4Cat-PID-namespace need to register a PID-namespace admin with NFDI4Cat.
+Institutions that like to manage a pid4cat-PID-namespace need to register a PID-namespace admin with NFDI4Cat.
 
 Suggested minimal API of the HSG:
 
@@ -225,12 +225,12 @@ Anonymous users have no access.
 where `<name-space>/<local-ID-of-pid>` form the suffix of the handle to get or update. For the examples above it is `k3a/123-456` and `7e82d892-6acf-41a8-9c91-df826f67a806`, respectively.
 
 - Special notes on updates [PUT]:
-  - The data are supplied as PID4Cat-schema-conform json object in the body of the request.
+  - The data are supplied as pid4cat-schema-conform json object in the body of the request.
   - each handle record update needs an update of the changelog (append)
   - HSG should set/increment "record_version" automatically on updates
   - *...and some more validation & consistency checks*
 
-We could allow [DELETE] but we should not perform any true delete of a handle. Instead the record should be modified to state "OBSOLETE" (see PID4CatStatus enum in schema).
+We could allow [DELETE] but we should not perform any true delete of a handle. Instead the record should be modified to state "OBSOLETE" (see pid4catStatus enum in schema).
 
 #### Possible API Extensions
 
