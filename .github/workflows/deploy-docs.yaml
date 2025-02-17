@@ -35,7 +35,7 @@ jobs:
         with:
           python-version: 3.12
 
-      - name: Install poetry incl. plugins
+      - name: Install poetry incl. plugins and just
         # We install poetry-dynamic-versioning into pipx because the automatic
         # install by poetry 2.x triggers a Windows issue
         # https://github.com/pypa/installer/issues/260
@@ -43,10 +43,12 @@ jobs:
         run: |
           pipx install poetry
           pipx inject poetry poetry-dynamic-versioning
+          pipx install rust-just
 
       - name: Install dependencies
         run: poetry install
 
       - name: Build and deploy documentation
         run: |
+          just gen-doc
           poetry run mkdocs gh-deploy
