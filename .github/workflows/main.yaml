@@ -16,7 +16,9 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        # python-version: ["3.9", "3.10", "3.11", "3.12"]  # re-enable when linkml-runtime has https://github.com/linkml/linkml-runtime/pull/357
+        # re-enable when linkml-runtime is realesed with
+        #   https://github.com/linkml/linkml-runtime/pull/357
+        # python-version: ["3.9", "3.10", "3.11", "3.12"]
         python-version: ["3.11", "3.12"]
       fail-fast: false
 
