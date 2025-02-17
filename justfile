@@ -49,7 +49,7 @@ _default: _status
 setup: _check-config _git-init install _git-add && _setup_part2
   git commit -m "Initialise git with minimal project" -a
 
-_setup_part2: gen-project _gendoc
+_setup_part2: gen-project gen-doc
   git add .
   git commit -m "Add generated docs and project artefacts" -a
 
@@ -70,7 +70,7 @@ clean: _clean_project
 
 # (Re-)Generate project and documentation locally
 [group('model development')]
-site: gen-project _gendoc
+site: gen-project gen-doc
 
 # Deploy documentation site to Github Pages
 [group('deployment')]
@@ -86,9 +86,14 @@ test: _test-schema _test-python _test-examples
 lint:
     poetry run linkml-lint {{source_schema_path}}
 
+# Generate md documentation for the schema
+[group('model development')]
+gen-doc:
+    poetry run gen-doc {{gen_doc_args}} -d {{docdir}} {{source_schema_path}}
+
 # Build docs and run test server
 [group('model development')]
-testdoc: _gendoc _serve
+testdoc: gen-doc _serve
 
 # Generate project files including Python data model
 [group('model development')]
@@ -180,10 +185,6 @@ _test-examples: _ensure_examples_output
         --input-directory tests/data/valid \
         --output-directory examples/output \
         --schema {{source_schema_path}} > examples/output/README.md
-
-# Generate documentation for the schema
-_gendoc:
-    poetry run gen-doc {{gen_doc_args}} -d {{docdir}} {{source_schema_path}}
 
 # Run documentation server
 _serve:
