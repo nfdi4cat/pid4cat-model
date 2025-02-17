@@ -8,5 +8,5 @@ The versioning of the PID4Cat-model is following the **SchemaVer** scheme propos
 - REVISION when you make a schema change which may prevent interaction with some historical data
 - ADDITION when you make a schema change that is compatible with all historical data
 
-The versions are tagged in git (for example "v1.2.3"). 
+The versions are tagged in git (for example "v1.2.3").
 Based on the tags we also create GitHub releases to provide easy access to all versions and to document the changes between versions.

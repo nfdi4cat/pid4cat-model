@@ -10,6 +10,8 @@ theme:
   favicon: images/favicon.svg
   logo: images/logo-icon.svg
 
+# for adding extra css/js see https://www.mkdocs.org/user-guide/customizing-your-theme/
+
 plugins:
   - search
   - mknotebooks:
@@ -17,12 +19,25 @@ plugins:
   - mermaid2:
       version: 11.4.1
       # if you want/have to use a local copy of the mermaid.js library, uncomment the next line
-      #javascript: local-js-pkgs/mermaid.min.js
+      #javascript: docs/local-js-pkgs/mermaid.min.js
+
+  # TODO rebuild docs on schema change (https://github.com/dalito/linkml-project-copier/issues/39)
+  # - gen-files:
+  #     scripts:
+  #       - gen_pages.py  # or any other name or path
+
+watch:
+  - src/pid4cat_model/schema
+
 nav:
-  # - Home: home.md
-  - Index: index.md
+  - Home: index.md
+  - Schema: elements/index.md
   - Principles: principles.md
   - About: about.md
+
+exclude_docs: |
+  /templates-linkml/
+
 site_url: https://nfdi4cat.github.io/pid4cat-model
 repo_url: https://github.com/nfdi4cat/pid4cat-model
 

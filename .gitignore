@@ -1,7 +1,11 @@
-/docs/
-/project/docs/
+/docs/local-js-pkgs
+
+# generated part of documentation
+/docs/elements/*.md
+# linkml-run-examples output (not useful to have in git in its current form)
+/examples/output/
+
 /tmp/
-/local-js-pkgs
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
