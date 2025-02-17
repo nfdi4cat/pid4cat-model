@@ -49,8 +49,8 @@ linkml:Sparqlpath xsd:string
           <email> @linkml:String ? ;
           <orcid> @linkml:String ? ;
           <affiliation_ror> @linkml:Uri ? ;
-          <role> [ <https://w3id.org/nfdi4cat/pid4cat-model/PID4CatAgentRole#TRUSTEE>
-             <https://w3id.org/nfdi4cat/pid4cat-model/PID4CatAgentRole#OWNER> ] ?
+          <role> [ <https://w3id.org/nfdi4cat/pid4cat-model/Pid4CatAgentRole#TRUSTEE>
+             <https://w3id.org/nfdi4cat/pid4cat-model/Pid4CatAgentRole#OWNER> ] ?
        ) ;
        rdf:type [ prov1:Agent ] ?
     )
@@ -112,8 +112,8 @@ linkml:Sparqlpath xsd:string
     )
 }
 
-<PID4CatRelation> CLOSED {
-    (  $<PID4CatRelation_tes> (  <relation_type> [ <https://w3id.org/nfdi4cat/voc4cat_0005019>
+<Pid4CatRelation> CLOSED {
+    (  $<Pid4CatRelation_tes> (  <relation_type> [ <https://w3id.org/nfdi4cat/voc4cat_0005019>
              <https://w3id.org/nfdi4cat/voc4cat_0005020> <https://w3id.org/nfdi4cat/voc4cat_0005021>
              <https://w3id.org/nfdi4cat/voc4cat_0005022> <https://w3id.org/nfdi4cat/voc4cat_0005023>
              <https://w3id.org/nfdi4cat/voc4cat_0005024> <https://w3id.org/nfdi4cat/voc4cat_0005025>
@@ -133,7 +133,7 @@ linkml:Sparqlpath xsd:string
           <related_identifier> @linkml:Uri ? ;
           <datetime_log> @linkml:Datetime ?
        ) ;
-       rdf:type [ <PID4CatRelation> ] ?
+       rdf:type [ <Pid4CatRelation> ] ?
     )
 }
 

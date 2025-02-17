@@ -5,7 +5,6 @@
    "linkml": "https://w3id.org/linkml/",
    "pid4cat_model": "https://w3id.org/nfdi4cat/pid4cat-model/",
    "prov": "https://www.w3.org/ns/prov#",
-   "schema": "http://schema.org/",
    "voc4cat": "https://w3id.org/nfdi4cat/voc4cat_",
    "Agent": {
       "@id": "prov:Agent"

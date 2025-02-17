@@ -9,7 +9,7 @@ import lombok.*;
 
 
 /**
-  A container for all PID4Cat instances.
+  A container for all pid4cat instances.
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)

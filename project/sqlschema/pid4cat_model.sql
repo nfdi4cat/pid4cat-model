@@ -1,22 +1,22 @@
--- # Class: "HandleAPIRecord" Description: "A handle record for a PID4CatRecord."
+-- # Class: "HandleAPIRecord" Description: "A class representing a handle record query response of the REST (json) API of a handle server."
 --     * Slot: id Description: 
 --     * Slot: responseCode Description: The response code of the handle API.
---     * Slot: handle Description: The handle of the PID4CatRecord.
+--     * Slot: handle Description: The handle of the pid4cat record.
 --     * Slot: HandleRecordContainer_id Description: Autocreated FK slot
--- # Class: "HandleRecord" Description: "A handle record for a PID4CatRecord."
+-- # Class: "HandleRecord" Description: "A class representing a handle record in the same way as in the REST (json) API of a handle server."
 --     * Slot: id Description: 
 --     * Slot: index Description: The index of the handle record.
 --     * Slot: type Description: The type of the handle record.
 --     * Slot: ttl Description: A time to live in seconds for the handle record. Typically: 86400 => 1 dayTODO: Research details of ttl meaning for handle API.
 --     * Slot: timestamp Description: The iso datetime for the last update of the handle data.
---     * Slot: data_id Description: The meta data stored in PID4CatRecord.
--- # Class: "HandleData" Description: "The data element in the handle API."
+--     * Slot: data_id Description: The meta data stored in pid4cat record.
+-- # Class: "HandleData" Description: "A data element in the handle API."
 --     * Slot: id Description: 
 --     * Slot: format Description: The format of the handle data.
 --     * Slot: value Description: The value of the handle data.
 -- # Class: "HandleRecordContainer" Description: "A container for all HandleRecords."
 --     * Slot: id Description: 
--- # Class: "PID4CatRelation" Description: "A relation between PID4CatRecords or between a PID4CatRecord and other resources with a PID."
+-- # Class: "Pid4CatRelation" Description: "A relation between pid4cat handles or between a pid4cat handle and other resources identified by a PID."
 --     * Slot: id Description: 
 --     * Slot: relation_type Description: Relation type between the resources.
 --     * Slot: related_identifier Description: Related identifiers for the resource.
@@ -26,7 +26,7 @@
 --     * Slot: label Description: A human-readable name for a resource.
 --     * Slot: description Description: A human-readable description for a resource.
 --     * Slot: resource_category Description: The category of the resource.
--- # Class: "LogRecord" Description: "A log record for changes made on a PID4CatRecord starting from registration."
+-- # Class: "LogRecord" Description: "A log record for changes made in a pid4cat handle record starting from registration."
 --     * Slot: id Description: 
 --     * Slot: datetime_log Description: The date and time of a log record.
 --     * Slot: changed_field Description: The field that was changed
@@ -47,7 +47,7 @@
 --     * Slot: size Description: The size of the representation in bytes.
 -- # Class: "HandleAPIRecord_values" Description: ""
 --     * Slot: HandleAPIRecord_id Description: Autocreated FK slot
---     * Slot: values_id Description: The values of the PID4CatRecord.
+--     * Slot: values_id Description: The values of the pid4cat record.
 -- # Class: "ResourceInfo_representation_variants" Description: ""
 --     * Slot: ResourceInfo_id Description: Autocreated FK slot
 --     * Slot: representation_variants_id Description: The representations of the resource in other media types than text/html.
@@ -62,7 +62,7 @@ CREATE TABLE "HandleRecordContainer" (
 	id INTEGER NOT NULL, 
 	PRIMARY KEY (id)
 );
-CREATE TABLE "PID4CatRelation" (
+CREATE TABLE "Pid4CatRelation" (
 	id INTEGER NOT NULL, 
 	relation_type VARCHAR(22), 
 	related_identifier TEXT, 
