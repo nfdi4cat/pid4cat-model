@@ -34,7 +34,7 @@ watch:
 nav:
   - Home: index.md
   - Schema: elements/index.md
-  - Principles: principles.md
+  - Versioning: versioning.md
   - About: about.md
 
 exclude_docs: |
@@ -43,10 +43,3 @@ exclude_docs: |
 
 site_url: https://nfdi4cat.github.io/pid4cat-model
 repo_url: https://github.com/nfdi4cat/pid4cat-model
-
-# Uncomment this block to enable use of Google Analytics.
-# Replace the property value with your own ID.
-# extra:
-#   analytics:
-#     provider: google
-#     property: G-XXXXXXXXXX

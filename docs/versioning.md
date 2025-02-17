@@ -1,6 +1,6 @@
-# Versioning of PID4Cat-model
+# Versioning of the pid4cat-model
 
-The versioning of the PID4Cat-model is following the **SchemaVer** scheme proposed in a [snowplow blog post](https://snowplow.io/blog/introducing-schemaver-for-semantic-versioning-of-schemas). This also matches with the [HCA schema versioning](https://github.com/HumanCellAtlas/metadata-schema/blob/master/docs/evolution.md#schema-versioning) and is also adapted by [openlinaeage](https://github.com/OpenLineage/OpenLineage/blob/main/spec/Versioning.md).
+The versioning of the pid4cat-model is following the **SchemaVer** scheme proposed in a [snowplow blog post](https://snowplow.io/blog/introducing-schemaver-for-semantic-versioning-of-schemas). The same principles are applied for the [HCA schema versioning](https://github.com/HumanCellAtlas/metadata-schema/blob/master/docs/evolution.md#schema-versioning). SchemaVer is also adapted by [openlineage](https://github.com/OpenLineage/OpenLineage/blob/main/spec/Versioning.md).
 
 **SchemaVer**: Given a version number MODEL.REVISION.ADDITION, increment the
 
