@@ -1,6 +1,6 @@
 {
   "name": "pid4cat-model",
-  "description": "A LinkML model for PIDs for resources in catalysis (PID4Cat). PID4Cat is a handle system based persistent identifier (PID) for digital or physical resources used in the catalysis research process. The handle record is used to store additional metadata about the PID besides the obligatory landing page URL.\nThe model describes metadata for the PID itself and how to access the identified resource. It does not describe the resource itself with the exception of the resource category, which is a high-level description of what is identified by the PID4Cat handle, e.g. a sample or a device.",
+  "description": "A LinkML model for PIDs for resources in catalysis (pid4cat). pid4cat is a handle system based persistent identifier (PID) for digital or physical resources used in the catalysis research process. The handle record is used to store additional metadata about the PID besides the obligatory landing page URL.\nThe model describes metadata for the PID itself and how to access the identified resource. It does not describe the resource itself with the exception of the resource category, which is a high-level description of what is identified by the pid4cat handle, e.g. a sample or a device.",
   "title": "pid4cat-model",
   "todos": [
     "Refine slots in slot_usage of class instead of globally in slot definitions"
@@ -600,36 +600,36 @@
       ]
     },
     {
-      "name": "PID4CatStatus",
-      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/PID4CatStatus",
-      "description": "The usage status of the PID4CatRecord.",
+      "name": "Pid4CatStatus",
+      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/Pid4CatStatus",
+      "description": "The usage status of the pid4cat record.",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "permissible_values": [
         {
           "text": "SUBMITTED",
-          "description": "The PID4CatRecord is reserved but the resource is not yet linked.",
+          "description": "The pid4cat handle is reserved but the resource is not yet linked.",
           "meaning": "voc4cat:0005052"
         },
         {
           "text": "REGISTERED",
-          "description": "The PID4CatRecord is linked to a concrete resource.",
+          "description": "The pid4cat handle is linked to a concrete resource.",
           "meaning": "voc4cat:0005053"
         },
         {
           "text": "OBSOLETED",
-          "description": "The PID4CatRecord is obsolete, e.g. because the resource is referenced by another PID4Cat.",
+          "description": "The pid4cat handle is obsolete, e.g. because the resource is referenced by another pid4cat.",
           "meaning": "voc4cat:0005054"
         },
         {
           "text": "DEPRECATED",
-          "description": "The PID4CatRecord is deprecated, e.g. because the resource can no longer be found.",
+          "description": "The pid4cat record is deprecated, e.g. because the resource can no longer be found.",
           "meaning": "voc4cat:0005055"
         }
       ]
     },
     {
-      "name": "PID4CatAgentRole",
-      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/PID4CatAgentRole",
+      "name": "Pid4CatAgentRole",
+      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/Pid4CatAgentRole",
       "description": "The role of an agent relative to the resource.",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "permissible_values": [
@@ -646,32 +646,32 @@
     {
       "name": "ChangeLogField",
       "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/ChangeLogField",
-      "description": "The field of the PID4Catrecord that was changed.",
+      "description": "The field of the pid4cat record that was changed.",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "permissible_values": [
         {
           "text": "STATUS",
-          "description": "The status of the PID4CatRecord was changed."
+          "description": "The status of the pid4cat record was changed."
         },
         {
           "text": "LANDING_PAGE",
-          "description": "The URL of the landing page in the PID4CatRecord was changed."
+          "description": "The URL of the landing page in the pid4cat record was changed."
         },
         {
           "text": "RESOURCE_INFO",
-          "description": "The resource info of the PID4CatRecord was changed."
+          "description": "The resource info of the pid4cat record was changed."
         },
         {
           "text": "RELATED_IDS",
-          "description": "The related identifiers of the PID4CatRecord were changed."
+          "description": "The related identifiers of the pid4cat record were changed."
         },
         {
           "text": "CONTACT",
-          "description": "The contact information of the PID4CatRecord was changed."
+          "description": "The contact information of the pid4cat record was changed."
         },
         {
           "text": "LICENSE",
-          "description": "The license of the PID4CatRecord was changed."
+          "description": "The license of the pid4cat record was changed."
         }
       ]
     },
@@ -7254,7 +7254,7 @@
     {
       "name": "handle",
       "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/handle",
-      "description": "The handle of the PID4CatRecord.",
+      "description": "The handle of the pid4cat record.",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "slot_uri": "https://w3id.org/nfdi4cat/pid4cat-model/handle",
       "owner": "HandleAPIRecord",
@@ -7267,7 +7267,7 @@
     {
       "name": "values",
       "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/values",
-      "description": "The values of the PID4CatRecord.",
+      "description": "The values of the pid4cat record.",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "slot_uri": "https://w3id.org/nfdi4cat/pid4cat-model/values",
       "owner": "HandleAPIRecord",
@@ -7308,7 +7308,7 @@
     {
       "name": "data",
       "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/data",
-      "description": "The meta data stored in PID4CatRecord.",
+      "description": "The meta data stored in pid4cat record.",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "slot_uri": "https://w3id.org/nfdi4cat/pid4cat-model/data",
       "owner": "HandleRecord",
@@ -7371,7 +7371,7 @@
       "range": "string",
       "exactly_one_of": [
         {
-          "range": "PID4CatStatus",
+          "range": "Pid4CatStatus",
           "@type": "AnonymousSlotExpression"
         },
         {
@@ -7379,15 +7379,11 @@
           "@type": "AnonymousSlotExpression"
         },
         {
-          "range": "PID4CatRelation",
-          "@type": "AnonymousSlotExpression"
-        },
-        {
           "range": "ResourceInfo",
           "@type": "AnonymousSlotExpression"
         },
         {
-          "range": "PID4CatRelation",
+          "range": "Pid4CatRelation",
           "@type": "AnonymousSlotExpression"
         },
         {
@@ -7398,45 +7394,18 @@
       "@type": "SlotDefinition"
     },
     {
-      "name": "id",
-      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/id",
-      "description": "A unique identifier for a thing.",
-      "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
-      "mappings": [
-        "http://schema.org/identifier"
-      ],
-      "slot_uri": "http://schema.org/identifier",
-      "identifier": true,
-      "range": "uriorcurie",
-      "required": true,
-      "@type": "SlotDefinition"
-    },
-    {
-      "name": "landing_page_url",
-      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/landing_page_url",
-      "description": "The URL of the landing page for the resource.",
-      "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
-      "mappings": [
-        "http://schema.org/url"
-      ],
-      "rank": 10,
-      "slot_uri": "http://schema.org/url",
-      "range": "uri",
-      "@type": "SlotDefinition"
-    },
-    {
       "name": "status",
       "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/status",
-      "description": "The status of the PID4CatRecord.",
+      "description": "The status of the pid4cat record.",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "slot_uri": "https://w3id.org/nfdi4cat/pid4cat-model/status",
-      "range": "PID4CatStatus",
+      "range": "Pid4CatStatus",
       "@type": "SlotDefinition"
     },
     {
       "name": "pid_schema_version",
       "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/pid_schema_version",
-      "description": "The version of the PID4Cat schema used for the PID4CatRecord.",
+      "description": "The version of the pid4cat schema used for the pid4cat record.",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "slot_uri": "https://w3id.org/nfdi4cat/pid4cat-model/pid_schema_version",
       "range": "string",
@@ -7458,7 +7427,7 @@
       "description": "Relations of the resource to other identifiers.",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "slot_uri": "https://w3id.org/nfdi4cat/pid4cat-model/related_identifiers",
-      "range": "PID4CatRelation",
+      "range": "Pid4CatRelation",
       "multivalued": true,
       "inlined": true,
       "@type": "SlotDefinition"
@@ -7466,7 +7435,7 @@
     {
       "name": "license",
       "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/license",
-      "description": "The license for the metadata contained in the PID4Cat record.",
+      "description": "The license for the metadata contained in the pid4cat record.",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "slot_uri": "https://w3id.org/nfdi4cat/pid4cat-model/license",
       "range": "string",
@@ -7475,7 +7444,7 @@
     {
       "name": "curation_contact_email",
       "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/curation_contact_email",
-      "description": "The email address of a person or institution currently responsible for the curation of the PID record.",
+      "description": "The email address of a person or institution currently responsible for the curation of the pid4cat record.",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "slot_uri": "https://w3id.org/nfdi4cat/pid4cat-model/curation_contact_email",
       "range": "string",
@@ -7484,7 +7453,7 @@
     {
       "name": "change_log",
       "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/change_log",
-      "description": "Change log of PID4Cat record.",
+      "description": "Change log of pid4cat record.",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "slot_uri": "https://w3id.org/nfdi4cat/pid4cat-model/change_log",
       "range": "LogRecord",
@@ -7499,9 +7468,9 @@
       "description": "Relation type between the resources.",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "slot_uri": "https://w3id.org/nfdi4cat/pid4cat-model/relation_type",
-      "owner": "PID4CatRelation",
+      "owner": "Pid4CatRelation",
       "domain_of": [
-        "PID4CatRelation"
+        "Pid4CatRelation"
       ],
       "range": "RelationType",
       "@type": "SlotDefinition"
@@ -7512,9 +7481,9 @@
       "description": "Related identifiers for the resource.",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "slot_uri": "https://w3id.org/nfdi4cat/pid4cat-model/related_identifier",
-      "owner": "PID4CatRelation",
+      "owner": "Pid4CatRelation",
       "domain_of": [
-        "PID4CatRelation"
+        "Pid4CatRelation"
       ],
       "range": "uri",
       "@type": "SlotDefinition"
@@ -7527,7 +7496,7 @@
       "slot_uri": "https://w3id.org/nfdi4cat/pid4cat-model/datetime_log",
       "owner": "LogRecord",
       "domain_of": [
-        "PID4CatRelation",
+        "Pid4CatRelation",
         "LogRecord"
       ],
       "range": "datetime",
@@ -7677,7 +7646,7 @@
       "domain_of": [
         "Agent"
       ],
-      "range": "PID4CatAgentRole",
+      "range": "Pid4CatAgentRole",
       "@type": "SlotDefinition"
     },
     {
@@ -7773,7 +7742,7 @@
     {
       "name": "HandleAPIRecord",
       "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/HandleAPIRecord",
-      "description": "A handle record for a PID4CatRecord.",
+      "description": "A class representing a handle record query response of the REST (json) API of a handle server.",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "slots": [
         "response_code",
@@ -7787,7 +7756,7 @@
     {
       "name": "HandleRecord",
       "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/HandleRecord",
-      "description": "A handle record for a PID4CatRecord.",
+      "description": "A class representing a handle record in the same way as in the REST (json) API of a handle server.",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "slots": [
         "index",
@@ -7803,7 +7772,7 @@
     {
       "name": "HandleData",
       "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/HandleData",
-      "description": "The data element in the handle API.",
+      "description": "A data element in the handle API.",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "slots": [
         "format",
@@ -7837,9 +7806,9 @@
       "@type": "ClassDefinition"
     },
     {
-      "name": "PID4CatRelation",
-      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/PID4CatRelation",
-      "description": "A relation between PID4CatRecords or between a PID4CatRecord and other resources with a PID.",
+      "name": "Pid4CatRelation",
+      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/Pid4CatRelation",
+      "description": "A relation between pid4cat handles or between a pid4cat handle and other resources identified by a PID.",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "slots": [
         "relation_type",
@@ -7847,7 +7816,7 @@
         "datetime_log"
       ],
       "slot_usage": {},
-      "class_uri": "https://w3id.org/nfdi4cat/pid4cat-model/PID4CatRelation",
+      "class_uri": "https://w3id.org/nfdi4cat/pid4cat-model/Pid4CatRelation",
       "@type": "ClassDefinition"
     },
     {
@@ -7868,7 +7837,7 @@
     {
       "name": "LogRecord",
       "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/LogRecord",
-      "description": "A log record for changes made on a PID4CatRecord starting from registration.",
+      "description": "A log record for changes made in a pid4cat handle record starting from registration.",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "slots": [
         "datetime_log",
@@ -7917,9 +7886,9 @@
   ],
   "metamodel_version": "1.7.0",
   "source_file": "pid4cat_model.yaml",
-  "source_file_date": "2025-02-12T09:21:15",
-  "source_file_size": 17268,
-  "generation_date": "2025-02-14T14:51:05",
+  "source_file_date": "2025-02-18T00:39:06",
+  "source_file_size": 18113,
+  "generation_date": "2025-02-18T00:40:10",
   "@type": "SchemaDefinition",
   "@context": [
     "project/jsonld/pid4cat_model.context.jsonld",

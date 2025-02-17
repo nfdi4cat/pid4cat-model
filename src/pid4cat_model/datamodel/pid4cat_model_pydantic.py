@@ -65,8 +65,8 @@ class LinkMLMeta(RootModel):
 
 linkml_meta = LinkMLMeta({'default_prefix': 'pid4cat_model',
      'default_range': 'string',
-     'description': 'A LinkML model for PIDs for resources in catalysis (PID4Cat). '
-                    'PID4Cat is a handle system based persistent identifier (PID) '
+     'description': 'A LinkML model for PIDs for resources in catalysis (pid4cat). '
+                    'pid4cat is a handle system based persistent identifier (PID) '
                     'for digital or physical resources used in the catalysis '
                     'research process. The handle record is used to store '
                     'additional metadata about the PID besides the obligatory '
@@ -75,7 +75,7 @@ linkml_meta = LinkMLMeta({'default_prefix': 'pid4cat_model',
                     'access the identified resource. It does not describe the '
                     'resource itself with the exception of the resource category, '
                     'which is a high-level description of what is identified by '
-                    'the PID4Cat handle, e.g. a sample or a device.',
+                    'the pid4cat handle, e.g. a sample or a device.',
      'id': 'https://w3id.org/nfdi4cat/pid4cat-model',
      'imports': ['linkml:types', 'media_types'],
      'license': 'MIT',
@@ -2362,21 +2362,21 @@ class RelationType(str, Enum):
     OBSOLETES = "OBSOLETES"
 
 
-class PID4CatStatus(str, Enum):
+class Pid4CatStatus(str, Enum):
     """
-    The usage status of the PID4CatRecord.
+    The usage status of the pid4cat record.
     """
-    # The PID4CatRecord is reserved but the resource is not yet linked.
+    # The pid4cat handle is reserved but the resource is not yet linked.
     SUBMITTED = "SUBMITTED"
-    # The PID4CatRecord is linked to a concrete resource.
+    # The pid4cat handle is linked to a concrete resource.
     REGISTERED = "REGISTERED"
-    # The PID4CatRecord is obsolete, e.g. because the resource is referenced by another PID4Cat.
+    # The pid4cat handle is obsolete, e.g. because the resource is referenced by another pid4cat.
     OBSOLETED = "OBSOLETED"
-    # The PID4CatRecord is deprecated, e.g. because the resource can no longer be found.
+    # The pid4cat record is deprecated, e.g. because the resource can no longer be found.
     DEPRECATED = "DEPRECATED"
 
 
-class PID4CatAgentRole(str, Enum):
+class Pid4CatAgentRole(str, Enum):
     """
     The role of an agent relative to the resource.
     """
@@ -2388,19 +2388,19 @@ class PID4CatAgentRole(str, Enum):
 
 class ChangeLogField(str, Enum):
     """
-    The field of the PID4Catrecord that was changed.
+    The field of the pid4cat record that was changed.
     """
-    # The status of the PID4CatRecord was changed.
+    # The status of the pid4cat record was changed.
     STATUS = "STATUS"
-    # The URL of the landing page in the PID4CatRecord was changed.
+    # The URL of the landing page in the pid4cat record was changed.
     LANDING_PAGE = "LANDING_PAGE"
-    # The resource info of the PID4CatRecord was changed.
+    # The resource info of the pid4cat record was changed.
     RESOURCE_INFO = "RESOURCE_INFO"
-    # The related identifiers of the PID4CatRecord were changed.
+    # The related identifiers of the pid4cat record were changed.
     RELATED_IDS = "RELATED_IDS"
-    # The contact information of the PID4CatRecord was changed.
+    # The contact information of the pid4cat record was changed.
     CONTACT = "CONTACT"
-    # The license of the PID4CatRecord was changed.
+    # The license of the pid4cat record was changed.
     LICENSE = "LICENSE"
 
 
@@ -2429,24 +2429,24 @@ class HandleDataType(str, Enum):
 
 class HandleAPIRecord(ConfiguredBaseModel):
     """
-    A handle record for a PID4CatRecord.
+    A class representing a handle record query response of the REST (json) API of a handle server.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/nfdi4cat/pid4cat-model'})
 
     responseCode: Optional[int] = Field(None, description="""The response code of the handle API.""", json_schema_extra = { "linkml_meta": {'alias': 'responseCode', 'domain_of': ['HandleAPIRecord']} })
-    handle: Optional[str] = Field(None, description="""The handle of the PID4CatRecord.""", json_schema_extra = { "linkml_meta": {'alias': 'handle', 'domain_of': ['HandleAPIRecord']} })
-    values: Optional[List[HandleRecord]] = Field(None, description="""The values of the PID4CatRecord.""", json_schema_extra = { "linkml_meta": {'alias': 'values', 'domain_of': ['HandleAPIRecord']} })
+    handle: Optional[str] = Field(None, description="""The handle of the pid4cat record.""", json_schema_extra = { "linkml_meta": {'alias': 'handle', 'domain_of': ['HandleAPIRecord']} })
+    values: Optional[List[HandleRecord]] = Field(None, description="""The values of the pid4cat record.""", json_schema_extra = { "linkml_meta": {'alias': 'values', 'domain_of': ['HandleAPIRecord']} })
 
 
 class HandleRecord(ConfiguredBaseModel):
     """
-    A handle record for a PID4CatRecord.
+    A class representing a handle record in the same way as in the REST (json) API of a handle server.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/nfdi4cat/pid4cat-model'})
 
     index: Optional[int] = Field(None, description="""The index of the handle record.""", json_schema_extra = { "linkml_meta": {'alias': 'index', 'domain_of': ['HandleRecord']} })
     type: Optional[HandleDataType] = Field(None, description="""The type of the handle record.""", json_schema_extra = { "linkml_meta": {'alias': 'type', 'domain_of': ['HandleRecord']} })
-    data: Optional[HandleData] = Field(None, description="""The meta data stored in PID4CatRecord.""", json_schema_extra = { "linkml_meta": {'alias': 'data', 'domain_of': ['HandleRecord']} })
+    data: Optional[HandleData] = Field(None, description="""The meta data stored in pid4cat record.""", json_schema_extra = { "linkml_meta": {'alias': 'data', 'domain_of': ['HandleRecord']} })
     ttl: Optional[int] = Field(None, description="""A time to live in seconds for the handle record. Typically: 86400 => 1 day
 TODO: Research details of ttl meaning for handle API.
 """, json_schema_extra = { "linkml_meta": {'alias': 'ttl', 'domain_of': ['HandleRecord']} })
@@ -2455,18 +2455,17 @@ TODO: Research details of ttl meaning for handle API.
 
 class HandleData(ConfiguredBaseModel):
     """
-    The data element in the handle API.
+    A data element in the handle API.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/nfdi4cat/pid4cat-model'})
 
     format: Optional[str] = Field(None, description="""The format of the handle data.""", json_schema_extra = { "linkml_meta": {'alias': 'format', 'domain_of': ['HandleData']} })
     value: Optional[str] = Field(None, description="""The value of the handle data.""", json_schema_extra = { "linkml_meta": {'alias': 'value',
          'domain_of': ['HandleData'],
-         'exactly_one_of': [{'range': 'PID4CatStatus'},
+         'exactly_one_of': [{'range': 'Pid4CatStatus'},
                             {'range': 'string'},
-                            {'range': 'PID4CatRelation'},
                             {'range': 'ResourceInfo'},
-                            {'range': 'PID4CatRelation'},
+                            {'range': 'Pid4CatRelation'},
                             {'range': 'LogRecord'}]} })
 
 
@@ -2479,15 +2478,15 @@ class HandleRecordContainer(ConfiguredBaseModel):
     contains_pids: Optional[List[HandleAPIRecord]] = Field(None, description="""The HandleRecords contained in the container.""", json_schema_extra = { "linkml_meta": {'alias': 'contains_pids', 'domain_of': ['HandleRecordContainer']} })
 
 
-class PID4CatRelation(ConfiguredBaseModel):
+class Pid4CatRelation(ConfiguredBaseModel):
     """
-    A relation between PID4CatRecords or between a PID4CatRecord and other resources with a PID.
+    A relation between pid4cat handles or between a pid4cat handle and other resources identified by a PID.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/nfdi4cat/pid4cat-model'})
 
-    relation_type: Optional[RelationType] = Field(None, description="""Relation type between the resources.""", json_schema_extra = { "linkml_meta": {'alias': 'relation_type', 'domain_of': ['PID4CatRelation']} })
-    related_identifier: Optional[str] = Field(None, description="""Related identifiers for the resource.""", json_schema_extra = { "linkml_meta": {'alias': 'related_identifier', 'domain_of': ['PID4CatRelation']} })
-    datetime_log: Optional[datetime ] = Field(None, description="""The date and time of a log record.""", json_schema_extra = { "linkml_meta": {'alias': 'datetime_log', 'domain_of': ['PID4CatRelation', 'LogRecord']} })
+    relation_type: Optional[RelationType] = Field(None, description="""Relation type between the resources.""", json_schema_extra = { "linkml_meta": {'alias': 'relation_type', 'domain_of': ['Pid4CatRelation']} })
+    related_identifier: Optional[str] = Field(None, description="""Related identifiers for the resource.""", json_schema_extra = { "linkml_meta": {'alias': 'related_identifier', 'domain_of': ['Pid4CatRelation']} })
+    datetime_log: Optional[datetime ] = Field(None, description="""The date and time of a log record.""", json_schema_extra = { "linkml_meta": {'alias': 'datetime_log', 'domain_of': ['Pid4CatRelation', 'LogRecord']} })
 
 
 class ResourceInfo(ConfiguredBaseModel):
@@ -2504,11 +2503,11 @@ class ResourceInfo(ConfiguredBaseModel):
 
 class LogRecord(ConfiguredBaseModel):
     """
-    A log record for changes made on a PID4CatRecord starting from registration.
+    A log record for changes made in a pid4cat handle record starting from registration.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/nfdi4cat/pid4cat-model'})
 
-    datetime_log: Optional[datetime ] = Field(None, description="""The date and time of a log record.""", json_schema_extra = { "linkml_meta": {'alias': 'datetime_log', 'domain_of': ['PID4CatRelation', 'LogRecord']} })
+    datetime_log: Optional[datetime ] = Field(None, description="""The date and time of a log record.""", json_schema_extra = { "linkml_meta": {'alias': 'datetime_log', 'domain_of': ['Pid4CatRelation', 'LogRecord']} })
     has_agent: Optional[Agent] = Field(None, description="""The person who registered or modified the PID record.""", json_schema_extra = { "linkml_meta": {'alias': 'has_agent', 'domain_of': ['LogRecord']} })
     changed_field: Optional[ChangeLogField] = Field(None, description="""The field that was changed""", json_schema_extra = { "linkml_meta": {'alias': 'changed_field', 'domain_of': ['LogRecord']} })
     description: Optional[str] = Field(None, description="""A human-readable description for a resource.""", json_schema_extra = { "linkml_meta": {'alias': 'description', 'domain_of': ['ResourceInfo', 'LogRecord']} })
@@ -2526,7 +2525,7 @@ class Agent(ConfiguredBaseModel):
     email: Optional[str] = Field(None, description="""Email address of the agent that created or modified the PID record.""", json_schema_extra = { "linkml_meta": {'alias': 'email', 'domain_of': ['Agent']} })
     orcid: Optional[str] = Field(None, description="""The ORCID of the person""", json_schema_extra = { "linkml_meta": {'alias': 'orcid', 'domain_of': ['Agent']} })
     affiliation_ror: Optional[str] = Field(None, description="""The ROR of the agent's affiliation.""", json_schema_extra = { "linkml_meta": {'alias': 'affiliation_ror', 'domain_of': ['Agent']} })
-    role: Optional[PID4CatAgentRole] = Field(None, description="""The role of the agent relative to the resource""", json_schema_extra = { "linkml_meta": {'alias': 'role', 'domain_of': ['Agent']} })
+    role: Optional[Pid4CatAgentRole] = Field(None, description="""The role of the agent relative to the resource""", json_schema_extra = { "linkml_meta": {'alias': 'role', 'domain_of': ['Agent']} })
 
     @field_validator('email')
     def pattern_email(cls, v):
@@ -2559,7 +2558,7 @@ HandleAPIRecord.model_rebuild()
 HandleRecord.model_rebuild()
 HandleData.model_rebuild()
 HandleRecordContainer.model_rebuild()
-PID4CatRelation.model_rebuild()
+Pid4CatRelation.model_rebuild()
 ResourceInfo.model_rebuild()
 LogRecord.model_rebuild()
 Agent.model_rebuild()

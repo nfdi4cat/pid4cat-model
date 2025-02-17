@@ -8,22 +8,22 @@ message Agent
   string email = 0
   string orcid = 0
   uri affiliationRor = 0
-  pID4CatAgentRole role = 0
+  pid4CatAgentRole role = 0
  }
-// A handle record for a PID4CatRecord.
+// A class representing a handle record query response of the REST (json) API of a handle server.
 message HandleAPIRecord
  {
   integer responseCode = 0
   string handle = 0
  repeated  handleRecord values = 0
  }
-// The data element in the handle API.
+// A data element in the handle API.
 message HandleData
  {
   string format = 0
   string value = 0
  }
-// A handle record for a PID4CatRecord.
+// A class representing a handle record in the same way as in the REST (json) API of a handle server.
 message HandleRecord
  {
   integer index = 0
@@ -37,7 +37,7 @@ message HandleRecordContainer
  {
  repeated  handleAPIRecord containsPids = 0
  }
-// A log record for changes made on a PID4CatRecord starting from registration.
+// A log record for changes made in a pid4cat handle record starting from registration.
 message LogRecord
  {
   datetime datetimeLog = 0
@@ -45,8 +45,8 @@ message LogRecord
   changeLogField changedField = 0
   string description = 0
  }
-// A relation between PID4CatRecords or between a PID4CatRecord and other resources with a PID.
-message PID4CatRelation
+// A relation between pid4cat handles or between a pid4cat handle and other resources identified by a PID.
+message Pid4CatRelation
  {
   relationType relationType = 0
   uri relatedIdentifier = 0

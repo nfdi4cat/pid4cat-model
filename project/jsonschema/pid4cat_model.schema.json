@@ -34,7 +34,7 @@
                     ]
                 },
                 "role": {
-                    "$ref": "#/$defs/PID4CatAgentRole",
+                    "$ref": "#/$defs/Pid4CatAgentRole",
                     "description": "The role of the agent relative to the resource"
                 }
             },
@@ -42,7 +42,7 @@
             "type": "object"
         },
         "ChangeLogField": {
-            "description": "The field of the PID4Catrecord that was changed.",
+            "description": "The field of the pid4cat record that was changed.",
             "enum": [
                 "STATUS",
                 "LANDING_PAGE",
@@ -56,10 +56,10 @@
         },
         "HandleAPIRecord": {
             "additionalProperties": false,
-            "description": "A handle record for a PID4CatRecord.",
+            "description": "A class representing a handle record query response of the REST (json) API of a handle server.",
             "properties": {
                 "handle": {
-                    "description": "The handle of the PID4CatRecord.",
+                    "description": "The handle of the pid4cat record.",
                     "type": [
                         "string",
                         "null"
@@ -73,7 +73,7 @@
                     ]
                 },
                 "values": {
-                    "description": "The values of the PID4CatRecord.",
+                    "description": "The values of the pid4cat record.",
                     "items": {
                         "$ref": "#/$defs/HandleRecord"
                     },
@@ -88,7 +88,7 @@
         },
         "HandleData": {
             "additionalProperties": false,
-            "description": "The data element in the handle API.",
+            "description": "A data element in the handle API.",
             "properties": {
                 "format": {
                     "description": "The format of the handle data.",
@@ -101,19 +101,16 @@
                     "description": "The value of the handle data.",
                     "oneOf": [
                         {
-                            "$ref": "#/$defs/PID4CatStatus"
+                            "$ref": "#/$defs/Pid4CatStatus"
                         },
                         {
                             "type": "string"
                         },
                         {
-                            "$ref": "#/$defs/PID4CatRelation"
-                        },
-                        {
                             "$ref": "#/$defs/ResourceInfo"
                         },
                         {
-                            "$ref": "#/$defs/PID4CatRelation"
+                            "$ref": "#/$defs/Pid4CatRelation"
                         },
                         {
                             "$ref": "#/$defs/LogRecord"
@@ -142,7 +139,7 @@
         },
         "HandleRecord": {
             "additionalProperties": false,
-            "description": "A handle record for a PID4CatRecord.",
+            "description": "A class representing a handle record in the same way as in the REST (json) API of a handle server.",
             "properties": {
                 "data": {
                     "anyOf": [
@@ -153,7 +150,7 @@
                             "type": "null"
                         }
                     ],
-                    "description": "The meta data stored in PID4CatRecord."
+                    "description": "The meta data stored in pid4cat record."
                 },
                 "index": {
                     "description": "The index of the handle record.",
@@ -205,7 +202,7 @@
         },
         "LogRecord": {
             "additionalProperties": false,
-            "description": "A log record for changes made on a PID4CatRecord starting from registration.",
+            "description": "A log record for changes made in a pid4cat handle record starting from registration.",
             "properties": {
                 "changed_field": {
                     "$ref": "#/$defs/ChangeLogField",
@@ -2419,18 +2416,18 @@
             "title": "MEDIATypes",
             "type": "string"
         },
-        "PID4CatAgentRole": {
+        "Pid4CatAgentRole": {
             "description": "The role of an agent relative to the resource.",
             "enum": [
                 "TRUSTEE",
                 "OWNER"
             ],
-            "title": "PID4CatAgentRole",
+            "title": "Pid4CatAgentRole",
             "type": "string"
         },
-        "PID4CatRelation": {
+        "Pid4CatRelation": {
             "additionalProperties": false,
-            "description": "A relation between PID4CatRecords or between a PID4CatRecord and other resources with a PID.",
+            "description": "A relation between pid4cat handles or between a pid4cat handle and other resources identified by a PID.",
             "properties": {
                 "datetime_log": {
                     "description": "The date and time of a log record.",
@@ -2452,18 +2449,18 @@
                     "description": "Relation type between the resources."
                 }
             },
-            "title": "PID4CatRelation",
+            "title": "Pid4CatRelation",
             "type": "object"
         },
-        "PID4CatStatus": {
-            "description": "The usage status of the PID4CatRecord.",
+        "Pid4CatStatus": {
+            "description": "The usage status of the pid4cat record.",
             "enum": [
                 "SUBMITTED",
                 "REGISTERED",
                 "OBSOLETED",
                 "DEPRECATED"
             ],
-            "title": "PID4CatStatus",
+            "title": "Pid4CatStatus",
             "type": "string"
         },
         "RelationType": {

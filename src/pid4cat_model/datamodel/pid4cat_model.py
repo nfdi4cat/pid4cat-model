@@ -1,10 +1,10 @@
 # Auto generated from pid4cat_model.yaml by pythongen.py version: 0.0.1
-# Generation date: 2025-02-14T14:51:29
+# Generation date: 2025-02-18T00:40:14
 # Schema: pid4cat-model
 #
 # id: https://w3id.org/nfdi4cat/pid4cat-model
-# description: A LinkML model for PIDs for resources in catalysis (PID4Cat). PID4Cat is a handle system based persistent identifier (PID) for digital or physical resources used in the catalysis research process. The handle record is used to store additional metadata about the PID besides the obligatory landing page URL.
-#   The model describes metadata for the PID itself and how to access the identified resource. It does not describe the resource itself with the exception of the resource category, which is a high-level description of what is identified by the PID4Cat handle, e.g. a sample or a device.
+# description: A LinkML model for PIDs for resources in catalysis (pid4cat). pid4cat is a handle system based persistent identifier (PID) for digital or physical resources used in the catalysis research process. The handle record is used to store additional metadata about the PID besides the obligatory landing page URL.
+#   The model describes metadata for the PID itself and how to access the identified resource. It does not describe the resource itself with the exception of the resource category, which is a high-level description of what is identified by the pid4cat handle, e.g. a sample or a device.
 # license: MIT
 
 import dataclasses
@@ -58,8 +58,8 @@ from rdflib import (
     URIRef
 )
 
-from linkml_runtime.linkml_model.types import Datetime, Integer, String, Uri, Uriorcurie
-from linkml_runtime.utils.metamodelcore import URI, URIorCURIE, XSDDateTime
+from linkml_runtime.linkml_model.types import Datetime, Integer, String, Uri
+from linkml_runtime.utils.metamodelcore import URI, XSDDateTime
 
 metamodel_version = "1.7.0"
 version = None
@@ -74,7 +74,6 @@ DCTERMS = CurieNamespace('dcterms', 'https://purl.org/dc/terms/')
 LINKML = CurieNamespace('linkml', 'https://w3id.org/linkml/')
 PID4CAT_MODEL = CurieNamespace('pid4cat_model', 'https://w3id.org/nfdi4cat/pid4cat-model/')
 PROV = CurieNamespace('prov', 'https://www.w3.org/ns/prov#')
-SCHEMA = CurieNamespace('schema', 'http://schema.org/')
 VOC4CAT = CurieNamespace('voc4cat', 'https://w3id.org/nfdi4cat/voc4cat_')
 DEFAULT_ = PID4CAT_MODEL
 
@@ -88,7 +87,7 @@ DEFAULT_ = PID4CAT_MODEL
 @dataclass(repr=False)
 class HandleAPIRecord(YAMLRoot):
     """
-    A handle record for a PID4CatRecord.
+    A class representing a handle record query response of the REST (json) API of a handle server.
     """
     _inherited_slots: ClassVar[List[str]] = []
 
@@ -118,7 +117,7 @@ class HandleAPIRecord(YAMLRoot):
 @dataclass(repr=False)
 class HandleRecord(YAMLRoot):
     """
-    A handle record for a PID4CatRecord.
+    A class representing a handle record in the same way as in the REST (json) API of a handle server.
     """
     _inherited_slots: ClassVar[List[str]] = []
 
@@ -155,7 +154,7 @@ class HandleRecord(YAMLRoot):
 @dataclass(repr=False)
 class HandleData(YAMLRoot):
     """
-    The data element in the handle API.
+    A data element in the handle API.
     """
     _inherited_slots: ClassVar[List[str]] = []
 
@@ -200,16 +199,16 @@ class HandleRecordContainer(YAMLRoot):
 
 
 @dataclass(repr=False)
-class PID4CatRelation(YAMLRoot):
+class Pid4CatRelation(YAMLRoot):
     """
-    A relation between PID4CatRecords or between a PID4CatRecord and other resources with a PID.
+    A relation between pid4cat handles or between a pid4cat handle and other resources identified by a PID.
     """
     _inherited_slots: ClassVar[List[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = PID4CAT_MODEL["PID4CatRelation"]
-    class_class_curie: ClassVar[str] = "pid4cat_model:PID4CatRelation"
-    class_name: ClassVar[str] = "PID4CatRelation"
-    class_model_uri: ClassVar[URIRef] = PID4CAT_MODEL.PID4CatRelation
+    class_class_uri: ClassVar[URIRef] = PID4CAT_MODEL["Pid4CatRelation"]
+    class_class_curie: ClassVar[str] = "pid4cat_model:Pid4CatRelation"
+    class_name: ClassVar[str] = "Pid4CatRelation"
+    class_model_uri: ClassVar[URIRef] = PID4CAT_MODEL.Pid4CatRelation
 
     relation_type: Optional[Union[str, "RelationType"]] = None
     related_identifier: Optional[Union[str, URI]] = None
@@ -265,7 +264,7 @@ class ResourceInfo(YAMLRoot):
 @dataclass(repr=False)
 class LogRecord(YAMLRoot):
     """
-    A log record for changes made on a PID4CatRecord starting from registration.
+    A log record for changes made in a pid4cat handle record starting from registration.
     """
     _inherited_slots: ClassVar[List[str]] = []
 
@@ -311,7 +310,7 @@ class Agent(YAMLRoot):
     email: Optional[str] = None
     orcid: Optional[str] = None
     affiliation_ror: Optional[Union[str, URI]] = None
-    role: Optional[Union[str, "PID4CatAgentRole"]] = None
+    role: Optional[Union[str, "Pid4CatAgentRole"]] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self.name is not None and not isinstance(self.name, str):
@@ -326,8 +325,8 @@ class Agent(YAMLRoot):
         if self.affiliation_ror is not None and not isinstance(self.affiliation_ror, URI):
             self.affiliation_ror = URI(self.affiliation_ror)
 
-        if self.role is not None and not isinstance(self.role, PID4CatAgentRole):
-            self.role = PID4CatAgentRole(self.role)
+        if self.role is not None and not isinstance(self.role, Pid4CatAgentRole):
+            self.role = Pid4CatAgentRole(self.role)
 
         super().__post_init__(**kwargs)
 
@@ -539,33 +538,33 @@ class RelationType(EnumDefinitionImpl):
         description="The type of relation between two resources referenced by their PIDs.",
     )
 
-class PID4CatStatus(EnumDefinitionImpl):
+class Pid4CatStatus(EnumDefinitionImpl):
     """
-    The usage status of the PID4CatRecord.
+    The usage status of the pid4cat record.
     """
     SUBMITTED = PermissibleValue(
         text="SUBMITTED",
-        description="The PID4CatRecord is reserved but the resource is not yet linked.",
+        description="The pid4cat handle is reserved but the resource is not yet linked.",
         meaning=VOC4CAT["0005052"])
     REGISTERED = PermissibleValue(
         text="REGISTERED",
-        description="The PID4CatRecord is linked to a concrete resource.",
+        description="The pid4cat handle is linked to a concrete resource.",
         meaning=VOC4CAT["0005053"])
     OBSOLETED = PermissibleValue(
         text="OBSOLETED",
-        description="The PID4CatRecord is obsolete, e.g. because the resource is referenced by another PID4Cat.",
+        description="The pid4cat handle is obsolete, e.g. because the resource is referenced by another pid4cat.",
         meaning=VOC4CAT["0005054"])
     DEPRECATED = PermissibleValue(
         text="DEPRECATED",
-        description="The PID4CatRecord is deprecated, e.g. because the resource can no longer be found.",
+        description="The pid4cat record is deprecated, e.g. because the resource can no longer be found.",
         meaning=VOC4CAT["0005055"])
 
     _defn = EnumDefinition(
-        name="PID4CatStatus",
-        description="The usage status of the PID4CatRecord.",
+        name="Pid4CatStatus",
+        description="The usage status of the pid4cat record.",
     )
 
-class PID4CatAgentRole(EnumDefinitionImpl):
+class Pid4CatAgentRole(EnumDefinitionImpl):
     """
     The role of an agent relative to the resource.
     """
@@ -577,36 +576,36 @@ class PID4CatAgentRole(EnumDefinitionImpl):
         description="The agent is the owner of the resource.")
 
     _defn = EnumDefinition(
-        name="PID4CatAgentRole",
+        name="Pid4CatAgentRole",
         description="The role of an agent relative to the resource.",
     )
 
 class ChangeLogField(EnumDefinitionImpl):
     """
-    The field of the PID4Catrecord that was changed.
+    The field of the pid4cat record that was changed.
     """
     STATUS = PermissibleValue(
         text="STATUS",
-        description="The status of the PID4CatRecord was changed.")
+        description="The status of the pid4cat record was changed.")
     LANDING_PAGE = PermissibleValue(
         text="LANDING_PAGE",
-        description="The URL of the landing page in the PID4CatRecord was changed.")
+        description="The URL of the landing page in the pid4cat record was changed.")
     RESOURCE_INFO = PermissibleValue(
         text="RESOURCE_INFO",
-        description="The resource info of the PID4CatRecord was changed.")
+        description="The resource info of the pid4cat record was changed.")
     RELATED_IDS = PermissibleValue(
         text="RELATED_IDS",
-        description="The related identifiers of the PID4CatRecord were changed.")
+        description="The related identifiers of the pid4cat record were changed.")
     CONTACT = PermissibleValue(
         text="CONTACT",
-        description="The contact information of the PID4CatRecord was changed.")
+        description="The contact information of the pid4cat record was changed.")
     LICENSE = PermissibleValue(
         text="LICENSE",
-        description="The license of the PID4CatRecord was changed.")
+        description="The license of the pid4cat record was changed.")
 
     _defn = EnumDefinition(
         name="ChangeLogField",
-        description="The field of the PID4Catrecord that was changed.",
+        description="The field of the pid4cat record that was changed.",
     )
 
 class HandleDataType(EnumDefinitionImpl):
@@ -5028,14 +5027,8 @@ slots.format = Slot(uri=PID4CAT_MODEL.format, name="format", curie=PID4CAT_MODEL
 slots.value = Slot(uri=PID4CAT_MODEL.value, name="value", curie=PID4CAT_MODEL.curie('value'),
                    model_uri=PID4CAT_MODEL.value, domain=None, range=Optional[str])
 
-slots.id = Slot(uri=SCHEMA.identifier, name="id", curie=SCHEMA.curie('identifier'),
-                   model_uri=PID4CAT_MODEL.id, domain=None, range=URIRef)
-
-slots.landing_page_url = Slot(uri=SCHEMA.url, name="landing_page_url", curie=SCHEMA.curie('url'),
-                   model_uri=PID4CAT_MODEL.landing_page_url, domain=None, range=Optional[Union[str, URI]])
-
 slots.status = Slot(uri=PID4CAT_MODEL.status, name="status", curie=PID4CAT_MODEL.curie('status'),
-                   model_uri=PID4CAT_MODEL.status, domain=None, range=Optional[Union[str, "PID4CatStatus"]])
+                   model_uri=PID4CAT_MODEL.status, domain=None, range=Optional[Union[str, "Pid4CatStatus"]])
 
 slots.pid_schema_version = Slot(uri=PID4CAT_MODEL.pid_schema_version, name="pid_schema_version", curie=PID4CAT_MODEL.curie('pid_schema_version'),
                    model_uri=PID4CAT_MODEL.pid_schema_version, domain=None, range=Optional[str])
@@ -5044,7 +5037,7 @@ slots.resource_info = Slot(uri=PID4CAT_MODEL.resource_info, name="resource_info"
                    model_uri=PID4CAT_MODEL.resource_info, domain=None, range=Optional[Union[dict, ResourceInfo]])
 
 slots.related_identifiers = Slot(uri=PID4CAT_MODEL.related_identifiers, name="related_identifiers", curie=PID4CAT_MODEL.curie('related_identifiers'),
-                   model_uri=PID4CAT_MODEL.related_identifiers, domain=None, range=Optional[Union[Union[dict, PID4CatRelation], List[Union[dict, PID4CatRelation]]]])
+                   model_uri=PID4CAT_MODEL.related_identifiers, domain=None, range=Optional[Union[Union[dict, Pid4CatRelation], List[Union[dict, Pid4CatRelation]]]])
 
 slots.license = Slot(uri=PID4CAT_MODEL.license, name="license", curie=PID4CAT_MODEL.curie('license'),
                    model_uri=PID4CAT_MODEL.license, domain=None, range=Optional[str])
@@ -5095,7 +5088,7 @@ slots.affiliation_ror = Slot(uri=PID4CAT_MODEL.affiliation_ror, name="affiliatio
                    model_uri=PID4CAT_MODEL.affiliation_ror, domain=None, range=Optional[Union[str, URI]])
 
 slots.role = Slot(uri=PID4CAT_MODEL.role, name="role", curie=PID4CAT_MODEL.curie('role'),
-                   model_uri=PID4CAT_MODEL.role, domain=None, range=Optional[Union[str, "PID4CatAgentRole"]])
+                   model_uri=PID4CAT_MODEL.role, domain=None, range=Optional[Union[str, "Pid4CatAgentRole"]])
 
 slots.media_type = Slot(uri=PID4CAT_MODEL.media_type, name="media_type", curie=PID4CAT_MODEL.curie('media_type'),
                    model_uri=PID4CAT_MODEL.media_type, domain=None, range=Optional[Union[str, "MEDIATypes"]])

@@ -16,8 +16,8 @@ Since Researchers expect DOIs for their data publications,
 the data sets published in Repo4Cat should get a DOIs from DataCite as PID.
 
 However, DOIs are not a good fit for earlier stages of research due to the metadata requirements and associated costs.
-Nevertheless researchers want to share research artifacts already in the early stage with collaborators and having PIDs already at this stage would be very useful. 
-Therefore, NFDI4Cat will in addition to DOIs use a handle-based solution **pid4cat** (see below) 
+Nevertheless researchers want to share research artifacts already in the early stage with collaborators and having PIDs already at this stage would be very useful.
+Therefore, NFDI4Cat will in addition to DOIs use a handle-based solution **pid4cat** (see below)
 to address the need for PIDs in the early phase when data are shared in private with collaborators. Repo4Cat seeks to support this private sharing between collaborators.
 
 NFDI4cat has selected Dataverse as software for Repo4Cat, the global data portal.
@@ -32,7 +32,7 @@ To address this limitations, two possible solutions are discussed:
 For the handle-PIDs in Dataverse, it is suggested
 
 - To generate individual PIDs for all files in a dataset.
-  
+
   Configuration
   - [:DataFilePIDFormat](https://guides.dataverse.org/en/latest/installation/config.html#datafilepidformat) = independent
 
@@ -46,11 +46,11 @@ For the handle-PIDs in Dataverse, it is suggested
   - r4c-9OH    (prefix and base32 encoded integer number)
     - "9OH" is 10001 using [base-32 alphabet](https://en.wikipedia.org/wiki/Base32#base-32)
   - r4c-10001  (prefix & integer number)
-  
+
   Preferred is the first scheme, because it is shorter.
-  
+
   It is suggested to not use RFC4648 base32 (letters A to Z and numbers 2 to 7) but another, more human-friendly alphabet, preferably z-base-32.
-  The z-base-32 encoding avoids human reading problems by excluding 0, l, v, 2 
+  The z-base-32 encoding avoids human reading problems by excluding 0, l, v, 2
   (number 0 may be confused with letter o, letter l with number 1 or letter i, letter v is close to u or r especially in handwriting, also number 2 is close to z in handwriting).
   The z-base-32 alphabet is optimized for lowercase letters so should be represented in this form.
 
@@ -75,7 +75,7 @@ For NFDI4Cat a simpler system that reduces complexity is more attractive.
 Therefore, pid4cathandles are similar to [ePIC](http://www.pidconsortium.net/)-handles in that they use the handle record itself to store metadata.
 This has the advantage that these metadata are available directly from the resolver.
 
-pid4cat comes with a well-defined schema for how and which metadata to store in the handle record. 
+pid4cat comes with a well-defined schema for how and which metadata to store in the handle record.
 The schema is defined in [LinkML](https://linkml.io/linkml/) and developed in this repo ([NFDI4Cat/PID4Cat](https://github.com/nfdi4cat/pid4cat-model/)).
 The schema does only require a minimum of information; it does not disclose anything about the resource except its type. Moreover, it is not required to specify an owner/creator but only a curator. Therefore, pid4cat-handles do not mandate to put resources into context if this is undesired for whatever reasons.
 
@@ -136,7 +136,7 @@ print(json_dumper.dumps(pid1_resource_info, inject_type=False))
 which will print the json-object to be stored under index 7 in the handle-record:
 
 ```json
-{                                            
+{  
   "label": "Resource label",
   "description": "Resource description",
   "resource_category": "SAMPLE",
@@ -148,7 +148,7 @@ which will print the json-object to be stored under index 7 in the handle-record
       "size": 12345
     }
   ]
-}                                            
+}  
 ```
 The pydantic model can also be used to create web APIs with other Python-based tools like django-ninja or fastapi.
 
@@ -187,7 +187,7 @@ Examples for pid4cat handles (non-resolvable):
 
 The role of the handle-server-gateway (HSG) is to restrict and manage write access to the handle-server and to add pid4cat-specific validation for the handles.
 The HSG provides an API only.
-Create and updating pid4cat-handles will exclusively managed via the HSG. 
+Create and updating pid4cat-handles will exclusively managed via the HSG.
 Suggested URLs for the HSG are https://pid4cat.nfdi4cat.org or https://pid.nfdi4cat.org
 
 > Note: Dataverse will not use the HSG but interface the handle-server directly.
@@ -201,7 +201,7 @@ Suggested minimal API of the HSG:
 
 *[unedited copy from internal OpenProject]*
 
-Here is a tentative minimal API (to be discussed). 
+Here is a tentative minimal API (to be discussed).
 API access is limited to special users &quot;namespace-owners&quot; (read-write), and &quot;viewers&quot; (read-only).
 Anonymous users have no access.
 
@@ -243,7 +243,7 @@ The API may be extended to make the information in the handle record more access
 
 For linked-data applications permanent IRIs are required.
 Several services exists that provide a stable base URL and
-a redirect service that can be configured to redirect 
+a redirect service that can be configured to redirect
 to the actual resource location.
 
 Such services should support serving different data to humans and to machines.
