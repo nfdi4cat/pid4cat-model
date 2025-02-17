@@ -1,6 +1,6 @@
 # pid4cat-model
 
-A LinkML model for handle-based PIDs for resources in catalysis (PID4Cat).
+A LinkML model for handle-based PIDs for resources in catalysis (pid4cat).
 
 **The model is work in progress!** Please don't expect stability before Release 1.0.
 
