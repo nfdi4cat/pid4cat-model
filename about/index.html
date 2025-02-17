@@ -8,14 +8,14 @@
       
       
       
-        <link rel="canonical" href="https://nfdi4cat.github.io/pid4cat-model/principles/">
+        <link rel="canonical" href="https://nfdi4cat.github.io/pid4cat-model/about/">
       
       <link rel="icon" href="../images/favicon.svg">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-8.5.10">
     
     
       
-        <title>Principles - pid4cat-model</title>
+        <title>About - pid4cat-model</title>
       
     
     
@@ -70,7 +70,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#versioning-of-pid4cat-model" class="md-skip">
+        <a href="#about-pid4cat-model" class="md-skip">
           Skip to content
         </a>
       
@@ -102,7 +102,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Principles
+              About
             
           </span>
         </div>
@@ -211,7 +211,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../index.md" class="md-nav__link">
+      <a href=".." class="md-nav__link">
         Home
       </a>
     </li>
@@ -239,6 +239,21 @@
 
   
   
+  
+    <li class="md-nav__item">
+      <a href="../versioning/" class="md-nav__link">
+        Versioning
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
     
   
   
@@ -250,25 +265,41 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          About
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
-        Principles
-      </a>
-      
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../about.md" class="md-nav__link">
         About
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#acknowledgement" class="md-nav__link">
+    Acknowledgement
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -293,6 +324,21 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#acknowledgement" class="md-nav__link">
+    Acknowledgement
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -305,22 +351,23 @@
                 
                   
 
-  <a href="https://github.com/nfdi4cat/pid4cat-model/edit/master/docs/principles.md" title="Edit this page" class="md-content__button md-icon">
+  <a href="https://github.com/nfdi4cat/pid4cat-model/edit/master/docs/about.md" title="Edit this page" class="md-content__button md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
   </a>
 
 
-<h1 id="versioning-of-pid4cat-model">Versioning of PID4Cat-model</h1>
-<p>The versioning of the PID4Cat-model is following the <strong>SchemaVer</strong> scheme proposed in a <a href="https://snowplow.io/blog/introducing-schemaver-for-semantic-versioning-of-schemas">snowplow blog post</a>. This also matches with the <a href="https://github.com/HumanCellAtlas/metadata-schema/blob/master/docs/evolution.md#schema-versioning">HCA schema versioning</a> and is also adapted by <a href="https://github.com/OpenLineage/OpenLineage/blob/main/spec/Versioning.md">openlinaeage</a>.</p>
-<p><strong>SchemaVer</strong>: Given a version number MODEL.REVISION.ADDITION, increment the</p>
+<h1 id="about-pid4cat-model">About pid4cat-model</h1>
 <ul>
-<li>MODEL when you make a breaking schema change which will prevent interaction with any historical data</li>
-<li>REVISION when you make a schema change which may prevent interaction with some historical data</li>
-<li>ADDITION when you make a schema change that is compatible with all historical data</li>
+<li>License: MIT</li>
+<li>Author &amp; contributors: see <a href="https://github.com/nfdi4cat/pid4cat-model?tab=readme-ov-file#contributors">README</a></li>
 </ul>
-<p>The versions are tagged in git (for example "v1.2.3").
-Based on the tags we also create GitHub releases to provide easy access to all versions and to document the changes between versions.</p>
+<h2 id="acknowledgement">Acknowledgement</h2>
+<p><a href="https://github.com/linkml/linkml-project-cookiecutter">linkml-project-copier</a> provides the underlying template of the current repository.
+Earlier we used <a href="https://github.com/linkml/linkml-project-cookiecutter">linkml-project-cookiecutter</a> as template.</p>
+<p>This project started as an in-kind contribution of <a href="https://www.catalysis.de">Leibniz-Institut für Katalyse e.V.</a> (Rostock, Germany) to the NFDI4Cat project.</p>
+<p>After 2024-03-27 this work has been funded by the German Research Foundation (DFG) through the project "<a href="https://www.nfdi4cat.org">NFDI4Cat</a> - NFDI for Catalysis-Related Sciences" (DFG project no. <a href="https://gepris.dfg.de/gepris/projekt/441926934">441926934</a>),
+within the National Research Data Infrastructure (<a href="https://www.nfdi.de">NFDI</a>) programme of the Joint Science Conference (GWK).</p>
 
 
 
@@ -338,6 +385,27 @@ Based on the tags we also create GitHub releases to provide easy access to all v
       </main>
       
         <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../versioning/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Versioning" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Versioning
+            </div>
+          </div>
+        </a>
+      
+      
+    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
