@@ -672,6 +672,10 @@
         {
           "text": "LICENSE",
           "description": "The license of the pid4cat record was changed."
+        },
+        {
+          "text": "SCHEMA_VER",
+          "description": "The pid4cat-model version of the pid4cat record was changed."
         }
       ]
     },
@@ -7886,9 +7890,9 @@
   ],
   "metamodel_version": "1.7.0",
   "source_file": "pid4cat_model.yaml",
-  "source_file_date": "2025-02-18T00:39:06",
-  "source_file_size": 18113,
-  "generation_date": "2025-02-18T00:40:10",
+  "source_file_date": "2025-02-18T12:20:42",
+  "source_file_size": 17675,
+  "generation_date": "2025-02-18T12:27:22",
   "@type": "SchemaDefinition",
   "@context": [
     "project/jsonld/pid4cat_model.context.jsonld",

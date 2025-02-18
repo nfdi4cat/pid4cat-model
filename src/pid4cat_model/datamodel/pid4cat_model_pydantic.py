@@ -2402,6 +2402,8 @@ class ChangeLogField(str, Enum):
     CONTACT = "CONTACT"
     # The license of the pid4cat record was changed.
     LICENSE = "LICENSE"
+    # The pid4cat-model version of the pid4cat record was changed.
+    SCHEMA_VER = "SCHEMA_VER"
 
 
 class HandleDataType(str, Enum):
