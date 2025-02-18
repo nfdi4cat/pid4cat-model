@@ -105,7 +105,8 @@ linkml:Sparqlpath xsd:string
              <https://w3id.org/nfdi4cat/pid4cat-model/ChangeLogField#RESOURCE_INFO>
              <https://w3id.org/nfdi4cat/pid4cat-model/ChangeLogField#RELATED_IDS>
              <https://w3id.org/nfdi4cat/pid4cat-model/ChangeLogField#CONTACT>
-             <https://w3id.org/nfdi4cat/pid4cat-model/ChangeLogField#LICENSE> ] ? ;
+             <https://w3id.org/nfdi4cat/pid4cat-model/ChangeLogField#LICENSE>
+             <https://w3id.org/nfdi4cat/pid4cat-model/ChangeLogField#SCHEMA_VER> ] ? ;
           <description> @linkml:String ?
        ) ;
        rdf:type [ <LogRecord> ] ?

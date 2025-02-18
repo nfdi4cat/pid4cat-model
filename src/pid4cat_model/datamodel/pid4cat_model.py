@@ -1,5 +1,5 @@
 # Auto generated from pid4cat_model.yaml by pythongen.py version: 0.0.1
-# Generation date: 2025-02-18T00:40:14
+# Generation date: 2025-02-18T12:27:31
 # Schema: pid4cat-model
 #
 # id: https://w3id.org/nfdi4cat/pid4cat-model
@@ -602,6 +602,9 @@ class ChangeLogField(EnumDefinitionImpl):
     LICENSE = PermissibleValue(
         text="LICENSE",
         description="The license of the pid4cat record was changed.")
+    SCHEMA_VER = PermissibleValue(
+        text="SCHEMA_VER",
+        description="The pid4cat-model version of the pid4cat record was changed.")
 
     _defn = EnumDefinition(
         name="ChangeLogField",
