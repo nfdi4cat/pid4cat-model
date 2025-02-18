@@ -41,6 +41,11 @@ nav:
   - Versioning: versioning.md
   - About: about.md
 
+# enable version selector for multi-version support
+extra:
+  version:
+    provider: mike
+
 exclude_docs: |
   /templates-linkml/
 
