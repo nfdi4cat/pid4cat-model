@@ -2,302 +2,302 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/</loc>
-         <lastmod>2025-02-17</lastmod>
+         <lastmod>2025-02-18</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/about/</loc>
-         <lastmod>2025-02-17</lastmod>
+         <lastmod>2025-02-18</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/versioning/</loc>
-         <lastmod>2025-02-17</lastmod>
+         <lastmod>2025-02-18</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/elements/</loc>
-         <lastmod>2025-02-17</lastmod>
+         <lastmod>2025-02-18</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/elements/Agent/</loc>
-         <lastmod>2025-02-17</lastmod>
+         <lastmod>2025-02-18</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/elements/Boolean/</loc>
-         <lastmod>2025-02-17</lastmod>
+         <lastmod>2025-02-18</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/elements/ChangeLogField/</loc>
-         <lastmod>2025-02-17</lastmod>
+         <lastmod>2025-02-18</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/elements/Curie/</loc>
-         <lastmod>2025-02-17</lastmod>
+         <lastmod>2025-02-18</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/elements/Date/</loc>
-         <lastmod>2025-02-17</lastmod>
+         <lastmod>2025-02-18</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/elements/DateOrDatetime/</loc>
-         <lastmod>2025-02-17</lastmod>
+         <lastmod>2025-02-18</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/elements/Datetime/</loc>
-         <lastmod>2025-02-17</lastmod>
+         <lastmod>2025-02-18</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/elements/Decimal/</loc>
-         <lastmod>2025-02-17</lastmod>
+         <lastmod>2025-02-18</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/elements/Double/</loc>
-         <lastmod>2025-02-17</lastmod>
+         <lastmod>2025-02-18</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/elements/Float/</loc>
-         <lastmod>2025-02-17</lastmod>
+         <lastmod>2025-02-18</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/elements/HandleAPIRecord/</loc>
-         <lastmod>2025-02-17</lastmod>
+         <lastmod>2025-02-18</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/elements/HandleData/</loc>
-         <lastmod>2025-02-17</lastmod>
+         <lastmod>2025-02-18</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/elements/HandleDataType/</loc>
-         <lastmod>2025-02-17</lastmod>
+         <lastmod>2025-02-18</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/elements/HandleRecord/</loc>
-         <lastmod>2025-02-17</lastmod>
+         <lastmod>2025-02-18</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/elements/HandleRecordContainer/</loc>
-         <lastmod>2025-02-17</lastmod>
+         <lastmod>2025-02-18</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/elements/Integer/</loc>
-         <lastmod>2025-02-17</lastmod>
+         <lastmod>2025-02-18</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/elements/Jsonpath/</loc>
-         <lastmod>2025-02-17</lastmod>
+         <lastmod>2025-02-18</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/elements/Jsonpointer/</loc>
-         <lastmod>2025-02-17</lastmod>
+         <lastmod>2025-02-18</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/elements/LogRecord/</loc>
-         <lastmod>2025-02-17</lastmod>
+         <lastmod>2025-02-18</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/elements/MEDIATypes/</loc>
-         <lastmod>2025-02-17</lastmod>
+         <lastmod>2025-02-18</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/elements/Ncname/</loc>
-         <lastmod>2025-02-17</lastmod>
+         <lastmod>2025-02-18</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/elements/Nodeidentifier/</loc>
-         <lastmod>2025-02-17</lastmod>
+         <lastmod>2025-02-18</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/elements/Objectidentifier/</loc>
-         <lastmod>2025-02-17</lastmod>
+         <lastmod>2025-02-18</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/elements/Pid4CatAgentRole/</loc>
-         <lastmod>2025-02-17</lastmod>
+         <lastmod>2025-02-18</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/elements/Pid4CatRelation/</loc>
-         <lastmod>2025-02-17</lastmod>
+         <lastmod>2025-02-18</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/elements/Pid4CatStatus/</loc>
-         <lastmod>2025-02-17</lastmod>
+         <lastmod>2025-02-18</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/elements/RelationType/</loc>
-         <lastmod>2025-02-17</lastmod>
+         <lastmod>2025-02-18</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/elements/RepresentationVariant/</loc>
-         <lastmod>2025-02-17</lastmod>
+         <lastmod>2025-02-18</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/elements/ResourceCategory/</loc>
-         <lastmod>2025-02-17</lastmod>
+         <lastmod>2025-02-18</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/elements/ResourceInfo/</loc>
-         <lastmod>2025-02-17</lastmod>
+         <lastmod>2025-02-18</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/elements/Sparqlpath/</loc>
-         <lastmod>2025-02-17</lastmod>
+         <lastmod>2025-02-18</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/elements/String/</loc>
-         <lastmod>2025-02-17</lastmod>
+         <lastmod>2025-02-18</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/elements/Time/</loc>
-         <lastmod>2025-02-17</lastmod>
+         <lastmod>2025-02-18</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/elements/Uri/</loc>
-         <lastmod>2025-02-17</lastmod>
+         <lastmod>2025-02-18</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/elements/Uriorcurie/</loc>
-         <lastmod>2025-02-17</lastmod>
+         <lastmod>2025-02-18</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/elements/affiliation_ror/</loc>
-         <lastmod>2025-02-17</lastmod>
+         <lastmod>2025-02-18</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/elements/change_log/</loc>
-         <lastmod>2025-02-17</lastmod>
+         <lastmod>2025-02-18</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/elements/changed_field/</loc>
-         <lastmod>2025-02-17</lastmod>
+         <lastmod>2025-02-18</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/elements/contains_pids/</loc>
-         <lastmod>2025-02-17</lastmod>
+         <lastmod>2025-02-18</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/elements/curation_contact_email/</loc>
-         <lastmod>2025-02-17</lastmod>
+         <lastmod>2025-02-18</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/elements/data/</loc>
-         <lastmod>2025-02-17</lastmod>
+         <lastmod>2025-02-18</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/elements/datetime_log/</loc>
-         <lastmod>2025-02-17</lastmod>
+         <lastmod>2025-02-18</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/elements/description/</loc>
-         <lastmod>2025-02-17</lastmod>
+         <lastmod>2025-02-18</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/elements/email/</loc>
-         <lastmod>2025-02-17</lastmod>
+         <lastmod>2025-02-18</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/elements/encoding_format/</loc>
-         <lastmod>2025-02-17</lastmod>
+         <lastmod>2025-02-18</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/elements/format/</loc>
-         <lastmod>2025-02-17</lastmod>
+         <lastmod>2025-02-18</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/elements/handle/</loc>
-         <lastmod>2025-02-17</lastmod>
+         <lastmod>2025-02-18</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/elements/has_agent/</loc>
-         <lastmod>2025-02-17</lastmod>
+         <lastmod>2025-02-18</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/elements/label/</loc>
-         <lastmod>2025-02-17</lastmod>
+         <lastmod>2025-02-18</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/elements/license/</loc>
-         <lastmod>2025-02-17</lastmod>
+         <lastmod>2025-02-18</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/elements/media_type/</loc>
-         <lastmod>2025-02-17</lastmod>
+         <lastmod>2025-02-18</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/elements/name/</loc>
-         <lastmod>2025-02-17</lastmod>
+         <lastmod>2025-02-18</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/elements/orcid/</loc>
-         <lastmod>2025-02-17</lastmod>
+         <lastmod>2025-02-18</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/elements/pid4cat-model/</loc>
-         <lastmod>2025-02-17</lastmod>
+         <lastmod>2025-02-18</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/elements/pid_schema_version/</loc>
-         <lastmod>2025-02-17</lastmod>
+         <lastmod>2025-02-18</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/elements/related_identifier/</loc>
-         <lastmod>2025-02-17</lastmod>
+         <lastmod>2025-02-18</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/elements/related_identifiers/</loc>
-         <lastmod>2025-02-17</lastmod>
+         <lastmod>2025-02-18</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/elements/relation_type/</loc>
-         <lastmod>2025-02-17</lastmod>
+         <lastmod>2025-02-18</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/elements/representation_variants/</loc>
-         <lastmod>2025-02-17</lastmod>
+         <lastmod>2025-02-18</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/elements/resource_category/</loc>
-         <lastmod>2025-02-17</lastmod>
+         <lastmod>2025-02-18</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/elements/resource_info/</loc>
-         <lastmod>2025-02-17</lastmod>
+         <lastmod>2025-02-18</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/elements/response_code/</loc>
-         <lastmod>2025-02-17</lastmod>
+         <lastmod>2025-02-18</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/elements/role/</loc>
-         <lastmod>2025-02-17</lastmod>
+         <lastmod>2025-02-18</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/elements/size/</loc>
-         <lastmod>2025-02-17</lastmod>
+         <lastmod>2025-02-18</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/elements/status/</loc>
-         <lastmod>2025-02-17</lastmod>
+         <lastmod>2025-02-18</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/elements/timestamp/</loc>
-         <lastmod>2025-02-17</lastmod>
+         <lastmod>2025-02-18</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/elements/ttl/</loc>
-         <lastmod>2025-02-17</lastmod>
+         <lastmod>2025-02-18</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/elements/type/</loc>
-         <lastmod>2025-02-17</lastmod>
+         <lastmod>2025-02-18</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/elements/url/</loc>
-         <lastmod>2025-02-17</lastmod>
+         <lastmod>2025-02-18</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/elements/value/</loc>
-         <lastmod>2025-02-17</lastmod>
+         <lastmod>2025-02-18</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/pid4cat-model/elements/values/</loc>
-         <lastmod>2025-02-17</lastmod>
+         <lastmod>2025-02-18</lastmod>
     </url>
 </urlset>
