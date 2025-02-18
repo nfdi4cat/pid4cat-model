@@ -57,7 +57,8 @@ The code in this repository is distributed under MIT license.
 
 ## Acknowledgement
 
-[linkml-project-cookiecutter](https://github.com/linkml/linkml-project-cookiecutter) provided the base setup for this repository.
+[linkml-project-copier](https://github.com/linkml/linkml-project-cookiecutter) provides the underlying template of the current repository.
+Earlier we used [linkml-project-cookiecutter](https://github.com/linkml/linkml-project-cookiecutter) as template.
 
 This project started as an in-kind contribution of [Leibniz-Institut für Katalyse e.V.](https://www.catalysis.de) (Rostock, Germany) to the NFDI4Cat project.
 
