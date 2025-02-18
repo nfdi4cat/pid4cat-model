@@ -66,7 +66,7 @@ update: _update-template _update-linkml
 [group('project management')]
 clean: _clean_project
     rm -rf tmp
-    rm -rf {{docdir}}/*
+    rm -rf {{docdir}}/*.md
 
 # (Re-)Generate project and documentation locally
 [group('model development')]
