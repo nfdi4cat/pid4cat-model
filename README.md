@@ -22,27 +22,23 @@ This repository contains the **pid4cat model** expressed as a [LinkML](https://l
 
 ## Repository Structure
 
-- [examples/](examples/) - example data & python scripts
-- [project/](project/) - project files (do not edit these)
-- [src/](src/) - source files (edit these)
+- [docs/](docs/) - mkdocs-managed documentation
+  - [elements/](docs/elements/) - generated schema documentation
+- [examples/](examples/) - Examples of using the schema
+- [project/](project/) - project files (these files are auto-generated, do not edit)
+- [src/](src/) - source files
   - [pid4cat_model](src/pid4cat_model)
-    - [schema](src/pid4cat_model/schema) - LinkML schema
+    - [schema](src/pid4cat_model/schema) -- LinkML schema
       (edit this)
-    - [datamodel](src/pid4cat_model/datamodel) - generated
+    - [datamodel](src/pid4cat_model/datamodel) -- generated
       Python datamodel
 - [tests/](tests/) - Python tests
+  - [data/](tests/data) - Example data
 
-## Developer Documentation
+## Developer Tools
 
-Use the `make` command to generate project artefacts:
-
-- `make`: list all commands
-- `make all`: make everything
-- `make deploy`: deploys site
-
-Instead of `make` you may use [just](https://just.systems/man/en/) (especially on Windows where make is not easily available). The `justfile` contains the same commands as the make file. `just` is available for all major platforms and supports many install options. It can even be installed with [pipx](https://pipx.pypa.io/).
-
-- `just`: list all commands
+There are several pre-defined command-recipes available.
+They are written for the command runner [just](https://github.com/casey/just/). To list all pre-defined commands, run `just` or `just --list`.
 
 ## Contributors
 
@@ -57,8 +53,7 @@ The code in this repository is distributed under MIT license.
 
 ## Acknowledgement
 
-[linkml-project-copier](https://github.com/linkml/linkml-project-cookiecutter) provides the underlying template of the current repository.
-Earlier we used [linkml-project-cookiecutter](https://github.com/linkml/linkml-project-cookiecutter) as template.
+The repository uses [linkml-project-copier](https://github.com/linkml/linkml-project-cookiecutter) as underlying project template.
 
 This project started as an in-kind contribution of [Leibniz-Institut für Katalyse e.V.](https://www.catalysis.de) (Rostock, Germany) to the NFDI4Cat project.
 
