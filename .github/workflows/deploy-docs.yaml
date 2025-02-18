@@ -9,8 +9,6 @@ on:  # yamllint disable-line rule:truthy
   pull_request:
     branches:
       - main
-  release:
-    types: [published]
   workflow_dispatch:
 
 permissions: {}
@@ -78,14 +76,8 @@ jobs:
           export SHORT_SHA=$(echo "${GITHUB_SHA}" | cut -c1-7)
           poetry run mike deploy --push --update-aliases --title "dev (${SHORT_SHA})" dev
 
-      - name: Build & deploy docs for a new tag
+      - name: Build & deploy docs for a new version tag
         if: github.ref_type == 'tag' && github.event_name == 'push'
-        run: |
-          poetry run mike deploy --push --update-aliases ${{ github.ref_name }} latest
-          poetry run mike set-default latest --push
-
-      - name: Build & deploy docs for a new release
-        if: github.event_name == 'release'
         run: |
           poetry run mike deploy --push --update-aliases ${{ github.ref_name }} latest
           poetry run mike set-default latest --push
