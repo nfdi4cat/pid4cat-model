@@ -222,7 +222,7 @@ slots:
     multivalued: true
     description: Change log of pid4cat record.
 
-  # Slots for PID4CatRelation
+  # Slots for Pid4CatRelation
   relation_type:
     range: RelationType
     description: Relation type between the resources.
@@ -515,6 +515,8 @@ enums:
         description: The contact information of the pid4cat record was changed.
       LICENSE:
         description: The license of the pid4cat record was changed.
+      SCHEMA_VER:
+        description: The pid4cat-model version of the pid4cat record was changed.
 
   HandleDataType:
     description: >-
