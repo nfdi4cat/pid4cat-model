@@ -21,6 +21,10 @@ plugins:
       version: 11.4.1
       # Optionally provide a local copy of mermaid.js (path relative to docs/)
       # javascript: local-js-pkgs/mermaid.min.js
+  - mike:
+    # Multi-version support, https://github.com/jimporter/mike
+    canonical_version: "latest"
+    version_selector: true
 
   # TODO rebuild docs on schema change see
   # https://github.com/dalito/linkml-project-copier/issues/39
