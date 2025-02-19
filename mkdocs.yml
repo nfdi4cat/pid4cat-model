@@ -45,7 +45,8 @@ nav:
 extra:
   version:
     provider: mike
-  alias: true
+    alias: true
+    default: stable
 
 exclude_docs: |
   /templates-linkml/
