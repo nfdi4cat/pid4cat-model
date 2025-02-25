@@ -14,7 +14,7 @@ description: >-
   what is identified by the pid4cat handle, e.g. a sample or a device.
 
 todos:
-  - Refine slots in slot_usage of class instead of globally in slot definitions
+  - Set required attribute where needed.
 
 license: MIT
 see_also:
@@ -136,6 +136,90 @@ classes:
       - encoding_format
       - size
 
+  RelatedIdentifier:
+    description: >-
+      A related resolvable identifier.
+    slots:
+      - identifier_type
+
+  IdentifierType:
+    description: >-
+      A class for all identifier types.
+    attributes:
+      type:
+        designates_type: true
+
+  PurlIdentifier:
+    is_a: IdentifierType
+    description: >-
+      A PURL (permanent uniform resource locator).
+    slots:
+      - resolving_url
+    slot_usage:
+      resolving_url:
+        pattern: '^https:\/\/(purl|pida|w3id)\.org\/.*$'
+
+  DoiIdentifier:
+    is_a: IdentifierType
+    description: >-
+      A digital object identifier (DOI).
+    slots:
+      - resolving_url
+      - identifier
+    slot_usage:
+      identifier:
+        pattern: '^doi:10\.\d{4,}\/.*$'
+      resolving_url:
+        pattern: '^https:\/\/doi\.org\/10.*$'
+
+  HandleIdentifier:
+    is_a: IdentifierType
+    description: >-
+      A handle identifier.
+    slots:
+      - resolving_url
+      - identifier
+    slot_usage:
+      identifier:
+        pattern: '^(hdl|handle):\d{2}\.\d{4,}\/.*$'
+      resolving_url:
+        pattern: '^https:\/\/hdl\.handle\.net\/\d{2}\.\d{4,}\/.*$'
+
+  ArkIdentifier:
+    is_a: IdentifierType
+    description: >-
+      An ARK (Archival Resource Key).
+    slots:
+      - identifier
+      - resolving_url
+    slot_usage:
+      identifier:
+        pattern: '^ark:\/\d{5}/.*$'
+      resolving_url:
+        pattern: '^https?:\/\/.*\/ark:\/\d{5}/.*$'
+
+  UrnIdentifier:
+    is_a: IdentifierType
+    description: >-
+      A URN (Uniform Resource Name).
+    slots:
+      - identifier
+    slot_usage:
+      identifier:
+        pattern: '^urn:[a-zA-Z0-9][a-zA-Z0-9-]{0,31}:[^\s]*$'
+
+  GtinIdentifier:
+    is_a: IdentifierType
+    description: >-
+      A  Global Trade Item Number (GTIN) previously called European Article
+      Number (EAN) often encoded as EAN13 barcode. The identifier is used to
+      identify products. GTINs don't have a resolvable URL.
+    slots:
+      - identifier
+    slot_usage:
+      identifier:
+        pattern: '^\d{13}$'
+
 slots:
 
   # Slots for HandleAPIRecord
@@ -183,17 +267,6 @@ slots:
       - range: Pid4CatRelation
       - range: LogRecord
 
-  # Slots for pid4cat record -- TODO: Remove obsolete slots
-  # id:
-  #   identifier: true
-  #   slot_uri: schema:identifier
-  #   range: uriorcurie
-  #   description: A unique identifier for a thing.
-  # landing_page_url:
-  #   rank: 10
-  #   slot_uri: schema:url
-  #   range: uri
-  #   description: The URL of the landing page for the resource.
   status:
     range: Pid4CatStatus
     description: >-
@@ -227,8 +300,8 @@ slots:
     range: RelationType
     description: Relation type between the resources.
   related_identifier:
-    range: uri
-    description: Related identifiers for the resource.
+    range: IdentifierType
+    description: The related identifier.
   datetime_log:
     range: datetime
     description: The date and time of a log record.
@@ -293,6 +366,19 @@ slots:
   url:
     range: uri
     description: The URL of the representation.
+
+  # Slots for RelatedIdentifier
+  identifier_type:
+    range: IdentifierType
+    description: The type of the related identifier.
+
+  resolving_url:
+    range: uri
+    description: The URL that resolves the identifier.
+
+  identifier:
+    range: string
+    description: The identifier in recommended notation.
 
 enums:
   # Enumerations use singular form for names
@@ -403,14 +489,16 @@ enums:
       HAS_PART:
         description: The resource has part another resource.
         meaning: voc4cat:0005032
-        close_mappings: dcterms:hasPart
+        close_mappings:
+          - dcterms:hasPart
       IS_PUBLISHED_IN:
         description: The resource is published in another resource.
         meaning: voc4cat:0005033
       IS_REFERENCED_BY:
         description: The resource is referenced by another resource.
         meaning: voc4cat:0005034
-        close_mappings: dcterms:isReferencedBy
+        close_mappings:
+          - dcterms:isReferencedBy
       REFERENCES:
         description: The resource references another resource.
         meaning: voc4cat:0005035
@@ -450,11 +538,13 @@ enums:
       IS_REQUIRED_BY:
         description: The resource is required by another resource.
         meaning: voc4cat:0005047
-        close_mappings: dcterms:isRequiredBy
+        close_mappings:
+          - dcterms:isRequiredBy
       REQUIRES:
         description: The resource requires another resource.
         meaning: voc4cat:0005048
-        close_mappings: dcterms:requires
+        close_mappings:
+          - dcterms:requires
       IS_OBSOLETED_BY:
         description: >-
           The resource is obsoleted by another resource.
