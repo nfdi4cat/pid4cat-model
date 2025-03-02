@@ -50,7 +50,14 @@ mknotebooks = ">= 0.8.0"
 
 # Ref.: https://github.com/codespell-project/codespell
 [tool.codespell]
-skip = "LICENSE,pyproject.toml,poetry.lock"
+skip = [
+  "LICENSE",
+  "pyproject.toml",
+  "poetry.lock",
+  "project/*",
+  "src/pid4cat_model/datamodel/pid4cat_model_pydantic.py",
+  "src/pid4cat_model/datamodel/pid4cat_model.py",
+]
 
 # Reminder: words have to be lowercased for the ignore-words-list
 ignore-words-list = "linke"
@@ -64,4 +71,7 @@ extend-exclude = [
   "LICENSE",
   "pyproject.toml",
   "poetry.lock",
+  "project/*",
+  "src/pid4cat_model/datamodel/pid4cat_model_pydantic.py",
+  "src/pid4cat_model/datamodel/pid4cat_model.py",
 ]
