@@ -42,15 +42,14 @@ contains_pids:
         data:
           format: string
           value:
-            - resource_info:
-                label: Resource label
-                description: Resource description
-                resource_category: SAMPLE
-                representation_variants:
-                  - url: https://example.org/resource
-                    media_type: text/turtle
-                    encoding_format: UTF-8
-                    size: 12345
+            - label: Resource label
+              description: Resource description
+              resource_category: SAMPLE
+              representation_variants:
+                - url: https://example.org/resource
+                  media_type: text/turtle
+                  encoding_format: UTF-8
+                  size: 12345
         ttl: 86400
         timestamp: '2024-05-15T15:51:15Z'
       - index: 7
@@ -58,13 +57,18 @@ contains_pids:
         data:
           format: string
           value:
-            - related_identifiers:
-                - relation_type: IS_PART_OF
-                  related_identifier: https://example.org/collection
-                  datetime_log: '2024-02-19T00:00:00Z'
-                - relation_type: IS_REFERENCED_BY
-                  related_identifier: https://example.org/referenced
-                  datetime_log: '2024-02-19T00:00:00Z'
+            - relation_type: IS_PART_OF
+              related_identifier:
+                type: DoiIdentifier
+                identifier: 'doi:10.5281/zenodo.8313340'
+                resolving_url: https://doi.org/10.5281/zenodo.8313340
+              datetime_log: '2024-02-19T00:00:00Z'
+            - relation_type: IS_REFERENCED_BY
+              related_identifier:
+                type: ExampleIdentifier
+                identifier: ex:ref123
+                resolving_url: https://example.org/ref123
+              datetime_log: '2024-02-19T00:00:00Z'
         ttl: 86400
         timestamp: '2024-05-15T15:51:15Z'
       - index: 8
@@ -72,15 +76,14 @@ contains_pids:
         data:
           format: string
           value:
-            - change_log:
-                - datetime_log: '2024-02-19T00:00:00Z'
-                  has_agent:
-                    name: Data Fuzzi
-                    email: datafuzzi@example.org
-                    orcid: 0000-0000-0000-0000
-                    affiliation_ror: https://ror.org/029hg0311
-                    role: TRUSTEE
-                  changed_field: STATUS
-                  description: 'as requested in issue #123'
+            - datetime_log: '2024-02-19T00:00:00Z'
+              has_agent:
+                name: Data Fuzzi
+                email: datafuzzi@example.org
+                orcid: 0000-0000-0000-0000
+                affiliation_ror: https://ror.org/029hg0311
+                role: TRUSTEE
+              changed_field: STATUS
+              description: 'as requested in issue #123'
         ttl: 86400
         timestamp: '2024-05-15T15:51:15Z'
