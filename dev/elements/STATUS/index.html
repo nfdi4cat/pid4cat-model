@@ -5,10 +5,10 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<link href="https://nfdi4cat.github.io/pid4cat-model/latest/elements/Pid4CatRelation/" rel="canonical"/>
+<link href="https://nfdi4cat.github.io/pid4cat-model/latest/elements/STATUS/" rel="canonical"/>
 <link href="../../images/favicon.svg" rel="icon"/>
 <meta content="mkdocs-1.6.1, mkdocs-material-8.5.10" name="generator"/>
-<title>Class: Pid4CatRelation - pid4cat-model</title>
+<title>Class: STATUS - pid4cat-model</title>
 <link href="../../assets/stylesheets/main.975780f9.min.css" rel="stylesheet"/>
 <link href="../../assets/stylesheets/palette.2505c338.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -24,7 +24,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#class-pid4catrelation">
+<a class="md-skip" href="#class-status">
           Skip to content
         </a>
 </div>
@@ -50,7 +50,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              Class: Pid4CatRelation
+              Class: STATUS
             
           </span>
 </div>
@@ -157,13 +157,13 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#slots">
-    Slots
+<a class="md-nav__link" href="#inheritance">
+    Inheritance
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#usages">
-    Usages
+<a class="md-nav__link" href="#slots">
+    Slots
   </a>
 </li>
 <li class="md-nav__item">
@@ -211,38 +211,44 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<a class="md-content__button md-icon" href="https://github.com/nfdi4cat/pid4cat-model/edit/master/docs/elements/Pid4CatRelation.md" title="Edit this page">
+<a class="md-content__button md-icon" href="https://github.com/nfdi4cat/pid4cat-model/edit/master/docs/elements/STATUS.md" title="Edit this page">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"></path></svg>
 </a>
-<h1 id="class-pid4catrelation">Class: Pid4CatRelation</h1>
-<p><em>A relation between pid4cat handles or between a pid4cat handle and other resources identified by a PID.</em></p>
-<p>URI: <a href="https://w3id.org/nfdi4cat/pid4cat-model/Pid4CatRelation">pid4cat_model:Pid4CatRelation</a></p>
+<h1 id="class-status">Class: STATUS</h1>
+<p><em>A data element in the handle API.</em></p>
+<p>URI: <a href="https://w3id.org/nfdi4cat/pid4cat-model/STATUS">pid4cat_model:STATUS</a></p>
 <div class="mermaid"> classDiagram
-    class Pid4CatRelation
-    click Pid4CatRelation href "../Pid4CatRelation"
-      Pid4CatRelation : datetime_log
+    class STATUS
+    click STATUS href "../STATUS"
+      HandleRecord &lt;|-- STATUS
+        click HandleRecord href "../HandleRecord"
 
-      Pid4CatRelation : related_identifier
-
-
-
-
-    Pid4CatRelation --&gt; "0..1" RelatedIdentifier : related_identifier
-    click RelatedIdentifier href "../RelatedIdentifier"
-
-
-      Pid4CatRelation : relation_type
+      STATUS : data
 
 
 
 
-    Pid4CatRelation --&gt; "0..1" RelationType : relation_type
-    click RelationType href "../RelationType"
+    STATUS --&gt; "0..1" HdlDataStatus : data
+    click HdlDataStatus href "../HdlDataStatus"
 
+
+      STATUS : index
+
+      STATUS : timestamp
+
+      STATUS : ttl
+
+      STATUS : type
 
 
 </div>
-<!-- no inheritance hierarchy -->
+<h2 id="inheritance">Inheritance</h2>
+<ul>
+<li><a href="../HandleRecord/">HandleRecord</a><ul>
+<li><strong>STATUS</strong></li>
+</ul>
+</li>
+</ul>
 <h2 id="slots">Slots</h2>
 <table>
 <thead>
@@ -255,41 +261,34 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../relation_type/">relation_type</a></td>
-<td>0..1 <br/> <a href="../RelationType/">RelationType</a></td>
-<td>Relation type between the resources</td>
+<td><a href="../">index</a></td>
+<td>0..1 <br/> <a href="../Integer/">Integer</a></td>
+<td>The index of the handle record</td>
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../related_identifier/">related_identifier</a></td>
-<td>0..1 <br/> <a href="../RelatedIdentifier/">RelatedIdentifier</a></td>
-<td>The related identifier</td>
+<td><a href="../data/">data</a></td>
+<td>0..1 <br/> <a href="../HdlDataStatus/">HdlDataStatus</a></td>
+<td>The data in the handle record</td>
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../datetime_log/">datetime_log</a></td>
+<td><a href="../ttl/">ttl</a></td>
+<td>0..1 <br/> <a href="../Integer/">Integer</a></td>
+<td>A time to live in seconds for the handle record</td>
+<td><a href="../HandleRecord/">HandleRecord</a></td>
+</tr>
+<tr>
+<td><a href="../timestamp/">timestamp</a></td>
 <td>0..1 <br/> <a href="../Datetime/">Datetime</a></td>
-<td>The date and time of a log record</td>
-<td>direct</td>
+<td>The iso datetime for the last update of the handle data</td>
+<td><a href="../HandleRecord/">HandleRecord</a></td>
 </tr>
-</tbody>
-</table>
-<h2 id="usages">Usages</h2>
-<table>
-<thead>
 <tr>
-<th>used by</th>
-<th>used in</th>
-<th>type</th>
-<th>used</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="../HdlDataRelated/">HdlDataRelated</a></td>
-<td><a href="../value/">value</a></td>
-<td>range</td>
-<td><a href="./">Pid4CatRelation</a></td>
+<td><a href="../type/">type</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>The type of handledata stored in the handle record</td>
+<td><a href="../HandleRecord/">HandleRecord</a></td>
 </tr>
 </tbody>
 </table>
@@ -309,11 +308,11 @@
 <tbody>
 <tr>
 <td>self</td>
-<td>pid4cat_model:Pid4CatRelation</td>
+<td>pid4cat_model:STATUS</td>
 </tr>
 <tr>
 <td>native</td>
-<td>pid4cat_model:Pid4CatRelation</td>
+<td>pid4cat_model:STATUS</td>
 </tr>
 </tbody>
 </table>
@@ -321,55 +320,112 @@
 <!-- TODO: investigate https://stackoverflow.com/questions/37606292/how-to-create-tabbed-code-blocks-in-mkdocs-or-sphinx -->
 <h3 id="direct">Direct</h3>
 <details>
-<pre><code class="language-yaml">name: Pid4CatRelation
-description: A relation between pid4cat handles or between a pid4cat handle and other
-  resources identified by a PID.
+<pre><code class="language-yaml">name: STATUS
+description: A data element in the handle API.
 from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+is_a: HandleRecord
 slots:
-- relation_type
-- related_identifier
-- datetime_log
+- index
+- data
+slot_usage:
+  index:
+    name: index
+    minimum_value: 2
+    maximum_value: 2
+  data:
+    name: data
+    range: HdlDataStatus
 
 </code></pre>
 </details>
 <h3 id="induced">Induced</h3>
 <details>
-<pre><code class="language-yaml">name: Pid4CatRelation
-description: A relation between pid4cat handles or between a pid4cat handle and other
-  resources identified by a PID.
+<pre><code class="language-yaml">name: STATUS
+description: A data element in the handle API.
 from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+is_a: HandleRecord
+slot_usage:
+  index:
+    name: index
+    minimum_value: 2
+    maximum_value: 2
+  data:
+    name: data
+    range: HdlDataStatus
 attributes:
-  relation_type:
-    name: relation_type
-    description: Relation type between the resources.
+  index:
+    name: index
+    description: The index of the handle record.
     from_schema: https://w3id.org/nfdi4cat/pid4cat-model
     rank: 1000
-    alias: relation_type
-    owner: Pid4CatRelation
+    alias: index
+    owner: STATUS
     domain_of:
-    - Pid4CatRelation
-    range: RelationType
-  related_identifier:
-    name: related_identifier
-    description: The related identifier.
+    - URL
+    - STATUS
+    - SCHEMA_VER
+    - LICENSE
+    - EMAIL
+    - RESOURCE_INFO
+    - RELATED
+    - LOG
+    range: integer
+    minimum_value: 2
+    maximum_value: 2
+  data:
+    name: data
+    description: The data in the handle record.
     from_schema: https://w3id.org/nfdi4cat/pid4cat-model
     rank: 1000
-    alias: related_identifier
-    owner: Pid4CatRelation
+    alias: data
+    owner: STATUS
     domain_of:
-    - Pid4CatRelation
-    range: RelatedIdentifier
-  datetime_log:
-    name: datetime_log
-    description: The date and time of a log record.
+    - URL
+    - STATUS
+    - SCHEMA_VER
+    - LICENSE
+    - EMAIL
+    - RESOURCE_INFO
+    - RELATED
+    - LOG
+    range: HdlDataStatus
+  ttl:
+    name: ttl
+    description: 'A time to live in seconds for the handle record. Typically: 86400
+      =&gt; 1 day
+
+      TODO: Research details of ttl meaning for handle API.
+
+      '
     from_schema: https://w3id.org/nfdi4cat/pid4cat-model
     rank: 1000
-    alias: datetime_log
-    owner: Pid4CatRelation
+    alias: ttl
+    owner: STATUS
     domain_of:
-    - Pid4CatRelation
-    - LogRecord
+    - HandleRecord
+    range: integer
+  timestamp:
+    name: timestamp
+    description: The iso datetime for the last update of the handle data.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    rank: 1000
+    alias: timestamp
+    owner: STATUS
+    domain_of:
+    - HandleRecord
     range: datetime
+  type:
+    name: type
+    description: The type of handledata stored in the handle record.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    rank: 1000
+    designates_type: true
+    alias: type
+    owner: STATUS
+    domain_of:
+    - HandleRecord
+    - RelatedIdentifier
+    range: string
 
 </code></pre>
 </details>

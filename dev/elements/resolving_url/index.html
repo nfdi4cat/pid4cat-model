@@ -8,14 +8,14 @@
       
       
       
-        <link rel="canonical" href="https://nfdi4cat.github.io/pid4cat-model/latest/elements/HandleDataType/">
+        <link rel="canonical" href="https://nfdi4cat.github.io/pid4cat-model/latest/elements/resolving_url/">
       
       <link rel="icon" href="../../images/favicon.svg">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-8.5.10">
     
     
       
-        <title>Enum: HandleDataType - pid4cat-model</title>
+        <title>Slot: resolving_url - pid4cat-model</title>
       
     
     
@@ -70,7 +70,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#enum-handledatatype" class="md-skip">
+        <a href="#slot-resolving_url" class="md-skip">
           Skip to content
         </a>
       
@@ -106,7 +106,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Enum: HandleDataType
+              Slot: resolving_url
             
           </span>
         </div>
@@ -294,15 +294,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#permissible-values" class="md-nav__link">
-    Permissible Values
+  <a href="#applicable-classes" class="md-nav__link">
+    Applicable Classes
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#slots" class="md-nav__link">
-    Slots
+  <a href="#properties" class="md-nav__link">
+    Properties
   </a>
   
 </li>
@@ -328,6 +328,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#mappings" class="md-nav__link">
+    Mappings
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#linkml-source" class="md-nav__link">
     LinkML Source
   </a>
@@ -348,119 +355,97 @@
                 
                   
 
-  <a href="https://github.com/nfdi4cat/pid4cat-model/edit/master/docs/elements/HandleDataType.md" title="Edit this page" class="md-content__button md-icon">
+  <a href="https://github.com/nfdi4cat/pid4cat-model/edit/master/docs/elements/resolving_url.md" title="Edit this page" class="md-content__button md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
   </a>
 
 
-<h1 id="enum-handledatatype">Enum: HandleDataType</h1>
-<p><em>The type of the handle record element.</em></p>
-<p>URI: <a href="./">HandleDataType</a></p>
-<h2 id="permissible-values">Permissible Values</h2>
-<table>
-<thead>
-<tr>
-<th>Value</th>
-<th>Meaning</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>URL</td>
-<td>None</td>
-<td>The handle record element is of type URL</td>
-</tr>
-<tr>
-<td>STATUS</td>
-<td>None</td>
-<td>The handle record element is of custom type STATUS</td>
-</tr>
-<tr>
-<td>SCHEMA_VER</td>
-<td>None</td>
-<td>The handle record element is of type SCHEMA_VER</td>
-</tr>
-<tr>
-<td>LICENSE</td>
-<td>None</td>
-<td>The handle record element is of type LICENSE</td>
-</tr>
-<tr>
-<td>EMAIL</td>
-<td>None</td>
-<td>The handle record element is of type EMAIL</td>
-</tr>
-<tr>
-<td>RESOURCE_INFO</td>
-<td>None</td>
-<td>The handle record element is of custom type JSON</td>
-</tr>
-<tr>
-<td>RELATED</td>
-<td>None</td>
-<td>The handle record element is of custom type JSON</td>
-</tr>
-<tr>
-<td>LOG</td>
-<td>None</td>
-<td>The handle record element is of custom type JSON</td>
-</tr>
-</tbody>
-</table>
-<h2 id="slots">Slots</h2>
+<h1 id="slot-resolving_url">Slot: resolving_url</h1>
+<p><em>The URL that resolves the identifier.</em></p>
+<p>URI: <a href="https://w3id.org/nfdi4cat/pid4cat-model/resolving_url">pid4cat_model:resolving_url</a></p>
+<!-- no inheritance hierarchy -->
+
+<h2 id="applicable-classes">Applicable Classes</h2>
 <table>
 <thead>
 <tr>
 <th>Name</th>
 <th>Description</th>
+<th>Modifies Slot</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><a href="../type/">type</a></td>
-<td>The type of the handle record</td>
+<td><a href="../HandleIdentifier/">HandleIdentifier</a></td>
+<td>A handle identifier</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a href="../ArkIdentifier/">ArkIdentifier</a></td>
+<td>An ARK (Archival Resource Key)</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a href="../PurlIdentifier/">PurlIdentifier</a></td>
+<td>A PURL (permanent uniform resource locator)</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a href="../DoiIdentifier/">DoiIdentifier</a></td>
+<td>A digital object identifier (DOI)</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a href="../ExampleIdentifier/">ExampleIdentifier</a></td>
+<td>An example</td>
+<td>yes</td>
 </tr>
 </tbody>
 </table>
+<h2 id="properties">Properties</h2>
+<ul>
+<li>Range: <a href="../Uri/">Uri</a></li>
+</ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
 <ul>
 <li>from schema: https://w3id.org/nfdi4cat/pid4cat-model</li>
 </ul>
+<h2 id="mappings">Mappings</h2>
+<table>
+<thead>
+<tr>
+<th>Mapping Type</th>
+<th>Mapped Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>self</td>
+<td>pid4cat_model:resolving_url</td>
+</tr>
+<tr>
+<td>native</td>
+<td>pid4cat_model:resolving_url</td>
+</tr>
+</tbody>
+</table>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 
-<pre><code class="language-yaml">name: HandleDataType
-description: The type of the handle record element.
+<pre><code class="language-yaml">name: resolving_url
+description: The URL that resolves the identifier.
 from_schema: https://w3id.org/nfdi4cat/pid4cat-model
 rank: 1000
-permissible_values:
-  URL:
-    text: URL
-    description: The handle record element is of type URL.
-  STATUS:
-    text: STATUS
-    description: The handle record element is of custom type STATUS.
-  SCHEMA_VER:
-    text: SCHEMA_VER
-    description: The handle record element is of type SCHEMA_VER.
-  LICENSE:
-    text: LICENSE
-    description: The handle record element is of type LICENSE.
-  EMAIL:
-    text: EMAIL
-    description: The handle record element is of type EMAIL.
-  RESOURCE_INFO:
-    text: RESOURCE_INFO
-    description: The handle record element is of custom type JSON.
-  RELATED:
-    text: RELATED
-    description: The handle record element is of custom type JSON.
-  LOG:
-    text: LOG
-    description: The handle record element is of custom type JSON.
+alias: resolving_url
+domain_of:
+- PurlIdentifier
+- DoiIdentifier
+- HandleIdentifier
+- ArkIdentifier
+- ExampleIdentifier
+range: uri
 
 </code></pre>
 

@@ -222,7 +222,7 @@
     click HandleAPIRecord href "../HandleAPIRecord"
       HandleAPIRecord : handle
 
-      HandleAPIRecord : response_code
+      HandleAPIRecord : responseCode
 
       HandleAPIRecord : values
 
@@ -248,14 +248,14 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../response_code/">response_code</a></td>
+<td><a href="../responseCode/">responseCode</a></td>
 <td>0..1 <br/> <a href="../Integer/">Integer</a></td>
 <td>The response code of the handle API</td>
 <td>direct</td>
 </tr>
 <tr>
 <td><a href="../handle/">handle</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
 <td>The handle of the pid4cat record</td>
 <td>direct</td>
 </tr>
@@ -319,7 +319,7 @@ description: A class representing a handle record query response of the REST (js
   API of a handle server.
 from_schema: https://w3id.org/nfdi4cat/pid4cat-model
 slots:
-- response_code
+- responseCode
 - handle
 - values
 
@@ -332,8 +332,8 @@ description: A class representing a handle record query response of the REST (js
   API of a handle server.
 from_schema: https://w3id.org/nfdi4cat/pid4cat-model
 attributes:
-  response_code:
-    name: response_code
+  responseCode:
+    name: responseCode
     description: The response code of the handle API.
     from_schema: https://w3id.org/nfdi4cat/pid4cat-model
     rank: 1000
@@ -347,6 +347,7 @@ attributes:
     description: The handle of the pid4cat record.
     from_schema: https://w3id.org/nfdi4cat/pid4cat-model
     rank: 1000
+    identifier: true
     alias: handle
     owner: HandleAPIRecord
     domain_of:

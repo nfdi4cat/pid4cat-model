@@ -5,10 +5,10 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<link href="https://nfdi4cat.github.io/pid4cat-model/latest/elements/Pid4CatRelation/" rel="canonical"/>
+<link href="https://nfdi4cat.github.io/pid4cat-model/latest/elements/HdlDataContact/" rel="canonical"/>
 <link href="../../images/favicon.svg" rel="icon"/>
 <meta content="mkdocs-1.6.1, mkdocs-material-8.5.10" name="generator"/>
-<title>Class: Pid4CatRelation - pid4cat-model</title>
+<title>Class: HdlDataContact - pid4cat-model</title>
 <link href="../../assets/stylesheets/main.975780f9.min.css" rel="stylesheet"/>
 <link href="../../assets/stylesheets/palette.2505c338.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -24,7 +24,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#class-pid4catrelation">
+<a class="md-skip" href="#class-hdldatacontact">
           Skip to content
         </a>
 </div>
@@ -50,7 +50,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              Class: Pid4CatRelation
+              Class: HdlDataContact
             
           </span>
 </div>
@@ -211,34 +211,18 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<a class="md-content__button md-icon" href="https://github.com/nfdi4cat/pid4cat-model/edit/master/docs/elements/Pid4CatRelation.md" title="Edit this page">
+<a class="md-content__button md-icon" href="https://github.com/nfdi4cat/pid4cat-model/edit/master/docs/elements/HdlDataContact.md" title="Edit this page">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"></path></svg>
 </a>
-<h1 id="class-pid4catrelation">Class: Pid4CatRelation</h1>
-<p><em>A relation between pid4cat handles or between a pid4cat handle and other resources identified by a PID.</em></p>
-<p>URI: <a href="https://w3id.org/nfdi4cat/pid4cat-model/Pid4CatRelation">pid4cat_model:Pid4CatRelation</a></p>
+<h1 id="class-hdldatacontact">Class: HdlDataContact</h1>
+<p><em>The data element in the handle API for the contact email.</em></p>
+<p>URI: <a href="https://w3id.org/nfdi4cat/pid4cat-model/HdlDataContact">pid4cat_model:HdlDataContact</a></p>
 <div class="mermaid"> classDiagram
-    class Pid4CatRelation
-    click Pid4CatRelation href "../Pid4CatRelation"
-      Pid4CatRelation : datetime_log
+    class HdlDataContact
+    click HdlDataContact href "../HdlDataContact"
+      HdlDataContact : format
 
-      Pid4CatRelation : related_identifier
-
-
-
-
-    Pid4CatRelation --&gt; "0..1" RelatedIdentifier : related_identifier
-    click RelatedIdentifier href "../RelatedIdentifier"
-
-
-      Pid4CatRelation : relation_type
-
-
-
-
-    Pid4CatRelation --&gt; "0..1" RelationType : relation_type
-    click RelationType href "../RelationType"
-
+      HdlDataContact : value
 
 
 </div>
@@ -255,21 +239,15 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../relation_type/">relation_type</a></td>
-<td>0..1 <br/> <a href="../RelationType/">RelationType</a></td>
-<td>Relation type between the resources</td>
+<td><a href="../format/">format</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>The format of the handle data</td>
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../related_identifier/">related_identifier</a></td>
-<td>0..1 <br/> <a href="../RelatedIdentifier/">RelatedIdentifier</a></td>
-<td>The related identifier</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../datetime_log/">datetime_log</a></td>
-<td>0..1 <br/> <a href="../Datetime/">Datetime</a></td>
-<td>The date and time of a log record</td>
+<td><a href="../value/">value</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>The value of the handle data</td>
 <td>direct</td>
 </tr>
 </tbody>
@@ -286,10 +264,10 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../HdlDataRelated/">HdlDataRelated</a></td>
-<td><a href="../value/">value</a></td>
+<td><a href="../EMAIL/">EMAIL</a></td>
+<td><a href="../data/">data</a></td>
 <td>range</td>
-<td><a href="./">Pid4CatRelation</a></td>
+<td><a href="./">HdlDataContact</a></td>
 </tr>
 </tbody>
 </table>
@@ -309,11 +287,11 @@
 <tbody>
 <tr>
 <td>self</td>
-<td>pid4cat_model:Pid4CatRelation</td>
+<td>pid4cat_model:HdlDataContact</td>
 </tr>
 <tr>
 <td>native</td>
-<td>pid4cat_model:Pid4CatRelation</td>
+<td>pid4cat_model:HdlDataContact</td>
 </tr>
 </tbody>
 </table>
@@ -321,55 +299,71 @@
 <!-- TODO: investigate https://stackoverflow.com/questions/37606292/how-to-create-tabbed-code-blocks-in-mkdocs-or-sphinx -->
 <h3 id="direct">Direct</h3>
 <details>
-<pre><code class="language-yaml">name: Pid4CatRelation
-description: A relation between pid4cat handles or between a pid4cat handle and other
-  resources identified by a PID.
+<pre><code class="language-yaml">name: HdlDataContact
+description: The data element in the handle API for the contact email.
 from_schema: https://w3id.org/nfdi4cat/pid4cat-model
 slots:
-- relation_type
-- related_identifier
-- datetime_log
+- format
+- value
+slot_usage:
+  format:
+    name: format
+    equals_string: string
+  value:
+    name: value
+    pattern: ^\S+@[\S+\.]+\S+
 
 </code></pre>
 </details>
 <h3 id="induced">Induced</h3>
 <details>
-<pre><code class="language-yaml">name: Pid4CatRelation
-description: A relation between pid4cat handles or between a pid4cat handle and other
-  resources identified by a PID.
+<pre><code class="language-yaml">name: HdlDataContact
+description: The data element in the handle API for the contact email.
 from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+slot_usage:
+  format:
+    name: format
+    equals_string: string
+  value:
+    name: value
+    pattern: ^\S+@[\S+\.]+\S+
 attributes:
-  relation_type:
-    name: relation_type
-    description: Relation type between the resources.
+  format:
+    name: format
+    description: The format of the handle data.
     from_schema: https://w3id.org/nfdi4cat/pid4cat-model
     rank: 1000
-    alias: relation_type
-    owner: Pid4CatRelation
+    alias: format
+    owner: HdlDataContact
     domain_of:
-    - Pid4CatRelation
-    range: RelationType
-  related_identifier:
-    name: related_identifier
-    description: The related identifier.
+    - HdlDataUrl
+    - HdlDataStatus
+    - HdlDataSchemaVer
+    - HdlDataLicense
+    - HdlDataContact
+    - HdlDataResourceInfo
+    - HdlDataRelated
+    - HdlDataLog
+    range: string
+    equals_string: string
+  value:
+    name: value
+    description: The value of the handle data.
     from_schema: https://w3id.org/nfdi4cat/pid4cat-model
     rank: 1000
-    alias: related_identifier
-    owner: Pid4CatRelation
+    alias: value
+    owner: HdlDataContact
     domain_of:
-    - Pid4CatRelation
-    range: RelatedIdentifier
-  datetime_log:
-    name: datetime_log
-    description: The date and time of a log record.
-    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
-    rank: 1000
-    alias: datetime_log
-    owner: Pid4CatRelation
-    domain_of:
-    - Pid4CatRelation
-    - LogRecord
-    range: datetime
+    - HdlDataUrl
+    - HdlDataStatus
+    - HdlDataSchemaVer
+    - HdlDataLicense
+    - HdlDataContact
+    - HdlDataResourceInfo
+    - HdlDataRelated
+    - HdlDataLog
+    range: string
+    pattern: ^\S+@[\S+\.]+\S+
 
 </code></pre>
 </details>

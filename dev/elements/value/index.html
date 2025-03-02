@@ -377,15 +377,50 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../HandleData/">HandleData</a></td>
-<td>A data element in the handle API</td>
-<td>no</td>
+<td><a href="../HdlDataStatus/">HdlDataStatus</a></td>
+<td>The data element in the handle API for the status</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a href="../HdlDataLicense/">HdlDataLicense</a></td>
+<td>The data element in the handle API for the license</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a href="../HdlDataSchemaVer/">HdlDataSchemaVer</a></td>
+<td>The data element in the handle API for the schema version</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a href="../HdlDataResourceInfo/">HdlDataResourceInfo</a></td>
+<td>The data element in the handle API for the resource info</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a href="../HdlDataUrl/">HdlDataUrl</a></td>
+<td>The data element in the handle API for the redirect url</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a href="../HdlDataContact/">HdlDataContact</a></td>
+<td>The data element in the handle API for the contact email</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a href="../HdlDataLog/">HdlDataLog</a></td>
+<td>The data element in the handle API for the change log</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a href="../HdlDataRelated/">HdlDataRelated</a></td>
+<td>The data element in the handle API for related identifiers</td>
+<td>yes</td>
 </tr>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
 <ul>
-<li>Range: <a href="../String/">String</a>&nbsp;or&nbsp;<br /><a href="../Pid4CatStatus/">Pid4CatStatus</a>&nbsp;or&nbsp;<br /><a href="../String/">String</a>&nbsp;or&nbsp;<br /><a href="../ResourceInfo/">ResourceInfo</a>&nbsp;or&nbsp;<br /><a href="../Pid4CatRelation/">Pid4CatRelation</a>&nbsp;or&nbsp;<br /><a href="../LogRecord/">LogRecord</a></li>
+<li>Range: <a href="../String/">String</a></li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
@@ -420,14 +455,15 @@ from_schema: https://w3id.org/nfdi4cat/pid4cat-model
 rank: 1000
 alias: value
 domain_of:
-- HandleData
+- HdlDataUrl
+- HdlDataStatus
+- HdlDataSchemaVer
+- HdlDataLicense
+- HdlDataContact
+- HdlDataResourceInfo
+- HdlDataRelated
+- HdlDataLog
 range: string
-exactly_one_of:
-- range: Pid4CatStatus
-- range: string
-- range: ResourceInfo
-- range: Pid4CatRelation
-- range: LogRecord
 
 </code></pre>
 

@@ -157,6 +157,11 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
+<a class="md-nav__link" href="#inheritance">
+    Inheritance
+  </a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="#slots">
     Slots
   </a>
@@ -220,16 +225,22 @@
 <div class="mermaid"> classDiagram
     class HandleRecord
     click HandleRecord href "../HandleRecord"
-      HandleRecord : data
-
-
-
-
-    HandleRecord --&gt; "0..1" HandleData : data
-    click HandleData href "../HandleData"
-
-
-      HandleRecord : index
+      HandleRecord &lt;|-- URL
+        click URL href "../URL"
+      HandleRecord &lt;|-- STATUS
+        click STATUS href "../STATUS"
+      HandleRecord &lt;|-- SCHEMAVER
+        click SCHEMAVER href "../SCHEMAVER"
+      HandleRecord &lt;|-- LICENSE
+        click LICENSE href "../LICENSE"
+      HandleRecord &lt;|-- EMAIL
+        click EMAIL href "../EMAIL"
+      HandleRecord &lt;|-- RESOURCEINFO
+        click RESOURCEINFO href "../RESOURCEINFO"
+      HandleRecord &lt;|-- RELATED
+        click RELATED href "../RELATED"
+      HandleRecord &lt;|-- LOG
+        click LOG href "../LOG"
 
       HandleRecord : timestamp
 
@@ -238,15 +249,21 @@
       HandleRecord : type
 
 
-
-
-    HandleRecord --&gt; "0..1" HandleDataType : type
-    click HandleDataType href "../HandleDataType"
-
-
-
 </div>
-<!-- no inheritance hierarchy -->
+<h2 id="inheritance">Inheritance</h2>
+<ul>
+<li><strong>HandleRecord</strong><ul>
+<li><a href="../URL/">URL</a></li>
+<li><a href="../STATUS/">STATUS</a></li>
+<li><a href="../SCHEMAVER/">SCHEMAVER</a></li>
+<li><a href="../LICENSE/">LICENSE</a></li>
+<li><a href="../EMAIL/">EMAIL</a></li>
+<li><a href="../RESOURCEINFO/">RESOURCEINFO</a></li>
+<li><a href="../RELATED/">RELATED</a></li>
+<li><a href="../LOG/">LOG</a></li>
+</ul>
+</li>
+</ul>
 <h2 id="slots">Slots</h2>
 <table>
 <thead>
@@ -259,24 +276,6 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../">index</a></td>
-<td>0..1 <br/> <a href="../Integer/">Integer</a></td>
-<td>The index of the handle record</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../type/">type</a></td>
-<td>0..1 <br/> <a href="../HandleDataType/">HandleDataType</a></td>
-<td>The type of the handle record</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../data/">data</a></td>
-<td>0..1 <br/> <a href="../HandleData/">HandleData</a></td>
-<td>The meta data stored in pid4cat record</td>
-<td>direct</td>
-</tr>
-<tr>
 <td><a href="../ttl/">ttl</a></td>
 <td>0..1 <br/> <a href="../Integer/">Integer</a></td>
 <td>A time to live in seconds for the handle record</td>
@@ -286,6 +285,12 @@
 <td><a href="../timestamp/">timestamp</a></td>
 <td>0..1 <br/> <a href="../Datetime/">Datetime</a></td>
 <td>The iso datetime for the last update of the handle data</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../type/">type</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>The type of handledata stored in the handle record</td>
 <td>direct</td>
 </tr>
 </tbody>
@@ -342,11 +347,14 @@ description: A class representing a handle record in the same way as in the REST
   API of a handle server.
 from_schema: https://w3id.org/nfdi4cat/pid4cat-model
 slots:
-- index
-- type
-- data
 - ttl
 - timestamp
+- type
+slot_usage:
+  type:
+    name: type
+    description: The type of handledata stored in the handle record.
+    designates_type: true
 
 </code></pre>
 </details>
@@ -356,37 +364,12 @@ slots:
 description: A class representing a handle record in the same way as in the REST (json)
   API of a handle server.
 from_schema: https://w3id.org/nfdi4cat/pid4cat-model
-attributes:
-  index:
-    name: index
-    description: The index of the handle record.
-    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
-    rank: 1000
-    alias: index
-    owner: HandleRecord
-    domain_of:
-    - HandleRecord
-    range: integer
+slot_usage:
   type:
     name: type
-    description: The type of the handle record.
-    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
-    rank: 1000
-    alias: type
-    owner: HandleRecord
-    domain_of:
-    - HandleRecord
-    range: HandleDataType
-  data:
-    name: data
-    description: The meta data stored in pid4cat record.
-    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
-    rank: 1000
-    alias: data
-    owner: HandleRecord
-    domain_of:
-    - HandleRecord
-    range: HandleData
+    description: The type of handledata stored in the handle record.
+    designates_type: true
+attributes:
   ttl:
     name: ttl
     description: 'A time to live in seconds for the handle record. Typically: 86400
@@ -412,6 +395,18 @@ attributes:
     domain_of:
     - HandleRecord
     range: datetime
+  type:
+    name: type
+    description: The type of handledata stored in the handle record.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    rank: 1000
+    designates_type: true
+    alias: type
+    owner: HandleRecord
+    domain_of:
+    - HandleRecord
+    - RelatedIdentifier
+    range: string
 
 </code></pre>
 </details>
