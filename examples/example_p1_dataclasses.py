@@ -16,18 +16,26 @@ p1_Agent = p4c.Agent(
     email="data.fuzzi@example.org",
     orcid="0000-0000-0000-0000",
     affiliation_ror="https://ror.org/01abcde",
-    role=p4c.PID4CatAgentRole.TRUSTEE,
+    role=p4c.Pid4CatAgentRole.TRUSTEE,
 )
 
 p1_related = [
-    p4c.PID4CatRelation(
+    p4c.Pid4CatRelation(
         relation_type=p4c.RelationType.IS_PART_OF,
-        related_identifier="https://example.org/collection",
+        related_identifier=p4c.RelatedIdentifier(
+            type="ExampleIdentifier",
+            identifier="ex:collection1",
+            resolving_url="https://example.org/collection1",
+        ),
         datetime_log=datetime.fromisoformat("2024-02-19T00:00:00Z"),
     ),
-    p4c.PID4CatRelation(
+    p4c.Pid4CatRelation(
         relation_type=p4c.RelationType.IS_REFERENCED_BY,
-        related_identifier="https://example.org/referenced",
+        related_identifier=p4c.RelatedIdentifier(
+            type="ExampleIdentifier",
+            identifier="ex:referenced1",
+            resolving_url="https://example.org/referenced1",
+        ),
         datetime_log=datetime.fromisoformat("2024-02-19T00:00:00Z"),
     ),
 ]
@@ -67,87 +75,87 @@ p1_log = [
 # HandleData
 
 p1_api = p4c.HandleAPIRecord(
-    responseCode = 1,
-    handle = "21.T12995/lik-1",
-    values = [
+    responseCode=1,
+    handle="21.T12995/lik-1",
+    values=[
         p4c.HandleRecord(
-            index = 1,
-            type = p4c.HandleDataType.URL,
-            ttl = 86400,
-            timestamp = datetime.fromisoformat("2024-05-15T15:51:15Z"),
-            data = p4c.HandleData(
-                format = "string",
-                value = "https://pid4cat.example.org/lik-1",
+            index=1,
+            type="URL",
+            ttl=86400,
+            timestamp=datetime.fromisoformat("2024-05-15T15:51:15Z"),
+            data=p4c.HdlDataUrl(
+                format="string",
+                value="https://pid4cat.example.org/lik-1",
             ),
         ),
         p4c.HandleRecord(
-            index = 2,
-            type = p4c.HandleDataType.STATUS,
-            ttl = 86400,
-            timestamp = datetime.fromisoformat("2024-05-15T15:51:15Z"),
-            data = p4c.HandleData(
-                format = "string",
-                value = p4c.PID4CatStatus.REGISTERED,
+            index=2,
+            type="STATUS",
+            ttl=86400,
+            timestamp=datetime.fromisoformat("2024-05-15T15:51:15Z"),
+            data=p4c.HdlDataStatus(
+                format="string",
+                value=p4c.Pid4CatStatus.REGISTERED,
             ),
         ),
         p4c.HandleRecord(
-            index = 3,
-            type = p4c.HandleDataType.SCHEMA_VER,
-            ttl = 86400,
-            timestamp = datetime.fromisoformat("2024-05-15T15:51:15Z"),
-            data = p4c.HandleData(
-                format = "string",
-                value = "v0.1.0",
+            index=3,
+            type="SCHEMA_VER",
+            ttl=86400,
+            timestamp=datetime.fromisoformat("2024-05-15T15:51:15Z"),
+            data=p4c.HdlDataSchemaVer(
+                format="string",
+                value="v0.1.0",
             ),
         ),
         p4c.HandleRecord(
-            index = 4,
-            type = p4c.HandleDataType.LICENSE,
-            ttl = 86400,
-            timestamp = datetime.fromisoformat("2024-05-15T15:51:15Z"),
-            data = p4c.HandleData(
-                format = "string",
-                value = "CC0-1.0",
+            index=4,
+            type="LICENSE",
+            ttl=86400,
+            timestamp=datetime.fromisoformat("2024-05-15T15:51:15Z"),
+            data=p4c.HdlDataLicense(
+                format="string",
+                value="CC0-1.0",
             ),
         ),
         p4c.HandleRecord(
-            index = 5,
-            type = p4c.HandleDataType.EMAIL,
-            ttl = 86400,
-            timestamp = datetime.fromisoformat("2024-05-15T15:51:15Z"),
-            data = p4c.HandleData(
-                format = "string",
-                value = "datafuzzi@example.org",
+            index=5,
+            type="EMAIL",
+            ttl=86400,
+            timestamp=datetime.fromisoformat("2024-05-15T15:51:15Z"),
+            data=p4c.HdlDataContact(
+                format="string",
+                value="datafuzzi@example.org",
             ),
         ),
         p4c.HandleRecord(
-            index = 6,
-            type = p4c.HandleDataType.RESOURCE_INFO,
-            ttl = 86400,
-            timestamp = datetime.fromisoformat("2024-05-15T15:51:15Z"),
-            data = p4c.HandleData(
-                format = "string",
-                value = p1_res_info,
+            index=6,
+            type="RESOURCE_INFO",
+            ttl=86400,
+            timestamp=datetime.fromisoformat("2024-05-15T15:51:15Z"),
+            data=p4c.HdlDataResourceInfo(
+                format="string",
+                value=p1_res_info,
             ),
         ),
         p4c.HandleRecord(
-            index = 7,
-            type = p4c.HandleDataType.RELATED,
-            ttl = 86400,
-            timestamp = datetime.fromisoformat("2024-05-15T15:51:15Z"),
-            data = p4c.HandleData(
-                format = "string",
-                value = p1_related,
+            index=7,
+            type="RELATED",
+            ttl=86400,
+            timestamp=datetime.fromisoformat("2024-05-15T15:51:15Z"),
+            data=p4c.HdlDataRelated(
+                format="string",
+                value=p1_related,
             ),
         ),
         p4c.HandleRecord(
-            index = 8,
-            type = p4c.HandleDataType.LOG,
-            ttl = 86400,
-            timestamp = datetime.fromisoformat("2024-05-15T15:51:15Z"),
-            data = p4c.HandleData(
-                format = "string",
-                value = p1_log,
+            index=8,
+            type="LOG",
+            ttl=86400,
+            timestamp=datetime.fromisoformat("2024-05-15T15:51:15Z"),
+            data=p4c.HdlDataLog(
+                format="string",
+                value=p1_log,
             ),
         ),
     ],
@@ -165,4 +173,3 @@ with open(script_folder / "example_p1.json", "w", encoding="utf-8") as f:
     f.write(json_dumper.dumps(container))
 with open(script_folder / "example_p1.yaml", "w", encoding="utf-8") as f:
     f.write(yaml_dumper.dumps(container))
-
