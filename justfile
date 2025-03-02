@@ -101,9 +101,7 @@ gen-project:
     poetry run gen-project {{config_yaml}} -d {{dest}} {{source_schema_path}}
     mv {{dest}}/*.py {{pymodel}}
     poetry run gen-pydantic {{gen_pydantic_args}} {{source_schema_path}} > {{pymodel}}/{{schema_name}}_pydantic.py
-    @if [ ! ${{gen_java_args}} ]; then \
-      poetry run gen-java {{gen_java_args}} --output-directory {{dest}}/java/ {{source_schema_path}} || true ; \
-    fi
+    poetry run gen-java {{gen_java_args}} --output-directory {{dest}}/java/ {{source_schema_path}}
     @if [ ! ${{gen_owl_args}} ]; then \
       mkdir -p {{dest}}/owl && \
       poetry run gen-owl {{gen_owl_args}} {{source_schema_path}} > {{dest}}/owl/{{schema_name}}.owl.ttl || true ; \
