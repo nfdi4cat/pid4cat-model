@@ -1,5 +1,5 @@
 # Auto generated from pid4cat_model.yaml by pythongen.py version: 0.0.1
-# Generation date: 2025-03-02T15:19:16
+# Generation date: 2025-03-02T17:22:38
 # Schema: pid4cat-model
 #
 # id: https://w3id.org/nfdi4cat/pid4cat-model
@@ -10243,150 +10243,6 @@ slots.identifier = Slot(
     range=Optional[str],
 )
 
-slots.uRL__index = Slot(
-    uri=PID4CAT_MODEL.index,
-    name="uRL__index",
-    curie=PID4CAT_MODEL.curie("index"),
-    model_uri=PID4CAT_MODEL.uRL__index,
-    domain=None,
-    range=Optional[int],
-)
-
-slots.uRL__data = Slot(
-    uri=PID4CAT_MODEL.data,
-    name="uRL__data",
-    curie=PID4CAT_MODEL.curie("data"),
-    model_uri=PID4CAT_MODEL.uRL__data,
-    domain=None,
-    range=Optional[Union[dict, HdlDataUrl]],
-)
-
-slots.sSTATUS__index = Slot(
-    uri=PID4CAT_MODEL.index,
-    name="sSTATUS__index",
-    curie=PID4CAT_MODEL.curie("index"),
-    model_uri=PID4CAT_MODEL.sSTATUS__index,
-    domain=None,
-    range=Optional[int],
-)
-
-slots.sSTATUS__data = Slot(
-    uri=PID4CAT_MODEL.data,
-    name="sSTATUS__data",
-    curie=PID4CAT_MODEL.curie("data"),
-    model_uri=PID4CAT_MODEL.sSTATUS__data,
-    domain=None,
-    range=Optional[Union[dict, HdlDataStatus]],
-)
-
-slots.sCHEMAVER__index = Slot(
-    uri=PID4CAT_MODEL.index,
-    name="sCHEMAVER__index",
-    curie=PID4CAT_MODEL.curie("index"),
-    model_uri=PID4CAT_MODEL.sCHEMAVER__index,
-    domain=None,
-    range=Optional[int],
-)
-
-slots.sCHEMAVER__data = Slot(
-    uri=PID4CAT_MODEL.data,
-    name="sCHEMAVER__data",
-    curie=PID4CAT_MODEL.curie("data"),
-    model_uri=PID4CAT_MODEL.sCHEMAVER__data,
-    domain=None,
-    range=Optional[Union[dict, HdlDataSchemaVer]],
-)
-
-slots.lLICENSE__index = Slot(
-    uri=PID4CAT_MODEL.index,
-    name="lLICENSE__index",
-    curie=PID4CAT_MODEL.curie("index"),
-    model_uri=PID4CAT_MODEL.lLICENSE__index,
-    domain=None,
-    range=Optional[int],
-)
-
-slots.lLICENSE__data = Slot(
-    uri=PID4CAT_MODEL.data,
-    name="lLICENSE__data",
-    curie=PID4CAT_MODEL.curie("data"),
-    model_uri=PID4CAT_MODEL.lLICENSE__data,
-    domain=None,
-    range=Optional[Union[dict, HdlDataLicense]],
-)
-
-slots.eMAIL__index = Slot(
-    uri=PID4CAT_MODEL.index,
-    name="eMAIL__index",
-    curie=PID4CAT_MODEL.curie("index"),
-    model_uri=PID4CAT_MODEL.eMAIL__index,
-    domain=None,
-    range=Optional[int],
-)
-
-slots.eMAIL__data = Slot(
-    uri=PID4CAT_MODEL.data,
-    name="eMAIL__data",
-    curie=PID4CAT_MODEL.curie("data"),
-    model_uri=PID4CAT_MODEL.eMAIL__data,
-    domain=None,
-    range=Optional[Union[dict, HdlDataContact]],
-)
-
-slots.rESOURCEINFO__index = Slot(
-    uri=PID4CAT_MODEL.index,
-    name="rESOURCEINFO__index",
-    curie=PID4CAT_MODEL.curie("index"),
-    model_uri=PID4CAT_MODEL.rESOURCEINFO__index,
-    domain=None,
-    range=Optional[int],
-)
-
-slots.rESOURCEINFO__data = Slot(
-    uri=PID4CAT_MODEL.data,
-    name="rESOURCEINFO__data",
-    curie=PID4CAT_MODEL.curie("data"),
-    model_uri=PID4CAT_MODEL.rESOURCEINFO__data,
-    domain=None,
-    range=Optional[Union[dict, HdlDataResourceInfo]],
-)
-
-slots.rELATED__index = Slot(
-    uri=PID4CAT_MODEL.index,
-    name="rELATED__index",
-    curie=PID4CAT_MODEL.curie("index"),
-    model_uri=PID4CAT_MODEL.rELATED__index,
-    domain=None,
-    range=Optional[int],
-)
-
-slots.rELATED__data = Slot(
-    uri=PID4CAT_MODEL.data,
-    name="rELATED__data",
-    curie=PID4CAT_MODEL.curie("data"),
-    model_uri=PID4CAT_MODEL.rELATED__data,
-    domain=None,
-    range=Optional[Union[dict, HdlDataRelated]],
-)
-
-slots.lOG__index = Slot(
-    uri=PID4CAT_MODEL.index,
-    name="lOG__index",
-    curie=PID4CAT_MODEL.curie("index"),
-    model_uri=PID4CAT_MODEL.lOG__index,
-    domain=None,
-    range=Optional[int],
-)
-
-slots.lOG__data = Slot(
-    uri=PID4CAT_MODEL.data,
-    name="lOG__data",
-    curie=PID4CAT_MODEL.curie("data"),
-    model_uri=PID4CAT_MODEL.lOG__data,
-    domain=None,
-    range=Optional[Union[dict, HdlDataLog]],
-)
-
 slots.handleRecordContainer__contains_pids = Slot(
     uri=PID4CAT_MODEL.contains_pids,
     name="handleRecordContainer__contains_pids",
@@ -10419,6 +10275,24 @@ slots.HandleRecord_type = Slot(
     range=Optional[str],
 )
 
+slots.URL_index = Slot(
+    uri=PID4CAT_MODEL.index,
+    name="URL_index",
+    curie=PID4CAT_MODEL.curie("index"),
+    model_uri=PID4CAT_MODEL.URL_index,
+    domain=URL,
+    range=Optional[int],
+)
+
+slots.URL_data = Slot(
+    uri=PID4CAT_MODEL.data,
+    name="URL_data",
+    curie=PID4CAT_MODEL.curie("data"),
+    model_uri=PID4CAT_MODEL.URL_data,
+    domain=URL,
+    range=Optional[Union[dict, "HdlDataUrl"]],
+)
+
 slots.HdlDataUrl_format = Slot(
     uri=PID4CAT_MODEL.format,
     name="HdlDataUrl_format",
@@ -10438,6 +10312,24 @@ slots.HdlDataUrl_value = Slot(
     pattern=re.compile(r"^https?:\/\/.*$"),
 )
 
+slots.STATUS_index = Slot(
+    uri=PID4CAT_MODEL.index,
+    name="STATUS_index",
+    curie=PID4CAT_MODEL.curie("index"),
+    model_uri=PID4CAT_MODEL.STATUS_index,
+    domain=STATUS,
+    range=Optional[int],
+)
+
+slots.STATUS_data = Slot(
+    uri=PID4CAT_MODEL.data,
+    name="STATUS_data",
+    curie=PID4CAT_MODEL.curie("data"),
+    model_uri=PID4CAT_MODEL.STATUS_data,
+    domain=STATUS,
+    range=Optional[Union[dict, "HdlDataStatus"]],
+)
+
 slots.HdlDataStatus_format = Slot(
     uri=PID4CAT_MODEL.format,
     name="HdlDataStatus_format",
@@ -10454,6 +10346,24 @@ slots.HdlDataStatus_value = Slot(
     model_uri=PID4CAT_MODEL.HdlDataStatus_value,
     domain=HdlDataStatus,
     range=Optional[Union[str, "Pid4CatStatus"]],
+)
+
+slots.SCHEMA_VER_index = Slot(
+    uri=PID4CAT_MODEL.index,
+    name="SCHEMA_VER_index",
+    curie=PID4CAT_MODEL.curie("index"),
+    model_uri=PID4CAT_MODEL.SCHEMA_VER_index,
+    domain=SCHEMAVER,
+    range=Optional[int],
+)
+
+slots.SCHEMA_VER_data = Slot(
+    uri=PID4CAT_MODEL.data,
+    name="SCHEMA_VER_data",
+    curie=PID4CAT_MODEL.curie("data"),
+    model_uri=PID4CAT_MODEL.SCHEMA_VER_data,
+    domain=SCHEMAVER,
+    range=Optional[Union[dict, "HdlDataSchemaVer"]],
 )
 
 slots.HdlDataSchemaVer_format = Slot(
@@ -10475,6 +10385,24 @@ slots.HdlDataSchemaVer_value = Slot(
     pattern=re.compile(r"^v\d+\.\d+\.\d+$"),
 )
 
+slots.LICENSE_index = Slot(
+    uri=PID4CAT_MODEL.index,
+    name="LICENSE_index",
+    curie=PID4CAT_MODEL.curie("index"),
+    model_uri=PID4CAT_MODEL.LICENSE_index,
+    domain=LICENSE,
+    range=Optional[int],
+)
+
+slots.LICENSE_data = Slot(
+    uri=PID4CAT_MODEL.data,
+    name="LICENSE_data",
+    curie=PID4CAT_MODEL.curie("data"),
+    model_uri=PID4CAT_MODEL.LICENSE_data,
+    domain=LICENSE,
+    range=Optional[Union[dict, "HdlDataLicense"]],
+)
+
 slots.HdlDataLicense_format = Slot(
     uri=PID4CAT_MODEL.format,
     name="HdlDataLicense_format",
@@ -10491,6 +10419,24 @@ slots.HdlDataLicense_value = Slot(
     model_uri=PID4CAT_MODEL.HdlDataLicense_value,
     domain=HdlDataLicense,
     range=Optional[str],
+)
+
+slots.EMAIL_index = Slot(
+    uri=PID4CAT_MODEL.index,
+    name="EMAIL_index",
+    curie=PID4CAT_MODEL.curie("index"),
+    model_uri=PID4CAT_MODEL.EMAIL_index,
+    domain=EMAIL,
+    range=Optional[int],
+)
+
+slots.EMAIL_data = Slot(
+    uri=PID4CAT_MODEL.data,
+    name="EMAIL_data",
+    curie=PID4CAT_MODEL.curie("data"),
+    model_uri=PID4CAT_MODEL.EMAIL_data,
+    domain=EMAIL,
+    range=Optional[Union[dict, "HdlDataContact"]],
 )
 
 slots.HdlDataContact_format = Slot(
@@ -10512,6 +10458,24 @@ slots.HdlDataContact_value = Slot(
     pattern=re.compile(r"^\S+@[\S+\.]+\S+"),
 )
 
+slots.RESOURCE_INFO_index = Slot(
+    uri=PID4CAT_MODEL.index,
+    name="RESOURCE_INFO_index",
+    curie=PID4CAT_MODEL.curie("index"),
+    model_uri=PID4CAT_MODEL.RESOURCE_INFO_index,
+    domain=RESOURCEINFO,
+    range=Optional[int],
+)
+
+slots.RESOURCE_INFO_data = Slot(
+    uri=PID4CAT_MODEL.data,
+    name="RESOURCE_INFO_data",
+    curie=PID4CAT_MODEL.curie("data"),
+    model_uri=PID4CAT_MODEL.RESOURCE_INFO_data,
+    domain=RESOURCEINFO,
+    range=Optional[Union[dict, "HdlDataResourceInfo"]],
+)
+
 slots.HdlDataResourceInfo_format = Slot(
     uri=PID4CAT_MODEL.format,
     name="HdlDataResourceInfo_format",
@@ -10528,6 +10492,24 @@ slots.HdlDataResourceInfo_value = Slot(
     model_uri=PID4CAT_MODEL.HdlDataResourceInfo_value,
     domain=HdlDataResourceInfo,
     range=Optional[Union[dict, "ResourceInfo"]],
+)
+
+slots.RELATED_index = Slot(
+    uri=PID4CAT_MODEL.index,
+    name="RELATED_index",
+    curie=PID4CAT_MODEL.curie("index"),
+    model_uri=PID4CAT_MODEL.RELATED_index,
+    domain=RELATED,
+    range=Optional[int],
+)
+
+slots.RELATED_data = Slot(
+    uri=PID4CAT_MODEL.data,
+    name="RELATED_data",
+    curie=PID4CAT_MODEL.curie("data"),
+    model_uri=PID4CAT_MODEL.RELATED_data,
+    domain=RELATED,
+    range=Optional[Union[dict, "HdlDataRelated"]],
 )
 
 slots.HdlDataRelated_format = Slot(
@@ -10548,6 +10530,24 @@ slots.HdlDataRelated_value = Slot(
     range=Optional[
         Union[Union[dict, "Pid4CatRelation"], List[Union[dict, "Pid4CatRelation"]]]
     ],
+)
+
+slots.LOG_index = Slot(
+    uri=PID4CAT_MODEL.index,
+    name="LOG_index",
+    curie=PID4CAT_MODEL.curie("index"),
+    model_uri=PID4CAT_MODEL.LOG_index,
+    domain=LOG,
+    range=Optional[int],
+)
+
+slots.LOG_data = Slot(
+    uri=PID4CAT_MODEL.data,
+    name="LOG_data",
+    curie=PID4CAT_MODEL.curie("data"),
+    model_uri=PID4CAT_MODEL.LOG_data,
+    domain=LOG,
+    range=Optional[Union[dict, "HdlDataLog"]],
 )
 
 slots.HdlDataLog_format = Slot(

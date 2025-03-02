@@ -74,9 +74,11 @@ classes:
     is_a: HandleRecord
     description: >-
       The data element in the handle API for the landing page URL.
-    attributes:
+    slots:
+      - index
+      - data
+    slot_usage:
       index:
-        range: integer
         minimum_value: 1
         maximum_value: 1
       data:
@@ -98,9 +100,11 @@ classes:
     is_a: HandleRecord
     description: >-
       A data element in the handle API.
-    attributes:
+    slots:
+      - index
+      - data
+    slot_usage:
       index:
-        range: integer
         minimum_value: 2
         maximum_value: 2
       data:
@@ -122,9 +126,11 @@ classes:
     is_a: HandleRecord
     description: >-
       The data element in the handle API for the schema version.
-    attributes:
+    slots:
+      - index
+      - data
+    slot_usage:
       index:
-        range: integer
         minimum_value: 3
         maximum_value: 3
       data:
@@ -146,9 +152,11 @@ classes:
     is_a: HandleRecord
     description: >-
       The data element in the handle API for the schema version.
-    attributes:
+    slots:
+      - index
+      - data
+    slot_usage:
       index:
-        range: integer
         minimum_value: 4
         maximum_value: 4
       data:
@@ -170,9 +178,11 @@ classes:
     is_a: HandleRecord
     description: >-
       The data element in the handle API for the contact email.
-    attributes:
+    slots:
+      - index
+      - data
+    slot_usage:
       index:
-        range: integer
         minimum_value: 5
         maximum_value: 5
       data:
@@ -194,9 +204,11 @@ classes:
     is_a: HandleRecord
     description: >-
       The data element in the handle API for the resource info.
-    attributes:
+    slots:
+      - index
+      - data
+    slot_usage:
       index:
-        range: integer
         minimum_value: 6
         maximum_value: 6
       data:
@@ -218,9 +230,11 @@ classes:
     is_a: HandleRecord
     description: >-
       The data element in the handle API for related identifiers.
-    attributes:
+    slots:
+      - index
+      - data
+    slot_usage:
       index:
-        range: integer
         minimum_value: 7
         maximum_value: 7
       data:
@@ -243,9 +257,11 @@ classes:
     is_a: HandleRecord
     description: >-
       The data element in the handle API for the change log.
-    attributes:
+    slots:
+      - index
+      - data
+    slot_usage:
       index:
-        range: integer
         minimum_value: 8
         maximum_value: 8
       data:
@@ -451,10 +467,10 @@ slots:
     range: integer
     description: The index of the handle record.
   data:
-    description: The meta data stored in pid4cat record.
+    description: The data in the handle record.
   type:
     range: string
-    description: The type of the handle data.
+    description: The type of the handle record data.
 
   ttl:
     range: integer
