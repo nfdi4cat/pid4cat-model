@@ -9,14 +9,14 @@ import lombok.*;
 
 
 /**
-  A relation between PID4CatRecords or between a PID4CatRecord and other resources with a PID.
+  A relation between pid4cat handles or between a pid4cat handle and other resources identified by a PID.
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class PID4CatRelation  {
+public class Pid4CatRelation  {
 
   private String relationType;
-  private String relatedIdentifier;
-  private String datetimeLog;
+  private RelatedIdentifier relatedIdentifier;
+  private ZonedDateTime datetimeLog;
 
 }

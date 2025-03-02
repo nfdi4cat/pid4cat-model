@@ -9,12 +9,12 @@ import lombok.*;
 
 
 /**
-  A container for all pid4cat instances.
+  A class for all types pf related identifiers.
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class Container  {
+public class RelatedIdentifier  {
 
-  private List<PID4CatRecord> containsPids;
+  private String type;
 
 }

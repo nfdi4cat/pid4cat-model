@@ -10,18 +10,6 @@ enum ChangeLogField
     SCHEMA_VER
   }
 
-enum HandleDataType
-  {
-    URL
-    STATUS
-    SCHEMA_VER
-    LICENSE
-    EMAIL
-    RESOURCE_INFO
-    RELATED
-    LOG
-  }
-
 enum MEDIATypes
   {
     application__SOLIDUS__1d__HYPHEN_MINUS__interleaved__HYPHEN_MINUS__parityfec
@@ -2266,31 +2254,132 @@ type Agent
     role: Pid4CatAgentRole
   }
 
+type ArkIdentifier
+  {
+    type: String
+    identifier: String
+    resolvingUrl: Uri
+  }
+
+type DoiIdentifier
+  {
+    type: String
+    resolvingUrl: Uri
+    identifier: String
+  }
+
+type EMAIL
+  {
+    ttl: Integer
+    timestamp: Datetime
+    type: String
+    index: Integer
+    data: HdlDataContact
+  }
+
+type ExampleIdentifier
+  {
+    type: String
+    identifier: String
+    resolvingUrl: Uri
+  }
+
+type GtinIdentifier
+  {
+    type: String
+    identifier: String
+  }
+
 type HandleAPIRecord
   {
     responseCode: Integer
-    handle: String
+    handle: String!
     values: [HandleRecord]
   }
 
-type HandleData
+type HandleIdentifier
   {
-    format: String
-    value: String
+    type: String
+    resolvingUrl: Uri
+    identifier: String
   }
 
 type HandleRecord
   {
-    index: Integer
-    type: HandleDataType
-    data: HandleData
     ttl: Integer
     timestamp: Datetime
+    type: String
   }
 
 type HandleRecordContainer
   {
     containsPids: [HandleAPIRecord]
+  }
+
+type HdlDataContact
+  {
+    format: String
+    value: String
+  }
+
+type HdlDataLicense
+  {
+    format: String
+    value: String
+  }
+
+type HdlDataLog
+  {
+    format: String
+    value: [LogRecord]
+  }
+
+type HdlDataRelated
+  {
+    format: String
+    value: [Pid4CatRelation]
+  }
+
+type HdlDataResourceInfo
+  {
+    format: String
+    value: ResourceInfo
+  }
+
+type HdlDataSchemaVer
+  {
+    format: String
+    value: String
+  }
+
+type HdlDataStatus
+  {
+    format: String
+    value: Pid4CatStatus
+  }
+
+type HdlDataUrl
+  {
+    format: String
+    value: String
+  }
+
+type LICENSE
+  {
+    ttl: Integer
+    timestamp: Datetime
+    type: String
+    index: Integer
+    data: HdlDataLicense
+  }
+
+type LOG
+  {
+    ttl: Integer
+    timestamp: Datetime
+    type: String
+    index: Integer
+    data: HdlDataLog
   }
 
 type LogRecord
@@ -2304,8 +2393,28 @@ type LogRecord
 type Pid4CatRelation
   {
     relationType: RelationType
-    relatedIdentifier: Uri
+    relatedIdentifier: RelatedIdentifier
     datetimeLog: Datetime
+  }
+
+type PurlIdentifier
+  {
+    type: String
+    resolvingUrl: Uri
+  }
+
+type RELATED
+  {
+    ttl: Integer
+    timestamp: Datetime
+    type: String
+    index: Integer
+    data: HdlDataRelated
+  }
+
+type RelatedIdentifier
+  {
+    type: String
   }
 
 type RepresentationVariant
@@ -2316,6 +2425,15 @@ type RepresentationVariant
     size: Integer
   }
 
+type RESOURCEINFO
+  {
+    ttl: Integer
+    timestamp: Datetime
+    type: String
+    index: Integer
+    data: HdlDataResourceInfo
+  }
+
 type ResourceInfo
   {
     label: String
@@ -2324,3 +2442,35 @@ type ResourceInfo
     representationVariants: [RepresentationVariant]
   }
 
+type SCHEMAVER
+  {
+    ttl: Integer
+    timestamp: Datetime
+    type: String
+    index: Integer
+    data: HdlDataSchemaVer
+  }
+
+type STATUS
+  {
+    ttl: Integer
+    timestamp: Datetime
+    type: String
+    index: Integer
+    data: HdlDataStatus
+  }
+
+type URL
+  {
+    ttl: Integer
+    timestamp: Datetime
+    type: String
+    index: Integer
+    data: HdlDataUrl
+  }
+
+type UrnIdentifier
+  {
+    type: String
+    identifier: String
+  }

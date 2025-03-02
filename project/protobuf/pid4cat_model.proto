@@ -10,6 +10,42 @@ message Agent
   uri affiliationRor = 0
   pid4CatAgentRole role = 0
  }
+// An ARK (Archival Resource Key).
+message ArkIdentifier
+ {
+  string type = 0
+  string identifier = 0
+  uri resolvingUrl = 0
+ }
+// A digital object identifier (DOI).
+message DoiIdentifier
+ {
+  string type = 0
+  uri resolvingUrl = 0
+  string identifier = 0
+ }
+// The data element in the handle API for the contact email.
+message EMAIL
+ {
+  integer ttl = 0
+  datetime timestamp = 0
+  string type = 0
+  integer index = 0
+  hdlDataContact data = 0
+ }
+// An example.org test identifier.
+message ExampleIdentifier
+ {
+  string type = 0
+  string identifier = 0
+  uri resolvingUrl = 0
+ }
+// A  Global Trade Item Number (GTIN) previously called European Article Number (EAN) often encoded as EAN13 barcode. The identifier is used to identify products. GTINs don't have a resolvable URL.
+message GtinIdentifier
+ {
+  string type = 0
+  string identifier = 0
+ }
 // A class representing a handle record query response of the REST (json) API of a handle server.
 message HandleAPIRecord
  {
@@ -17,25 +53,90 @@ message HandleAPIRecord
   string handle = 0
  repeated  handleRecord values = 0
  }
-// A data element in the handle API.
-message HandleData
+// A handle identifier.
+message HandleIdentifier
  {
-  string format = 0
-  string value = 0
+  string type = 0
+  uri resolvingUrl = 0
+  string identifier = 0
  }
 // A class representing a handle record in the same way as in the REST (json) API of a handle server.
 message HandleRecord
  {
-  integer index = 0
-  handleDataType type = 0
-  handleData data = 0
   integer ttl = 0
   datetime timestamp = 0
+  string type = 0
  }
 // A container for all HandleRecords.
 message HandleRecordContainer
  {
  repeated  handleAPIRecord containsPids = 0
+ }
+// The data element in the handle API for the contact email.
+message HdlDataContact
+ {
+  string format = 0
+  string value = 0
+ }
+// The data element in the handle API for the license.
+message HdlDataLicense
+ {
+  string format = 0
+  string value = 0
+ }
+// The data element in the handle API for the change log.
+message HdlDataLog
+ {
+  string format = 0
+ repeated  logRecord value = 0
+ }
+// The data element in the handle API for related identifiers.
+message HdlDataRelated
+ {
+  string format = 0
+ repeated  pid4CatRelation value = 0
+ }
+// The data element in the handle API for the resource info.
+message HdlDataResourceInfo
+ {
+  string format = 0
+  resourceInfo value = 0
+ }
+// The data element in the handle API for the schema version.
+message HdlDataSchemaVer
+ {
+  string format = 0
+  string value = 0
+ }
+// The data element in the handle API for the status.
+message HdlDataStatus
+ {
+  string format = 0
+  pid4CatStatus value = 0
+ }
+// The data element in the handle API for the redirect url.
+message HdlDataUrl
+ {
+  string format = 0
+  string value = 0
+ }
+// The data element in the handle API for the schema version.
+message LICENSE
+ {
+  integer ttl = 0
+  datetime timestamp = 0
+  string type = 0
+  integer index = 0
+  hdlDataLicense data = 0
+ }
+// The data element in the handle API for the change log.
+message LOG
+ {
+  integer ttl = 0
+  datetime timestamp = 0
+  string type = 0
+  integer index = 0
+  hdlDataLog data = 0
  }
 // A log record for changes made in a pid4cat handle record starting from registration.
 message LogRecord
@@ -49,8 +150,28 @@ message LogRecord
 message Pid4CatRelation
  {
   relationType relationType = 0
-  uri relatedIdentifier = 0
+  relatedIdentifier relatedIdentifier = 0
   datetime datetimeLog = 0
+ }
+// A PURL (permanent uniform resource locator).
+message PurlIdentifier
+ {
+  string type = 0
+  uri resolvingUrl = 0
+ }
+// The data element in the handle API for related identifiers.
+message RELATED
+ {
+  integer ttl = 0
+  datetime timestamp = 0
+  string type = 0
+  integer index = 0
+  hdlDataRelated data = 0
+ }
+// A class for all types pf related identifiers.
+message RelatedIdentifier
+ {
+  string type = 0
  }
 // A representation of the resource in other media types than text/html which is the default for landing_page_url.
 message RepresentationVariant
@@ -60,6 +181,15 @@ message RepresentationVariant
   string encodingFormat = 0
   integer size = 0
  }
+// The data element in the handle API for the resource info.
+message RESOURCEINFO
+ {
+  integer ttl = 0
+  datetime timestamp = 0
+  string type = 0
+  integer index = 0
+  hdlDataResourceInfo data = 0
+ }
 // Data object to hold information about the resource and its representation.
 message ResourceInfo
  {
@@ -67,4 +197,37 @@ message ResourceInfo
   string description = 0
   resourceCategory resourceCategory = 0
  repeated  representationVariant representationVariants = 0
+ }
+// The data element in the handle API for the schema version.
+message SCHEMAVER
+ {
+  integer ttl = 0
+  datetime timestamp = 0
+  string type = 0
+  integer index = 0
+  hdlDataSchemaVer data = 0
+ }
+// A data element in the handle API.
+message STATUS
+ {
+  integer ttl = 0
+  datetime timestamp = 0
+  string type = 0
+  integer index = 0
+  hdlDataStatus data = 0
+ }
+// The data element in the handle API for the landing page URL.
+message URL
+ {
+  integer ttl = 0
+  datetime timestamp = 0
+  string type = 0
+  integer index = 0
+  hdlDataUrl data = 0
+ }
+// A URN (Uniform Resource Name).
+message UrnIdentifier
+ {
+  string type = 0
+  string identifier = 0
  }

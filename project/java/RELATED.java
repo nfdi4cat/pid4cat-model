@@ -1,0 +1,21 @@
+package None;
+
+import java.util.List;
+import lombok.*;
+
+
+
+
+
+
+/**
+  The data element in the handle API for related identifiers.
+**/
+@Data
+@EqualsAndHashCode(callSuper=false)
+public class RELATED extends HandleRecord {
+
+  private Integer index;
+  private HdlDataRelated data;
+
+}
