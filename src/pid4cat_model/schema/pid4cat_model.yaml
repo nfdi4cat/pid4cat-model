@@ -212,7 +212,6 @@ classes:
       format:
         equals_string: 'string'
       value:
-        multivalued: true
         range: ResourceInfo
 
   RELATED:
@@ -332,13 +331,12 @@ classes:
 
   RelatedIdentifier:
     description: >-
-      A related resolvable identifier.
-    slots:
-      - identifier_type
-
-  IdentifierType:
-    description: >-
-      A class for all identifier types.
+      A class for all types pf related identifiers.
+  #   slots:
+  #     - identifier_type
+  # IdentifierType:
+  #   description: >-
+  #     A class for all identifier types.
     attributes:
       type:
         description: >-
@@ -346,7 +344,7 @@ classes:
         designates_type: true
 
   PurlIdentifier:
-    is_a: IdentifierType
+    is_a: RelatedIdentifier
     description: >-
       A PURL (permanent uniform resource locator).
     slots:
@@ -356,7 +354,7 @@ classes:
         pattern: '^https:\/\/(purl|pida|w3id)\.org\/.*$'
 
   DoiIdentifier:
-    is_a: IdentifierType
+    is_a: RelatedIdentifier
     description: >-
       A digital object identifier (DOI).
     slots:
@@ -369,7 +367,7 @@ classes:
         pattern: '^https:\/\/doi\.org\/10.*$'
 
   HandleIdentifier:
-    is_a: IdentifierType
+    is_a: RelatedIdentifier
     description: >-
       A handle identifier.
     slots:
@@ -382,7 +380,7 @@ classes:
         pattern: '^https:\/\/hdl\.handle\.net\/\d{2}\.\d{4,}\/.*$'
 
   ArkIdentifier:
-    is_a: IdentifierType
+    is_a: RelatedIdentifier
     description: >-
       An ARK (Archival Resource Key).
     slots:
@@ -395,7 +393,7 @@ classes:
         pattern: '^https?:\/\/.*\/ark:\/\d{5}/.*$'
 
   UrnIdentifier:
-    is_a: IdentifierType
+    is_a: RelatedIdentifier
     description: >-
       A URN (Uniform Resource Name).
     slots:
@@ -405,7 +403,7 @@ classes:
         pattern: '^urn:[a-zA-Z0-9][a-zA-Z0-9-]{0,31}:[^\s]*$'
 
   GtinIdentifier:
-    is_a: IdentifierType
+    is_a: RelatedIdentifier
     description: >-
       A  Global Trade Item Number (GTIN) previously called European Article
       Number (EAN) often encoded as EAN13 barcode. The identifier is used to
@@ -417,7 +415,7 @@ classes:
         pattern: '^\d{13}$'
 
   ExampleIdentifier:
-    is_a: IdentifierType
+    is_a: RelatedIdentifier
     description: >-
       An example.org test identifier.
     slots:
@@ -427,7 +425,7 @@ classes:
       identifier:
         pattern: '^ex:.*$'
       resolving_url:
-        pattern: '^https?:\/\/example.(org|com)\/.*$'
+        pattern: '^https?:\/\/(.+\.)?example.(org|com)\/.*$'
 
 
 slots:
@@ -493,7 +491,7 @@ slots:
     range: RelationType
     description: Relation type between the resources.
   related_identifier:
-    range: IdentifierType
+    range: RelatedIdentifier
     description: The related identifier.
   datetime_log:
     range: datetime
@@ -560,9 +558,6 @@ slots:
     description: The URL of the representation.
 
   # Slots for RelatedIdentifier
-  identifier_type:
-    range: IdentifierType
-    description: The type of the related identifier.
 
   resolving_url:
     range: uri

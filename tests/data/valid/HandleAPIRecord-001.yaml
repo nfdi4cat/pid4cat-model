@@ -41,14 +41,14 @@ values:
     data:
       format: string
       value:
-        - label: Resource label
-          description: Resource description
-          resource_category: SAMPLE
-          representation_variants:
-            - url: https://example.org/resource
-              media_type: text/turtle
-              encoding_format: UTF-8
-              size: 12345
+        label: Resource label
+        description: Resource description
+        resource_category: SAMPLE
+        representation_variants:
+          - url: https://example.org/resource
+            media_type: text/turtle
+            encoding_format: UTF-8
+            size: 12345
     ttl: 86400
     timestamp: '2024-05-15T15:51:15Z'
   - index: 7
