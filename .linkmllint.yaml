@@ -1,8 +1,11 @@
 # Use the recommended rule set except for the standard_naming rule
 extends: recommended
+
 rules:
   standard_naming:
-    permissible_values_upper_case: true
+    level: disabled
+    # permissible_values_upper_case: true
+    # class_pattern: snake_case
   canonical_prefixes:
     # Superfluous warnings for https-refixes, https://github.com/linkml/linkml/issues/2492
     level: disabled
