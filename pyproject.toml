@@ -57,6 +57,7 @@ skip = [
   "project/*",
   "src/pid4cat_model/datamodel/pid4cat_model_pydantic.py",
   "src/pid4cat_model/datamodel/pid4cat_model.py",
+  "src/pid4cat_model/schema/media_types.yaml",
 ]
 
 # Reminder: words have to be lowercased for the ignore-words-list
