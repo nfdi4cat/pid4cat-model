@@ -56,44 +56,172 @@ linkml:Sparqlpath xsd:string
     )
 }
 
+<ArkIdentifier> CLOSED {
+    (  $<ArkIdentifier_tes> (  &<RelatedIdentifier_tes> ;
+          rdf:type [ <RelatedIdentifier> ] ? ;
+          <identifier> @linkml:String ? ;
+          <resolving_url> @linkml:Uri ?
+       ) ;
+       rdf:type [ <ArkIdentifier> ] ?
+    )
+}
+
+<DoiIdentifier> CLOSED {
+    (  $<DoiIdentifier_tes> (  &<RelatedIdentifier_tes> ;
+          rdf:type [ <RelatedIdentifier> ] ? ;
+          <resolving_url> @linkml:Uri ? ;
+          <identifier> @linkml:String ?
+       ) ;
+       rdf:type [ <DoiIdentifier> ] ?
+    )
+}
+
+<EMAIL> CLOSED {
+    (  $<EMAIL_tes> (  &<HandleRecord_tes> ;
+          rdf:type [ <HandleRecord> ] ? ;
+          <index> @linkml:Integer ? ;
+          <data> @<HdlDataContact> ?
+       ) ;
+       rdf:type [ <EMAIL> ] ?
+    )
+}
+
+<ExampleIdentifier> CLOSED {
+    (  $<ExampleIdentifier_tes> (  &<RelatedIdentifier_tes> ;
+          rdf:type [ <RelatedIdentifier> ] ? ;
+          <identifier> @linkml:String ? ;
+          <resolving_url> @linkml:Uri ?
+       ) ;
+       rdf:type [ <ExampleIdentifier> ] ?
+    )
+}
+
+<GtinIdentifier> CLOSED {
+    (  $<GtinIdentifier_tes> (  &<RelatedIdentifier_tes> ;
+          rdf:type [ <RelatedIdentifier> ] ? ;
+          <identifier> @linkml:String ?
+       ) ;
+       rdf:type [ <GtinIdentifier> ] ?
+    )
+}
+
 <HandleAPIRecord> CLOSED {
     (  $<HandleAPIRecord_tes> (  <responseCode> @linkml:Integer ? ;
-          <handle> @linkml:String ? ;
           <values> @<HandleRecord> *
        ) ;
-       rdf:type [ <HandleAPIRecord> ] ?
+       rdf:type [ <HandleAPIRecord> ]
     )
 }
 
-<HandleData> CLOSED {
-    (  $<HandleData_tes> (  <format> @linkml:String ? ;
-          <value> @linkml:String ?
+<HandleIdentifier> CLOSED {
+    (  $<HandleIdentifier_tes> (  &<RelatedIdentifier_tes> ;
+          rdf:type [ <RelatedIdentifier> ] ? ;
+          <resolving_url> @linkml:Uri ? ;
+          <identifier> @linkml:String ?
        ) ;
-       rdf:type [ <HandleData> ] ?
+       rdf:type [ <HandleIdentifier> ] ?
     )
 }
 
-<HandleRecord> CLOSED {
-    (  $<HandleRecord_tes> (  <index> @linkml:Integer ? ;
-          <type> [ <https://w3id.org/nfdi4cat/pid4cat-model/HandleDataType#URL>
-             <https://w3id.org/nfdi4cat/pid4cat-model/HandleDataType#STATUS>
-             <https://w3id.org/nfdi4cat/pid4cat-model/HandleDataType#SCHEMA_VER>
-             <https://w3id.org/nfdi4cat/pid4cat-model/HandleDataType#LICENSE>
-             <https://w3id.org/nfdi4cat/pid4cat-model/HandleDataType#EMAIL>
-             <https://w3id.org/nfdi4cat/pid4cat-model/HandleDataType#RESOURCE_INFO>
-             <https://w3id.org/nfdi4cat/pid4cat-model/HandleDataType#RELATED>
-             <https://w3id.org/nfdi4cat/pid4cat-model/HandleDataType#LOG> ] ? ;
-          <data> @<HandleData> ? ;
-          <ttl> @linkml:Integer ? ;
-          <timestamp> @linkml:Datetime ?
-       ) ;
-       rdf:type [ <HandleRecord> ] ?
-    )
-}
+<HandleRecord>  (
+    CLOSED {
+       (  $<HandleRecord_tes> (  <ttl> @linkml:Integer ? ;
+             <timestamp> @linkml:Datetime ? ;
+             <type> @linkml:String ?
+          ) ;
+          rdf:type [ <HandleRecord> ] ?
+       )
+    } OR @<EMAIL> OR @<LICENSE> OR @<LOG> OR @<RELATED> OR @<RESOURCEINFO> OR @<SCHEMAVER> OR @<STATUS> OR @<URL>
+)
 
 <HandleRecordContainer> CLOSED {
     (  $<HandleRecordContainer_tes> <contains_pids> @<HandleAPIRecord> * ;
        rdf:type [ <HandleRecordContainer> ] ?
+    )
+}
+
+<HdlDataContact> CLOSED {
+    (  $<HdlDataContact_tes> (  <format> @linkml:String ? ;
+          <value> @linkml:String ?
+       ) ;
+       rdf:type [ <HdlDataContact> ] ?
+    )
+}
+
+<HdlDataLicense> CLOSED {
+    (  $<HdlDataLicense_tes> (  <format> @linkml:String ? ;
+          <value> @linkml:String ?
+       ) ;
+       rdf:type [ <HdlDataLicense> ] ?
+    )
+}
+
+<HdlDataLog> CLOSED {
+    (  $<HdlDataLog_tes> (  <format> @linkml:String ? ;
+          <value> @<LogRecord> *
+       ) ;
+       rdf:type [ <HdlDataLog> ] ?
+    )
+}
+
+<HdlDataRelated> CLOSED {
+    (  $<HdlDataRelated_tes> (  <format> @linkml:String ? ;
+          <value> @<Pid4CatRelation> *
+       ) ;
+       rdf:type [ <HdlDataRelated> ] ?
+    )
+}
+
+<HdlDataResourceInfo> CLOSED {
+    (  $<HdlDataResourceInfo_tes> (  <format> @linkml:String ? ;
+          <value> @<ResourceInfo> ?
+       ) ;
+       rdf:type [ <HdlDataResourceInfo> ] ?
+    )
+}
+
+<HdlDataSchemaVer> CLOSED {
+    (  $<HdlDataSchemaVer_tes> (  <format> @linkml:String ? ;
+          <value> @linkml:String ?
+       ) ;
+       rdf:type [ <HdlDataSchemaVer> ] ?
+    )
+}
+
+<HdlDataStatus> CLOSED {
+    (  $<HdlDataStatus_tes> (  <format> @linkml:String ? ;
+          <value> [ <https://w3id.org/nfdi4cat/voc4cat_0005052> <https://w3id.org/nfdi4cat/voc4cat_0005053>
+             <https://w3id.org/nfdi4cat/voc4cat_0005054> <https://w3id.org/nfdi4cat/voc4cat_0005055> ] ?
+       ) ;
+       rdf:type [ <HdlDataStatus> ] ?
+    )
+}
+
+<HdlDataUrl> CLOSED {
+    (  $<HdlDataUrl_tes> (  <format> @linkml:String ? ;
+          <value> @linkml:String ?
+       ) ;
+       rdf:type [ <HdlDataUrl> ] ?
+    )
+}
+
+<LICENSE> CLOSED {
+    (  $<LICENSE_tes> (  &<HandleRecord_tes> ;
+          rdf:type [ <HandleRecord> ] ? ;
+          <index> @linkml:Integer ? ;
+          <data> @<HdlDataLicense> ?
+       ) ;
+       rdf:type [ <LICENSE> ] ?
+    )
+}
+
+<LOG> CLOSED {
+    (  $<LOG_tes> (  &<HandleRecord_tes> ;
+          rdf:type [ <HandleRecord> ] ? ;
+          <index> @linkml:Integer ? ;
+          <data> @<HdlDataLog> ?
+       ) ;
+       rdf:type [ <LOG> ] ?
     )
 }
 
@@ -131,12 +259,40 @@ linkml:Sparqlpath xsd:string
              <https://w3id.org/nfdi4cat/voc4cat_0005046> <https://w3id.org/nfdi4cat/voc4cat_0005047>
              <https://w3id.org/nfdi4cat/voc4cat_0005048> <https://w3id.org/nfdi4cat/voc4cat_0005049>
              <https://w3id.org/nfdi4cat/voc4cat_0005050> ] ? ;
-          <related_identifier> @linkml:Uri ? ;
+          <related_identifier> @<RelatedIdentifier> ? ;
           <datetime_log> @linkml:Datetime ?
        ) ;
        rdf:type [ <Pid4CatRelation> ] ?
     )
 }
+
+<PurlIdentifier> CLOSED {
+    (  $<PurlIdentifier_tes> (  &<RelatedIdentifier_tes> ;
+          rdf:type [ <RelatedIdentifier> ] ? ;
+          <resolving_url> @linkml:Uri ?
+       ) ;
+       rdf:type [ <PurlIdentifier> ] ?
+    )
+}
+
+<RELATED> CLOSED {
+    (  $<RELATED_tes> (  &<HandleRecord_tes> ;
+          rdf:type [ <HandleRecord> ] ? ;
+          <index> @linkml:Integer ? ;
+          <data> @<HdlDataRelated> ?
+       ) ;
+       rdf:type [ <RELATED> ] ?
+    )
+}
+
+<RelatedIdentifier>  (
+    CLOSED {
+       (  $<RelatedIdentifier_tes> <type> @linkml:String ? ;
+          rdf:type [ <RelatedIdentifier> ] ?
+       )
+    } OR @<ArkIdentifier> OR @<DoiIdentifier> OR @<ExampleIdentifier> OR @<GtinIdentifier> OR @<HandleIdentifier> OR
+    @<PurlIdentifier> OR @<UrnIdentifier>
+)
 
 <RepresentationVariant> CLOSED {
     (  $<RepresentationVariant_tes> (  <url> @linkml:Uri ? ;
@@ -2318,6 +2474,16 @@ linkml:Sparqlpath xsd:string
     )
 }
 
+<RESOURCEINFO> CLOSED {
+    (  $<RESOURCEINFO_tes> (  &<HandleRecord_tes> ;
+          rdf:type [ <HandleRecord> ] ? ;
+          <index> @linkml:Integer ? ;
+          <data> @<HdlDataResourceInfo> ?
+       ) ;
+       rdf:type [ <RESOURCEINFO> ] ?
+    )
+}
+
 <ResourceInfo> CLOSED {
     (  $<ResourceInfo_tes> (  <label> @linkml:String ? ;
           <description> @linkml:String ? ;
@@ -2330,3 +2496,41 @@ linkml:Sparqlpath xsd:string
     )
 }
 
+<SCHEMAVER> CLOSED {
+    (  $<SCHEMAVER_tes> (  &<HandleRecord_tes> ;
+          rdf:type [ <HandleRecord> ] ? ;
+          <index> @linkml:Integer ? ;
+          <data> @<HdlDataSchemaVer> ?
+       ) ;
+       rdf:type [ <SCHEMAVER> ] ?
+    )
+}
+
+<STATUS> CLOSED {
+    (  $<STATUS_tes> (  &<HandleRecord_tes> ;
+          rdf:type [ <HandleRecord> ] ? ;
+          <index> @linkml:Integer ? ;
+          <data> @<HdlDataStatus> ?
+       ) ;
+       rdf:type [ <STATUS> ] ?
+    )
+}
+
+<URL> CLOSED {
+    (  $<URL_tes> (  &<HandleRecord_tes> ;
+          rdf:type [ <HandleRecord> ] ? ;
+          <index> @linkml:Integer ? ;
+          <data> @<HdlDataUrl> ?
+       ) ;
+       rdf:type [ <URL> ] ?
+    )
+}
+
+<UrnIdentifier> CLOSED {
+    (  $<UrnIdentifier_tes> (  &<RelatedIdentifier_tes> ;
+          rdf:type [ <RelatedIdentifier> ] ? ;
+          <identifier> @linkml:String ?
+       ) ;
+       rdf:type [ <UrnIdentifier> ] ?
+    )
+}

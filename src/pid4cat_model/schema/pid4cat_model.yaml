@@ -348,11 +348,6 @@ classes:
   RelatedIdentifier:
     description: >-
       A class for all types pf related identifiers.
-  #   slots:
-  #     - identifier_type
-  # IdentifierType:
-  #   description: >-
-  #     A class for all identifier types.
     attributes:
       type:
         description: >-
