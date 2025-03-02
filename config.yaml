@@ -28,9 +28,11 @@ generator_args:
     directory: "docs/elements"
   graphql:
     mergeimports: true
-  java:
-    mergeimports: true
-    metadata: true
+  # gen-java is not yet supported by gen-project.
+  #   https://github.com/linkml/linkml/issues/2537
+  # java:
+  #   mergeimports: true
+  #   metadata: true
   jsonld:
     mergeimports: true
   jsonschema:
