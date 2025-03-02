@@ -685,7 +685,7 @@ class MEDIATypes(str, Enum):
     )
     applicationSOLIDUStoml = "application/toml"
     applicationSOLIDUStrickle_ice_sdpfrag = "application/trickle-ice-sdpfrag"
-    applicationSOLIDUString = "application/trig"
+    applicationSOLIDUStrig = "application/trig"
     applicationSOLIDUStrust_chainPLUS_SIGNjson = "application/trust-chain+json"
     applicationSOLIDUStrust_markPLUS_SIGNjwt = "application/trust-mark+jwt"
     applicationSOLIDUStrust_mark_delegationPLUS_SIGNjwt = (
@@ -1862,11 +1862,11 @@ class MEDIATypes(str, Enum):
     applicationSOLIDUSvndFULL_STOPKinar = "application/vnd.Kinar"
     applicationSOLIDUSvndFULL_STOPkoan = "application/vnd.koan"
     applicationSOLIDUSvndFULL_STOPkodak_descriptor = "application/vnd.kodak-descriptor"
-    applicationSOLIDUSvndFULL_STOPlays = "application/vnd.las"
-    applicationSOLIDUSvndFULL_STOPlaysFULL_STOPlaysPLUS_SIGNjson = (
+    applicationSOLIDUSvndFULL_STOPlas = "application/vnd.las"
+    applicationSOLIDUSvndFULL_STOPlasFULL_STOPlasPLUS_SIGNjson = (
         "application/vnd.las.las+json"
     )
-    applicationSOLIDUSvndFULL_STOPlaysFULL_STOPlaysPLUS_SIGNxml = (
+    applicationSOLIDUSvndFULL_STOPlasFULL_STOPlasPLUS_SIGNxml = (
         "application/vnd.las.las+xml"
     )
     applicationSOLIDUSvndFULL_STOPlaszip = "application/vnd.laszip"
@@ -2004,7 +2004,7 @@ class MEDIATypes(str, Enum):
     )
     applicationSOLIDUSvndFULL_STOPmseq = "application/vnd.mseq"
     applicationSOLIDUSvndFULL_STOPms_excel = "application/vnd.ms-excel"
-    applicationSOLIDUSvndFULL_STOPms_excelFULL_STOPaddingFULL_STOPmacroEnabledFULL_STOP12 = "application/vnd.ms-excel.addin.macroEnabled.12"
+    applicationSOLIDUSvndFULL_STOPms_excelFULL_STOPaddinFULL_STOPmacroEnabledFULL_STOP12 = "application/vnd.ms-excel.addin.macroEnabled.12"
     applicationSOLIDUSvndFULL_STOPms_excelFULL_STOPsheetFULL_STOPbinaryFULL_STOPmacroEnabledFULL_STOP12 = "application/vnd.ms-excel.sheet.binary.macroEnabled.12"
     applicationSOLIDUSvndFULL_STOPms_excelFULL_STOPsheetFULL_STOPmacroEnabledFULL_STOP12 = "application/vnd.ms-excel.sheet.macroEnabled.12"
     applicationSOLIDUSvndFULL_STOPms_excelFULL_STOPtemplateFULL_STOPmacroEnabledFULL_STOP12 = "application/vnd.ms-excel.template.macroEnabled.12"
@@ -2022,7 +2022,7 @@ class MEDIATypes(str, Enum):
         "application/vnd.ms-playready.initiator+xml"
     )
     applicationSOLIDUSvndFULL_STOPms_powerpoint = "application/vnd.ms-powerpoint"
-    applicationSOLIDUSvndFULL_STOPms_powerpointFULL_STOPaddingFULL_STOPmacroEnabledFULL_STOP12 = "application/vnd.ms-powerpoint.addin.macroEnabled.12"
+    applicationSOLIDUSvndFULL_STOPms_powerpointFULL_STOPaddinFULL_STOPmacroEnabledFULL_STOP12 = "application/vnd.ms-powerpoint.addin.macroEnabled.12"
     applicationSOLIDUSvndFULL_STOPms_powerpointFULL_STOPpresentationFULL_STOPmacroEnabledFULL_STOP12 = "application/vnd.ms-powerpoint.presentation.macroEnabled.12"
     applicationSOLIDUSvndFULL_STOPms_powerpointFULL_STOPslideFULL_STOPmacroEnabledFULL_STOP12 = "application/vnd.ms-powerpoint.slide.macroEnabled.12"
     applicationSOLIDUSvndFULL_STOPms_powerpointFULL_STOPslideshowFULL_STOPmacroEnabledFULL_STOP12 = "application/vnd.ms-powerpoint.slideshow.macroEnabled.12"
@@ -2140,13 +2140,13 @@ class MEDIATypes(str, Enum):
         "application/vnd.nokia.landmarkcollection+xml"
     )
     applicationSOLIDUSvndFULL_STOPnokiaFULL_STOPncd = "application/vnd.nokia.ncd"
-    applicationSOLIDUSvndFULL_STOPnokiaFULL_STOOn_gageFULL_STOPacPLUS_SIGNxml = (
+    applicationSOLIDUSvndFULL_STOPnokiaFULL_STOPn_gageFULL_STOPacPLUS_SIGNxml = (
         "application/vnd.nokia.n-gage.ac+xml"
     )
-    applicationSOLIDUSvndFULL_STOPnokiaFULL_STOOn_gageFULL_STOPdata = (
+    applicationSOLIDUSvndFULL_STOPnokiaFULL_STOPn_gageFULL_STOPdata = (
         "application/vnd.nokia.n-gage.data"
     )
-    applicationSOLIDUSvndFULL_STOPnokiaFULL_STOOn_gageFULL_STOPsymbianFULL_STOPinstall = "application/vnd.nokia.n-gage.symbian.install"
+    applicationSOLIDUSvndFULL_STOPnokiaFULL_STOPn_gageFULL_STOPsymbianFULL_STOPinstall = "application/vnd.nokia.n-gage.symbian.install"
     applicationSOLIDUSvndFULL_STOPnokiaFULL_STOPpcdPLUS_SIGNwbxml = (
         "application/vnd.nokia.pcd+wbxml"
     )
@@ -3837,11 +3837,18 @@ class URL(HandleRecord):
     """
 
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
-        {"from_schema": "https://w3id.org/nfdi4cat/pid4cat-model"}
+        {
+            "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
+            "slot_usage": {
+                "data": {"name": "data", "range": "HdlDataUrl"},
+                "index": {"maximum_value": 1, "minimum_value": 1, "name": "index"},
+            },
+        }
     )
 
     index: Optional[int] = Field(
         None,
+        description="""The index of the handle record.""",
         ge=1,
         le=1,
         json_schema_extra={
@@ -3862,6 +3869,7 @@ class URL(HandleRecord):
     )
     data: Optional[HdlDataUrl] = Field(
         None,
+        description="""The data in the handle record.""",
         json_schema_extra={
             "linkml_meta": {
                 "alias": "data",
@@ -3981,11 +3989,18 @@ class STATUS(HandleRecord):
     """
 
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
-        {"from_schema": "https://w3id.org/nfdi4cat/pid4cat-model"}
+        {
+            "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
+            "slot_usage": {
+                "data": {"name": "data", "range": "HdlDataStatus"},
+                "index": {"maximum_value": 2, "minimum_value": 2, "name": "index"},
+            },
+        }
     )
 
     index: Optional[int] = Field(
         None,
+        description="""The index of the handle record.""",
         ge=2,
         le=2,
         json_schema_extra={
@@ -4006,6 +4021,7 @@ class STATUS(HandleRecord):
     )
     data: Optional[HdlDataStatus] = Field(
         None,
+        description="""The data in the handle record.""",
         json_schema_extra={
             "linkml_meta": {
                 "alias": "data",
@@ -4113,11 +4129,18 @@ class SCHEMAVER(HandleRecord):
     """
 
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
-        {"from_schema": "https://w3id.org/nfdi4cat/pid4cat-model"}
+        {
+            "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
+            "slot_usage": {
+                "data": {"name": "data", "range": "HdlDataSchemaVer"},
+                "index": {"maximum_value": 3, "minimum_value": 3, "name": "index"},
+            },
+        }
     )
 
     index: Optional[int] = Field(
         None,
+        description="""The index of the handle record.""",
         ge=3,
         le=3,
         json_schema_extra={
@@ -4138,6 +4161,7 @@ class SCHEMAVER(HandleRecord):
     )
     data: Optional[HdlDataSchemaVer] = Field(
         None,
+        description="""The data in the handle record.""",
         json_schema_extra={
             "linkml_meta": {
                 "alias": "data",
@@ -4257,11 +4281,18 @@ class LICENSE(HandleRecord):
     """
 
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
-        {"from_schema": "https://w3id.org/nfdi4cat/pid4cat-model"}
+        {
+            "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
+            "slot_usage": {
+                "data": {"name": "data", "range": "HdlDataLicense"},
+                "index": {"maximum_value": 4, "minimum_value": 4, "name": "index"},
+            },
+        }
     )
 
     index: Optional[int] = Field(
         None,
+        description="""The index of the handle record.""",
         ge=4,
         le=4,
         json_schema_extra={
@@ -4282,6 +4313,7 @@ class LICENSE(HandleRecord):
     )
     data: Optional[HdlDataLicense] = Field(
         None,
+        description="""The data in the handle record.""",
         json_schema_extra={
             "linkml_meta": {
                 "alias": "data",
@@ -4390,11 +4422,18 @@ class EMAIL(HandleRecord):
     """
 
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
-        {"from_schema": "https://w3id.org/nfdi4cat/pid4cat-model"}
+        {
+            "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
+            "slot_usage": {
+                "data": {"name": "data", "range": "HdlDataContact"},
+                "index": {"maximum_value": 5, "minimum_value": 5, "name": "index"},
+            },
+        }
     )
 
     index: Optional[int] = Field(
         None,
+        description="""The index of the handle record.""",
         ge=5,
         le=5,
         json_schema_extra={
@@ -4415,6 +4454,7 @@ class EMAIL(HandleRecord):
     )
     data: Optional[HdlDataContact] = Field(
         None,
+        description="""The data in the handle record.""",
         json_schema_extra={
             "linkml_meta": {
                 "alias": "data",
@@ -4534,11 +4574,18 @@ class RESOURCEINFO(HandleRecord):
     """
 
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
-        {"from_schema": "https://w3id.org/nfdi4cat/pid4cat-model"}
+        {
+            "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
+            "slot_usage": {
+                "data": {"name": "data", "range": "HdlDataResourceInfo"},
+                "index": {"maximum_value": 6, "minimum_value": 6, "name": "index"},
+            },
+        }
     )
 
     index: Optional[int] = Field(
         None,
+        description="""The index of the handle record.""",
         ge=6,
         le=6,
         json_schema_extra={
@@ -4559,6 +4606,7 @@ class RESOURCEINFO(HandleRecord):
     )
     data: Optional[HdlDataResourceInfo] = Field(
         None,
+        description="""The data in the handle record.""",
         json_schema_extra={
             "linkml_meta": {
                 "alias": "data",
@@ -4666,11 +4714,18 @@ class RELATED(HandleRecord):
     """
 
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
-        {"from_schema": "https://w3id.org/nfdi4cat/pid4cat-model"}
+        {
+            "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
+            "slot_usage": {
+                "data": {"name": "data", "range": "HdlDataRelated"},
+                "index": {"maximum_value": 7, "minimum_value": 7, "name": "index"},
+            },
+        }
     )
 
     index: Optional[int] = Field(
         None,
+        description="""The index of the handle record.""",
         ge=7,
         le=7,
         json_schema_extra={
@@ -4691,6 +4746,7 @@ class RELATED(HandleRecord):
     )
     data: Optional[HdlDataRelated] = Field(
         None,
+        description="""The data in the handle record.""",
         json_schema_extra={
             "linkml_meta": {
                 "alias": "data",
@@ -4802,11 +4858,18 @@ class LOG(HandleRecord):
     """
 
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
-        {"from_schema": "https://w3id.org/nfdi4cat/pid4cat-model"}
+        {
+            "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
+            "slot_usage": {
+                "data": {"name": "data", "range": "HdlDataLog"},
+                "index": {"maximum_value": 8, "minimum_value": 8, "name": "index"},
+            },
+        }
     )
 
     index: Optional[int] = Field(
         None,
+        description="""The index of the handle record.""",
         ge=8,
         le=8,
         json_schema_extra={
@@ -4827,6 +4890,7 @@ class LOG(HandleRecord):
     )
     data: Optional[HdlDataLog] = Field(
         None,
+        description="""The data in the handle record.""",
         json_schema_extra={
             "linkml_meta": {
                 "alias": "data",
