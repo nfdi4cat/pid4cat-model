@@ -1,88 +1,144 @@
 {
   "contains_pids": [
     {
-      "responseCode": 1,
       "handle": "21.T12995/lik-1",
+      "responseCode": 1,
       "values": [
         {
-          "index": 1,
+          "ttl": 86400,
+          "timestamp": "2024-05-15T15:51:15+00:00",
           "type": "URL",
+          "index": 1,
           "data": {
             "format": "string",
             "value": "https://pid4cat.example.org/lik-1"
-          },
-          "ttl": 86400,
-          "timestamp": "2024-05-15T15:51:15+00:00"
+          }
         },
         {
-          "index": 2,
+          "ttl": 86400,
+          "timestamp": "2024-05-15T15:51:15+00:00",
           "type": "STATUS",
+          "index": 2,
           "data": {
             "format": "string",
-            "value": "PermissibleValue({\n  'text': 'REGISTERED',\n  'description': 'The pid4cat record links to a concrete resource.'\n})"
-          },
-          "ttl": 86400,
-          "timestamp": "2024-05-15T15:51:15+00:00"
+            "value": "REGISTERED"
+          }
         },
         {
-          "index": 3,
+          "ttl": 86400,
+          "timestamp": "2024-05-15T15:51:15+00:00",
           "type": "SCHEMA_VER",
+          "index": 3,
           "data": {
             "format": "string",
             "value": "v0.1.0"
-          },
-          "ttl": 86400,
-          "timestamp": "2024-05-15T15:51:15+00:00"
+          }
         },
         {
-          "index": 4,
+          "ttl": 86400,
+          "timestamp": "2024-05-15T15:51:15+00:00",
           "type": "LICENSE",
+          "index": 4,
           "data": {
             "format": "string",
             "value": "CC0-1.0"
-          },
-          "ttl": 86400,
-          "timestamp": "2024-05-15T15:51:15+00:00"
+          }
         },
         {
-          "index": 5,
+          "ttl": 86400,
+          "timestamp": "2024-05-15T15:51:15+00:00",
           "type": "EMAIL",
+          "index": 5,
           "data": {
             "format": "string",
             "value": "datafuzzi@example.org"
-          },
-          "ttl": 86400,
-          "timestamp": "2024-05-15T15:51:15+00:00"
+          }
         },
         {
-          "index": 6,
+          "ttl": 86400,
+          "timestamp": "2024-05-15T15:51:15+00:00",
           "type": "RESOURCE_INFO",
+          "index": 6,
           "data": {
             "format": "string",
-            "value": "ResourceInfo({\n  'label': 'Resource label',\n  'description': 'Resource description',\n  'resource_category': ResourceCategory(text='SAMPLE', description='A representative part of an entity of interest on which observations may be made.'),\n  'representation_variants': [RepresentationVariant({\n      'url': 'https://example.org/resource',\n      'media_type': 'text/turtle',\n      'encoding_format': 'UTF-8',\n      'size': 12345\n    })]\n})"
-          },
-          "ttl": 86400,
-          "timestamp": "2024-05-15T15:51:15+00:00"
+            "value": {
+              "label": "Resource label",
+              "description": "Resource description",
+              "resource_category": "SAMPLE",
+              "representation_variants": [
+                {
+                  "url": "https://example.org/resource",
+                  "media_type": "text/turtle",
+                  "encoding_format": "UTF-8",
+                  "size": 12345
+                }
+              ]
+            }
+          }
         },
         {
-          "index": 7,
+          "ttl": 86400,
+          "timestamp": "2024-05-15T15:51:15+00:00",
           "type": "RELATED",
+          "index": 7,
           "data": {
             "format": "string",
-            "value": "[PID4CatRelation({\n  'relation_type': RelationType(text='IS_PART_OF', description='The resource is part of another resource.', meaning='https://purl.org/dc/terms/isPartOf'),\n  'related_identifier': 'https://example.org/collection',\n  'datetime_log': '2024-02-19T00:00:00+00:00'\n}), PID4CatRelation({\n  'relation_type': RelationType(text='IS_REFERENCED_BY', description='The resource is referenced by another resource.', meaning='https://purl.org/dc/terms/isReferencedBy'),\n  'related_identifier': 'https://example.org/referenced',\n  'datetime_log': '2024-02-19T00:00:00+00:00'\n})]"
-          },
-          "ttl": 86400,
-          "timestamp": "2024-05-15T15:51:15+00:00"
+            "value": [
+              {
+                "relation_type": "IS_PART_OF",
+                "related_identifier": {
+                  "type": "ExampleIdentifier",
+                  "identifier": "ex:collection1",
+                  "resolving_url": "https://example.org/collection1"
+                },
+                "datetime_log": "2024-02-19T00:00:00+00:00"
+              },
+              {
+                "relation_type": "IS_REFERENCED_BY",
+                "related_identifier": {
+                  "type": "ExampleIdentifier",
+                  "identifier": "ex:referenced1",
+                  "resolving_url": "https://example.org/referenced1"
+                },
+                "datetime_log": "2024-02-19T00:00:00+00:00"
+              }
+            ]
+          }
         },
         {
-          "index": 8,
+          "ttl": 86400,
+          "timestamp": "2024-05-15T15:51:15+00:00",
           "type": "LOG",
+          "index": 8,
           "data": {
             "format": "string",
-            "value": "[LogRecord({\n  'datetime_log': '2024-02-19T00:00:00+00:00',\n  'has_agent': Agent({\n      'name': 'Data Fuzzi',\n      'email': 'data.fuzzi@example.org',\n      'orcid': '0000-0000-0000-0000',\n      'affiliation_ror': 'https://ror.org/01abcde',\n      'role': PID4CatAgentRole(text='TRUSTEE', description='The agent is the trustee of the resource.')\n    }),\n  'changed_field': ChangeLogField(text='STATUS', description='The status of the PID4CatRecord was changed.'),\n  'description': 'Registration completed.'\n}), LogRecord({\n  'datetime_log': '2024-05-15T15:51:15+00:00',\n  'has_agent': Agent({\n      'name': 'Data Fuzzi',\n      'email': 'data.fuzzi@example.org',\n      'orcid': '0000-0000-0000-0000',\n      'affiliation_ror': 'https://ror.org/01abcde',\n      'role': PID4CatAgentRole(text='TRUSTEE', description='The agent is the trustee of the resource.')\n    }),\n  'changed_field': ChangeLogField(text='RESOURCE_INFO', description='The resource info of the PID4CatRecord was changed.'),\n  'description': 'as requested in issue #234'\n})]"
-          },
-          "ttl": 86400,
-          "timestamp": "2024-05-15T15:51:15+00:00"
+            "value": [
+              {
+                "datetime_log": "2024-02-19T00:00:00+00:00",
+                "has_agent": {
+                  "name": "Data Fuzzi",
+                  "email": "data.fuzzi@example.org",
+                  "orcid": "0000-0000-0000-0000",
+                  "affiliation_ror": "https://ror.org/01abcde",
+                  "role": "TRUSTEE"
+                },
+                "changed_field": "STATUS",
+                "description": "Registration completed."
+              },
+              {
+                "datetime_log": "2024-05-15T15:51:15+00:00",
+                "has_agent": {
+                  "name": "Data Fuzzi",
+                  "email": "data.fuzzi@example.org",
+                  "orcid": "0000-0000-0000-0000",
+                  "affiliation_ror": "https://ror.org/01abcde",
+                  "role": "TRUSTEE"
+                },
+                "changed_field": "RESOURCE_INFO",
+                "description": "as requested in issue #234"
+              }
+            ]
+          }
         }
       ]
     }
