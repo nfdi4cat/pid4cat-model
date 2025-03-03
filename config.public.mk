@@ -9,7 +9,7 @@
 LINKML_SCHEMA_NAME="pid4cat_model"
 LINKML_SCHEMA_AUTHOR="David Linke <david.linke@catalysis.de>"
 LINKML_SCHEMA_DESCRIPTION="LinkML model for handle-based PIDs for resources in catalysis (pid4cat)"
-LINKML_SCHEMA_SOURCE_PATH="src/pid4cat_model/schema/pid4cat_model.yaml"
+LINKML_SCHEMA_SOURCE_DIR="src/pid4cat_model/schema"
 
 ###### linkml generator variables, used by justfile
 

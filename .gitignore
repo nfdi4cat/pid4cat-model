@@ -2,10 +2,14 @@
 
 # generated part of documentation
 /docs/elements/*.md
+
 # linkml-run-examples output (not useful to have in git in its current form)
 /examples/output/
 
-/tmp/
+# Derived schemas, generated from the schema.yaml
+tmp/
+project/
+!project/README.md
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

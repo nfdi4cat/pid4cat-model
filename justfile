@@ -19,8 +19,8 @@ shebang := if os() == 'windows' {
 }
 
 # Environment variables with defaults
-schema_name := env_var_or_default("LINKML_SCHEMA_NAME", "")
-source_schema_path := env_var_or_default("LINKML_SCHEMA_SOURCE_PATH", "")
+schema_name := env_var_or_default("LINKML_SCHEMA_NAME", "_no_schema_given_")
+source_schema_dir := env_var_or_default("LINKML_SCHEMA_SOURCE_DIR", "")
 config_yaml := if env_var_or_default("LINKML_GENERATORS_CONFIG_YAML", "") != "" {
   "--config-file " + env_var_or_default("LINKML_GENERATORS_CONFIG_YAML", "")
 } else {
@@ -36,6 +36,7 @@ gen_ts_args := env_var_or_default("LINKML_GENERATORS_TYPESCRIPT_ARGS", "")
 src := "src"
 dest := "project"
 pymodel := src / schema_name / "datamodel"
+source_schema_path := source_schema_dir / schema_name + ".yaml"
 docdir := "docs/elements"  # Directory for generated documentation
 
 # ============== Project recipes ==============
@@ -50,8 +51,12 @@ setup: _check-config _git-init install _git-add && _setup_part2
   git commit -m "Initialise git with minimal project" -a
 
 _setup_part2: gen-project gen-doc
-  git add .
-  git commit -m "Add generated docs and project artefacts" -a
+  @echo
+  @echo '=== Setup completed! ==='
+  @echo 'Various model representations have been created under directory "project". By default'
+  @echo 'they are ignored by git. You decide whether you want to add them to git tracking or'
+  @echo 'continue to git-ignore them as they can be regenerated if needed.'
+  @echo 'For tracking specific subfolders, add !project/[foldername]/* line(s) to ".gitignore".'
 
 # Install project dependencies
 [group('project management')]
@@ -84,7 +89,7 @@ test: _test-schema _test-python _test-examples
 # Run linting
 [group('model development')]
 lint:
-    poetry run linkml-lint {{source_schema_path}}
+    poetry run linkml-lint {{source_schema_dir}}
 
 # Generate md documentation for the schema
 [group('model development')]
@@ -94,6 +99,11 @@ gen-doc:
 # Build docs and run test server
 [group('model development')]
 testdoc: gen-doc _serve
+
+# Generate the Python data models (dataclasses & pydantic)
+gen-python:
+  poetry run gen-project -d  {{pymodel}} -I python {{source_schema_path}}
+  poetry run gen-pydantic {{gen_pydantic_args}} {{source_schema_path}} > {{pymodel}}/{{schema_name}}_pydantic.py
 
 # Generate project files including Python data model
 [group('model development')]
@@ -171,7 +181,7 @@ _test-schema:
     poetry run gen-project {{config_yaml}} -d tmp {{source_schema_path}}
 
 # Run Python unit tests with pytest
-_test-python:
+_test-python: gen-python
     poetry run python -m pytest
 
 # Run example tests
@@ -222,8 +232,9 @@ _clean_project:
         else:
             d.unlink()
 
-_ensure_examples_output:
+_ensure_examples_output:  # Ensure a clean examples/output directory exists
     -mkdir -p examples/output
+    -rm -rf examples/output/*.*
 
 # ============== Include project-specific recipes ==============
 
