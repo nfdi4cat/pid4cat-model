@@ -1,45 +1,45 @@
 contains_pids:
-- handle: 21.T12995/lik-1
-  responseCode: 1
+- responseCode: 1
+  handle: 21.T12995/lik-1
   values:
-  - ttl: 86400
-    timestamp: '2024-05-15T15:51:15+00:00'
+  - timestamp: 2024-05-15 15:51:15+00:00
+    ttl: 86400
     type: URL
     index: 1
     data:
       format: string
       value: https://pid4cat.example.org/lik-1
-  - ttl: 86400
-    timestamp: '2024-05-15T15:51:15+00:00'
+  - timestamp: 2024-05-15 15:51:15+00:00
+    ttl: 86400
     type: STATUS
     index: 2
     data:
       format: string
       value: REGISTERED
-  - ttl: 86400
-    timestamp: '2024-05-15T15:51:15+00:00'
+  - timestamp: 2024-05-15 15:51:15+00:00
+    ttl: 86400
     type: SCHEMA_VER
     index: 3
     data:
       format: string
       value: v0.1.0
-  - ttl: 86400
-    timestamp: '2024-05-15T15:51:15+00:00'
+  - timestamp: 2024-05-15 15:51:15+00:00
+    ttl: 86400
     type: LICENSE
     index: 4
     data:
       format: string
       value: CC0-1.0
-  - ttl: 86400
-    timestamp: '2024-05-15T15:51:15+00:00'
+  - timestamp: 2024-05-15 15:51:15+00:00
+    ttl: 86400
     type: EMAIL
     index: 5
     data:
       format: string
       value: datafuzzi@example.org
-  - ttl: 86400
-    timestamp: '2024-05-15T15:51:15+00:00'
-    type: RESOURCE_INFO
+  - timestamp: 2024-05-15 15:51:15+00:00
+    ttl: 86400
+    type: RESOURCE
     index: 6
     data:
       format: string
@@ -52,8 +52,8 @@ contains_pids:
           media_type: text/turtle
           encoding_format: UTF-8
           size: 12345
-  - ttl: 86400
-    timestamp: '2024-05-15T15:51:15+00:00'
+  - timestamp: 2024-05-15 15:51:15+00:00
+    ttl: 86400
     type: RELATED
     index: 7
     data:
@@ -64,35 +64,35 @@ contains_pids:
           type: ExampleIdentifier
           identifier: ex:collection1
           resolving_url: https://example.org/collection1
-        datetime_log: '2024-02-19T00:00:00+00:00'
+        datetime_log: 2024-02-19 00:00:00+00:00
       - relation_type: IS_REFERENCED_BY
         related_identifier:
           type: ExampleIdentifier
           identifier: ex:referenced1
           resolving_url: https://example.org/referenced1
-        datetime_log: '2024-02-19T00:00:00+00:00'
-  - ttl: 86400
-    timestamp: '2024-05-15T15:51:15+00:00'
+        datetime_log: 2024-02-19 00:00:00+00:00
+  - timestamp: 2024-05-15 15:51:15+00:00
+    ttl: 86400
     type: LOG
     index: 8
     data:
       format: string
       value:
-      - datetime_log: '2024-02-19T00:00:00+00:00'
+      - datetime_log: 2024-02-19 00:00:00+00:00
         has_agent:
           name: Data Fuzzi
           email: data.fuzzi@example.org
           orcid: 0000-0000-0000-0000
-          affiliation_ror: https://ror.org/01abcde
+          affiliation_ror: https://ror.org/029hg0311
           role: TRUSTEE
         changed_field: STATUS
         description: Registration completed.
-      - datetime_log: '2024-05-15T15:51:15+00:00'
+      - datetime_log: 2024-05-15 15:51:15+00:00
         has_agent:
           name: Data Fuzzi
           email: data.fuzzi@example.org
           orcid: 0000-0000-0000-0000
-          affiliation_ror: https://ror.org/01abcde
+          affiliation_ror: https://ror.org/029hg0311
           role: TRUSTEE
         changed_field: RESOURCE_INFO
         description: 'as requested in issue #234'

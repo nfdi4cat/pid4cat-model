@@ -37,7 +37,7 @@ values:
     ttl: 86400
     timestamp: '2024-05-15T15:51:15Z'
   - index: 6
-    type: RESOURCE_INFO
+    type: RESOURCE
     data:
       format: string
       value:

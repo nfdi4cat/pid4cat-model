@@ -15,7 +15,7 @@ p1_Agent = p4c.Agent(
     name="Data Fuzzi",
     email="data.fuzzi@example.org",
     orcid="0000-0000-0000-0000",
-    affiliation_ror="https://ror.org/01abcde",
+    affiliation_ror="https://ror.org/029hg0311",
     role=p4c.Pid4CatAgentRole.TRUSTEE,
 )
 
@@ -137,9 +137,9 @@ p1_api = p4c.HandleAPIRecord(
                 value="datafuzzi@example.org",
             ),
         ),
-        p4c.RESOURCEINFO(  # gen-pydantic replaces RESOURCE_INFO with RESOURCEINFO in linkml 1.8.5
+        p4c.RESOURCE(
             index=6,
-            type="RESOURCE_INFO",
+            type="RESOURCE",
             ttl=86400,
             timestamp=datetime.fromisoformat("2024-05-15T15:51:15Z"),
             data=p4c.HdlDataResourceInfo(
@@ -172,9 +172,12 @@ p1_api = p4c.HandleAPIRecord(
 
 c = p4c.HandleRecordContainer(contains_pids=[p1_api])
 
-print(p1_api)
-
+# print(p1_api)
 print(yaml_dumper.dumps(c))
+
+script_folder = Path(__file__).parent
+with open(script_folder / "example_p1.yaml", "w", encoding="utf-8") as f:
+    f.write(yaml_dumper.dumps(c))
 
 try:
     # Next line fails with linkML 1.8.5 due to a bug in json_dumper.py
@@ -182,7 +185,6 @@ try:
     json_dump = json_dumper.dumps(p1_api)
     print(json_dump)
     # write json to file
-    script_folder = Path(__file__).parent
     with open(script_folder / "example_p1.json", "w", encoding="utf-8") as f:
         f.write(json_dump)
 except Exception as e:

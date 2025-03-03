@@ -93,7 +93,7 @@ linkml_meta = LinkMLMeta(
         "see_also": ["https://nfdi4cat.github.io/pid4cat-model"],
         "source_file": "src/pid4cat_model/schema/pid4cat_model.yaml",
         "title": "pid4cat-model",
-        "todos": ["Set required attribute where needed."],
+        "todos": ["none"],
     }
 )
 
@@ -329,15 +329,7 @@ class HandleAPIRecord(ConfiguredBaseModel):
     )
     values: List[
         Union[
-            HandleRecord,
-            URL,
-            STATUS,
-            SCHEMAVER,
-            LICENSE,
-            EMAIL,
-            RESOURCEINFO,
-            RELATED,
-            LOG,
+            HandleRecord, URL, STATUS, SCHEMAVER, LICENSE, EMAIL, RESOURCE, RELATED, LOG
         ]
     ] = Field(
         ...,
@@ -435,7 +427,7 @@ class URL(HandleRecord):
                     "SCHEMA_VER",
                     "LICENSE",
                     "EMAIL",
-                    "RESOURCE_INFO",
+                    "RESOURCE",
                     "RELATED",
                     "LOG",
                 ],
@@ -454,7 +446,7 @@ class URL(HandleRecord):
                     "SCHEMA_VER",
                     "LICENSE",
                     "EMAIL",
-                    "RESOURCE_INFO",
+                    "RESOURCE",
                     "RELATED",
                     "LOG",
                 ],
@@ -603,7 +595,7 @@ class STATUS(HandleRecord):
                     "SCHEMA_VER",
                     "LICENSE",
                     "EMAIL",
-                    "RESOURCE_INFO",
+                    "RESOURCE",
                     "RELATED",
                     "LOG",
                 ],
@@ -622,7 +614,7 @@ class STATUS(HandleRecord):
                     "SCHEMA_VER",
                     "LICENSE",
                     "EMAIL",
-                    "RESOURCE_INFO",
+                    "RESOURCE",
                     "RELATED",
                     "LOG",
                 ],
@@ -755,7 +747,7 @@ class SCHEMAVER(HandleRecord):
                     "SCHEMA_VER",
                     "LICENSE",
                     "EMAIL",
-                    "RESOURCE_INFO",
+                    "RESOURCE",
                     "RELATED",
                     "LOG",
                 ],
@@ -774,7 +766,7 @@ class SCHEMAVER(HandleRecord):
                     "SCHEMA_VER",
                     "LICENSE",
                     "EMAIL",
-                    "RESOURCE_INFO",
+                    "RESOURCE",
                     "RELATED",
                     "LOG",
                 ],
@@ -923,7 +915,7 @@ class LICENSE(HandleRecord):
                     "SCHEMA_VER",
                     "LICENSE",
                     "EMAIL",
-                    "RESOURCE_INFO",
+                    "RESOURCE",
                     "RELATED",
                     "LOG",
                 ],
@@ -942,7 +934,7 @@ class LICENSE(HandleRecord):
                     "SCHEMA_VER",
                     "LICENSE",
                     "EMAIL",
-                    "RESOURCE_INFO",
+                    "RESOURCE",
                     "RELATED",
                     "LOG",
                 ],
@@ -1080,7 +1072,7 @@ class EMAIL(HandleRecord):
                     "SCHEMA_VER",
                     "LICENSE",
                     "EMAIL",
-                    "RESOURCE_INFO",
+                    "RESOURCE",
                     "RELATED",
                     "LOG",
                 ],
@@ -1099,7 +1091,7 @@ class EMAIL(HandleRecord):
                     "SCHEMA_VER",
                     "LICENSE",
                     "EMAIL",
-                    "RESOURCE_INFO",
+                    "RESOURCE",
                     "RELATED",
                     "LOG",
                 ],
@@ -1214,7 +1206,7 @@ class HdlDataContact(ConfiguredBaseModel):
         return v
 
 
-class RESOURCEINFO(HandleRecord):
+class RESOURCE(HandleRecord):
     """
     The data element in the handle API for the resource info.
     """
@@ -1252,7 +1244,7 @@ class RESOURCEINFO(HandleRecord):
                     "SCHEMA_VER",
                     "LICENSE",
                     "EMAIL",
-                    "RESOURCE_INFO",
+                    "RESOURCE",
                     "RELATED",
                     "LOG",
                 ],
@@ -1271,7 +1263,7 @@ class RESOURCEINFO(HandleRecord):
                     "SCHEMA_VER",
                     "LICENSE",
                     "EMAIL",
-                    "RESOURCE_INFO",
+                    "RESOURCE",
                     "RELATED",
                     "LOG",
                 ],
@@ -1296,8 +1288,8 @@ class RESOURCEINFO(HandleRecord):
             }
         },
     )
-    type: Literal["RESOURCE_INFO"] = Field(
-        "RESOURCE_INFO",
+    type: Literal["RESOURCE"] = Field(
+        "RESOURCE",
         description="""The type of handledata stored in the handle record.""",
         json_schema_extra={
             "linkml_meta": {
@@ -1404,7 +1396,7 @@ class RELATED(HandleRecord):
                     "SCHEMA_VER",
                     "LICENSE",
                     "EMAIL",
-                    "RESOURCE_INFO",
+                    "RESOURCE",
                     "RELATED",
                     "LOG",
                 ],
@@ -1423,7 +1415,7 @@ class RELATED(HandleRecord):
                     "SCHEMA_VER",
                     "LICENSE",
                     "EMAIL",
-                    "RESOURCE_INFO",
+                    "RESOURCE",
                     "RELATED",
                     "LOG",
                 ],
@@ -1560,7 +1552,7 @@ class LOG(HandleRecord):
                     "SCHEMA_VER",
                     "LICENSE",
                     "EMAIL",
-                    "RESOURCE_INFO",
+                    "RESOURCE",
                     "RELATED",
                     "LOG",
                 ],
@@ -1579,7 +1571,7 @@ class LOG(HandleRecord):
                     "SCHEMA_VER",
                     "LICENSE",
                     "EMAIL",
-                    "RESOURCE_INFO",
+                    "RESOURCE",
                     "RELATED",
                     "LOG",
                 ],
@@ -2579,7 +2571,7 @@ LICENSE.model_rebuild()
 HdlDataLicense.model_rebuild()
 EMAIL.model_rebuild()
 HdlDataContact.model_rebuild()
-RESOURCEINFO.model_rebuild()
+RESOURCE.model_rebuild()
 HdlDataResourceInfo.model_rebuild()
 RELATED.model_rebuild()
 HdlDataRelated.model_rebuild()
