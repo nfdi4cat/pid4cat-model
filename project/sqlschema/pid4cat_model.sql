@@ -62,7 +62,7 @@
 --     * Slot: id Description:
 --     * Slot: format Description: The format of the handle data.
 --     * Slot: value Description: The value of the handle data.
--- # Class: "RESOURCE_INFO" Description: "The data element in the handle API for the resource info."
+-- # Class: "RESOURCE" Description: "The data element in the handle API for the resource info."
 --     * Slot: id Description:
 --     * Slot: index Description: The index of the handle record.
 --     * Slot: timestamp Description: The iso datetime for the last update of the handle data.
@@ -406,7 +406,7 @@ CREATE TABLE "ResourceInfo_representation_variants" (
 	FOREIGN KEY("ResourceInfo_id") REFERENCES "ResourceInfo" (id),
 	FOREIGN KEY(representation_variants_id) REFERENCES "RepresentationVariant" (id)
 );
-CREATE TABLE "RESOURCE_INFO" (
+CREATE TABLE "RESOURCE" (
 	id INTEGER NOT NULL,
 	"index" INTEGER NOT NULL,
 	timestamp DATETIME NOT NULL,

@@ -131,7 +131,7 @@ linkml:Sparqlpath xsd:string
           ) ;
           rdf:type [ <HandleRecord> ] ?
        )
-    } OR @<EMAIL> OR @<LICENSE> OR @<LOG> OR @<RELATED> OR @<RESOURCEINFO> OR @<SCHEMAVER> OR @<STATUS> OR @<URL>
+    } OR @<EMAIL> OR @<LICENSE> OR @<LOG> OR @<RELATED> OR @<RESOURCE> OR @<SCHEMAVER> OR @<STATUS> OR @<URL>
 )
 
 <HandleRecordContainer> CLOSED {
@@ -331,13 +331,13 @@ linkml:Sparqlpath xsd:string
     )
 }
 
-<RESOURCEINFO> CLOSED {
-    (  $<RESOURCEINFO_tes> (  &<HandleRecord_tes> ;
+<RESOURCE> CLOSED {
+    (  $<RESOURCE_tes> (  &<HandleRecord_tes> ;
           rdf:type [ <HandleRecord> ] ? ;
           <index> @linkml:Integer ;
           <data> @<HdlDataResourceInfo>
        ) ;
-       rdf:type [ <RESOURCEINFO> ] ?
+       rdf:type [ <RESOURCE> ] ?
     )
 }
 
