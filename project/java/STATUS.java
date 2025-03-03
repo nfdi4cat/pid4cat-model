@@ -9,13 +9,13 @@ import lombok.*;
 
 
 /**
-  A data element in the handle API.
+  The data element in the handle API for the PID status information.
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)
 public class STATUS extends HandleRecord {
 
-  private Integer index;
+  private int index;
   private HdlDataStatus data;
 
 }

@@ -9,13 +9,13 @@ import lombok.*;
 
 
 /**
-  The data element in the handle API for the schema version.
+  The data element in the handle API for the PID metadata license.
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)
 public class LICENSE extends HandleRecord {
 
-  private Integer index;
+  private int index;
   private HdlDataLicense data;
 
 }

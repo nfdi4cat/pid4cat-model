@@ -9,7 +9,7 @@ import lombok.*;
 
 
 /**
-  The data element in the handle API for related identifiers.
+  The data class for related identifiers.
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)

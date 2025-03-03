@@ -9,7 +9,7 @@ import lombok.*;
 
 
 /**
-  A log record for changes made in a pid4cat handle record starting from registration.
+  Data class for a change log of modification made on a pid4cat handle record starting from its registration.
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)

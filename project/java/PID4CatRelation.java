@@ -9,7 +9,7 @@ import lombok.*;
 
 
 /**
-  A relation between pid4cat handles or between a pid4cat handle and other resources identified by a PID.
+  Data class for a relation to another resource identified by a pid4cat handle or another PID type.
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)

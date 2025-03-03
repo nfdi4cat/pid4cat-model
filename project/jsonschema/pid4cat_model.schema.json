@@ -2,10 +2,11 @@
     "$defs": {
         "Agent": {
             "additionalProperties": false,
-            "description": "Person who plays a role relative to PID creation or curation.",
+            "description": "Data class for a person who plays a role relative to PID creation or curation.",
             "properties": {
                 "affiliation_ror": {
                     "description": "The ROR of the agent's affiliation.",
+                    "pattern": "^https:\\/\\/ror\\.org\\/0[a-hj-km-np-tv-z|0-9]{6}[0-9]{2}$",
                     "type": [
                         "string",
                         "null"
@@ -14,20 +15,15 @@
                 "email": {
                     "description": "Email address of the agent that created or modified the PID record.",
                     "pattern": "^\\S+@[\\S+\\.]+\\S+",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                    "type": "string"
                 },
                 "name": {
                     "description": "The name of the agent that created or modified the PID record.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                    "type": "string"
                 },
                 "orcid": {
                     "description": "The ORCID of the person",
+                    "pattern": "^\\d{4}-\\d{4}-\\d{4}-\\d{3}[0-9X]$",
                     "type": [
                         "string",
                         "null"
@@ -38,6 +34,11 @@
                     "description": "The role of the agent relative to the resource"
                 }
             },
+            "required": [
+                "name",
+                "email",
+                "role"
+            ],
             "title": "Agent",
             "type": "object"
         },
@@ -56,22 +57,20 @@
                 "resolving_url": {
                     "description": "The URL that resolves the identifier.",
                     "pattern": "^https?:\\/\\/.*\\/ark:\\/\\d{5}/.*$",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                    "type": "string"
                 },
                 "type": {
                     "description": "The type of the identifier.",
                     "enum": [
                         "ArkIdentifier"
                     ],
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                    "type": "string"
                 }
             },
+            "required": [
+                "resolving_url",
+                "type"
+            ],
             "title": "ArkIdentifier",
             "type": "object"
         },
@@ -104,22 +103,20 @@
                 "resolving_url": {
                     "description": "The URL that resolves the identifier.",
                     "pattern": "^https:\\/\\/doi\\.org\\/10.*$",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                    "type": "string"
                 },
                 "type": {
                     "description": "The type of the identifier.",
                     "enum": [
                         "DoiIdentifier"
                     ],
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                    "type": "string"
                 }
             },
+            "required": [
+                "resolving_url",
+                "type"
+            ],
             "title": "DoiIdentifier",
             "type": "object"
         },
@@ -128,35 +125,22 @@
             "description": "The data element in the handle API for the contact email.",
             "properties": {
                 "data": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/HdlDataContact"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
+                    "$ref": "#/$defs/HdlDataContact",
                     "description": "The data in the handle record."
                 },
                 "index": {
                     "description": "The index of the handle record.",
                     "maximum": 5,
                     "minimum": 5,
-                    "type": [
-                        "integer",
-                        "null"
-                    ]
+                    "type": "integer"
                 },
                 "timestamp": {
                     "description": "The iso datetime for the last update of the handle data.",
                     "format": "date-time",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                    "type": "string"
                 },
                 "ttl": {
-                    "description": "A time to live in seconds for the handle record. Typically: 86400 => 1 day\nTODO: Research details of ttl meaning for handle API.\n",
+                    "description": "A time to live in seconds for the handle record. Typically: 86400 => 1 day",
                     "type": [
                         "integer",
                         "null"
@@ -167,12 +151,15 @@
                     "enum": [
                         "EMAIL"
                     ],
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                    "type": "string"
                 }
             },
+            "required": [
+                "index",
+                "data",
+                "timestamp",
+                "type"
+            ],
             "title": "EMAIL",
             "type": "object"
         },
@@ -201,38 +188,36 @@
                     "enum": [
                         "ExampleIdentifier"
                     ],
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                    "type": "string"
                 }
             },
+            "required": [
+                "type"
+            ],
             "title": "ExampleIdentifier",
             "type": "object"
         },
         "GtinIdentifier": {
             "additionalProperties": false,
-            "description": "A  Global Trade Item Number (GTIN) previously called European Article Number (EAN) often encoded as EAN13 barcode. The identifier is used to identify products. GTINs don't have a resolvable URL.",
+            "description": "A Global Trade Item Number (GTIN) previously called European Article Number (EAN) often encoded as EAN13 barcode. The identifier is used to identify products. GTINs don't have a resolvable URL.",
             "properties": {
                 "identifier": {
                     "description": "The identifier in recommended notation.",
                     "pattern": "^\\d{13}$",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                    "type": "string"
                 },
                 "type": {
                     "description": "The type of the identifier.",
                     "enum": [
                         "GtinIdentifier"
                     ],
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                    "type": "string"
                 }
             },
+            "required": [
+                "identifier",
+                "type"
+            ],
             "title": "GtinIdentifier",
             "type": "object"
         },
@@ -242,10 +227,7 @@
             "properties": {
                 "handle": {
                     "description": "The handle of the pid4cat record.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                    "type": "string"
                 },
                 "responseCode": {
                     "description": "The response code of the handle API.",
@@ -287,14 +269,12 @@
                             }
                         ]
                     },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
+                    "type": "array"
                 }
             },
             "required": [
-                "handle"
+                "handle",
+                "values"
             ],
             "title": "HandleAPIRecord",
             "type": "object"
@@ -314,39 +294,34 @@
                 "resolving_url": {
                     "description": "The URL that resolves the identifier.",
                     "pattern": "^https:\\/\\/hdl\\.handle\\.net\\/\\d{2}\\.\\d{4,}\\/.*$",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                    "type": "string"
                 },
                 "type": {
                     "description": "The type of the identifier.",
                     "enum": [
                         "HandleIdentifier"
                     ],
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                    "type": "string"
                 }
             },
+            "required": [
+                "resolving_url",
+                "type"
+            ],
             "title": "HandleIdentifier",
             "type": "object"
         },
         "HandleRecord": {
             "additionalProperties": false,
-            "description": "A class representing a handle record in the same way as in the REST (json) API of a handle server.",
+            "description": "A base class for handle-data classes that represent a handle record in the same way as in the REST (json) API of a handle server.",
             "properties": {
                 "timestamp": {
                     "description": "The iso datetime for the last update of the handle data.",
                     "format": "date-time",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                    "type": "string"
                 },
                 "ttl": {
-                    "description": "A time to live in seconds for the handle record. Typically: 86400 => 1 day\nTODO: Research details of ttl meaning for handle API.\n",
+                    "description": "A time to live in seconds for the handle record. Typically: 86400 => 1 day",
                     "type": [
                         "integer",
                         "null"
@@ -357,12 +332,13 @@
                     "enum": [
                         "HandleRecord"
                     ],
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                    "type": "string"
                 }
             },
+            "required": [
+                "timestamp",
+                "type"
+            ],
             "title": "HandleRecord",
             "type": "object"
         },
@@ -386,7 +362,7 @@
         },
         "HdlDataContact": {
             "additionalProperties": false,
-            "description": "The data element in the handle API for the contact email.",
+            "description": "The data class for the handle-record contact email.",
             "properties": {
                 "format": {
                     "const": "string",
@@ -399,18 +375,18 @@
                 "value": {
                     "description": "The value of the handle data.",
                     "pattern": "^\\S+@[\\S+\\.]+\\S+",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                    "type": "string"
                 }
             },
+            "required": [
+                "value"
+            ],
             "title": "HdlDataContact",
             "type": "object"
         },
         "HdlDataLicense": {
             "additionalProperties": false,
-            "description": "The data element in the handle API for the license.",
+            "description": "The data class for the PID metadata license.",
             "properties": {
                 "format": {
                     "const": "string",
@@ -423,18 +399,18 @@
                 "value": {
                     "const": "CC0-1.0",
                     "description": "The value of the handle data.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                    "type": "string"
                 }
             },
+            "required": [
+                "value"
+            ],
             "title": "HdlDataLicense",
             "type": "object"
         },
         "HdlDataLog": {
             "additionalProperties": false,
-            "description": "The data element in the handle API for the change log.",
+            "description": "The data class for the change log.",
             "properties": {
                 "format": {
                     "const": "string",
@@ -449,18 +425,18 @@
                     "items": {
                         "$ref": "#/$defs/LogRecord"
                     },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
+                    "type": "array"
                 }
             },
+            "required": [
+                "value"
+            ],
             "title": "HdlDataLog",
             "type": "object"
         },
         "HdlDataRelated": {
             "additionalProperties": false,
-            "description": "The data element in the handle API for related identifiers.",
+            "description": "The data class for related identifiers.",
             "properties": {
                 "format": {
                     "const": "string",
@@ -486,7 +462,7 @@
         },
         "HdlDataResourceInfo": {
             "additionalProperties": false,
-            "description": "The data element in the handle API for the resource info.",
+            "description": "The data class for the resource info.",
             "properties": {
                 "format": {
                     "const": "string",
@@ -497,23 +473,19 @@
                     ]
                 },
                 "value": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/ResourceInfo"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
+                    "$ref": "#/$defs/ResourceInfo",
                     "description": "The value of the handle data."
                 }
             },
+            "required": [
+                "value"
+            ],
             "title": "HdlDataResourceInfo",
             "type": "object"
         },
         "HdlDataSchemaVer": {
             "additionalProperties": false,
-            "description": "The data element in the handle API for the schema version.",
+            "description": "The data class for the schema version.",
             "properties": {
                 "format": {
                     "const": "string",
@@ -526,18 +498,18 @@
                 "value": {
                     "description": "The value of the handle data.",
                     "pattern": "^v\\d+\\.\\d+\\.\\d+$",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                    "type": "string"
                 }
             },
+            "required": [
+                "value"
+            ],
             "title": "HdlDataSchemaVer",
             "type": "object"
         },
         "HdlDataStatus": {
             "additionalProperties": false,
-            "description": "The data element in the handle API for the status.",
+            "description": "The data class for the PID status information.",
             "properties": {
                 "format": {
                     "const": "string",
@@ -552,12 +524,15 @@
                     "description": "The value of the handle data."
                 }
             },
+            "required": [
+                "value"
+            ],
             "title": "HdlDataStatus",
             "type": "object"
         },
         "HdlDataUrl": {
             "additionalProperties": false,
-            "description": "The data element in the handle API for the redirect url.",
+            "description": "The data class for the redirect url.",
             "properties": {
                 "format": {
                     "const": "string",
@@ -570,49 +545,36 @@
                 "value": {
                     "description": "The value of the handle data.",
                     "pattern": "^https?:\\/\\/.*$",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                    "type": "string"
                 }
             },
+            "required": [
+                "value"
+            ],
             "title": "HdlDataUrl",
             "type": "object"
         },
         "LICENSE": {
             "additionalProperties": false,
-            "description": "The data element in the handle API for the schema version.",
+            "description": "The data element in the handle API for the PID metadata license.",
             "properties": {
                 "data": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/HdlDataLicense"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
+                    "$ref": "#/$defs/HdlDataLicense",
                     "description": "The data in the handle record."
                 },
                 "index": {
                     "description": "The index of the handle record.",
                     "maximum": 4,
                     "minimum": 4,
-                    "type": [
-                        "integer",
-                        "null"
-                    ]
+                    "type": "integer"
                 },
                 "timestamp": {
                     "description": "The iso datetime for the last update of the handle data.",
                     "format": "date-time",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                    "type": "string"
                 },
                 "ttl": {
-                    "description": "A time to live in seconds for the handle record. Typically: 86400 => 1 day\nTODO: Research details of ttl meaning for handle API.\n",
+                    "description": "A time to live in seconds for the handle record. Typically: 86400 => 1 day",
                     "type": [
                         "integer",
                         "null"
@@ -623,12 +585,15 @@
                     "enum": [
                         "LICENSE"
                     ],
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                    "type": "string"
                 }
             },
+            "required": [
+                "index",
+                "data",
+                "timestamp",
+                "type"
+            ],
             "title": "LICENSE",
             "type": "object"
         },
@@ -637,35 +602,22 @@
             "description": "The data element in the handle API for the change log.",
             "properties": {
                 "data": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/HdlDataLog"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
+                    "$ref": "#/$defs/HdlDataLog",
                     "description": "The data in the handle record."
                 },
                 "index": {
                     "description": "The index of the handle record.",
                     "maximum": 8,
                     "minimum": 8,
-                    "type": [
-                        "integer",
-                        "null"
-                    ]
+                    "type": "integer"
                 },
                 "timestamp": {
                     "description": "The iso datetime for the last update of the handle data.",
                     "format": "date-time",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                    "type": "string"
                 },
                 "ttl": {
-                    "description": "A time to live in seconds for the handle record. Typically: 86400 => 1 day\nTODO: Research details of ttl meaning for handle API.\n",
+                    "description": "A time to live in seconds for the handle record. Typically: 86400 => 1 day",
                     "type": [
                         "integer",
                         "null"
@@ -676,30 +628,30 @@
                     "enum": [
                         "LOG"
                     ],
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                    "type": "string"
                 }
             },
+            "required": [
+                "index",
+                "data",
+                "timestamp",
+                "type"
+            ],
             "title": "LOG",
             "type": "object"
         },
         "LogRecord": {
             "additionalProperties": false,
-            "description": "A log record for changes made in a pid4cat handle record starting from registration.",
+            "description": "Data class for a change log of modification made on a pid4cat handle record starting from its registration.",
             "properties": {
                 "changed_field": {
                     "$ref": "#/$defs/ChangeLogField",
-                    "description": "The field that was changed"
+                    "description": "The field that was changed."
                 },
                 "datetime_log": {
                     "description": "The date and time of a log record.",
                     "format": "date-time",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                    "type": "string"
                 },
                 "description": {
                     "description": "A human-readable description for a resource.",
@@ -709,17 +661,15 @@
                     ]
                 },
                 "has_agent": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/Agent"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
+                    "$ref": "#/$defs/Agent",
                     "description": "The person who registered or modified the PID record."
                 }
             },
+            "required": [
+                "datetime_log",
+                "has_agent",
+                "changed_field"
+            ],
             "title": "LogRecord",
             "type": "object"
         },
@@ -769,7 +719,7 @@
         },
         "Pid4CatRelation": {
             "additionalProperties": false,
-            "description": "A relation between pid4cat handles or between a pid4cat handle and other resources identified by a PID.",
+            "description": "Data class for a relation to another resource identified by a pid4cat handle or another PID type.",
             "properties": {
                 "datetime_log": {
                     "description": "The date and time of a log record.",
@@ -837,22 +787,20 @@
                 "resolving_url": {
                     "description": "The URL that resolves the identifier.",
                     "pattern": "^https:\\/\\/(purl|pida|w3id)\\.org\\/.*$",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                    "type": "string"
                 },
                 "type": {
                     "description": "The type of the identifier.",
                     "enum": [
                         "PurlIdentifier"
                     ],
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                    "type": "string"
                 }
             },
+            "required": [
+                "resolving_url",
+                "type"
+            ],
             "title": "PurlIdentifier",
             "type": "object"
         },
@@ -861,35 +809,22 @@
             "description": "The data element in the handle API for related identifiers.",
             "properties": {
                 "data": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/HdlDataRelated"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
+                    "$ref": "#/$defs/HdlDataRelated",
                     "description": "The data in the handle record."
                 },
                 "index": {
                     "description": "The index of the handle record.",
                     "maximum": 7,
                     "minimum": 7,
-                    "type": [
-                        "integer",
-                        "null"
-                    ]
+                    "type": "integer"
                 },
                 "timestamp": {
                     "description": "The iso datetime for the last update of the handle data.",
                     "format": "date-time",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                    "type": "string"
                 },
                 "ttl": {
-                    "description": "A time to live in seconds for the handle record. Typically: 86400 => 1 day\nTODO: Research details of ttl meaning for handle API.\n",
+                    "description": "A time to live in seconds for the handle record. Typically: 86400 => 1 day",
                     "type": [
                         "integer",
                         "null"
@@ -900,12 +835,15 @@
                     "enum": [
                         "RELATED"
                     ],
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                    "type": "string"
                 }
             },
+            "required": [
+                "index",
+                "data",
+                "timestamp",
+                "type"
+            ],
             "title": "RELATED",
             "type": "object"
         },
@@ -914,35 +852,22 @@
             "description": "The data element in the handle API for the resource info.",
             "properties": {
                 "data": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/HdlDataResourceInfo"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
+                    "$ref": "#/$defs/HdlDataResourceInfo",
                     "description": "The data in the handle record."
                 },
                 "index": {
                     "description": "The index of the handle record.",
                     "maximum": 6,
                     "minimum": 6,
-                    "type": [
-                        "integer",
-                        "null"
-                    ]
+                    "type": "integer"
                 },
                 "timestamp": {
                     "description": "The iso datetime for the last update of the handle data.",
                     "format": "date-time",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                    "type": "string"
                 },
                 "ttl": {
-                    "description": "A time to live in seconds for the handle record. Typically: 86400 => 1 day\nTODO: Research details of ttl meaning for handle API.\n",
+                    "description": "A time to live in seconds for the handle record. Typically: 86400 => 1 day",
                     "type": [
                         "integer",
                         "null"
@@ -953,30 +878,33 @@
                     "enum": [
                         "RESOURCE_INFO"
                     ],
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                    "type": "string"
                 }
             },
+            "required": [
+                "index",
+                "data",
+                "timestamp",
+                "type"
+            ],
             "title": "RESOURCEINFO",
             "type": "object"
         },
         "RelatedIdentifier": {
             "additionalProperties": false,
-            "description": "A class for all types pf related identifiers.",
+            "description": "A base class for all types of related identifiers.",
             "properties": {
                 "type": {
                     "description": "The type of the identifier.",
                     "enum": [
                         "RelatedIdentifier"
                     ],
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                    "type": "string"
                 }
             },
+            "required": [
+                "type"
+            ],
             "title": "RelatedIdentifier",
             "type": "object"
         },
@@ -1021,7 +949,7 @@
         },
         "RepresentationVariant": {
             "additionalProperties": false,
-            "description": "A representation of the resource in other media types than text/html which is the default for landing_page_url.",
+            "description": "Data class for representations of the resource in other media types than text/html which is the default for landing_page_url.",
             "properties": {
                 "encoding_format": {
                     "description": "The encoding of the representation. https://encoding.spec.whatwg.org/#names-and-labels",
@@ -1068,7 +996,7 @@
         },
         "ResourceInfo": {
             "additionalProperties": false,
-            "description": "Data object to hold information about the resource and its representation.",
+            "description": "Data class to hold information about the resource and its representation.",
             "properties": {
                 "description": {
                     "description": "A human-readable description for a resource.",
@@ -1089,16 +1017,17 @@
                     "items": {
                         "$ref": "#/$defs/RepresentationVariant"
                     },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
+                    "type": "array"
                 },
                 "resource_category": {
                     "$ref": "#/$defs/ResourceCategory",
                     "description": "The category of the resource."
                 }
             },
+            "required": [
+                "resource_category",
+                "representation_variants"
+            ],
             "title": "ResourceInfo",
             "type": "object"
         },
@@ -1107,35 +1036,22 @@
             "description": "The data element in the handle API for the schema version.",
             "properties": {
                 "data": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/HdlDataSchemaVer"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
+                    "$ref": "#/$defs/HdlDataSchemaVer",
                     "description": "The data in the handle record."
                 },
                 "index": {
                     "description": "The index of the handle record.",
                     "maximum": 3,
                     "minimum": 3,
-                    "type": [
-                        "integer",
-                        "null"
-                    ]
+                    "type": "integer"
                 },
                 "timestamp": {
                     "description": "The iso datetime for the last update of the handle data.",
                     "format": "date-time",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                    "type": "string"
                 },
                 "ttl": {
-                    "description": "A time to live in seconds for the handle record. Typically: 86400 => 1 day\nTODO: Research details of ttl meaning for handle API.\n",
+                    "description": "A time to live in seconds for the handle record. Typically: 86400 => 1 day",
                     "type": [
                         "integer",
                         "null"
@@ -1146,49 +1062,39 @@
                     "enum": [
                         "SCHEMA_VER"
                     ],
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                    "type": "string"
                 }
             },
+            "required": [
+                "index",
+                "data",
+                "timestamp",
+                "type"
+            ],
             "title": "SCHEMAVER",
             "type": "object"
         },
         "STATUS": {
             "additionalProperties": false,
-            "description": "A data element in the handle API.",
+            "description": "The data element in the handle API for the PID status information.",
             "properties": {
                 "data": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/HdlDataStatus"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
+                    "$ref": "#/$defs/HdlDataStatus",
                     "description": "The data in the handle record."
                 },
                 "index": {
                     "description": "The index of the handle record.",
                     "maximum": 2,
                     "minimum": 2,
-                    "type": [
-                        "integer",
-                        "null"
-                    ]
+                    "type": "integer"
                 },
                 "timestamp": {
                     "description": "The iso datetime for the last update of the handle data.",
                     "format": "date-time",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                    "type": "string"
                 },
                 "ttl": {
-                    "description": "A time to live in seconds for the handle record. Typically: 86400 => 1 day\nTODO: Research details of ttl meaning for handle API.\n",
+                    "description": "A time to live in seconds for the handle record. Typically: 86400 => 1 day",
                     "type": [
                         "integer",
                         "null"
@@ -1199,12 +1105,15 @@
                     "enum": [
                         "STATUS"
                     ],
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                    "type": "string"
                 }
             },
+            "required": [
+                "index",
+                "data",
+                "timestamp",
+                "type"
+            ],
             "title": "STATUS",
             "type": "object"
         },
@@ -1213,35 +1122,22 @@
             "description": "The data element in the handle API for the landing page URL.",
             "properties": {
                 "data": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/HdlDataUrl"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
+                    "$ref": "#/$defs/HdlDataUrl",
                     "description": "The data in the handle record."
                 },
                 "index": {
                     "description": "The index of the handle record.",
                     "maximum": 1,
                     "minimum": 1,
-                    "type": [
-                        "integer",
-                        "null"
-                    ]
+                    "type": "integer"
                 },
                 "timestamp": {
                     "description": "The iso datetime for the last update of the handle data.",
                     "format": "date-time",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                    "type": "string"
                 },
                 "ttl": {
-                    "description": "A time to live in seconds for the handle record. Typically: 86400 => 1 day\nTODO: Research details of ttl meaning for handle API.\n",
+                    "description": "A time to live in seconds for the handle record. Typically: 86400 => 1 day",
                     "type": [
                         "integer",
                         "null"
@@ -1252,12 +1148,15 @@
                     "enum": [
                         "URL"
                     ],
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                    "type": "string"
                 }
             },
+            "required": [
+                "index",
+                "data",
+                "timestamp",
+                "type"
+            ],
             "title": "URL",
             "type": "object"
         },
@@ -1268,22 +1167,20 @@
                 "identifier": {
                     "description": "The identifier in recommended notation.",
                     "pattern": "^urn:[a-zA-Z0-9][a-zA-Z0-9-]{0,31}:[^\\s]*$",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                    "type": "string"
                 },
                 "type": {
                     "description": "The type of the identifier.",
                     "enum": [
                         "UrnIdentifier"
                     ],
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                    "type": "string"
                 }
             },
+            "required": [
+                "identifier",
+                "type"
+            ],
             "title": "UrnIdentifier",
             "type": "object"
         }

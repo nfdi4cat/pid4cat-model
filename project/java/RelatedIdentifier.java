@@ -9,7 +9,7 @@ import lombok.*;
 
 
 /**
-  A class for all types pf related identifiers.
+  A base class for all types of related identifiers.
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)

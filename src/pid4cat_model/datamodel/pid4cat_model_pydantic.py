@@ -304,7 +304,13 @@ class HandleAPIRecord(ConfiguredBaseModel):
     """
 
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
-        {"from_schema": "https://w3id.org/nfdi4cat/pid4cat-model"}
+        {
+            "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
+            "slot_usage": {
+                "handle": {"name": "handle", "required": True},
+                "values": {"name": "values", "required": True},
+            },
+        }
     )
 
     responseCode: Optional[int] = Field(
@@ -321,22 +327,20 @@ class HandleAPIRecord(ConfiguredBaseModel):
             "linkml_meta": {"alias": "handle", "domain_of": ["HandleAPIRecord"]}
         },
     )
-    values: Optional[
-        List[
-            Union[
-                HandleRecord,
-                URL,
-                STATUS,
-                SCHEMAVER,
-                LICENSE,
-                EMAIL,
-                RESOURCEINFO,
-                RELATED,
-                LOG,
-            ]
+    values: List[
+        Union[
+            HandleRecord,
+            URL,
+            STATUS,
+            SCHEMAVER,
+            LICENSE,
+            EMAIL,
+            RESOURCEINFO,
+            RELATED,
+            LOG,
         ]
     ] = Field(
-        None,
+        ...,
         description="""The values of the pid4cat record.""",
         json_schema_extra={
             "linkml_meta": {"alias": "values", "domain_of": ["HandleAPIRecord"]}
@@ -346,37 +350,42 @@ class HandleAPIRecord(ConfiguredBaseModel):
 
 class HandleRecord(ConfiguredBaseModel):
     """
-    A class representing a handle record in the same way as in the REST (json) API of a handle server.
+    A base class for handle-data classes that represent a handle record in the same way as in the REST (json) API of a handle server.
     """
 
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
         {
             "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
             "slot_usage": {
+                "timestamp": {"name": "timestamp", "required": True},
+                "ttl": {"ifabsent": "86400", "name": "ttl"},
                 "type": {
                     "description": "The type of handledata stored in the "
                     "handle record.",
                     "designates_type": True,
                     "name": "type",
-                }
+                    "required": True,
+                },
             },
         }
     )
 
-    ttl: Optional[int] = Field(
-        None,
-        description="""A time to live in seconds for the handle record. Typically: 86400 => 1 day
-TODO: Research details of ttl meaning for handle API.
-""",
-        json_schema_extra={
-            "linkml_meta": {"alias": "ttl", "domain_of": ["HandleRecord"]}
-        },
-    )
-    timestamp: Optional[datetime] = Field(
-        None,
+    timestamp: datetime = Field(
+        ...,
         description="""The iso datetime for the last update of the handle data.""",
         json_schema_extra={
             "linkml_meta": {"alias": "timestamp", "domain_of": ["HandleRecord"]}
+        },
+    )
+    ttl: Optional[int] = Field(
+        86400,
+        description="""A time to live in seconds for the handle record. Typically: 86400 => 1 day""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "ttl",
+                "domain_of": ["HandleRecord"],
+                "ifabsent": "86400",
+            }
         },
     )
     type: Literal["HandleRecord"] = Field(
@@ -401,14 +410,19 @@ class URL(HandleRecord):
         {
             "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
             "slot_usage": {
-                "data": {"name": "data", "range": "HdlDataUrl"},
-                "index": {"maximum_value": 1, "minimum_value": 1, "name": "index"},
+                "data": {"name": "data", "range": "HdlDataUrl", "required": True},
+                "index": {
+                    "maximum_value": 1,
+                    "minimum_value": 1,
+                    "name": "index",
+                    "required": True,
+                },
             },
         }
     )
 
-    index: Optional[int] = Field(
-        None,
+    index: int = Field(
+        ...,
         description="""The index of the handle record.""",
         ge=1,
         le=1,
@@ -428,8 +442,8 @@ class URL(HandleRecord):
             }
         },
     )
-    data: Optional[HdlDataUrl] = Field(
-        None,
+    data: HdlDataUrl = Field(
+        ...,
         description="""The data in the handle record.""",
         json_schema_extra={
             "linkml_meta": {
@@ -447,20 +461,22 @@ class URL(HandleRecord):
             }
         },
     )
-    ttl: Optional[int] = Field(
-        None,
-        description="""A time to live in seconds for the handle record. Typically: 86400 => 1 day
-TODO: Research details of ttl meaning for handle API.
-""",
-        json_schema_extra={
-            "linkml_meta": {"alias": "ttl", "domain_of": ["HandleRecord"]}
-        },
-    )
-    timestamp: Optional[datetime] = Field(
-        None,
+    timestamp: datetime = Field(
+        ...,
         description="""The iso datetime for the last update of the handle data.""",
         json_schema_extra={
             "linkml_meta": {"alias": "timestamp", "domain_of": ["HandleRecord"]}
+        },
+    )
+    ttl: Optional[int] = Field(
+        86400,
+        description="""A time to live in seconds for the handle record. Typically: 86400 => 1 day""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "ttl",
+                "domain_of": ["HandleRecord"],
+                "ifabsent": "86400",
+            }
         },
     )
     type: Literal["URL"] = Field(
@@ -478,21 +494,29 @@ TODO: Research details of ttl meaning for handle API.
 
 class HdlDataUrl(ConfiguredBaseModel):
     """
-    The data element in the handle API for the redirect url.
+    The data class for the redirect url.
     """
 
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
         {
             "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
             "slot_usage": {
-                "format": {"equals_string": "string", "name": "format"},
-                "value": {"name": "value", "pattern": "^https?:\\/\\/.*$"},
+                "format": {
+                    "equals_string": "string",
+                    "ifabsent": "string",
+                    "name": "format",
+                },
+                "value": {
+                    "name": "value",
+                    "pattern": "^https?:\\/\\/.*$",
+                    "required": True,
+                },
             },
         }
     )
 
     format: Optional[Literal["string"]] = Field(
-        None,
+        "string",
         description="""The format of the handle data.""",
         json_schema_extra={
             "linkml_meta": {
@@ -508,11 +532,12 @@ class HdlDataUrl(ConfiguredBaseModel):
                     "HdlDataLog",
                 ],
                 "equals_string": "string",
+                "ifabsent": "string",
             }
         },
     )
-    value: Optional[str] = Field(
-        None,
+    value: str = Field(
+        ...,
         description="""The value of the handle data.""",
         json_schema_extra={
             "linkml_meta": {
@@ -546,21 +571,26 @@ class HdlDataUrl(ConfiguredBaseModel):
 
 class STATUS(HandleRecord):
     """
-    A data element in the handle API.
+    The data element in the handle API for the PID status information.
     """
 
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
         {
             "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
             "slot_usage": {
-                "data": {"name": "data", "range": "HdlDataStatus"},
-                "index": {"maximum_value": 2, "minimum_value": 2, "name": "index"},
+                "data": {"name": "data", "range": "HdlDataStatus", "required": True},
+                "index": {
+                    "maximum_value": 2,
+                    "minimum_value": 2,
+                    "name": "index",
+                    "required": True,
+                },
             },
         }
     )
 
-    index: Optional[int] = Field(
-        None,
+    index: int = Field(
+        ...,
         description="""The index of the handle record.""",
         ge=2,
         le=2,
@@ -580,8 +610,8 @@ class STATUS(HandleRecord):
             }
         },
     )
-    data: Optional[HdlDataStatus] = Field(
-        None,
+    data: HdlDataStatus = Field(
+        ...,
         description="""The data in the handle record.""",
         json_schema_extra={
             "linkml_meta": {
@@ -599,20 +629,22 @@ class STATUS(HandleRecord):
             }
         },
     )
-    ttl: Optional[int] = Field(
-        None,
-        description="""A time to live in seconds for the handle record. Typically: 86400 => 1 day
-TODO: Research details of ttl meaning for handle API.
-""",
-        json_schema_extra={
-            "linkml_meta": {"alias": "ttl", "domain_of": ["HandleRecord"]}
-        },
-    )
-    timestamp: Optional[datetime] = Field(
-        None,
+    timestamp: datetime = Field(
+        ...,
         description="""The iso datetime for the last update of the handle data.""",
         json_schema_extra={
             "linkml_meta": {"alias": "timestamp", "domain_of": ["HandleRecord"]}
+        },
+    )
+    ttl: Optional[int] = Field(
+        86400,
+        description="""A time to live in seconds for the handle record. Typically: 86400 => 1 day""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "ttl",
+                "domain_of": ["HandleRecord"],
+                "ifabsent": "86400",
+            }
         },
     )
     type: Literal["STATUS"] = Field(
@@ -630,21 +662,25 @@ TODO: Research details of ttl meaning for handle API.
 
 class HdlDataStatus(ConfiguredBaseModel):
     """
-    The data element in the handle API for the status.
+    The data class for the PID status information.
     """
 
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
         {
             "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
             "slot_usage": {
-                "format": {"equals_string": "string", "name": "format"},
-                "value": {"name": "value", "range": "Pid4CatStatus"},
+                "format": {
+                    "equals_string": "string",
+                    "ifabsent": "string",
+                    "name": "format",
+                },
+                "value": {"name": "value", "range": "Pid4CatStatus", "required": True},
             },
         }
     )
 
     format: Optional[Literal["string"]] = Field(
-        None,
+        "string",
         description="""The format of the handle data.""",
         json_schema_extra={
             "linkml_meta": {
@@ -660,11 +696,12 @@ class HdlDataStatus(ConfiguredBaseModel):
                     "HdlDataLog",
                 ],
                 "equals_string": "string",
+                "ifabsent": "string",
             }
         },
     )
-    value: Optional[Pid4CatStatus] = Field(
-        None,
+    value: Pid4CatStatus = Field(
+        ...,
         description="""The value of the handle data.""",
         json_schema_extra={
             "linkml_meta": {
@@ -693,14 +730,19 @@ class SCHEMAVER(HandleRecord):
         {
             "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
             "slot_usage": {
-                "data": {"name": "data", "range": "HdlDataSchemaVer"},
-                "index": {"maximum_value": 3, "minimum_value": 3, "name": "index"},
+                "data": {"name": "data", "range": "HdlDataSchemaVer", "required": True},
+                "index": {
+                    "maximum_value": 3,
+                    "minimum_value": 3,
+                    "name": "index",
+                    "required": True,
+                },
             },
         }
     )
 
-    index: Optional[int] = Field(
-        None,
+    index: int = Field(
+        ...,
         description="""The index of the handle record.""",
         ge=3,
         le=3,
@@ -720,8 +762,8 @@ class SCHEMAVER(HandleRecord):
             }
         },
     )
-    data: Optional[HdlDataSchemaVer] = Field(
-        None,
+    data: HdlDataSchemaVer = Field(
+        ...,
         description="""The data in the handle record.""",
         json_schema_extra={
             "linkml_meta": {
@@ -739,20 +781,22 @@ class SCHEMAVER(HandleRecord):
             }
         },
     )
-    ttl: Optional[int] = Field(
-        None,
-        description="""A time to live in seconds for the handle record. Typically: 86400 => 1 day
-TODO: Research details of ttl meaning for handle API.
-""",
-        json_schema_extra={
-            "linkml_meta": {"alias": "ttl", "domain_of": ["HandleRecord"]}
-        },
-    )
-    timestamp: Optional[datetime] = Field(
-        None,
+    timestamp: datetime = Field(
+        ...,
         description="""The iso datetime for the last update of the handle data.""",
         json_schema_extra={
             "linkml_meta": {"alias": "timestamp", "domain_of": ["HandleRecord"]}
+        },
+    )
+    ttl: Optional[int] = Field(
+        86400,
+        description="""A time to live in seconds for the handle record. Typically: 86400 => 1 day""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "ttl",
+                "domain_of": ["HandleRecord"],
+                "ifabsent": "86400",
+            }
         },
     )
     type: Literal["SCHEMA_VER"] = Field(
@@ -770,21 +814,29 @@ TODO: Research details of ttl meaning for handle API.
 
 class HdlDataSchemaVer(ConfiguredBaseModel):
     """
-    The data element in the handle API for the schema version.
+    The data class for the schema version.
     """
 
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
         {
             "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
             "slot_usage": {
-                "format": {"equals_string": "string", "name": "format"},
-                "value": {"name": "value", "pattern": "^v\\d+\\.\\d+\\.\\d+$"},
+                "format": {
+                    "equals_string": "string",
+                    "ifabsent": "string",
+                    "name": "format",
+                },
+                "value": {
+                    "name": "value",
+                    "pattern": "^v\\d+\\.\\d+\\.\\d+$",
+                    "required": True,
+                },
             },
         }
     )
 
     format: Optional[Literal["string"]] = Field(
-        None,
+        "string",
         description="""The format of the handle data.""",
         json_schema_extra={
             "linkml_meta": {
@@ -800,11 +852,12 @@ class HdlDataSchemaVer(ConfiguredBaseModel):
                     "HdlDataLog",
                 ],
                 "equals_string": "string",
+                "ifabsent": "string",
             }
         },
     )
-    value: Optional[str] = Field(
-        None,
+    value: str = Field(
+        ...,
         description="""The value of the handle data.""",
         json_schema_extra={
             "linkml_meta": {
@@ -838,21 +891,26 @@ class HdlDataSchemaVer(ConfiguredBaseModel):
 
 class LICENSE(HandleRecord):
     """
-    The data element in the handle API for the schema version.
+    The data element in the handle API for the PID metadata license.
     """
 
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
         {
             "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
             "slot_usage": {
-                "data": {"name": "data", "range": "HdlDataLicense"},
-                "index": {"maximum_value": 4, "minimum_value": 4, "name": "index"},
+                "data": {"name": "data", "range": "HdlDataLicense", "required": True},
+                "index": {
+                    "maximum_value": 4,
+                    "minimum_value": 4,
+                    "name": "index",
+                    "required": True,
+                },
             },
         }
     )
 
-    index: Optional[int] = Field(
-        None,
+    index: int = Field(
+        ...,
         description="""The index of the handle record.""",
         ge=4,
         le=4,
@@ -872,8 +930,8 @@ class LICENSE(HandleRecord):
             }
         },
     )
-    data: Optional[HdlDataLicense] = Field(
-        None,
+    data: HdlDataLicense = Field(
+        ...,
         description="""The data in the handle record.""",
         json_schema_extra={
             "linkml_meta": {
@@ -891,20 +949,22 @@ class LICENSE(HandleRecord):
             }
         },
     )
-    ttl: Optional[int] = Field(
-        None,
-        description="""A time to live in seconds for the handle record. Typically: 86400 => 1 day
-TODO: Research details of ttl meaning for handle API.
-""",
-        json_schema_extra={
-            "linkml_meta": {"alias": "ttl", "domain_of": ["HandleRecord"]}
-        },
-    )
-    timestamp: Optional[datetime] = Field(
-        None,
+    timestamp: datetime = Field(
+        ...,
         description="""The iso datetime for the last update of the handle data.""",
         json_schema_extra={
             "linkml_meta": {"alias": "timestamp", "domain_of": ["HandleRecord"]}
+        },
+    )
+    ttl: Optional[int] = Field(
+        86400,
+        description="""A time to live in seconds for the handle record. Typically: 86400 => 1 day""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "ttl",
+                "domain_of": ["HandleRecord"],
+                "ifabsent": "86400",
+            }
         },
     )
     type: Literal["LICENSE"] = Field(
@@ -922,21 +982,29 @@ TODO: Research details of ttl meaning for handle API.
 
 class HdlDataLicense(ConfiguredBaseModel):
     """
-    The data element in the handle API for the license.
+    The data class for the PID metadata license.
     """
 
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
         {
             "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
             "slot_usage": {
-                "format": {"equals_string": "string", "name": "format"},
-                "value": {"equals_string": "CC0-1.0", "name": "value"},
+                "format": {
+                    "equals_string": "string",
+                    "ifabsent": "string",
+                    "name": "format",
+                },
+                "value": {
+                    "equals_string": "CC0-1.0",
+                    "name": "value",
+                    "required": True,
+                },
             },
         }
     )
 
     format: Optional[Literal["string"]] = Field(
-        None,
+        "string",
         description="""The format of the handle data.""",
         json_schema_extra={
             "linkml_meta": {
@@ -952,11 +1020,12 @@ class HdlDataLicense(ConfiguredBaseModel):
                     "HdlDataLog",
                 ],
                 "equals_string": "string",
+                "ifabsent": "string",
             }
         },
     )
-    value: Optional[Literal["CC0-1.0"]] = Field(
-        None,
+    value: Literal["CC0-1.0"] = Field(
+        ...,
         description="""The value of the handle data.""",
         json_schema_extra={
             "linkml_meta": {
@@ -986,14 +1055,19 @@ class EMAIL(HandleRecord):
         {
             "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
             "slot_usage": {
-                "data": {"name": "data", "range": "HdlDataContact"},
-                "index": {"maximum_value": 5, "minimum_value": 5, "name": "index"},
+                "data": {"name": "data", "range": "HdlDataContact", "required": True},
+                "index": {
+                    "maximum_value": 5,
+                    "minimum_value": 5,
+                    "name": "index",
+                    "required": True,
+                },
             },
         }
     )
 
-    index: Optional[int] = Field(
-        None,
+    index: int = Field(
+        ...,
         description="""The index of the handle record.""",
         ge=5,
         le=5,
@@ -1013,8 +1087,8 @@ class EMAIL(HandleRecord):
             }
         },
     )
-    data: Optional[HdlDataContact] = Field(
-        None,
+    data: HdlDataContact = Field(
+        ...,
         description="""The data in the handle record.""",
         json_schema_extra={
             "linkml_meta": {
@@ -1032,20 +1106,22 @@ class EMAIL(HandleRecord):
             }
         },
     )
-    ttl: Optional[int] = Field(
-        None,
-        description="""A time to live in seconds for the handle record. Typically: 86400 => 1 day
-TODO: Research details of ttl meaning for handle API.
-""",
-        json_schema_extra={
-            "linkml_meta": {"alias": "ttl", "domain_of": ["HandleRecord"]}
-        },
-    )
-    timestamp: Optional[datetime] = Field(
-        None,
+    timestamp: datetime = Field(
+        ...,
         description="""The iso datetime for the last update of the handle data.""",
         json_schema_extra={
             "linkml_meta": {"alias": "timestamp", "domain_of": ["HandleRecord"]}
+        },
+    )
+    ttl: Optional[int] = Field(
+        86400,
+        description="""A time to live in seconds for the handle record. Typically: 86400 => 1 day""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "ttl",
+                "domain_of": ["HandleRecord"],
+                "ifabsent": "86400",
+            }
         },
     )
     type: Literal["EMAIL"] = Field(
@@ -1063,21 +1139,29 @@ TODO: Research details of ttl meaning for handle API.
 
 class HdlDataContact(ConfiguredBaseModel):
     """
-    The data element in the handle API for the contact email.
+    The data class for the handle-record contact email.
     """
 
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
         {
             "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
             "slot_usage": {
-                "format": {"equals_string": "string", "name": "format"},
-                "value": {"name": "value", "pattern": "^\\S+@[\\S+\\.]+\\S+"},
+                "format": {
+                    "equals_string": "string",
+                    "ifabsent": "string",
+                    "name": "format",
+                },
+                "value": {
+                    "name": "value",
+                    "pattern": "^\\S+@[\\S+\\.]+\\S+",
+                    "required": True,
+                },
             },
         }
     )
 
     format: Optional[Literal["string"]] = Field(
-        None,
+        "string",
         description="""The format of the handle data.""",
         json_schema_extra={
             "linkml_meta": {
@@ -1093,11 +1177,12 @@ class HdlDataContact(ConfiguredBaseModel):
                     "HdlDataLog",
                 ],
                 "equals_string": "string",
+                "ifabsent": "string",
             }
         },
     )
-    value: Optional[str] = Field(
-        None,
+    value: str = Field(
+        ...,
         description="""The value of the handle data.""",
         json_schema_extra={
             "linkml_meta": {
@@ -1138,14 +1223,23 @@ class RESOURCEINFO(HandleRecord):
         {
             "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
             "slot_usage": {
-                "data": {"name": "data", "range": "HdlDataResourceInfo"},
-                "index": {"maximum_value": 6, "minimum_value": 6, "name": "index"},
+                "data": {
+                    "name": "data",
+                    "range": "HdlDataResourceInfo",
+                    "required": True,
+                },
+                "index": {
+                    "maximum_value": 6,
+                    "minimum_value": 6,
+                    "name": "index",
+                    "required": True,
+                },
             },
         }
     )
 
-    index: Optional[int] = Field(
-        None,
+    index: int = Field(
+        ...,
         description="""The index of the handle record.""",
         ge=6,
         le=6,
@@ -1165,8 +1259,8 @@ class RESOURCEINFO(HandleRecord):
             }
         },
     )
-    data: Optional[HdlDataResourceInfo] = Field(
-        None,
+    data: HdlDataResourceInfo = Field(
+        ...,
         description="""The data in the handle record.""",
         json_schema_extra={
             "linkml_meta": {
@@ -1184,20 +1278,22 @@ class RESOURCEINFO(HandleRecord):
             }
         },
     )
-    ttl: Optional[int] = Field(
-        None,
-        description="""A time to live in seconds for the handle record. Typically: 86400 => 1 day
-TODO: Research details of ttl meaning for handle API.
-""",
-        json_schema_extra={
-            "linkml_meta": {"alias": "ttl", "domain_of": ["HandleRecord"]}
-        },
-    )
-    timestamp: Optional[datetime] = Field(
-        None,
+    timestamp: datetime = Field(
+        ...,
         description="""The iso datetime for the last update of the handle data.""",
         json_schema_extra={
             "linkml_meta": {"alias": "timestamp", "domain_of": ["HandleRecord"]}
+        },
+    )
+    ttl: Optional[int] = Field(
+        86400,
+        description="""A time to live in seconds for the handle record. Typically: 86400 => 1 day""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "ttl",
+                "domain_of": ["HandleRecord"],
+                "ifabsent": "86400",
+            }
         },
     )
     type: Literal["RESOURCE_INFO"] = Field(
@@ -1215,21 +1311,25 @@ TODO: Research details of ttl meaning for handle API.
 
 class HdlDataResourceInfo(ConfiguredBaseModel):
     """
-    The data element in the handle API for the resource info.
+    The data class for the resource info.
     """
 
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
         {
             "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
             "slot_usage": {
-                "format": {"equals_string": "string", "name": "format"},
-                "value": {"name": "value", "range": "ResourceInfo"},
+                "format": {
+                    "equals_string": "string",
+                    "ifabsent": "string",
+                    "name": "format",
+                },
+                "value": {"name": "value", "range": "ResourceInfo", "required": True},
             },
         }
     )
 
     format: Optional[Literal["string"]] = Field(
-        None,
+        "string",
         description="""The format of the handle data.""",
         json_schema_extra={
             "linkml_meta": {
@@ -1245,11 +1345,12 @@ class HdlDataResourceInfo(ConfiguredBaseModel):
                     "HdlDataLog",
                 ],
                 "equals_string": "string",
+                "ifabsent": "string",
             }
         },
     )
-    value: Optional[ResourceInfo] = Field(
-        None,
+    value: ResourceInfo = Field(
+        ...,
         description="""The value of the handle data.""",
         json_schema_extra={
             "linkml_meta": {
@@ -1278,14 +1379,19 @@ class RELATED(HandleRecord):
         {
             "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
             "slot_usage": {
-                "data": {"name": "data", "range": "HdlDataRelated"},
-                "index": {"maximum_value": 7, "minimum_value": 7, "name": "index"},
+                "data": {"name": "data", "range": "HdlDataRelated", "required": True},
+                "index": {
+                    "maximum_value": 7,
+                    "minimum_value": 7,
+                    "name": "index",
+                    "required": True,
+                },
             },
         }
     )
 
-    index: Optional[int] = Field(
-        None,
+    index: int = Field(
+        ...,
         description="""The index of the handle record.""",
         ge=7,
         le=7,
@@ -1305,8 +1411,8 @@ class RELATED(HandleRecord):
             }
         },
     )
-    data: Optional[HdlDataRelated] = Field(
-        None,
+    data: HdlDataRelated = Field(
+        ...,
         description="""The data in the handle record.""",
         json_schema_extra={
             "linkml_meta": {
@@ -1324,20 +1430,22 @@ class RELATED(HandleRecord):
             }
         },
     )
-    ttl: Optional[int] = Field(
-        None,
-        description="""A time to live in seconds for the handle record. Typically: 86400 => 1 day
-TODO: Research details of ttl meaning for handle API.
-""",
-        json_schema_extra={
-            "linkml_meta": {"alias": "ttl", "domain_of": ["HandleRecord"]}
-        },
-    )
-    timestamp: Optional[datetime] = Field(
-        None,
+    timestamp: datetime = Field(
+        ...,
         description="""The iso datetime for the last update of the handle data.""",
         json_schema_extra={
             "linkml_meta": {"alias": "timestamp", "domain_of": ["HandleRecord"]}
+        },
+    )
+    ttl: Optional[int] = Field(
+        86400,
+        description="""A time to live in seconds for the handle record. Typically: 86400 => 1 day""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "ttl",
+                "domain_of": ["HandleRecord"],
+                "ifabsent": "86400",
+            }
         },
     )
     type: Literal["RELATED"] = Field(
@@ -1355,14 +1463,18 @@ TODO: Research details of ttl meaning for handle API.
 
 class HdlDataRelated(ConfiguredBaseModel):
     """
-    The data element in the handle API for related identifiers.
+    The data class for related identifiers.
     """
 
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
         {
             "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
             "slot_usage": {
-                "format": {"equals_string": "string", "name": "format"},
+                "format": {
+                    "equals_string": "string",
+                    "ifabsent": "string",
+                    "name": "format",
+                },
                 "value": {
                     "multivalued": True,
                     "name": "value",
@@ -1373,7 +1485,7 @@ class HdlDataRelated(ConfiguredBaseModel):
     )
 
     format: Optional[Literal["string"]] = Field(
-        None,
+        "string",
         description="""The format of the handle data.""",
         json_schema_extra={
             "linkml_meta": {
@@ -1389,6 +1501,7 @@ class HdlDataRelated(ConfiguredBaseModel):
                     "HdlDataLog",
                 ],
                 "equals_string": "string",
+                "ifabsent": "string",
             }
         },
     )
@@ -1422,14 +1535,19 @@ class LOG(HandleRecord):
         {
             "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
             "slot_usage": {
-                "data": {"name": "data", "range": "HdlDataLog"},
-                "index": {"maximum_value": 8, "minimum_value": 8, "name": "index"},
+                "data": {"name": "data", "range": "HdlDataLog", "required": True},
+                "index": {
+                    "maximum_value": 8,
+                    "minimum_value": 8,
+                    "name": "index",
+                    "required": True,
+                },
             },
         }
     )
 
-    index: Optional[int] = Field(
-        None,
+    index: int = Field(
+        ...,
         description="""The index of the handle record.""",
         ge=8,
         le=8,
@@ -1449,8 +1567,8 @@ class LOG(HandleRecord):
             }
         },
     )
-    data: Optional[HdlDataLog] = Field(
-        None,
+    data: HdlDataLog = Field(
+        ...,
         description="""The data in the handle record.""",
         json_schema_extra={
             "linkml_meta": {
@@ -1468,20 +1586,22 @@ class LOG(HandleRecord):
             }
         },
     )
-    ttl: Optional[int] = Field(
-        None,
-        description="""A time to live in seconds for the handle record. Typically: 86400 => 1 day
-TODO: Research details of ttl meaning for handle API.
-""",
-        json_schema_extra={
-            "linkml_meta": {"alias": "ttl", "domain_of": ["HandleRecord"]}
-        },
-    )
-    timestamp: Optional[datetime] = Field(
-        None,
+    timestamp: datetime = Field(
+        ...,
         description="""The iso datetime for the last update of the handle data.""",
         json_schema_extra={
             "linkml_meta": {"alias": "timestamp", "domain_of": ["HandleRecord"]}
+        },
+    )
+    ttl: Optional[int] = Field(
+        86400,
+        description="""A time to live in seconds for the handle record. Typically: 86400 => 1 day""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "ttl",
+                "domain_of": ["HandleRecord"],
+                "ifabsent": "86400",
+            }
         },
     )
     type: Literal["LOG"] = Field(
@@ -1499,21 +1619,30 @@ TODO: Research details of ttl meaning for handle API.
 
 class HdlDataLog(ConfiguredBaseModel):
     """
-    The data element in the handle API for the change log.
+    The data class for the change log.
     """
 
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
         {
             "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
             "slot_usage": {
-                "format": {"equals_string": "string", "name": "format"},
-                "value": {"multivalued": True, "name": "value", "range": "LogRecord"},
+                "format": {
+                    "equals_string": "string",
+                    "ifabsent": "string",
+                    "name": "format",
+                },
+                "value": {
+                    "multivalued": True,
+                    "name": "value",
+                    "range": "LogRecord",
+                    "required": True,
+                },
             },
         }
     )
 
     format: Optional[Literal["string"]] = Field(
-        None,
+        "string",
         description="""The format of the handle data.""",
         json_schema_extra={
             "linkml_meta": {
@@ -1529,11 +1658,12 @@ class HdlDataLog(ConfiguredBaseModel):
                     "HdlDataLog",
                 ],
                 "equals_string": "string",
+                "ifabsent": "string",
             }
         },
     )
-    value: Optional[List[LogRecord]] = Field(
-        None,
+    value: List[LogRecord] = Field(
+        ...,
         description="""The value of the handle data.""",
         json_schema_extra={
             "linkml_meta": {
@@ -1576,7 +1706,7 @@ class HandleRecordContainer(ConfiguredBaseModel):
 
 class Pid4CatRelation(ConfiguredBaseModel):
     """
-    A relation between pid4cat handles or between a pid4cat handle and other resources identified by a PID.
+    Data class for a relation to another resource identified by a pid4cat handle or another PID type.
     """
 
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
@@ -1625,11 +1755,20 @@ class Pid4CatRelation(ConfiguredBaseModel):
 
 class ResourceInfo(ConfiguredBaseModel):
     """
-    Data object to hold information about the resource and its representation.
+    Data class to hold information about the resource and its representation.
     """
 
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
-        {"from_schema": "https://w3id.org/nfdi4cat/pid4cat-model"}
+        {
+            "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
+            "slot_usage": {
+                "representation_variants": {
+                    "name": "representation_variants",
+                    "required": True,
+                },
+                "resource_category": {"name": "resource_category", "required": True},
+            },
+        }
     )
 
     label: Optional[str] = Field(
@@ -1649,15 +1788,15 @@ class ResourceInfo(ConfiguredBaseModel):
             }
         },
     )
-    resource_category: Optional[ResourceCategory] = Field(
-        None,
+    resource_category: ResourceCategory = Field(
+        ...,
         description="""The category of the resource.""",
         json_schema_extra={
             "linkml_meta": {"alias": "resource_category", "domain_of": ["ResourceInfo"]}
         },
     )
-    representation_variants: Optional[List[RepresentationVariant]] = Field(
-        None,
+    representation_variants: List[RepresentationVariant] = Field(
+        ...,
         description="""The representations of the resource in other media types than text/html.""",
         json_schema_extra={
             "linkml_meta": {
@@ -1670,15 +1809,23 @@ class ResourceInfo(ConfiguredBaseModel):
 
 class LogRecord(ConfiguredBaseModel):
     """
-    A log record for changes made in a pid4cat handle record starting from registration.
+    Data class for a change log of modification made on a pid4cat handle record starting from its registration.
     """
 
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
-        {"from_schema": "https://w3id.org/nfdi4cat/pid4cat-model"}
+        {
+            "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
+            "slot_usage": {
+                "changed_field": {"name": "changed_field", "required": True},
+                "datetime_log": {"name": "datetime_log", "required": True},
+                "description": {"name": "description"},
+                "has_agent": {"name": "has_agent", "required": True},
+            },
+        }
     )
 
-    datetime_log: Optional[datetime] = Field(
-        None,
+    datetime_log: datetime = Field(
+        ...,
         description="""The date and time of a log record.""",
         json_schema_extra={
             "linkml_meta": {
@@ -1687,16 +1834,16 @@ class LogRecord(ConfiguredBaseModel):
             }
         },
     )
-    has_agent: Optional[Agent] = Field(
-        None,
+    has_agent: Agent = Field(
+        ...,
         description="""The person who registered or modified the PID record.""",
         json_schema_extra={
             "linkml_meta": {"alias": "has_agent", "domain_of": ["LogRecord"]}
         },
     )
-    changed_field: Optional[ChangeLogField] = Field(
-        None,
-        description="""The field that was changed""",
+    changed_field: ChangeLogField = Field(
+        ...,
+        description="""The field that was changed.""",
         json_schema_extra={
             "linkml_meta": {"alias": "changed_field", "domain_of": ["LogRecord"]}
         },
@@ -1715,7 +1862,7 @@ class LogRecord(ConfiguredBaseModel):
 
 class Agent(ConfiguredBaseModel):
     """
-    Person who plays a role relative to PID creation or curation.
+    Data class for a person who plays a role relative to PID creation or curation.
     """
 
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
@@ -1723,18 +1870,32 @@ class Agent(ConfiguredBaseModel):
             "class_uri": "prov:Agent",
             "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
             "slot_usage": {
-                "email": {"name": "email", "pattern": "^\\S+@[\\S+\\.]+\\S+"}
+                "affiliation_ror": {
+                    "name": "affiliation_ror",
+                    "pattern": "^https:\\/\\/ror\\.org\\/0[a-hj-km-np-tv-z|0-9]{6}[0-9]{2}$",
+                },
+                "email": {
+                    "name": "email",
+                    "pattern": "^\\S+@[\\S+\\.]+\\S+",
+                    "required": True,
+                },
+                "name": {"name": "name", "required": True},
+                "orcid": {
+                    "name": "orcid",
+                    "pattern": "^\\d{4}-\\d{4}-\\d{4}-\\d{3}[0-9X]$",
+                },
+                "role": {"name": "role", "required": True},
             },
         }
     )
 
-    name: Optional[str] = Field(
-        None,
+    name: str = Field(
+        ...,
         description="""The name of the agent that created or modified the PID record.""",
         json_schema_extra={"linkml_meta": {"alias": "name", "domain_of": ["Agent"]}},
     )
-    email: Optional[str] = Field(
-        None,
+    email: str = Field(
+        ...,
         description="""Email address of the agent that created or modified the PID record.""",
         json_schema_extra={"linkml_meta": {"alias": "email", "domain_of": ["Agent"]}},
     )
@@ -1750,8 +1911,8 @@ class Agent(ConfiguredBaseModel):
             "linkml_meta": {"alias": "affiliation_ror", "domain_of": ["Agent"]}
         },
     )
-    role: Optional[Pid4CatAgentRole] = Field(
-        None,
+    role: Pid4CatAgentRole = Field(
+        ...,
         description="""The role of the agent relative to the resource""",
         json_schema_extra={"linkml_meta": {"alias": "role", "domain_of": ["Agent"]}},
     )
@@ -1768,14 +1929,41 @@ class Agent(ConfiguredBaseModel):
                 raise ValueError(f"Invalid email format: {v}")
         return v
 
+    @field_validator("orcid")
+    def pattern_orcid(cls, v):
+        pattern = re.compile(r"^\d{4}-\d{4}-\d{4}-\d{3}[0-9X]$")
+        if isinstance(v, list):
+            for element in v:
+                if isinstance(v, str) and not pattern.match(element):
+                    raise ValueError(f"Invalid orcid format: {element}")
+        elif isinstance(v, str):
+            if not pattern.match(v):
+                raise ValueError(f"Invalid orcid format: {v}")
+        return v
+
+    @field_validator("affiliation_ror")
+    def pattern_affiliation_ror(cls, v):
+        pattern = re.compile(r"^https:\/\/ror\.org\/0[a-hj-km-np-tv-z|0-9]{6}[0-9]{2}$")
+        if isinstance(v, list):
+            for element in v:
+                if isinstance(v, str) and not pattern.match(element):
+                    raise ValueError(f"Invalid affiliation_ror format: {element}")
+        elif isinstance(v, str):
+            if not pattern.match(v):
+                raise ValueError(f"Invalid affiliation_ror format: {v}")
+        return v
+
 
 class RepresentationVariant(ConfiguredBaseModel):
     """
-    A representation of the resource in other media types than text/html which is the default for landing_page_url.
+    Data class for representations of the resource in other media types than text/html which is the default for landing_page_url.
     """
 
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
-        {"from_schema": "https://w3id.org/nfdi4cat/pid4cat-model"}
+        {
+            "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
+            "slot_usage": {"media_type": {"name": "media_type"}},
+        }
     )
 
     url: Optional[str] = Field(
@@ -1817,7 +2005,7 @@ class RepresentationVariant(ConfiguredBaseModel):
 
 class RelatedIdentifier(ConfiguredBaseModel):
     """
-    A class for all types pf related identifiers.
+    A base class for all types of related identifiers.
     """
 
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
@@ -1849,13 +2037,14 @@ class PurlIdentifier(RelatedIdentifier):
                 "resolving_url": {
                     "name": "resolving_url",
                     "pattern": "^https:\\/\\/(purl|pida|w3id)\\.org\\/.*$",
+                    "required": True,
                 }
             },
         }
     )
 
-    resolving_url: Optional[str] = Field(
-        None,
+    resolving_url: str = Field(
+        ...,
         description="""The URL that resolves the identifier.""",
         json_schema_extra={
             "linkml_meta": {
@@ -1911,13 +2100,14 @@ class DoiIdentifier(RelatedIdentifier):
                 "resolving_url": {
                     "name": "resolving_url",
                     "pattern": "^https:\\/\\/doi\\.org\\/10.*$",
+                    "required": True,
                 },
             },
         }
     )
 
-    resolving_url: Optional[str] = Field(
-        None,
+    resolving_url: str = Field(
+        ...,
         description="""The URL that resolves the identifier.""",
         json_schema_extra={
             "linkml_meta": {
@@ -2002,13 +2192,14 @@ class HandleIdentifier(RelatedIdentifier):
                 "resolving_url": {
                     "name": "resolving_url",
                     "pattern": "^https:\\/\\/hdl\\.handle\\.net\\/\\d{2}\\.\\d{4,}\\/.*$",
+                    "required": True,
                 },
             },
         }
     )
 
-    resolving_url: Optional[str] = Field(
-        None,
+    resolving_url: str = Field(
+        ...,
         description="""The URL that resolves the identifier.""",
         json_schema_extra={
             "linkml_meta": {
@@ -2090,6 +2281,7 @@ class ArkIdentifier(RelatedIdentifier):
                 "resolving_url": {
                     "name": "resolving_url",
                     "pattern": "^https?:\\/\\/.*\\/ark:\\/\\d{5}/.*$",
+                    "required": True,
                 },
             },
         }
@@ -2112,8 +2304,8 @@ class ArkIdentifier(RelatedIdentifier):
             }
         },
     )
-    resolving_url: Optional[str] = Field(
-        None,
+    resolving_url: str = Field(
+        ...,
         description="""The URL that resolves the identifier.""",
         json_schema_extra={
             "linkml_meta": {
@@ -2177,13 +2369,14 @@ class UrnIdentifier(RelatedIdentifier):
                 "identifier": {
                     "name": "identifier",
                     "pattern": "^urn:[a-zA-Z0-9][a-zA-Z0-9-]{0,31}:[^\\s]*$",
+                    "required": True,
                 }
             },
         }
     )
 
-    identifier: Optional[str] = Field(
-        None,
+    identifier: str = Field(
+        ...,
         description="""The identifier in recommended notation.""",
         json_schema_extra={
             "linkml_meta": {
@@ -2226,20 +2419,24 @@ class UrnIdentifier(RelatedIdentifier):
 
 class GtinIdentifier(RelatedIdentifier):
     """
-    A  Global Trade Item Number (GTIN) previously called European Article Number (EAN) often encoded as EAN13 barcode. The identifier is used to identify products. GTINs don't have a resolvable URL.
+    A Global Trade Item Number (GTIN) previously called European Article Number (EAN) often encoded as EAN13 barcode. The identifier is used to identify products. GTINs don't have a resolvable URL.
     """
 
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
         {
             "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
             "slot_usage": {
-                "identifier": {"name": "identifier", "pattern": "^\\d{13}$"}
+                "identifier": {
+                    "name": "identifier",
+                    "pattern": "^\\d{13}$",
+                    "required": True,
+                }
             },
         }
     )
 
-    identifier: Optional[str] = Field(
-        None,
+    identifier: str = Field(
+        ...,
         description="""The identifier in recommended notation.""",
         json_schema_extra={
             "linkml_meta": {

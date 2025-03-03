@@ -9,7 +9,7 @@ import lombok.*;
 
 
 /**
-  Person who plays a role relative to PID creation or curation.
+  Data class for a person who plays a role relative to PID creation or curation.
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)

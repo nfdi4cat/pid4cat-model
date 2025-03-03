@@ -9,7 +9,7 @@ import lombok.*;
 
 
 /**
-  Data object to hold information about the resource and its representation.
+  Data class to hold information about the resource and its representation.
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)

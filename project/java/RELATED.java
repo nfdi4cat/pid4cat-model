@@ -15,7 +15,7 @@ import lombok.*;
 @EqualsAndHashCode(callSuper=false)
 public class RELATED extends HandleRecord {
 
-  private Integer index;
+  private int index;
   private HdlDataRelated data;
 
 }
