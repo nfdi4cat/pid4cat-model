@@ -282,7 +282,7 @@ type RepresentationVariant
     size: Integer
   }
 
-type RESOURCEINFO
+type RESOURCE
   {
     timestamp: Datetime!
     ttl: Integer

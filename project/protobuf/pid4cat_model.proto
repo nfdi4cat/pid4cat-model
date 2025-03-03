@@ -182,7 +182,7 @@ message RepresentationVariant
   integer size = 0
  }
 // The data element in the handle API for the resource info.
-message RESOURCEINFO
+message RESOURCE
  {
   datetime timestamp = 0
   integer ttl = 0

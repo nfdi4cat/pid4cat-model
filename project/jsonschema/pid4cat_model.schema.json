@@ -259,7 +259,7 @@
                                 "$ref": "#/$defs/EMAIL"
                             },
                             {
-                                "$ref": "#/$defs/RESOURCEINFO"
+                                "$ref": "#/$defs/RESOURCE"
                             },
                             {
                                 "$ref": "#/$defs/RELATED"
@@ -847,7 +847,7 @@
             "title": "RELATED",
             "type": "object"
         },
-        "RESOURCEINFO": {
+        "RESOURCE": {
             "additionalProperties": false,
             "description": "The data element in the handle API for the resource info.",
             "properties": {
@@ -876,7 +876,7 @@
                 "type": {
                     "description": "The type of handledata stored in the handle record.",
                     "enum": [
-                        "RESOURCE_INFO"
+                        "RESOURCE"
                     ],
                     "type": "string"
                 }
@@ -887,7 +887,7 @@
                 "timestamp",
                 "type"
             ],
-            "title": "RESOURCEINFO",
+            "title": "RESOURCE",
             "type": "object"
         },
         "RelatedIdentifier": {
