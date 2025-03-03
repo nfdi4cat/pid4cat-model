@@ -53,7 +53,7 @@ values:
   index: 6
   timestamp: '2024-05-15T15:51:15Z'
   ttl: 86400
-  type: RESOURCE_INFO
+  type: RESOURCE
 - data:
     format: string
     value:
@@ -147,7 +147,7 @@ contains_pids:
     index: 6
     timestamp: '2024-05-15T15:51:15Z'
     ttl: 86400
-    type: RESOURCE_INFO
+    type: RESOURCE
   - data:
       format: string
       value:

@@ -1,5 +1,5 @@
 # Auto generated from pid4cat_model.yaml by pythongen.py version: 0.0.1
-# Generation date: 2025-03-03T16:33:32
+# Generation date: 2025-03-03T18:55:17
 # Schema: pid4cat-model
 #
 # id: https://w3id.org/nfdi4cat/pid4cat-model
@@ -459,17 +459,17 @@ class HdlDataContact(YAMLRoot):
 
 
 @dataclass(repr=False)
-class RESOURCEINFO(HandleRecord):
+class RESOURCE(HandleRecord):
     """
     The data element in the handle API for the resource info.
     """
 
     _inherited_slots: ClassVar[List[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = PID4CAT_MODEL["RESOURCEINFO"]
-    class_class_curie: ClassVar[str] = "pid4cat_model:RESOURCEINFO"
-    class_name: ClassVar[str] = "RESOURCE_INFO"
-    class_model_uri: ClassVar[URIRef] = PID4CAT_MODEL.RESOURCEINFO
+    class_class_uri: ClassVar[URIRef] = PID4CAT_MODEL["RESOURCE"]
+    class_class_curie: ClassVar[str] = "pid4cat_model:RESOURCE"
+    class_name: ClassVar[str] = "RESOURCE"
+    class_model_uri: ClassVar[URIRef] = PID4CAT_MODEL.RESOURCE
 
     timestamp: Union[str, XSDDateTime] = None
     type: str = None
@@ -2177,21 +2177,21 @@ slots.HdlDataContact_value = Slot(
     pattern=re.compile(r"^\S+@[\S+\.]+\S+"),
 )
 
-slots.RESOURCE_INFO_index = Slot(
+slots.RESOURCE_index = Slot(
     uri=PID4CAT_MODEL.index,
-    name="RESOURCE_INFO_index",
+    name="RESOURCE_index",
     curie=PID4CAT_MODEL.curie("index"),
-    model_uri=PID4CAT_MODEL.RESOURCE_INFO_index,
-    domain=RESOURCEINFO,
+    model_uri=PID4CAT_MODEL.RESOURCE_index,
+    domain=RESOURCE,
     range=int,
 )
 
-slots.RESOURCE_INFO_data = Slot(
+slots.RESOURCE_data = Slot(
     uri=PID4CAT_MODEL.data,
-    name="RESOURCE_INFO_data",
+    name="RESOURCE_data",
     curie=PID4CAT_MODEL.curie("data"),
-    model_uri=PID4CAT_MODEL.RESOURCE_INFO_data,
-    domain=RESOURCEINFO,
+    model_uri=PID4CAT_MODEL.RESOURCE_data,
+    domain=RESOURCE,
     range=Union[dict, "HdlDataResourceInfo"],
 )
 

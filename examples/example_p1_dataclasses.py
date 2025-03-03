@@ -15,7 +15,7 @@ p1_Agent = p4c.Agent(
     name="Data Fuzzi",
     email="data.fuzzi@example.org",
     orcid="0000-0000-0000-0000",
-    affiliation_ror="https://ror.org/01abcde",
+    affiliation_ror="https://ror.org/029hg0311",
     role=p4c.Pid4CatAgentRole.TRUSTEE,
 )
 
@@ -130,7 +130,7 @@ p1_api = p4c.HandleAPIRecord(
         ),
         p4c.HandleRecord(
             index=6,
-            type="RESOURCE_INFO",
+            type="RESOURCE",
             ttl=86400,
             timestamp=datetime.fromisoformat("2024-05-15T15:51:15Z"),
             data=p4c.HdlDataResourceInfo(
