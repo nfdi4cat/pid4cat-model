@@ -15,7 +15,7 @@ description: >-
   what is identified by the pid4cat handle, e.g. a sample or a device.
 
 todos:
-  - Set required attribute where needed.
+  - none
 
 license: MIT
 see_also:
@@ -234,7 +234,7 @@ classes:
         pattern: "^\\S+@[\\S+\\.]+\\S+"
         required: true
 
-  RESOURCE_INFO:
+  RESOURCE:
     is_a: HandleRecord
     description: >-
       The data element in the handle API for the resource info.
