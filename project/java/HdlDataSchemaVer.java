@@ -9,7 +9,7 @@ import lombok.*;
 
 
 /**
-  The data element in the handle API for the schema version.
+  The data class for the schema version.
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)

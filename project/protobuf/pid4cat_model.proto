@@ -1,7 +1,7 @@
  syntax="proto3";
  package
 // metamodel_version: 1.7.0
-// Person who plays a role relative to PID creation or curation.
+// Data class for a person who plays a role relative to PID creation or curation.
 message Agent
  {
   string name = 0
@@ -27,8 +27,8 @@ message DoiIdentifier
 // The data element in the handle API for the contact email.
 message EMAIL
  {
-  integer ttl = 0
   datetime timestamp = 0
+  integer ttl = 0
   string type = 0
   integer index = 0
   hdlDataContact data = 0
@@ -40,7 +40,7 @@ message ExampleIdentifier
   string identifier = 0
   uri resolvingUrl = 0
  }
-// A  Global Trade Item Number (GTIN) previously called European Article Number (EAN) often encoded as EAN13 barcode. The identifier is used to identify products. GTINs don't have a resolvable URL.
+// A Global Trade Item Number (GTIN) previously called European Article Number (EAN) often encoded as EAN13 barcode. The identifier is used to identify products. GTINs don't have a resolvable URL.
 message GtinIdentifier
  {
   string type = 0
@@ -60,11 +60,11 @@ message HandleIdentifier
   uri resolvingUrl = 0
   string identifier = 0
  }
-// A class representing a handle record in the same way as in the REST (json) API of a handle server.
+// A base class for handle-data classes that represent a handle record in the same way as in the REST (json) API of a handle server.
 message HandleRecord
  {
-  integer ttl = 0
   datetime timestamp = 0
+  integer ttl = 0
   string type = 0
  }
 // A container for all HandleRecords.
@@ -72,59 +72,59 @@ message HandleRecordContainer
  {
  repeated  handleAPIRecord containsPids = 0
  }
-// The data element in the handle API for the contact email.
+// The data class for the handle-record contact email.
 message HdlDataContact
  {
   string format = 0
   string value = 0
  }
-// The data element in the handle API for the license.
+// The data class for the PID metadata license.
 message HdlDataLicense
  {
   string format = 0
   string value = 0
  }
-// The data element in the handle API for the change log.
+// The data class for the change log.
 message HdlDataLog
  {
   string format = 0
  repeated  logRecord value = 0
  }
-// The data element in the handle API for related identifiers.
+// The data class for related identifiers.
 message HdlDataRelated
  {
   string format = 0
  repeated  pid4CatRelation value = 0
  }
-// The data element in the handle API for the resource info.
+// The data class for the resource info.
 message HdlDataResourceInfo
  {
   string format = 0
   resourceInfo value = 0
  }
-// The data element in the handle API for the schema version.
+// The data class for the schema version.
 message HdlDataSchemaVer
  {
   string format = 0
   string value = 0
  }
-// The data element in the handle API for the status.
+// The data class for the PID status information.
 message HdlDataStatus
  {
   string format = 0
   pid4CatStatus value = 0
  }
-// The data element in the handle API for the redirect url.
+// The data class for the redirect url.
 message HdlDataUrl
  {
   string format = 0
   string value = 0
  }
-// The data element in the handle API for the schema version.
+// The data element in the handle API for the PID metadata license.
 message LICENSE
  {
-  integer ttl = 0
   datetime timestamp = 0
+  integer ttl = 0
   string type = 0
   integer index = 0
   hdlDataLicense data = 0
@@ -132,13 +132,13 @@ message LICENSE
 // The data element in the handle API for the change log.
 message LOG
  {
-  integer ttl = 0
   datetime timestamp = 0
+  integer ttl = 0
   string type = 0
   integer index = 0
   hdlDataLog data = 0
  }
-// A log record for changes made in a pid4cat handle record starting from registration.
+// Data class for a change log of modification made on a pid4cat handle record starting from its registration.
 message LogRecord
  {
   datetime datetimeLog = 0
@@ -146,7 +146,7 @@ message LogRecord
   changeLogField changedField = 0
   string description = 0
  }
-// A relation between pid4cat handles or between a pid4cat handle and other resources identified by a PID.
+// Data class for a relation to another resource identified by a pid4cat handle or another PID type.
 message Pid4CatRelation
  {
   relationType relationType = 0
@@ -162,18 +162,18 @@ message PurlIdentifier
 // The data element in the handle API for related identifiers.
 message RELATED
  {
-  integer ttl = 0
   datetime timestamp = 0
+  integer ttl = 0
   string type = 0
   integer index = 0
   hdlDataRelated data = 0
  }
-// A class for all types pf related identifiers.
+// A base class for all types of related identifiers.
 message RelatedIdentifier
  {
   string type = 0
  }
-// A representation of the resource in other media types than text/html which is the default for landing_page_url.
+// Data class for representations of the resource in other media types than text/html which is the default for landing_page_url.
 message RepresentationVariant
  {
   uri url = 0
@@ -184,13 +184,13 @@ message RepresentationVariant
 // The data element in the handle API for the resource info.
 message RESOURCEINFO
  {
-  integer ttl = 0
   datetime timestamp = 0
+  integer ttl = 0
   string type = 0
   integer index = 0
   hdlDataResourceInfo data = 0
  }
-// Data object to hold information about the resource and its representation.
+// Data class to hold information about the resource and its representation.
 message ResourceInfo
  {
   string label = 0
@@ -201,17 +201,17 @@ message ResourceInfo
 // The data element in the handle API for the schema version.
 message SCHEMAVER
  {
-  integer ttl = 0
   datetime timestamp = 0
+  integer ttl = 0
   string type = 0
   integer index = 0
   hdlDataSchemaVer data = 0
  }
-// A data element in the handle API.
+// The data element in the handle API for the PID status information.
 message STATUS
  {
-  integer ttl = 0
   datetime timestamp = 0
+  integer ttl = 0
   string type = 0
   integer index = 0
   hdlDataStatus data = 0
@@ -219,8 +219,8 @@ message STATUS
 // The data element in the handle API for the landing page URL.
 message URL
  {
-  integer ttl = 0
   datetime timestamp = 0
+  integer ttl = 0
   string type = 0
   integer index = 0
   hdlDataUrl data = 0

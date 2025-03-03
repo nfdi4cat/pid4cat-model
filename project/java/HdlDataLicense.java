@@ -9,7 +9,7 @@ import lombok.*;
 
 
 /**
-  The data element in the handle API for the license.
+  The data class for the PID metadata license.
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)

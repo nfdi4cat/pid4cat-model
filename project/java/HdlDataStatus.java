@@ -9,7 +9,7 @@ import lombok.*;
 
 
 /**
-  The data element in the handle API for the status.
+  The data class for the PID status information.
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)

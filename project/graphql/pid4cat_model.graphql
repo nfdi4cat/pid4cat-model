@@ -104,68 +104,68 @@ enum ResourceCategory
 
 type Agent
   {
-    name: String
-    email: String
+    name: String!
+    email: String!
     orcid: String
     affiliationRor: Uri
-    role: Pid4CatAgentRole
+    role: Pid4CatAgentRole!
   }
 
 type ArkIdentifier
   {
-    type: String
+    type: String!
     identifier: String
-    resolvingUrl: Uri
+    resolvingUrl: Uri!
   }
 
 type DoiIdentifier
   {
-    type: String
-    resolvingUrl: Uri
+    type: String!
+    resolvingUrl: Uri!
     identifier: String
   }
 
 type EMAIL
   {
+    timestamp: Datetime!
     ttl: Integer
-    timestamp: Datetime
-    type: String
-    index: Integer
-    data: HdlDataContact
+    type: String!
+    index: Integer!
+    data: HdlDataContact!
   }
 
 type ExampleIdentifier
   {
-    type: String
+    type: String!
     identifier: String
     resolvingUrl: Uri
   }
 
 type GtinIdentifier
   {
-    type: String
-    identifier: String
+    type: String!
+    identifier: String!
   }
 
 type HandleAPIRecord
   {
     responseCode: Integer
     handle: String!
-    values: [HandleRecord]
+    values: [HandleRecord]!
   }
 
 type HandleIdentifier
   {
-    type: String
-    resolvingUrl: Uri
+    type: String!
+    resolvingUrl: Uri!
     identifier: String
   }
 
 type HandleRecord
   {
+    timestamp: Datetime!
     ttl: Integer
-    timestamp: Datetime
-    type: String
+    type: String!
   }
 
 type HandleRecordContainer
@@ -176,19 +176,19 @@ type HandleRecordContainer
 type HdlDataContact
   {
     format: String
-    value: String
+    value: String!
   }
 
 type HdlDataLicense
   {
     format: String
-    value: String
+    value: String!
   }
 
 type HdlDataLog
   {
     format: String
-    value: [LogRecord]
+    value: [LogRecord]!
   }
 
 type HdlDataRelated
@@ -200,50 +200,50 @@ type HdlDataRelated
 type HdlDataResourceInfo
   {
     format: String
-    value: ResourceInfo
+    value: ResourceInfo!
   }
 
 type HdlDataSchemaVer
   {
     format: String
-    value: String
+    value: String!
   }
 
 type HdlDataStatus
   {
     format: String
-    value: Pid4CatStatus
+    value: Pid4CatStatus!
   }
 
 type HdlDataUrl
   {
     format: String
-    value: String
+    value: String!
   }
 
 type LICENSE
   {
+    timestamp: Datetime!
     ttl: Integer
-    timestamp: Datetime
-    type: String
-    index: Integer
-    data: HdlDataLicense
+    type: String!
+    index: Integer!
+    data: HdlDataLicense!
   }
 
 type LOG
   {
+    timestamp: Datetime!
     ttl: Integer
-    timestamp: Datetime
-    type: String
-    index: Integer
-    data: HdlDataLog
+    type: String!
+    index: Integer!
+    data: HdlDataLog!
   }
 
 type LogRecord
   {
-    datetimeLog: Datetime
-    hasAgent: Agent
-    changedField: ChangeLogField
+    datetimeLog: Datetime!
+    hasAgent: Agent!
+    changedField: ChangeLogField!
     description: String
   }
 
@@ -256,22 +256,22 @@ type Pid4CatRelation
 
 type PurlIdentifier
   {
-    type: String
-    resolvingUrl: Uri
+    type: String!
+    resolvingUrl: Uri!
   }
 
 type RELATED
   {
+    timestamp: Datetime!
     ttl: Integer
-    timestamp: Datetime
-    type: String
-    index: Integer
-    data: HdlDataRelated
+    type: String!
+    index: Integer!
+    data: HdlDataRelated!
   }
 
 type RelatedIdentifier
   {
-    type: String
+    type: String!
   }
 
 type RepresentationVariant
@@ -284,50 +284,50 @@ type RepresentationVariant
 
 type RESOURCEINFO
   {
+    timestamp: Datetime!
     ttl: Integer
-    timestamp: Datetime
-    type: String
-    index: Integer
-    data: HdlDataResourceInfo
+    type: String!
+    index: Integer!
+    data: HdlDataResourceInfo!
   }
 
 type ResourceInfo
   {
     label: String
     description: String
-    resourceCategory: ResourceCategory
-    representationVariants: [RepresentationVariant]
+    resourceCategory: ResourceCategory!
+    representationVariants: [RepresentationVariant]!
   }
 
 type SCHEMAVER
   {
+    timestamp: Datetime!
     ttl: Integer
-    timestamp: Datetime
-    type: String
-    index: Integer
-    data: HdlDataSchemaVer
+    type: String!
+    index: Integer!
+    data: HdlDataSchemaVer!
   }
 
 type STATUS
   {
+    timestamp: Datetime!
     ttl: Integer
-    timestamp: Datetime
-    type: String
-    index: Integer
-    data: HdlDataStatus
+    type: String!
+    index: Integer!
+    data: HdlDataStatus!
   }
 
 type URL
   {
+    timestamp: Datetime!
     ttl: Integer
-    timestamp: Datetime
-    type: String
-    index: Integer
-    data: HdlDataUrl
+    type: String!
+    index: Integer!
+    data: HdlDataUrl!
   }
 
 type UrnIdentifier
   {
-    type: String
-    identifier: String
+    type: String!
+    identifier: String!
   }

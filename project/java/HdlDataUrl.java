@@ -9,7 +9,7 @@ import lombok.*;
 
 
 /**
-  The data element in the handle API for the redirect url.
+  The data class for the redirect url.
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)

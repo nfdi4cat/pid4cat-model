@@ -9,7 +9,7 @@ import lombok.*;
 
 
 /**
-  The data element in the handle API for the contact email.
+  The data class for the handle-record contact email.
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)
