@@ -81,22 +81,25 @@ The schema does only require a minimum of information; it does not disclose anyt
 
 ### Mapping of pid4cat schema to handle record
 
-The pid4cat schema is mapped to the handle record as follows:
+A typical handle record is shown in the table.
 
-**Table** Example record for a pid4cat handle with the suffix "lik-dfi345", URL: https://hdl.handle.net/20.1000/lik-dfi345 <BR> The *PID4CatRecord* column contains the slot name of the LinkML model that is written to the respective line of the handle record; this column is not part of the handle record.
+**Table** Example record for a pid4cat handle with the suffix "lik-dfi345", URL: https://hdl.handle.net/20.1000/lik-dfi345 <BR>  The column *PID4CatElement* is not part of the handle record; it links to the documentation of the corresponding class.
 
-| Index | Type | Timestamp | Data | *PID4CatRecord* |
+| Index | Type | Timestamp | Data | *PID4CatElement* |
 |-------|------|-----------|------|-----------|
 |     1 | URL  | 2024-01-01 10:47:38Z | https://pid4cat.example.org/lik-dfi345 | *landing pageURL* |
-|     2 | STATUS | 2024-02-19 13:40:02Z | REGISTERED | *status* |
-|     3 | SCHEMA_VER | 2024-01-01 10:47:38Z | v1.0.0 | *pid_schema_version* |
-|     4 | LICENSE | 2024-01-01 10:47:38Z | CC0-1.0 | *license* |
-|     5 | EMAIL | 2024-01-01 10:47:38Z | datafuzzi@example.org | *curation_contact_email* |
-|     6 | RESOURCE_INFO | 2024-01-01 10:47:38Z | {json} | *resource_info* |
-|     7 | RELATED | 2024-02-19 13:40:02Z | {json} | *related_identifiers* |
-|     8 | CHANGES | 2024-02-19 13:40:02Z | {json} | *change_log* |
+|     2 | STATUS | 2024-02-19 13:40:02Z | REGISTERED | *[status](https://nfdi4cat.github.io/pid4cat-model/dev/elements/STATUS/)* |
+|     3 | SCHEMA_VER | 2024-01-01 10:47:38Z | v1.0.0 | *[pid4cat model version](https://nfdi4cat.github.io/pid4cat-model/dev/elements/SCHEMAVER/)* |
+|     4 | LICENSE | 2024-01-01 10:47:38Z | CC0-1.0 | *[license](https://nfdi4cat.github.io/pid4cat-model/dev/elements/LICENSE/)* |
+|     5 | EMAIL | 2024-01-01 10:47:38Z | datafuzzi@example.org | *curation contact email* |
+|     6 | RESOURCE | 2024-01-01 10:47:38Z | {json} | *[resource info](https://nfdi4cat.github.io/pid4cat-model/dev/elements/RESOURCE/)* |
+|     7 | RELATED | 2024-02-19 13:40:02Z | {json} | *[related identifiers](https://nfdi4cat.github.io/pid4cat-model/dev/elements/RELATED/)* |
+|     8 | CHANGES | 2024-02-19 13:40:02Z | {json} | *[change log for PID record](https://nfdi4cat.github.io/pid4cat-model/dev/elements/LOG/)* |
 
-In a future version, the non-standard values the in **Type**-column may be replaced by references to type declarations in a datatype registry (DTR).
+The pid4cat schema is "mapped" to the handle record by using [type designators](https://linkml.io/linkml/schemas/type-designators.html).
+The TYPE column in the handle record determines ("designates") the corresponding class of the LinkML model.
+
+In a future version, the non-standard values the in **Type**-column could be replaced by references to type declarations in a datatype registry (DTR).
 Such DTRs are still under development and not yet widely used.
 
 The LICENSE specifies the licence for the metadata in the PID-record.
