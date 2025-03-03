@@ -70,8 +70,8 @@ linke = "linke"
 [tool.typos.files]
 extend-exclude = [
   "LICENSE",
-  "pyproject.toml",
   "poetry.lock",
+  "pyproject.toml",
   "project/*",
   "src/pid4cat_model/datamodel/pid4cat_model_pydantic.py",
   "src/pid4cat_model/datamodel/pid4cat_model.py",
