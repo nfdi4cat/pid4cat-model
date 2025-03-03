@@ -363,8 +363,6 @@
 
 <h1 id="slot-ttl">Slot: ttl</h1>
 <p><em>A time to live in seconds for the handle record. Typically: 86400 =&gt; 1 day</em></p>
-<p><em>TODO: Research details of ttl meaning for handle API.</em></p>
-<p>__</p>
 <p>URI: <a href="https://w3id.org/nfdi4cat/pid4cat-model/ttl">pid4cat_model:ttl</a></p>
 <!-- no inheritance hierarchy -->
 
@@ -379,8 +377,28 @@
 </thead>
 <tbody>
 <tr>
+<td><a href="../STATUS/">STATUS</a></td>
+<td>The data element in the handle API for the PID status information</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../LICENSE/">LICENSE</a></td>
+<td>The data element in the handle API for the PID metadata license</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../RESOURCE/">RESOURCE</a></td>
+<td>The data element in the handle API for the resource info</td>
+<td>no</td>
+</tr>
+<tr>
 <td><a href="../HandleRecord/">HandleRecord</a></td>
-<td>A class representing a handle record in the same way as in the REST (json) AP...</td>
+<td>A base class for handle-data classes that represent a handle record in the sa...</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a href="../EMAIL/">EMAIL</a></td>
+<td>The data element in the handle API for the contact email</td>
 <td>no</td>
 </tr>
 <tr>
@@ -389,38 +407,18 @@
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../URL/">URL</a></td>
-<td>The data element in the handle API for the landing page URL</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../EMAIL/">EMAIL</a></td>
-<td>The data element in the handle API for the contact email</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../LICENSE/">LICENSE</a></td>
-<td>The data element in the handle API for the schema version</td>
-<td>no</td>
-</tr>
-<tr>
 <td><a href="../LOG/">LOG</a></td>
 <td>The data element in the handle API for the change log</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../RESOURCEINFO/">RESOURCEINFO</a></td>
-<td>The data element in the handle API for the resource info</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../STATUS/">STATUS</a></td>
-<td>A data element in the handle API</td>
-<td>no</td>
-</tr>
-<tr>
 <td><a href="../SCHEMAVER/">SCHEMAVER</a></td>
 <td>The data element in the handle API for the schema version</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../URL/">URL</a></td>
+<td>The data element in the handle API for the landing page URL</td>
 <td>no</td>
 </tr>
 </tbody>
@@ -458,11 +456,7 @@
 
 <pre><code class="language-yaml">name: ttl
 description: 'A time to live in seconds for the handle record. Typically: 86400 =&gt;
-  1 day
-
-  TODO: Research details of ttl meaning for handle API.
-
-  '
+  1 day'
 from_schema: https://w3id.org/nfdi4cat/pid4cat-model
 rank: 1000
 alias: ttl

@@ -215,7 +215,7 @@
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"></path></svg>
 </a>
 <h1 id="class-license">Class: LICENSE</h1>
-<p><em>The data element in the handle API for the schema version.</em></p>
+<p><em>The data element in the handle API for the PID metadata license.</em></p>
 <p>URI: <a href="https://w3id.org/nfdi4cat/pid4cat-model/LICENSE">pid4cat_model:LICENSE</a></p>
 <div class="mermaid"> classDiagram
     class LICENSE
@@ -228,7 +228,7 @@
 
 
 
-    LICENSE --&gt; "0..1" HdlDataLicense : data
+    LICENSE --&gt; "1" HdlDataLicense : data
     click HdlDataLicense href "../HdlDataLicense"
 
 
@@ -262,15 +262,21 @@
 <tbody>
 <tr>
 <td><a href="../">index</a></td>
-<td>0..1 <br/> <a href="../Integer/">Integer</a></td>
+<td>1 <br/> <a href="../Integer/">Integer</a></td>
 <td>The index of the handle record</td>
 <td>direct</td>
 </tr>
 <tr>
 <td><a href="../data/">data</a></td>
-<td>0..1 <br/> <a href="../HdlDataLicense/">HdlDataLicense</a></td>
+<td>1 <br/> <a href="../HdlDataLicense/">HdlDataLicense</a></td>
 <td>The data in the handle record</td>
 <td>direct</td>
+</tr>
+<tr>
+<td><a href="../timestamp/">timestamp</a></td>
+<td>1 <br/> <a href="../Datetime/">Datetime</a></td>
+<td>The iso datetime for the last update of the handle data</td>
+<td><a href="../HandleRecord/">HandleRecord</a></td>
 </tr>
 <tr>
 <td><a href="../ttl/">ttl</a></td>
@@ -279,14 +285,8 @@
 <td><a href="../HandleRecord/">HandleRecord</a></td>
 </tr>
 <tr>
-<td><a href="../timestamp/">timestamp</a></td>
-<td>0..1 <br/> <a href="../Datetime/">Datetime</a></td>
-<td>The iso datetime for the last update of the handle data</td>
-<td><a href="../HandleRecord/">HandleRecord</a></td>
-</tr>
-<tr>
 <td><a href="../type/">type</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
 <td>The type of handledata stored in the handle record</td>
 <td><a href="../HandleRecord/">HandleRecord</a></td>
 </tr>
@@ -321,7 +321,7 @@
 <h3 id="direct">Direct</h3>
 <details>
 <pre><code class="language-yaml">name: LICENSE
-description: The data element in the handle API for the schema version.
+description: The data element in the handle API for the PID metadata license.
 from_schema: https://w3id.org/nfdi4cat/pid4cat-model
 is_a: HandleRecord
 slots:
@@ -330,28 +330,32 @@ slots:
 slot_usage:
   index:
     name: index
+    required: true
     minimum_value: 4
     maximum_value: 4
   data:
     name: data
     range: HdlDataLicense
+    required: true
 
 </code></pre>
 </details>
 <h3 id="induced">Induced</h3>
 <details>
 <pre><code class="language-yaml">name: LICENSE
-description: The data element in the handle API for the schema version.
+description: The data element in the handle API for the PID metadata license.
 from_schema: https://w3id.org/nfdi4cat/pid4cat-model
 is_a: HandleRecord
 slot_usage:
   index:
     name: index
+    required: true
     minimum_value: 4
     maximum_value: 4
   data:
     name: data
     range: HdlDataLicense
+    required: true
 attributes:
   index:
     name: index
@@ -366,10 +370,11 @@ attributes:
     - SCHEMA_VER
     - LICENSE
     - EMAIL
-    - RESOURCE_INFO
+    - RESOURCE
     - RELATED
     - LOG
     range: integer
+    required: true
     minimum_value: 4
     maximum_value: 4
   data:
@@ -385,25 +390,11 @@ attributes:
     - SCHEMA_VER
     - LICENSE
     - EMAIL
-    - RESOURCE_INFO
+    - RESOURCE
     - RELATED
     - LOG
     range: HdlDataLicense
-  ttl:
-    name: ttl
-    description: 'A time to live in seconds for the handle record. Typically: 86400
-      =&gt; 1 day
-
-      TODO: Research details of ttl meaning for handle API.
-
-      '
-    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
-    rank: 1000
-    alias: ttl
-    owner: LICENSE
-    domain_of:
-    - HandleRecord
-    range: integer
+    required: true
   timestamp:
     name: timestamp
     description: The iso datetime for the last update of the handle data.
@@ -414,6 +405,19 @@ attributes:
     domain_of:
     - HandleRecord
     range: datetime
+    required: true
+  ttl:
+    name: ttl
+    description: 'A time to live in seconds for the handle record. Typically: 86400
+      =&gt; 1 day'
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    rank: 1000
+    ifabsent: '86400'
+    alias: ttl
+    owner: LICENSE
+    domain_of:
+    - HandleRecord
+    range: integer
   type:
     name: type
     description: The type of handledata stored in the handle record.
@@ -426,6 +430,7 @@ attributes:
     - HandleRecord
     - RelatedIdentifier
     range: string
+    required: true
 
 </code></pre>
 </details>

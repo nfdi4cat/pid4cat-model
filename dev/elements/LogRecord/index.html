@@ -215,7 +215,7 @@
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"></path></svg>
 </a>
 <h1 id="class-logrecord">Class: LogRecord</h1>
-<p><em>A log record for changes made in a pid4cat handle record starting from registration.</em></p>
+<p><em>Data class for a change log of modification made on a pid4cat handle record starting from its registration.</em></p>
 <p>URI: <a href="https://w3id.org/nfdi4cat/pid4cat-model/LogRecord">pid4cat_model:LogRecord</a></p>
 <div class="mermaid"> classDiagram
     class LogRecord
@@ -225,7 +225,7 @@
 
 
 
-    LogRecord --&gt; "0..1" ChangeLogField : changed_field
+    LogRecord --&gt; "1" ChangeLogField : changed_field
     click ChangeLogField href "../ChangeLogField"
 
 
@@ -238,7 +238,7 @@
 
 
 
-    LogRecord --&gt; "0..1" Agent : has_agent
+    LogRecord --&gt; "1" Agent : has_agent
     click Agent href "../Agent"
 
 
@@ -258,19 +258,19 @@
 <tbody>
 <tr>
 <td><a href="../datetime_log/">datetime_log</a></td>
-<td>0..1 <br/> <a href="../Datetime/">Datetime</a></td>
+<td>1 <br/> <a href="../Datetime/">Datetime</a></td>
 <td>The date and time of a log record</td>
 <td>direct</td>
 </tr>
 <tr>
 <td><a href="../has_agent/">has_agent</a></td>
-<td>0..1 <br/> <a href="../Agent/">Agent</a></td>
+<td>1 <br/> <a href="../Agent/">Agent</a></td>
 <td>The person who registered or modified the PID record</td>
 <td>direct</td>
 </tr>
 <tr>
 <td><a href="../changed_field/">changed_field</a></td>
-<td>0..1 <br/> <a href="../ChangeLogField/">ChangeLogField</a></td>
+<td>1 <br/> <a href="../ChangeLogField/">ChangeLogField</a></td>
 <td>The field that was changed</td>
 <td>direct</td>
 </tr>
@@ -330,23 +330,47 @@
 <h3 id="direct">Direct</h3>
 <details>
 <pre><code class="language-yaml">name: LogRecord
-description: A log record for changes made in a pid4cat handle record starting from
-  registration.
+description: Data class for a change log of modification made on a pid4cat handle
+  record starting from its registration.
 from_schema: https://w3id.org/nfdi4cat/pid4cat-model
 slots:
 - datetime_log
 - has_agent
 - changed_field
 - description
+slot_usage:
+  datetime_log:
+    name: datetime_log
+    required: true
+  has_agent:
+    name: has_agent
+    required: true
+  changed_field:
+    name: changed_field
+    required: true
+  description:
+    name: description
 
 </code></pre>
 </details>
 <h3 id="induced">Induced</h3>
 <details>
 <pre><code class="language-yaml">name: LogRecord
-description: A log record for changes made in a pid4cat handle record starting from
-  registration.
+description: Data class for a change log of modification made on a pid4cat handle
+  record starting from its registration.
 from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+slot_usage:
+  datetime_log:
+    name: datetime_log
+    required: true
+  has_agent:
+    name: has_agent
+    required: true
+  changed_field:
+    name: changed_field
+    required: true
+  description:
+    name: description
 attributes:
   datetime_log:
     name: datetime_log
@@ -359,6 +383,7 @@ attributes:
     - Pid4CatRelation
     - LogRecord
     range: datetime
+    required: true
   has_agent:
     name: has_agent
     description: The person who registered or modified the PID record.
@@ -369,9 +394,10 @@ attributes:
     domain_of:
     - LogRecord
     range: Agent
+    required: true
   changed_field:
     name: changed_field
-    description: The field that was changed
+    description: The field that was changed.
     from_schema: https://w3id.org/nfdi4cat/pid4cat-model
     rank: 1000
     alias: changed_field
@@ -379,6 +405,7 @@ attributes:
     domain_of:
     - LogRecord
     range: ChangeLogField
+    required: true
   description:
     name: description
     description: A human-readable description for a resource.

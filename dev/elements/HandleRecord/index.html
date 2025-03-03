@@ -220,7 +220,7 @@
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"></path></svg>
 </a>
 <h1 id="class-handlerecord">Class: HandleRecord</h1>
-<p><em>A class representing a handle record in the same way as in the REST (json) API of a handle server.</em></p>
+<p><em>A base class for handle-data classes that represent a handle record in the same way as in the REST (json) API of a handle server.</em></p>
 <p>URI: <a href="https://w3id.org/nfdi4cat/pid4cat-model/HandleRecord">pid4cat_model:HandleRecord</a></p>
 <div class="mermaid"> classDiagram
     class HandleRecord
@@ -235,8 +235,8 @@
         click LICENSE href "../LICENSE"
       HandleRecord &lt;|-- EMAIL
         click EMAIL href "../EMAIL"
-      HandleRecord &lt;|-- RESOURCEINFO
-        click RESOURCEINFO href "../RESOURCEINFO"
+      HandleRecord &lt;|-- RESOURCE
+        click RESOURCE href "../RESOURCE"
       HandleRecord &lt;|-- RELATED
         click RELATED href "../RELATED"
       HandleRecord &lt;|-- LOG
@@ -258,7 +258,7 @@
 <li><a href="../SCHEMAVER/">SCHEMAVER</a></li>
 <li><a href="../LICENSE/">LICENSE</a></li>
 <li><a href="../EMAIL/">EMAIL</a></li>
-<li><a href="../RESOURCEINFO/">RESOURCEINFO</a></li>
+<li><a href="../RESOURCE/">RESOURCE</a></li>
 <li><a href="../RELATED/">RELATED</a></li>
 <li><a href="../LOG/">LOG</a></li>
 </ul>
@@ -276,20 +276,20 @@
 </thead>
 <tbody>
 <tr>
+<td><a href="../timestamp/">timestamp</a></td>
+<td>1 <br/> <a href="../Datetime/">Datetime</a></td>
+<td>The iso datetime for the last update of the handle data</td>
+<td>direct</td>
+</tr>
+<tr>
 <td><a href="../ttl/">ttl</a></td>
 <td>0..1 <br/> <a href="../Integer/">Integer</a></td>
 <td>A time to live in seconds for the handle record</td>
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../timestamp/">timestamp</a></td>
-<td>0..1 <br/> <a href="../Datetime/">Datetime</a></td>
-<td>The iso datetime for the last update of the handle data</td>
-<td>direct</td>
-</tr>
-<tr>
 <td><a href="../type/">type</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
 <td>The type of handledata stored in the handle record</td>
 <td>direct</td>
 </tr>
@@ -343,48 +343,47 @@
 <h3 id="direct">Direct</h3>
 <details>
 <pre><code class="language-yaml">name: HandleRecord
-description: A class representing a handle record in the same way as in the REST (json)
-  API of a handle server.
+description: A base class for handle-data classes that represent a handle record in
+  the same way as in the REST (json) API of a handle server.
 from_schema: https://w3id.org/nfdi4cat/pid4cat-model
 slots:
-- ttl
 - timestamp
+- ttl
 - type
 slot_usage:
+  timestamp:
+    name: timestamp
+    required: true
+  ttl:
+    name: ttl
+    ifabsent: '86400'
   type:
     name: type
     description: The type of handledata stored in the handle record.
     designates_type: true
+    required: true
 
 </code></pre>
 </details>
 <h3 id="induced">Induced</h3>
 <details>
 <pre><code class="language-yaml">name: HandleRecord
-description: A class representing a handle record in the same way as in the REST (json)
-  API of a handle server.
+description: A base class for handle-data classes that represent a handle record in
+  the same way as in the REST (json) API of a handle server.
 from_schema: https://w3id.org/nfdi4cat/pid4cat-model
 slot_usage:
+  timestamp:
+    name: timestamp
+    required: true
+  ttl:
+    name: ttl
+    ifabsent: '86400'
   type:
     name: type
     description: The type of handledata stored in the handle record.
     designates_type: true
+    required: true
 attributes:
-  ttl:
-    name: ttl
-    description: 'A time to live in seconds for the handle record. Typically: 86400
-      =&gt; 1 day
-
-      TODO: Research details of ttl meaning for handle API.
-
-      '
-    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
-    rank: 1000
-    alias: ttl
-    owner: HandleRecord
-    domain_of:
-    - HandleRecord
-    range: integer
   timestamp:
     name: timestamp
     description: The iso datetime for the last update of the handle data.
@@ -395,6 +394,19 @@ attributes:
     domain_of:
     - HandleRecord
     range: datetime
+    required: true
+  ttl:
+    name: ttl
+    description: 'A time to live in seconds for the handle record. Typically: 86400
+      =&gt; 1 day'
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    rank: 1000
+    ifabsent: '86400'
+    alias: ttl
+    owner: HandleRecord
+    domain_of:
+    - HandleRecord
+    range: integer
   type:
     name: type
     description: The type of handledata stored in the handle record.
@@ -407,6 +419,7 @@ attributes:
     - HandleRecord
     - RelatedIdentifier
     range: string
+    required: true
 
 </code></pre>
 </details>

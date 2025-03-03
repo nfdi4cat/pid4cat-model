@@ -215,7 +215,7 @@
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"></path></svg>
 </a>
 <h1 id="class-representationvariant">Class: RepresentationVariant</h1>
-<p><em>A representation of the resource in other media types than text/html which is the default for landing_page_url.</em></p>
+<p><em>Data class for representations of the resource in other media types than text/html which is the default for landing_page_url.</em></p>
 <p>URI: <a href="https://w3id.org/nfdi4cat/pid4cat-model/RepresentationVariant">pid4cat_model:RepresentationVariant</a></p>
 <div class="mermaid"> classDiagram
     class RepresentationVariant
@@ -323,23 +323,29 @@
 <h3 id="direct">Direct</h3>
 <details>
 <pre><code class="language-yaml">name: RepresentationVariant
-description: A representation of the resource in other media types than text/html
-  which is the default for landing_page_url.
+description: Data class for representations of the resource in other media types than
+  text/html which is the default for landing_page_url.
 from_schema: https://w3id.org/nfdi4cat/pid4cat-model
 slots:
 - url
 - media_type
 - encoding_format
 - size
+slot_usage:
+  media_type:
+    name: media_type
 
 </code></pre>
 </details>
 <h3 id="induced">Induced</h3>
 <details>
 <pre><code class="language-yaml">name: RepresentationVariant
-description: A representation of the resource in other media types than text/html
-  which is the default for landing_page_url.
+description: Data class for representations of the resource in other media types than
+  text/html which is the default for landing_page_url.
 from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+slot_usage:
+  media_type:
+    name: media_type
 attributes:
   url:
     name: url

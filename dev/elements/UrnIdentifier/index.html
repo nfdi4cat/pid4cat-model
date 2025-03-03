@@ -249,13 +249,13 @@
 <tbody>
 <tr>
 <td><a href="../identifier/">identifier</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
 <td>The identifier in recommended notation</td>
 <td>direct</td>
 </tr>
 <tr>
 <td><a href="../type/">type</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
 <td>The type of the identifier</td>
 <td><a href="../RelatedIdentifier/">RelatedIdentifier</a></td>
 </tr>
@@ -298,6 +298,7 @@ slots:
 slot_usage:
   identifier:
     name: identifier
+    required: true
     pattern: ^urn:[a-zA-Z0-9][a-zA-Z0-9-]{0,31}:[^\s]*$
 
 </code></pre>
@@ -311,6 +312,7 @@ is_a: RelatedIdentifier
 slot_usage:
   identifier:
     name: identifier
+    required: true
     pattern: ^urn:[a-zA-Z0-9][a-zA-Z0-9-]{0,31}:[^\s]*$
 attributes:
   identifier:
@@ -328,6 +330,7 @@ attributes:
     - GtinIdentifier
     - ExampleIdentifier
     range: string
+    required: true
     pattern: ^urn:[a-zA-Z0-9][a-zA-Z0-9-]{0,31}:[^\s]*$
   type:
     name: type
@@ -340,6 +343,7 @@ attributes:
     - HandleRecord
     - RelatedIdentifier
     range: string
+    required: true
 
 </code></pre>
 </details>

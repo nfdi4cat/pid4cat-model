@@ -257,13 +257,13 @@
 </tr>
 <tr>
 <td><a href="../resolving_url/">resolving_url</a></td>
-<td>0..1 <br/> <a href="../Uri/">Uri</a></td>
+<td>1 <br/> <a href="../Uri/">Uri</a></td>
 <td>The URL that resolves the identifier</td>
 <td>direct</td>
 </tr>
 <tr>
 <td><a href="../type/">type</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
 <td>The type of the identifier</td>
 <td><a href="../RelatedIdentifier/">RelatedIdentifier</a></td>
 </tr>
@@ -310,6 +310,7 @@ slot_usage:
     pattern: ^ark:\/\d{5}/.*$
   resolving_url:
     name: resolving_url
+    required: true
     pattern: ^https?:\/\/.*\/ark:\/\d{5}/.*$
 
 </code></pre>
@@ -326,6 +327,7 @@ slot_usage:
     pattern: ^ark:\/\d{5}/.*$
   resolving_url:
     name: resolving_url
+    required: true
     pattern: ^https?:\/\/.*\/ark:\/\d{5}/.*$
 attributes:
   identifier:
@@ -358,6 +360,7 @@ attributes:
     - ArkIdentifier
     - ExampleIdentifier
     range: uri
+    required: true
     pattern: ^https?:\/\/.*\/ark:\/\d{5}/.*$
   type:
     name: type
@@ -370,6 +373,7 @@ attributes:
     - HandleRecord
     - RelatedIdentifier
     range: string
+    required: true
 
 </code></pre>
 </details>

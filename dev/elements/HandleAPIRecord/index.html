@@ -229,7 +229,7 @@
 
 
 
-    HandleAPIRecord --&gt; "*" HandleRecord : values
+    HandleAPIRecord --&gt; "1..*" HandleRecord : values
     click HandleRecord href "../HandleRecord"
 
 
@@ -261,7 +261,7 @@
 </tr>
 <tr>
 <td><a href="../values/">values</a></td>
-<td>* <br/> <a href="../HandleRecord/">HandleRecord</a></td>
+<td>1..* <br/> <a href="../HandleRecord/">HandleRecord</a></td>
 <td>The values of the pid4cat record</td>
 <td>direct</td>
 </tr>
@@ -322,6 +322,13 @@ slots:
 - responseCode
 - handle
 - values
+slot_usage:
+  handle:
+    name: handle
+    required: true
+  values:
+    name: values
+    required: true
 
 </code></pre>
 </details>
@@ -331,6 +338,13 @@ slots:
 description: A class representing a handle record query response of the REST (json)
   API of a handle server.
 from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+slot_usage:
+  handle:
+    name: handle
+    required: true
+  values:
+    name: values
+    required: true
 attributes:
   responseCode:
     name: responseCode
@@ -353,6 +367,7 @@ attributes:
     domain_of:
     - HandleAPIRecord
     range: string
+    required: true
   values:
     name: values
     description: The values of the pid4cat record.
@@ -363,6 +378,7 @@ attributes:
     domain_of:
     - HandleAPIRecord
     range: HandleRecord
+    required: true
     multivalued: true
 
 </code></pre>

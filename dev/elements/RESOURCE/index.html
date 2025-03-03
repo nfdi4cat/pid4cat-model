@@ -5,10 +5,10 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<link href="https://nfdi4cat.github.io/pid4cat-model/latest/elements/RESOURCEINFO/" rel="canonical"/>
+<link href="https://nfdi4cat.github.io/pid4cat-model/latest/elements/RESOURCE/" rel="canonical"/>
 <link href="../../images/favicon.svg" rel="icon"/>
 <meta content="mkdocs-1.6.1, mkdocs-material-8.5.10" name="generator"/>
-<title>Class: RESOURCEINFO - pid4cat-model</title>
+<title>Class: RESOURCE - pid4cat-model</title>
 <link href="../../assets/stylesheets/main.975780f9.min.css" rel="stylesheet"/>
 <link href="../../assets/stylesheets/palette.2505c338.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -24,7 +24,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#class-resourceinfo">
+<a class="md-skip" href="#class-resource">
           Skip to content
         </a>
 </div>
@@ -50,7 +50,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              Class: RESOURCEINFO
+              Class: RESOURCE
             
           </span>
 </div>
@@ -211,41 +211,41 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<a class="md-content__button md-icon" href="https://github.com/nfdi4cat/pid4cat-model/edit/master/docs/elements/RESOURCEINFO.md" title="Edit this page">
+<a class="md-content__button md-icon" href="https://github.com/nfdi4cat/pid4cat-model/edit/master/docs/elements/RESOURCE.md" title="Edit this page">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"></path></svg>
 </a>
-<h1 id="class-resourceinfo">Class: RESOURCEINFO</h1>
+<h1 id="class-resource">Class: RESOURCE</h1>
 <p><em>The data element in the handle API for the resource info.</em></p>
-<p>URI: <a href="https://w3id.org/nfdi4cat/pid4cat-model/RESOURCEINFO">pid4cat_model:RESOURCEINFO</a></p>
+<p>URI: <a href="https://w3id.org/nfdi4cat/pid4cat-model/RESOURCE">pid4cat_model:RESOURCE</a></p>
 <div class="mermaid"> classDiagram
-    class RESOURCEINFO
-    click RESOURCEINFO href "../RESOURCEINFO"
-      HandleRecord &lt;|-- RESOURCEINFO
+    class RESOURCE
+    click RESOURCE href "../RESOURCE"
+      HandleRecord &lt;|-- RESOURCE
         click HandleRecord href "../HandleRecord"
 
-      RESOURCEINFO : data
+      RESOURCE : data
 
 
 
 
-    RESOURCEINFO --&gt; "0..1" HdlDataResourceInfo : data
+    RESOURCE --&gt; "1" HdlDataResourceInfo : data
     click HdlDataResourceInfo href "../HdlDataResourceInfo"
 
 
-      RESOURCEINFO : index
+      RESOURCE : index
 
-      RESOURCEINFO : timestamp
+      RESOURCE : timestamp
 
-      RESOURCEINFO : ttl
+      RESOURCE : ttl
 
-      RESOURCEINFO : type
+      RESOURCE : type
 
 
 </div>
 <h2 id="inheritance">Inheritance</h2>
 <ul>
 <li><a href="../HandleRecord/">HandleRecord</a><ul>
-<li><strong>RESOURCEINFO</strong></li>
+<li><strong>RESOURCE</strong></li>
 </ul>
 </li>
 </ul>
@@ -262,15 +262,21 @@
 <tbody>
 <tr>
 <td><a href="../">index</a></td>
-<td>0..1 <br/> <a href="../Integer/">Integer</a></td>
+<td>1 <br/> <a href="../Integer/">Integer</a></td>
 <td>The index of the handle record</td>
 <td>direct</td>
 </tr>
 <tr>
 <td><a href="../data/">data</a></td>
-<td>0..1 <br/> <a href="../HdlDataResourceInfo/">HdlDataResourceInfo</a></td>
+<td>1 <br/> <a href="../HdlDataResourceInfo/">HdlDataResourceInfo</a></td>
 <td>The data in the handle record</td>
 <td>direct</td>
+</tr>
+<tr>
+<td><a href="../timestamp/">timestamp</a></td>
+<td>1 <br/> <a href="../Datetime/">Datetime</a></td>
+<td>The iso datetime for the last update of the handle data</td>
+<td><a href="../HandleRecord/">HandleRecord</a></td>
 </tr>
 <tr>
 <td><a href="../ttl/">ttl</a></td>
@@ -279,14 +285,8 @@
 <td><a href="../HandleRecord/">HandleRecord</a></td>
 </tr>
 <tr>
-<td><a href="../timestamp/">timestamp</a></td>
-<td>0..1 <br/> <a href="../Datetime/">Datetime</a></td>
-<td>The iso datetime for the last update of the handle data</td>
-<td><a href="../HandleRecord/">HandleRecord</a></td>
-</tr>
-<tr>
 <td><a href="../type/">type</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
 <td>The type of handledata stored in the handle record</td>
 <td><a href="../HandleRecord/">HandleRecord</a></td>
 </tr>
@@ -308,11 +308,11 @@
 <tbody>
 <tr>
 <td>self</td>
-<td>pid4cat_model:RESOURCEINFO</td>
+<td>pid4cat_model:RESOURCE</td>
 </tr>
 <tr>
 <td>native</td>
-<td>pid4cat_model:RESOURCEINFO</td>
+<td>pid4cat_model:RESOURCE</td>
 </tr>
 </tbody>
 </table>
@@ -320,7 +320,7 @@
 <!-- TODO: investigate https://stackoverflow.com/questions/37606292/how-to-create-tabbed-code-blocks-in-mkdocs-or-sphinx -->
 <h3 id="direct">Direct</h3>
 <details>
-<pre><code class="language-yaml">name: RESOURCE_INFO
+<pre><code class="language-yaml">name: RESOURCE
 description: The data element in the handle API for the resource info.
 from_schema: https://w3id.org/nfdi4cat/pid4cat-model
 is_a: HandleRecord
@@ -330,28 +330,32 @@ slots:
 slot_usage:
   index:
     name: index
+    required: true
     minimum_value: 6
     maximum_value: 6
   data:
     name: data
     range: HdlDataResourceInfo
+    required: true
 
 </code></pre>
 </details>
 <h3 id="induced">Induced</h3>
 <details>
-<pre><code class="language-yaml">name: RESOURCE_INFO
+<pre><code class="language-yaml">name: RESOURCE
 description: The data element in the handle API for the resource info.
 from_schema: https://w3id.org/nfdi4cat/pid4cat-model
 is_a: HandleRecord
 slot_usage:
   index:
     name: index
+    required: true
     minimum_value: 6
     maximum_value: 6
   data:
     name: data
     range: HdlDataResourceInfo
+    required: true
 attributes:
   index:
     name: index
@@ -359,17 +363,18 @@ attributes:
     from_schema: https://w3id.org/nfdi4cat/pid4cat-model
     rank: 1000
     alias: index
-    owner: RESOURCE_INFO
+    owner: RESOURCE
     domain_of:
     - URL
     - STATUS
     - SCHEMA_VER
     - LICENSE
     - EMAIL
-    - RESOURCE_INFO
+    - RESOURCE
     - RELATED
     - LOG
     range: integer
+    required: true
     minimum_value: 6
     maximum_value: 6
   data:
@@ -378,42 +383,41 @@ attributes:
     from_schema: https://w3id.org/nfdi4cat/pid4cat-model
     rank: 1000
     alias: data
-    owner: RESOURCE_INFO
+    owner: RESOURCE
     domain_of:
     - URL
     - STATUS
     - SCHEMA_VER
     - LICENSE
     - EMAIL
-    - RESOURCE_INFO
+    - RESOURCE
     - RELATED
     - LOG
     range: HdlDataResourceInfo
-  ttl:
-    name: ttl
-    description: 'A time to live in seconds for the handle record. Typically: 86400
-      =&gt; 1 day
-
-      TODO: Research details of ttl meaning for handle API.
-
-      '
-    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
-    rank: 1000
-    alias: ttl
-    owner: RESOURCE_INFO
-    domain_of:
-    - HandleRecord
-    range: integer
+    required: true
   timestamp:
     name: timestamp
     description: The iso datetime for the last update of the handle data.
     from_schema: https://w3id.org/nfdi4cat/pid4cat-model
     rank: 1000
     alias: timestamp
-    owner: RESOURCE_INFO
+    owner: RESOURCE
     domain_of:
     - HandleRecord
     range: datetime
+    required: true
+  ttl:
+    name: ttl
+    description: 'A time to live in seconds for the handle record. Typically: 86400
+      =&gt; 1 day'
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    rank: 1000
+    ifabsent: '86400'
+    alias: ttl
+    owner: RESOURCE
+    domain_of:
+    - HandleRecord
+    range: integer
   type:
     name: type
     description: The type of handledata stored in the handle record.
@@ -421,11 +425,12 @@ attributes:
     rank: 1000
     designates_type: true
     alias: type
-    owner: RESOURCE_INFO
+    owner: RESOURCE
     domain_of:
     - HandleRecord
     - RelatedIdentifier
     range: string
+    required: true
 
 </code></pre>
 </details>

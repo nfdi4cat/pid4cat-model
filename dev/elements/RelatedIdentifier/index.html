@@ -220,7 +220,7 @@
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"></path></svg>
 </a>
 <h1 id="class-relatedidentifier">Class: RelatedIdentifier</h1>
-<p><em>A class for all types pf related identifiers.</em></p>
+<p><em>A base class for all types of related identifiers.</em></p>
 <p>URI: <a href="https://w3id.org/nfdi4cat/pid4cat-model/RelatedIdentifier">pid4cat_model:RelatedIdentifier</a></p>
 <div class="mermaid"> classDiagram
     class RelatedIdentifier
@@ -270,7 +270,7 @@
 <tbody>
 <tr>
 <td><a href="../type/">type</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
 <td>The type of the identifier</td>
 <td>direct</td>
 </tr>
@@ -324,7 +324,7 @@
 <h3 id="direct">Direct</h3>
 <details>
 <pre><code class="language-yaml">name: RelatedIdentifier
-description: A class for all types pf related identifiers.
+description: A base class for all types of related identifiers.
 from_schema: https://w3id.org/nfdi4cat/pid4cat-model
 attributes:
   type:
@@ -335,13 +335,14 @@ attributes:
     domain_of:
     - HandleRecord
     - RelatedIdentifier
+    required: true
 
 </code></pre>
 </details>
 <h3 id="induced">Induced</h3>
 <details>
 <pre><code class="language-yaml">name: RelatedIdentifier
-description: A class for all types pf related identifiers.
+description: A base class for all types of related identifiers.
 from_schema: https://w3id.org/nfdi4cat/pid4cat-model
 attributes:
   type:
@@ -355,6 +356,7 @@ attributes:
     - HandleRecord
     - RelatedIdentifier
     range: string
+    required: true
 
 </code></pre>
 </details>
