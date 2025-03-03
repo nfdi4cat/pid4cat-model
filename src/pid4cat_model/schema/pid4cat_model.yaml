@@ -67,8 +67,8 @@ classes:
 
   HandleRecord:
     description: >-
-      A class representing a handle record in the same way as in the REST
-      (json) API of a handle server.
+      A base class for handle-data classes that represent a handle record in
+      the same way as in the REST (json) API of a handle server.
     slots:
       - timestamp
       - ttl
@@ -102,7 +102,7 @@ classes:
 
   HdlDataUrl:
     description: >-
-      The data element in the handle API for the redirect url.
+      The data class for the redirect url.
     slots:
       - format
       - value
@@ -117,7 +117,7 @@ classes:
   STATUS:
     is_a: HandleRecord
     description: >-
-      A data element in the handle API.
+      The data element in the handle API for the PID status information.
     slots:
       - index
       - data
@@ -132,7 +132,7 @@ classes:
 
   HdlDataStatus:
     description: >-
-      The data element in the handle API for the status.
+      The data class for the PID status information.
     slots:
       - format
       - value
@@ -162,7 +162,7 @@ classes:
 
   HdlDataSchemaVer:
     description: >-
-      The data element in the handle API for the schema version.
+      The data class for the schema version.
     slots:
       - format
       - value
@@ -177,7 +177,7 @@ classes:
   LICENSE:
     is_a: HandleRecord
     description: >-
-      The data element in the handle API for the schema version.
+      The data element in the handle API for the PID metadata license.
     slots:
       - index
       - data
@@ -192,7 +192,7 @@ classes:
 
   HdlDataLicense:
     description: >-
-      The data element in the handle API for the license.
+      The data class for the PID metadata license.
     slots:
       - format
       - value
@@ -222,7 +222,7 @@ classes:
 
   HdlDataContact:
     description: >-
-      The data element in the handle API for the contact email.
+      The data class for the handle-record contact email.
     slots:
       - format
       - value
@@ -252,7 +252,7 @@ classes:
 
   HdlDataResourceInfo:
     description: >-
-      The data element in the handle API for the resource info.
+      The data class for the resource info.
     slots:
       - format
       - value
@@ -282,7 +282,7 @@ classes:
 
   HdlDataRelated:
     description: >-
-      The data element in the handle API for related identifiers.
+      The data class for related identifiers.
     slots:
       - format
       - value
@@ -312,7 +312,7 @@ classes:
 
   HdlDataLog:
     description: >-
-      The data element in the handle API for the change log.
+      The data class for the change log.
     slots:
       - format
       - value
@@ -340,8 +340,8 @@ classes:
 
   Pid4CatRelation:
     description: >-
-      A relation between pid4cat handles or between a pid4cat handle and
-      other resources identified by a PID.
+      Data class for a relation to another resource identified by a
+      pid4cat handle or another PID type.
     slots:
       - relation_type
       - related_identifier
@@ -349,7 +349,7 @@ classes:
 
   ResourceInfo:
     description: >-
-      Data object to hold information about the resource and its representation.
+      Data class to hold information about the resource and its representation.
     slots:
       - label
       - description
@@ -363,8 +363,8 @@ classes:
 
   LogRecord:
     description: >-
-      A log record for changes made in a pid4cat handle record starting from
-      registration.
+      Data class for a change log of modification made on a pid4cat handle
+      record starting from its registration.
     slots:
       - datetime_log
       - has_agent
@@ -382,7 +382,9 @@ classes:
 
   Agent:
     class_uri: prov:Agent
-    description: Person who plays a role relative to PID creation or curation.
+    description: >-
+      Data class for a person who plays a role relative to PID creation or
+      curation.
     slots:
       - name
       - email
@@ -405,7 +407,8 @@ classes:
         required: true
 
   RepresentationVariant:
-    description: A representation of the resource in other media types than
+    description: >-
+      Data class for representations of the resource in other media types than
       text/html which is the default for landing_page_url.
     slots:
       - url
@@ -421,7 +424,7 @@ classes:
 
   RelatedIdentifier:
     description: >-
-      A class for all types pf related identifiers.
+      A base class for all types of related identifiers.
     attributes:
       type:
         description: >-
@@ -496,7 +499,7 @@ classes:
   GtinIdentifier:
     is_a: RelatedIdentifier
     description: >-
-      A  Global Trade Item Number (GTIN) previously called European Article
+      A Global Trade Item Number (GTIN) previously called European Article
       Number (EAN) often encoded as EAN13 barcode. The identifier is used to
       identify products. GTINs don't have a resolvable URL.
     slots:
@@ -543,12 +546,13 @@ slots:
   # Slots for HandleRecord and its sub-classes
   timestamp:
     range: datetime
-    description: The iso datetime for the last update of the handle data.
+    description: >-
+      The iso datetime for the last update of the handle data.
   ttl:
     range: integer
-    description: |
-      A time to live in seconds for the handle record. Typically: 86400 => 1 day
-      TODO: Research details of ttl meaning for handle API.
+    description: >-
+      A time to live in seconds for the handle record.
+      Typically: 86400 => 1 day
   type:
     range: string
     description: The type of the handle record data.
