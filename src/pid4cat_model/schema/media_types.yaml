@@ -1,12 +1,13 @@
-id: https://w3id.org/nfdi4cat/pid4cat-model#media-types
+id: https://w3id.org/nfdi4cat/pid4cat-model/media-types/
 name: media-types
 
-# Introduction to media types: https://developer.mozilla.org/en-US/docs/Web/HTTP/MIME_types
+prefixes:
+  mediatype: https://www.iana.org/assignments/media-types/
 
 enums:
   # Extracted on 2025-01-20 from https://www.iana.org/assignments/media-types/media-types.xhtml
-  MEDIA_Types:
-    description: "The IANA media types are used to specify the type of data."
+  MediaTypesEnum:
+    description: "IANA media types are used to specify the type of data."
     permissible_values:
       # application/1d-interleaved-parityfec
       # application/3gpdash-qoe-report+xml
@@ -168,6 +169,7 @@ enums:
       # application/epp+xml
       application/epub+zip:
         description: "For data in Electronic Publication Format (EPUB)."
+        meaning: mediatype:application/epub+zip
       # application/eshop
       # application/example
       # application/exi
@@ -230,6 +232,7 @@ enums:
       # application/jscontact+json
       application/json:
         description: "For data in JavaScript Object Notation (JSON)."
+        meaning: mediatype:application/json
       # application/json-patch+json
       # application/jsonpath
       # application/json-seq
@@ -241,6 +244,7 @@ enums:
       # application/kpml-response+xml
       application/ld+json:
         description: "For data in Linked Data json (JSON-LD)."
+        meaning: mediatype:application/ld+json
       # application/lgr+xml
       # application/link-format
       # application/linkset
@@ -318,6 +322,7 @@ enums:
       # application/ocsp-response
       application/octet-stream:
         description: "For binary data."
+        meaning: mediatype:application/octet-stream
       # application/ODA
       # application/odm+xml
       # application/ODX
@@ -334,7 +339,8 @@ enums:
       # application/passport
       # application/patch-ops-error+xml
       application/pdf:
-        description: "For data in Portable Document Format (PDF)."
+        description: For data in Portable Document Format (PDF).
+        meaning: mediatype:application/pdf
       # application/PDX
       # application/pem-certificate-chain
       # application/pgp-encrypted
@@ -811,6 +817,7 @@ enums:
       # application/vnd.efi.iso
       application/vnd.eln+zip:
         description: "For data in ELN ZIP format."
+        meaning: mediatype:application/vnd.eln+zip
       # application/vnd.emclient.accessrequest+xml
       # application/vnd.enliven
       # application/vnd.enphase.envoy
@@ -1306,6 +1313,7 @@ enums:
       # application/vnd.openxmlformats-officedocument.presentationml.notesSlide+xml
       application/vnd.openxmlformats-officedocument.presentationml.presentation:
         description: "For data in PowerPoint pptx format."
+        meaning: mediatype:application/vnd.openxmlformats-officedocument.presentationml.presentation
       # application/vnd.openxmlformats-officedocument.presentationml.presentation.main+xml
       # application/vnd.openxmlformats-officedocument.presentationml.presProps+xml
       # application/vnd.openxmlformats-officedocument.presentationml.slide
@@ -1335,6 +1343,7 @@ enums:
       # application/vnd.openxmlformats-officedocument.spreadsheetml.sharedStrings+xml
       application/vnd.openxmlformats-officedocument.spreadsheetml.sheet:
         description: "For data in Excel xlsx format."
+        meaning: mediatype:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
       # application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml
       # application/vnd.openxmlformats-officedocument.spreadsheetml.sheetMetadata+xml
       # application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml
@@ -1351,6 +1360,7 @@ enums:
       # application/vnd.openxmlformats-officedocument.wordprocessingml.comments+xml
       application/vnd.openxmlformats-officedocument.wordprocessingml.document:
         description: "For data in Word docx format."
+        meaning: mediatype:application/vnd.openxmlformats-officedocument.wordprocessingml.document
       # application/vnd.openxmlformats-officedocument.wordprocessingml.document.glossary+xml
       # application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml
       # application/vnd.openxmlformats-officedocument.wordprocessingml.endnotes+xml
@@ -1640,6 +1650,7 @@ enums:
       # application/xliff+xml
       application/xml:
         description: "For generic XML data."
+        meaning: mediatype:application/xml
       # application/xml-dtd
       # application/xml-external-parsed-entity
       # application/xml-patch+xml
@@ -1654,6 +1665,7 @@ enums:
       # application/x-x509-next-ca-cert
       application/yaml:
         description: "For YAML data."
+        meaning: mediatype:application/yaml
       # application/yang
       # application/yang-data+cbor
       # application/yang-data+json
@@ -1664,6 +1676,7 @@ enums:
       # application/yin+xml
       application/zip:
         description: "For zip archives."
+        meaning: mediatype:application/zip
       # application/zlib
       # application/zstd
       # ==================  A U D I O   M E D I A   T Y P E S  ==================
@@ -1854,6 +1867,7 @@ enums:
       # image/g3fax
       image/gif:
         description: "For GIF images."
+        meaning: mediatype:image/gif
       # image/heic:
       # image/heic-sequence
       # image/heif
@@ -1868,6 +1882,7 @@ enums:
       # image/jp2
       image/jpeg:
         description: "For JPEG images."
+        meaning: mediatype:image/jpeg
       # image/jph
       # image/jphc
       # image/jpm
@@ -1885,14 +1900,17 @@ enums:
       # image/naplps
       image/png:
         description: "For PNG images."
+        meaning: mediatype:image/png
       # image/prs.btif
       # image/prs.pti
       # image/pwg-raster
       image/svg+xml:
         description: "For SVG images."
+        meaning: mediatype:image/svg+xml
       # image/t38
       image/tiff:
         description: "For TIFF images."
+        meaning: mediatype:image/tiff
       # image/tiff-fx
       # image/vnd.adobe.photoshop
       # image/vnd.airzip.accelerator.azv
@@ -1926,6 +1944,7 @@ enums:
       # image/vnd.zbrush.pcx
       image/webp:
         description: "For WebP images."
+        meaning: mediatype:image/webp
       # image/wmf
       # image/x-emf
       # image/x-wmf
@@ -2025,6 +2044,7 @@ enums:
       # text/css
       text/csv:
         description: "For data in comma-separated values (CSV) format."
+        meaning: mediatype:text/csv
       # text/csv-schema
       # text/directory
       # text/dns
@@ -2040,17 +2060,21 @@ enums:
       # text/hl7v2
       text/html:
         description: "For html web pages."
+        meaning: mediatype:text/html
       text/javascript:
         description: "For JavaScript code."
+        meaning: mediatype:text/javascript
       # text/jcr-cnd
       text/markdown:
         description: "For data in markdown text format."
+        meaning: mediatype:text/markdown
       # text/mizar
       # text/n3
       # text/parameters
       # text/parityfec
       text/plain:
         description: "For plain text data (default text media type)."
+        meaning: mediatype:text/plain
       # text/provenance-notation
       # text/prs.fallenstein.rst
       # text/prs.lines.tag
@@ -2072,9 +2096,11 @@ enums:
       # text/t140
       text/tab-separated-values:
         description: "For data in tab-separated values (TSV) format."
+        meaning: mediatype:text/tab-separated-values
       # text/troff
       text/turtle:
         description: "For data in turtle format."
+        meaning: mediatype:text/turtle
       # text/ulpfec
       # text/uri-list
       # text/vcard
@@ -2119,6 +2145,7 @@ enums:
       # text/wgsl
       text/xml:
         description: "For XML data."
+        meaning: mediatype:text/xml
       # text/xml-external-parsed-entity
       # ==================  V I D E O   M E D I A   T Y P E S  ==================
       # video/1d-interleaved-parityfec
@@ -2156,6 +2183,7 @@ enums:
       # video/MP2T
       video/mp4:
         description: "For mp4 video files."
+        meaning: mediatype:video/mp4
       # video/MP4V-ES
       # video/mpeg
       # video/mpeg4-generic

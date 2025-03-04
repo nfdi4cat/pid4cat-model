@@ -29,6 +29,7 @@ prefixes:
   DataCite: https://purl.org/spar/datacite/
   prov: https://www.w3.org/ns/prov#
   voc4cat: https://w3id.org/nfdi4cat/voc4cat_
+  mediatype: https://www.iana.org/assignments/media-types/
 
 default_prefix: pid4cat_model
 
@@ -422,7 +423,7 @@ classes:
       media_type:
         # Setting "required: true" causes an exception with linkML 1.8.5
         # ValueError: Example tests/data/valid\HandleAPIRecord-001.yaml failed
-        #   validation: unhashable type: 'MEDIATypes'
+        #   validation: unhashable type: 'MediaTypesEnum'
         # required: true
 
   RelatedIdentifier:
@@ -630,7 +631,7 @@ slots:
 
   # Slots for RepresentationVariants
   media_type:
-    range: MEDIA_Types
+    range: MediaTypesEnum
     description: >-
       The media type of the representation as defined by
       [IANA](https://www.iana.org/assignments/media-types/media-types.xhtml)

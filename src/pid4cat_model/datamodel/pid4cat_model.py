@@ -1,5 +1,5 @@
 # Auto generated from pid4cat_model.yaml by pythongen.py version: 0.0.1
-# Generation date: 2025-03-04T17:52:03
+# Generation date: 2025-03-05T00:33:16
 # Schema: pid4cat-model
 #
 # id: https://w3id.org/nfdi4cat/pid4cat-model
@@ -37,6 +37,7 @@ DATACITE = CurieNamespace("DataCite", "https://purl.org/spar/datacite/")
 DCAT = CurieNamespace("dcat", "https://www.w3.org/ns/dcat#")
 DCTERMS = CurieNamespace("dcterms", "https://purl.org/dc/terms/")
 LINKML = CurieNamespace("linkml", "https://w3id.org/linkml/")
+MEDIATYPE = CurieNamespace("mediatype", "https://www.iana.org/assignments/media-types/")
 PID4CAT_MODEL = CurieNamespace(
     "pid4cat_model", "https://w3id.org/nfdi4cat/pid4cat-model/"
 )
@@ -872,7 +873,7 @@ class RepresentationVariant(YAMLRoot):
     class_model_uri: ClassVar[URIRef] = PID4CAT_MODEL.RepresentationVariant
 
     variant_url: Optional[Union[str, URI]] = None
-    media_type: Optional[Union[str, "MEDIATypes"]] = None
+    media_type: Optional[Union[str, "MediaTypesEnum"]] = None
     encoding_format: Optional[str] = None
     size: Optional[int] = None
 
@@ -880,8 +881,10 @@ class RepresentationVariant(YAMLRoot):
         if self.variant_url is not None and not isinstance(self.variant_url, URI):
             self.variant_url = URI(self.variant_url)
 
-        if self.media_type is not None and not isinstance(self.media_type, MEDIATypes):
-            self.media_type = MEDIATypes(self.media_type)
+        if self.media_type is not None and not isinstance(
+            self.media_type, MediaTypesEnum
+        ):
+            self.media_type = MediaTypesEnum(self.media_type)
 
         if self.encoding_format is not None and not isinstance(
             self.encoding_format, str
@@ -1450,14 +1453,14 @@ class ChangeLogField(EnumDefinitionImpl):
     )
 
 
-class MEDIATypes(EnumDefinitionImpl):
+class MediaTypesEnum(EnumDefinitionImpl):
     """
-    The IANA media types are used to specify the type of data.
+    IANA media types are used to specify the type of data.
     """
 
     _defn = EnumDefinition(
-        name="MEDIATypes",
-        description="The IANA media types are used to specify the type of data.",
+        name="MediaTypesEnum",
+        description="IANA media types are used to specify the type of data.",
     )
 
     @classmethod
@@ -1468,6 +1471,7 @@ class MEDIATypes(EnumDefinitionImpl):
             PermissibleValue(
                 text="application/epub+zip",
                 description="For data in Electronic Publication Format (EPUB).",
+                meaning=MEDIATYPE["application/epub+zip"],
             ),
         )
         setattr(
@@ -1476,6 +1480,7 @@ class MEDIATypes(EnumDefinitionImpl):
             PermissibleValue(
                 text="application/json",
                 description="For data in JavaScript Object Notation (JSON).",
+                meaning=MEDIATYPE["application/json"],
             ),
         )
         setattr(
@@ -1484,13 +1489,16 @@ class MEDIATypes(EnumDefinitionImpl):
             PermissibleValue(
                 text="application/ld+json",
                 description="For data in Linked Data json (JSON-LD).",
+                meaning=MEDIATYPE["application/ld+json"],
             ),
         )
         setattr(
             cls,
             "application/octet-stream",
             PermissibleValue(
-                text="application/octet-stream", description="For binary data."
+                text="application/octet-stream",
+                description="For binary data.",
+                meaning=MEDIATYPE["application/octet-stream"],
             ),
         )
         setattr(
@@ -1499,6 +1507,7 @@ class MEDIATypes(EnumDefinitionImpl):
             PermissibleValue(
                 text="application/pdf",
                 description="For data in Portable Document Format (PDF).",
+                meaning=MEDIATYPE["application/pdf"],
             ),
         )
         setattr(
@@ -1507,6 +1516,7 @@ class MEDIATypes(EnumDefinitionImpl):
             PermissibleValue(
                 text="application/vnd.eln+zip",
                 description="For data in ELN ZIP format.",
+                meaning=MEDIATYPE["application/vnd.eln+zip"],
             ),
         )
         setattr(
@@ -1515,6 +1525,9 @@ class MEDIATypes(EnumDefinitionImpl):
             PermissibleValue(
                 text="application/vnd.openxmlformats-officedocument.presentationml.presentation",
                 description="For data in PowerPoint pptx format.",
+                meaning=MEDIATYPE[
+                    "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+                ],
             ),
         )
         setattr(
@@ -1523,6 +1536,9 @@ class MEDIATypes(EnumDefinitionImpl):
             PermissibleValue(
                 text="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
                 description="For data in Excel xlsx format.",
+                meaning=MEDIATYPE[
+                    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                ],
             ),
         )
         setattr(
@@ -1531,54 +1547,91 @@ class MEDIATypes(EnumDefinitionImpl):
             PermissibleValue(
                 text="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
                 description="For data in Word docx format.",
+                meaning=MEDIATYPE[
+                    "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                ],
             ),
         )
         setattr(
             cls,
             "application/xml",
             PermissibleValue(
-                text="application/xml", description="For generic XML data."
+                text="application/xml",
+                description="For generic XML data.",
+                meaning=MEDIATYPE["application/xml"],
             ),
         )
         setattr(
             cls,
             "application/yaml",
-            PermissibleValue(text="application/yaml", description="For YAML data."),
+            PermissibleValue(
+                text="application/yaml",
+                description="For YAML data.",
+                meaning=MEDIATYPE["application/yaml"],
+            ),
         )
         setattr(
             cls,
             "application/zip",
-            PermissibleValue(text="application/zip", description="For zip archives."),
+            PermissibleValue(
+                text="application/zip",
+                description="For zip archives.",
+                meaning=MEDIATYPE["application/zip"],
+            ),
         )
         setattr(
             cls,
             "image/gif",
-            PermissibleValue(text="image/gif", description="For GIF images."),
+            PermissibleValue(
+                text="image/gif",
+                description="For GIF images.",
+                meaning=MEDIATYPE["image/gif"],
+            ),
         )
         setattr(
             cls,
             "image/jpeg",
-            PermissibleValue(text="image/jpeg", description="For JPEG images."),
+            PermissibleValue(
+                text="image/jpeg",
+                description="For JPEG images.",
+                meaning=MEDIATYPE["image/jpeg"],
+            ),
         )
         setattr(
             cls,
             "image/png",
-            PermissibleValue(text="image/png", description="For PNG images."),
+            PermissibleValue(
+                text="image/png",
+                description="For PNG images.",
+                meaning=MEDIATYPE["image/png"],
+            ),
         )
         setattr(
             cls,
             "image/svg+xml",
-            PermissibleValue(text="image/svg+xml", description="For SVG images."),
+            PermissibleValue(
+                text="image/svg+xml",
+                description="For SVG images.",
+                meaning=MEDIATYPE["image/svg+xml"],
+            ),
         )
         setattr(
             cls,
             "image/tiff",
-            PermissibleValue(text="image/tiff", description="For TIFF images."),
+            PermissibleValue(
+                text="image/tiff",
+                description="For TIFF images.",
+                meaning=MEDIATYPE["image/tiff"],
+            ),
         )
         setattr(
             cls,
             "image/webp",
-            PermissibleValue(text="image/webp", description="For WebP images."),
+            PermissibleValue(
+                text="image/webp",
+                description="For WebP images.",
+                meaning=MEDIATYPE["image/webp"],
+            ),
         )
         setattr(
             cls,
@@ -1586,25 +1639,34 @@ class MEDIATypes(EnumDefinitionImpl):
             PermissibleValue(
                 text="text/csv",
                 description="For data in comma-separated values (CSV) format.",
+                meaning=MEDIATYPE["text/csv"],
             ),
         )
         setattr(
             cls,
             "text/html",
-            PermissibleValue(text="text/html", description="For html web pages."),
+            PermissibleValue(
+                text="text/html",
+                description="For html web pages.",
+                meaning=MEDIATYPE["text/html"],
+            ),
         )
         setattr(
             cls,
             "text/javascript",
             PermissibleValue(
-                text="text/javascript", description="For JavaScript code."
+                text="text/javascript",
+                description="For JavaScript code.",
+                meaning=MEDIATYPE["text/javascript"],
             ),
         )
         setattr(
             cls,
             "text/markdown",
             PermissibleValue(
-                text="text/markdown", description="For data in markdown text format."
+                text="text/markdown",
+                description="For data in markdown text format.",
+                meaning=MEDIATYPE["text/markdown"],
             ),
         )
         setattr(
@@ -1613,6 +1675,7 @@ class MEDIATypes(EnumDefinitionImpl):
             PermissibleValue(
                 text="text/plain",
                 description="For plain text data (default text media type).",
+                meaning=MEDIATYPE["text/plain"],
             ),
         )
         setattr(
@@ -1621,24 +1684,35 @@ class MEDIATypes(EnumDefinitionImpl):
             PermissibleValue(
                 text="text/tab-separated-values",
                 description="For data in tab-separated values (TSV) format.",
+                meaning=MEDIATYPE["text/tab-separated-values"],
             ),
         )
         setattr(
             cls,
             "text/turtle",
             PermissibleValue(
-                text="text/turtle", description="For data in turtle format."
+                text="text/turtle",
+                description="For data in turtle format.",
+                meaning=MEDIATYPE["text/turtle"],
             ),
         )
         setattr(
             cls,
             "text/xml",
-            PermissibleValue(text="text/xml", description="For XML data."),
+            PermissibleValue(
+                text="text/xml",
+                description="For XML data.",
+                meaning=MEDIATYPE["text/xml"],
+            ),
         )
         setattr(
             cls,
             "video/mp4",
-            PermissibleValue(text="video/mp4", description="For mp4 video files."),
+            PermissibleValue(
+                text="video/mp4",
+                description="For mp4 video files.",
+                meaning=MEDIATYPE["video/mp4"],
+            ),
         )
         setattr(
             cls,
@@ -1878,7 +1952,7 @@ slots.media_type = Slot(
     curie=PID4CAT_MODEL.curie("media_type"),
     model_uri=PID4CAT_MODEL.media_type,
     domain=None,
-    range=Optional[Union[str, "MEDIATypes"]],
+    range=Optional[Union[str, "MediaTypesEnum"]],
 )
 
 slots.encoding_format = Slot(
@@ -2398,7 +2472,7 @@ slots.RepresentationVariant_media_type = Slot(
     curie=PID4CAT_MODEL.curie("media_type"),
     model_uri=PID4CAT_MODEL.RepresentationVariant_media_type,
     domain=RepresentationVariant,
-    range=Optional[Union[str, "MEDIATypes"]],
+    range=Optional[Union[str, "MediaTypesEnum"]],
 )
 
 slots.PurlIdentifier_resolving_url = Slot(

@@ -77,6 +77,10 @@ linkml_meta = LinkMLMeta(
                 "prefix_prefix": "linkml",
                 "prefix_reference": "https://w3id.org/linkml/",
             },
+            "mediatype": {
+                "prefix_prefix": "mediatype",
+                "prefix_reference": "https://www.iana.org/assignments/media-types/",
+            },
             "pid4cat_model": {
                 "prefix_prefix": "pid4cat_model",
                 "prefix_reference": "https://w3id.org/nfdi4cat/pid4cat-model/",
@@ -98,9 +102,9 @@ linkml_meta = LinkMLMeta(
 )
 
 
-class MEDIATypes(str, Enum):
+class MediaTypesEnum(str, Enum):
     """
-    The IANA media types are used to specify the type of data.
+    IANA media types are used to specify the type of data.
     """
 
     # For data in Electronic Publication Format (EPUB).
@@ -1986,7 +1990,7 @@ class RepresentationVariant(ConfiguredBaseModel):
             }
         },
     )
-    media_type: Optional[MEDIATypes] = Field(
+    media_type: Optional[MediaTypesEnum] = Field(
         None,
         description="""The media type of the representation as defined by [IANA](https://www.iana.org/assignments/media-types/media-types.xhtml)""",
         json_schema_extra={
