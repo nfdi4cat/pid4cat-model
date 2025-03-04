@@ -387,14 +387,14 @@ classes:
       curation.
     slots:
       - name
-      - email
+      - email_address
       - orcid
       - affiliation_ror
       - role
     slot_usage:
       name:
         required: true
-      email:
+      email_address:
         pattern: '^\S+@[\S+\.]+\S+'
         required: true
       orcid:
@@ -411,7 +411,7 @@ classes:
       Data class for representations of the resource in other media types than
       text/html which is the default for landing_page_url.
     slots:
-      - url
+      - variant_url
       - media_type
       - encoding_format
       - size
@@ -609,7 +609,7 @@ slots:
   name:
     range: string
     description: The name of the agent that created or modified the PID record.
-  email:
+  email_address:
     range: string
     description: >-
       Email address of the agent that created or modified the PID record.
@@ -638,9 +638,9 @@ slots:
     range: integer
     minimum_value: 0
     description: The size of the representation in bytes.
-  url:
+  variant_url:
     range: uri
-    description: The URL of the representation.
+    description: The URL of the representation variant.
 
   # Slots for RelatedIdentifier
 

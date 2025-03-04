@@ -1866,8 +1866,8 @@ class Agent(ConfiguredBaseModel):
                     "name": "affiliation_ror",
                     "pattern": "^https:\\/\\/ror\\.org\\/0[a-hj-km-np-tv-z|0-9]{6}[0-9]{2}$",
                 },
-                "email": {
-                    "name": "email",
+                "email_address": {
+                    "name": "email_address",
                     "pattern": "^\\S+@[\\S+\\.]+\\S+",
                     "required": True,
                 },
@@ -1886,10 +1886,12 @@ class Agent(ConfiguredBaseModel):
         description="""The name of the agent that created or modified the PID record.""",
         json_schema_extra={"linkml_meta": {"alias": "name", "domain_of": ["Agent"]}},
     )
-    email: str = Field(
+    email_address: str = Field(
         ...,
         description="""Email address of the agent that created or modified the PID record.""",
-        json_schema_extra={"linkml_meta": {"alias": "email", "domain_of": ["Agent"]}},
+        json_schema_extra={
+            "linkml_meta": {"alias": "email_address", "domain_of": ["Agent"]}
+        },
     )
     orcid: Optional[str] = Field(
         None,
@@ -1909,16 +1911,16 @@ class Agent(ConfiguredBaseModel):
         json_schema_extra={"linkml_meta": {"alias": "role", "domain_of": ["Agent"]}},
     )
 
-    @field_validator("email")
-    def pattern_email(cls, v):
+    @field_validator("email_address")
+    def pattern_email_address(cls, v):
         pattern = re.compile(r"^\S+@[\S+\.]+\S+")
         if isinstance(v, list):
             for element in v:
                 if isinstance(v, str) and not pattern.match(element):
-                    raise ValueError(f"Invalid email format: {element}")
+                    raise ValueError(f"Invalid email_address format: {element}")
         elif isinstance(v, str):
             if not pattern.match(v):
-                raise ValueError(f"Invalid email format: {v}")
+                raise ValueError(f"Invalid email_address format: {v}")
         return v
 
     @field_validator("orcid")
@@ -1958,11 +1960,14 @@ class RepresentationVariant(ConfiguredBaseModel):
         }
     )
 
-    url: Optional[str] = Field(
+    variant_url: Optional[str] = Field(
         None,
-        description="""The URL of the representation.""",
+        description="""The URL of the representation variant.""",
         json_schema_extra={
-            "linkml_meta": {"alias": "url", "domain_of": ["RepresentationVariant"]}
+            "linkml_meta": {
+                "alias": "variant_url",
+                "domain_of": ["RepresentationVariant"],
+            }
         },
     )
     media_type: Optional[MEDIATypes] = Field(

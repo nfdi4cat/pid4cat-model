@@ -1,5 +1,5 @@
 # Auto generated from pid4cat_model.yaml by pythongen.py version: 0.0.1
-# Generation date: 2025-03-03T18:55:17
+# Generation date: 2025-03-04T16:21:29
 # Schema: pid4cat-model
 #
 # id: https://w3id.org/nfdi4cat/pid4cat-model
@@ -825,7 +825,7 @@ class Agent(YAMLRoot):
     class_model_uri: ClassVar[URIRef] = PID4CAT_MODEL.Agent
 
     name: str = None
-    email: str = None
+    email_address: str = None
     role: Union[str, "Pid4CatAgentRole"] = None
     orcid: Optional[str] = None
     affiliation_ror: Optional[Union[str, URI]] = None
@@ -836,10 +836,10 @@ class Agent(YAMLRoot):
         if not isinstance(self.name, str):
             self.name = str(self.name)
 
-        if self._is_empty(self.email):
-            self.MissingRequiredField("email")
-        if not isinstance(self.email, str):
-            self.email = str(self.email)
+        if self._is_empty(self.email_address):
+            self.MissingRequiredField("email_address")
+        if not isinstance(self.email_address, str):
+            self.email_address = str(self.email_address)
 
         if self._is_empty(self.role):
             self.MissingRequiredField("role")
@@ -871,14 +871,14 @@ class RepresentationVariant(YAMLRoot):
     class_name: ClassVar[str] = "RepresentationVariant"
     class_model_uri: ClassVar[URIRef] = PID4CAT_MODEL.RepresentationVariant
 
-    url: Optional[Union[str, URI]] = None
+    variant_url: Optional[Union[str, URI]] = None
     media_type: Optional[Union[str, "MEDIATypes"]] = None
     encoding_format: Optional[str] = None
     size: Optional[int] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self.url is not None and not isinstance(self.url, URI):
-            self.url = URI(self.url)
+        if self.variant_url is not None and not isinstance(self.variant_url, URI):
+            self.variant_url = URI(self.variant_url)
 
         if self.media_type is not None and not isinstance(self.media_type, MEDIATypes):
             self.media_type = MEDIATypes(self.media_type)
@@ -1836,11 +1836,11 @@ slots.name = Slot(
     range=Optional[str],
 )
 
-slots.email = Slot(
-    uri=PID4CAT_MODEL.email,
-    name="email",
-    curie=PID4CAT_MODEL.curie("email"),
-    model_uri=PID4CAT_MODEL.email,
+slots.email_address = Slot(
+    uri=PID4CAT_MODEL.email_address,
+    name="email_address",
+    curie=PID4CAT_MODEL.curie("email_address"),
+    model_uri=PID4CAT_MODEL.email_address,
     domain=None,
     range=Optional[str],
 )
@@ -1899,11 +1899,11 @@ slots.size = Slot(
     range=Optional[int],
 )
 
-slots.url = Slot(
-    uri=PID4CAT_MODEL.url,
-    name="url",
-    curie=PID4CAT_MODEL.curie("url"),
-    model_uri=PID4CAT_MODEL.url,
+slots.variant_url = Slot(
+    uri=PID4CAT_MODEL.variant_url,
+    name="variant_url",
+    curie=PID4CAT_MODEL.curie("variant_url"),
+    model_uri=PID4CAT_MODEL.variant_url,
     domain=None,
     range=Optional[Union[str, URI]],
 )
@@ -2352,11 +2352,11 @@ slots.Agent_name = Slot(
     range=str,
 )
 
-slots.Agent_email = Slot(
-    uri=PID4CAT_MODEL.email,
-    name="Agent_email",
-    curie=PID4CAT_MODEL.curie("email"),
-    model_uri=PID4CAT_MODEL.Agent_email,
+slots.Agent_email_address = Slot(
+    uri=PID4CAT_MODEL.email_address,
+    name="Agent_email_address",
+    curie=PID4CAT_MODEL.curie("email_address"),
+    model_uri=PID4CAT_MODEL.Agent_email_address,
     domain=Agent,
     range=str,
     pattern=re.compile(r"^\S+@[\S+\.]+\S+"),

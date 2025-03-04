@@ -45,7 +45,7 @@ values:
         description: Resource description
         resource_category: SAMPLE
         representation_variants:
-          - url: https://example.org/resource
+          - variant_url: https://example.org/resource
             media_type: text/turtle
             encoding_format: UTF-8
             size: 12345
@@ -78,7 +78,7 @@ values:
         - datetime_log: '2024-02-19T00:00:00Z'
           has_agent:
             name: Data Fuzzi
-            email: datafuzzi@example.org
+            email_address: datafuzzi@example.org
             orcid: 0000-0000-0000-0000
             affiliation_ror: https://ror.org/029hg0311
             role: TRUSTEE

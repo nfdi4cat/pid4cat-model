@@ -13,7 +13,7 @@ if sys.version_info < (3, 11):
 
 p1_Agent = p4c.Agent(
     name="Data Fuzzi",
-    email="data.fuzzi@example.org",
+    email_address="data.fuzzi@example.org",
     orcid="0000-0000-0000-0000",
     affiliation_ror="https://ror.org/029hg0311",
     role=p4c.Pid4CatAgentRole.TRUSTEE,
@@ -42,7 +42,7 @@ p1_related = [
 
 p1_repr_variants = [
     p4c.RepresentationVariant(
-        url="https://example.org/resource",
+        variant_url="https://example.org/resource",
         media_type="text/turtle",
         encoding_format="UTF-8",
         size=12345,
@@ -170,6 +170,6 @@ container = p4c.HandleRecordContainer(contains_pids=[p1_api])
 # write json to file
 script_folder = Path(__file__).parent
 with open(script_folder / "example_p1.json", "w", encoding="utf-8") as f:
-    f.write(json_dumper.dumps(container))
+    f.write(json_dumper.dumps(container, inject_type=False))
 with open(script_folder / "example_p1.yaml", "w", encoding="utf-8") as f:
     f.write(yaml_dumper.dumps(container))
