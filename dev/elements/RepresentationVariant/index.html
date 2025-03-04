@@ -227,8 +227,8 @@
 
 
 
-    RepresentationVariant --&gt; "0..1" MEDIATypes : media_type
-    click MEDIATypes href "../MEDIATypes"
+    RepresentationVariant --&gt; "0..1" MediaTypesEnum : media_type
+    click MediaTypesEnum href "../MediaTypesEnum"
 
 
       RepresentationVariant : size
@@ -257,7 +257,7 @@
 </tr>
 <tr>
 <td><a href="../media_type/">media_type</a></td>
-<td>0..1 <br/> <a href="../MEDIATypes/">MEDIATypes</a></td>
+<td>0..1 <br/> <a href="../MediaTypesEnum/">MediaTypesEnum</a></td>
 <td>The media type of the representation as defined by [IANA](https://www</td>
 <td>direct</td>
 </tr>
@@ -366,7 +366,7 @@ attributes:
     owner: RepresentationVariant
     domain_of:
     - RepresentationVariant
-    range: MEDIA_Types
+    range: MediaTypesEnum
   encoding_format:
     name: encoding_format
     description: The encoding of the representation. https://encoding.spec.whatwg.org/#names-and-labels
