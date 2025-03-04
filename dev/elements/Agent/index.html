@@ -222,7 +222,7 @@
     click Agent href "../Agent"
       Agent : affiliation_ror
 
-      Agent : email
+      Agent : email_address
 
       Agent : name
 
@@ -258,7 +258,7 @@
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../email/">email</a></td>
+<td><a href="../email_address/">email_address</a></td>
 <td>1 <br/> <a href="../String/">String</a></td>
 <td>Email address of the agent that created or modified the PID record</td>
 <td>direct</td>
@@ -336,7 +336,7 @@ description: Data class for a person who plays a role relative to PID creation o
 from_schema: https://w3id.org/nfdi4cat/pid4cat-model
 slots:
 - name
-- email
+- email_address
 - orcid
 - affiliation_ror
 - role
@@ -344,8 +344,8 @@ slot_usage:
   name:
     name: name
     required: true
-  email:
-    name: email
+  email_address:
+    name: email_address
     required: true
     pattern: ^\S+@[\S+\.]+\S+
   orcid:
@@ -371,8 +371,8 @@ slot_usage:
   name:
     name: name
     required: true
-  email:
-    name: email
+  email_address:
+    name: email_address
     required: true
     pattern: ^\S+@[\S+\.]+\S+
   orcid:
@@ -396,12 +396,12 @@ attributes:
     - Agent
     range: string
     required: true
-  email:
-    name: email
+  email_address:
+    name: email_address
     description: Email address of the agent that created or modified the PID record.
     from_schema: https://w3id.org/nfdi4cat/pid4cat-model
     rank: 1000
-    alias: email
+    alias: email_address
     owner: Agent
     domain_of:
     - Agent

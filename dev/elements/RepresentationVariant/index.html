@@ -233,7 +233,7 @@
 
       RepresentationVariant : size
 
-      RepresentationVariant : url
+      RepresentationVariant : variant_url
 
 
 </div>
@@ -250,9 +250,9 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../url/">url</a></td>
+<td><a href="../variant_url/">variant_url</a></td>
 <td>0..1 <br/> <a href="../Uri/">Uri</a></td>
-<td>The URL of the representation</td>
+<td>The URL of the representation variant</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -327,7 +327,7 @@ description: Data class for representations of the resource in other media types
   text/html which is the default for landing_page_url.
 from_schema: https://w3id.org/nfdi4cat/pid4cat-model
 slots:
-- url
+- variant_url
 - media_type
 - encoding_format
 - size
@@ -347,12 +347,12 @@ slot_usage:
   media_type:
     name: media_type
 attributes:
-  url:
-    name: url
-    description: The URL of the representation.
+  variant_url:
+    name: variant_url
+    description: The URL of the representation variant.
     from_schema: https://w3id.org/nfdi4cat/pid4cat-model
     rank: 1000
-    alias: url
+    alias: variant_url
     owner: RepresentationVariant
     domain_of:
     - RepresentationVariant
