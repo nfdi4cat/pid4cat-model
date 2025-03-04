@@ -48,7 +48,7 @@ values:
       - encoding_format: UTF-8
         media_type: text/turtle
         size: 12345
-        url: https://example.org/resource
+        variant_url: https://example.org/resource
       resource_category: SAMPLE
   index: 6
   timestamp: '2024-05-15T15:51:15Z'
@@ -81,7 +81,7 @@ values:
       description: 'as requested in issue #123'
       has_agent:
         affiliation_ror: https://ror.org/029hg0311
-        email: datafuzzi@example.org
+        email_address: datafuzzi@example.org
         name: Data Fuzzi
         orcid: 0000-0000-0000-0000
         role: TRUSTEE
@@ -142,7 +142,7 @@ contains_pids:
         - encoding_format: UTF-8
           media_type: text/turtle
           size: 12345
-          url: https://example.org/resource
+          variant_url: https://example.org/resource
         resource_category: SAMPLE
     index: 6
     timestamp: '2024-05-15T15:51:15Z'
@@ -175,7 +175,7 @@ contains_pids:
         description: 'as requested in issue #123'
         has_agent:
           affiliation_ror: https://ror.org/029hg0311
-          email: datafuzzi@example.org
+          email_address: datafuzzi@example.org
           name: Data Fuzzi
           orcid: 0000-0000-0000-0000
           role: TRUSTEE

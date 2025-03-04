@@ -47,7 +47,7 @@ contains_pids:
           description: Resource description
           resource_category: SAMPLE
           representation_variants:
-          - url: https://example.org/resource
+          - variant_url: https://example.org/resource
             media_type: text/turtle
             encoding_format: UTF-8
             size: 12345

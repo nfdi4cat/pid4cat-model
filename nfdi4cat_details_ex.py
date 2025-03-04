@@ -3,7 +3,7 @@ from pid4cat_model.datamodel import pid4cat_model_pydantic as p4c
 
 p1_repr_variants = [
     p4c.RepresentationVariant(
-        url="https://example.org/resource",
+        variant_url="https://example.org/resource",
         media_type="text/turtle",
         encoding_format="UTF-8",
         size=12345,
