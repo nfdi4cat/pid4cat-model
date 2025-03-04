@@ -59,7 +59,7 @@ values:
     value:
     - datetime_log: '2024-02-19T00:00:00Z'
       related_identifier:
-        identifier: doi:10.5281/zenodo.8313340
+        identifier: 10.5281/zenodo.8313340
         resolving_url: https://doi.org/10.5281/zenodo.8313340
         type: DoiIdentifier
       relation_type: IS_PART_OF
@@ -153,7 +153,7 @@ contains_pids:
       value:
       - datetime_log: '2024-02-19T00:00:00Z'
         related_identifier:
-          identifier: doi:10.5281/zenodo.8313340
+          identifier: 10.5281/zenodo.8313340
           resolving_url: https://doi.org/10.5281/zenodo.8313340
           type: DoiIdentifier
         relation_type: IS_PART_OF
