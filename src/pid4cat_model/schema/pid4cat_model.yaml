@@ -56,8 +56,11 @@ classes:
       - values
     slot_usage:
       handle:
-        # to be activated after agreement on handle-suffix patterns
-        # pattern: "^\\d+/\\d+$"
+        # The pattern should be made more restrictive after agreement on the
+        # handle-suffix anatomy. The prefix values should also be checked.
+        # Here is an example for the NFDI4Cat handle servers:
+        # pattern: '(^21\.T11978\/.*$)|(^21\.11165\/.*$)'
+        pattern: '^\d{2}\.T?\d{4,}\/.*$'
         required: true
       values:
         required: true
@@ -452,7 +455,7 @@ classes:
       - identifier
     slot_usage:
       identifier:
-        pattern: '^doi:10\.\d{4,}\/.*$'
+        pattern: '^10\.\d{4,}\/.*$'
       resolving_url:
         pattern: '^https:\/\/doi\.org\/10.*$'
         required: true
@@ -465,10 +468,12 @@ classes:
       - resolving_url
       - identifier
     slot_usage:
+      # The patterns allow test handles like "21.T11978/4cat-demo/3dks-27xc"
+      # In contrast, production handles have only numbers in the prefix.
       identifier:
-        pattern: '^(hdl|handle):\d{2}\.\d{4,}\/.*$'
+        pattern: '^\d{2}\.T?\d{4,}\/.*$'
       resolving_url:
-        pattern: '^https:\/\/hdl\.handle\.net\/\d{2}\.\d{4,}\/.*$'
+        pattern: '^https:\/\/hdl\.handle\.net\/\d{2}\.T?\d{4,}\/.*$'
         required: true
 
   ArkIdentifier:

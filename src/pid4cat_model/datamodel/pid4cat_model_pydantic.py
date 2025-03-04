@@ -307,7 +307,11 @@ class HandleAPIRecord(ConfiguredBaseModel):
         {
             "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
             "slot_usage": {
-                "handle": {"name": "handle", "required": True},
+                "handle": {
+                    "name": "handle",
+                    "pattern": "^\\d{2}\\.T?\\d{4,}\\/.*$",
+                    "required": True,
+                },
                 "values": {"name": "values", "required": True},
             },
         }
@@ -338,6 +342,18 @@ class HandleAPIRecord(ConfiguredBaseModel):
             "linkml_meta": {"alias": "values", "domain_of": ["HandleAPIRecord"]}
         },
     )
+
+    @field_validator("handle")
+    def pattern_handle(cls, v):
+        pattern = re.compile(r"^\d{2}\.T?\d{4,}\/.*$")
+        if isinstance(v, list):
+            for element in v:
+                if isinstance(v, str) and not pattern.match(element):
+                    raise ValueError(f"Invalid handle format: {element}")
+        elif isinstance(v, str):
+            if not pattern.match(v):
+                raise ValueError(f"Invalid handle format: {v}")
+        return v
 
 
 class HandleRecord(ConfiguredBaseModel):
@@ -2090,10 +2106,7 @@ class DoiIdentifier(RelatedIdentifier):
         {
             "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
             "slot_usage": {
-                "identifier": {
-                    "name": "identifier",
-                    "pattern": "^doi:10\\.\\d{4,}\\/.*$",
-                },
+                "identifier": {"name": "identifier", "pattern": "^10\\.\\d{4,}\\/.*$"},
                 "resolving_url": {
                     "name": "resolving_url",
                     "pattern": "^https:\\/\\/doi\\.org\\/10.*$",
@@ -2162,7 +2175,7 @@ class DoiIdentifier(RelatedIdentifier):
 
     @field_validator("identifier")
     def pattern_identifier(cls, v):
-        pattern = re.compile(r"^doi:10\.\d{4,}\/.*$")
+        pattern = re.compile(r"^10\.\d{4,}\/.*$")
         if isinstance(v, list):
             for element in v:
                 if isinstance(v, str) and not pattern.match(element):
@@ -2184,11 +2197,11 @@ class HandleIdentifier(RelatedIdentifier):
             "slot_usage": {
                 "identifier": {
                     "name": "identifier",
-                    "pattern": "^(hdl|handle):\\d{2}\\.\\d{4,}\\/.*$",
+                    "pattern": "^\\d{2}\\.T?\\d{4,}\\/.*$",
                 },
                 "resolving_url": {
                     "name": "resolving_url",
-                    "pattern": "^https:\\/\\/hdl\\.handle\\.net\\/\\d{2}\\.\\d{4,}\\/.*$",
+                    "pattern": "^https:\\/\\/hdl\\.handle\\.net\\/\\d{2}\\.T?\\d{4,}\\/.*$",
                     "required": True,
                 },
             },
@@ -2242,7 +2255,7 @@ class HandleIdentifier(RelatedIdentifier):
 
     @field_validator("resolving_url")
     def pattern_resolving_url(cls, v):
-        pattern = re.compile(r"^https:\/\/hdl\.handle\.net\/\d{2}\.\d{4,}\/.*$")
+        pattern = re.compile(r"^https:\/\/hdl\.handle\.net\/\d{2}\.T?\d{4,}\/.*$")
         if isinstance(v, list):
             for element in v:
                 if isinstance(v, str) and not pattern.match(element):
@@ -2254,7 +2267,7 @@ class HandleIdentifier(RelatedIdentifier):
 
     @field_validator("identifier")
     def pattern_identifier(cls, v):
-        pattern = re.compile(r"^(hdl|handle):\d{2}\.\d{4,}\/.*$")
+        pattern = re.compile(r"^\d{2}\.T?\d{4,}\/.*$")
         if isinstance(v, list):
             for element in v:
                 if isinstance(v, str) and not pattern.match(element):

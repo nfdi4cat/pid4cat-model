@@ -1,5 +1,5 @@
 # Auto generated from pid4cat_model.yaml by pythongen.py version: 0.0.1
-# Generation date: 2025-03-04T16:21:29
+# Generation date: 2025-03-04T17:52:03
 # Schema: pid4cat-model
 #
 # id: https://w3id.org/nfdi4cat/pid4cat-model
@@ -1956,6 +1956,7 @@ slots.HandleAPIRecord_handle = Slot(
     model_uri=PID4CAT_MODEL.HandleAPIRecord_handle,
     domain=HandleAPIRecord,
     range=Union[str, HandleAPIRecordHandle],
+    pattern=re.compile(r"^\d{2}\.T?\d{4,}\/.*$"),
 )
 
 slots.HandleAPIRecord_values = Slot(
@@ -2417,7 +2418,7 @@ slots.DoiIdentifier_identifier = Slot(
     model_uri=PID4CAT_MODEL.DoiIdentifier_identifier,
     domain=DoiIdentifier,
     range=Optional[str],
-    pattern=re.compile(r"^doi:10\.\d{4,}\/.*$"),
+    pattern=re.compile(r"^10\.\d{4,}\/.*$"),
 )
 
 slots.DoiIdentifier_resolving_url = Slot(
@@ -2437,7 +2438,7 @@ slots.HandleIdentifier_identifier = Slot(
     model_uri=PID4CAT_MODEL.HandleIdentifier_identifier,
     domain=HandleIdentifier,
     range=Optional[str],
-    pattern=re.compile(r"^(hdl|handle):\d{2}\.\d{4,}\/.*$"),
+    pattern=re.compile(r"^\d{2}\.T?\d{4,}\/.*$"),
 )
 
 slots.HandleIdentifier_resolving_url = Slot(
@@ -2447,7 +2448,7 @@ slots.HandleIdentifier_resolving_url = Slot(
     model_uri=PID4CAT_MODEL.HandleIdentifier_resolving_url,
     domain=HandleIdentifier,
     range=Union[str, URI],
-    pattern=re.compile(r"^https:\/\/hdl\.handle\.net\/\d{2}\.\d{4,}\/.*$"),
+    pattern=re.compile(r"^https:\/\/hdl\.handle\.net\/\d{2}\.T?\d{4,}\/.*$"),
 )
 
 slots.ArkIdentifier_identifier = Slot(
