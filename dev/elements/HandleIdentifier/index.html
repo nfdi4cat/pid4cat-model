@@ -307,11 +307,11 @@ slots:
 slot_usage:
   identifier:
     name: identifier
-    pattern: ^(hdl|handle):\d{2}\.\d{4,}\/.*$
+    pattern: ^\d{2}\.T?\d{4,}\/.*$
   resolving_url:
     name: resolving_url
     required: true
-    pattern: ^https:\/\/hdl\.handle\.net\/\d{2}\.\d{4,}\/.*$
+    pattern: ^https:\/\/hdl\.handle\.net\/\d{2}\.T?\d{4,}\/.*$
 
 </code></pre>
 </details>
@@ -324,11 +324,11 @@ is_a: RelatedIdentifier
 slot_usage:
   identifier:
     name: identifier
-    pattern: ^(hdl|handle):\d{2}\.\d{4,}\/.*$
+    pattern: ^\d{2}\.T?\d{4,}\/.*$
   resolving_url:
     name: resolving_url
     required: true
-    pattern: ^https:\/\/hdl\.handle\.net\/\d{2}\.\d{4,}\/.*$
+    pattern: ^https:\/\/hdl\.handle\.net\/\d{2}\.T?\d{4,}\/.*$
 attributes:
   resolving_url:
     name: resolving_url
@@ -345,7 +345,7 @@ attributes:
     - ExampleIdentifier
     range: uri
     required: true
-    pattern: ^https:\/\/hdl\.handle\.net\/\d{2}\.\d{4,}\/.*$
+    pattern: ^https:\/\/hdl\.handle\.net\/\d{2}\.T?\d{4,}\/.*$
   identifier:
     name: identifier
     description: The identifier in recommended notation.
@@ -361,7 +361,7 @@ attributes:
     - GtinIdentifier
     - ExampleIdentifier
     range: string
-    pattern: ^(hdl|handle):\d{2}\.\d{4,}\/.*$
+    pattern: ^\d{2}\.T?\d{4,}\/.*$
   type:
     name: type
     description: The type of the identifier.

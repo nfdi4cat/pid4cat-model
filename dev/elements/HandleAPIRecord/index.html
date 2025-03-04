@@ -326,6 +326,7 @@ slot_usage:
   handle:
     name: handle
     required: true
+    pattern: ^\d{2}\.T?\d{4,}\/.*$
   values:
     name: values
     required: true
@@ -342,6 +343,7 @@ slot_usage:
   handle:
     name: handle
     required: true
+    pattern: ^\d{2}\.T?\d{4,}\/.*$
   values:
     name: values
     required: true
@@ -368,6 +370,7 @@ attributes:
     - HandleAPIRecord
     range: string
     required: true
+    pattern: ^\d{2}\.T?\d{4,}\/.*$
   values:
     name: values
     description: The values of the pid4cat record.
