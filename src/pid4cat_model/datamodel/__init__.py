@@ -1,5 +1,4 @@
 from pathlib import Path
-from .pid4cat_model import *
 
 THIS_PATH = Path(__file__).parent
 
