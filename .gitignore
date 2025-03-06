@@ -1,10 +1,14 @@
-/docs/local-js-pkgs
+docs/local-js-pkgs
 
 # generated part of documentation
-/docs/elements/*.md
+docs/elements/*.md
+
+# generated merged schema
+docs/schema/*
+!docs/schema/README.md
 
 # linkml-run-examples output (not useful to have in git in its current form)
-/examples/output/
+examples/output/
 
 # Derived schemas, generated from the schema.yaml
 tmp/

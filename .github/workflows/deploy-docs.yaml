@@ -56,6 +56,8 @@ jobs:
 
       - name: Generate schema documentation
         run: |
+          # inject the version into the schema
+          poetry dynamic-versioning
           just gen-doc
 
       # The if-conditions below make sure to select the right step, depending
