@@ -38,6 +38,7 @@ dest := "project"
 pymodel := src / schema_name / "datamodel"
 source_schema_path := source_schema_dir / schema_name + ".yaml"
 docdir := "docs/elements"  # Directory for generated documentation
+merged_schema_path := "docs/schema" / schema_name + ".yaml"
 
 # ============== Project recipes ==============
 
@@ -80,7 +81,7 @@ site: gen-project gen-doc
 # Deploy documentation site to Github Pages
 [group('deployment')]
 deploy: site
-  mkd-gh-deploy
+    mkd-gh-deploy
 
 # Run all tests
 [group('model development')]
@@ -89,12 +90,12 @@ test: _test-schema _test-python _test-examples
 # Run linting
 [group('model development')]
 lint:
-    poetry run linkml-lint {{source_schema_dir}}
+  poetry run linkml-lint {{source_schema_dir}}
 
 # Generate md documentation for the schema
 [group('model development')]
-gen-doc:
-    poetry run gen-doc {{gen_doc_args}} -d {{docdir}} {{source_schema_path}}
+gen-doc: _gen-yaml
+  poetry run gen-doc {{gen_doc_args}} -d {{docdir}} {{source_schema_path}}
 
 # Build docs and run test server
 [group('model development')]
@@ -193,6 +194,10 @@ _test-examples: _ensure_examples_output
         --input-directory tests/data/valid \
         --output-directory examples/output \
         --schema {{source_schema_path}} > examples/output/README.md
+
+# Generate merged model
+_gen-yaml:
+  poetry run gen-yaml {{source_schema_path}} > {{merged_schema_path}}
 
 # Run documentation server
 _serve:
