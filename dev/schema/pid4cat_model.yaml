@@ -1,0 +1,2712 @@
+name: pid4cat-model
+description: 'A LinkML model for PIDs for resources in catalysis (pid4cat). pid4cat
+  is a handle system based persistent identifier (PID) for digital or physical resources
+  used in the catalysis research process. The handle record is used to store additional
+  metadata about the PID besides the obligatory landing page URL.
+
+  The model describes metadata for the PID itself and how to access the identified
+  resource. It does not describe the resource itself with the exception of the resource
+  category, which is a high-level description of what is identified by the pid4cat
+  handle, e.g. a sample or a device.'
+title: pid4cat-model
+todos:
+- none
+see_also:
+- https://nfdi4cat.github.io/pid4cat-model
+id: https://w3id.org/nfdi4cat/pid4cat-model
+version: 0.0.0
+imports:
+- linkml:types
+- media_types
+license: MIT
+prefixes:
+  pid4cat_model:
+    prefix_prefix: pid4cat_model
+    prefix_reference: https://w3id.org/nfdi4cat/pid4cat-model/
+  linkml:
+    prefix_prefix: linkml
+    prefix_reference: https://w3id.org/linkml/
+  dcterms:
+    prefix_prefix: dcterms
+    prefix_reference: https://purl.org/dc/terms/
+  dcat:
+    prefix_prefix: dcat
+    prefix_reference: https://www.w3.org/ns/dcat#
+  DataCite:
+    prefix_prefix: DataCite
+    prefix_reference: https://purl.org/spar/datacite/
+  prov:
+    prefix_prefix: prov
+    prefix_reference: https://www.w3.org/ns/prov#
+  voc4cat:
+    prefix_prefix: voc4cat
+    prefix_reference: https://w3id.org/nfdi4cat/voc4cat_
+  mediatype:
+    prefix_prefix: mediatype
+    prefix_reference: https://www.iana.org/assignments/media-types/
+default_prefix: pid4cat_model
+default_range: string
+types:
+  string:
+    name: string
+    definition_uri: https://w3id.org/linkml/String
+    description: A character string
+    notes:
+    - In RDF serializations, a slot with range of string is treated as a literal or
+      type xsd:string.   If you are authoring schemas in LinkML YAML, the type is
+      referenced with the lower case "string".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    exact_mappings:
+    - schema:Text
+    base: str
+    uri: xsd:string
+  integer:
+    name: integer
+    definition_uri: https://w3id.org/linkml/Integer
+    description: An integer
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "integer".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    exact_mappings:
+    - schema:Integer
+    base: int
+    uri: xsd:integer
+  boolean:
+    name: boolean
+    definition_uri: https://w3id.org/linkml/Boolean
+    description: A binary (true or false) value
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "boolean".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    exact_mappings:
+    - schema:Boolean
+    base: Bool
+    uri: xsd:boolean
+    repr: bool
+  float:
+    name: float
+    definition_uri: https://w3id.org/linkml/Float
+    description: A real number that conforms to the xsd:float specification
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "float".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    exact_mappings:
+    - schema:Float
+    base: float
+    uri: xsd:float
+  double:
+    name: double
+    definition_uri: https://w3id.org/linkml/Double
+    description: A real number that conforms to the xsd:double specification
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "double".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    close_mappings:
+    - schema:Float
+    base: float
+    uri: xsd:double
+  decimal:
+    name: decimal
+    definition_uri: https://w3id.org/linkml/Decimal
+    description: A real number with arbitrary precision that conforms to the xsd:decimal
+      specification
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "decimal".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    broad_mappings:
+    - schema:Number
+    base: Decimal
+    uri: xsd:decimal
+  time:
+    name: time
+    definition_uri: https://w3id.org/linkml/Time
+    description: A time object represents a (local) time of day, independent of any
+      particular day
+    notes:
+    - URI is dateTime because OWL reasoners do not work with straight date or time
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "time".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    exact_mappings:
+    - schema:Time
+    base: XSDTime
+    uri: xsd:time
+    repr: str
+  date:
+    name: date
+    definition_uri: https://w3id.org/linkml/Date
+    description: a date (year, month and day) in an idealized calendar
+    notes:
+    - URI is dateTime because OWL reasoners don't work with straight date or time
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "date".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    exact_mappings:
+    - schema:Date
+    base: XSDDate
+    uri: xsd:date
+    repr: str
+  datetime:
+    name: datetime
+    definition_uri: https://w3id.org/linkml/Datetime
+    description: The combination of a date and time
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "datetime".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    exact_mappings:
+    - schema:DateTime
+    base: XSDDateTime
+    uri: xsd:dateTime
+    repr: str
+  date_or_datetime:
+    name: date_or_datetime
+    definition_uri: https://w3id.org/linkml/DateOrDatetime
+    description: Either a date or a datetime
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "date_or_datetime".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: str
+    uri: linkml:DateOrDatetime
+    repr: str
+  uriorcurie:
+    name: uriorcurie
+    definition_uri: https://w3id.org/linkml/Uriorcurie
+    description: a URI or a CURIE
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "uriorcurie".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: URIorCURIE
+    uri: xsd:anyURI
+    repr: str
+  curie:
+    name: curie
+    definition_uri: https://w3id.org/linkml/Curie
+    conforms_to: https://www.w3.org/TR/curie/
+    description: a compact URI
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "curie".
+    comments:
+    - in RDF serializations this MUST be expanded to a URI
+    - in non-RDF serializations MAY be serialized as the compact representation
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: Curie
+    uri: xsd:string
+    repr: str
+  uri:
+    name: uri
+    definition_uri: https://w3id.org/linkml/Uri
+    conforms_to: https://www.ietf.org/rfc/rfc3987.txt
+    description: a complete URI
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "uri".
+    comments:
+    - in RDF serializations a slot with range of uri is treated as a literal or type
+      xsd:anyURI unless it is an identifier or a reference to an identifier, in which
+      case it is translated directly to a node
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    close_mappings:
+    - schema:URL
+    base: URI
+    uri: xsd:anyURI
+    repr: str
+  ncname:
+    name: ncname
+    definition_uri: https://w3id.org/linkml/Ncname
+    description: Prefix part of CURIE
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "ncname".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: NCName
+    uri: xsd:string
+    repr: str
+  objectidentifier:
+    name: objectidentifier
+    definition_uri: https://w3id.org/linkml/Objectidentifier
+    description: A URI or CURIE that represents an object in the model.
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "objectidentifier".
+    comments:
+    - Used for inheritance and type checking
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: ElementIdentifier
+    uri: shex:iri
+    repr: str
+  nodeidentifier:
+    name: nodeidentifier
+    definition_uri: https://w3id.org/linkml/Nodeidentifier
+    description: A URI, CURIE or BNODE that represents a node in a model.
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "nodeidentifier".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: NodeIdentifier
+    uri: shex:nonLiteral
+    repr: str
+  jsonpointer:
+    name: jsonpointer
+    definition_uri: https://w3id.org/linkml/Jsonpointer
+    conforms_to: https://datatracker.ietf.org/doc/html/rfc6901
+    description: A string encoding a JSON Pointer. The value of the string MUST conform
+      to JSON Point syntax and SHOULD dereference to a valid object within the current
+      instance document when encoded in tree form.
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "jsonpointer".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: str
+    uri: xsd:string
+    repr: str
+  jsonpath:
+    name: jsonpath
+    definition_uri: https://w3id.org/linkml/Jsonpath
+    conforms_to: https://www.ietf.org/archive/id/draft-goessner-dispatch-jsonpath-00.html
+    description: A string encoding a JSON Path. The value of the string MUST conform
+      to JSON Point syntax and SHOULD dereference to zero or more valid objects within
+      the current instance document when encoded in tree form.
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "jsonpath".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: str
+    uri: xsd:string
+    repr: str
+  sparqlpath:
+    name: sparqlpath
+    definition_uri: https://w3id.org/linkml/Sparqlpath
+    conforms_to: https://www.w3.org/TR/sparql11-query/#propertypaths
+    description: A string encoding a SPARQL Property Path. The value of the string
+      MUST conform to SPARQL syntax and SHOULD dereference to zero or more valid objects
+      within the current instance document when encoded as RDF.
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "sparqlpath".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: str
+    uri: xsd:string
+    repr: str
+enums:
+  ResourceCategory:
+    name: ResourceCategory
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/ResourceCategory
+    description: The ResourceCategory expresses for which type of resource the PID
+      is used, e.g. if the PID is for a sample or a device.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    permissible_values:
+      COLLECTION:
+        text: COLLECTION
+        description: A collection is a group of resources and/or other collections.
+        meaning: voc4cat:0005012
+        close_mappings:
+        - http://purl.org/dc/dcmitype/Collection
+      SAMPLE:
+        text: SAMPLE
+        description: A representative part of a material of interest on which observations
+          are made.
+        meaning: voc4cat:0005013
+        close_mappings:
+        - voc4cat:0005056
+        broad_mappings:
+        - https://www.w3.org/ns/sosa/Sample
+      MATERIAL:
+        text: MATERIAL
+        description: A material used in the research process (except samples).
+        meaning: voc4cat:0005014
+      DEVICE:
+        text: DEVICE
+        description: A physical device used in a research or manufacturing process.
+        meaning: voc4cat:0005015
+      DATA_OBJECT:
+        text: DATA_OBJECT
+        description: A collection of data available for access or download. A data
+          object might be a data file, a data set, a data collection.
+        meaning: voc4cat:0005016
+        close_mappings:
+        - dcat:dataset
+      DATA_SERVICE:
+        text: DATA_SERVICE
+        description: An organized system of operations that provide data processing
+          functions or access to datasets.
+        meaning: voc4cat:0005017
+        close_mappings:
+        - dcat:DataService
+  RelationType:
+    name: RelationType
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/RelationType
+    description: The type of relation between two resources referenced by their PIDs.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    permissible_values:
+      IS_CITED_BY:
+        text: IS_CITED_BY
+        description: The resource is cited by another resource.
+        meaning: voc4cat:0005019
+      CITES:
+        text: CITES
+        description: The resource cites another resource.
+        meaning: voc4cat:0005020
+      IS_SUPPLEMENT_TO:
+        text: IS_SUPPLEMENT_TO
+        description: The resource is supplemented by another resource.
+        meaning: voc4cat:0005021
+      IS_SUPPLEMENTED_BY:
+        text: IS_SUPPLEMENTED_BY
+        description: The resource supplements another resource.
+        meaning: voc4cat:0005022
+      IS_CONTINUED_BY:
+        text: IS_CONTINUED_BY
+        description: The resource is continued by another resource.
+        meaning: voc4cat:0005023
+      CONTINUES:
+        text: CONTINUES
+        description: The resource continues another resource.
+        meaning: voc4cat:0005024
+      HAS_METADATA:
+        text: HAS_METADATA
+        description: The resource has metadata in another resource.
+        meaning: voc4cat:0005025
+      IS_METADATA_FOR:
+        text: IS_METADATA_FOR
+        description: The resource is metadata for another resource.
+        meaning: voc4cat:0005026
+      HAS_VERSION:
+        text: HAS_VERSION
+        description: The resource has a version.
+        meaning: voc4cat:0005027
+        close_mappings:
+        - dcterms:hasVersion
+      IS_VERSION_OF:
+        text: IS_VERSION_OF
+        description: The resource is a version of another resource. This is useful
+          to refer to an abstract resource that has different versions, for example,
+          "Python 3.12 is a version of Python".
+        meaning: voc4cat:0005028
+        close_mappings:
+        - dcterms:isVersionOf
+      IS_NEW_VERSION_OF:
+        text: IS_NEW_VERSION_OF
+        description: The resource is a new version of another resource.
+        meaning: voc4cat:0005029
+      IS_PREVIOUS_VERSION_OF:
+        text: IS_PREVIOUS_VERSION_OF
+        description: The resource is a previous version of another resource.
+        meaning: voc4cat:0005030
+      IS_PART_OF:
+        text: IS_PART_OF
+        description: The resource is part of another resource.
+        meaning: voc4cat:0005031
+        close_mappings:
+        - dcterms:isPartOf
+      HAS_PART:
+        text: HAS_PART
+        description: The resource has part another resource.
+        meaning: voc4cat:0005032
+        close_mappings:
+        - dcterms:hasPart
+      IS_PUBLISHED_IN:
+        text: IS_PUBLISHED_IN
+        description: The resource is published in another resource.
+        meaning: voc4cat:0005033
+      IS_REFERENCED_BY:
+        text: IS_REFERENCED_BY
+        description: The resource is referenced by another resource.
+        meaning: voc4cat:0005034
+        close_mappings:
+        - dcterms:isReferencedBy
+      REFERENCES:
+        text: REFERENCES
+        description: The resource references another resource.
+        meaning: voc4cat:0005035
+      IS_DOCUMENTED_BY:
+        text: IS_DOCUMENTED_BY
+        description: The resource is documented by another resource.
+        meaning: voc4cat:0005036
+      DOCUMENTS:
+        text: DOCUMENTS
+        description: The resource documents another resource.
+        meaning: voc4cat:0005037
+      IS_COMPILED_BY:
+        text: IS_COMPILED_BY
+        description: The resource is compiled by another resource.
+        meaning: voc4cat:0005038
+      COMPILES:
+        text: COMPILES
+        description: The resource compiles another resource.
+        meaning: voc4cat:0005039
+      IS_VARIANT_FORM_OF:
+        text: IS_VARIANT_FORM_OF
+        description: The resource is variant form of another resource.
+        meaning: voc4cat:0005040
+      IS_ORIGINAL_FORM_OF:
+        text: IS_ORIGINAL_FORM_OF
+        description: The resource is original form of another resource.
+        meaning: voc4cat:0005041
+      IS_IDENTICAL_TO:
+        text: IS_IDENTICAL_TO
+        description: The resource is identical to another resource.
+        meaning: voc4cat:0005042
+      IS_DERIVED_FROM:
+        text: IS_DERIVED_FROM
+        description: The resource is derived from another resource.
+        meaning: voc4cat:0005043
+      IS_SOURCE_OF:
+        text: IS_SOURCE_OF
+        description: The resource is source of another resource.
+        meaning: voc4cat:0005044
+      IS_COLLECTED_BY:
+        text: IS_COLLECTED_BY
+        description: The resource is collected by another resource.
+        meaning: voc4cat:0005045
+      COLLECTS:
+        text: COLLECTS
+        description: The resource collects another resource.
+        meaning: voc4cat:0005046
+      IS_REQUIRED_BY:
+        text: IS_REQUIRED_BY
+        description: The resource is required by another resource.
+        meaning: voc4cat:0005047
+        close_mappings:
+        - dcterms:isRequiredBy
+      REQUIRES:
+        text: REQUIRES
+        description: The resource requires another resource.
+        meaning: voc4cat:0005048
+        close_mappings:
+        - dcterms:requires
+      IS_OBSOLETED_BY:
+        text: IS_OBSOLETED_BY
+        description: The resource is obsoleted by another resource.
+        meaning: voc4cat:0005049
+      OBSOLETES:
+        text: OBSOLETES
+        description: The resource obsoletes another resource.
+        meaning: voc4cat:0005050
+  Pid4CatStatus:
+    name: Pid4CatStatus
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/Pid4CatStatus
+    description: The usage status of the pid4cat record.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    permissible_values:
+      SUBMITTED:
+        text: SUBMITTED
+        description: The pid4cat handle is reserved but the resource is not yet linked.
+        meaning: voc4cat:0005052
+      REGISTERED:
+        text: REGISTERED
+        description: The pid4cat handle is linked to a concrete resource.
+        meaning: voc4cat:0005053
+      OBSOLETED:
+        text: OBSOLETED
+        description: The pid4cat handle is obsolete, e.g. because the resource is
+          referenced by another pid4cat.
+        meaning: voc4cat:0005054
+      DEPRECATED:
+        text: DEPRECATED
+        description: The pid4cat record is deprecated, e.g. because the resource can
+          no longer be found.
+        meaning: voc4cat:0005055
+  Pid4CatAgentRole:
+    name: Pid4CatAgentRole
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/Pid4CatAgentRole
+    description: The role of an agent relative to the resource.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    permissible_values:
+      TRUSTEE:
+        text: TRUSTEE
+        description: The agent is the trustee of the resource.
+      OWNER:
+        text: OWNER
+        description: The agent is the owner of the resource.
+  ChangeLogField:
+    name: ChangeLogField
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/ChangeLogField
+    description: The field of the pid4cat record that was changed.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    permissible_values:
+      STATUS:
+        text: STATUS
+        description: The status of the pid4cat record was changed.
+      LANDING_PAGE:
+        text: LANDING_PAGE
+        description: The URL of the landing page in the pid4cat record was changed.
+      RESOURCE_INFO:
+        text: RESOURCE_INFO
+        description: The resource info of the pid4cat record was changed.
+      RELATED_IDS:
+        text: RELATED_IDS
+        description: The related identifiers of the pid4cat record were changed.
+      CONTACT:
+        text: CONTACT
+        description: The contact information of the pid4cat record was changed.
+      LICENSE:
+        text: LICENSE
+        description: The license of the pid4cat record was changed.
+      SCHEMA_VER:
+        text: SCHEMA_VER
+        description: The pid4cat-model version of the pid4cat record was changed.
+  MediaTypesEnum:
+    name: MediaTypesEnum
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/media-types//MediaTypesEnum
+    description: IANA media types are used to specify the type of data.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model/media-types/
+    permissible_values:
+      application/epub+zip:
+        text: application/epub+zip
+        description: For data in Electronic Publication Format (EPUB).
+        meaning: mediatype:application/epub+zip
+      application/json:
+        text: application/json
+        description: For data in JavaScript Object Notation (JSON).
+        meaning: mediatype:application/json
+      application/ld+json:
+        text: application/ld+json
+        description: For data in Linked Data json (JSON-LD).
+        meaning: mediatype:application/ld+json
+      application/octet-stream:
+        text: application/octet-stream
+        description: For binary data.
+        meaning: mediatype:application/octet-stream
+      application/pdf:
+        text: application/pdf
+        description: For data in Portable Document Format (PDF).
+        meaning: mediatype:application/pdf
+      application/vnd.eln+zip:
+        text: application/vnd.eln+zip
+        description: For data in ELN ZIP format.
+        meaning: mediatype:application/vnd.eln+zip
+      application/vnd.openxmlformats-officedocument.presentationml.presentation:
+        text: application/vnd.openxmlformats-officedocument.presentationml.presentation
+        description: For data in PowerPoint pptx format.
+        meaning: mediatype:application/vnd.openxmlformats-officedocument.presentationml.presentation
+      application/vnd.openxmlformats-officedocument.spreadsheetml.sheet:
+        text: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+        description: For data in Excel xlsx format.
+        meaning: mediatype:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+      application/vnd.openxmlformats-officedocument.wordprocessingml.document:
+        text: application/vnd.openxmlformats-officedocument.wordprocessingml.document
+        description: For data in Word docx format.
+        meaning: mediatype:application/vnd.openxmlformats-officedocument.wordprocessingml.document
+      application/xml:
+        text: application/xml
+        description: For generic XML data.
+        meaning: mediatype:application/xml
+      application/yaml:
+        text: application/yaml
+        description: For YAML data.
+        meaning: mediatype:application/yaml
+      application/zip:
+        text: application/zip
+        description: For zip archives.
+        meaning: mediatype:application/zip
+      image/gif:
+        text: image/gif
+        description: For GIF images.
+        meaning: mediatype:image/gif
+      image/jpeg:
+        text: image/jpeg
+        description: For JPEG images.
+        meaning: mediatype:image/jpeg
+      image/png:
+        text: image/png
+        description: For PNG images.
+        meaning: mediatype:image/png
+      image/svg+xml:
+        text: image/svg+xml
+        description: For SVG images.
+        meaning: mediatype:image/svg+xml
+      image/tiff:
+        text: image/tiff
+        description: For TIFF images.
+        meaning: mediatype:image/tiff
+      image/webp:
+        text: image/webp
+        description: For WebP images.
+        meaning: mediatype:image/webp
+      text/csv:
+        text: text/csv
+        description: For data in comma-separated values (CSV) format.
+        meaning: mediatype:text/csv
+      text/html:
+        text: text/html
+        description: For html web pages.
+        meaning: mediatype:text/html
+      text/javascript:
+        text: text/javascript
+        description: For JavaScript code.
+        meaning: mediatype:text/javascript
+      text/markdown:
+        text: text/markdown
+        description: For data in markdown text format.
+        meaning: mediatype:text/markdown
+      text/plain:
+        text: text/plain
+        description: For plain text data (default text media type).
+        meaning: mediatype:text/plain
+      text/tab-separated-values:
+        text: text/tab-separated-values
+        description: For data in tab-separated values (TSV) format.
+        meaning: mediatype:text/tab-separated-values
+      text/turtle:
+        text: text/turtle
+        description: For data in turtle format.
+        meaning: mediatype:text/turtle
+      text/xml:
+        text: text/xml
+        description: For XML data.
+        meaning: mediatype:text/xml
+      video/mp4:
+        text: video/mp4
+        description: For mp4 video files.
+        meaning: mediatype:video/mp4
+      video/webm:
+        text: video/webm
+        description: For webm video files.
+slots:
+  responseCode:
+    name: responseCode
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/responseCode
+    description: The response code of the handle API.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    slot_uri: pid4cat_model:responseCode
+    owner: HandleAPIRecord
+    domain_of:
+    - HandleAPIRecord
+    range: integer
+  handle:
+    name: handle
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/handle
+    description: The handle of the pid4cat record.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    slot_uri: pid4cat_model:handle
+    identifier: true
+    owner: HandleAPIRecord
+    domain_of:
+    - HandleAPIRecord
+    range: string
+    required: true
+  values:
+    name: values
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/values
+    description: The values of the pid4cat record.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    slot_uri: pid4cat_model:values
+    owner: HandleAPIRecord
+    domain_of:
+    - HandleAPIRecord
+    range: HandleRecord
+    multivalued: true
+    inlined: true
+  timestamp:
+    name: timestamp
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/timestamp
+    description: The iso datetime for the last update of the handle data.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    slot_uri: pid4cat_model:timestamp
+    owner: HandleRecord
+    domain_of:
+    - HandleRecord
+    range: datetime
+  ttl:
+    name: ttl
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/ttl
+    description: 'A time to live in seconds for the handle record. Typically: 86400
+      => 1 day'
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    slot_uri: pid4cat_model:ttl
+    owner: HandleRecord
+    domain_of:
+    - HandleRecord
+    range: integer
+  type:
+    name: type
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/type
+    description: The type of the handle record data.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    slot_uri: pid4cat_model:type
+    owner: HandleRecord
+    domain_of:
+    - HandleRecord
+    range: string
+  index:
+    name: index
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/index
+    description: The index of the handle record.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    slot_uri: pid4cat_model:index
+    owner: LOG
+    domain_of:
+    - URL
+    - STATUS
+    - SCHEMA_VER
+    - LICENSE
+    - EMAIL
+    - RESOURCE
+    - RELATED
+    - LOG
+    range: integer
+  data:
+    name: data
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/data
+    description: The data in the handle record.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    slot_uri: pid4cat_model:data
+    owner: LOG
+    domain_of:
+    - URL
+    - STATUS
+    - SCHEMA_VER
+    - LICENSE
+    - EMAIL
+    - RESOURCE
+    - RELATED
+    - LOG
+    range: string
+  format:
+    name: format
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/format
+    description: The format of the handle data.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    slot_uri: pid4cat_model:format
+    owner: HdlDataLog
+    domain_of:
+    - HdlDataUrl
+    - HdlDataStatus
+    - HdlDataSchemaVer
+    - HdlDataLicense
+    - HdlDataContact
+    - HdlDataResourceInfo
+    - HdlDataRelated
+    - HdlDataLog
+    range: string
+  value:
+    name: value
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/value
+    description: The value of the handle data.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    slot_uri: pid4cat_model:value
+    owner: HdlDataLog
+    domain_of:
+    - HdlDataUrl
+    - HdlDataStatus
+    - HdlDataSchemaVer
+    - HdlDataLicense
+    - HdlDataContact
+    - HdlDataResourceInfo
+    - HdlDataRelated
+    - HdlDataLog
+    range: string
+  relation_type:
+    name: relation_type
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/relation_type
+    description: Relation type between the resources.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    slot_uri: pid4cat_model:relation_type
+    owner: Pid4CatRelation
+    domain_of:
+    - Pid4CatRelation
+    range: RelationType
+  related_identifier:
+    name: related_identifier
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/related_identifier
+    description: The related identifier.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    slot_uri: pid4cat_model:related_identifier
+    owner: Pid4CatRelation
+    domain_of:
+    - Pid4CatRelation
+    range: RelatedIdentifier
+    inlined: true
+  datetime_log:
+    name: datetime_log
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/datetime_log
+    description: The date and time of a log record.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    slot_uri: pid4cat_model:datetime_log
+    owner: LogRecord
+    domain_of:
+    - Pid4CatRelation
+    - LogRecord
+    range: datetime
+  label:
+    name: label
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/label
+    description: A human-readable name for a resource.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    slot_uri: pid4cat_model:label
+    owner: ResourceInfo
+    domain_of:
+    - ResourceInfo
+    range: string
+  description:
+    name: description
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/description
+    description: A human-readable description for a resource.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    slot_uri: pid4cat_model:description
+    owner: LogRecord
+    domain_of:
+    - ResourceInfo
+    - LogRecord
+    range: string
+  resource_category:
+    name: resource_category
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/resource_category
+    description: The category of the resource.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    slot_uri: pid4cat_model:resource_category
+    owner: ResourceInfo
+    domain_of:
+    - ResourceInfo
+    range: ResourceCategory
+  representation_variants:
+    name: representation_variants
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/representation_variants
+    description: The representations of the resource in other media types than text/html.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    slot_uri: pid4cat_model:representation_variants
+    owner: ResourceInfo
+    domain_of:
+    - ResourceInfo
+    range: RepresentationVariant
+    multivalued: true
+    inlined: true
+  changed_field:
+    name: changed_field
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/changed_field
+    description: The field that was changed.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    slot_uri: pid4cat_model:changed_field
+    owner: LogRecord
+    domain_of:
+    - LogRecord
+    range: ChangeLogField
+  has_agent:
+    name: has_agent
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/has_agent
+    description: The person who registered or modified the PID record.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    slot_uri: pid4cat_model:has_agent
+    owner: LogRecord
+    domain_of:
+    - LogRecord
+    range: Agent
+    inlined: true
+  name:
+    name: name
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/name
+    description: The name of the agent that created or modified the PID record.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    slot_uri: pid4cat_model:name
+    owner: Agent
+    domain_of:
+    - Agent
+    range: string
+  email_address:
+    name: email_address
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/email_address
+    description: Email address of the agent that created or modified the PID record.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    slot_uri: pid4cat_model:email_address
+    owner: Agent
+    domain_of:
+    - Agent
+    range: string
+  orcid:
+    name: orcid
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/orcid
+    description: The ORCID of the person
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    slot_uri: pid4cat_model:orcid
+    owner: Agent
+    domain_of:
+    - Agent
+    range: string
+  affiliation_ror:
+    name: affiliation_ror
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/affiliation_ror
+    description: The ROR of the agent's affiliation.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    slot_uri: pid4cat_model:affiliation_ror
+    owner: Agent
+    domain_of:
+    - Agent
+    range: uri
+  role:
+    name: role
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/role
+    description: The role of the agent relative to the resource
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    slot_uri: pid4cat_model:role
+    owner: Agent
+    domain_of:
+    - Agent
+    range: Pid4CatAgentRole
+  media_type:
+    name: media_type
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/media_type
+    description: The media type of the representation as defined by [IANA](https://www.iana.org/assignments/media-types/media-types.xhtml)
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    slot_uri: pid4cat_model:media_type
+    owner: RepresentationVariant
+    domain_of:
+    - RepresentationVariant
+    range: MediaTypesEnum
+  encoding_format:
+    name: encoding_format
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/encoding_format
+    description: The encoding of the representation. https://encoding.spec.whatwg.org/#names-and-labels
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    slot_uri: pid4cat_model:encoding_format
+    owner: RepresentationVariant
+    domain_of:
+    - RepresentationVariant
+    range: string
+  size:
+    name: size
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/size
+    description: The size of the representation in bytes.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    slot_uri: pid4cat_model:size
+    owner: RepresentationVariant
+    domain_of:
+    - RepresentationVariant
+    range: integer
+    minimum_value: 0
+  variant_url:
+    name: variant_url
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/variant_url
+    description: The URL of the representation variant.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    slot_uri: pid4cat_model:variant_url
+    owner: RepresentationVariant
+    domain_of:
+    - RepresentationVariant
+    range: uri
+  resolving_url:
+    name: resolving_url
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/resolving_url
+    description: The URL that resolves the identifier.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    slot_uri: pid4cat_model:resolving_url
+    owner: ExampleIdentifier
+    domain_of:
+    - PurlIdentifier
+    - DoiIdentifier
+    - HandleIdentifier
+    - ArkIdentifier
+    - ExampleIdentifier
+    range: uri
+  identifier:
+    name: identifier
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/identifier
+    description: The identifier in recommended notation.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    slot_uri: pid4cat_model:identifier
+    owner: ExampleIdentifier
+    domain_of:
+    - DoiIdentifier
+    - HandleIdentifier
+    - ArkIdentifier
+    - UrnIdentifier
+    - GtinIdentifier
+    - ExampleIdentifier
+    range: string
+  handleRecordContainer__contains_pids:
+    name: handleRecordContainer__contains_pids
+    description: The HandleRecords contained in the container.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    slot_uri: pid4cat_model:contains_pids
+    alias: contains_pids
+    owner: HandleRecordContainer
+    domain_of:
+    - HandleRecordContainer
+    range: HandleAPIRecord
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  relatedIdentifier__type:
+    name: relatedIdentifier__type
+    description: The type of the identifier.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    slot_uri: pid4cat_model:type
+    designates_type: true
+    alias: type
+    owner: RelatedIdentifier
+    domain_of:
+    - RelatedIdentifier
+    range: string
+    required: true
+  HandleAPIRecord_handle:
+    name: HandleAPIRecord_handle
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/handle
+    description: The handle of the pid4cat record.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: handle
+    domain: HandleAPIRecord
+    slot_uri: pid4cat_model:handle
+    identifier: true
+    alias: handle
+    owner: HandleAPIRecord
+    domain_of:
+    - HandleAPIRecord
+    is_usage_slot: true
+    usage_slot_name: handle
+    range: string
+    required: true
+    pattern: ^\d{2}\.T?\d{4,}\/.*$
+  HandleAPIRecord_values:
+    name: HandleAPIRecord_values
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/values
+    description: The values of the pid4cat record.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: values
+    domain: HandleAPIRecord
+    slot_uri: pid4cat_model:values
+    alias: values
+    owner: HandleAPIRecord
+    domain_of:
+    - HandleAPIRecord
+    is_usage_slot: true
+    usage_slot_name: values
+    range: HandleRecord
+    required: true
+    multivalued: true
+    inlined: true
+  HandleRecord_timestamp:
+    name: HandleRecord_timestamp
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/timestamp
+    description: The iso datetime for the last update of the handle data.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: timestamp
+    domain: HandleRecord
+    slot_uri: pid4cat_model:timestamp
+    alias: timestamp
+    owner: HandleRecord
+    domain_of:
+    - HandleRecord
+    is_usage_slot: true
+    usage_slot_name: timestamp
+    range: datetime
+    required: true
+  HandleRecord_ttl:
+    name: HandleRecord_ttl
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/ttl
+    description: 'A time to live in seconds for the handle record. Typically: 86400
+      => 1 day'
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: ttl
+    domain: HandleRecord
+    slot_uri: pid4cat_model:ttl
+    ifabsent: '86400'
+    alias: ttl
+    owner: HandleRecord
+    domain_of:
+    - HandleRecord
+    is_usage_slot: true
+    usage_slot_name: ttl
+    range: integer
+  HandleRecord_type:
+    name: HandleRecord_type
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/type
+    description: The type of handledata stored in the handle record.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: type
+    domain: HandleRecord
+    slot_uri: pid4cat_model:type
+    designates_type: true
+    alias: type
+    owner: HandleRecord
+    domain_of:
+    - HandleRecord
+    is_usage_slot: true
+    usage_slot_name: type
+    range: string
+    required: true
+  URL_index:
+    name: URL_index
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/index
+    description: The index of the handle record.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: index
+    domain: URL
+    slot_uri: pid4cat_model:index
+    alias: index
+    owner: URL
+    domain_of:
+    - URL
+    is_usage_slot: true
+    usage_slot_name: index
+    range: integer
+    required: true
+    minimum_value: 1
+    maximum_value: 1
+  URL_data:
+    name: URL_data
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/data
+    description: The data in the handle record.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: data
+    domain: URL
+    slot_uri: pid4cat_model:data
+    alias: data
+    owner: URL
+    domain_of:
+    - URL
+    is_usage_slot: true
+    usage_slot_name: data
+    range: HdlDataUrl
+    required: true
+    inlined: true
+  HdlDataUrl_format:
+    name: HdlDataUrl_format
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/format
+    description: The format of the handle data.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: format
+    domain: HdlDataUrl
+    slot_uri: pid4cat_model:format
+    ifabsent: string
+    alias: format
+    owner: HdlDataUrl
+    domain_of:
+    - HdlDataUrl
+    is_usage_slot: true
+    usage_slot_name: format
+    range: string
+    equals_string: string
+  HdlDataUrl_value:
+    name: HdlDataUrl_value
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/value
+    description: The value of the handle data.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: value
+    domain: HdlDataUrl
+    slot_uri: pid4cat_model:value
+    alias: value
+    owner: HdlDataUrl
+    domain_of:
+    - HdlDataUrl
+    is_usage_slot: true
+    usage_slot_name: value
+    range: string
+    required: true
+    pattern: ^https?:\/\/.*$
+  STATUS_index:
+    name: STATUS_index
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/index
+    description: The index of the handle record.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: index
+    domain: STATUS
+    slot_uri: pid4cat_model:index
+    alias: index
+    owner: STATUS
+    domain_of:
+    - STATUS
+    is_usage_slot: true
+    usage_slot_name: index
+    range: integer
+    required: true
+    minimum_value: 2
+    maximum_value: 2
+  STATUS_data:
+    name: STATUS_data
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/data
+    description: The data in the handle record.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: data
+    domain: STATUS
+    slot_uri: pid4cat_model:data
+    alias: data
+    owner: STATUS
+    domain_of:
+    - STATUS
+    is_usage_slot: true
+    usage_slot_name: data
+    range: HdlDataStatus
+    required: true
+    inlined: true
+  HdlDataStatus_format:
+    name: HdlDataStatus_format
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/format
+    description: The format of the handle data.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: format
+    domain: HdlDataStatus
+    slot_uri: pid4cat_model:format
+    ifabsent: string
+    alias: format
+    owner: HdlDataStatus
+    domain_of:
+    - HdlDataStatus
+    is_usage_slot: true
+    usage_slot_name: format
+    range: string
+    equals_string: string
+  HdlDataStatus_value:
+    name: HdlDataStatus_value
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/value
+    description: The value of the handle data.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: value
+    domain: HdlDataStatus
+    slot_uri: pid4cat_model:value
+    alias: value
+    owner: HdlDataStatus
+    domain_of:
+    - HdlDataStatus
+    is_usage_slot: true
+    usage_slot_name: value
+    range: Pid4CatStatus
+    required: true
+  SCHEMA_VER_index:
+    name: SCHEMA_VER_index
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/index
+    description: The index of the handle record.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: index
+    domain: SCHEMA_VER
+    slot_uri: pid4cat_model:index
+    alias: index
+    owner: SCHEMA_VER
+    domain_of:
+    - SCHEMA_VER
+    is_usage_slot: true
+    usage_slot_name: index
+    range: integer
+    required: true
+    minimum_value: 3
+    maximum_value: 3
+  SCHEMA_VER_data:
+    name: SCHEMA_VER_data
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/data
+    description: The data in the handle record.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: data
+    domain: SCHEMA_VER
+    slot_uri: pid4cat_model:data
+    alias: data
+    owner: SCHEMA_VER
+    domain_of:
+    - SCHEMA_VER
+    is_usage_slot: true
+    usage_slot_name: data
+    range: HdlDataSchemaVer
+    required: true
+    inlined: true
+  HdlDataSchemaVer_format:
+    name: HdlDataSchemaVer_format
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/format
+    description: The format of the handle data.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: format
+    domain: HdlDataSchemaVer
+    slot_uri: pid4cat_model:format
+    ifabsent: string
+    alias: format
+    owner: HdlDataSchemaVer
+    domain_of:
+    - HdlDataSchemaVer
+    is_usage_slot: true
+    usage_slot_name: format
+    range: string
+    equals_string: string
+  HdlDataSchemaVer_value:
+    name: HdlDataSchemaVer_value
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/value
+    description: The value of the handle data.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: value
+    domain: HdlDataSchemaVer
+    slot_uri: pid4cat_model:value
+    alias: value
+    owner: HdlDataSchemaVer
+    domain_of:
+    - HdlDataSchemaVer
+    is_usage_slot: true
+    usage_slot_name: value
+    range: string
+    required: true
+    pattern: ^v\d+\.\d+\.\d+$
+  LICENSE_index:
+    name: LICENSE_index
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/index
+    description: The index of the handle record.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: index
+    domain: LICENSE
+    slot_uri: pid4cat_model:index
+    alias: index
+    owner: LICENSE
+    domain_of:
+    - LICENSE
+    is_usage_slot: true
+    usage_slot_name: index
+    range: integer
+    required: true
+    minimum_value: 4
+    maximum_value: 4
+  LICENSE_data:
+    name: LICENSE_data
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/data
+    description: The data in the handle record.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: data
+    domain: LICENSE
+    slot_uri: pid4cat_model:data
+    alias: data
+    owner: LICENSE
+    domain_of:
+    - LICENSE
+    is_usage_slot: true
+    usage_slot_name: data
+    range: HdlDataLicense
+    required: true
+    inlined: true
+  HdlDataLicense_format:
+    name: HdlDataLicense_format
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/format
+    description: The format of the handle data.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: format
+    domain: HdlDataLicense
+    slot_uri: pid4cat_model:format
+    ifabsent: string
+    alias: format
+    owner: HdlDataLicense
+    domain_of:
+    - HdlDataLicense
+    is_usage_slot: true
+    usage_slot_name: format
+    range: string
+    equals_string: string
+  HdlDataLicense_value:
+    name: HdlDataLicense_value
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/value
+    description: The value of the handle data.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: value
+    domain: HdlDataLicense
+    slot_uri: pid4cat_model:value
+    alias: value
+    owner: HdlDataLicense
+    domain_of:
+    - HdlDataLicense
+    is_usage_slot: true
+    usage_slot_name: value
+    range: string
+    required: true
+    equals_string: CC0-1.0
+  EMAIL_index:
+    name: EMAIL_index
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/index
+    description: The index of the handle record.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: index
+    domain: EMAIL
+    slot_uri: pid4cat_model:index
+    alias: index
+    owner: EMAIL
+    domain_of:
+    - EMAIL
+    is_usage_slot: true
+    usage_slot_name: index
+    range: integer
+    required: true
+    minimum_value: 5
+    maximum_value: 5
+  EMAIL_data:
+    name: EMAIL_data
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/data
+    description: The data in the handle record.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: data
+    domain: EMAIL
+    slot_uri: pid4cat_model:data
+    alias: data
+    owner: EMAIL
+    domain_of:
+    - EMAIL
+    is_usage_slot: true
+    usage_slot_name: data
+    range: HdlDataContact
+    required: true
+    inlined: true
+  HdlDataContact_format:
+    name: HdlDataContact_format
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/format
+    description: The format of the handle data.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: format
+    domain: HdlDataContact
+    slot_uri: pid4cat_model:format
+    ifabsent: string
+    alias: format
+    owner: HdlDataContact
+    domain_of:
+    - HdlDataContact
+    is_usage_slot: true
+    usage_slot_name: format
+    range: string
+    equals_string: string
+  HdlDataContact_value:
+    name: HdlDataContact_value
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/value
+    description: The value of the handle data.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: value
+    domain: HdlDataContact
+    slot_uri: pid4cat_model:value
+    alias: value
+    owner: HdlDataContact
+    domain_of:
+    - HdlDataContact
+    is_usage_slot: true
+    usage_slot_name: value
+    range: string
+    required: true
+    pattern: ^\S+@[\S+\.]+\S+
+  RESOURCE_index:
+    name: RESOURCE_index
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/index
+    description: The index of the handle record.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: index
+    domain: RESOURCE
+    slot_uri: pid4cat_model:index
+    alias: index
+    owner: RESOURCE
+    domain_of:
+    - RESOURCE
+    is_usage_slot: true
+    usage_slot_name: index
+    range: integer
+    required: true
+    minimum_value: 6
+    maximum_value: 6
+  RESOURCE_data:
+    name: RESOURCE_data
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/data
+    description: The data in the handle record.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: data
+    domain: RESOURCE
+    slot_uri: pid4cat_model:data
+    alias: data
+    owner: RESOURCE
+    domain_of:
+    - RESOURCE
+    is_usage_slot: true
+    usage_slot_name: data
+    range: HdlDataResourceInfo
+    required: true
+    inlined: true
+  HdlDataResourceInfo_format:
+    name: HdlDataResourceInfo_format
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/format
+    description: The format of the handle data.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: format
+    domain: HdlDataResourceInfo
+    slot_uri: pid4cat_model:format
+    ifabsent: string
+    alias: format
+    owner: HdlDataResourceInfo
+    domain_of:
+    - HdlDataResourceInfo
+    is_usage_slot: true
+    usage_slot_name: format
+    range: string
+    equals_string: string
+  HdlDataResourceInfo_value:
+    name: HdlDataResourceInfo_value
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/value
+    description: The value of the handle data.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: value
+    domain: HdlDataResourceInfo
+    slot_uri: pid4cat_model:value
+    alias: value
+    owner: HdlDataResourceInfo
+    domain_of:
+    - HdlDataResourceInfo
+    is_usage_slot: true
+    usage_slot_name: value
+    range: ResourceInfo
+    required: true
+    inlined: true
+  RELATED_index:
+    name: RELATED_index
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/index
+    description: The index of the handle record.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: index
+    domain: RELATED
+    slot_uri: pid4cat_model:index
+    alias: index
+    owner: RELATED
+    domain_of:
+    - RELATED
+    is_usage_slot: true
+    usage_slot_name: index
+    range: integer
+    required: true
+    minimum_value: 7
+    maximum_value: 7
+  RELATED_data:
+    name: RELATED_data
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/data
+    description: The data in the handle record.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: data
+    domain: RELATED
+    slot_uri: pid4cat_model:data
+    alias: data
+    owner: RELATED
+    domain_of:
+    - RELATED
+    is_usage_slot: true
+    usage_slot_name: data
+    range: HdlDataRelated
+    required: true
+    inlined: true
+  HdlDataRelated_format:
+    name: HdlDataRelated_format
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/format
+    description: The format of the handle data.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: format
+    domain: HdlDataRelated
+    slot_uri: pid4cat_model:format
+    ifabsent: string
+    alias: format
+    owner: HdlDataRelated
+    domain_of:
+    - HdlDataRelated
+    is_usage_slot: true
+    usage_slot_name: format
+    range: string
+    equals_string: string
+  HdlDataRelated_value:
+    name: HdlDataRelated_value
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/value
+    description: The value of the handle data.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: value
+    domain: HdlDataRelated
+    slot_uri: pid4cat_model:value
+    alias: value
+    owner: HdlDataRelated
+    domain_of:
+    - HdlDataRelated
+    is_usage_slot: true
+    usage_slot_name: value
+    range: Pid4CatRelation
+    multivalued: true
+    inlined: true
+  LOG_index:
+    name: LOG_index
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/index
+    description: The index of the handle record.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: index
+    domain: LOG
+    slot_uri: pid4cat_model:index
+    alias: index
+    owner: LOG
+    domain_of:
+    - LOG
+    is_usage_slot: true
+    usage_slot_name: index
+    range: integer
+    required: true
+    minimum_value: 8
+    maximum_value: 8
+  LOG_data:
+    name: LOG_data
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/data
+    description: The data in the handle record.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: data
+    domain: LOG
+    slot_uri: pid4cat_model:data
+    alias: data
+    owner: LOG
+    domain_of:
+    - LOG
+    is_usage_slot: true
+    usage_slot_name: data
+    range: HdlDataLog
+    required: true
+    inlined: true
+  HdlDataLog_format:
+    name: HdlDataLog_format
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/format
+    description: The format of the handle data.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: format
+    domain: HdlDataLog
+    slot_uri: pid4cat_model:format
+    ifabsent: string
+    alias: format
+    owner: HdlDataLog
+    domain_of:
+    - HdlDataLog
+    is_usage_slot: true
+    usage_slot_name: format
+    range: string
+    equals_string: string
+  HdlDataLog_value:
+    name: HdlDataLog_value
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/value
+    description: The value of the handle data.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: value
+    domain: HdlDataLog
+    slot_uri: pid4cat_model:value
+    alias: value
+    owner: HdlDataLog
+    domain_of:
+    - HdlDataLog
+    is_usage_slot: true
+    usage_slot_name: value
+    range: LogRecord
+    required: true
+    multivalued: true
+    inlined: true
+  ResourceInfo_resource_category:
+    name: ResourceInfo_resource_category
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/resource_category
+    description: The category of the resource.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: resource_category
+    domain: ResourceInfo
+    slot_uri: pid4cat_model:resource_category
+    alias: resource_category
+    owner: ResourceInfo
+    domain_of:
+    - ResourceInfo
+    is_usage_slot: true
+    usage_slot_name: resource_category
+    range: ResourceCategory
+    required: true
+  ResourceInfo_representation_variants:
+    name: ResourceInfo_representation_variants
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/representation_variants
+    description: The representations of the resource in other media types than text/html.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: representation_variants
+    domain: ResourceInfo
+    slot_uri: pid4cat_model:representation_variants
+    alias: representation_variants
+    owner: ResourceInfo
+    domain_of:
+    - ResourceInfo
+    is_usage_slot: true
+    usage_slot_name: representation_variants
+    range: RepresentationVariant
+    required: true
+    multivalued: true
+    inlined: true
+  LogRecord_datetime_log:
+    name: LogRecord_datetime_log
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/datetime_log
+    description: The date and time of a log record.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: datetime_log
+    domain: LogRecord
+    slot_uri: pid4cat_model:datetime_log
+    alias: datetime_log
+    owner: LogRecord
+    domain_of:
+    - LogRecord
+    is_usage_slot: true
+    usage_slot_name: datetime_log
+    range: datetime
+    required: true
+  LogRecord_has_agent:
+    name: LogRecord_has_agent
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/has_agent
+    description: The person who registered or modified the PID record.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: has_agent
+    domain: LogRecord
+    slot_uri: pid4cat_model:has_agent
+    alias: has_agent
+    owner: LogRecord
+    domain_of:
+    - LogRecord
+    is_usage_slot: true
+    usage_slot_name: has_agent
+    range: Agent
+    required: true
+    inlined: true
+  LogRecord_changed_field:
+    name: LogRecord_changed_field
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/changed_field
+    description: The field that was changed.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: changed_field
+    domain: LogRecord
+    slot_uri: pid4cat_model:changed_field
+    alias: changed_field
+    owner: LogRecord
+    domain_of:
+    - LogRecord
+    is_usage_slot: true
+    usage_slot_name: changed_field
+    range: ChangeLogField
+    required: true
+  LogRecord_description:
+    name: LogRecord_description
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/description
+    description: A human-readable description for a resource.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: description
+    domain: LogRecord
+    slot_uri: pid4cat_model:description
+    alias: description
+    owner: LogRecord
+    domain_of:
+    - LogRecord
+    is_usage_slot: true
+    usage_slot_name: description
+    range: string
+  Agent_name:
+    name: Agent_name
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/name
+    description: The name of the agent that created or modified the PID record.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: name
+    domain: Agent
+    slot_uri: pid4cat_model:name
+    alias: name
+    owner: Agent
+    domain_of:
+    - Agent
+    is_usage_slot: true
+    usage_slot_name: name
+    range: string
+    required: true
+  Agent_email_address:
+    name: Agent_email_address
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/email_address
+    description: Email address of the agent that created or modified the PID record.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: email_address
+    domain: Agent
+    slot_uri: pid4cat_model:email_address
+    alias: email_address
+    owner: Agent
+    domain_of:
+    - Agent
+    is_usage_slot: true
+    usage_slot_name: email_address
+    range: string
+    required: true
+    pattern: ^\S+@[\S+\.]+\S+
+  Agent_orcid:
+    name: Agent_orcid
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/orcid
+    description: The ORCID of the person
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: orcid
+    domain: Agent
+    slot_uri: pid4cat_model:orcid
+    alias: orcid
+    owner: Agent
+    domain_of:
+    - Agent
+    is_usage_slot: true
+    usage_slot_name: orcid
+    range: string
+    pattern: ^\d{4}-\d{4}-\d{4}-\d{3}[0-9X]$
+  Agent_affiliation_ror:
+    name: Agent_affiliation_ror
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/affiliation_ror
+    description: The ROR of the agent's affiliation.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: affiliation_ror
+    domain: Agent
+    slot_uri: pid4cat_model:affiliation_ror
+    alias: affiliation_ror
+    owner: Agent
+    domain_of:
+    - Agent
+    is_usage_slot: true
+    usage_slot_name: affiliation_ror
+    range: uri
+    pattern: ^https:\/\/ror\.org\/0[a-hj-km-np-tv-z|0-9]{6}[0-9]{2}$
+  Agent_role:
+    name: Agent_role
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/role
+    description: The role of the agent relative to the resource
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: role
+    domain: Agent
+    slot_uri: pid4cat_model:role
+    alias: role
+    owner: Agent
+    domain_of:
+    - Agent
+    is_usage_slot: true
+    usage_slot_name: role
+    range: Pid4CatAgentRole
+    required: true
+  RepresentationVariant_media_type:
+    name: RepresentationVariant_media_type
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/media_type
+    description: The media type of the representation as defined by [IANA](https://www.iana.org/assignments/media-types/media-types.xhtml)
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: media_type
+    domain: RepresentationVariant
+    slot_uri: pid4cat_model:media_type
+    alias: media_type
+    owner: RepresentationVariant
+    domain_of:
+    - RepresentationVariant
+    is_usage_slot: true
+    usage_slot_name: media_type
+    range: MediaTypesEnum
+  PurlIdentifier_resolving_url:
+    name: PurlIdentifier_resolving_url
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/resolving_url
+    description: The URL that resolves the identifier.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: resolving_url
+    domain: PurlIdentifier
+    slot_uri: pid4cat_model:resolving_url
+    alias: resolving_url
+    owner: PurlIdentifier
+    domain_of:
+    - PurlIdentifier
+    is_usage_slot: true
+    usage_slot_name: resolving_url
+    range: uri
+    required: true
+    pattern: ^https:\/\/(purl|pida|w3id)\.org\/.*$
+  DoiIdentifier_identifier:
+    name: DoiIdentifier_identifier
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/identifier
+    description: The identifier in recommended notation.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: identifier
+    domain: DoiIdentifier
+    slot_uri: pid4cat_model:identifier
+    alias: identifier
+    owner: DoiIdentifier
+    domain_of:
+    - DoiIdentifier
+    is_usage_slot: true
+    usage_slot_name: identifier
+    range: string
+    pattern: ^10\.\d{4,}\/.*$
+  DoiIdentifier_resolving_url:
+    name: DoiIdentifier_resolving_url
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/resolving_url
+    description: The URL that resolves the identifier.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: resolving_url
+    domain: DoiIdentifier
+    slot_uri: pid4cat_model:resolving_url
+    alias: resolving_url
+    owner: DoiIdentifier
+    domain_of:
+    - DoiIdentifier
+    is_usage_slot: true
+    usage_slot_name: resolving_url
+    range: uri
+    required: true
+    pattern: ^https:\/\/doi\.org\/10.*$
+  HandleIdentifier_identifier:
+    name: HandleIdentifier_identifier
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/identifier
+    description: The identifier in recommended notation.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: identifier
+    domain: HandleIdentifier
+    slot_uri: pid4cat_model:identifier
+    alias: identifier
+    owner: HandleIdentifier
+    domain_of:
+    - HandleIdentifier
+    is_usage_slot: true
+    usage_slot_name: identifier
+    range: string
+    pattern: ^\d{2}\.T?\d{4,}\/.*$
+  HandleIdentifier_resolving_url:
+    name: HandleIdentifier_resolving_url
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/resolving_url
+    description: The URL that resolves the identifier.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: resolving_url
+    domain: HandleIdentifier
+    slot_uri: pid4cat_model:resolving_url
+    alias: resolving_url
+    owner: HandleIdentifier
+    domain_of:
+    - HandleIdentifier
+    is_usage_slot: true
+    usage_slot_name: resolving_url
+    range: uri
+    required: true
+    pattern: ^https:\/\/hdl\.handle\.net\/\d{2}\.T?\d{4,}\/.*$
+  ArkIdentifier_identifier:
+    name: ArkIdentifier_identifier
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/identifier
+    description: The identifier in recommended notation.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: identifier
+    domain: ArkIdentifier
+    slot_uri: pid4cat_model:identifier
+    alias: identifier
+    owner: ArkIdentifier
+    domain_of:
+    - ArkIdentifier
+    is_usage_slot: true
+    usage_slot_name: identifier
+    range: string
+    pattern: ^ark:\/\d{5}/.*$
+  ArkIdentifier_resolving_url:
+    name: ArkIdentifier_resolving_url
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/resolving_url
+    description: The URL that resolves the identifier.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: resolving_url
+    domain: ArkIdentifier
+    slot_uri: pid4cat_model:resolving_url
+    alias: resolving_url
+    owner: ArkIdentifier
+    domain_of:
+    - ArkIdentifier
+    is_usage_slot: true
+    usage_slot_name: resolving_url
+    range: uri
+    required: true
+    pattern: ^https?:\/\/.*\/ark:\/\d{5}/.*$
+  UrnIdentifier_identifier:
+    name: UrnIdentifier_identifier
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/identifier
+    description: The identifier in recommended notation.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: identifier
+    domain: UrnIdentifier
+    slot_uri: pid4cat_model:identifier
+    alias: identifier
+    owner: UrnIdentifier
+    domain_of:
+    - UrnIdentifier
+    is_usage_slot: true
+    usage_slot_name: identifier
+    range: string
+    required: true
+    pattern: ^urn:[a-zA-Z0-9][a-zA-Z0-9-]{0,31}:[^\s]*$
+  GtinIdentifier_identifier:
+    name: GtinIdentifier_identifier
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/identifier
+    description: The identifier in recommended notation.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: identifier
+    domain: GtinIdentifier
+    slot_uri: pid4cat_model:identifier
+    alias: identifier
+    owner: GtinIdentifier
+    domain_of:
+    - GtinIdentifier
+    is_usage_slot: true
+    usage_slot_name: identifier
+    range: string
+    required: true
+    pattern: ^\d{13}$
+  ExampleIdentifier_identifier:
+    name: ExampleIdentifier_identifier
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/identifier
+    description: The identifier in recommended notation.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: identifier
+    domain: ExampleIdentifier
+    slot_uri: pid4cat_model:identifier
+    alias: identifier
+    owner: ExampleIdentifier
+    domain_of:
+    - ExampleIdentifier
+    is_usage_slot: true
+    usage_slot_name: identifier
+    range: string
+    pattern: ^ex:.*$
+  ExampleIdentifier_resolving_url:
+    name: ExampleIdentifier_resolving_url
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/resolving_url
+    description: The URL that resolves the identifier.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: resolving_url
+    domain: ExampleIdentifier
+    slot_uri: pid4cat_model:resolving_url
+    alias: resolving_url
+    owner: ExampleIdentifier
+    domain_of:
+    - ExampleIdentifier
+    is_usage_slot: true
+    usage_slot_name: resolving_url
+    range: uri
+    pattern: ^https?:\/\/(.+\.)?example.(org|com)\/.*$
+classes:
+  HandleAPIRecord:
+    name: HandleAPIRecord
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/HandleAPIRecord
+    description: A class representing a handle record query response of the REST (json)
+      API of a handle server.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    slots:
+    - responseCode
+    - HandleAPIRecord_handle
+    - HandleAPIRecord_values
+    slot_usage:
+      handle:
+        name: handle
+        required: true
+        pattern: ^\d{2}\.T?\d{4,}\/.*$
+      values:
+        name: values
+        required: true
+    class_uri: pid4cat_model:HandleAPIRecord
+  HandleRecord:
+    name: HandleRecord
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/HandleRecord
+    description: A base class for handle-data classes that represent a handle record
+      in the same way as in the REST (json) API of a handle server.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    slots:
+    - HandleRecord_timestamp
+    - HandleRecord_ttl
+    - HandleRecord_type
+    slot_usage:
+      timestamp:
+        name: timestamp
+        required: true
+      ttl:
+        name: ttl
+        ifabsent: '86400'
+      type:
+        name: type
+        description: The type of handledata stored in the handle record.
+        designates_type: true
+        required: true
+    class_uri: pid4cat_model:HandleRecord
+  URL:
+    name: URL
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/URL
+    description: The data element in the handle API for the landing page URL.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: HandleRecord
+    slots:
+    - HandleRecord_timestamp
+    - HandleRecord_ttl
+    - HandleRecord_type
+    - URL_index
+    - URL_data
+    slot_usage:
+      index:
+        name: index
+        required: true
+        minimum_value: 1
+        maximum_value: 1
+      data:
+        name: data
+        range: HdlDataUrl
+        required: true
+    class_uri: pid4cat_model:URL
+  HdlDataUrl:
+    name: HdlDataUrl
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/HdlDataUrl
+    description: The data class for the redirect url.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    slots:
+    - HdlDataUrl_format
+    - HdlDataUrl_value
+    slot_usage:
+      format:
+        name: format
+        ifabsent: string
+        equals_string: string
+      value:
+        name: value
+        required: true
+        pattern: ^https?:\/\/.*$
+    class_uri: pid4cat_model:HdlDataUrl
+  STATUS:
+    name: STATUS
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/STATUS
+    description: The data element in the handle API for the PID status information.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: HandleRecord
+    slots:
+    - HandleRecord_timestamp
+    - HandleRecord_ttl
+    - HandleRecord_type
+    - STATUS_index
+    - STATUS_data
+    slot_usage:
+      index:
+        name: index
+        required: true
+        minimum_value: 2
+        maximum_value: 2
+      data:
+        name: data
+        range: HdlDataStatus
+        required: true
+    class_uri: pid4cat_model:STATUS
+  HdlDataStatus:
+    name: HdlDataStatus
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/HdlDataStatus
+    description: The data class for the PID status information.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    slots:
+    - HdlDataStatus_format
+    - HdlDataStatus_value
+    slot_usage:
+      format:
+        name: format
+        ifabsent: string
+        equals_string: string
+      value:
+        name: value
+        range: Pid4CatStatus
+        required: true
+    class_uri: pid4cat_model:HdlDataStatus
+  SCHEMA_VER:
+    name: SCHEMA_VER
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/SCHEMAVER
+    description: The data element in the handle API for the schema version.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: HandleRecord
+    slots:
+    - HandleRecord_timestamp
+    - HandleRecord_ttl
+    - HandleRecord_type
+    - SCHEMA_VER_index
+    - SCHEMA_VER_data
+    slot_usage:
+      index:
+        name: index
+        required: true
+        minimum_value: 3
+        maximum_value: 3
+      data:
+        name: data
+        range: HdlDataSchemaVer
+        required: true
+    class_uri: pid4cat_model:SCHEMAVER
+  HdlDataSchemaVer:
+    name: HdlDataSchemaVer
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/HdlDataSchemaVer
+    description: The data class for the schema version.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    slots:
+    - HdlDataSchemaVer_format
+    - HdlDataSchemaVer_value
+    slot_usage:
+      format:
+        name: format
+        ifabsent: string
+        equals_string: string
+      value:
+        name: value
+        required: true
+        pattern: ^v\d+\.\d+\.\d+$
+    class_uri: pid4cat_model:HdlDataSchemaVer
+  LICENSE:
+    name: LICENSE
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/LICENSE
+    description: The data element in the handle API for the PID metadata license.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: HandleRecord
+    slots:
+    - HandleRecord_timestamp
+    - HandleRecord_ttl
+    - HandleRecord_type
+    - LICENSE_index
+    - LICENSE_data
+    slot_usage:
+      index:
+        name: index
+        required: true
+        minimum_value: 4
+        maximum_value: 4
+      data:
+        name: data
+        range: HdlDataLicense
+        required: true
+    class_uri: pid4cat_model:LICENSE
+  HdlDataLicense:
+    name: HdlDataLicense
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/HdlDataLicense
+    description: The data class for the PID metadata license.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    slots:
+    - HdlDataLicense_format
+    - HdlDataLicense_value
+    slot_usage:
+      format:
+        name: format
+        ifabsent: string
+        equals_string: string
+      value:
+        name: value
+        required: true
+        equals_string: CC0-1.0
+    class_uri: pid4cat_model:HdlDataLicense
+  EMAIL:
+    name: EMAIL
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/EMAIL
+    description: The data element in the handle API for the contact email.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: HandleRecord
+    slots:
+    - HandleRecord_timestamp
+    - HandleRecord_ttl
+    - HandleRecord_type
+    - EMAIL_index
+    - EMAIL_data
+    slot_usage:
+      index:
+        name: index
+        required: true
+        minimum_value: 5
+        maximum_value: 5
+      data:
+        name: data
+        range: HdlDataContact
+        required: true
+    class_uri: pid4cat_model:EMAIL
+  HdlDataContact:
+    name: HdlDataContact
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/HdlDataContact
+    description: The data class for the handle-record contact email.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    slots:
+    - HdlDataContact_format
+    - HdlDataContact_value
+    slot_usage:
+      format:
+        name: format
+        ifabsent: string
+        equals_string: string
+      value:
+        name: value
+        required: true
+        pattern: ^\S+@[\S+\.]+\S+
+    class_uri: pid4cat_model:HdlDataContact
+  RESOURCE:
+    name: RESOURCE
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/RESOURCE
+    description: The data element in the handle API for the resource info.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: HandleRecord
+    slots:
+    - HandleRecord_timestamp
+    - HandleRecord_ttl
+    - HandleRecord_type
+    - RESOURCE_index
+    - RESOURCE_data
+    slot_usage:
+      index:
+        name: index
+        required: true
+        minimum_value: 6
+        maximum_value: 6
+      data:
+        name: data
+        range: HdlDataResourceInfo
+        required: true
+    class_uri: pid4cat_model:RESOURCE
+  HdlDataResourceInfo:
+    name: HdlDataResourceInfo
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/HdlDataResourceInfo
+    description: The data class for the resource info.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    slots:
+    - HdlDataResourceInfo_format
+    - HdlDataResourceInfo_value
+    slot_usage:
+      format:
+        name: format
+        ifabsent: string
+        equals_string: string
+      value:
+        name: value
+        range: ResourceInfo
+        required: true
+    class_uri: pid4cat_model:HdlDataResourceInfo
+  RELATED:
+    name: RELATED
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/RELATED
+    description: The data element in the handle API for related identifiers.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: HandleRecord
+    slots:
+    - HandleRecord_timestamp
+    - HandleRecord_ttl
+    - HandleRecord_type
+    - RELATED_index
+    - RELATED_data
+    slot_usage:
+      index:
+        name: index
+        required: true
+        minimum_value: 7
+        maximum_value: 7
+      data:
+        name: data
+        range: HdlDataRelated
+        required: true
+    class_uri: pid4cat_model:RELATED
+  HdlDataRelated:
+    name: HdlDataRelated
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/HdlDataRelated
+    description: The data class for related identifiers.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    slots:
+    - HdlDataRelated_format
+    - HdlDataRelated_value
+    slot_usage:
+      format:
+        name: format
+        ifabsent: string
+        equals_string: string
+      value:
+        name: value
+        range: Pid4CatRelation
+        multivalued: true
+    class_uri: pid4cat_model:HdlDataRelated
+  LOG:
+    name: LOG
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/LOG
+    description: The data element in the handle API for the change log.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: HandleRecord
+    slots:
+    - HandleRecord_timestamp
+    - HandleRecord_ttl
+    - HandleRecord_type
+    - LOG_index
+    - LOG_data
+    slot_usage:
+      index:
+        name: index
+        required: true
+        minimum_value: 8
+        maximum_value: 8
+      data:
+        name: data
+        range: HdlDataLog
+        required: true
+    class_uri: pid4cat_model:LOG
+  HdlDataLog:
+    name: HdlDataLog
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/HdlDataLog
+    description: The data class for the change log.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    slots:
+    - HdlDataLog_format
+    - HdlDataLog_value
+    slot_usage:
+      format:
+        name: format
+        ifabsent: string
+        equals_string: string
+      value:
+        name: value
+        range: LogRecord
+        required: true
+        multivalued: true
+    class_uri: pid4cat_model:HdlDataLog
+  HandleRecordContainer:
+    name: HandleRecordContainer
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/HandleRecordContainer
+    description: A container for all HandleRecords.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    slots:
+    - handleRecordContainer__contains_pids
+    attributes:
+      contains_pids:
+        name: contains_pids
+        description: The HandleRecords contained in the container.
+        range: HandleAPIRecord
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+    class_uri: pid4cat_model:HandleRecordContainer
+    tree_root: true
+  Pid4CatRelation:
+    name: Pid4CatRelation
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/Pid4CatRelation
+    description: Data class for a relation to another resource identified by a pid4cat
+      handle or another PID type.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    slots:
+    - relation_type
+    - related_identifier
+    - datetime_log
+    class_uri: pid4cat_model:Pid4CatRelation
+  ResourceInfo:
+    name: ResourceInfo
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/ResourceInfo
+    description: Data class to hold information about the resource and its representation.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    slots:
+    - label
+    - description
+    - ResourceInfo_resource_category
+    - ResourceInfo_representation_variants
+    slot_usage:
+      resource_category:
+        name: resource_category
+        required: true
+      representation_variants:
+        name: representation_variants
+        required: true
+    class_uri: pid4cat_model:ResourceInfo
+  LogRecord:
+    name: LogRecord
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/LogRecord
+    description: Data class for a change log of modification made on a pid4cat handle
+      record starting from its registration.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    slots:
+    - LogRecord_datetime_log
+    - LogRecord_has_agent
+    - LogRecord_changed_field
+    - LogRecord_description
+    slot_usage:
+      datetime_log:
+        name: datetime_log
+        required: true
+      has_agent:
+        name: has_agent
+        required: true
+      changed_field:
+        name: changed_field
+        required: true
+      description:
+        name: description
+    class_uri: pid4cat_model:LogRecord
+  Agent:
+    name: Agent
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/Agent
+    description: Data class for a person who plays a role relative to PID creation
+      or curation.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    mappings:
+    - prov:Agent
+    slots:
+    - Agent_name
+    - Agent_email_address
+    - Agent_orcid
+    - Agent_affiliation_ror
+    - Agent_role
+    slot_usage:
+      name:
+        name: name
+        required: true
+      email_address:
+        name: email_address
+        required: true
+        pattern: ^\S+@[\S+\.]+\S+
+      orcid:
+        name: orcid
+        pattern: ^\d{4}-\d{4}-\d{4}-\d{3}[0-9X]$
+      affiliation_ror:
+        name: affiliation_ror
+        pattern: ^https:\/\/ror\.org\/0[a-hj-km-np-tv-z|0-9]{6}[0-9]{2}$
+      role:
+        name: role
+        required: true
+    class_uri: prov:Agent
+  RepresentationVariant:
+    name: RepresentationVariant
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/RepresentationVariant
+    description: Data class for representations of the resource in other media types
+      than text/html which is the default for landing_page_url.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    slots:
+    - variant_url
+    - RepresentationVariant_media_type
+    - encoding_format
+    - size
+    slot_usage:
+      media_type:
+        name: media_type
+    class_uri: pid4cat_model:RepresentationVariant
+  RelatedIdentifier:
+    name: RelatedIdentifier
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/RelatedIdentifier
+    description: A base class for all types of related identifiers.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    slots:
+    - relatedIdentifier__type
+    attributes:
+      type:
+        name: type
+        description: The type of the identifier.
+        designates_type: true
+        required: true
+    class_uri: pid4cat_model:RelatedIdentifier
+  PurlIdentifier:
+    name: PurlIdentifier
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/PurlIdentifier
+    description: A PURL (permanent uniform resource locator).
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: RelatedIdentifier
+    slots:
+    - relatedIdentifier__type
+    - PurlIdentifier_resolving_url
+    slot_usage:
+      resolving_url:
+        name: resolving_url
+        required: true
+        pattern: ^https:\/\/(purl|pida|w3id)\.org\/.*$
+    class_uri: pid4cat_model:PurlIdentifier
+  DoiIdentifier:
+    name: DoiIdentifier
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/DoiIdentifier
+    description: A digital object identifier (DOI).
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: RelatedIdentifier
+    slots:
+    - relatedIdentifier__type
+    - DoiIdentifier_resolving_url
+    - DoiIdentifier_identifier
+    slot_usage:
+      identifier:
+        name: identifier
+        pattern: ^10\.\d{4,}\/.*$
+      resolving_url:
+        name: resolving_url
+        required: true
+        pattern: ^https:\/\/doi\.org\/10.*$
+    class_uri: pid4cat_model:DoiIdentifier
+  HandleIdentifier:
+    name: HandleIdentifier
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/HandleIdentifier
+    description: A handle identifier.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: RelatedIdentifier
+    slots:
+    - relatedIdentifier__type
+    - HandleIdentifier_resolving_url
+    - HandleIdentifier_identifier
+    slot_usage:
+      identifier:
+        name: identifier
+        pattern: ^\d{2}\.T?\d{4,}\/.*$
+      resolving_url:
+        name: resolving_url
+        required: true
+        pattern: ^https:\/\/hdl\.handle\.net\/\d{2}\.T?\d{4,}\/.*$
+    class_uri: pid4cat_model:HandleIdentifier
+  ArkIdentifier:
+    name: ArkIdentifier
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/ArkIdentifier
+    description: An ARK (Archival Resource Key).
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: RelatedIdentifier
+    slots:
+    - relatedIdentifier__type
+    - ArkIdentifier_identifier
+    - ArkIdentifier_resolving_url
+    slot_usage:
+      identifier:
+        name: identifier
+        pattern: ^ark:\/\d{5}/.*$
+      resolving_url:
+        name: resolving_url
+        required: true
+        pattern: ^https?:\/\/.*\/ark:\/\d{5}/.*$
+    class_uri: pid4cat_model:ArkIdentifier
+  UrnIdentifier:
+    name: UrnIdentifier
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/UrnIdentifier
+    description: A URN (Uniform Resource Name).
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: RelatedIdentifier
+    slots:
+    - relatedIdentifier__type
+    - UrnIdentifier_identifier
+    slot_usage:
+      identifier:
+        name: identifier
+        required: true
+        pattern: ^urn:[a-zA-Z0-9][a-zA-Z0-9-]{0,31}:[^\s]*$
+    class_uri: pid4cat_model:UrnIdentifier
+  GtinIdentifier:
+    name: GtinIdentifier
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/GtinIdentifier
+    description: A Global Trade Item Number (GTIN) previously called European Article
+      Number (EAN) often encoded as EAN13 barcode. The identifier is used to identify
+      products. GTINs don't have a resolvable URL.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: RelatedIdentifier
+    slots:
+    - relatedIdentifier__type
+    - GtinIdentifier_identifier
+    slot_usage:
+      identifier:
+        name: identifier
+        required: true
+        pattern: ^\d{13}$
+    class_uri: pid4cat_model:GtinIdentifier
+  ExampleIdentifier:
+    name: ExampleIdentifier
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/ExampleIdentifier
+    description: An example.org test identifier.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: RelatedIdentifier
+    slots:
+    - relatedIdentifier__type
+    - ExampleIdentifier_identifier
+    - ExampleIdentifier_resolving_url
+    slot_usage:
+      identifier:
+        name: identifier
+        pattern: ^ex:.*$
+      resolving_url:
+        name: resolving_url
+        pattern: ^https?:\/\/(.+\.)?example.(org|com)\/.*$
+    class_uri: pid4cat_model:ExampleIdentifier
+metamodel_version: 1.7.0
+source_file: pid4cat_model.yaml
+source_file_date: '2025-03-07T07:43:32'
+source_file_size: 25292
+generation_date: '2025-03-07T07:44:00'
+
