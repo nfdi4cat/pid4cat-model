@@ -12,7 +12,7 @@
                         "null"
                     ]
                 },
-                "email": {
+                "email_address": {
                     "description": "Email address of the agent that created or modified the PID record.",
                     "pattern": "^\\S+@[\\S+\\.]+\\S+",
                     "type": "string"
@@ -36,7 +36,7 @@
             },
             "required": [
                 "name",
-                "email",
+                "email_address",
                 "role"
             ],
             "title": "Agent",
@@ -74,6 +74,49 @@
             "title": "ArkIdentifier",
             "type": "object"
         },
+        "CHANGES": {
+            "additionalProperties": false,
+            "description": "The data element in the handle API for the change log.",
+            "properties": {
+                "data": {
+                    "$ref": "#/$defs/HdlDataLog",
+                    "description": "The data in the handle record."
+                },
+                "index": {
+                    "description": "The index of the handle record.",
+                    "maximum": 8,
+                    "minimum": 8,
+                    "type": "integer"
+                },
+                "timestamp": {
+                    "description": "The iso datetime for the last update of the handle data.",
+                    "format": "date-time",
+                    "type": "string"
+                },
+                "ttl": {
+                    "description": "A time to live in seconds for the handle record. Typically: 86400 => 1 day",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "type": {
+                    "description": "The type of handledata stored in the handle record.",
+                    "enum": [
+                        "CHANGES"
+                    ],
+                    "type": "string"
+                }
+            },
+            "required": [
+                "index",
+                "data",
+                "timestamp",
+                "type"
+            ],
+            "title": "CHANGES",
+            "type": "object"
+        },
         "ChangeLogField": {
             "description": "The field of the pid4cat record that was changed.",
             "enum": [
@@ -94,7 +137,7 @@
             "properties": {
                 "identifier": {
                     "description": "The identifier in recommended notation.",
-                    "pattern": "^doi:10\\.\\d{4,}\\/.*$",
+                    "pattern": "^10\\.\\d{4,}\\/.*$",
                     "type": [
                         "string",
                         "null"
@@ -227,6 +270,7 @@
             "properties": {
                 "handle": {
                     "description": "The handle of the pid4cat record.",
+                    "pattern": "^\\d{2}\\.T?\\d{4,}\\/.*$",
                     "type": "string"
                 },
                 "responseCode": {
@@ -265,7 +309,7 @@
                                 "$ref": "#/$defs/RELATED"
                             },
                             {
-                                "$ref": "#/$defs/LOG"
+                                "$ref": "#/$defs/CHANGES"
                             }
                         ]
                     },
@@ -285,7 +329,7 @@
             "properties": {
                 "identifier": {
                     "description": "The identifier in recommended notation.",
-                    "pattern": "^(hdl|handle):\\d{2}\\.\\d{4,}\\/.*$",
+                    "pattern": "^\\d{2}\\.T?\\d{4,}\\/.*$",
                     "type": [
                         "string",
                         "null"
@@ -293,7 +337,7 @@
                 },
                 "resolving_url": {
                     "description": "The URL that resolves the identifier.",
-                    "pattern": "^https:\\/\\/hdl\\.handle\\.net\\/\\d{2}\\.\\d{4,}\\/.*$",
+                    "pattern": "^https:\\/\\/hdl\\.handle\\.net\\/\\d{2}\\.T?\\d{4,}\\/.*$",
                     "type": "string"
                 },
                 "type": {
@@ -597,49 +641,6 @@
             "title": "LICENSE",
             "type": "object"
         },
-        "LOG": {
-            "additionalProperties": false,
-            "description": "The data element in the handle API for the change log.",
-            "properties": {
-                "data": {
-                    "$ref": "#/$defs/HdlDataLog",
-                    "description": "The data in the handle record."
-                },
-                "index": {
-                    "description": "The index of the handle record.",
-                    "maximum": 8,
-                    "minimum": 8,
-                    "type": "integer"
-                },
-                "timestamp": {
-                    "description": "The iso datetime for the last update of the handle data.",
-                    "format": "date-time",
-                    "type": "string"
-                },
-                "ttl": {
-                    "description": "A time to live in seconds for the handle record. Typically: 86400 => 1 day",
-                    "type": [
-                        "integer",
-                        "null"
-                    ]
-                },
-                "type": {
-                    "description": "The type of handledata stored in the handle record.",
-                    "enum": [
-                        "LOG"
-                    ],
-                    "type": "string"
-                }
-            },
-            "required": [
-                "index",
-                "data",
-                "timestamp",
-                "type"
-            ],
-            "title": "LOG",
-            "type": "object"
-        },
         "LogRecord": {
             "additionalProperties": false,
             "description": "Data class for a change log of modification made on a pid4cat handle record starting from its registration.",
@@ -673,8 +674,8 @@
             "title": "LogRecord",
             "type": "object"
         },
-        "MEDIATypes": {
-            "description": "The IANA media types are used to specify the type of data.",
+        "MediaTypesEnum": {
+            "description": "IANA media types are used to specify the type of data.",
             "enum": [
                 "application/epub+zip",
                 "application/json",
@@ -705,7 +706,7 @@
                 "video/mp4",
                 "video/webm"
             ],
-            "title": "MEDIATypes",
+            "title": "MediaTypesEnum",
             "type": "string"
         },
         "Pid4CatAgentRole": {
@@ -959,7 +960,7 @@
                     ]
                 },
                 "media_type": {
-                    "$ref": "#/$defs/MEDIATypes",
+                    "$ref": "#/$defs/MediaTypesEnum",
                     "description": "The media type of the representation as defined by [IANA](https://www.iana.org/assignments/media-types/media-types.xhtml)"
                 },
                 "size": {
@@ -970,8 +971,8 @@
                         "null"
                     ]
                 },
-                "url": {
-                    "description": "The URL of the representation.",
+                "variant_url": {
+                    "description": "The URL of the representation variant.",
                     "type": [
                         "string",
                         "null"
@@ -1204,5 +1205,5 @@
     },
     "title": "pid4cat-model",
     "type": "object",
-    "version": null
+    "version": "0.0.0"
 }
