@@ -94,7 +94,7 @@ A typical handle record is shown in the table.
 |     5 | EMAIL | 2024-01-01 10:47:38Z | datafuzzi@example.org | *curation contact email* |
 |     6 | RESOURCE | 2024-01-01 10:47:38Z | {json} | *[resource info](https://nfdi4cat.github.io/pid4cat-model/dev/elements/RESOURCE/)* |
 |     7 | RELATED | 2024-02-19 13:40:02Z | {json} | *[related identifiers](https://nfdi4cat.github.io/pid4cat-model/dev/elements/RELATED/)* |
-|     8 | CHANGES | 2024-02-19 13:40:02Z | {json} | *[change log for PID record](https://nfdi4cat.github.io/pid4cat-model/dev/elements/LOG/)* |
+|     8 | CHANGES | 2024-02-19 13:40:02Z | {json} | *[change log for PID record](https://nfdi4cat.github.io/pid4cat-model/dev/elements/CHANGES/)* |
 
 The pid4cat schema is "mapped" to the handle record by using [type designators](https://linkml.io/linkml/schemas/type-designators.html).
 The TYPE column in the handle record determines ("designates") the corresponding class of the LinkML model.

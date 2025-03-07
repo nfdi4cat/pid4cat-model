@@ -72,7 +72,7 @@ contains_pids:
         ttl: 86400
         timestamp: '2024-05-15T15:51:15Z'
       - index: 8
-        type: LOG
+        type: CHANGES
         data:
           format: string
           value:

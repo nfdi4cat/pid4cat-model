@@ -150,7 +150,7 @@ p1_api = p4c.HandleAPIRecord(
         ),
         p4c.HandleRecord(
             index=8,
-            type="LOG",
+            type="CHANGES",
             ttl=86400,
             timestamp=datetime.fromisoformat("2024-05-15T15:51:15Z"),
             data=p4c.HdlDataLog(

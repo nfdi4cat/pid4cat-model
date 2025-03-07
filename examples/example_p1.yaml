@@ -73,7 +73,7 @@ contains_pids:
         datetime_log: 2024-02-19 00:00:00+00:00
   - timestamp: 2024-05-15 15:51:15+00:00
     ttl: 86400
-    type: LOG
+    type: CHANGES
     index: 8
     data:
       format: string

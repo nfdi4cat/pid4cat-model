@@ -106,7 +106,7 @@
     {
       "timestamp": "2024-05-15T15:51:15+00:00",
       "ttl": 86400,
-      "type": "LOG",
+      "type": "CHANGES",
       "index": 8,
       "data": {
         "format": "string",

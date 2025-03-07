@@ -300,7 +300,7 @@ classes:
         multivalued: true
         range: Pid4CatRelation
 
-  LOG:
+  CHANGES:
     is_a: HandleRecord
     description: >-
       The data element in the handle API for the change log.

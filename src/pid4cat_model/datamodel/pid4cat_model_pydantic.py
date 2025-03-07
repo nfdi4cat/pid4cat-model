@@ -9,7 +9,7 @@ from pydantic import BaseModel, ConfigDict, Field, RootModel, field_validator
 
 
 metamodel_version = "None"
-version = "None"
+version = "0.0.0"
 
 
 class ConfiguredBaseModel(BaseModel):
@@ -337,7 +337,15 @@ class HandleAPIRecord(ConfiguredBaseModel):
     )
     values: List[
         Union[
-            HandleRecord, URL, STATUS, SCHEMAVER, LICENSE, EMAIL, RESOURCE, RELATED, LOG
+            HandleRecord,
+            URL,
+            STATUS,
+            SCHEMAVER,
+            LICENSE,
+            EMAIL,
+            RESOURCE,
+            RELATED,
+            CHANGES,
         ]
     ] = Field(
         ...,
@@ -449,7 +457,7 @@ class URL(HandleRecord):
                     "EMAIL",
                     "RESOURCE",
                     "RELATED",
-                    "LOG",
+                    "CHANGES",
                 ],
             }
         },
@@ -468,7 +476,7 @@ class URL(HandleRecord):
                     "EMAIL",
                     "RESOURCE",
                     "RELATED",
-                    "LOG",
+                    "CHANGES",
                 ],
             }
         },
@@ -617,7 +625,7 @@ class STATUS(HandleRecord):
                     "EMAIL",
                     "RESOURCE",
                     "RELATED",
-                    "LOG",
+                    "CHANGES",
                 ],
             }
         },
@@ -636,7 +644,7 @@ class STATUS(HandleRecord):
                     "EMAIL",
                     "RESOURCE",
                     "RELATED",
-                    "LOG",
+                    "CHANGES",
                 ],
             }
         },
@@ -769,7 +777,7 @@ class SCHEMAVER(HandleRecord):
                     "EMAIL",
                     "RESOURCE",
                     "RELATED",
-                    "LOG",
+                    "CHANGES",
                 ],
             }
         },
@@ -788,7 +796,7 @@ class SCHEMAVER(HandleRecord):
                     "EMAIL",
                     "RESOURCE",
                     "RELATED",
-                    "LOG",
+                    "CHANGES",
                 ],
             }
         },
@@ -937,7 +945,7 @@ class LICENSE(HandleRecord):
                     "EMAIL",
                     "RESOURCE",
                     "RELATED",
-                    "LOG",
+                    "CHANGES",
                 ],
             }
         },
@@ -956,7 +964,7 @@ class LICENSE(HandleRecord):
                     "EMAIL",
                     "RESOURCE",
                     "RELATED",
-                    "LOG",
+                    "CHANGES",
                 ],
             }
         },
@@ -1094,7 +1102,7 @@ class EMAIL(HandleRecord):
                     "EMAIL",
                     "RESOURCE",
                     "RELATED",
-                    "LOG",
+                    "CHANGES",
                 ],
             }
         },
@@ -1113,7 +1121,7 @@ class EMAIL(HandleRecord):
                     "EMAIL",
                     "RESOURCE",
                     "RELATED",
-                    "LOG",
+                    "CHANGES",
                 ],
             }
         },
@@ -1266,7 +1274,7 @@ class RESOURCE(HandleRecord):
                     "EMAIL",
                     "RESOURCE",
                     "RELATED",
-                    "LOG",
+                    "CHANGES",
                 ],
             }
         },
@@ -1285,7 +1293,7 @@ class RESOURCE(HandleRecord):
                     "EMAIL",
                     "RESOURCE",
                     "RELATED",
-                    "LOG",
+                    "CHANGES",
                 ],
             }
         },
@@ -1418,7 +1426,7 @@ class RELATED(HandleRecord):
                     "EMAIL",
                     "RESOURCE",
                     "RELATED",
-                    "LOG",
+                    "CHANGES",
                 ],
             }
         },
@@ -1437,7 +1445,7 @@ class RELATED(HandleRecord):
                     "EMAIL",
                     "RESOURCE",
                     "RELATED",
-                    "LOG",
+                    "CHANGES",
                 ],
             }
         },
@@ -1538,7 +1546,7 @@ class HdlDataRelated(ConfiguredBaseModel):
     )
 
 
-class LOG(HandleRecord):
+class CHANGES(HandleRecord):
     """
     The data element in the handle API for the change log.
     """
@@ -1574,7 +1582,7 @@ class LOG(HandleRecord):
                     "EMAIL",
                     "RESOURCE",
                     "RELATED",
-                    "LOG",
+                    "CHANGES",
                 ],
             }
         },
@@ -1593,7 +1601,7 @@ class LOG(HandleRecord):
                     "EMAIL",
                     "RESOURCE",
                     "RELATED",
-                    "LOG",
+                    "CHANGES",
                 ],
             }
         },
@@ -1616,8 +1624,8 @@ class LOG(HandleRecord):
             }
         },
     )
-    type: Literal["LOG"] = Field(
-        "LOG",
+    type: Literal["CHANGES"] = Field(
+        "CHANGES",
         description="""The type of handledata stored in the handle record.""",
         json_schema_extra={
             "linkml_meta": {
@@ -2597,7 +2605,7 @@ RESOURCE.model_rebuild()
 HdlDataResourceInfo.model_rebuild()
 RELATED.model_rebuild()
 HdlDataRelated.model_rebuild()
-LOG.model_rebuild()
+CHANGES.model_rebuild()
 HdlDataLog.model_rebuild()
 HandleRecordContainer.model_rebuild()
 Pid4CatRelation.model_rebuild()

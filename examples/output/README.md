@@ -88,7 +88,7 @@ values:
   index: 8
   timestamp: '2024-05-15T15:51:15Z'
   ttl: 86400
-  type: LOG
+  type: CHANGES
 
 ```
 ## HandleRecordContainer-001
@@ -182,6 +182,6 @@ contains_pids:
     index: 8
     timestamp: '2024-05-15T15:51:15Z'
     ttl: 86400
-    type: LOG
+    type: CHANGES
 
 ```

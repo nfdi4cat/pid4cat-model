@@ -1,5 +1,5 @@
 # Auto generated from pid4cat_model.yaml by pythongen.py version: 0.0.1
-# Generation date: 2025-03-05T00:33:16
+# Generation date: 2025-03-07T09:05:47
 # Schema: pid4cat-model
 #
 # id: https://w3id.org/nfdi4cat/pid4cat-model
@@ -27,7 +27,7 @@ from rdflib import URIRef
 from linkml_runtime.utils.metamodelcore import URI, XSDDateTime
 
 metamodel_version = "1.7.0"
-version = None
+version = "0.0.0"
 
 # Overwrite dataclasses _init_fn to add **kwargs in __init__
 dataclasses._init_fn = dataclasses_init_fn_with_kwargs
@@ -590,17 +590,17 @@ class HdlDataRelated(YAMLRoot):
 
 
 @dataclass(repr=False)
-class LOG(HandleRecord):
+class CHANGES(HandleRecord):
     """
     The data element in the handle API for the change log.
     """
 
     _inherited_slots: ClassVar[List[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = PID4CAT_MODEL["LOG"]
-    class_class_curie: ClassVar[str] = "pid4cat_model:LOG"
-    class_name: ClassVar[str] = "LOG"
-    class_model_uri: ClassVar[URIRef] = PID4CAT_MODEL.LOG
+    class_class_uri: ClassVar[URIRef] = PID4CAT_MODEL["CHANGES"]
+    class_class_curie: ClassVar[str] = "pid4cat_model:CHANGES"
+    class_name: ClassVar[str] = "CHANGES"
+    class_model_uri: ClassVar[URIRef] = PID4CAT_MODEL.CHANGES
 
     timestamp: Union[str, XSDDateTime] = None
     type: str = None
@@ -2326,21 +2326,21 @@ slots.HdlDataRelated_value = Slot(
     ],
 )
 
-slots.LOG_index = Slot(
+slots.CHANGES_index = Slot(
     uri=PID4CAT_MODEL.index,
-    name="LOG_index",
+    name="CHANGES_index",
     curie=PID4CAT_MODEL.curie("index"),
-    model_uri=PID4CAT_MODEL.LOG_index,
-    domain=LOG,
+    model_uri=PID4CAT_MODEL.CHANGES_index,
+    domain=CHANGES,
     range=int,
 )
 
-slots.LOG_data = Slot(
+slots.CHANGES_data = Slot(
     uri=PID4CAT_MODEL.data,
-    name="LOG_data",
+    name="CHANGES_data",
     curie=PID4CAT_MODEL.curie("data"),
-    model_uri=PID4CAT_MODEL.LOG_data,
-    domain=LOG,
+    model_uri=PID4CAT_MODEL.CHANGES_data,
+    domain=CHANGES,
     range=Union[dict, "HdlDataLog"],
 )
 
