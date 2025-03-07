@@ -2706,7 +2706,7 @@ classes:
     class_uri: pid4cat_model:ExampleIdentifier
 metamodel_version: 1.7.0
 source_file: pid4cat_model.yaml
-source_file_date: '2025-03-07T09:00:43'
+source_file_date: '2025-03-07T11:39:21'
 source_file_size: 25296
-generation_date: '2025-03-07T09:01:10'
+generation_date: '2025-03-07T11:39:47'
 
