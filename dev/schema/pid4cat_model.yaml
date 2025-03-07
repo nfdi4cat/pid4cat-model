@@ -762,7 +762,7 @@ slots:
     description: The index of the handle record.
     from_schema: https://w3id.org/nfdi4cat/pid4cat-model
     slot_uri: pid4cat_model:index
-    owner: LOG
+    owner: CHANGES
     domain_of:
     - URL
     - STATUS
@@ -771,7 +771,7 @@ slots:
     - EMAIL
     - RESOURCE
     - RELATED
-    - LOG
+    - CHANGES
     range: integer
   data:
     name: data
@@ -779,7 +779,7 @@ slots:
     description: The data in the handle record.
     from_schema: https://w3id.org/nfdi4cat/pid4cat-model
     slot_uri: pid4cat_model:data
-    owner: LOG
+    owner: CHANGES
     domain_of:
     - URL
     - STATUS
@@ -788,7 +788,7 @@ slots:
     - EMAIL
     - RESOURCE
     - RELATED
-    - LOG
+    - CHANGES
     range: string
   format:
     name: format
@@ -1633,36 +1633,36 @@ slots:
     range: Pid4CatRelation
     multivalued: true
     inlined: true
-  LOG_index:
-    name: LOG_index
+  CHANGES_index:
+    name: CHANGES_index
     definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/index
     description: The index of the handle record.
     from_schema: https://w3id.org/nfdi4cat/pid4cat-model
     is_a: index
-    domain: LOG
+    domain: CHANGES
     slot_uri: pid4cat_model:index
     alias: index
-    owner: LOG
+    owner: CHANGES
     domain_of:
-    - LOG
+    - CHANGES
     is_usage_slot: true
     usage_slot_name: index
     range: integer
     required: true
     minimum_value: 8
     maximum_value: 8
-  LOG_data:
-    name: LOG_data
+  CHANGES_data:
+    name: CHANGES_data
     definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/data
     description: The data in the handle record.
     from_schema: https://w3id.org/nfdi4cat/pid4cat-model
     is_a: data
-    domain: LOG
+    domain: CHANGES
     slot_uri: pid4cat_model:data
     alias: data
-    owner: LOG
+    owner: CHANGES
     domain_of:
-    - LOG
+    - CHANGES
     is_usage_slot: true
     usage_slot_name: data
     range: HdlDataLog
@@ -2409,9 +2409,9 @@ classes:
         range: Pid4CatRelation
         multivalued: true
     class_uri: pid4cat_model:HdlDataRelated
-  LOG:
-    name: LOG
-    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/LOG
+  CHANGES:
+    name: CHANGES
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/CHANGES
     description: The data element in the handle API for the change log.
     from_schema: https://w3id.org/nfdi4cat/pid4cat-model
     is_a: HandleRecord
@@ -2419,8 +2419,8 @@ classes:
     - HandleRecord_timestamp
     - HandleRecord_ttl
     - HandleRecord_type
-    - LOG_index
-    - LOG_data
+    - CHANGES_index
+    - CHANGES_data
     slot_usage:
       index:
         name: index
@@ -2431,7 +2431,7 @@ classes:
         name: data
         range: HdlDataLog
         required: true
-    class_uri: pid4cat_model:LOG
+    class_uri: pid4cat_model:CHANGES
   HdlDataLog:
     name: HdlDataLog
     definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/HdlDataLog
@@ -2706,7 +2706,7 @@ classes:
     class_uri: pid4cat_model:ExampleIdentifier
 metamodel_version: 1.7.0
 source_file: pid4cat_model.yaml
-source_file_date: '2025-03-07T07:43:32'
-source_file_size: 25292
-generation_date: '2025-03-07T07:44:00'
+source_file_date: '2025-03-07T09:00:43'
+source_file_size: 25296
+generation_date: '2025-03-07T09:01:10'
 

@@ -5,10 +5,10 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<link href="https://nfdi4cat.github.io/pid4cat-model/latest/elements/LOG/" rel="canonical"/>
+<link href="https://nfdi4cat.github.io/pid4cat-model/latest/elements/CHANGES/" rel="canonical"/>
 <link href="../../images/favicon.svg" rel="icon"/>
 <meta content="mkdocs-1.6.1, mkdocs-material-8.5.10" name="generator"/>
-<title>Class: LOG - pid4cat-model</title>
+<title>Class: CHANGES - pid4cat-model</title>
 <link href="../../assets/stylesheets/main.975780f9.min.css" rel="stylesheet"/>
 <link href="../../assets/stylesheets/palette.2505c338.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -24,7 +24,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#class-log">
+<a class="md-skip" href="#class-changes">
           Skip to content
         </a>
 </div>
@@ -50,7 +50,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              Class: LOG
+              Class: CHANGES
             
           </span>
 </div>
@@ -211,41 +211,41 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<a class="md-content__button md-icon" href="https://github.com/nfdi4cat/pid4cat-model/edit/master/docs/elements/LOG.md" title="Edit this page">
+<a class="md-content__button md-icon" href="https://github.com/nfdi4cat/pid4cat-model/edit/master/docs/elements/CHANGES.md" title="Edit this page">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"></path></svg>
 </a>
-<h1 id="class-log">Class: LOG</h1>
+<h1 id="class-changes">Class: CHANGES</h1>
 <p><em>The data element in the handle API for the change log.</em></p>
-<p>URI: <a href="https://w3id.org/nfdi4cat/pid4cat-model/LOG">pid4cat_model:LOG</a></p>
+<p>URI: <a href="https://w3id.org/nfdi4cat/pid4cat-model/CHANGES">pid4cat_model:CHANGES</a></p>
 <div class="mermaid"> classDiagram
-    class LOG
-    click LOG href "../LOG"
-      HandleRecord &lt;|-- LOG
+    class CHANGES
+    click CHANGES href "../CHANGES"
+      HandleRecord &lt;|-- CHANGES
         click HandleRecord href "../HandleRecord"
 
-      LOG : data
+      CHANGES : data
 
 
 
 
-    LOG --&gt; "1" HdlDataLog : data
+    CHANGES --&gt; "1" HdlDataLog : data
     click HdlDataLog href "../HdlDataLog"
 
 
-      LOG : index
+      CHANGES : index
 
-      LOG : timestamp
+      CHANGES : timestamp
 
-      LOG : ttl
+      CHANGES : ttl
 
-      LOG : type
+      CHANGES : type
 
 
 </div>
 <h2 id="inheritance">Inheritance</h2>
 <ul>
 <li><a href="../HandleRecord/">HandleRecord</a><ul>
-<li><strong>LOG</strong></li>
+<li><strong>CHANGES</strong></li>
 </ul>
 </li>
 </ul>
@@ -308,11 +308,11 @@
 <tbody>
 <tr>
 <td>self</td>
-<td>pid4cat_model:LOG</td>
+<td>pid4cat_model:CHANGES</td>
 </tr>
 <tr>
 <td>native</td>
-<td>pid4cat_model:LOG</td>
+<td>pid4cat_model:CHANGES</td>
 </tr>
 </tbody>
 </table>
@@ -320,7 +320,7 @@
 <!-- TODO: investigate https://stackoverflow.com/questions/37606292/how-to-create-tabbed-code-blocks-in-mkdocs-or-sphinx -->
 <h3 id="direct">Direct</h3>
 <details>
-<pre><code class="language-yaml">name: LOG
+<pre><code class="language-yaml">name: CHANGES
 description: The data element in the handle API for the change log.
 from_schema: https://w3id.org/nfdi4cat/pid4cat-model
 is_a: HandleRecord
@@ -342,7 +342,7 @@ slot_usage:
 </details>
 <h3 id="induced">Induced</h3>
 <details>
-<pre><code class="language-yaml">name: LOG
+<pre><code class="language-yaml">name: CHANGES
 description: The data element in the handle API for the change log.
 from_schema: https://w3id.org/nfdi4cat/pid4cat-model
 is_a: HandleRecord
@@ -363,7 +363,7 @@ attributes:
     from_schema: https://w3id.org/nfdi4cat/pid4cat-model
     rank: 1000
     alias: index
-    owner: LOG
+    owner: CHANGES
     domain_of:
     - URL
     - STATUS
@@ -372,7 +372,7 @@ attributes:
     - EMAIL
     - RESOURCE
     - RELATED
-    - LOG
+    - CHANGES
     range: integer
     required: true
     minimum_value: 8
@@ -383,7 +383,7 @@ attributes:
     from_schema: https://w3id.org/nfdi4cat/pid4cat-model
     rank: 1000
     alias: data
-    owner: LOG
+    owner: CHANGES
     domain_of:
     - URL
     - STATUS
@@ -392,7 +392,7 @@ attributes:
     - EMAIL
     - RESOURCE
     - RELATED
-    - LOG
+    - CHANGES
     range: HdlDataLog
     required: true
   timestamp:
@@ -401,7 +401,7 @@ attributes:
     from_schema: https://w3id.org/nfdi4cat/pid4cat-model
     rank: 1000
     alias: timestamp
-    owner: LOG
+    owner: CHANGES
     domain_of:
     - HandleRecord
     range: datetime
@@ -414,7 +414,7 @@ attributes:
     rank: 1000
     ifabsent: '86400'
     alias: ttl
-    owner: LOG
+    owner: CHANGES
     domain_of:
     - HandleRecord
     range: integer
@@ -425,7 +425,7 @@ attributes:
     rank: 1000
     designates_type: true
     alias: type
-    owner: LOG
+    owner: CHANGES
     domain_of:
     - HandleRecord
     - RelatedIdentifier
