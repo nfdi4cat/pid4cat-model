@@ -117,7 +117,7 @@
         },
         {
           "index": 8,
-          "type": "LOG",
+          "type": "CHANGES",
           "data": {
             "format": "string",
             "value": {
