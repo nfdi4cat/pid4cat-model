@@ -83,7 +83,7 @@
 -- # Class: "HdlDataRelated" Description: "The data class for related identifiers."
 --     * Slot: id Description:
 --     * Slot: format Description: The format of the handle data.
--- # Class: "LOG" Description: "The data element in the handle API for the change log."
+-- # Class: "CHANGES" Description: "The data element in the handle API for the change log."
 --     * Slot: id Description:
 --     * Slot: index Description: The index of the handle record.
 --     * Slot: timestamp Description: The iso datetime for the last update of the handle data.
@@ -114,13 +114,13 @@
 -- # Class: "Agent" Description: "Data class for a person who plays a role relative to PID creation or curation."
 --     * Slot: id Description:
 --     * Slot: name Description: The name of the agent that created or modified the PID record.
---     * Slot: email Description: Email address of the agent that created or modified the PID record.
+--     * Slot: email_address Description: Email address of the agent that created or modified the PID record.
 --     * Slot: orcid Description: The ORCID of the person
 --     * Slot: affiliation_ror Description: The ROR of the agent's affiliation.
 --     * Slot: role Description: The role of the agent relative to the resource
 -- # Class: "RepresentationVariant" Description: "Data class for representations of the resource in other media types than text/html which is the default for landing_page_url."
 --     * Slot: id Description:
---     * Slot: url Description: The URL of the representation.
+--     * Slot: variant_url Description: The URL of the representation variant.
 --     * Slot: media_type Description: The media type of the representation as defined by [IANA](https://www.iana.org/assignments/media-types/media-types.xhtml)
 --     * Slot: encoding_format Description: The encoding of the representation. https://encoding.spec.whatwg.org/#names-and-labels
 --     * Slot: size Description: The size of the representation in bytes.
@@ -233,7 +233,7 @@ CREATE TABLE "ResourceInfo" (
 CREATE TABLE "Agent" (
 	id INTEGER NOT NULL,
 	name TEXT NOT NULL,
-	email TEXT NOT NULL,
+	email_address TEXT NOT NULL,
 	orcid TEXT,
 	affiliation_ror TEXT,
 	role VARCHAR(7) NOT NULL,
@@ -241,7 +241,7 @@ CREATE TABLE "Agent" (
 );
 CREATE TABLE "RepresentationVariant" (
 	id INTEGER NOT NULL,
-	url TEXT,
+	variant_url TEXT,
 	media_type VARCHAR(73),
 	encoding_format TEXT,
 	size INTEGER,
@@ -372,7 +372,7 @@ CREATE TABLE "RELATED" (
 	PRIMARY KEY (id),
 	FOREIGN KEY(data_id) REFERENCES "HdlDataRelated" (id)
 );
-CREATE TABLE "LOG" (
+CREATE TABLE "CHANGES" (
 	id INTEGER NOT NULL,
 	"index" INTEGER NOT NULL,
 	timestamp DATETIME NOT NULL,

@@ -5,7 +5,7 @@ import lombok.*;
 
 
 
-
+/* version: 0.0.0 */
 
 
 /**
@@ -15,7 +15,7 @@ import lombok.*;
 @EqualsAndHashCode(callSuper=false)
 public class RepresentationVariant  {
 
-  private String url;
+  private String variantUrl;
   private String mediaType;
   private String encodingFormat;
   private Integer size;

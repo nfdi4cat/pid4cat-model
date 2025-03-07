@@ -5,7 +5,7 @@ import lombok.*;
 
 
 
-
+/* version: 0.0.0 */
 
 
 /**
@@ -16,7 +16,7 @@ import lombok.*;
 public class Agent  {
 
   private String name;
-  private String email;
+  private String emailAddress;
   private String orcid;
   private String affiliationRor;
   private String role;

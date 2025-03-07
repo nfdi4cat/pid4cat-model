@@ -3,6 +3,7 @@
    "dcat": "https://www.w3.org/ns/dcat#",
    "dcterms": "https://purl.org/dc/terms/",
    "linkml": "https://w3id.org/linkml/",
+   "mediatype": "https://www.iana.org/assignments/media-types/",
    "pid4cat_model": "https://w3id.org/nfdi4cat/pid4cat-model/",
    "prov": "https://www.w3.org/ns/prov#",
    "voc4cat": "https://w3id.org/nfdi4cat/voc4cat_",

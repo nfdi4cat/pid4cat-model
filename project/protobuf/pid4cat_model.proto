@@ -1,11 +1,12 @@
  syntax="proto3";
  package
 // metamodel_version: 1.7.0
+// version: 0.0.0
 // Data class for a person who plays a role relative to PID creation or curation.
 message Agent
  {
   string name = 0
-  string email = 0
+  string emailAddress = 0
   string orcid = 0
   uri affiliationRor = 0
   pid4CatAgentRole role = 0
@@ -16,6 +17,15 @@ message ArkIdentifier
   string type = 0
   string identifier = 0
   uri resolvingUrl = 0
+ }
+// The data element in the handle API for the change log.
+message CHANGES
+ {
+  datetime timestamp = 0
+  integer ttl = 0
+  string type = 0
+  integer index = 0
+  hdlDataLog data = 0
  }
 // A digital object identifier (DOI).
 message DoiIdentifier
@@ -129,15 +139,6 @@ message LICENSE
   integer index = 0
   hdlDataLicense data = 0
  }
-// The data element in the handle API for the change log.
-message LOG
- {
-  datetime timestamp = 0
-  integer ttl = 0
-  string type = 0
-  integer index = 0
-  hdlDataLog data = 0
- }
 // Data class for a change log of modification made on a pid4cat handle record starting from its registration.
 message LogRecord
  {
@@ -176,8 +177,8 @@ message RelatedIdentifier
 // Data class for representations of the resource in other media types than text/html which is the default for landing_page_url.
 message RepresentationVariant
  {
-  uri url = 0
-  mEDIATypes mediaType = 0
+  uri variantUrl = 0
+  mediaTypesEnum mediaType = 0
   string encodingFormat = 0
   integer size = 0
  }

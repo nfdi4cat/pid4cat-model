@@ -9,6 +9,7 @@
     "https://nfdi4cat.github.io/pid4cat-model"
   ],
   "id": "https://w3id.org/nfdi4cat/pid4cat-model",
+  "version": "0.0.0",
   "imports": [
     "linkml:types",
     "media_types"
@@ -42,6 +43,10 @@
     {
       "prefix_prefix": "voc4cat",
       "prefix_reference": "https://w3id.org/nfdi4cat/voc4cat_"
+    },
+    {
+      "prefix_prefix": "mediatype",
+      "prefix_reference": "https://www.iana.org/assignments/media-types/"
     }
   ],
   "default_prefix": "pid4cat_model",
@@ -680,118 +685,145 @@
       ]
     },
     {
-      "name": "MEDIA_Types",
-      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model#media-types/MEDIATypes",
-      "description": "The IANA media types are used to specify the type of data.",
-      "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model#media-types",
+      "name": "MediaTypesEnum",
+      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/media-types//MediaTypesEnum",
+      "description": "IANA media types are used to specify the type of data.",
+      "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model/media-types/",
       "permissible_values": [
         {
           "text": "application/epub+zip",
-          "description": "For data in Electronic Publication Format (EPUB)."
+          "description": "For data in Electronic Publication Format (EPUB).",
+          "meaning": "mediatype:application/epub+zip"
         },
         {
           "text": "application/json",
-          "description": "For data in JavaScript Object Notation (JSON)."
+          "description": "For data in JavaScript Object Notation (JSON).",
+          "meaning": "mediatype:application/json"
         },
         {
           "text": "application/ld+json",
-          "description": "For data in Linked Data json (JSON-LD)."
+          "description": "For data in Linked Data json (JSON-LD).",
+          "meaning": "mediatype:application/ld+json"
         },
         {
           "text": "application/octet-stream",
-          "description": "For binary data."
+          "description": "For binary data.",
+          "meaning": "mediatype:application/octet-stream"
         },
         {
           "text": "application/pdf",
-          "description": "For data in Portable Document Format (PDF)."
+          "description": "For data in Portable Document Format (PDF).",
+          "meaning": "mediatype:application/pdf"
         },
         {
           "text": "application/vnd.eln+zip",
-          "description": "For data in ELN ZIP format."
+          "description": "For data in ELN ZIP format.",
+          "meaning": "mediatype:application/vnd.eln+zip"
         },
         {
           "text": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
-          "description": "For data in PowerPoint pptx format."
+          "description": "For data in PowerPoint pptx format.",
+          "meaning": "mediatype:application/vnd.openxmlformats-officedocument.presentationml.presentation"
         },
         {
           "text": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-          "description": "For data in Excel xlsx format."
+          "description": "For data in Excel xlsx format.",
+          "meaning": "mediatype:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
         },
         {
           "text": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-          "description": "For data in Word docx format."
+          "description": "For data in Word docx format.",
+          "meaning": "mediatype:application/vnd.openxmlformats-officedocument.wordprocessingml.document"
         },
         {
           "text": "application/xml",
-          "description": "For generic XML data."
+          "description": "For generic XML data.",
+          "meaning": "mediatype:application/xml"
         },
         {
           "text": "application/yaml",
-          "description": "For YAML data."
+          "description": "For YAML data.",
+          "meaning": "mediatype:application/yaml"
         },
         {
           "text": "application/zip",
-          "description": "For zip archives."
+          "description": "For zip archives.",
+          "meaning": "mediatype:application/zip"
         },
         {
           "text": "image/gif",
-          "description": "For GIF images."
+          "description": "For GIF images.",
+          "meaning": "mediatype:image/gif"
         },
         {
           "text": "image/jpeg",
-          "description": "For JPEG images."
+          "description": "For JPEG images.",
+          "meaning": "mediatype:image/jpeg"
         },
         {
           "text": "image/png",
-          "description": "For PNG images."
+          "description": "For PNG images.",
+          "meaning": "mediatype:image/png"
         },
         {
           "text": "image/svg+xml",
-          "description": "For SVG images."
+          "description": "For SVG images.",
+          "meaning": "mediatype:image/svg+xml"
         },
         {
           "text": "image/tiff",
-          "description": "For TIFF images."
+          "description": "For TIFF images.",
+          "meaning": "mediatype:image/tiff"
         },
         {
           "text": "image/webp",
-          "description": "For WebP images."
+          "description": "For WebP images.",
+          "meaning": "mediatype:image/webp"
         },
         {
           "text": "text/csv",
-          "description": "For data in comma-separated values (CSV) format."
+          "description": "For data in comma-separated values (CSV) format.",
+          "meaning": "mediatype:text/csv"
         },
         {
           "text": "text/html",
-          "description": "For html web pages."
+          "description": "For html web pages.",
+          "meaning": "mediatype:text/html"
         },
         {
           "text": "text/javascript",
-          "description": "For JavaScript code."
+          "description": "For JavaScript code.",
+          "meaning": "mediatype:text/javascript"
         },
         {
           "text": "text/markdown",
-          "description": "For data in markdown text format."
+          "description": "For data in markdown text format.",
+          "meaning": "mediatype:text/markdown"
         },
         {
           "text": "text/plain",
-          "description": "For plain text data (default text media type)."
+          "description": "For plain text data (default text media type).",
+          "meaning": "mediatype:text/plain"
         },
         {
           "text": "text/tab-separated-values",
-          "description": "For data in tab-separated values (TSV) format."
+          "description": "For data in tab-separated values (TSV) format.",
+          "meaning": "mediatype:text/tab-separated-values"
         },
         {
           "text": "text/turtle",
-          "description": "For data in turtle format."
+          "description": "For data in turtle format.",
+          "meaning": "mediatype:text/turtle"
         },
         {
           "text": "text/xml",
-          "description": "For XML data."
+          "description": "For XML data.",
+          "meaning": "mediatype:text/xml"
         },
         {
           "text": "video/mp4",
-          "description": "For mp4 video files."
+          "description": "For mp4 video files.",
+          "meaning": "mediatype:video/mp4"
         },
         {
           "text": "video/webm",
@@ -889,7 +921,7 @@
       "description": "The index of the handle record.",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "slot_uri": "https://w3id.org/nfdi4cat/pid4cat-model/index",
-      "owner": "LOG",
+      "owner": "CHANGES",
       "domain_of": [
         "URL",
         "STATUS",
@@ -898,7 +930,7 @@
         "EMAIL",
         "RESOURCE",
         "RELATED",
-        "LOG"
+        "CHANGES"
       ],
       "range": "integer",
       "@type": "SlotDefinition"
@@ -909,7 +941,7 @@
       "description": "The data in the handle record.",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "slot_uri": "https://w3id.org/nfdi4cat/pid4cat-model/data",
-      "owner": "LOG",
+      "owner": "CHANGES",
       "domain_of": [
         "URL",
         "STATUS",
@@ -918,7 +950,7 @@
         "EMAIL",
         "RESOURCE",
         "RELATED",
-        "LOG"
+        "CHANGES"
       ],
       "range": "string",
       "@type": "SlotDefinition"
@@ -1100,11 +1132,11 @@
       "@type": "SlotDefinition"
     },
     {
-      "name": "email",
-      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/email",
+      "name": "email_address",
+      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/email_address",
       "description": "Email address of the agent that created or modified the PID record.",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
-      "slot_uri": "https://w3id.org/nfdi4cat/pid4cat-model/email",
+      "slot_uri": "https://w3id.org/nfdi4cat/pid4cat-model/email_address",
       "owner": "Agent",
       "domain_of": [
         "Agent"
@@ -1161,7 +1193,7 @@
       "domain_of": [
         "RepresentationVariant"
       ],
-      "range": "MEDIA_Types",
+      "range": "MediaTypesEnum",
       "@type": "SlotDefinition"
     },
     {
@@ -1192,11 +1224,11 @@
       "@type": "SlotDefinition"
     },
     {
-      "name": "url",
-      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/url",
-      "description": "The URL of the representation.",
+      "name": "variant_url",
+      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/variant_url",
+      "description": "The URL of the representation variant.",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
-      "slot_uri": "https://w3id.org/nfdi4cat/pid4cat-model/url",
+      "slot_uri": "https://w3id.org/nfdi4cat/pid4cat-model/variant_url",
       "owner": "RepresentationVariant",
       "domain_of": [
         "RepresentationVariant"
@@ -1288,6 +1320,7 @@
       "usage_slot_name": "handle",
       "range": "string",
       "required": true,
+      "pattern": "^\\d{2}\\.T?\\d{4,}\\/.*$",
       "@type": "SlotDefinition"
     },
     {
@@ -1936,17 +1969,17 @@
       "@type": "SlotDefinition"
     },
     {
-      "name": "LOG_index",
+      "name": "CHANGES_index",
       "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/index",
       "description": "The index of the handle record.",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "is_a": "index",
-      "domain": "LOG",
+      "domain": "CHANGES",
       "slot_uri": "https://w3id.org/nfdi4cat/pid4cat-model/index",
       "alias": "index",
-      "owner": "LOG",
+      "owner": "CHANGES",
       "domain_of": [
-        "LOG"
+        "CHANGES"
       ],
       "is_usage_slot": true,
       "usage_slot_name": "index",
@@ -1957,17 +1990,17 @@
       "@type": "SlotDefinition"
     },
     {
-      "name": "LOG_data",
+      "name": "CHANGES_data",
       "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/data",
       "description": "The data in the handle record.",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "is_a": "data",
-      "domain": "LOG",
+      "domain": "CHANGES",
       "slot_uri": "https://w3id.org/nfdi4cat/pid4cat-model/data",
       "alias": "data",
-      "owner": "LOG",
+      "owner": "CHANGES",
       "domain_of": [
-        "LOG"
+        "CHANGES"
       ],
       "is_usage_slot": true,
       "usage_slot_name": "data",
@@ -2153,20 +2186,20 @@
       "@type": "SlotDefinition"
     },
     {
-      "name": "Agent_email",
-      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/email",
+      "name": "Agent_email_address",
+      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/email_address",
       "description": "Email address of the agent that created or modified the PID record.",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
-      "is_a": "email",
+      "is_a": "email_address",
       "domain": "Agent",
-      "slot_uri": "https://w3id.org/nfdi4cat/pid4cat-model/email",
-      "alias": "email",
+      "slot_uri": "https://w3id.org/nfdi4cat/pid4cat-model/email_address",
+      "alias": "email_address",
       "owner": "Agent",
       "domain_of": [
         "Agent"
       ],
       "is_usage_slot": true,
-      "usage_slot_name": "email",
+      "usage_slot_name": "email_address",
       "range": "string",
       "required": true,
       "pattern": "^\\S+@[\\S+\\.]+\\S+",
@@ -2244,7 +2277,7 @@
       ],
       "is_usage_slot": true,
       "usage_slot_name": "media_type",
-      "range": "MEDIA_Types",
+      "range": "MediaTypesEnum",
       "@type": "SlotDefinition"
     },
     {
@@ -2283,7 +2316,7 @@
       "is_usage_slot": true,
       "usage_slot_name": "identifier",
       "range": "string",
-      "pattern": "^doi:10\\.\\d{4,}\\/.*$",
+      "pattern": "^10\\.\\d{4,}\\/.*$",
       "@type": "SlotDefinition"
     },
     {
@@ -2322,7 +2355,7 @@
       "is_usage_slot": true,
       "usage_slot_name": "identifier",
       "range": "string",
-      "pattern": "^(hdl|handle):\\d{2}\\.\\d{4,}\\/.*$",
+      "pattern": "^\\d{2}\\.T?\\d{4,}\\/.*$",
       "@type": "SlotDefinition"
     },
     {
@@ -2342,7 +2375,7 @@
       "usage_slot_name": "resolving_url",
       "range": "uri",
       "required": true,
-      "pattern": "^https:\\/\\/hdl\\.handle\\.net\\/\\d{2}\\.\\d{4,}\\/.*$",
+      "pattern": "^https:\\/\\/hdl\\.handle\\.net\\/\\d{2}\\.T?\\d{4,}\\/.*$",
       "@type": "SlotDefinition"
     },
     {
@@ -2703,8 +2736,8 @@
       "@type": "ClassDefinition"
     },
     {
-      "name": "LOG",
-      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/LOG",
+      "name": "CHANGES",
+      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/CHANGES",
       "description": "The data element in the handle API for the change log.",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "is_a": "HandleRecord",
@@ -2712,11 +2745,11 @@
         "HandleRecord_timestamp",
         "HandleRecord_ttl",
         "HandleRecord_type",
-        "LOG_index",
-        "LOG_data"
+        "CHANGES_index",
+        "CHANGES_data"
       ],
       "slot_usage": {},
-      "class_uri": "https://w3id.org/nfdi4cat/pid4cat-model/LOG",
+      "class_uri": "https://w3id.org/nfdi4cat/pid4cat-model/CHANGES",
       "@type": "ClassDefinition"
     },
     {
@@ -2810,7 +2843,7 @@
       ],
       "slots": [
         "Agent_name",
-        "Agent_email",
+        "Agent_email_address",
         "Agent_orcid",
         "Agent_affiliation_ror",
         "Agent_role"
@@ -2825,7 +2858,7 @@
       "description": "Data class for representations of the resource in other media types than text/html which is the default for landing_page_url.",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "slots": [
-        "url",
+        "variant_url",
         "RepresentationVariant_media_type",
         "encoding_format",
         "size"
@@ -2960,9 +2993,9 @@
   ],
   "metamodel_version": "1.7.0",
   "source_file": "pid4cat_model.yaml",
-  "source_file_date": "2025-03-03T18:37:02",
-  "source_file_size": 24753,
-  "generation_date": "2025-03-03T18:55:15",
+  "source_file_date": "2025-03-07T08:49:35",
+  "source_file_size": 25296,
+  "generation_date": "2025-03-07T08:52:58",
   "@type": "SchemaDefinition",
   "@context": [
     "project/jsonld/pid4cat_model.context.jsonld",

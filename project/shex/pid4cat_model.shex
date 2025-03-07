@@ -1,4 +1,5 @@
 # metamodel_version: 1.7.0
+# version: 0.0.0
 BASE <https://w3id.org/nfdi4cat/pid4cat-model/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
@@ -46,7 +47,7 @@ linkml:Sparqlpath xsd:string
 
 <Agent> CLOSED {
     (  $<Agent_tes> (  <name> @linkml:String ;
-          <email> @linkml:String ;
+          <email_address> @linkml:String ;
           <orcid> @linkml:String ? ;
           <affiliation_ror> @linkml:Uri ? ;
           <role> [ <https://w3id.org/nfdi4cat/pid4cat-model/Pid4CatAgentRole#TRUSTEE>
@@ -63,6 +64,16 @@ linkml:Sparqlpath xsd:string
           <resolving_url> @linkml:Uri
        ) ;
        rdf:type [ <ArkIdentifier> ] ?
+    )
+}
+
+<CHANGES> CLOSED {
+    (  $<CHANGES_tes> (  &<HandleRecord_tes> ;
+          rdf:type [ <HandleRecord> ] ? ;
+          <index> @linkml:Integer ;
+          <data> @<HdlDataLog>
+       ) ;
+       rdf:type [ <CHANGES> ] ?
     )
 }
 
@@ -131,7 +142,7 @@ linkml:Sparqlpath xsd:string
           ) ;
           rdf:type [ <HandleRecord> ] ?
        )
-    } OR @<EMAIL> OR @<LICENSE> OR @<LOG> OR @<RELATED> OR @<RESOURCE> OR @<SCHEMAVER> OR @<STATUS> OR @<URL>
+    } OR @<CHANGES> OR @<EMAIL> OR @<LICENSE> OR @<RELATED> OR @<RESOURCE> OR @<SCHEMAVER> OR @<STATUS> OR @<URL>
 )
 
 <HandleRecordContainer> CLOSED {
@@ -215,16 +226,6 @@ linkml:Sparqlpath xsd:string
     )
 }
 
-<LOG> CLOSED {
-    (  $<LOG_tes> (  &<HandleRecord_tes> ;
-          rdf:type [ <HandleRecord> ] ? ;
-          <index> @linkml:Integer ;
-          <data> @<HdlDataLog>
-       ) ;
-       rdf:type [ <LOG> ] ?
-    )
-}
-
 <LogRecord> CLOSED {
     (  $<LogRecord_tes> (  <datetime_log> @linkml:Datetime ;
           <has_agent> @<Agent> ;
@@ -295,35 +296,29 @@ linkml:Sparqlpath xsd:string
 )
 
 <RepresentationVariant> CLOSED {
-    (  $<RepresentationVariant_tes> (  <url> @linkml:Uri ? ;
-          <media_type> [ <https://w3id.org/nfdi4cat/pid4cat-model#media-types/MEDIATypes#application/epub%2Bzip>
-             <https://w3id.org/nfdi4cat/pid4cat-model#media-types/MEDIATypes#application/json>
-             <https://w3id.org/nfdi4cat/pid4cat-model#media-types/MEDIATypes#application/ld%2Bjson>
-             <https://w3id.org/nfdi4cat/pid4cat-model#media-types/MEDIATypes#application/octet-stream>
-             <https://w3id.org/nfdi4cat/pid4cat-model#media-types/MEDIATypes#application/pdf>
-             <https://w3id.org/nfdi4cat/pid4cat-model#media-types/MEDIATypes#application/vnd.eln%2Bzip>
-             <https://w3id.org/nfdi4cat/pid4cat-model#media-types/MEDIATypes#application/vnd.openxmlformats-officedocument.presentationml.presentation>
-             <https://w3id.org/nfdi4cat/pid4cat-model#media-types/MEDIATypes#application/vnd.openxmlformats-officedocument.spreadsheetml.sheet>
-             <https://w3id.org/nfdi4cat/pid4cat-model#media-types/MEDIATypes#application/vnd.openxmlformats-officedocument.wordprocessingml.document>
-             <https://w3id.org/nfdi4cat/pid4cat-model#media-types/MEDIATypes#application/xml>
-             <https://w3id.org/nfdi4cat/pid4cat-model#media-types/MEDIATypes#application/yaml>
-             <https://w3id.org/nfdi4cat/pid4cat-model#media-types/MEDIATypes#application/zip>
-             <https://w3id.org/nfdi4cat/pid4cat-model#media-types/MEDIATypes#image/gif>
-             <https://w3id.org/nfdi4cat/pid4cat-model#media-types/MEDIATypes#image/jpeg>
-             <https://w3id.org/nfdi4cat/pid4cat-model#media-types/MEDIATypes#image/png>
-             <https://w3id.org/nfdi4cat/pid4cat-model#media-types/MEDIATypes#image/svg%2Bxml>
-             <https://w3id.org/nfdi4cat/pid4cat-model#media-types/MEDIATypes#image/tiff>
-             <https://w3id.org/nfdi4cat/pid4cat-model#media-types/MEDIATypes#image/webp>
-             <https://w3id.org/nfdi4cat/pid4cat-model#media-types/MEDIATypes#text/csv>
-             <https://w3id.org/nfdi4cat/pid4cat-model#media-types/MEDIATypes#text/html>
-             <https://w3id.org/nfdi4cat/pid4cat-model#media-types/MEDIATypes#text/javascript>
-             <https://w3id.org/nfdi4cat/pid4cat-model#media-types/MEDIATypes#text/markdown>
-             <https://w3id.org/nfdi4cat/pid4cat-model#media-types/MEDIATypes#text/plain>
-             <https://w3id.org/nfdi4cat/pid4cat-model#media-types/MEDIATypes#text/tab-separated-values>
-             <https://w3id.org/nfdi4cat/pid4cat-model#media-types/MEDIATypes#text/turtle>
-             <https://w3id.org/nfdi4cat/pid4cat-model#media-types/MEDIATypes#text/xml>
-             <https://w3id.org/nfdi4cat/pid4cat-model#media-types/MEDIATypes#video/mp4>
-             <https://w3id.org/nfdi4cat/pid4cat-model#media-types/MEDIATypes#video/webm> ] ? ;
+    (  $<RepresentationVariant_tes> (  <variant_url> @linkml:Uri ? ;
+          <media_type> [ <https://www.iana.org/assignments/media-types/application/epub+zip>
+             <https://www.iana.org/assignments/media-types/application/json>
+             <https://www.iana.org/assignments/media-types/application/ld+json>
+             <https://www.iana.org/assignments/media-types/application/octet-stream>
+             <https://www.iana.org/assignments/media-types/application/pdf>
+             <https://www.iana.org/assignments/media-types/application/vnd.eln+zip>
+             <https://www.iana.org/assignments/media-types/application/vnd.openxmlformats-officedocument.presentationml.presentation>
+             <https://www.iana.org/assignments/media-types/application/vnd.openxmlformats-officedocument.spreadsheetml.sheet>
+             <https://www.iana.org/assignments/media-types/application/vnd.openxmlformats-officedocument.wordprocessingml.document>
+             <https://www.iana.org/assignments/media-types/application/xml>
+             <https://www.iana.org/assignments/media-types/application/yaml>
+             <https://www.iana.org/assignments/media-types/application/zip>
+             <https://www.iana.org/assignments/media-types/image/gif> <https://www.iana.org/assignments/media-types/image/jpeg>
+             <https://www.iana.org/assignments/media-types/image/png> <https://www.iana.org/assignments/media-types/image/svg+xml>
+             <https://www.iana.org/assignments/media-types/image/tiff> <https://www.iana.org/assignments/media-types/image/webp>
+             <https://www.iana.org/assignments/media-types/text/csv> <https://www.iana.org/assignments/media-types/text/html>
+             <https://www.iana.org/assignments/media-types/text/javascript>
+             <https://www.iana.org/assignments/media-types/text/markdown> <https://www.iana.org/assignments/media-types/text/plain>
+             <https://www.iana.org/assignments/media-types/text/tab-separated-values>
+             <https://www.iana.org/assignments/media-types/text/turtle> <https://www.iana.org/assignments/media-types/text/xml>
+             <https://www.iana.org/assignments/media-types/video/mp4>
+             <https://w3id.org/nfdi4cat/pid4cat-model/media-types/MediaTypesEnum#video/webm> ] ? ;
           <encoding_format> @linkml:String ? ;
           <size> @linkml:Integer ?
        ) ;

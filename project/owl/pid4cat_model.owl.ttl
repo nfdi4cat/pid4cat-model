@@ -1,6 +1,7 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix linkml: <https://w3id.org/linkml/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix pav: <http://purl.org/pav/> .
 @prefix pid4cat_model: <https://w3id.org/nfdi4cat/pid4cat-model/> .
 @prefix prov1: <https://www.w3.org/ns/prov#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -25,29 +26,32 @@ pid4cat_model:HandleAPIRecord a owl:Class,
         linkml:ClassDefinition ;
     rdfs:label "HandleAPIRecord" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty pid4cat_model:handle ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty pid4cat_model:responseCode ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty pid4cat_model:responseCode ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty pid4cat_model:values ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty pid4cat_model:handle ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
+            owl:allValuesFrom [ a rdfs:Datatype ;
+                    owl:intersectionOf ( linkml:String [ a rdfs:Datatype ;
+                                owl:onDatatype xsd:string ;
+                                owl:withRestrictions ( [ xsd:pattern "^\\d{2}\\.T?\\d{4,}\\/.*$" ] ) ] ) ] ;
             owl:onProperty pid4cat_model:handle ],
         [ a owl:Restriction ;
             owl:allValuesFrom pid4cat_model:HandleRecord ;
             owl:onProperty pid4cat_model:values ],
         [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty pid4cat_model:responseCode ],
+        [ a owl:Restriction ;
             owl:allValuesFrom linkml:Integer ;
-            owl:onProperty pid4cat_model:responseCode ] ;
+            owl:onProperty pid4cat_model:responseCode ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty pid4cat_model:handle ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty pid4cat_model:handle ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty pid4cat_model:responseCode ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty pid4cat_model:values ] ;
     skos:definition "A class representing a handle record query response of the REST (json) API of a handle server." ;
     skos:inScheme <https://w3id.org/nfdi4cat/pid4cat-model> .
 
@@ -58,12 +62,6 @@ pid4cat_model:HdlDataContact a owl:Class,
             owl:maxCardinality 1 ;
             owl:onProperty pid4cat_model:format ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty pid4cat_model:value ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty pid4cat_model:value ],
-        [ a owl:Restriction ;
             owl:allValuesFrom [ a rdfs:Datatype ;
                     owl:intersectionOf ( linkml:String [ a rdfs:Datatype ;
                                 owl:onDatatype xsd:string ;
@@ -73,11 +71,17 @@ pid4cat_model:HdlDataContact a owl:Class,
             owl:minCardinality 0 ;
             owl:onProperty pid4cat_model:format ],
         [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty pid4cat_model:value ],
+        [ a owl:Restriction ;
             owl:allValuesFrom [ a rdfs:Datatype ;
                     owl:intersectionOf ( linkml:String [ a rdfs:Datatype ;
                                 owl:onDatatype xsd:string ;
                                 owl:withRestrictions ( [ xsd:pattern "string" ] ) ] ) ] ;
-            owl:onProperty pid4cat_model:format ] ;
+            owl:onProperty pid4cat_model:format ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty pid4cat_model:value ] ;
     skos:definition "The data class for the handle-record contact email." ;
     skos:inScheme <https://w3id.org/nfdi4cat/pid4cat-model> .
 
@@ -91,6 +95,15 @@ pid4cat_model:HdlDataLicense a owl:Class,
                                 owl:withRestrictions ( [ xsd:pattern "string" ] ) ] ) ] ;
             owl:onProperty pid4cat_model:format ],
         [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty pid4cat_model:value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty pid4cat_model:format ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty pid4cat_model:value ],
+        [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty pid4cat_model:format ],
         [ a owl:Restriction ;
@@ -98,15 +111,6 @@ pid4cat_model:HdlDataLicense a owl:Class,
                     owl:intersectionOf ( linkml:String [ a rdfs:Datatype ;
                                 owl:onDatatype xsd:string ;
                                 owl:withRestrictions ( [ xsd:pattern "CC0-1.0" ] ) ] ) ] ;
-            owl:onProperty pid4cat_model:value ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty pid4cat_model:format ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty pid4cat_model:value ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
             owl:onProperty pid4cat_model:value ] ;
     skos:definition "The data class for the PID metadata license." ;
     skos:inScheme <https://w3id.org/nfdi4cat/pid4cat-model> .
@@ -115,9 +119,6 @@ pid4cat_model:HdlDataLog a owl:Class,
         linkml:ClassDefinition ;
     rdfs:label "HdlDataLog" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty pid4cat_model:format ],
-        [ a owl:Restriction ;
             owl:minCardinality 1 ;
             owl:onProperty pid4cat_model:value ],
         [ a owl:Restriction ;
@@ -127,11 +128,14 @@ pid4cat_model:HdlDataLog a owl:Class,
                                 owl:withRestrictions ( [ xsd:pattern "string" ] ) ] ) ] ;
             owl:onProperty pid4cat_model:format ],
         [ a owl:Restriction ;
-            owl:allValuesFrom pid4cat_model:LogRecord ;
-            owl:onProperty pid4cat_model:value ],
+            owl:maxCardinality 1 ;
+            owl:onProperty pid4cat_model:format ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty pid4cat_model:format ] ;
+            owl:onProperty pid4cat_model:format ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom pid4cat_model:LogRecord ;
+            owl:onProperty pid4cat_model:value ] ;
     skos:definition "The data class for the change log." ;
     skos:inScheme <https://w3id.org/nfdi4cat/pid4cat-model> .
 
@@ -139,22 +143,22 @@ pid4cat_model:HdlDataRelated a owl:Class,
         linkml:ClassDefinition ;
     rdfs:label "HdlDataRelated" ;
     rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom pid4cat_model:Pid4CatRelation ;
+            owl:onProperty pid4cat_model:value ],
+        [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty pid4cat_model:format ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty pid4cat_model:format ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty pid4cat_model:value ],
         [ a owl:Restriction ;
             owl:allValuesFrom [ a rdfs:Datatype ;
                     owl:intersectionOf ( linkml:String [ a rdfs:Datatype ;
                                 owl:onDatatype xsd:string ;
                                 owl:withRestrictions ( [ xsd:pattern "string" ] ) ] ) ] ;
-            owl:onProperty pid4cat_model:format ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty pid4cat_model:value ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom pid4cat_model:Pid4CatRelation ;
-            owl:onProperty pid4cat_model:value ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
             owl:onProperty pid4cat_model:format ] ;
     skos:definition "The data class for related identifiers." ;
     skos:inScheme <https://w3id.org/nfdi4cat/pid4cat-model> .
@@ -163,22 +167,22 @@ pid4cat_model:HdlDataResourceInfo a owl:Class,
         linkml:ClassDefinition ;
     rdfs:label "HdlDataResourceInfo" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty pid4cat_model:format ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom pid4cat_model:ResourceInfo ;
-            owl:onProperty pid4cat_model:value ],
-        [ a owl:Restriction ;
             owl:minCardinality 1 ;
             owl:onProperty pid4cat_model:value ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty pid4cat_model:value ],
         [ a owl:Restriction ;
+            owl:allValuesFrom pid4cat_model:ResourceInfo ;
+            owl:onProperty pid4cat_model:value ],
+        [ a owl:Restriction ;
             owl:allValuesFrom [ a rdfs:Datatype ;
                     owl:intersectionOf ( linkml:String [ a rdfs:Datatype ;
                                 owl:onDatatype xsd:string ;
                                 owl:withRestrictions ( [ xsd:pattern "string" ] ) ] ) ] ;
+            owl:onProperty pid4cat_model:format ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
             owl:onProperty pid4cat_model:format ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
@@ -190,7 +194,16 @@ pid4cat_model:HdlDataSchemaVer a owl:Class,
         linkml:ClassDefinition ;
     rdfs:label "HdlDataSchemaVer" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:minCardinality 0 ;
+            owl:allValuesFrom [ a rdfs:Datatype ;
+                    owl:intersectionOf ( linkml:String [ a rdfs:Datatype ;
+                                owl:onDatatype xsd:string ;
+                                owl:withRestrictions ( [ xsd:pattern "^v\\d+\\.\\d+\\.\\d+$" ] ) ] ) ] ;
+            owl:onProperty pid4cat_model:value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom [ a rdfs:Datatype ;
+                    owl:intersectionOf ( linkml:String [ a rdfs:Datatype ;
+                                owl:onDatatype xsd:string ;
+                                owl:withRestrictions ( [ xsd:pattern "string" ] ) ] ) ] ;
             owl:onProperty pid4cat_model:format ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
@@ -202,17 +215,8 @@ pid4cat_model:HdlDataSchemaVer a owl:Class,
             owl:maxCardinality 1 ;
             owl:onProperty pid4cat_model:format ],
         [ a owl:Restriction ;
-            owl:allValuesFrom [ a rdfs:Datatype ;
-                    owl:intersectionOf ( linkml:String [ a rdfs:Datatype ;
-                                owl:onDatatype xsd:string ;
-                                owl:withRestrictions ( [ xsd:pattern "string" ] ) ] ) ] ;
-            owl:onProperty pid4cat_model:format ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom [ a rdfs:Datatype ;
-                    owl:intersectionOf ( linkml:String [ a rdfs:Datatype ;
-                                owl:onDatatype xsd:string ;
-                                owl:withRestrictions ( [ xsd:pattern "^v\\d+\\.\\d+\\.\\d+$" ] ) ] ) ] ;
-            owl:onProperty pid4cat_model:value ] ;
+            owl:minCardinality 0 ;
+            owl:onProperty pid4cat_model:format ] ;
     skos:definition "The data class for the schema version." ;
     skos:inScheme <https://w3id.org/nfdi4cat/pid4cat-model> .
 
@@ -220,7 +224,16 @@ pid4cat_model:HdlDataStatus a owl:Class,
         linkml:ClassDefinition ;
     rdfs:label "HdlDataStatus" ;
     rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom pid4cat_model:Pid4CatStatus ;
+            owl:onProperty pid4cat_model:value ],
+        [ a owl:Restriction ;
             owl:minCardinality 1 ;
+            owl:onProperty pid4cat_model:value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty pid4cat_model:format ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
             owl:onProperty pid4cat_model:value ],
         [ a owl:Restriction ;
             owl:allValuesFrom [ a rdfs:Datatype ;
@@ -229,17 +242,8 @@ pid4cat_model:HdlDataStatus a owl:Class,
                                 owl:withRestrictions ( [ xsd:pattern "string" ] ) ] ) ] ;
             owl:onProperty pid4cat_model:format ],
         [ a owl:Restriction ;
-            owl:allValuesFrom pid4cat_model:Pid4CatStatus ;
-            owl:onProperty pid4cat_model:value ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty pid4cat_model:format ],
-        [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty pid4cat_model:format ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty pid4cat_model:value ] ;
+            owl:onProperty pid4cat_model:format ] ;
     skos:definition "The data class for the PID status information." ;
     skos:inScheme <https://w3id.org/nfdi4cat/pid4cat-model> .
 
@@ -254,9 +258,6 @@ pid4cat_model:HdlDataUrl a owl:Class,
             owl:onProperty pid4cat_model:value ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty pid4cat_model:format ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
             owl:onProperty pid4cat_model:value ],
         [ a owl:Restriction ;
             owl:minCardinality 1 ;
@@ -269,6 +270,9 @@ pid4cat_model:HdlDataUrl a owl:Class,
                     owl:intersectionOf ( linkml:String [ a rdfs:Datatype ;
                                 owl:onDatatype xsd:string ;
                                 owl:withRestrictions ( [ xsd:pattern "string" ] ) ] ) ] ;
+            owl:onProperty pid4cat_model:format ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
             owl:onProperty pid4cat_model:format ] ;
     skos:definition "The data class for the redirect url." ;
     skos:inScheme <https://w3id.org/nfdi4cat/pid4cat-model> .
@@ -277,38 +281,38 @@ pid4cat_model:LogRecord a owl:Class,
         linkml:ClassDefinition ;
     rdfs:label "LogRecord" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty pid4cat_model:description ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom pid4cat_model:ChangeLogField ;
-            owl:onProperty pid4cat_model:changed_field ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty pid4cat_model:description ],
-        [ a owl:Restriction ;
             owl:allValuesFrom linkml:String ;
             owl:onProperty pid4cat_model:description ],
         [ a owl:Restriction ;
             owl:minCardinality 1 ;
             owl:onProperty pid4cat_model:datetime_log ],
         [ a owl:Restriction ;
+            owl:allValuesFrom linkml:Datetime ;
+            owl:onProperty pid4cat_model:datetime_log ],
+        [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty pid4cat_model:has_agent ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
+            owl:onProperty pid4cat_model:description ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty pid4cat_model:description ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
             owl:onProperty pid4cat_model:datetime_log ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom pid4cat_model:ChangeLogField ;
+            owl:onProperty pid4cat_model:changed_field ],
         [ a owl:Restriction ;
             owl:allValuesFrom pid4cat_model:Agent ;
             owl:onProperty pid4cat_model:has_agent ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty pid4cat_model:changed_field ],
-        [ a owl:Restriction ;
             owl:minCardinality 1 ;
             owl:onProperty pid4cat_model:has_agent ],
         [ a owl:Restriction ;
-            owl:allValuesFrom linkml:Datetime ;
-            owl:onProperty pid4cat_model:datetime_log ],
+            owl:maxCardinality 1 ;
+            owl:onProperty pid4cat_model:changed_field ],
         [ a owl:Restriction ;
             owl:minCardinality 1 ;
             owl:onProperty pid4cat_model:changed_field ] ;
@@ -319,22 +323,13 @@ pid4cat_model:Pid4CatRelation a owl:Class,
         linkml:ClassDefinition ;
     rdfs:label "Pid4CatRelation" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom pid4cat_model:RelatedIdentifier ;
-            owl:onProperty pid4cat_model:related_identifier ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty pid4cat_model:related_identifier ],
-        [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty pid4cat_model:datetime_log ],
         [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty pid4cat_model:datetime_log ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:Datetime ;
-            owl:onProperty pid4cat_model:datetime_log ],
-        [ a owl:Restriction ;
             owl:maxCardinality 1 ;
+            owl:onProperty pid4cat_model:related_identifier ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
             owl:onProperty pid4cat_model:related_identifier ],
         [ a owl:Restriction ;
             owl:allValuesFrom pid4cat_model:RelationType ;
@@ -344,7 +339,16 @@ pid4cat_model:Pid4CatRelation a owl:Class,
             owl:onProperty pid4cat_model:relation_type ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty pid4cat_model:relation_type ] ;
+            owl:onProperty pid4cat_model:relation_type ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:Datetime ;
+            owl:onProperty pid4cat_model:datetime_log ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom pid4cat_model:RelatedIdentifier ;
+            owl:onProperty pid4cat_model:related_identifier ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty pid4cat_model:datetime_log ] ;
     skos:definition "Data class for a relation to another resource identified by a pid4cat handle or another PID type." ;
     skos:inScheme <https://w3id.org/nfdi4cat/pid4cat-model> .
 
@@ -352,38 +356,38 @@ pid4cat_model:ResourceInfo a owl:Class,
         linkml:ClassDefinition ;
     rdfs:label "ResourceInfo" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty pid4cat_model:resource_category ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty pid4cat_model:description ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty pid4cat_model:resource_category ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty pid4cat_model:representation_variants ],
-        [ a owl:Restriction ;
             owl:allValuesFrom pid4cat_model:RepresentationVariant ;
             owl:onProperty pid4cat_model:representation_variants ],
         [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty pid4cat_model:label ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty pid4cat_model:description ],
-        [ a owl:Restriction ;
             owl:allValuesFrom linkml:String ;
             owl:onProperty pid4cat_model:label ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
+            owl:onProperty pid4cat_model:description ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty pid4cat_model:resource_category ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty pid4cat_model:description ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty pid4cat_model:label ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
             owl:onProperty pid4cat_model:label ],
         [ a owl:Restriction ;
             owl:allValuesFrom pid4cat_model:ResourceCategory ;
             owl:onProperty pid4cat_model:resource_category ],
         [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty pid4cat_model:representation_variants ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty pid4cat_model:description ],
+        [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty pid4cat_model:description ] ;
+            owl:onProperty pid4cat_model:resource_category ] ;
     skos:definition "Data class to hold information about the resource and its representation." ;
     skos:inScheme <https://w3id.org/nfdi4cat/pid4cat-model> .
 
@@ -391,47 +395,11 @@ pid4cat_model:Agent a owl:Class,
         linkml:ClassDefinition ;
     rdfs:label "Agent" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom [ a rdfs:Datatype ;
-                    owl:intersectionOf ( linkml:String [ a rdfs:Datatype ;
-                                owl:onDatatype xsd:string ;
-                                owl:withRestrictions ( [ xsd:pattern "^\\S+@[\\S+\\.]+\\S+" ] ) ] ) ] ;
-            owl:onProperty pid4cat_model:email ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty pid4cat_model:email ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty pid4cat_model:orcid ],
-        [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty pid4cat_model:name ],
         [ a owl:Restriction ;
             owl:minCardinality 1 ;
-            owl:onProperty pid4cat_model:email ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty pid4cat_model:name ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty pid4cat_model:name ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty pid4cat_model:role ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom [ a rdfs:Datatype ;
-                    owl:intersectionOf ( linkml:Uri [ a rdfs:Datatype ;
-                                owl:onDatatype xsd:string ;
-                                owl:withRestrictions ( [ xsd:pattern "^https:\\/\\/ror\\.org\\/0[a-hj-km-np-tv-z|0-9]{6}[0-9]{2}$" ] ) ] ) ] ;
-            owl:onProperty pid4cat_model:affiliation_ror ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty pid4cat_model:orcid ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty pid4cat_model:affiliation_ror ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty pid4cat_model:affiliation_ror ],
+            owl:onProperty pid4cat_model:email_address ],
         [ a owl:Restriction ;
             owl:allValuesFrom [ a rdfs:Datatype ;
                     owl:intersectionOf ( linkml:String [ a rdfs:Datatype ;
@@ -439,11 +407,47 @@ pid4cat_model:Agent a owl:Class,
                                 owl:withRestrictions ( [ xsd:pattern "^\\d{4}-\\d{4}-\\d{4}-\\d{3}[0-9X]$" ] ) ] ) ] ;
             owl:onProperty pid4cat_model:orcid ],
         [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty pid4cat_model:orcid ],
+        [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty pid4cat_model:role ],
         [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty pid4cat_model:role ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty pid4cat_model:email_address ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty pid4cat_model:orcid ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty pid4cat_model:name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty pid4cat_model:name ],
+        [ a owl:Restriction ;
             owl:allValuesFrom pid4cat_model:Pid4CatAgentRole ;
-            owl:onProperty pid4cat_model:role ] ;
+            owl:onProperty pid4cat_model:role ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty pid4cat_model:affiliation_ror ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom [ a rdfs:Datatype ;
+                    owl:intersectionOf ( linkml:String [ a rdfs:Datatype ;
+                                owl:onDatatype xsd:string ;
+                                owl:withRestrictions ( [ xsd:pattern "^\\S+@[\\S+\\.]+\\S+" ] ) ] ) ] ;
+            owl:onProperty pid4cat_model:email_address ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom [ a rdfs:Datatype ;
+                    owl:intersectionOf ( linkml:Uri [ a rdfs:Datatype ;
+                                owl:onDatatype xsd:string ;
+                                owl:withRestrictions ( [ xsd:pattern "^https:\\/\\/ror\\.org\\/0[a-hj-km-np-tv-z|0-9]{6}[0-9]{2}$" ] ) ] ) ] ;
+            owl:onProperty pid4cat_model:affiliation_ror ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty pid4cat_model:affiliation_ror ] ;
     skos:definition "Data class for a person who plays a role relative to PID creation or curation." ;
     skos:exactMatch prov1:Agent ;
     skos:inScheme <https://w3id.org/nfdi4cat/pid4cat-model> .
@@ -453,12 +457,15 @@ pid4cat_model:ArkIdentifier a owl:Class,
     rdfs:label "ArkIdentifier" ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty pid4cat_model:resolving_url ],
+            owl:onProperty pid4cat_model:identifier ],
         [ a owl:Restriction ;
             owl:allValuesFrom [ a rdfs:Datatype ;
                     owl:intersectionOf ( linkml:Uri [ a rdfs:Datatype ;
                                 owl:onDatatype xsd:string ;
                                 owl:withRestrictions ( [ xsd:pattern "^https?:\\/\\/.*\\/ark:\\/\\d{5}/.*$" ] ) ] ) ] ;
+            owl:onProperty pid4cat_model:resolving_url ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
             owl:onProperty pid4cat_model:resolving_url ],
         [ a owl:Restriction ;
             owl:allValuesFrom [ a rdfs:Datatype ;
@@ -472,11 +479,38 @@ pid4cat_model:ArkIdentifier a owl:Class,
         [ a owl:Restriction ;
             owl:minCardinality 1 ;
             owl:onProperty pid4cat_model:resolving_url ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty pid4cat_model:identifier ],
         pid4cat_model:RelatedIdentifier ;
     skos:definition "An ARK (Archival Resource Key)." ;
+    skos:inScheme <https://w3id.org/nfdi4cat/pid4cat-model> .
+
+pid4cat_model:CHANGES a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "CHANGES" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom [ a rdfs:Datatype ;
+                    owl:intersectionOf ( linkml:Integer [ a rdfs:Datatype ;
+                                owl:onDatatype xsd:integer ;
+                                owl:withRestrictions ( [ xsd:minInclusive 8 ] ) ] [ a rdfs:Datatype ;
+                                owl:onDatatype xsd:integer ;
+                                owl:withRestrictions ( [ xsd:maxInclusive 8 ] ) ] ) ] ;
+            owl:onProperty pid4cat_model:index ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom pid4cat_model:HdlDataLog ;
+            owl:onProperty pid4cat_model:data ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty pid4cat_model:data ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty pid4cat_model:index ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty pid4cat_model:data ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty pid4cat_model:index ],
+        pid4cat_model:HandleRecord ;
+    skos:definition "The data element in the handle API for the change log." ;
     skos:inScheme <https://w3id.org/nfdi4cat/pid4cat-model> .
 
 <https://w3id.org/nfdi4cat/pid4cat-model/ChangeLogField#CONTACT> a owl:Class,
@@ -518,17 +552,17 @@ pid4cat_model:DoiIdentifier a owl:Class,
         linkml:ClassDefinition ;
     rdfs:label "DoiIdentifier" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom [ a rdfs:Datatype ;
-                    owl:intersectionOf ( linkml:String [ a rdfs:Datatype ;
-                                owl:onDatatype xsd:string ;
-                                owl:withRestrictions ( [ xsd:pattern "^doi:10\\.\\d{4,}\\/.*$" ] ) ] ) ] ;
-            owl:onProperty pid4cat_model:identifier ],
-        [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty pid4cat_model:identifier ],
+            owl:onProperty pid4cat_model:resolving_url ],
         [ a owl:Restriction ;
             owl:minCardinality 1 ;
             owl:onProperty pid4cat_model:resolving_url ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom [ a rdfs:Datatype ;
+                    owl:intersectionOf ( linkml:String [ a rdfs:Datatype ;
+                                owl:onDatatype xsd:string ;
+                                owl:withRestrictions ( [ xsd:pattern "^10\\.\\d{4,}\\/.*$" ] ) ] ) ] ;
+            owl:onProperty pid4cat_model:identifier ],
         [ a owl:Restriction ;
             owl:allValuesFrom [ a rdfs:Datatype ;
                     owl:intersectionOf ( linkml:Uri [ a rdfs:Datatype ;
@@ -540,7 +574,7 @@ pid4cat_model:DoiIdentifier a owl:Class,
             owl:onProperty pid4cat_model:identifier ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty pid4cat_model:resolving_url ],
+            owl:onProperty pid4cat_model:identifier ],
         pid4cat_model:RelatedIdentifier ;
     skos:definition "A digital object identifier (DOI)." ;
     skos:inScheme <https://w3id.org/nfdi4cat/pid4cat-model> .
@@ -549,6 +583,12 @@ pid4cat_model:EMAIL a owl:Class,
         linkml:ClassDefinition ;
     rdfs:label "EMAIL" ;
     rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty pid4cat_model:data ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom pid4cat_model:HdlDataContact ;
+            owl:onProperty pid4cat_model:data ],
+        [ a owl:Restriction ;
             owl:allValuesFrom [ a rdfs:Datatype ;
                     owl:intersectionOf ( linkml:Integer [ a rdfs:Datatype ;
                                 owl:onDatatype xsd:integer ;
@@ -558,18 +598,12 @@ pid4cat_model:EMAIL a owl:Class,
             owl:onProperty pid4cat_model:index ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty pid4cat_model:data ],
+            owl:onProperty pid4cat_model:index ],
         [ a owl:Restriction ;
             owl:minCardinality 1 ;
             owl:onProperty pid4cat_model:index ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty pid4cat_model:index ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom pid4cat_model:HdlDataContact ;
-            owl:onProperty pid4cat_model:data ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
             owl:onProperty pid4cat_model:data ],
         pid4cat_model:HandleRecord ;
     skos:definition "The data element in the handle API for the contact email." ;
@@ -580,12 +614,9 @@ pid4cat_model:ExampleIdentifier a owl:Class,
     rdfs:label "ExampleIdentifier" ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:allValuesFrom [ a rdfs:Datatype ;
-                    owl:intersectionOf ( linkml:Uri [ a rdfs:Datatype ;
+                    owl:intersectionOf ( linkml:String [ a rdfs:Datatype ;
                                 owl:onDatatype xsd:string ;
-                                owl:withRestrictions ( [ xsd:pattern "^https?:\\/\\/(.+\\.)?example.(org|com)\\/.*$" ] ) ] ) ] ;
-            owl:onProperty pid4cat_model:resolving_url ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
+                                owl:withRestrictions ( [ xsd:pattern "^ex:.*$" ] ) ] ) ] ;
             owl:onProperty pid4cat_model:identifier ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
@@ -593,15 +624,18 @@ pid4cat_model:ExampleIdentifier a owl:Class,
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty pid4cat_model:resolving_url ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty pid4cat_model:identifier ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty pid4cat_model:identifier ],
         [ a owl:Restriction ;
             owl:allValuesFrom [ a rdfs:Datatype ;
-                    owl:intersectionOf ( linkml:String [ a rdfs:Datatype ;
+                    owl:intersectionOf ( linkml:Uri [ a rdfs:Datatype ;
                                 owl:onDatatype xsd:string ;
-                                owl:withRestrictions ( [ xsd:pattern "^ex:.*$" ] ) ] ) ] ;
-            owl:onProperty pid4cat_model:identifier ],
+                                owl:withRestrictions ( [ xsd:pattern "^https?:\\/\\/(.+\\.)?example.(org|com)\\/.*$" ] ) ] ) ] ;
+            owl:onProperty pid4cat_model:resolving_url ],
         pid4cat_model:RelatedIdentifier ;
     skos:definition "An example.org test identifier." ;
     skos:inScheme <https://w3id.org/nfdi4cat/pid4cat-model> .
@@ -629,28 +663,28 @@ pid4cat_model:HandleIdentifier a owl:Class,
         linkml:ClassDefinition ;
     rdfs:label "HandleIdentifier" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
+            owl:minCardinality 1 ;
             owl:onProperty pid4cat_model:resolving_url ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty pid4cat_model:identifier ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty pid4cat_model:identifier ],
         [ a owl:Restriction ;
-            owl:minCardinality 1 ;
+            owl:allValuesFrom [ a rdfs:Datatype ;
+                    owl:intersectionOf ( linkml:String [ a rdfs:Datatype ;
+                                owl:onDatatype xsd:string ;
+                                owl:withRestrictions ( [ xsd:pattern "^\\d{2}\\.T?\\d{4,}\\/.*$" ] ) ] ) ] ;
+            owl:onProperty pid4cat_model:identifier ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
             owl:onProperty pid4cat_model:resolving_url ],
         [ a owl:Restriction ;
             owl:allValuesFrom [ a rdfs:Datatype ;
                     owl:intersectionOf ( linkml:Uri [ a rdfs:Datatype ;
                                 owl:onDatatype xsd:string ;
-                                owl:withRestrictions ( [ xsd:pattern "^https:\\/\\/hdl\\.handle\\.net\\/\\d{2}\\.\\d{4,}\\/.*$" ] ) ] ) ] ;
+                                owl:withRestrictions ( [ xsd:pattern "^https:\\/\\/hdl\\.handle\\.net\\/\\d{2}\\.T?\\d{4,}\\/.*$" ] ) ] ) ] ;
             owl:onProperty pid4cat_model:resolving_url ],
         [ a owl:Restriction ;
-            owl:allValuesFrom [ a rdfs:Datatype ;
-                    owl:intersectionOf ( linkml:String [ a rdfs:Datatype ;
-                                owl:onDatatype xsd:string ;
-                                owl:withRestrictions ( [ xsd:pattern "^(hdl|handle):\\d{2}\\.\\d{4,}\\/.*$" ] ) ] ) ] ;
+            owl:maxCardinality 1 ;
             owl:onProperty pid4cat_model:identifier ],
         pid4cat_model:RelatedIdentifier ;
     skos:definition "A handle identifier." ;
@@ -667,6 +701,9 @@ pid4cat_model:LICENSE a owl:Class,
             owl:onProperty pid4cat_model:index ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
+            owl:onProperty pid4cat_model:index ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom pid4cat_model:HdlDataLicense ;
             owl:onProperty pid4cat_model:data ],
         [ a owl:Restriction ;
             owl:allValuesFrom [ a rdfs:Datatype ;
@@ -677,184 +714,16 @@ pid4cat_model:LICENSE a owl:Class,
                                 owl:withRestrictions ( [ xsd:maxInclusive 4 ] ) ] ) ] ;
             owl:onProperty pid4cat_model:index ],
         [ a owl:Restriction ;
-            owl:allValuesFrom pid4cat_model:HdlDataLicense ;
-            owl:onProperty pid4cat_model:data ],
-        [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty pid4cat_model:index ],
+            owl:onProperty pid4cat_model:data ],
         pid4cat_model:HandleRecord ;
     skos:definition "The data element in the handle API for the PID metadata license." ;
     skos:inScheme <https://w3id.org/nfdi4cat/pid4cat-model> .
 
-pid4cat_model:LOG a owl:Class,
-        linkml:ClassDefinition ;
-    rdfs:label "LOG" ;
-    rdfs:subClassOf [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty pid4cat_model:data ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty pid4cat_model:index ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom pid4cat_model:HdlDataLog ;
-            owl:onProperty pid4cat_model:data ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom [ a rdfs:Datatype ;
-                    owl:intersectionOf ( linkml:Integer [ a rdfs:Datatype ;
-                                owl:onDatatype xsd:integer ;
-                                owl:withRestrictions ( [ xsd:minInclusive 8 ] ) ] [ a rdfs:Datatype ;
-                                owl:onDatatype xsd:integer ;
-                                owl:withRestrictions ( [ xsd:maxInclusive 8 ] ) ] ) ] ;
-            owl:onProperty pid4cat_model:index ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty pid4cat_model:data ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty pid4cat_model:index ],
-        pid4cat_model:HandleRecord ;
-    skos:definition "The data element in the handle API for the change log." ;
-    skos:inScheme <https://w3id.org/nfdi4cat/pid4cat-model> .
-
-<https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#application/epub+zip> a owl:Class,
-        pid4cat_model:MEDIATypes ;
-    rdfs:label "application/epub+zip" ;
-    rdfs:subClassOf pid4cat_model:MEDIATypes .
-
-<https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#application/json> a owl:Class,
-        pid4cat_model:MEDIATypes ;
-    rdfs:label "application/json" ;
-    rdfs:subClassOf pid4cat_model:MEDIATypes .
-
-<https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#application/ld+json> a owl:Class,
-        pid4cat_model:MEDIATypes ;
-    rdfs:label "application/ld+json" ;
-    rdfs:subClassOf pid4cat_model:MEDIATypes .
-
-<https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#application/octet-stream> a owl:Class,
-        pid4cat_model:MEDIATypes ;
-    rdfs:label "application/octet-stream" ;
-    rdfs:subClassOf pid4cat_model:MEDIATypes .
-
-<https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#application/pdf> a owl:Class,
-        pid4cat_model:MEDIATypes ;
-    rdfs:label "application/pdf" ;
-    rdfs:subClassOf pid4cat_model:MEDIATypes .
-
-<https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#application/vnd.eln+zip> a owl:Class,
-        pid4cat_model:MEDIATypes ;
-    rdfs:label "application/vnd.eln+zip" ;
-    rdfs:subClassOf pid4cat_model:MEDIATypes .
-
-<https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#application/vnd.openxmlformats-officedocument.presentationml.presentation> a owl:Class,
-        pid4cat_model:MEDIATypes ;
-    rdfs:label "application/vnd.openxmlformats-officedocument.presentationml.presentation" ;
-    rdfs:subClassOf pid4cat_model:MEDIATypes .
-
-<https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#application/vnd.openxmlformats-officedocument.spreadsheetml.sheet> a owl:Class,
-        pid4cat_model:MEDIATypes ;
-    rdfs:label "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ;
-    rdfs:subClassOf pid4cat_model:MEDIATypes .
-
-<https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#application/vnd.openxmlformats-officedocument.wordprocessingml.document> a owl:Class,
-        pid4cat_model:MEDIATypes ;
-    rdfs:label "application/vnd.openxmlformats-officedocument.wordprocessingml.document" ;
-    rdfs:subClassOf pid4cat_model:MEDIATypes .
-
-<https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#application/xml> a owl:Class,
-        pid4cat_model:MEDIATypes ;
-    rdfs:label "application/xml" ;
-    rdfs:subClassOf pid4cat_model:MEDIATypes .
-
-<https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#application/yaml> a owl:Class,
-        pid4cat_model:MEDIATypes ;
-    rdfs:label "application/yaml" ;
-    rdfs:subClassOf pid4cat_model:MEDIATypes .
-
-<https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#application/zip> a owl:Class,
-        pid4cat_model:MEDIATypes ;
-    rdfs:label "application/zip" ;
-    rdfs:subClassOf pid4cat_model:MEDIATypes .
-
-<https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#image/gif> a owl:Class,
-        pid4cat_model:MEDIATypes ;
-    rdfs:label "image/gif" ;
-    rdfs:subClassOf pid4cat_model:MEDIATypes .
-
-<https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#image/jpeg> a owl:Class,
-        pid4cat_model:MEDIATypes ;
-    rdfs:label "image/jpeg" ;
-    rdfs:subClassOf pid4cat_model:MEDIATypes .
-
-<https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#image/png> a owl:Class,
-        pid4cat_model:MEDIATypes ;
-    rdfs:label "image/png" ;
-    rdfs:subClassOf pid4cat_model:MEDIATypes .
-
-<https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#image/svg+xml> a owl:Class,
-        pid4cat_model:MEDIATypes ;
-    rdfs:label "image/svg+xml" ;
-    rdfs:subClassOf pid4cat_model:MEDIATypes .
-
-<https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#image/tiff> a owl:Class,
-        pid4cat_model:MEDIATypes ;
-    rdfs:label "image/tiff" ;
-    rdfs:subClassOf pid4cat_model:MEDIATypes .
-
-<https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#image/webp> a owl:Class,
-        pid4cat_model:MEDIATypes ;
-    rdfs:label "image/webp" ;
-    rdfs:subClassOf pid4cat_model:MEDIATypes .
-
-<https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#text/csv> a owl:Class,
-        pid4cat_model:MEDIATypes ;
-    rdfs:label "text/csv" ;
-    rdfs:subClassOf pid4cat_model:MEDIATypes .
-
-<https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#text/html> a owl:Class,
-        pid4cat_model:MEDIATypes ;
-    rdfs:label "text/html" ;
-    rdfs:subClassOf pid4cat_model:MEDIATypes .
-
-<https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#text/javascript> a owl:Class,
-        pid4cat_model:MEDIATypes ;
-    rdfs:label "text/javascript" ;
-    rdfs:subClassOf pid4cat_model:MEDIATypes .
-
-<https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#text/markdown> a owl:Class,
-        pid4cat_model:MEDIATypes ;
-    rdfs:label "text/markdown" ;
-    rdfs:subClassOf pid4cat_model:MEDIATypes .
-
-<https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#text/plain> a owl:Class,
-        pid4cat_model:MEDIATypes ;
-    rdfs:label "text/plain" ;
-    rdfs:subClassOf pid4cat_model:MEDIATypes .
-
-<https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#text/tab-separated-values> a owl:Class,
-        pid4cat_model:MEDIATypes ;
-    rdfs:label "text/tab-separated-values" ;
-    rdfs:subClassOf pid4cat_model:MEDIATypes .
-
-<https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#text/turtle> a owl:Class,
-        pid4cat_model:MEDIATypes ;
-    rdfs:label "text/turtle" ;
-    rdfs:subClassOf pid4cat_model:MEDIATypes .
-
-<https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#text/xml> a owl:Class,
-        pid4cat_model:MEDIATypes ;
-    rdfs:label "text/xml" ;
-    rdfs:subClassOf pid4cat_model:MEDIATypes .
-
-<https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#video/mp4> a owl:Class,
-        pid4cat_model:MEDIATypes ;
-    rdfs:label "video/mp4" ;
-    rdfs:subClassOf pid4cat_model:MEDIATypes .
-
-<https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#video/webm> a owl:Class,
-        pid4cat_model:MEDIATypes ;
+<https://w3id.org/nfdi4cat/pid4cat-model/MediaTypesEnum#video/webm> a owl:Class,
+        pid4cat_model:MediaTypesEnum ;
     rdfs:label "video/webm" ;
-    rdfs:subClassOf pid4cat_model:MEDIATypes .
+    rdfs:subClassOf pid4cat_model:MediaTypesEnum .
 
 <https://w3id.org/nfdi4cat/pid4cat-model/Pid4CatAgentRole#OWNER> a owl:Class,
         pid4cat_model:Pid4CatAgentRole ;
@@ -870,16 +739,16 @@ pid4cat_model:PurlIdentifier a owl:Class,
         linkml:ClassDefinition ;
     rdfs:label "PurlIdentifier" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom [ a rdfs:Datatype ;
-                    owl:intersectionOf ( linkml:Uri [ a rdfs:Datatype ;
-                                owl:onDatatype xsd:string ;
-                                owl:withRestrictions ( [ xsd:pattern "^https:\\/\\/(purl|pida|w3id)\\.org\\/.*$" ] ) ] ) ] ;
-            owl:onProperty pid4cat_model:resolving_url ],
-        [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty pid4cat_model:resolving_url ],
         [ a owl:Restriction ;
             owl:minCardinality 1 ;
+            owl:onProperty pid4cat_model:resolving_url ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom [ a rdfs:Datatype ;
+                    owl:intersectionOf ( linkml:Uri [ a rdfs:Datatype ;
+                                owl:onDatatype xsd:string ;
+                                owl:withRestrictions ( [ xsd:pattern "^https:\\/\\/(purl|pida|w3id)\\.org\\/.*$" ] ) ] ) ] ;
             owl:onProperty pid4cat_model:resolving_url ],
         pid4cat_model:RelatedIdentifier ;
     skos:definition "A PURL (permanent uniform resource locator)." ;
@@ -889,7 +758,7 @@ pid4cat_model:RELATED a owl:Class,
         linkml:ClassDefinition ;
     rdfs:label "RELATED" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
+            owl:allValuesFrom pid4cat_model:HdlDataRelated ;
             owl:onProperty pid4cat_model:data ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
@@ -906,10 +775,10 @@ pid4cat_model:RELATED a owl:Class,
                                 owl:withRestrictions ( [ xsd:maxInclusive 7 ] ) ] ) ] ;
             owl:onProperty pid4cat_model:index ],
         [ a owl:Restriction ;
-            owl:allValuesFrom pid4cat_model:HdlDataRelated ;
+            owl:minCardinality 1 ;
             owl:onProperty pid4cat_model:data ],
         [ a owl:Restriction ;
-            owl:minCardinality 1 ;
+            owl:maxCardinality 1 ;
             owl:onProperty pid4cat_model:data ],
         pid4cat_model:HandleRecord ;
     skos:definition "The data element in the handle API for related identifiers." ;
@@ -919,6 +788,9 @@ pid4cat_model:RESOURCE a owl:Class,
         linkml:ClassDefinition ;
     rdfs:label "RESOURCE" ;
     rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty pid4cat_model:data ],
+        [ a owl:Restriction ;
             owl:minCardinality 1 ;
             owl:onProperty pid4cat_model:index ],
         [ a owl:Restriction ;
@@ -936,9 +808,6 @@ pid4cat_model:RESOURCE a owl:Class,
             owl:maxCardinality 1 ;
             owl:onProperty pid4cat_model:index ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty pid4cat_model:data ],
-        [ a owl:Restriction ;
             owl:minCardinality 1 ;
             owl:onProperty pid4cat_model:data ],
         pid4cat_model:HandleRecord ;
@@ -949,23 +818,11 @@ pid4cat_model:RepresentationVariant a owl:Class,
         linkml:ClassDefinition ;
     rdfs:label "RepresentationVariant" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom pid4cat_model:MEDIATypes ;
-            owl:onProperty pid4cat_model:media_type ],
-        [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty pid4cat_model:url ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty pid4cat_model:encoding_format ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty pid4cat_model:size ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty pid4cat_model:encoding_format ],
+            owl:onProperty pid4cat_model:variant_url ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty pid4cat_model:url ],
+            owl:onProperty pid4cat_model:media_type ],
         [ a owl:Restriction ;
             owl:allValuesFrom [ a rdfs:Datatype ;
                     owl:intersectionOf ( linkml:Integer [ a rdfs:Datatype ;
@@ -973,20 +830,32 @@ pid4cat_model:RepresentationVariant a owl:Class,
                                 owl:withRestrictions ( [ xsd:minInclusive 0 ] ) ] ) ] ;
             owl:onProperty pid4cat_model:size ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
+            owl:minCardinality 0 ;
             owl:onProperty pid4cat_model:size ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:Uri ;
-            owl:onProperty pid4cat_model:url ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty pid4cat_model:media_type ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
+            owl:onProperty pid4cat_model:variant_url ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom pid4cat_model:MediaTypesEnum ;
+            owl:onProperty pid4cat_model:media_type ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
             owl:onProperty pid4cat_model:encoding_format ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty pid4cat_model:media_type ] ;
+            owl:onProperty pid4cat_model:encoding_format ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty pid4cat_model:encoding_format ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:Uri ;
+            owl:onProperty pid4cat_model:variant_url ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty pid4cat_model:size ] ;
     skos:definition "Data class for representations of the resource in other media types than text/html which is the default for landing_page_url." ;
     skos:inScheme <https://w3id.org/nfdi4cat/pid4cat-model> .
 
@@ -994,11 +863,11 @@ pid4cat_model:SCHEMAVER a owl:Class,
         linkml:ClassDefinition ;
     rdfs:label "SCHEMA_VER" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom pid4cat_model:HdlDataSchemaVer ;
+            owl:minCardinality 1 ;
             owl:onProperty pid4cat_model:data ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty pid4cat_model:index ],
+            owl:onProperty pid4cat_model:data ],
         [ a owl:Restriction ;
             owl:allValuesFrom [ a rdfs:Datatype ;
                     owl:intersectionOf ( linkml:Integer [ a rdfs:Datatype ;
@@ -1009,13 +878,13 @@ pid4cat_model:SCHEMAVER a owl:Class,
             owl:onProperty pid4cat_model:index ],
         [ a owl:Restriction ;
             owl:minCardinality 1 ;
-            owl:onProperty pid4cat_model:data ],
+            owl:onProperty pid4cat_model:index ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty pid4cat_model:data ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
             owl:onProperty pid4cat_model:index ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom pid4cat_model:HdlDataSchemaVer ;
+            owl:onProperty pid4cat_model:data ],
         pid4cat_model:HandleRecord ;
     skos:definition "The data element in the handle API for the schema version." ;
     skos:inScheme <https://w3id.org/nfdi4cat/pid4cat-model> .
@@ -1024,10 +893,10 @@ pid4cat_model:STATUS a owl:Class,
         linkml:ClassDefinition ;
     rdfs:label "STATUS" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
+            owl:minCardinality 1 ;
             owl:onProperty pid4cat_model:data ],
         [ a owl:Restriction ;
-            owl:minCardinality 1 ;
+            owl:maxCardinality 1 ;
             owl:onProperty pid4cat_model:data ],
         [ a owl:Restriction ;
             owl:allValuesFrom pid4cat_model:HdlDataStatus ;
@@ -1041,10 +910,10 @@ pid4cat_model:STATUS a owl:Class,
                                 owl:withRestrictions ( [ xsd:maxInclusive 2 ] ) ] ) ] ;
             owl:onProperty pid4cat_model:index ],
         [ a owl:Restriction ;
-            owl:minCardinality 1 ;
+            owl:maxCardinality 1 ;
             owl:onProperty pid4cat_model:index ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
+            owl:minCardinality 1 ;
             owl:onProperty pid4cat_model:index ],
         pid4cat_model:HandleRecord ;
     skos:definition "The data element in the handle API for the PID status information." ;
@@ -1054,11 +923,14 @@ pid4cat_model:URL a owl:Class,
         linkml:ClassDefinition ;
     rdfs:label "URL" ;
     rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty pid4cat_model:index ],
+        [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty pid4cat_model:data ],
         [ a owl:Restriction ;
             owl:minCardinality 1 ;
-            owl:onProperty pid4cat_model:index ],
+            owl:onProperty pid4cat_model:data ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty pid4cat_model:index ],
@@ -1072,9 +944,6 @@ pid4cat_model:URL a owl:Class,
             owl:onProperty pid4cat_model:index ],
         [ a owl:Restriction ;
             owl:allValuesFrom pid4cat_model:HdlDataUrl ;
-            owl:onProperty pid4cat_model:data ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
             owl:onProperty pid4cat_model:data ],
         pid4cat_model:HandleRecord ;
     skos:definition "The data element in the handle API for the landing page URL." ;
@@ -1329,6 +1198,141 @@ voc4cat:0005055 a owl:Class,
     rdfs:label "DEPRECATED" ;
     rdfs:subClassOf pid4cat_model:Pid4CatStatus .
 
+<https://www.iana.org/assignments/media-types/application/epub+zip> a owl:Class,
+        pid4cat_model:MediaTypesEnum ;
+    rdfs:label "application/epub+zip" ;
+    rdfs:subClassOf pid4cat_model:MediaTypesEnum .
+
+<https://www.iana.org/assignments/media-types/application/json> a owl:Class,
+        pid4cat_model:MediaTypesEnum ;
+    rdfs:label "application/json" ;
+    rdfs:subClassOf pid4cat_model:MediaTypesEnum .
+
+<https://www.iana.org/assignments/media-types/application/ld+json> a owl:Class,
+        pid4cat_model:MediaTypesEnum ;
+    rdfs:label "application/ld+json" ;
+    rdfs:subClassOf pid4cat_model:MediaTypesEnum .
+
+<https://www.iana.org/assignments/media-types/application/octet-stream> a owl:Class,
+        pid4cat_model:MediaTypesEnum ;
+    rdfs:label "application/octet-stream" ;
+    rdfs:subClassOf pid4cat_model:MediaTypesEnum .
+
+<https://www.iana.org/assignments/media-types/application/pdf> a owl:Class,
+        pid4cat_model:MediaTypesEnum ;
+    rdfs:label "application/pdf" ;
+    rdfs:subClassOf pid4cat_model:MediaTypesEnum .
+
+<https://www.iana.org/assignments/media-types/application/vnd.eln+zip> a owl:Class,
+        pid4cat_model:MediaTypesEnum ;
+    rdfs:label "application/vnd.eln+zip" ;
+    rdfs:subClassOf pid4cat_model:MediaTypesEnum .
+
+<https://www.iana.org/assignments/media-types/application/vnd.openxmlformats-officedocument.presentationml.presentation> a owl:Class,
+        pid4cat_model:MediaTypesEnum ;
+    rdfs:label "application/vnd.openxmlformats-officedocument.presentationml.presentation" ;
+    rdfs:subClassOf pid4cat_model:MediaTypesEnum .
+
+<https://www.iana.org/assignments/media-types/application/vnd.openxmlformats-officedocument.spreadsheetml.sheet> a owl:Class,
+        pid4cat_model:MediaTypesEnum ;
+    rdfs:label "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ;
+    rdfs:subClassOf pid4cat_model:MediaTypesEnum .
+
+<https://www.iana.org/assignments/media-types/application/vnd.openxmlformats-officedocument.wordprocessingml.document> a owl:Class,
+        pid4cat_model:MediaTypesEnum ;
+    rdfs:label "application/vnd.openxmlformats-officedocument.wordprocessingml.document" ;
+    rdfs:subClassOf pid4cat_model:MediaTypesEnum .
+
+<https://www.iana.org/assignments/media-types/application/xml> a owl:Class,
+        pid4cat_model:MediaTypesEnum ;
+    rdfs:label "application/xml" ;
+    rdfs:subClassOf pid4cat_model:MediaTypesEnum .
+
+<https://www.iana.org/assignments/media-types/application/yaml> a owl:Class,
+        pid4cat_model:MediaTypesEnum ;
+    rdfs:label "application/yaml" ;
+    rdfs:subClassOf pid4cat_model:MediaTypesEnum .
+
+<https://www.iana.org/assignments/media-types/application/zip> a owl:Class,
+        pid4cat_model:MediaTypesEnum ;
+    rdfs:label "application/zip" ;
+    rdfs:subClassOf pid4cat_model:MediaTypesEnum .
+
+<https://www.iana.org/assignments/media-types/image/gif> a owl:Class,
+        pid4cat_model:MediaTypesEnum ;
+    rdfs:label "image/gif" ;
+    rdfs:subClassOf pid4cat_model:MediaTypesEnum .
+
+<https://www.iana.org/assignments/media-types/image/jpeg> a owl:Class,
+        pid4cat_model:MediaTypesEnum ;
+    rdfs:label "image/jpeg" ;
+    rdfs:subClassOf pid4cat_model:MediaTypesEnum .
+
+<https://www.iana.org/assignments/media-types/image/png> a owl:Class,
+        pid4cat_model:MediaTypesEnum ;
+    rdfs:label "image/png" ;
+    rdfs:subClassOf pid4cat_model:MediaTypesEnum .
+
+<https://www.iana.org/assignments/media-types/image/svg+xml> a owl:Class,
+        pid4cat_model:MediaTypesEnum ;
+    rdfs:label "image/svg+xml" ;
+    rdfs:subClassOf pid4cat_model:MediaTypesEnum .
+
+<https://www.iana.org/assignments/media-types/image/tiff> a owl:Class,
+        pid4cat_model:MediaTypesEnum ;
+    rdfs:label "image/tiff" ;
+    rdfs:subClassOf pid4cat_model:MediaTypesEnum .
+
+<https://www.iana.org/assignments/media-types/image/webp> a owl:Class,
+        pid4cat_model:MediaTypesEnum ;
+    rdfs:label "image/webp" ;
+    rdfs:subClassOf pid4cat_model:MediaTypesEnum .
+
+<https://www.iana.org/assignments/media-types/text/csv> a owl:Class,
+        pid4cat_model:MediaTypesEnum ;
+    rdfs:label "text/csv" ;
+    rdfs:subClassOf pid4cat_model:MediaTypesEnum .
+
+<https://www.iana.org/assignments/media-types/text/html> a owl:Class,
+        pid4cat_model:MediaTypesEnum ;
+    rdfs:label "text/html" ;
+    rdfs:subClassOf pid4cat_model:MediaTypesEnum .
+
+<https://www.iana.org/assignments/media-types/text/javascript> a owl:Class,
+        pid4cat_model:MediaTypesEnum ;
+    rdfs:label "text/javascript" ;
+    rdfs:subClassOf pid4cat_model:MediaTypesEnum .
+
+<https://www.iana.org/assignments/media-types/text/markdown> a owl:Class,
+        pid4cat_model:MediaTypesEnum ;
+    rdfs:label "text/markdown" ;
+    rdfs:subClassOf pid4cat_model:MediaTypesEnum .
+
+<https://www.iana.org/assignments/media-types/text/plain> a owl:Class,
+        pid4cat_model:MediaTypesEnum ;
+    rdfs:label "text/plain" ;
+    rdfs:subClassOf pid4cat_model:MediaTypesEnum .
+
+<https://www.iana.org/assignments/media-types/text/tab-separated-values> a owl:Class,
+        pid4cat_model:MediaTypesEnum ;
+    rdfs:label "text/tab-separated-values" ;
+    rdfs:subClassOf pid4cat_model:MediaTypesEnum .
+
+<https://www.iana.org/assignments/media-types/text/turtle> a owl:Class,
+        pid4cat_model:MediaTypesEnum ;
+    rdfs:label "text/turtle" ;
+    rdfs:subClassOf pid4cat_model:MediaTypesEnum .
+
+<https://www.iana.org/assignments/media-types/text/xml> a owl:Class,
+        pid4cat_model:MediaTypesEnum ;
+    rdfs:label "text/xml" ;
+    rdfs:subClassOf pid4cat_model:MediaTypesEnum .
+
+<https://www.iana.org/assignments/media-types/video/mp4> a owl:Class,
+        pid4cat_model:MediaTypesEnum ;
+    rdfs:label "video/mp4" ;
+    rdfs:subClassOf pid4cat_model:MediaTypesEnum .
+
 pid4cat_model:affiliation_ror a owl:ObjectProperty,
         linkml:SlotDefinition ;
     rdfs:label "affiliation_ror" ;
@@ -1343,9 +1347,9 @@ pid4cat_model:changed_field a owl:ObjectProperty,
     skos:definition "The field that was changed." ;
     skos:inScheme <https://w3id.org/nfdi4cat/pid4cat-model> .
 
-pid4cat_model:email a owl:ObjectProperty,
+pid4cat_model:email_address a owl:ObjectProperty,
         linkml:SlotDefinition ;
-    rdfs:label "email" ;
+    rdfs:label "email_address" ;
     rdfs:range linkml:String ;
     skos:definition "Email address of the agent that created or modified the PID record." ;
     skos:inScheme <https://w3id.org/nfdi4cat/pid4cat-model> .
@@ -1381,7 +1385,7 @@ pid4cat_model:label a owl:ObjectProperty,
 pid4cat_model:media_type a owl:ObjectProperty,
         linkml:SlotDefinition ;
     rdfs:label "media_type" ;
-    rdfs:range pid4cat_model:MEDIATypes ;
+    rdfs:range pid4cat_model:MediaTypesEnum ;
     skos:definition "The media type of the representation as defined by [IANA](https://www.iana.org/assignments/media-types/media-types.xhtml)" ;
     skos:inScheme <https://w3id.org/nfdi4cat/pid4cat-model> .
 
@@ -1458,11 +1462,11 @@ pid4cat_model:ttl a owl:ObjectProperty,
     skos:definition "A time to live in seconds for the handle record. Typically: 86400 => 1 day" ;
     skos:inScheme <https://w3id.org/nfdi4cat/pid4cat-model> .
 
-pid4cat_model:url a owl:ObjectProperty,
+pid4cat_model:variant_url a owl:ObjectProperty,
         linkml:SlotDefinition ;
-    rdfs:label "url" ;
+    rdfs:label "variant_url" ;
     rdfs:range linkml:Uri ;
-    skos:definition "The URL of the representation." ;
+    skos:definition "The URL of the representation variant." ;
     skos:inScheme <https://w3id.org/nfdi4cat/pid4cat-model> .
 
 pid4cat_model:Pid4CatAgentRole a owl:Class,
@@ -1497,13 +1501,13 @@ pid4cat_model:RelatedIdentifier a owl:Class,
         linkml:ClassDefinition ;
     rdfs:label "RelatedIdentifier" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
+            owl:minCardinality 1 ;
             owl:onProperty pid4cat_model:type ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty pid4cat_model:type ],
         [ a owl:Restriction ;
-            owl:minCardinality 1 ;
+            owl:allValuesFrom linkml:String ;
             owl:onProperty pid4cat_model:type ] ;
     skos:definition "A base class for all types of related identifiers." ;
     skos:inScheme <https://w3id.org/nfdi4cat/pid4cat-model> .
@@ -1512,31 +1516,31 @@ pid4cat_model:HandleRecord a owl:Class,
         linkml:ClassDefinition ;
     rdfs:label "HandleRecord" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty pid4cat_model:type ],
-        [ a owl:Restriction ;
             owl:minCardinality 1 ;
             owl:onProperty pid4cat_model:type ],
         [ a owl:Restriction ;
-            owl:minCardinality 0 ;
+            owl:maxCardinality 1 ;
             owl:onProperty pid4cat_model:ttl ],
         [ a owl:Restriction ;
-            owl:minCardinality 1 ;
+            owl:allValuesFrom linkml:Integer ;
+            owl:onProperty pid4cat_model:ttl ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
             owl:onProperty pid4cat_model:timestamp ],
         [ a owl:Restriction ;
-            owl:allValuesFrom linkml:Integer ;
+            owl:minCardinality 0 ;
             owl:onProperty pid4cat_model:ttl ],
         [ a owl:Restriction ;
             owl:allValuesFrom linkml:String ;
             owl:onProperty pid4cat_model:type ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty pid4cat_model:ttl ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
+            owl:allValuesFrom linkml:Datetime ;
             owl:onProperty pid4cat_model:timestamp ],
         [ a owl:Restriction ;
-            owl:allValuesFrom linkml:Datetime ;
+            owl:maxCardinality 1 ;
+            owl:onProperty pid4cat_model:type ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
             owl:onProperty pid4cat_model:timestamp ] ;
     skos:definition "A base class for handle-data classes that represent a handle record in the same way as in the REST (json) API of a handle server." ;
     skos:inScheme <https://w3id.org/nfdi4cat/pid4cat-model> .
@@ -1611,42 +1615,43 @@ pid4cat_model:index a owl:ObjectProperty,
     skos:definition "The index of the handle record." ;
     skos:inScheme <https://w3id.org/nfdi4cat/pid4cat-model> .
 
-pid4cat_model:MEDIATypes a owl:Class,
+pid4cat_model:MediaTypesEnum a owl:Class,
         linkml:EnumDefinition ;
-    owl:unionOf ( <https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#application/epub+zip> <https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#application/json> <https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#application/ld+json> <https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#application/octet-stream> <https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#application/pdf> <https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#application/vnd.eln+zip> <https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#application/vnd.openxmlformats-officedocument.presentationml.presentation> <https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#application/vnd.openxmlformats-officedocument.spreadsheetml.sheet> <https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#application/vnd.openxmlformats-officedocument.wordprocessingml.document> <https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#application/xml> <https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#application/yaml> <https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#application/zip> <https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#image/gif> <https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#image/jpeg> <https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#image/png> <https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#image/svg+xml> <https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#image/tiff> <https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#image/webp> <https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#text/csv> <https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#text/html> <https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#text/javascript> <https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#text/markdown> <https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#text/plain> <https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#text/tab-separated-values> <https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#text/turtle> <https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#text/xml> <https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#video/mp4> <https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#video/webm> ) ;
-    linkml:permissible_values <https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#application/epub+zip>,
-        <https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#application/json>,
-        <https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#application/ld+json>,
-        <https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#application/octet-stream>,
-        <https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#application/pdf>,
-        <https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#application/vnd.eln+zip>,
-        <https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#application/vnd.openxmlformats-officedocument.presentationml.presentation>,
-        <https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#application/vnd.openxmlformats-officedocument.spreadsheetml.sheet>,
-        <https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#application/vnd.openxmlformats-officedocument.wordprocessingml.document>,
-        <https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#application/xml>,
-        <https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#application/yaml>,
-        <https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#application/zip>,
-        <https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#image/gif>,
-        <https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#image/jpeg>,
-        <https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#image/png>,
-        <https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#image/svg+xml>,
-        <https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#image/tiff>,
-        <https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#image/webp>,
-        <https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#text/csv>,
-        <https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#text/html>,
-        <https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#text/javascript>,
-        <https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#text/markdown>,
-        <https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#text/plain>,
-        <https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#text/tab-separated-values>,
-        <https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#text/turtle>,
-        <https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#text/xml>,
-        <https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#video/mp4>,
-        <https://w3id.org/nfdi4cat/pid4cat-model/MEDIATypes#video/webm> .
+    owl:unionOf ( <https://www.iana.org/assignments/media-types/application/epub+zip> <https://www.iana.org/assignments/media-types/application/json> <https://www.iana.org/assignments/media-types/application/ld+json> <https://www.iana.org/assignments/media-types/application/octet-stream> <https://www.iana.org/assignments/media-types/application/pdf> <https://www.iana.org/assignments/media-types/application/vnd.eln+zip> <https://www.iana.org/assignments/media-types/application/vnd.openxmlformats-officedocument.presentationml.presentation> <https://www.iana.org/assignments/media-types/application/vnd.openxmlformats-officedocument.spreadsheetml.sheet> <https://www.iana.org/assignments/media-types/application/vnd.openxmlformats-officedocument.wordprocessingml.document> <https://www.iana.org/assignments/media-types/application/xml> <https://www.iana.org/assignments/media-types/application/yaml> <https://www.iana.org/assignments/media-types/application/zip> <https://www.iana.org/assignments/media-types/image/gif> <https://www.iana.org/assignments/media-types/image/jpeg> <https://www.iana.org/assignments/media-types/image/png> <https://www.iana.org/assignments/media-types/image/svg+xml> <https://www.iana.org/assignments/media-types/image/tiff> <https://www.iana.org/assignments/media-types/image/webp> <https://www.iana.org/assignments/media-types/text/csv> <https://www.iana.org/assignments/media-types/text/html> <https://www.iana.org/assignments/media-types/text/javascript> <https://www.iana.org/assignments/media-types/text/markdown> <https://www.iana.org/assignments/media-types/text/plain> <https://www.iana.org/assignments/media-types/text/tab-separated-values> <https://www.iana.org/assignments/media-types/text/turtle> <https://www.iana.org/assignments/media-types/text/xml> <https://www.iana.org/assignments/media-types/video/mp4> <https://w3id.org/nfdi4cat/pid4cat-model/MediaTypesEnum#video/webm> ) ;
+    linkml:permissible_values <https://w3id.org/nfdi4cat/pid4cat-model/MediaTypesEnum#video/webm>,
+        <https://www.iana.org/assignments/media-types/application/epub+zip>,
+        <https://www.iana.org/assignments/media-types/application/json>,
+        <https://www.iana.org/assignments/media-types/application/ld+json>,
+        <https://www.iana.org/assignments/media-types/application/octet-stream>,
+        <https://www.iana.org/assignments/media-types/application/pdf>,
+        <https://www.iana.org/assignments/media-types/application/vnd.eln+zip>,
+        <https://www.iana.org/assignments/media-types/application/vnd.openxmlformats-officedocument.presentationml.presentation>,
+        <https://www.iana.org/assignments/media-types/application/vnd.openxmlformats-officedocument.spreadsheetml.sheet>,
+        <https://www.iana.org/assignments/media-types/application/vnd.openxmlformats-officedocument.wordprocessingml.document>,
+        <https://www.iana.org/assignments/media-types/application/xml>,
+        <https://www.iana.org/assignments/media-types/application/yaml>,
+        <https://www.iana.org/assignments/media-types/application/zip>,
+        <https://www.iana.org/assignments/media-types/image/gif>,
+        <https://www.iana.org/assignments/media-types/image/jpeg>,
+        <https://www.iana.org/assignments/media-types/image/png>,
+        <https://www.iana.org/assignments/media-types/image/svg+xml>,
+        <https://www.iana.org/assignments/media-types/image/tiff>,
+        <https://www.iana.org/assignments/media-types/image/webp>,
+        <https://www.iana.org/assignments/media-types/text/csv>,
+        <https://www.iana.org/assignments/media-types/text/html>,
+        <https://www.iana.org/assignments/media-types/text/javascript>,
+        <https://www.iana.org/assignments/media-types/text/markdown>,
+        <https://www.iana.org/assignments/media-types/text/plain>,
+        <https://www.iana.org/assignments/media-types/text/tab-separated-values>,
+        <https://www.iana.org/assignments/media-types/text/turtle>,
+        <https://www.iana.org/assignments/media-types/text/xml>,
+        <https://www.iana.org/assignments/media-types/video/mp4> .
 
 <https://w3id.org/nfdi4cat/pid4cat-model> a owl:Ontology ;
     rdfs:label "pid4cat-model" ;
     dcterms:license "MIT" ;
     dcterms:title "pid4cat-model" ;
+    pav:version "0.0.0" ;
     rdfs:seeAlso <https://nfdi4cat.github.io/pid4cat-model> ;
     skos:definition """A LinkML model for PIDs for resources in catalysis (pid4cat). pid4cat is a handle system based persistent identifier (PID) for digital or physical resources used in the catalysis research process. The handle record is used to store additional metadata about the PID besides the obligatory landing page URL.
 The model describes metadata for the PID itself and how to access the identified resource. It does not describe the resource itself with the exception of the resource category, which is a high-level description of what is identified by the pid4cat handle, e.g. a sample or a device.""" .
@@ -1688,9 +1693,34 @@ pid4cat_model:RelationType a owl:Class,
         voc4cat:0005050 .
 
 [] a owl:Restriction ;
+    rdfs:subClassOf pid4cat_model:SCHEMAVER ;
+    owl:onProperty pid4cat_model:type ;
+    owl:someValuesFrom pid4cat_model:SCHEMAVER .
+
+[] a owl:Restriction ;
+    rdfs:subClassOf pid4cat_model:DoiIdentifier ;
+    owl:onProperty pid4cat_model:type ;
+    owl:someValuesFrom pid4cat_model:DoiIdentifier .
+
+[] a owl:Restriction ;
     rdfs:subClassOf pid4cat_model:HandleRecord ;
     owl:onProperty pid4cat_model:type ;
     owl:someValuesFrom pid4cat_model:HandleRecord .
+
+[] a owl:Restriction ;
+    rdfs:subClassOf pid4cat_model:GtinIdentifier ;
+    owl:onProperty pid4cat_model:type ;
+    owl:someValuesFrom pid4cat_model:GtinIdentifier .
+
+[] a owl:Restriction ;
+    rdfs:subClassOf pid4cat_model:LICENSE ;
+    owl:onProperty pid4cat_model:type ;
+    owl:someValuesFrom pid4cat_model:LICENSE .
+
+[] a owl:Restriction ;
+    rdfs:subClassOf pid4cat_model:CHANGES ;
+    owl:onProperty pid4cat_model:type ;
+    owl:someValuesFrom pid4cat_model:CHANGES .
 
 [] a owl:Restriction ;
     rdfs:subClassOf pid4cat_model:RELATED ;
@@ -1698,19 +1728,19 @@ pid4cat_model:RelationType a owl:Class,
     owl:someValuesFrom pid4cat_model:RELATED .
 
 [] a owl:Restriction ;
+    rdfs:subClassOf pid4cat_model:EMAIL ;
+    owl:onProperty pid4cat_model:type ;
+    owl:someValuesFrom pid4cat_model:EMAIL .
+
+[] a owl:Restriction ;
     rdfs:subClassOf pid4cat_model:RelatedIdentifier ;
     owl:onProperty pid4cat_model:type ;
     owl:someValuesFrom pid4cat_model:RelatedIdentifier .
 
 [] a owl:Restriction ;
-    rdfs:subClassOf pid4cat_model:STATUS ;
+    rdfs:subClassOf pid4cat_model:UrnIdentifier ;
     owl:onProperty pid4cat_model:type ;
-    owl:someValuesFrom pid4cat_model:STATUS .
-
-[] a owl:Restriction ;
-    rdfs:subClassOf pid4cat_model:RESOURCE ;
-    owl:onProperty pid4cat_model:type ;
-    owl:someValuesFrom pid4cat_model:RESOURCE .
+    owl:someValuesFrom pid4cat_model:UrnIdentifier .
 
 [] a owl:Restriction ;
     rdfs:subClassOf pid4cat_model:HandleIdentifier ;
@@ -1723,29 +1753,19 @@ pid4cat_model:RelationType a owl:Class,
     owl:someValuesFrom pid4cat_model:URL .
 
 [] a owl:Restriction ;
-    rdfs:subClassOf pid4cat_model:UrnIdentifier ;
-    owl:onProperty pid4cat_model:type ;
-    owl:someValuesFrom pid4cat_model:UrnIdentifier .
-
-[] a owl:Restriction ;
-    rdfs:subClassOf pid4cat_model:ExampleIdentifier ;
-    owl:onProperty pid4cat_model:type ;
-    owl:someValuesFrom pid4cat_model:ExampleIdentifier .
-
-[] a owl:Restriction ;
     rdfs:subClassOf pid4cat_model:PurlIdentifier ;
     owl:onProperty pid4cat_model:type ;
     owl:someValuesFrom pid4cat_model:PurlIdentifier .
 
 [] a owl:Restriction ;
-    rdfs:subClassOf pid4cat_model:DoiIdentifier ;
+    rdfs:subClassOf pid4cat_model:RESOURCE ;
     owl:onProperty pid4cat_model:type ;
-    owl:someValuesFrom pid4cat_model:DoiIdentifier .
+    owl:someValuesFrom pid4cat_model:RESOURCE .
 
 [] a owl:Restriction ;
-    rdfs:subClassOf pid4cat_model:LICENSE ;
+    rdfs:subClassOf pid4cat_model:STATUS ;
     owl:onProperty pid4cat_model:type ;
-    owl:someValuesFrom pid4cat_model:LICENSE .
+    owl:someValuesFrom pid4cat_model:STATUS .
 
 [] a owl:Restriction ;
     rdfs:subClassOf pid4cat_model:ArkIdentifier ;
@@ -1753,21 +1773,6 @@ pid4cat_model:RelationType a owl:Class,
     owl:someValuesFrom pid4cat_model:ArkIdentifier .
 
 [] a owl:Restriction ;
-    rdfs:subClassOf pid4cat_model:LOG ;
+    rdfs:subClassOf pid4cat_model:ExampleIdentifier ;
     owl:onProperty pid4cat_model:type ;
-    owl:someValuesFrom pid4cat_model:LOG .
-
-[] a owl:Restriction ;
-    rdfs:subClassOf pid4cat_model:EMAIL ;
-    owl:onProperty pid4cat_model:type ;
-    owl:someValuesFrom pid4cat_model:EMAIL .
-
-[] a owl:Restriction ;
-    rdfs:subClassOf pid4cat_model:GtinIdentifier ;
-    owl:onProperty pid4cat_model:type ;
-    owl:someValuesFrom pid4cat_model:GtinIdentifier .
-
-[] a owl:Restriction ;
-    rdfs:subClassOf pid4cat_model:SCHEMAVER ;
-    owl:onProperty pid4cat_model:type ;
-    owl:someValuesFrom pid4cat_model:SCHEMAVER .
+    owl:someValuesFrom pid4cat_model:ExampleIdentifier .
