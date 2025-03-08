@@ -37,7 +37,7 @@ watch:
 
 nav:
   - Home: index.md
-  - Schema: elements/HandleRecord.md
+  - Schema: elements/overview.md
   - Versioning: versioning.md
   - About: about.md
 
