@@ -130,15 +130,6 @@ message HdlDataUrl
   string format = 0
   string value = 0
  }
-// The data element in the handle API for the PID metadata license.
-message LICENSE
- {
-  datetime timestamp = 0
-  integer ttl = 0
-  string type = 0
-  integer index = 0
-  hdlDataLicense data = 0
- }
 // Data class for a change log of modification made on a pid4cat handle record starting from its registration.
 message LogRecord
  {
@@ -146,6 +137,15 @@ message LogRecord
   agent hasAgent = 0
   changeLogField changedField = 0
   string description = 0
+ }
+// The data element in the handle API for the PID metadata license.
+message METADATALICENSE
+ {
+  datetime timestamp = 0
+  integer ttl = 0
+  string type = 0
+  integer index = 0
+  hdlDataLicense data = 0
  }
 // Data class for a relation to another resource identified by a pid4cat handle or another PID type.
 message Pid4CatRelation

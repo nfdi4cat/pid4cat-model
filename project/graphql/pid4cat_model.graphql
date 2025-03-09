@@ -231,21 +231,21 @@ type HdlDataUrl
     value: String!
   }
 
-type LICENSE
-  {
-    timestamp: Datetime!
-    ttl: Integer
-    type: String!
-    index: Integer!
-    data: HdlDataLicense!
-  }
-
 type LogRecord
   {
     datetimeLog: Datetime!
     hasAgent: Agent!
     changedField: ChangeLogField!
     description: String
+  }
+
+type METADATALICENSE
+  {
+    timestamp: Datetime!
+    ttl: Integer
+    type: String!
+    index: Integer!
+    data: HdlDataLicense!
   }
 
 type Pid4CatRelation
