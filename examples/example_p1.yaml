@@ -25,7 +25,7 @@ contains_pids:
       value: v0.1.0
   - timestamp: 2024-05-15 15:51:15+00:00
     ttl: 86400
-    type: LICENSE
+    type: METADATA_LICENSE
     index: 4
     data:
       format: string
