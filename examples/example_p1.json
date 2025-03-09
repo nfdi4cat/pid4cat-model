@@ -35,7 +35,7 @@
     {
       "timestamp": "2024-05-15T15:51:15+00:00",
       "ttl": 86400,
-      "type": "LICENSE",
+      "type": "METADATA_LICENSE",
       "index": 4,
       "data": {
         "format": "string",

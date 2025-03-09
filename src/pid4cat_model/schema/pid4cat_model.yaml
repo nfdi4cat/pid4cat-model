@@ -180,7 +180,7 @@ classes:
         pattern: '^v\d+\.\d+\.\d+$'
         required: true
 
-  LICENSE:
+  METADATA_LICENSE:
     is_a: HandleRecord
     description: >-
       The data element in the handle API for the PID metadata license.

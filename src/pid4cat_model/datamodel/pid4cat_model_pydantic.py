@@ -341,7 +341,7 @@ class HandleAPIRecord(ConfiguredBaseModel):
             URL,
             STATUS,
             SCHEMAVER,
-            LICENSE,
+            METADATALICENSE,
             EMAIL,
             RESOURCE,
             RELATED,
@@ -453,7 +453,7 @@ class URL(HandleRecord):
                     "URL",
                     "STATUS",
                     "SCHEMA_VER",
-                    "LICENSE",
+                    "METADATA_LICENSE",
                     "EMAIL",
                     "RESOURCE",
                     "RELATED",
@@ -472,7 +472,7 @@ class URL(HandleRecord):
                     "URL",
                     "STATUS",
                     "SCHEMA_VER",
-                    "LICENSE",
+                    "METADATA_LICENSE",
                     "EMAIL",
                     "RESOURCE",
                     "RELATED",
@@ -621,7 +621,7 @@ class STATUS(HandleRecord):
                     "URL",
                     "STATUS",
                     "SCHEMA_VER",
-                    "LICENSE",
+                    "METADATA_LICENSE",
                     "EMAIL",
                     "RESOURCE",
                     "RELATED",
@@ -640,7 +640,7 @@ class STATUS(HandleRecord):
                     "URL",
                     "STATUS",
                     "SCHEMA_VER",
-                    "LICENSE",
+                    "METADATA_LICENSE",
                     "EMAIL",
                     "RESOURCE",
                     "RELATED",
@@ -773,7 +773,7 @@ class SCHEMAVER(HandleRecord):
                     "URL",
                     "STATUS",
                     "SCHEMA_VER",
-                    "LICENSE",
+                    "METADATA_LICENSE",
                     "EMAIL",
                     "RESOURCE",
                     "RELATED",
@@ -792,7 +792,7 @@ class SCHEMAVER(HandleRecord):
                     "URL",
                     "STATUS",
                     "SCHEMA_VER",
-                    "LICENSE",
+                    "METADATA_LICENSE",
                     "EMAIL",
                     "RESOURCE",
                     "RELATED",
@@ -909,7 +909,7 @@ class HdlDataSchemaVer(ConfiguredBaseModel):
         return v
 
 
-class LICENSE(HandleRecord):
+class METADATALICENSE(HandleRecord):
     """
     The data element in the handle API for the PID metadata license.
     """
@@ -941,7 +941,7 @@ class LICENSE(HandleRecord):
                     "URL",
                     "STATUS",
                     "SCHEMA_VER",
-                    "LICENSE",
+                    "METADATA_LICENSE",
                     "EMAIL",
                     "RESOURCE",
                     "RELATED",
@@ -960,7 +960,7 @@ class LICENSE(HandleRecord):
                     "URL",
                     "STATUS",
                     "SCHEMA_VER",
-                    "LICENSE",
+                    "METADATA_LICENSE",
                     "EMAIL",
                     "RESOURCE",
                     "RELATED",
@@ -987,8 +987,8 @@ class LICENSE(HandleRecord):
             }
         },
     )
-    type: Literal["LICENSE"] = Field(
-        "LICENSE",
+    type: Literal["METADATA_LICENSE"] = Field(
+        "METADATA_LICENSE",
         description="""The type of handledata stored in the handle record.""",
         json_schema_extra={
             "linkml_meta": {
@@ -1098,7 +1098,7 @@ class EMAIL(HandleRecord):
                     "URL",
                     "STATUS",
                     "SCHEMA_VER",
-                    "LICENSE",
+                    "METADATA_LICENSE",
                     "EMAIL",
                     "RESOURCE",
                     "RELATED",
@@ -1117,7 +1117,7 @@ class EMAIL(HandleRecord):
                     "URL",
                     "STATUS",
                     "SCHEMA_VER",
-                    "LICENSE",
+                    "METADATA_LICENSE",
                     "EMAIL",
                     "RESOURCE",
                     "RELATED",
@@ -1270,7 +1270,7 @@ class RESOURCE(HandleRecord):
                     "URL",
                     "STATUS",
                     "SCHEMA_VER",
-                    "LICENSE",
+                    "METADATA_LICENSE",
                     "EMAIL",
                     "RESOURCE",
                     "RELATED",
@@ -1289,7 +1289,7 @@ class RESOURCE(HandleRecord):
                     "URL",
                     "STATUS",
                     "SCHEMA_VER",
-                    "LICENSE",
+                    "METADATA_LICENSE",
                     "EMAIL",
                     "RESOURCE",
                     "RELATED",
@@ -1422,7 +1422,7 @@ class RELATED(HandleRecord):
                     "URL",
                     "STATUS",
                     "SCHEMA_VER",
-                    "LICENSE",
+                    "METADATA_LICENSE",
                     "EMAIL",
                     "RESOURCE",
                     "RELATED",
@@ -1441,7 +1441,7 @@ class RELATED(HandleRecord):
                     "URL",
                     "STATUS",
                     "SCHEMA_VER",
-                    "LICENSE",
+                    "METADATA_LICENSE",
                     "EMAIL",
                     "RESOURCE",
                     "RELATED",
@@ -1578,7 +1578,7 @@ class CHANGES(HandleRecord):
                     "URL",
                     "STATUS",
                     "SCHEMA_VER",
-                    "LICENSE",
+                    "METADATA_LICENSE",
                     "EMAIL",
                     "RESOURCE",
                     "RELATED",
@@ -1597,7 +1597,7 @@ class CHANGES(HandleRecord):
                     "URL",
                     "STATUS",
                     "SCHEMA_VER",
-                    "LICENSE",
+                    "METADATA_LICENSE",
                     "EMAIL",
                     "RESOURCE",
                     "RELATED",
@@ -2597,7 +2597,7 @@ STATUS.model_rebuild()
 HdlDataStatus.model_rebuild()
 SCHEMAVER.model_rebuild()
 HdlDataSchemaVer.model_rebuild()
-LICENSE.model_rebuild()
+METADATALICENSE.model_rebuild()
 HdlDataLicense.model_rebuild()
 EMAIL.model_rebuild()
 HdlDataContact.model_rebuild()

@@ -31,7 +31,7 @@ values:
   index: 4
   timestamp: '2024-05-15T15:51:15Z'
   ttl: 86400
-  type: LICENSE
+  type: METADATA_LICENSE
 - data:
     format: string
     value: datafuzzi@example.org
@@ -125,7 +125,7 @@ contains_pids:
     index: 4
     timestamp: '2024-05-15T15:51:15Z'
     ttl: 86400
-    type: LICENSE
+    type: METADATA_LICENSE
   - data:
       format: string
       value: datafuzzi@example.org

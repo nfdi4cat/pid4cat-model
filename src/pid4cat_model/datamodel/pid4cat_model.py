@@ -1,5 +1,5 @@
 # Auto generated from pid4cat_model.yaml by pythongen.py version: 0.0.1
-# Generation date: 2025-03-07T09:05:47
+# Generation date: 2025-03-09T19:49:53
 # Schema: pid4cat-model
 #
 # id: https://w3id.org/nfdi4cat/pid4cat-model
@@ -334,17 +334,17 @@ class HdlDataSchemaVer(YAMLRoot):
 
 
 @dataclass(repr=False)
-class LICENSE(HandleRecord):
+class METADATALICENSE(HandleRecord):
     """
     The data element in the handle API for the PID metadata license.
     """
 
     _inherited_slots: ClassVar[List[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = PID4CAT_MODEL["LICENSE"]
-    class_class_curie: ClassVar[str] = "pid4cat_model:LICENSE"
-    class_name: ClassVar[str] = "LICENSE"
-    class_model_uri: ClassVar[URIRef] = PID4CAT_MODEL.LICENSE
+    class_class_uri: ClassVar[URIRef] = PID4CAT_MODEL["METADATALICENSE"]
+    class_class_curie: ClassVar[str] = "pid4cat_model:METADATALICENSE"
+    class_name: ClassVar[str] = "METADATA_LICENSE"
+    class_model_uri: ClassVar[URIRef] = PID4CAT_MODEL.METADATALICENSE
 
     timestamp: Union[str, XSDDateTime] = None
     type: str = None
@@ -2179,21 +2179,21 @@ slots.HdlDataSchemaVer_value = Slot(
     pattern=re.compile(r"^v\d+\.\d+\.\d+$"),
 )
 
-slots.LICENSE_index = Slot(
+slots.METADATA_LICENSE_index = Slot(
     uri=PID4CAT_MODEL.index,
-    name="LICENSE_index",
+    name="METADATA_LICENSE_index",
     curie=PID4CAT_MODEL.curie("index"),
-    model_uri=PID4CAT_MODEL.LICENSE_index,
-    domain=LICENSE,
+    model_uri=PID4CAT_MODEL.METADATA_LICENSE_index,
+    domain=METADATALICENSE,
     range=int,
 )
 
-slots.LICENSE_data = Slot(
+slots.METADATA_LICENSE_data = Slot(
     uri=PID4CAT_MODEL.data,
-    name="LICENSE_data",
+    name="METADATA_LICENSE_data",
     curie=PID4CAT_MODEL.curie("data"),
-    model_uri=PID4CAT_MODEL.LICENSE_data,
-    domain=LICENSE,
+    model_uri=PID4CAT_MODEL.METADATA_LICENSE_data,
+    domain=METADATALICENSE,
     range=Union[dict, "HdlDataLicense"],
 )
 

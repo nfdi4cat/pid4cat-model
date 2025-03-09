@@ -24,7 +24,7 @@ contains_pids:
     ttl: 86400
     timestamp: '2024-05-15T15:51:15Z'
   - index: 4
-    type: LICENSE
+    type: METADATA_LICENSE
     data:
       format: string
       value: CC0-1.0

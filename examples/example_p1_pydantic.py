@@ -117,9 +117,9 @@ p1_api = p4c.HandleAPIRecord(
                 value="v0.1.0",
             ),
         ),
-        p4c.LICENSE(
+        p4c.METADATALICENSE(
             index=4,
-            type="LICENSE",
+            type="METADATA_LICENSE",
             ttl=86400,
             timestamp=datetime.fromisoformat("2024-05-15T15:51:15Z"),
             data=p4c.HdlDataLicense(

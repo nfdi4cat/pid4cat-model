@@ -90,7 +90,7 @@ A typical handle record is shown in the table.
 |     1 | URL  | 2024-01-01 10:47:38Z | https://pid4cat.example.org/lca/dfi345 | *landing pageURL* |
 |     2 | STATUS | 2024-02-19 13:40:02Z | REGISTERED | *[status](https://nfdi4cat.github.io/pid4cat-model/dev/elements/STATUS/)* |
 |     3 | SCHEMA_VER | 2024-01-01 10:47:38Z | v1.0.0 | *[pid4cat model version](https://nfdi4cat.github.io/pid4cat-model/dev/elements/SCHEMAVER/)* |
-|     4 | LICENSE | 2024-01-01 10:47:38Z | CC0-1.0 | *[license](https://nfdi4cat.github.io/pid4cat-model/dev/elements/LICENSE/)* |
+|     4 | METADATA_LICENSE | 2024-01-01 10:47:38Z | CC0-1.0 | *[license](https://nfdi4cat.github.io/pid4cat-model/dev/elements/LICENSE/)* |
 |     5 | EMAIL | 2024-01-01 10:47:38Z | datafuzzi@example.org | *curation contact email* |
 |     6 | RESOURCE | 2024-01-01 10:47:38Z | {json} | *[resource info](https://nfdi4cat.github.io/pid4cat-model/dev/elements/RESOURCE/)* |
 |     7 | RELATED | 2024-02-19 13:40:02Z | {json} | *[related identifiers](https://nfdi4cat.github.io/pid4cat-model/dev/elements/RELATED/)* |
@@ -102,7 +102,7 @@ The TYPE column in the handle record determines ("designates") the corresponding
 In a future version, the non-standard values the in **Type**-column could be replaced by references to type declarations in a datatype registry (DTR).
 Such DTRs are still under development and not yet widely used.
 
-The LICENSE specifies the licence for the metadata in the PID-record.
+The METADATA_LICENSE specifies the licence for the metadata in the PID-record.
 It will be fixed to CC0-1.0 in the NFDICat service to facilitate reuse.
 
 Since pid4cat is a linkML-model we have all tools at hand to create records or an API.
