@@ -40,7 +40,7 @@
 --     * Slot: id Description:
 --     * Slot: format Description: The format of the handle data.
 --     * Slot: value Description: The value of the handle data.
--- # Class: "LICENSE" Description: "The data element in the handle API for the PID metadata license."
+-- # Class: "METADATA_LICENSE" Description: "The data element in the handle API for the PID metadata license."
 --     * Slot: id Description:
 --     * Slot: index Description: The index of the handle record.
 --     * Slot: timestamp Description: The iso datetime for the last update of the handle data.
@@ -335,7 +335,7 @@ CREATE TABLE "SCHEMA_VER" (
 	PRIMARY KEY (id),
 	FOREIGN KEY(data_id) REFERENCES "HdlDataSchemaVer" (id)
 );
-CREATE TABLE "LICENSE" (
+CREATE TABLE "METADATA_LICENSE" (
 	id INTEGER NOT NULL,
 	"index" INTEGER NOT NULL,
 	timestamp DATETIME NOT NULL,

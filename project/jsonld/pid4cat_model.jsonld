@@ -926,7 +926,7 @@
         "URL",
         "STATUS",
         "SCHEMAVER",
-        "LICENSE",
+        "METADATALICENSE",
         "EMAIL",
         "RESOURCE",
         "RELATED",
@@ -946,7 +946,7 @@
         "URL",
         "STATUS",
         "SCHEMAVER",
-        "LICENSE",
+        "METADATALICENSE",
         "EMAIL",
         "RESOURCE",
         "RELATED",
@@ -1645,17 +1645,17 @@
       "@type": "SlotDefinition"
     },
     {
-      "name": "LICENSE_index",
+      "name": "METADATA_LICENSE_index",
       "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/index",
       "description": "The index of the handle record.",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "is_a": "index",
-      "domain": "LICENSE",
+      "domain": "METADATALICENSE",
       "slot_uri": "https://w3id.org/nfdi4cat/pid4cat-model/index",
       "alias": "index",
-      "owner": "LICENSE",
+      "owner": "METADATALICENSE",
       "domain_of": [
-        "LICENSE"
+        "METADATALICENSE"
       ],
       "is_usage_slot": true,
       "usage_slot_name": "index",
@@ -1666,17 +1666,17 @@
       "@type": "SlotDefinition"
     },
     {
-      "name": "LICENSE_data",
+      "name": "METADATA_LICENSE_data",
       "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/data",
       "description": "The data in the handle record.",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "is_a": "data",
-      "domain": "LICENSE",
+      "domain": "METADATALICENSE",
       "slot_uri": "https://w3id.org/nfdi4cat/pid4cat-model/data",
       "alias": "data",
-      "owner": "LICENSE",
+      "owner": "METADATALICENSE",
       "domain_of": [
-        "LICENSE"
+        "METADATALICENSE"
       ],
       "is_usage_slot": true,
       "usage_slot_name": "data",
@@ -2616,8 +2616,8 @@
       "@type": "ClassDefinition"
     },
     {
-      "name": "LICENSE",
-      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/LICENSE",
+      "name": "METADATALICENSE",
+      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/METADATALICENSE",
       "description": "The data element in the handle API for the PID metadata license.",
       "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
       "is_a": "HandleRecord",
@@ -2625,11 +2625,11 @@
         "HandleRecord_timestamp",
         "HandleRecord_ttl",
         "HandleRecord_type",
-        "LICENSE_index",
-        "LICENSE_data"
+        "METADATA_LICENSE_index",
+        "METADATA_LICENSE_data"
       ],
       "slot_usage": {},
-      "class_uri": "https://w3id.org/nfdi4cat/pid4cat-model/LICENSE",
+      "class_uri": "https://w3id.org/nfdi4cat/pid4cat-model/METADATALICENSE",
       "@type": "ClassDefinition"
     },
     {
@@ -2993,9 +2993,9 @@
   ],
   "metamodel_version": "1.7.0",
   "source_file": "pid4cat_model.yaml",
-  "source_file_date": "2025-03-07T08:49:35",
-  "source_file_size": 25296,
-  "generation_date": "2025-03-07T08:52:58",
+  "source_file_date": "2025-03-09T19:38:42",
+  "source_file_size": 25305,
+  "generation_date": "2025-03-09T19:41:33",
   "@type": "SchemaDefinition",
   "@context": [
     "project/jsonld/pid4cat_model.context.jsonld",

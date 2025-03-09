@@ -142,7 +142,7 @@ linkml:Sparqlpath xsd:string
           ) ;
           rdf:type [ <HandleRecord> ] ?
        )
-    } OR @<CHANGES> OR @<EMAIL> OR @<LICENSE> OR @<RELATED> OR @<RESOURCE> OR @<SCHEMAVER> OR @<STATUS> OR @<URL>
+    } OR @<CHANGES> OR @<EMAIL> OR @<METADATALICENSE> OR @<RELATED> OR @<RESOURCE> OR @<SCHEMAVER> OR @<STATUS> OR @<URL>
 )
 
 <HandleRecordContainer> CLOSED {
@@ -216,16 +216,6 @@ linkml:Sparqlpath xsd:string
     )
 }
 
-<LICENSE> CLOSED {
-    (  $<LICENSE_tes> (  &<HandleRecord_tes> ;
-          rdf:type [ <HandleRecord> ] ? ;
-          <index> @linkml:Integer ;
-          <data> @<HdlDataLicense>
-       ) ;
-       rdf:type [ <LICENSE> ] ?
-    )
-}
-
 <LogRecord> CLOSED {
     (  $<LogRecord_tes> (  <datetime_log> @linkml:Datetime ;
           <has_agent> @<Agent> ;
@@ -239,6 +229,16 @@ linkml:Sparqlpath xsd:string
           <description> @linkml:String ?
        ) ;
        rdf:type [ <LogRecord> ] ?
+    )
+}
+
+<METADATALICENSE> CLOSED {
+    (  $<METADATALICENSE_tes> (  &<HandleRecord_tes> ;
+          rdf:type [ <HandleRecord> ] ? ;
+          <index> @linkml:Integer ;
+          <data> @<HdlDataLicense>
+       ) ;
+       rdf:type [ <METADATALICENSE> ] ?
     )
 }
 

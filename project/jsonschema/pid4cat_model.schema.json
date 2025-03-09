@@ -297,7 +297,7 @@
                                 "$ref": "#/$defs/SCHEMAVER"
                             },
                             {
-                                "$ref": "#/$defs/LICENSE"
+                                "$ref": "#/$defs/METADATALICENSE"
                             },
                             {
                                 "$ref": "#/$defs/EMAIL"
@@ -598,49 +598,6 @@
             "title": "HdlDataUrl",
             "type": "object"
         },
-        "LICENSE": {
-            "additionalProperties": false,
-            "description": "The data element in the handle API for the PID metadata license.",
-            "properties": {
-                "data": {
-                    "$ref": "#/$defs/HdlDataLicense",
-                    "description": "The data in the handle record."
-                },
-                "index": {
-                    "description": "The index of the handle record.",
-                    "maximum": 4,
-                    "minimum": 4,
-                    "type": "integer"
-                },
-                "timestamp": {
-                    "description": "The iso datetime for the last update of the handle data.",
-                    "format": "date-time",
-                    "type": "string"
-                },
-                "ttl": {
-                    "description": "A time to live in seconds for the handle record. Typically: 86400 => 1 day",
-                    "type": [
-                        "integer",
-                        "null"
-                    ]
-                },
-                "type": {
-                    "description": "The type of handledata stored in the handle record.",
-                    "enum": [
-                        "LICENSE"
-                    ],
-                    "type": "string"
-                }
-            },
-            "required": [
-                "index",
-                "data",
-                "timestamp",
-                "type"
-            ],
-            "title": "LICENSE",
-            "type": "object"
-        },
         "LogRecord": {
             "additionalProperties": false,
             "description": "Data class for a change log of modification made on a pid4cat handle record starting from its registration.",
@@ -672,6 +629,49 @@
                 "changed_field"
             ],
             "title": "LogRecord",
+            "type": "object"
+        },
+        "METADATALICENSE": {
+            "additionalProperties": false,
+            "description": "The data element in the handle API for the PID metadata license.",
+            "properties": {
+                "data": {
+                    "$ref": "#/$defs/HdlDataLicense",
+                    "description": "The data in the handle record."
+                },
+                "index": {
+                    "description": "The index of the handle record.",
+                    "maximum": 4,
+                    "minimum": 4,
+                    "type": "integer"
+                },
+                "timestamp": {
+                    "description": "The iso datetime for the last update of the handle data.",
+                    "format": "date-time",
+                    "type": "string"
+                },
+                "ttl": {
+                    "description": "A time to live in seconds for the handle record. Typically: 86400 => 1 day",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "type": {
+                    "description": "The type of handledata stored in the handle record.",
+                    "enum": [
+                        "METADATA_LICENSE"
+                    ],
+                    "type": "string"
+                }
+            },
+            "required": [
+                "index",
+                "data",
+                "timestamp",
+                "type"
+            ],
+            "title": "METADATALICENSE",
             "type": "object"
         },
         "MediaTypesEnum": {
