@@ -767,7 +767,7 @@ slots:
     - URL
     - STATUS
     - SCHEMA_VER
-    - LICENSE
+    - METADATA_LICENSE
     - EMAIL
     - RESOURCE
     - RELATED
@@ -784,7 +784,7 @@ slots:
     - URL
     - STATUS
     - SCHEMA_VER
-    - LICENSE
+    - METADATA_LICENSE
     - EMAIL
     - RESOURCE
     - RELATED
@@ -1357,36 +1357,36 @@ slots:
     range: string
     required: true
     pattern: ^v\d+\.\d+\.\d+$
-  LICENSE_index:
-    name: LICENSE_index
+  METADATA_LICENSE_index:
+    name: METADATA_LICENSE_index
     definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/index
     description: The index of the handle record.
     from_schema: https://w3id.org/nfdi4cat/pid4cat-model
     is_a: index
-    domain: LICENSE
+    domain: METADATA_LICENSE
     slot_uri: pid4cat_model:index
     alias: index
-    owner: LICENSE
+    owner: METADATA_LICENSE
     domain_of:
-    - LICENSE
+    - METADATA_LICENSE
     is_usage_slot: true
     usage_slot_name: index
     range: integer
     required: true
     minimum_value: 4
     maximum_value: 4
-  LICENSE_data:
-    name: LICENSE_data
+  METADATA_LICENSE_data:
+    name: METADATA_LICENSE_data
     definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/data
     description: The data in the handle record.
     from_schema: https://w3id.org/nfdi4cat/pid4cat-model
     is_a: data
-    domain: LICENSE
+    domain: METADATA_LICENSE
     slot_uri: pid4cat_model:data
     alias: data
-    owner: LICENSE
+    owner: METADATA_LICENSE
     domain_of:
-    - LICENSE
+    - METADATA_LICENSE
     is_usage_slot: true
     usage_slot_name: data
     range: HdlDataLicense
@@ -2245,9 +2245,9 @@ classes:
         required: true
         pattern: ^v\d+\.\d+\.\d+$
     class_uri: pid4cat_model:HdlDataSchemaVer
-  LICENSE:
-    name: LICENSE
-    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/LICENSE
+  METADATA_LICENSE:
+    name: METADATA_LICENSE
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/METADATALICENSE
     description: The data element in the handle API for the PID metadata license.
     from_schema: https://w3id.org/nfdi4cat/pid4cat-model
     is_a: HandleRecord
@@ -2255,8 +2255,8 @@ classes:
     - HandleRecord_timestamp
     - HandleRecord_ttl
     - HandleRecord_type
-    - LICENSE_index
-    - LICENSE_data
+    - METADATA_LICENSE_index
+    - METADATA_LICENSE_data
     slot_usage:
       index:
         name: index
@@ -2267,7 +2267,7 @@ classes:
         name: data
         range: HdlDataLicense
         required: true
-    class_uri: pid4cat_model:LICENSE
+    class_uri: pid4cat_model:METADATALICENSE
   HdlDataLicense:
     name: HdlDataLicense
     definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/HdlDataLicense
@@ -2706,7 +2706,7 @@ classes:
     class_uri: pid4cat_model:ExampleIdentifier
 metamodel_version: 1.7.0
 source_file: pid4cat_model.yaml
-source_file_date: '2025-03-09T18:29:54'
-source_file_size: 25296
-generation_date: '2025-03-09T18:30:20'
+source_file_date: '2025-03-10T10:53:49'
+source_file_size: 25305
+generation_date: '2025-03-10T10:54:16'
 
