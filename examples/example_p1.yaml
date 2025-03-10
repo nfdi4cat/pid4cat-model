@@ -11,36 +11,36 @@ contains_pids:
       value: https://pid4cat.example.org/lik-1
   - timestamp: 2024-05-15 15:51:15+00:00
     ttl: 86400
+    type: EMAIL
+    index: 10
+    data:
+      format: string
+      value: datafuzzi@example.org
+  - timestamp: 2024-05-15 15:51:15+00:00
+    ttl: 86400
     type: STATUS
-    index: 2
+    index: 11
     data:
       format: string
       value: REGISTERED
   - timestamp: 2024-05-15 15:51:15+00:00
     ttl: 86400
     type: SCHEMA_VER
-    index: 3
+    index: 12
     data:
       format: string
       value: v0.1.0
   - timestamp: 2024-05-15 15:51:15+00:00
     ttl: 86400
     type: METADATA_LICENSE
-    index: 4
+    index: 13
     data:
       format: string
       value: CC0-1.0
   - timestamp: 2024-05-15 15:51:15+00:00
     ttl: 86400
-    type: EMAIL
-    index: 5
-    data:
-      format: string
-      value: datafuzzi@example.org
-  - timestamp: 2024-05-15 15:51:15+00:00
-    ttl: 86400
     type: RESOURCE
-    index: 6
+    index: 14
     data:
       format: string
       value:
@@ -55,7 +55,7 @@ contains_pids:
   - timestamp: 2024-05-15 15:51:15+00:00
     ttl: 86400
     type: RELATED
-    index: 7
+    index: 15
     data:
       format: string
       value:
@@ -74,7 +74,7 @@ contains_pids:
   - timestamp: 2024-05-15 15:51:15+00:00
     ttl: 86400
     type: CHANGES
-    index: 8
+    index: 16
     data:
       format: string
       value:

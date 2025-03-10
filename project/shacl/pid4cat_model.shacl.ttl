@@ -9,13 +9,14 @@ pid4cat_model:ArkIdentifier a sh:NodeShape ;
     sh:closed true ;
     sh:description "An ARK (Archival Resource Key)." ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:datatype <xsd:string> ;
-            sh:description "The type of the identifier." ;
+    sh:property [ sh:datatype <xsd:anyURI> ;
+            sh:description "The URL that resolves the identifier." ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:nodeKind sh:Literal ;
-            sh:order 2 ;
-            sh:path pid4cat_model:type ],
+            sh:order 1 ;
+            sh:path pid4cat_model:resolving_url ;
+            sh:pattern "^https?:\\/\\/.*\\/ark:\\/\\d{5}/.*$" ],
         [ sh:datatype <xsd:string> ;
             sh:description "The identifier in recommended notation." ;
             sh:maxCount 1 ;
@@ -23,14 +24,13 @@ pid4cat_model:ArkIdentifier a sh:NodeShape ;
             sh:order 0 ;
             sh:path pid4cat_model:identifier ;
             sh:pattern "^ark:\\/\\d{5}/.*$" ],
-        [ sh:datatype <xsd:anyURI> ;
-            sh:description "The URL that resolves the identifier." ;
+        [ sh:datatype <xsd:string> ;
+            sh:description "The type of the identifier." ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:nodeKind sh:Literal ;
-            sh:order 1 ;
-            sh:path pid4cat_model:resolving_url ;
-            sh:pattern "^https?:\\/\\/.*\\/ark:\\/\\d{5}/.*$" ] ;
+            sh:order 2 ;
+            sh:path pid4cat_model:type ] ;
     sh:targetClass pid4cat_model:ArkIdentifier .
 
 pid4cat_model:CHANGES a sh:NodeShape ;
@@ -44,22 +44,6 @@ pid4cat_model:CHANGES a sh:NodeShape ;
             sh:nodeKind sh:Literal ;
             sh:order 2 ;
             sh:path pid4cat_model:timestamp ],
-        [ sh:datatype <xsd:string> ;
-            sh:description "The type of handledata stored in the handle record." ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 4 ;
-            sh:path pid4cat_model:type ],
-        [ sh:datatype <xsd:integer> ;
-            sh:description "The index of the handle record." ;
-            sh:maxCount 1 ;
-            sh:maxInclusive 8 ;
-            sh:minCount 1 ;
-            sh:minInclusive 8 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 0 ;
-            sh:path pid4cat_model:index ],
         [ sh:datatype <xsd:integer> ;
             sh:defaultValue 86400 ;
             sh:description "A time to live in seconds for the handle record. Typically: 86400 => 1 day" ;
@@ -73,7 +57,23 @@ pid4cat_model:CHANGES a sh:NodeShape ;
             sh:minCount 1 ;
             sh:nodeKind sh:BlankNodeOrIRI ;
             sh:order 1 ;
-            sh:path pid4cat_model:data ] ;
+            sh:path pid4cat_model:data ],
+        [ sh:datatype <xsd:integer> ;
+            sh:description "The index of the handle record." ;
+            sh:maxCount 1 ;
+            sh:maxInclusive 16 ;
+            sh:minCount 1 ;
+            sh:minInclusive 16 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path pid4cat_model:index ],
+        [ sh:datatype <xsd:string> ;
+            sh:description "The type of handledata stored in the handle record." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path pid4cat_model:type ] ;
     sh:targetClass pid4cat_model:CHANGES .
 
 pid4cat_model:DoiIdentifier a sh:NodeShape ;
@@ -81,12 +81,12 @@ pid4cat_model:DoiIdentifier a sh:NodeShape ;
     sh:description "A digital object identifier (DOI)." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype <xsd:string> ;
-            sh:description "The identifier in recommended notation." ;
+            sh:description "The type of the identifier." ;
             sh:maxCount 1 ;
+            sh:minCount 1 ;
             sh:nodeKind sh:Literal ;
-            sh:order 1 ;
-            sh:path pid4cat_model:identifier ;
-            sh:pattern "^10\\.\\d{4,}\\/.*$" ],
+            sh:order 2 ;
+            sh:path pid4cat_model:type ],
         [ sh:datatype <xsd:anyURI> ;
             sh:description "The URL that resolves the identifier." ;
             sh:maxCount 1 ;
@@ -96,41 +96,25 @@ pid4cat_model:DoiIdentifier a sh:NodeShape ;
             sh:path pid4cat_model:resolving_url ;
             sh:pattern "^https:\\/\\/doi\\.org\\/10.*$" ],
         [ sh:datatype <xsd:string> ;
-            sh:description "The type of the identifier." ;
+            sh:description "The identifier in recommended notation." ;
             sh:maxCount 1 ;
-            sh:minCount 1 ;
             sh:nodeKind sh:Literal ;
-            sh:order 2 ;
-            sh:path pid4cat_model:type ] ;
+            sh:order 1 ;
+            sh:path pid4cat_model:identifier ;
+            sh:pattern "^10\\.\\d{4,}\\/.*$" ] ;
     sh:targetClass pid4cat_model:DoiIdentifier .
 
 pid4cat_model:EMAIL a sh:NodeShape ;
     sh:closed true ;
     sh:description "The data element in the handle API for the contact email." ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:datatype <xsd:integer> ;
-            sh:description "The index of the handle record." ;
-            sh:maxCount 1 ;
-            sh:maxInclusive 5 ;
-            sh:minCount 1 ;
-            sh:minInclusive 5 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 0 ;
-            sh:path pid4cat_model:index ],
-        [ sh:datatype <xsd:dateTime> ;
+    sh:property [ sh:datatype <xsd:dateTime> ;
             sh:description "The iso datetime for the last update of the handle data." ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 2 ;
             sh:path pid4cat_model:timestamp ],
-        [ sh:class pid4cat_model:HdlDataContact ;
-            sh:description "The data in the handle record." ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:BlankNodeOrIRI ;
-            sh:order 1 ;
-            sh:path pid4cat_model:data ],
         [ sh:datatype <xsd:integer> ;
             sh:defaultValue 86400 ;
             sh:description "A time to live in seconds for the handle record. Typically: 86400 => 1 day" ;
@@ -138,13 +122,29 @@ pid4cat_model:EMAIL a sh:NodeShape ;
             sh:nodeKind sh:Literal ;
             sh:order 3 ;
             sh:path pid4cat_model:ttl ],
+        [ sh:datatype <xsd:integer> ;
+            sh:description "The index of the handle record." ;
+            sh:maxCount 1 ;
+            sh:maxInclusive 10 ;
+            sh:minCount 1 ;
+            sh:minInclusive 10 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path pid4cat_model:index ],
         [ sh:datatype <xsd:string> ;
             sh:description "The type of handledata stored in the handle record." ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 4 ;
-            sh:path pid4cat_model:type ] ;
+            sh:path pid4cat_model:type ],
+        [ sh:class pid4cat_model:HdlDataContact ;
+            sh:description "The data in the handle record." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 1 ;
+            sh:path pid4cat_model:data ] ;
     sh:targetClass pid4cat_model:EMAIL .
 
 pid4cat_model:ExampleIdentifier a sh:NodeShape ;
@@ -158,7 +158,48 @@ pid4cat_model:ExampleIdentifier a sh:NodeShape ;
             sh:order 0 ;
             sh:path pid4cat_model:identifier ;
             sh:pattern "^ex:.*$" ],
+        [ sh:datatype <xsd:anyURI> ;
+            sh:description "The URL that resolves the identifier." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path pid4cat_model:resolving_url ;
+            sh:pattern "^https?:\\/\\/(.+\\.)?example.(org|com)\\/.*$" ],
         [ sh:datatype <xsd:string> ;
+            sh:description "The type of the identifier." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path pid4cat_model:type ] ;
+    sh:targetClass pid4cat_model:ExampleIdentifier .
+
+pid4cat_model:GtinIdentifier a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "A Global Trade Item Number (GTIN) previously called European Article Number (EAN) often encoded as EAN13 barcode. The identifier is used to identify products. GTINs don't have a resolvable URL." ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype <xsd:string> ;
+            sh:description "The identifier in recommended notation." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path pid4cat_model:identifier ;
+            sh:pattern "^\\d{13}$" ],
+        [ sh:datatype <xsd:string> ;
+            sh:description "The type of the identifier." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path pid4cat_model:type ] ;
+    sh:targetClass pid4cat_model:GtinIdentifier .
+
+pid4cat_model:HandleIdentifier a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "A handle identifier." ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype <xsd:string> ;
             sh:description "The type of the identifier." ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
@@ -168,52 +209,11 @@ pid4cat_model:ExampleIdentifier a sh:NodeShape ;
         [ sh:datatype <xsd:anyURI> ;
             sh:description "The URL that resolves the identifier." ;
             sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 1 ;
-            sh:path pid4cat_model:resolving_url ;
-            sh:pattern "^https?:\\/\\/(.+\\.)?example.(org|com)\\/.*$" ] ;
-    sh:targetClass pid4cat_model:ExampleIdentifier .
-
-pid4cat_model:GtinIdentifier a sh:NodeShape ;
-    sh:closed true ;
-    sh:description "A Global Trade Item Number (GTIN) previously called European Article Number (EAN) often encoded as EAN13 barcode. The identifier is used to identify products. GTINs don't have a resolvable URL." ;
-    sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:datatype <xsd:string> ;
-            sh:description "The type of the identifier." ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 1 ;
-            sh:path pid4cat_model:type ],
-        [ sh:datatype <xsd:string> ;
-            sh:description "The identifier in recommended notation." ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 0 ;
-            sh:path pid4cat_model:identifier ;
-            sh:pattern "^\\d{13}$" ] ;
-    sh:targetClass pid4cat_model:GtinIdentifier .
-
-pid4cat_model:HandleIdentifier a sh:NodeShape ;
-    sh:closed true ;
-    sh:description "A handle identifier." ;
-    sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:datatype <xsd:anyURI> ;
-            sh:description "The URL that resolves the identifier." ;
-            sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 0 ;
             sh:path pid4cat_model:resolving_url ;
             sh:pattern "^https:\\/\\/hdl\\.handle\\.net\\/\\d{2}\\.T?\\d{4,}\\/.*$" ],
-        [ sh:datatype <xsd:string> ;
-            sh:description "The type of the identifier." ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 2 ;
-            sh:path pid4cat_model:type ],
         [ sh:datatype <xsd:string> ;
             sh:description "The identifier in recommended notation." ;
             sh:maxCount 1 ;
@@ -252,6 +252,13 @@ pid4cat_model:METADATALICENSE a sh:NodeShape ;
             sh:nodeKind sh:BlankNodeOrIRI ;
             sh:order 1 ;
             sh:path pid4cat_model:data ],
+        [ sh:datatype <xsd:dateTime> ;
+            sh:description "The iso datetime for the last update of the handle data." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path pid4cat_model:timestamp ],
         [ sh:datatype <xsd:string> ;
             sh:description "The type of handledata stored in the handle record." ;
             sh:maxCount 1 ;
@@ -262,9 +269,109 @@ pid4cat_model:METADATALICENSE a sh:NodeShape ;
         [ sh:datatype <xsd:integer> ;
             sh:description "The index of the handle record." ;
             sh:maxCount 1 ;
-            sh:maxInclusive 4 ;
+            sh:maxInclusive 13 ;
             sh:minCount 1 ;
-            sh:minInclusive 4 ;
+            sh:minInclusive 13 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path pid4cat_model:index ] ;
+    sh:targetClass pid4cat_model:METADATALICENSE .
+
+pid4cat_model:PurlIdentifier a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "A PURL (permanent uniform resource locator)." ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype <xsd:string> ;
+            sh:description "The type of the identifier." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path pid4cat_model:type ],
+        [ sh:datatype <xsd:anyURI> ;
+            sh:description "The URL that resolves the identifier." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path pid4cat_model:resolving_url ;
+            sh:pattern "^https:\\/\\/(purl|pida|w3id)\\.org\\/.*$" ] ;
+    sh:targetClass pid4cat_model:PurlIdentifier .
+
+pid4cat_model:RELATED a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "The data element in the handle API for related identifiers." ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype <xsd:integer> ;
+            sh:defaultValue 86400 ;
+            sh:description "A time to live in seconds for the handle record. Typically: 86400 => 1 day" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path pid4cat_model:ttl ],
+        [ sh:datatype <xsd:string> ;
+            sh:description "The type of handledata stored in the handle record." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path pid4cat_model:type ],
+        [ sh:class pid4cat_model:HdlDataRelated ;
+            sh:description "The data in the handle record." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 1 ;
+            sh:path pid4cat_model:data ],
+        [ sh:datatype <xsd:dateTime> ;
+            sh:description "The iso datetime for the last update of the handle data." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path pid4cat_model:timestamp ],
+        [ sh:datatype <xsd:integer> ;
+            sh:description "The index of the handle record." ;
+            sh:maxCount 1 ;
+            sh:maxInclusive 15 ;
+            sh:minCount 1 ;
+            sh:minInclusive 15 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path pid4cat_model:index ] ;
+    sh:targetClass pid4cat_model:RELATED .
+
+pid4cat_model:RESOURCE a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "The data element in the handle API for the resource info." ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:class pid4cat_model:HdlDataResourceInfo ;
+            sh:description "The data in the handle record." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 1 ;
+            sh:path pid4cat_model:data ],
+        [ sh:datatype <xsd:string> ;
+            sh:description "The type of handledata stored in the handle record." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path pid4cat_model:type ],
+        [ sh:datatype <xsd:integer> ;
+            sh:defaultValue 86400 ;
+            sh:description "A time to live in seconds for the handle record. Typically: 86400 => 1 day" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path pid4cat_model:ttl ],
+        [ sh:datatype <xsd:integer> ;
+            sh:description "The index of the handle record." ;
+            sh:maxCount 1 ;
+            sh:maxInclusive 14 ;
+            sh:minCount 1 ;
+            sh:minInclusive 14 ;
             sh:nodeKind sh:Literal ;
             sh:order 0 ;
             sh:path pid4cat_model:index ],
@@ -275,126 +382,62 @@ pid4cat_model:METADATALICENSE a sh:NodeShape ;
             sh:nodeKind sh:Literal ;
             sh:order 2 ;
             sh:path pid4cat_model:timestamp ] ;
-    sh:targetClass pid4cat_model:METADATALICENSE .
-
-pid4cat_model:PurlIdentifier a sh:NodeShape ;
-    sh:closed true ;
-    sh:description "A PURL (permanent uniform resource locator)." ;
-    sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:datatype <xsd:anyURI> ;
-            sh:description "The URL that resolves the identifier." ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 0 ;
-            sh:path pid4cat_model:resolving_url ;
-            sh:pattern "^https:\\/\\/(purl|pida|w3id)\\.org\\/.*$" ],
-        [ sh:datatype <xsd:string> ;
-            sh:description "The type of the identifier." ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 1 ;
-            sh:path pid4cat_model:type ] ;
-    sh:targetClass pid4cat_model:PurlIdentifier .
-
-pid4cat_model:RELATED a sh:NodeShape ;
-    sh:closed true ;
-    sh:description "The data element in the handle API for related identifiers." ;
-    sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:datatype <xsd:dateTime> ;
-            sh:description "The iso datetime for the last update of the handle data." ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 2 ;
-            sh:path pid4cat_model:timestamp ],
-        [ sh:datatype <xsd:integer> ;
-            sh:description "The index of the handle record." ;
-            sh:maxCount 1 ;
-            sh:maxInclusive 7 ;
-            sh:minCount 1 ;
-            sh:minInclusive 7 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 0 ;
-            sh:path pid4cat_model:index ],
-        [ sh:class pid4cat_model:HdlDataRelated ;
-            sh:description "The data in the handle record." ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:BlankNodeOrIRI ;
-            sh:order 1 ;
-            sh:path pid4cat_model:data ],
-        [ sh:datatype <xsd:string> ;
-            sh:description "The type of handledata stored in the handle record." ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 4 ;
-            sh:path pid4cat_model:type ],
-        [ sh:datatype <xsd:integer> ;
-            sh:defaultValue 86400 ;
-            sh:description "A time to live in seconds for the handle record. Typically: 86400 => 1 day" ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 3 ;
-            sh:path pid4cat_model:ttl ] ;
-    sh:targetClass pid4cat_model:RELATED .
-
-pid4cat_model:RESOURCE a sh:NodeShape ;
-    sh:closed true ;
-    sh:description "The data element in the handle API for the resource info." ;
-    sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:datatype <xsd:integer> ;
-            sh:description "The index of the handle record." ;
-            sh:maxCount 1 ;
-            sh:maxInclusive 6 ;
-            sh:minCount 1 ;
-            sh:minInclusive 6 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 0 ;
-            sh:path pid4cat_model:index ],
-        [ sh:datatype <xsd:dateTime> ;
-            sh:description "The iso datetime for the last update of the handle data." ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 2 ;
-            sh:path pid4cat_model:timestamp ],
-        [ sh:datatype <xsd:string> ;
-            sh:description "The type of handledata stored in the handle record." ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 4 ;
-            sh:path pid4cat_model:type ],
-        [ sh:datatype <xsd:integer> ;
-            sh:defaultValue 86400 ;
-            sh:description "A time to live in seconds for the handle record. Typically: 86400 => 1 day" ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 3 ;
-            sh:path pid4cat_model:ttl ],
-        [ sh:class pid4cat_model:HdlDataResourceInfo ;
-            sh:description "The data in the handle record." ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:BlankNodeOrIRI ;
-            sh:order 1 ;
-            sh:path pid4cat_model:data ] ;
     sh:targetClass pid4cat_model:RESOURCE .
 
 pid4cat_model:SCHEMAVER a sh:NodeShape ;
     sh:closed true ;
     sh:description "The data element in the handle API for the schema version." ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:class pid4cat_model:HdlDataSchemaVer ;
+    sh:property [ sh:datatype <xsd:integer> ;
+            sh:description "The index of the handle record." ;
+            sh:maxCount 1 ;
+            sh:maxInclusive 12 ;
+            sh:minCount 1 ;
+            sh:minInclusive 12 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path pid4cat_model:index ],
+        [ sh:datatype <xsd:integer> ;
+            sh:defaultValue 86400 ;
+            sh:description "A time to live in seconds for the handle record. Typically: 86400 => 1 day" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path pid4cat_model:ttl ],
+        [ sh:class pid4cat_model:HdlDataSchemaVer ;
             sh:description "The data in the handle record." ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:nodeKind sh:BlankNodeOrIRI ;
             sh:order 1 ;
             sh:path pid4cat_model:data ],
+        [ sh:datatype <xsd:string> ;
+            sh:description "The type of handledata stored in the handle record." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path pid4cat_model:type ],
+        [ sh:datatype <xsd:dateTime> ;
+            sh:description "The iso datetime for the last update of the handle data." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path pid4cat_model:timestamp ] ;
+    sh:targetClass pid4cat_model:SCHEMAVER .
+
+pid4cat_model:STATUS a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "The data element in the handle API for the PID status information." ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype <xsd:integer> ;
+            sh:defaultValue 86400 ;
+            sh:description "A time to live in seconds for the handle record. Typically: 86400 => 1 day" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path pid4cat_model:ttl ],
         [ sh:datatype <xsd:dateTime> ;
             sh:description "The iso datetime for the last update of the handle data." ;
             sh:maxCount 1 ;
@@ -402,49 +445,13 @@ pid4cat_model:SCHEMAVER a sh:NodeShape ;
             sh:nodeKind sh:Literal ;
             sh:order 2 ;
             sh:path pid4cat_model:timestamp ],
-        [ sh:datatype <xsd:integer> ;
-            sh:defaultValue 86400 ;
-            sh:description "A time to live in seconds for the handle record. Typically: 86400 => 1 day" ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 3 ;
-            sh:path pid4cat_model:ttl ],
-        [ sh:datatype <xsd:integer> ;
-            sh:description "The index of the handle record." ;
-            sh:maxCount 1 ;
-            sh:maxInclusive 3 ;
-            sh:minCount 1 ;
-            sh:minInclusive 3 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 0 ;
-            sh:path pid4cat_model:index ],
-        [ sh:datatype <xsd:string> ;
-            sh:description "The type of handledata stored in the handle record." ;
+        [ sh:class pid4cat_model:HdlDataStatus ;
+            sh:description "The data in the handle record." ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 4 ;
-            sh:path pid4cat_model:type ] ;
-    sh:targetClass pid4cat_model:SCHEMAVER .
-
-pid4cat_model:STATUS a sh:NodeShape ;
-    sh:closed true ;
-    sh:description "The data element in the handle API for the PID status information." ;
-    sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:datatype <xsd:dateTime> ;
-            sh:description "The iso datetime for the last update of the handle data." ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 2 ;
-            sh:path pid4cat_model:timestamp ],
-        [ sh:datatype <xsd:integer> ;
-            sh:defaultValue 86400 ;
-            sh:description "A time to live in seconds for the handle record. Typically: 86400 => 1 day" ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 3 ;
-            sh:path pid4cat_model:ttl ],
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 1 ;
+            sh:path pid4cat_model:data ],
         [ sh:datatype <xsd:string> ;
             sh:description "The type of handledata stored in the handle record." ;
             sh:maxCount 1 ;
@@ -455,19 +462,12 @@ pid4cat_model:STATUS a sh:NodeShape ;
         [ sh:datatype <xsd:integer> ;
             sh:description "The index of the handle record." ;
             sh:maxCount 1 ;
-            sh:maxInclusive 2 ;
+            sh:maxInclusive 11 ;
             sh:minCount 1 ;
-            sh:minInclusive 2 ;
+            sh:minInclusive 11 ;
             sh:nodeKind sh:Literal ;
             sh:order 0 ;
-            sh:path pid4cat_model:index ],
-        [ sh:class pid4cat_model:HdlDataStatus ;
-            sh:description "The data in the handle record." ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:BlankNodeOrIRI ;
-            sh:order 1 ;
-            sh:path pid4cat_model:data ] ;
+            sh:path pid4cat_model:index ] ;
     sh:targetClass pid4cat_model:STATUS .
 
 pid4cat_model:URL a sh:NodeShape ;
@@ -481,6 +481,20 @@ pid4cat_model:URL a sh:NodeShape ;
             sh:nodeKind sh:BlankNodeOrIRI ;
             sh:order 1 ;
             sh:path pid4cat_model:data ],
+        [ sh:datatype <xsd:string> ;
+            sh:description "The type of handledata stored in the handle record." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path pid4cat_model:type ],
+        [ sh:datatype <xsd:dateTime> ;
+            sh:description "The iso datetime for the last update of the handle data." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path pid4cat_model:timestamp ],
         [ sh:datatype <xsd:integer> ;
             sh:description "The index of the handle record." ;
             sh:maxCount 1 ;
@@ -490,27 +504,13 @@ pid4cat_model:URL a sh:NodeShape ;
             sh:nodeKind sh:Literal ;
             sh:order 0 ;
             sh:path pid4cat_model:index ],
-        [ sh:datatype <xsd:dateTime> ;
-            sh:description "The iso datetime for the last update of the handle data." ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 2 ;
-            sh:path pid4cat_model:timestamp ],
         [ sh:datatype <xsd:integer> ;
             sh:defaultValue 86400 ;
             sh:description "A time to live in seconds for the handle record. Typically: 86400 => 1 day" ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 3 ;
-            sh:path pid4cat_model:ttl ],
-        [ sh:datatype <xsd:string> ;
-            sh:description "The type of handledata stored in the handle record." ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 4 ;
-            sh:path pid4cat_model:type ] ;
+            sh:path pid4cat_model:ttl ] ;
     sh:targetClass pid4cat_model:URL .
 
 pid4cat_model:UrnIdentifier a sh:NodeShape ;
@@ -518,33 +518,27 @@ pid4cat_model:UrnIdentifier a sh:NodeShape ;
     sh:description "A URN (Uniform Resource Name)." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype <xsd:string> ;
-            sh:description "The type of the identifier." ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 1 ;
-            sh:path pid4cat_model:type ],
-        [ sh:datatype <xsd:string> ;
             sh:description "The identifier in recommended notation." ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 0 ;
             sh:path pid4cat_model:identifier ;
-            sh:pattern "^urn:[a-zA-Z0-9][a-zA-Z0-9-]{0,31}:[^\\s]*$" ] ;
+            sh:pattern "^urn:[a-zA-Z0-9][a-zA-Z0-9-]{0,31}:[^\\s]*$" ],
+        [ sh:datatype <xsd:string> ;
+            sh:description "The type of the identifier." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path pid4cat_model:type ] ;
     sh:targetClass pid4cat_model:UrnIdentifier .
 
 pid4cat_model:HandleAPIRecord a sh:NodeShape ;
     sh:closed true ;
     sh:description "A class representing a handle record query response of the REST (json) API of a handle server." ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:class pid4cat_model:HandleRecord ;
-            sh:description "The values of the pid4cat record." ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:BlankNodeOrIRI ;
-            sh:order 2 ;
-            sh:path pid4cat_model:values ],
-        [ sh:datatype <xsd:string> ;
+    sh:property [ sh:datatype <xsd:string> ;
             sh:description "The handle of the pid4cat record." ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
@@ -552,6 +546,12 @@ pid4cat_model:HandleAPIRecord a sh:NodeShape ;
             sh:order 1 ;
             sh:path pid4cat_model:handle ;
             sh:pattern "^\\d{2}\\.T?\\d{4,}\\/.*$" ],
+        [ sh:class pid4cat_model:HandleRecord ;
+            sh:description "The values of the pid4cat record." ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 2 ;
+            sh:path pid4cat_model:values ],
         [ sh:datatype <xsd:integer> ;
             sh:description "The response code of the handle API." ;
             sh:maxCount 1 ;
@@ -564,7 +564,14 @@ pid4cat_model:HandleRecord a sh:NodeShape ;
     sh:closed true ;
     sh:description "A base class for handle-data classes that represent a handle record in the same way as in the REST (json) API of a handle server." ;
     sh:ignoredProperties ( pid4cat_model:index rdf:type pid4cat_model:data ) ;
-    sh:property [ sh:datatype <xsd:dateTime> ;
+    sh:property [ sh:datatype <xsd:string> ;
+            sh:description "The type of handledata stored in the handle record." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path pid4cat_model:type ],
+        [ sh:datatype <xsd:dateTime> ;
             sh:description "The iso datetime for the last update of the handle data." ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
@@ -577,14 +584,7 @@ pid4cat_model:HandleRecord a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 1 ;
-            sh:path pid4cat_model:ttl ],
-        [ sh:datatype <xsd:string> ;
-            sh:description "The type of handledata stored in the handle record." ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 2 ;
-            sh:path pid4cat_model:type ] ;
+            sh:path pid4cat_model:ttl ] ;
     sh:targetClass pid4cat_model:HandleRecord .
 
 pid4cat_model:HdlDataContact a sh:NodeShape ;
@@ -592,21 +592,21 @@ pid4cat_model:HdlDataContact a sh:NodeShape ;
     sh:description "The data class for the handle-record contact email." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype <xsd:string> ;
-            sh:defaultValue "string"^^xsd:string ;
-            sh:description "The format of the handle data." ;
-            sh:in ( "string" ) ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 0 ;
-            sh:path pid4cat_model:format ],
-        [ sh:datatype <xsd:string> ;
             sh:description "The value of the handle data." ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 1 ;
             sh:path pid4cat_model:value ;
-            sh:pattern "^\\S+@[\\S+\\.]+\\S+" ] ;
+            sh:pattern "^\\S+@[\\S+\\.]+\\S+" ],
+        [ sh:datatype <xsd:string> ;
+            sh:defaultValue "string"^^xsd:string ;
+            sh:description "The format of the handle data." ;
+            sh:in ( "string" ) ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path pid4cat_model:format ] ;
     sh:targetClass pid4cat_model:HdlDataContact .
 
 pid4cat_model:HdlDataLicense a sh:NodeShape ;
@@ -635,9 +635,28 @@ pid4cat_model:HdlDataLog a sh:NodeShape ;
     sh:closed true ;
     sh:description "The data class for the change log." ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:class pid4cat_model:LogRecord ;
+    sh:property [ sh:datatype <xsd:string> ;
+            sh:defaultValue "string"^^xsd:string ;
+            sh:description "The format of the handle data." ;
+            sh:in ( "string" ) ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path pid4cat_model:format ],
+        [ sh:class pid4cat_model:LogRecord ;
             sh:description "The value of the handle data." ;
             sh:minCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 1 ;
+            sh:path pid4cat_model:value ] ;
+    sh:targetClass pid4cat_model:HdlDataLog .
+
+pid4cat_model:HdlDataRelated a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "The data class for related identifiers." ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:class pid4cat_model:Pid4CatRelation ;
+            sh:description "The value of the handle data." ;
             sh:nodeKind sh:BlankNodeOrIRI ;
             sh:order 1 ;
             sh:path pid4cat_model:value ],
@@ -649,11 +668,11 @@ pid4cat_model:HdlDataLog a sh:NodeShape ;
             sh:nodeKind sh:Literal ;
             sh:order 0 ;
             sh:path pid4cat_model:format ] ;
-    sh:targetClass pid4cat_model:HdlDataLog .
+    sh:targetClass pid4cat_model:HdlDataRelated .
 
-pid4cat_model:HdlDataRelated a sh:NodeShape ;
+pid4cat_model:HdlDataResourceInfo a sh:NodeShape ;
     sh:closed true ;
-    sh:description "The data class for related identifiers." ;
+    sh:description "The data class for the resource info." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype <xsd:string> ;
             sh:defaultValue "string"^^xsd:string ;
@@ -663,32 +682,13 @@ pid4cat_model:HdlDataRelated a sh:NodeShape ;
             sh:nodeKind sh:Literal ;
             sh:order 0 ;
             sh:path pid4cat_model:format ],
-        [ sh:class pid4cat_model:Pid4CatRelation ;
-            sh:description "The value of the handle data." ;
-            sh:nodeKind sh:BlankNodeOrIRI ;
-            sh:order 1 ;
-            sh:path pid4cat_model:value ] ;
-    sh:targetClass pid4cat_model:HdlDataRelated .
-
-pid4cat_model:HdlDataResourceInfo a sh:NodeShape ;
-    sh:closed true ;
-    sh:description "The data class for the resource info." ;
-    sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:class pid4cat_model:ResourceInfo ;
+        [ sh:class pid4cat_model:ResourceInfo ;
             sh:description "The value of the handle data." ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:nodeKind sh:BlankNodeOrIRI ;
             sh:order 1 ;
-            sh:path pid4cat_model:value ],
-        [ sh:datatype <xsd:string> ;
-            sh:defaultValue "string"^^xsd:string ;
-            sh:description "The format of the handle data." ;
-            sh:in ( "string" ) ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 0 ;
-            sh:path pid4cat_model:format ] ;
+            sh:path pid4cat_model:value ] ;
     sh:targetClass pid4cat_model:HdlDataResourceInfo .
 
 pid4cat_model:HdlDataSchemaVer a sh:NodeShape ;
@@ -766,25 +766,25 @@ pid4cat_model:LogRecord a sh:NodeShape ;
             sh:nodeKind sh:BlankNodeOrIRI ;
             sh:order 1 ;
             sh:path pid4cat_model:has_agent ],
-        [ sh:description "The field that was changed." ;
-            sh:in ( "STATUS" "LANDING_PAGE" "RESOURCE_INFO" "RELATED_IDS" "CONTACT" "LICENSE" "SCHEMA_VER" ) ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:order 2 ;
-            sh:path pid4cat_model:changed_field ],
-        [ sh:datatype <xsd:string> ;
-            sh:description "A human-readable description for a resource." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 3 ;
-            sh:path pid4cat_model:description ],
         [ sh:datatype <xsd:dateTime> ;
             sh:description "The date and time of a log record." ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 0 ;
-            sh:path pid4cat_model:datetime_log ] ;
+            sh:path pid4cat_model:datetime_log ],
+        [ sh:datatype <xsd:string> ;
+            sh:description "A human-readable description for a resource." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path pid4cat_model:description ],
+        [ sh:description "The field that was changed." ;
+            sh:in ( "STATUS" "LANDING_PAGE" "RESOURCE_INFO" "RELATED_IDS" "CONTACT" "LICENSE" "SCHEMA_VER" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 2 ;
+            sh:path pid4cat_model:changed_field ] ;
     sh:targetClass pid4cat_model:LogRecord .
 
 pid4cat_model:Pid4CatRelation a sh:NodeShape ;
@@ -813,7 +813,7 @@ pid4cat_model:Pid4CatRelation a sh:NodeShape ;
 pid4cat_model:RelatedIdentifier a sh:NodeShape ;
     sh:closed true ;
     sh:description "A base class for all types of related identifiers." ;
-    sh:ignoredProperties ( pid4cat_model:identifier pid4cat_model:resolving_url rdf:type ) ;
+    sh:ignoredProperties ( pid4cat_model:identifier rdf:type pid4cat_model:resolving_url ) ;
     sh:property [ sh:datatype <xsd:string> ;
             sh:description "The type of the identifier." ;
             sh:maxCount 1 ;
@@ -827,23 +827,23 @@ pid4cat_model:RepresentationVariant a sh:NodeShape ;
     sh:closed true ;
     sh:description "Data class for representations of the resource in other media types than text/html which is the default for landing_page_url." ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:description "The media type of the representation as defined by [IANA](https://www.iana.org/assignments/media-types/media-types.xhtml)" ;
-            sh:in ( <https://www.iana.org/assignments/media-types/application/epub+zip> <https://www.iana.org/assignments/media-types/application/json> <https://www.iana.org/assignments/media-types/application/ld+json> <https://www.iana.org/assignments/media-types/application/octet-stream> <https://www.iana.org/assignments/media-types/application/pdf> <https://www.iana.org/assignments/media-types/application/vnd.eln+zip> <https://www.iana.org/assignments/media-types/application/vnd.openxmlformats-officedocument.presentationml.presentation> <https://www.iana.org/assignments/media-types/application/vnd.openxmlformats-officedocument.spreadsheetml.sheet> <https://www.iana.org/assignments/media-types/application/vnd.openxmlformats-officedocument.wordprocessingml.document> <https://www.iana.org/assignments/media-types/application/xml> <https://www.iana.org/assignments/media-types/application/yaml> <https://www.iana.org/assignments/media-types/application/zip> <https://www.iana.org/assignments/media-types/image/gif> <https://www.iana.org/assignments/media-types/image/jpeg> <https://www.iana.org/assignments/media-types/image/png> <https://www.iana.org/assignments/media-types/image/svg+xml> <https://www.iana.org/assignments/media-types/image/tiff> <https://www.iana.org/assignments/media-types/image/webp> <https://www.iana.org/assignments/media-types/text/csv> <https://www.iana.org/assignments/media-types/text/html> <https://www.iana.org/assignments/media-types/text/javascript> <https://www.iana.org/assignments/media-types/text/markdown> <https://www.iana.org/assignments/media-types/text/plain> <https://www.iana.org/assignments/media-types/text/tab-separated-values> <https://www.iana.org/assignments/media-types/text/turtle> <https://www.iana.org/assignments/media-types/text/xml> <https://www.iana.org/assignments/media-types/video/mp4> "video/webm" ) ;
+    sh:property [ sh:datatype <xsd:string> ;
+            sh:description "The encoding of the representation. https://encoding.spec.whatwg.org/#names-and-labels" ;
             sh:maxCount 1 ;
-            sh:order 1 ;
-            sh:path pid4cat_model:media_type ],
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path pid4cat_model:encoding_format ],
         [ sh:datatype <xsd:anyURI> ;
             sh:description "The URL of the representation variant." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 0 ;
             sh:path pid4cat_model:variant_url ],
-        [ sh:datatype <xsd:string> ;
-            sh:description "The encoding of the representation. https://encoding.spec.whatwg.org/#names-and-labels" ;
+        [ sh:description "The media type of the representation as defined by [IANA](https://www.iana.org/assignments/media-types/media-types.xhtml)" ;
+            sh:in ( <https://www.iana.org/assignments/media-types/application/epub+zip> <https://www.iana.org/assignments/media-types/application/json> <https://www.iana.org/assignments/media-types/application/ld+json> <https://www.iana.org/assignments/media-types/application/octet-stream> <https://www.iana.org/assignments/media-types/application/pdf> <https://www.iana.org/assignments/media-types/application/vnd.eln+zip> <https://www.iana.org/assignments/media-types/application/vnd.openxmlformats-officedocument.presentationml.presentation> <https://www.iana.org/assignments/media-types/application/vnd.openxmlformats-officedocument.spreadsheetml.sheet> <https://www.iana.org/assignments/media-types/application/vnd.openxmlformats-officedocument.wordprocessingml.document> <https://www.iana.org/assignments/media-types/application/xml> <https://www.iana.org/assignments/media-types/application/yaml> <https://www.iana.org/assignments/media-types/application/zip> <https://www.iana.org/assignments/media-types/image/gif> <https://www.iana.org/assignments/media-types/image/jpeg> <https://www.iana.org/assignments/media-types/image/png> <https://www.iana.org/assignments/media-types/image/svg+xml> <https://www.iana.org/assignments/media-types/image/tiff> <https://www.iana.org/assignments/media-types/image/webp> <https://www.iana.org/assignments/media-types/text/csv> <https://www.iana.org/assignments/media-types/text/html> <https://www.iana.org/assignments/media-types/text/javascript> <https://www.iana.org/assignments/media-types/text/markdown> <https://www.iana.org/assignments/media-types/text/plain> <https://www.iana.org/assignments/media-types/text/tab-separated-values> <https://www.iana.org/assignments/media-types/text/turtle> <https://www.iana.org/assignments/media-types/text/xml> <https://www.iana.org/assignments/media-types/video/mp4> "video/webm" ) ;
             sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 2 ;
-            sh:path pid4cat_model:encoding_format ],
+            sh:order 1 ;
+            sh:path pid4cat_model:media_type ],
         [ sh:datatype <xsd:integer> ;
             sh:description "The size of the representation in bytes." ;
             sh:maxCount 1 ;
@@ -887,13 +887,7 @@ prov1:Agent a sh:NodeShape ;
     sh:closed true ;
     sh:description "Data class for a person who plays a role relative to PID creation or curation." ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:description "The role of the agent relative to the resource" ;
-            sh:in ( "TRUSTEE" "OWNER" ) ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:order 4 ;
-            sh:path pid4cat_model:role ],
-        [ sh:datatype <xsd:anyURI> ;
+    sh:property [ sh:datatype <xsd:anyURI> ;
             sh:description "The ROR of the agent's affiliation." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
@@ -901,13 +895,12 @@ prov1:Agent a sh:NodeShape ;
             sh:path pid4cat_model:affiliation_ror ;
             sh:pattern "^https:\\/\\/ror\\.org\\/0[a-hj-km-np-tv-z|0-9]{6}[0-9]{2}$" ],
         [ sh:datatype <xsd:string> ;
-            sh:description "Email address of the agent that created or modified the PID record." ;
+            sh:description "The ORCID of the person" ;
             sh:maxCount 1 ;
-            sh:minCount 1 ;
             sh:nodeKind sh:Literal ;
-            sh:order 1 ;
-            sh:path pid4cat_model:email_address ;
-            sh:pattern "^\\S+@[\\S+\\.]+\\S+" ],
+            sh:order 2 ;
+            sh:path pid4cat_model:orcid ;
+            sh:pattern "^\\d{4}-\\d{4}-\\d{4}-\\d{3}[0-9X]$" ],
         [ sh:datatype <xsd:string> ;
             sh:description "The name of the agent that created or modified the PID record." ;
             sh:maxCount 1 ;
@@ -916,10 +909,17 @@ prov1:Agent a sh:NodeShape ;
             sh:order 0 ;
             sh:path pid4cat_model:name ],
         [ sh:datatype <xsd:string> ;
-            sh:description "The ORCID of the person" ;
+            sh:description "Email address of the agent that created or modified the PID record." ;
             sh:maxCount 1 ;
+            sh:minCount 1 ;
             sh:nodeKind sh:Literal ;
-            sh:order 2 ;
-            sh:path pid4cat_model:orcid ;
-            sh:pattern "^\\d{4}-\\d{4}-\\d{4}-\\d{3}[0-9X]$" ] ;
+            sh:order 1 ;
+            sh:path pid4cat_model:email_address ;
+            sh:pattern "^\\S+@[\\S+\\.]+\\S+" ],
+        [ sh:description "The role of the agent relative to the resource" ;
+            sh:in ( "TRUSTEE" "OWNER" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 4 ;
+            sh:path pid4cat_model:role ] ;
     sh:targetClass prov1:Agent .
