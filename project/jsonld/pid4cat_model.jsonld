@@ -924,10 +924,10 @@
       "owner": "CHANGES",
       "domain_of": [
         "URL",
+        "EMAIL",
         "STATUS",
         "SCHEMAVER",
         "METADATALICENSE",
-        "EMAIL",
         "RESOURCE",
         "RELATED",
         "CHANGES"
@@ -944,10 +944,10 @@
       "owner": "CHANGES",
       "domain_of": [
         "URL",
+        "EMAIL",
         "STATUS",
         "SCHEMAVER",
         "METADATALICENSE",
-        "EMAIL",
         "RESOURCE",
         "RELATED",
         "CHANGES"
@@ -964,10 +964,10 @@
       "owner": "HdlDataLog",
       "domain_of": [
         "HdlDataUrl",
+        "HdlDataContact",
         "HdlDataStatus",
         "HdlDataSchemaVer",
         "HdlDataLicense",
-        "HdlDataContact",
         "HdlDataResourceInfo",
         "HdlDataRelated",
         "HdlDataLog"
@@ -984,10 +984,10 @@
       "owner": "HdlDataLog",
       "domain_of": [
         "HdlDataUrl",
+        "HdlDataContact",
         "HdlDataStatus",
         "HdlDataSchemaVer",
         "HdlDataLicense",
-        "HdlDataContact",
         "HdlDataResourceInfo",
         "HdlDataRelated",
         "HdlDataLog"
@@ -1484,6 +1484,87 @@
       "@type": "SlotDefinition"
     },
     {
+      "name": "EMAIL_index",
+      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/index",
+      "description": "The index of the handle record.",
+      "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
+      "is_a": "index",
+      "domain": "EMAIL",
+      "slot_uri": "https://w3id.org/nfdi4cat/pid4cat-model/index",
+      "alias": "index",
+      "owner": "EMAIL",
+      "domain_of": [
+        "EMAIL"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "index",
+      "range": "integer",
+      "required": true,
+      "minimum_value": 10,
+      "maximum_value": 10,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "EMAIL_data",
+      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/data",
+      "description": "The data in the handle record.",
+      "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
+      "is_a": "data",
+      "domain": "EMAIL",
+      "slot_uri": "https://w3id.org/nfdi4cat/pid4cat-model/data",
+      "alias": "data",
+      "owner": "EMAIL",
+      "domain_of": [
+        "EMAIL"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "data",
+      "range": "HdlDataContact",
+      "required": true,
+      "inlined": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "HdlDataContact_format",
+      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/format",
+      "description": "The format of the handle data.",
+      "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
+      "is_a": "format",
+      "domain": "HdlDataContact",
+      "slot_uri": "https://w3id.org/nfdi4cat/pid4cat-model/format",
+      "ifabsent": "string",
+      "alias": "format",
+      "owner": "HdlDataContact",
+      "domain_of": [
+        "HdlDataContact"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "format",
+      "range": "string",
+      "equals_string": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "HdlDataContact_value",
+      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/value",
+      "description": "The value of the handle data.",
+      "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
+      "is_a": "value",
+      "domain": "HdlDataContact",
+      "slot_uri": "https://w3id.org/nfdi4cat/pid4cat-model/value",
+      "alias": "value",
+      "owner": "HdlDataContact",
+      "domain_of": [
+        "HdlDataContact"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "value",
+      "range": "string",
+      "required": true,
+      "pattern": "^\\S+@[\\S+\\.]+\\S+",
+      "@type": "SlotDefinition"
+    },
+    {
       "name": "STATUS_index",
       "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/index",
       "description": "The index of the handle record.",
@@ -1500,8 +1581,8 @@
       "usage_slot_name": "index",
       "range": "integer",
       "required": true,
-      "minimum_value": 2,
-      "maximum_value": 2,
+      "minimum_value": 11,
+      "maximum_value": 11,
       "@type": "SlotDefinition"
     },
     {
@@ -1580,8 +1661,8 @@
       "usage_slot_name": "index",
       "range": "integer",
       "required": true,
-      "minimum_value": 3,
-      "maximum_value": 3,
+      "minimum_value": 12,
+      "maximum_value": 12,
       "@type": "SlotDefinition"
     },
     {
@@ -1661,8 +1742,8 @@
       "usage_slot_name": "index",
       "range": "integer",
       "required": true,
-      "minimum_value": 4,
-      "maximum_value": 4,
+      "minimum_value": 13,
+      "maximum_value": 13,
       "@type": "SlotDefinition"
     },
     {
@@ -1726,87 +1807,6 @@
       "@type": "SlotDefinition"
     },
     {
-      "name": "EMAIL_index",
-      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/index",
-      "description": "The index of the handle record.",
-      "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
-      "is_a": "index",
-      "domain": "EMAIL",
-      "slot_uri": "https://w3id.org/nfdi4cat/pid4cat-model/index",
-      "alias": "index",
-      "owner": "EMAIL",
-      "domain_of": [
-        "EMAIL"
-      ],
-      "is_usage_slot": true,
-      "usage_slot_name": "index",
-      "range": "integer",
-      "required": true,
-      "minimum_value": 5,
-      "maximum_value": 5,
-      "@type": "SlotDefinition"
-    },
-    {
-      "name": "EMAIL_data",
-      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/data",
-      "description": "The data in the handle record.",
-      "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
-      "is_a": "data",
-      "domain": "EMAIL",
-      "slot_uri": "https://w3id.org/nfdi4cat/pid4cat-model/data",
-      "alias": "data",
-      "owner": "EMAIL",
-      "domain_of": [
-        "EMAIL"
-      ],
-      "is_usage_slot": true,
-      "usage_slot_name": "data",
-      "range": "HdlDataContact",
-      "required": true,
-      "inlined": true,
-      "@type": "SlotDefinition"
-    },
-    {
-      "name": "HdlDataContact_format",
-      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/format",
-      "description": "The format of the handle data.",
-      "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
-      "is_a": "format",
-      "domain": "HdlDataContact",
-      "slot_uri": "https://w3id.org/nfdi4cat/pid4cat-model/format",
-      "ifabsent": "string",
-      "alias": "format",
-      "owner": "HdlDataContact",
-      "domain_of": [
-        "HdlDataContact"
-      ],
-      "is_usage_slot": true,
-      "usage_slot_name": "format",
-      "range": "string",
-      "equals_string": "string",
-      "@type": "SlotDefinition"
-    },
-    {
-      "name": "HdlDataContact_value",
-      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/value",
-      "description": "The value of the handle data.",
-      "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
-      "is_a": "value",
-      "domain": "HdlDataContact",
-      "slot_uri": "https://w3id.org/nfdi4cat/pid4cat-model/value",
-      "alias": "value",
-      "owner": "HdlDataContact",
-      "domain_of": [
-        "HdlDataContact"
-      ],
-      "is_usage_slot": true,
-      "usage_slot_name": "value",
-      "range": "string",
-      "required": true,
-      "pattern": "^\\S+@[\\S+\\.]+\\S+",
-      "@type": "SlotDefinition"
-    },
-    {
       "name": "RESOURCE_index",
       "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/index",
       "description": "The index of the handle record.",
@@ -1823,8 +1823,8 @@
       "usage_slot_name": "index",
       "range": "integer",
       "required": true,
-      "minimum_value": 6,
-      "maximum_value": 6,
+      "minimum_value": 14,
+      "maximum_value": 14,
       "@type": "SlotDefinition"
     },
     {
@@ -1904,8 +1904,8 @@
       "usage_slot_name": "index",
       "range": "integer",
       "required": true,
-      "minimum_value": 7,
-      "maximum_value": 7,
+      "minimum_value": 15,
+      "maximum_value": 15,
       "@type": "SlotDefinition"
     },
     {
@@ -1985,8 +1985,8 @@
       "usage_slot_name": "index",
       "range": "integer",
       "required": true,
-      "minimum_value": 8,
-      "maximum_value": 8,
+      "minimum_value": 16,
+      "maximum_value": 16,
       "@type": "SlotDefinition"
     },
     {
@@ -2556,6 +2556,36 @@
       "@type": "ClassDefinition"
     },
     {
+      "name": "EMAIL",
+      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/EMAIL",
+      "description": "The data element in the handle API for the contact email.",
+      "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
+      "is_a": "HandleRecord",
+      "slots": [
+        "HandleRecord_timestamp",
+        "HandleRecord_ttl",
+        "HandleRecord_type",
+        "EMAIL_index",
+        "EMAIL_data"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/nfdi4cat/pid4cat-model/EMAIL",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "HdlDataContact",
+      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/HdlDataContact",
+      "description": "The data class for the handle-record contact email.",
+      "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
+      "slots": [
+        "HdlDataContact_format",
+        "HdlDataContact_value"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/nfdi4cat/pid4cat-model/HdlDataContact",
+      "@type": "ClassDefinition"
+    },
+    {
       "name": "STATUS",
       "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/STATUS",
       "description": "The data element in the handle API for the PID status information.",
@@ -2643,36 +2673,6 @@
       ],
       "slot_usage": {},
       "class_uri": "https://w3id.org/nfdi4cat/pid4cat-model/HdlDataLicense",
-      "@type": "ClassDefinition"
-    },
-    {
-      "name": "EMAIL",
-      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/EMAIL",
-      "description": "The data element in the handle API for the contact email.",
-      "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
-      "is_a": "HandleRecord",
-      "slots": [
-        "HandleRecord_timestamp",
-        "HandleRecord_ttl",
-        "HandleRecord_type",
-        "EMAIL_index",
-        "EMAIL_data"
-      ],
-      "slot_usage": {},
-      "class_uri": "https://w3id.org/nfdi4cat/pid4cat-model/EMAIL",
-      "@type": "ClassDefinition"
-    },
-    {
-      "name": "HdlDataContact",
-      "definition_uri": "https://w3id.org/nfdi4cat/pid4cat-model/HdlDataContact",
-      "description": "The data class for the handle-record contact email.",
-      "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
-      "slots": [
-        "HdlDataContact_format",
-        "HdlDataContact_value"
-      ],
-      "slot_usage": {},
-      "class_uri": "https://w3id.org/nfdi4cat/pid4cat-model/HdlDataContact",
       "@type": "ClassDefinition"
     },
     {
@@ -2993,9 +2993,9 @@
   ],
   "metamodel_version": "1.7.0",
   "source_file": "pid4cat_model.yaml",
-  "source_file_date": "2025-03-09T19:38:42",
-  "source_file_size": 25305,
-  "generation_date": "2025-03-09T19:41:33",
+  "source_file_date": "2025-03-10T16:03:25",
+  "source_file_size": 25319,
+  "generation_date": "2025-03-10T16:22:22",
   "@type": "SchemaDefinition",
   "@context": [
     "project/jsonld/pid4cat_model.context.jsonld",

@@ -84,8 +84,8 @@
                 },
                 "index": {
                     "description": "The index of the handle record.",
-                    "maximum": 8,
-                    "minimum": 8,
+                    "maximum": 16,
+                    "minimum": 16,
                     "type": "integer"
                 },
                 "timestamp": {
@@ -173,8 +173,8 @@
                 },
                 "index": {
                     "description": "The index of the handle record.",
-                    "maximum": 5,
-                    "minimum": 5,
+                    "maximum": 10,
+                    "minimum": 10,
                     "type": "integer"
                 },
                 "timestamp": {
@@ -291,6 +291,9 @@
                                 "$ref": "#/$defs/URL"
                             },
                             {
+                                "$ref": "#/$defs/EMAIL"
+                            },
+                            {
                                 "$ref": "#/$defs/STATUS"
                             },
                             {
@@ -298,9 +301,6 @@
                             },
                             {
                                 "$ref": "#/$defs/METADATALICENSE"
-                            },
-                            {
-                                "$ref": "#/$defs/EMAIL"
                             },
                             {
                                 "$ref": "#/$defs/RESOURCE"
@@ -641,8 +641,8 @@
                 },
                 "index": {
                     "description": "The index of the handle record.",
-                    "maximum": 4,
-                    "minimum": 4,
+                    "maximum": 13,
+                    "minimum": 13,
                     "type": "integer"
                 },
                 "timestamp": {
@@ -815,8 +815,8 @@
                 },
                 "index": {
                     "description": "The index of the handle record.",
-                    "maximum": 7,
-                    "minimum": 7,
+                    "maximum": 15,
+                    "minimum": 15,
                     "type": "integer"
                 },
                 "timestamp": {
@@ -858,8 +858,8 @@
                 },
                 "index": {
                     "description": "The index of the handle record.",
-                    "maximum": 6,
-                    "minimum": 6,
+                    "maximum": 14,
+                    "minimum": 14,
                     "type": "integer"
                 },
                 "timestamp": {
@@ -1042,8 +1042,8 @@
                 },
                 "index": {
                     "description": "The index of the handle record.",
-                    "maximum": 3,
-                    "minimum": 3,
+                    "maximum": 12,
+                    "minimum": 12,
                     "type": "integer"
                 },
                 "timestamp": {
@@ -1085,8 +1085,8 @@
                 },
                 "index": {
                     "description": "The index of the handle record.",
-                    "maximum": 2,
-                    "minimum": 2,
+                    "maximum": 11,
+                    "minimum": 11,
                     "type": "integer"
                 },
                 "timestamp": {

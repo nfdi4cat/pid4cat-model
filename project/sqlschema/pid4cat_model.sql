@@ -18,6 +18,17 @@
 --     * Slot: id Description:
 --     * Slot: format Description: The format of the handle data.
 --     * Slot: value Description: The value of the handle data.
+-- # Class: "EMAIL" Description: "The data element in the handle API for the contact email."
+--     * Slot: id Description:
+--     * Slot: index Description: The index of the handle record.
+--     * Slot: timestamp Description: The iso datetime for the last update of the handle data.
+--     * Slot: ttl Description: A time to live in seconds for the handle record. Typically: 86400 => 1 day
+--     * Slot: type Description: The type of handledata stored in the handle record.
+--     * Slot: data_id Description: The data in the handle record.
+-- # Class: "HdlDataContact" Description: "The data class for the handle-record contact email."
+--     * Slot: id Description:
+--     * Slot: format Description: The format of the handle data.
+--     * Slot: value Description: The value of the handle data.
 -- # Class: "STATUS" Description: "The data element in the handle API for the PID status information."
 --     * Slot: id Description:
 --     * Slot: index Description: The index of the handle record.
@@ -48,17 +59,6 @@
 --     * Slot: type Description: The type of handledata stored in the handle record.
 --     * Slot: data_id Description: The data in the handle record.
 -- # Class: "HdlDataLicense" Description: "The data class for the PID metadata license."
---     * Slot: id Description:
---     * Slot: format Description: The format of the handle data.
---     * Slot: value Description: The value of the handle data.
--- # Class: "EMAIL" Description: "The data element in the handle API for the contact email."
---     * Slot: id Description:
---     * Slot: index Description: The index of the handle record.
---     * Slot: timestamp Description: The iso datetime for the last update of the handle data.
---     * Slot: ttl Description: A time to live in seconds for the handle record. Typically: 86400 => 1 day
---     * Slot: type Description: The type of handledata stored in the handle record.
---     * Slot: data_id Description: The data in the handle record.
--- # Class: "HdlDataContact" Description: "The data class for the handle-record contact email."
 --     * Slot: id Description:
 --     * Slot: format Description: The format of the handle data.
 --     * Slot: value Description: The value of the handle data.
@@ -185,6 +185,12 @@ CREATE TABLE "HdlDataUrl" (
 	value TEXT NOT NULL,
 	PRIMARY KEY (id)
 );
+CREATE TABLE "HdlDataContact" (
+	id INTEGER NOT NULL,
+	format TEXT,
+	value TEXT NOT NULL,
+	PRIMARY KEY (id)
+);
 CREATE TABLE "HdlDataStatus" (
 	id INTEGER NOT NULL,
 	format TEXT,
@@ -198,12 +204,6 @@ CREATE TABLE "HdlDataSchemaVer" (
 	PRIMARY KEY (id)
 );
 CREATE TABLE "HdlDataLicense" (
-	id INTEGER NOT NULL,
-	format TEXT,
-	value TEXT NOT NULL,
-	PRIMARY KEY (id)
-);
-CREATE TABLE "HdlDataContact" (
 	id INTEGER NOT NULL,
 	format TEXT,
 	value TEXT NOT NULL,
@@ -315,6 +315,16 @@ CREATE TABLE "URL" (
 	PRIMARY KEY (id),
 	FOREIGN KEY(data_id) REFERENCES "HdlDataUrl" (id)
 );
+CREATE TABLE "EMAIL" (
+	id INTEGER NOT NULL,
+	"index" INTEGER NOT NULL,
+	timestamp DATETIME NOT NULL,
+	ttl INTEGER,
+	type TEXT NOT NULL,
+	data_id INTEGER NOT NULL,
+	PRIMARY KEY (id),
+	FOREIGN KEY(data_id) REFERENCES "HdlDataContact" (id)
+);
 CREATE TABLE "STATUS" (
 	id INTEGER NOT NULL,
 	"index" INTEGER NOT NULL,
@@ -344,16 +354,6 @@ CREATE TABLE "METADATA_LICENSE" (
 	data_id INTEGER NOT NULL,
 	PRIMARY KEY (id),
 	FOREIGN KEY(data_id) REFERENCES "HdlDataLicense" (id)
-);
-CREATE TABLE "EMAIL" (
-	id INTEGER NOT NULL,
-	"index" INTEGER NOT NULL,
-	timestamp DATETIME NOT NULL,
-	ttl INTEGER,
-	type TEXT NOT NULL,
-	data_id INTEGER NOT NULL,
-	PRIMARY KEY (id),
-	FOREIGN KEY(data_id) REFERENCES "HdlDataContact" (id)
 );
 CREATE TABLE "HdlDataResourceInfo" (
 	id INTEGER NOT NULL,
