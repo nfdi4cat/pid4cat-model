@@ -99,7 +99,7 @@ A typical handle record is shown in the table.
 The pid4cat schema is "mapped" to the handle record by using [type designators](https://linkml.io/linkml/schemas/type-designators.html).
 The TYPE column in the handle record determines ("designates") the corresponding class of the LinkML model.
 
-In a future version, the non-standard values the in **Type**-column could be replaced by references to type declarations in a datatype registry (DTR).
+In a future version, the non-standard values in the **Type**-column could be replaced by references to type declarations in a datatype registry (DTR).
 Such DTRs are still under development and not yet widely used.
 
 The METADATA_LICENSE specifies the licence for the metadata in the PID-record.
