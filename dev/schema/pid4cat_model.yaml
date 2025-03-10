@@ -765,10 +765,10 @@ slots:
     owner: CHANGES
     domain_of:
     - URL
+    - EMAIL
     - STATUS
     - SCHEMA_VER
     - METADATA_LICENSE
-    - EMAIL
     - RESOURCE
     - RELATED
     - CHANGES
@@ -782,10 +782,10 @@ slots:
     owner: CHANGES
     domain_of:
     - URL
+    - EMAIL
     - STATUS
     - SCHEMA_VER
     - METADATA_LICENSE
-    - EMAIL
     - RESOURCE
     - RELATED
     - CHANGES
@@ -799,10 +799,10 @@ slots:
     owner: HdlDataLog
     domain_of:
     - HdlDataUrl
+    - HdlDataContact
     - HdlDataStatus
     - HdlDataSchemaVer
     - HdlDataLicense
-    - HdlDataContact
     - HdlDataResourceInfo
     - HdlDataRelated
     - HdlDataLog
@@ -816,10 +816,10 @@ slots:
     owner: HdlDataLog
     domain_of:
     - HdlDataUrl
+    - HdlDataContact
     - HdlDataStatus
     - HdlDataSchemaVer
     - HdlDataLicense
-    - HdlDataContact
     - HdlDataResourceInfo
     - HdlDataRelated
     - HdlDataLog
@@ -1220,6 +1220,75 @@ slots:
     range: string
     required: true
     pattern: ^https?:\/\/.*$
+  EMAIL_index:
+    name: EMAIL_index
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/index
+    description: The index of the handle record.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: index
+    domain: EMAIL
+    slot_uri: pid4cat_model:index
+    alias: index
+    owner: EMAIL
+    domain_of:
+    - EMAIL
+    is_usage_slot: true
+    usage_slot_name: index
+    range: integer
+    required: true
+    minimum_value: 10
+    maximum_value: 10
+  EMAIL_data:
+    name: EMAIL_data
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/data
+    description: The data in the handle record.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: data
+    domain: EMAIL
+    slot_uri: pid4cat_model:data
+    alias: data
+    owner: EMAIL
+    domain_of:
+    - EMAIL
+    is_usage_slot: true
+    usage_slot_name: data
+    range: HdlDataContact
+    required: true
+    inlined: true
+  HdlDataContact_format:
+    name: HdlDataContact_format
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/format
+    description: The format of the handle data.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: format
+    domain: HdlDataContact
+    slot_uri: pid4cat_model:format
+    ifabsent: string
+    alias: format
+    owner: HdlDataContact
+    domain_of:
+    - HdlDataContact
+    is_usage_slot: true
+    usage_slot_name: format
+    range: string
+    equals_string: string
+  HdlDataContact_value:
+    name: HdlDataContact_value
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/value
+    description: The value of the handle data.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: value
+    domain: HdlDataContact
+    slot_uri: pid4cat_model:value
+    alias: value
+    owner: HdlDataContact
+    domain_of:
+    - HdlDataContact
+    is_usage_slot: true
+    usage_slot_name: value
+    range: string
+    required: true
+    pattern: ^\S+@[\S+\.]+\S+
   STATUS_index:
     name: STATUS_index
     definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/index
@@ -1236,8 +1305,8 @@ slots:
     usage_slot_name: index
     range: integer
     required: true
-    minimum_value: 2
-    maximum_value: 2
+    minimum_value: 11
+    maximum_value: 11
   STATUS_data:
     name: STATUS_data
     definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/data
@@ -1304,8 +1373,8 @@ slots:
     usage_slot_name: index
     range: integer
     required: true
-    minimum_value: 3
-    maximum_value: 3
+    minimum_value: 12
+    maximum_value: 12
   SCHEMA_VER_data:
     name: SCHEMA_VER_data
     definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/data
@@ -1373,8 +1442,8 @@ slots:
     usage_slot_name: index
     range: integer
     required: true
-    minimum_value: 4
-    maximum_value: 4
+    minimum_value: 13
+    maximum_value: 13
   METADATA_LICENSE_data:
     name: METADATA_LICENSE_data
     definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/data
@@ -1426,75 +1495,6 @@ slots:
     range: string
     required: true
     equals_string: CC0-1.0
-  EMAIL_index:
-    name: EMAIL_index
-    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/index
-    description: The index of the handle record.
-    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
-    is_a: index
-    domain: EMAIL
-    slot_uri: pid4cat_model:index
-    alias: index
-    owner: EMAIL
-    domain_of:
-    - EMAIL
-    is_usage_slot: true
-    usage_slot_name: index
-    range: integer
-    required: true
-    minimum_value: 5
-    maximum_value: 5
-  EMAIL_data:
-    name: EMAIL_data
-    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/data
-    description: The data in the handle record.
-    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
-    is_a: data
-    domain: EMAIL
-    slot_uri: pid4cat_model:data
-    alias: data
-    owner: EMAIL
-    domain_of:
-    - EMAIL
-    is_usage_slot: true
-    usage_slot_name: data
-    range: HdlDataContact
-    required: true
-    inlined: true
-  HdlDataContact_format:
-    name: HdlDataContact_format
-    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/format
-    description: The format of the handle data.
-    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
-    is_a: format
-    domain: HdlDataContact
-    slot_uri: pid4cat_model:format
-    ifabsent: string
-    alias: format
-    owner: HdlDataContact
-    domain_of:
-    - HdlDataContact
-    is_usage_slot: true
-    usage_slot_name: format
-    range: string
-    equals_string: string
-  HdlDataContact_value:
-    name: HdlDataContact_value
-    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/value
-    description: The value of the handle data.
-    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
-    is_a: value
-    domain: HdlDataContact
-    slot_uri: pid4cat_model:value
-    alias: value
-    owner: HdlDataContact
-    domain_of:
-    - HdlDataContact
-    is_usage_slot: true
-    usage_slot_name: value
-    range: string
-    required: true
-    pattern: ^\S+@[\S+\.]+\S+
   RESOURCE_index:
     name: RESOURCE_index
     definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/index
@@ -1511,8 +1511,8 @@ slots:
     usage_slot_name: index
     range: integer
     required: true
-    minimum_value: 6
-    maximum_value: 6
+    minimum_value: 14
+    maximum_value: 14
   RESOURCE_data:
     name: RESOURCE_data
     definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/data
@@ -1580,8 +1580,8 @@ slots:
     usage_slot_name: index
     range: integer
     required: true
-    minimum_value: 7
-    maximum_value: 7
+    minimum_value: 15
+    maximum_value: 15
   RELATED_data:
     name: RELATED_data
     definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/data
@@ -1649,8 +1649,8 @@ slots:
     usage_slot_name: index
     range: integer
     required: true
-    minimum_value: 8
-    maximum_value: 8
+    minimum_value: 16
+    maximum_value: 16
   CHANGES_data:
     name: CHANGES_data
     definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/data
@@ -2163,6 +2163,47 @@ classes:
         required: true
         pattern: ^https?:\/\/.*$
     class_uri: pid4cat_model:HdlDataUrl
+  EMAIL:
+    name: EMAIL
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/EMAIL
+    description: The data element in the handle API for the contact email.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: HandleRecord
+    slots:
+    - HandleRecord_timestamp
+    - HandleRecord_ttl
+    - HandleRecord_type
+    - EMAIL_index
+    - EMAIL_data
+    slot_usage:
+      index:
+        name: index
+        required: true
+        minimum_value: 10
+        maximum_value: 10
+      data:
+        name: data
+        range: HdlDataContact
+        required: true
+    class_uri: pid4cat_model:EMAIL
+  HdlDataContact:
+    name: HdlDataContact
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/HdlDataContact
+    description: The data class for the handle-record contact email.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    slots:
+    - HdlDataContact_format
+    - HdlDataContact_value
+    slot_usage:
+      format:
+        name: format
+        ifabsent: string
+        equals_string: string
+      value:
+        name: value
+        required: true
+        pattern: ^\S+@[\S+\.]+\S+
+    class_uri: pid4cat_model:HdlDataContact
   STATUS:
     name: STATUS
     definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/STATUS
@@ -2179,8 +2220,8 @@ classes:
       index:
         name: index
         required: true
-        minimum_value: 2
-        maximum_value: 2
+        minimum_value: 11
+        maximum_value: 11
       data:
         name: data
         range: HdlDataStatus
@@ -2220,8 +2261,8 @@ classes:
       index:
         name: index
         required: true
-        minimum_value: 3
-        maximum_value: 3
+        minimum_value: 12
+        maximum_value: 12
       data:
         name: data
         range: HdlDataSchemaVer
@@ -2261,8 +2302,8 @@ classes:
       index:
         name: index
         required: true
-        minimum_value: 4
-        maximum_value: 4
+        minimum_value: 13
+        maximum_value: 13
       data:
         name: data
         range: HdlDataLicense
@@ -2286,47 +2327,6 @@ classes:
         required: true
         equals_string: CC0-1.0
     class_uri: pid4cat_model:HdlDataLicense
-  EMAIL:
-    name: EMAIL
-    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/EMAIL
-    description: The data element in the handle API for the contact email.
-    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
-    is_a: HandleRecord
-    slots:
-    - HandleRecord_timestamp
-    - HandleRecord_ttl
-    - HandleRecord_type
-    - EMAIL_index
-    - EMAIL_data
-    slot_usage:
-      index:
-        name: index
-        required: true
-        minimum_value: 5
-        maximum_value: 5
-      data:
-        name: data
-        range: HdlDataContact
-        required: true
-    class_uri: pid4cat_model:EMAIL
-  HdlDataContact:
-    name: HdlDataContact
-    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/HdlDataContact
-    description: The data class for the handle-record contact email.
-    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
-    slots:
-    - HdlDataContact_format
-    - HdlDataContact_value
-    slot_usage:
-      format:
-        name: format
-        ifabsent: string
-        equals_string: string
-      value:
-        name: value
-        required: true
-        pattern: ^\S+@[\S+\.]+\S+
-    class_uri: pid4cat_model:HdlDataContact
   RESOURCE:
     name: RESOURCE
     definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/RESOURCE
@@ -2343,8 +2343,8 @@ classes:
       index:
         name: index
         required: true
-        minimum_value: 6
-        maximum_value: 6
+        minimum_value: 14
+        maximum_value: 14
       data:
         name: data
         range: HdlDataResourceInfo
@@ -2384,8 +2384,8 @@ classes:
       index:
         name: index
         required: true
-        minimum_value: 7
-        maximum_value: 7
+        minimum_value: 15
+        maximum_value: 15
       data:
         name: data
         range: HdlDataRelated
@@ -2425,8 +2425,8 @@ classes:
       index:
         name: index
         required: true
-        minimum_value: 8
-        maximum_value: 8
+        minimum_value: 16
+        maximum_value: 16
       data:
         name: data
         range: HdlDataLog
@@ -2706,7 +2706,7 @@ classes:
     class_uri: pid4cat_model:ExampleIdentifier
 metamodel_version: 1.7.0
 source_file: pid4cat_model.yaml
-source_file_date: '2025-03-10T10:53:49'
-source_file_size: 25305
-generation_date: '2025-03-10T10:54:16'
+source_file_date: '2025-03-10T19:45:34'
+source_file_size: 25319
+generation_date: '2025-03-10T19:46:00'
 
