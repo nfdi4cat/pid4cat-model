@@ -13,32 +13,32 @@ values:
   type: URL
 - data:
     format: string
+    value: datafuzzi@example.org
+  index: 10
+  timestamp: '2024-05-15T15:51:15Z'
+  ttl: 86400
+  type: EMAIL
+- data:
+    format: string
     value: REGISTERED
-  index: 2
+  index: 11
   timestamp: '2024-05-15T15:51:15Z'
   ttl: 86400
   type: STATUS
 - data:
     format: string
     value: v0.1.0
-  index: 3
+  index: 12
   timestamp: '2024-05-15T15:51:15Z'
   ttl: 86400
   type: SCHEMA_VER
 - data:
     format: string
     value: CC0-1.0
-  index: 4
+  index: 13
   timestamp: '2024-05-15T15:51:15Z'
   ttl: 86400
   type: METADATA_LICENSE
-- data:
-    format: string
-    value: datafuzzi@example.org
-  index: 5
-  timestamp: '2024-05-15T15:51:15Z'
-  ttl: 86400
-  type: EMAIL
 - data:
     format: string
     value:
@@ -50,7 +50,7 @@ values:
         size: 12345
         variant_url: https://example.org/resource
       resource_category: SAMPLE
-  index: 6
+  index: 14
   timestamp: '2024-05-15T15:51:15Z'
   ttl: 86400
   type: RESOURCE
@@ -69,7 +69,7 @@ values:
         resolving_url: https://example.org/ref123
         type: ExampleIdentifier
       relation_type: IS_REFERENCED_BY
-  index: 7
+  index: 15
   timestamp: '2024-05-15T15:51:15Z'
   ttl: 86400
   type: RELATED
@@ -85,7 +85,7 @@ values:
         name: Data Fuzzi
         orcid: 0000-0000-0000-0000
         role: TRUSTEE
-  index: 8
+  index: 16
   timestamp: '2024-05-15T15:51:15Z'
   ttl: 86400
   type: CHANGES
@@ -107,32 +107,32 @@ contains_pids:
     type: URL
   - data:
       format: string
+      value: datafuzzi@example.org
+    index: 10
+    timestamp: '2024-05-15T15:51:15Z'
+    ttl: 86400
+    type: EMAIL
+  - data:
+      format: string
       value: REGISTERED
-    index: 2
+    index: 11
     timestamp: '2024-05-15T15:51:15Z'
     ttl: 86400
     type: STATUS
   - data:
       format: string
       value: v0.1.0
-    index: 3
+    index: 12
     timestamp: '2024-05-15T15:51:15Z'
     ttl: 86400
     type: SCHEMA_VER
   - data:
       format: string
       value: CC0-1.0
-    index: 4
+    index: 13
     timestamp: '2024-05-15T15:51:15Z'
     ttl: 86400
     type: METADATA_LICENSE
-  - data:
-      format: string
-      value: datafuzzi@example.org
-    index: 5
-    timestamp: '2024-05-15T15:51:15Z'
-    ttl: 86400
-    type: EMAIL
   - data:
       format: string
       value:
@@ -144,7 +144,7 @@ contains_pids:
           size: 12345
           variant_url: https://example.org/resource
         resource_category: SAMPLE
-    index: 6
+    index: 14
     timestamp: '2024-05-15T15:51:15Z'
     ttl: 86400
     type: RESOURCE
@@ -163,7 +163,7 @@ contains_pids:
           resolving_url: https://example.org/ref123
           type: ExampleIdentifier
         relation_type: IS_REFERENCED_BY
-    index: 7
+    index: 15
     timestamp: '2024-05-15T15:51:15Z'
     ttl: 86400
     type: RELATED
@@ -179,7 +179,7 @@ contains_pids:
           name: Data Fuzzi
           orcid: 0000-0000-0000-0000
           role: TRUSTEE
-    index: 8
+    index: 16
     timestamp: '2024-05-15T15:51:15Z'
     ttl: 86400
     type: CHANGES

@@ -89,37 +89,7 @@ p1_api = p4c.HandleAPIRecord(
             ),
         ),
         p4c.HandleRecord(
-            index=2,
-            type="STATUS",
-            ttl=86400,
-            timestamp=datetime.fromisoformat("2024-05-15T15:51:15Z"),
-            data=p4c.HdlDataStatus(
-                format="string",
-                value=p4c.Pid4CatStatus.REGISTERED,
-            ),
-        ),
-        p4c.HandleRecord(
-            index=3,
-            type="SCHEMA_VER",
-            ttl=86400,
-            timestamp=datetime.fromisoformat("2024-05-15T15:51:15Z"),
-            data=p4c.HdlDataSchemaVer(
-                format="string",
-                value="v0.1.0",
-            ),
-        ),
-        p4c.HandleRecord(
-            index=4,
-            type="METADATA_LICENSE",
-            ttl=86400,
-            timestamp=datetime.fromisoformat("2024-05-15T15:51:15Z"),
-            data=p4c.HdlDataLicense(
-                format="string",
-                value="CC0-1.0",
-            ),
-        ),
-        p4c.HandleRecord(
-            index=5,
+            index=10,
             type="EMAIL",
             ttl=86400,
             timestamp=datetime.fromisoformat("2024-05-15T15:51:15Z"),
@@ -129,7 +99,37 @@ p1_api = p4c.HandleAPIRecord(
             ),
         ),
         p4c.HandleRecord(
-            index=6,
+            index=11,
+            type="STATUS",
+            ttl=86400,
+            timestamp=datetime.fromisoformat("2024-05-15T15:51:15Z"),
+            data=p4c.HdlDataStatus(
+                format="string",
+                value=p4c.Pid4CatStatus.REGISTERED,
+            ),
+        ),
+        p4c.HandleRecord(
+            index=12,
+            type="SCHEMA_VER",
+            ttl=86400,
+            timestamp=datetime.fromisoformat("2024-05-15T15:51:15Z"),
+            data=p4c.HdlDataSchemaVer(
+                format="string",
+                value="v0.1.0",
+            ),
+        ),
+        p4c.HandleRecord(
+            index=13,
+            type="METADATA_LICENSE",
+            ttl=86400,
+            timestamp=datetime.fromisoformat("2024-05-15T15:51:15Z"),
+            data=p4c.HdlDataLicense(
+                format="string",
+                value="CC0-1.0",
+            ),
+        ),
+        p4c.HandleRecord(
+            index=14,
             type="RESOURCE",
             ttl=86400,
             timestamp=datetime.fromisoformat("2024-05-15T15:51:15Z"),
@@ -139,7 +139,7 @@ p1_api = p4c.HandleAPIRecord(
             ),
         ),
         p4c.HandleRecord(
-            index=7,
+            index=15,
             type="RELATED",
             ttl=86400,
             timestamp=datetime.fromisoformat("2024-05-15T15:51:15Z"),
@@ -149,7 +149,7 @@ p1_api = p4c.HandleAPIRecord(
             ),
         ),
         p4c.HandleRecord(
-            index=8,
+            index=16,
             type="CHANGES",
             ttl=86400,
             timestamp=datetime.fromisoformat("2024-05-15T15:51:15Z"),
