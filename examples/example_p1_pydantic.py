@@ -97,8 +97,18 @@ p1_api = p4c.HandleAPIRecord(
                 value="https://pid4cat.example.org/lik-1",
             ),
         ),
+        p4c.EMAIL(
+            index=10,
+            type="EMAIL",
+            ttl=86400,
+            timestamp=datetime.fromisoformat("2024-05-15T15:51:15Z"),
+            data=p4c.HdlDataContact(
+                format="string",
+                value="datafuzzi@example.org",
+            ),
+        ),
         p4c.STATUS(
-            index=2,
+            index=11,
             type="STATUS",
             ttl=86400,
             timestamp=datetime.fromisoformat("2024-05-15T15:51:15Z"),
@@ -108,7 +118,7 @@ p1_api = p4c.HandleAPIRecord(
             ),
         ),
         p4c.SCHEMAVER(  # gen-pydantic replaces SCHEMA_VER with SCHEMAVER in linkml 1.8.5
-            index=3,
+            index=12,
             type="SCHEMA_VER",
             ttl=86400,
             timestamp=datetime.fromisoformat("2024-05-15T15:51:15Z"),
@@ -118,7 +128,7 @@ p1_api = p4c.HandleAPIRecord(
             ),
         ),
         p4c.METADATALICENSE(
-            index=4,
+            index=13,
             type="METADATA_LICENSE",
             ttl=86400,
             timestamp=datetime.fromisoformat("2024-05-15T15:51:15Z"),
@@ -127,18 +137,8 @@ p1_api = p4c.HandleAPIRecord(
                 value="CC0-1.0",
             ),
         ),
-        p4c.EMAIL(
-            index=5,
-            type="EMAIL",
-            ttl=86400,
-            timestamp=datetime.fromisoformat("2024-05-15T15:51:15Z"),
-            data=p4c.HdlDataContact(
-                format="string",
-                value="datafuzzi@example.org",
-            ),
-        ),
         p4c.RESOURCE(
-            index=6,
+            index=14,
             type="RESOURCE",
             ttl=86400,
             timestamp=datetime.fromisoformat("2024-05-15T15:51:15Z"),
@@ -148,7 +148,7 @@ p1_api = p4c.HandleAPIRecord(
             ),
         ),
         p4c.RELATED(
-            index=7,
+            index=15,
             type="RELATED",
             ttl=86400,
             timestamp=datetime.fromisoformat("2024-05-15T15:51:15Z"),
@@ -158,7 +158,7 @@ p1_api = p4c.HandleAPIRecord(
             ),
         ),
         p4c.CHANGES(
-            index=8,
+            index=16,
             type="CHANGES",
             ttl=86400,
             timestamp=datetime.fromisoformat("2024-05-15T15:51:15Z"),

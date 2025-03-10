@@ -9,35 +9,35 @@ contains_pids:
           value: https://pid4cat.example.org/lik-1
         ttl: 86400
         timestamp: '2024-05-15T15:51:15Z'
-      - index: 2
-        type: STATUS
-        data:
-          format: string
-          value: REGISTERED
-        ttl: 86400
-        timestamp: '2024-05-15T15:51:15Z'
-      - index: 3
-        type: SCHEMA_VER
-        data:
-          format: string
-          value: v0.1.0
-        ttl: 86400
-        timestamp: '2024-05-15T15:51:15Z'
-      - index: 4
-        type: METADATA_LICENSE
-        data:
-          format: string
-          value: CC0-1.0
-        ttl: 86400
-        timestamp: '2024-05-15T15:51:15Z'
-      - index: 5
+      - index: 10
         type: EMAIL
         data:
           format: string
           value: datafuzzi@example.org
         ttl: 86400
         timestamp: '2024-05-15T15:51:15Z'
-      - index: 6
+      - index: 11
+        type: STATUS
+        data:
+          format: string
+          value: REGISTERED
+        ttl: 86400
+        timestamp: '2024-05-15T15:51:15Z'
+      - index: 12
+        type: SCHEMA_VER
+        data:
+          format: string
+          value: v0.1.0
+        ttl: 86400
+        timestamp: '2024-05-15T15:51:15Z'
+      - index: 13
+        type: METADATA_LICENSE
+        data:
+          format: string
+          value: CC0-1.0
+        ttl: 86400
+        timestamp: '2024-05-15T15:51:15Z'
+      - index: 14
         type: RESOURCE
         data:
           format: string
@@ -52,7 +52,7 @@ contains_pids:
                 size: 12345
         ttl: 86400
         timestamp: '2024-05-15T15:51:15Z'
-      - index: 7
+      - index: 15
         type: RELATED
         data:
           format: string
@@ -71,7 +71,7 @@ contains_pids:
               datetime_log: '2024-02-19T00:00:00Z'
         ttl: 86400
         timestamp: '2024-05-15T15:51:15Z'
-      - index: 8
+      - index: 16
         type: CHANGES
         data:
           format: string

@@ -339,10 +339,10 @@ class HandleAPIRecord(ConfiguredBaseModel):
         Union[
             HandleRecord,
             URL,
+            EMAIL,
             STATUS,
             SCHEMAVER,
             METADATALICENSE,
-            EMAIL,
             RESOURCE,
             RELATED,
             CHANGES,
@@ -451,10 +451,10 @@ class URL(HandleRecord):
                 "alias": "index",
                 "domain_of": [
                     "URL",
+                    "EMAIL",
                     "STATUS",
                     "SCHEMA_VER",
                     "METADATA_LICENSE",
-                    "EMAIL",
                     "RESOURCE",
                     "RELATED",
                     "CHANGES",
@@ -470,10 +470,10 @@ class URL(HandleRecord):
                 "alias": "data",
                 "domain_of": [
                     "URL",
+                    "EMAIL",
                     "STATUS",
                     "SCHEMA_VER",
                     "METADATA_LICENSE",
-                    "EMAIL",
                     "RESOURCE",
                     "RELATED",
                     "CHANGES",
@@ -543,10 +543,10 @@ class HdlDataUrl(ConfiguredBaseModel):
                 "alias": "format",
                 "domain_of": [
                     "HdlDataUrl",
+                    "HdlDataContact",
                     "HdlDataStatus",
                     "HdlDataSchemaVer",
                     "HdlDataLicense",
-                    "HdlDataContact",
                     "HdlDataResourceInfo",
                     "HdlDataRelated",
                     "HdlDataLog",
@@ -564,10 +564,10 @@ class HdlDataUrl(ConfiguredBaseModel):
                 "alias": "value",
                 "domain_of": [
                     "HdlDataUrl",
+                    "HdlDataContact",
                     "HdlDataStatus",
                     "HdlDataSchemaVer",
                     "HdlDataLicense",
-                    "HdlDataContact",
                     "HdlDataResourceInfo",
                     "HdlDataRelated",
                     "HdlDataLog",
@@ -589,483 +589,6 @@ class HdlDataUrl(ConfiguredBaseModel):
         return v
 
 
-class STATUS(HandleRecord):
-    """
-    The data element in the handle API for the PID status information.
-    """
-
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
-        {
-            "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
-            "slot_usage": {
-                "data": {"name": "data", "range": "HdlDataStatus", "required": True},
-                "index": {
-                    "maximum_value": 2,
-                    "minimum_value": 2,
-                    "name": "index",
-                    "required": True,
-                },
-            },
-        }
-    )
-
-    index: int = Field(
-        ...,
-        description="""The index of the handle record.""",
-        ge=2,
-        le=2,
-        json_schema_extra={
-            "linkml_meta": {
-                "alias": "index",
-                "domain_of": [
-                    "URL",
-                    "STATUS",
-                    "SCHEMA_VER",
-                    "METADATA_LICENSE",
-                    "EMAIL",
-                    "RESOURCE",
-                    "RELATED",
-                    "CHANGES",
-                ],
-            }
-        },
-    )
-    data: HdlDataStatus = Field(
-        ...,
-        description="""The data in the handle record.""",
-        json_schema_extra={
-            "linkml_meta": {
-                "alias": "data",
-                "domain_of": [
-                    "URL",
-                    "STATUS",
-                    "SCHEMA_VER",
-                    "METADATA_LICENSE",
-                    "EMAIL",
-                    "RESOURCE",
-                    "RELATED",
-                    "CHANGES",
-                ],
-            }
-        },
-    )
-    timestamp: datetime = Field(
-        ...,
-        description="""The iso datetime for the last update of the handle data.""",
-        json_schema_extra={
-            "linkml_meta": {"alias": "timestamp", "domain_of": ["HandleRecord"]}
-        },
-    )
-    ttl: Optional[int] = Field(
-        86400,
-        description="""A time to live in seconds for the handle record. Typically: 86400 => 1 day""",
-        json_schema_extra={
-            "linkml_meta": {
-                "alias": "ttl",
-                "domain_of": ["HandleRecord"],
-                "ifabsent": "86400",
-            }
-        },
-    )
-    type: Literal["STATUS"] = Field(
-        "STATUS",
-        description="""The type of handledata stored in the handle record.""",
-        json_schema_extra={
-            "linkml_meta": {
-                "alias": "type",
-                "designates_type": True,
-                "domain_of": ["HandleRecord", "RelatedIdentifier"],
-            }
-        },
-    )
-
-
-class HdlDataStatus(ConfiguredBaseModel):
-    """
-    The data class for the PID status information.
-    """
-
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
-        {
-            "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
-            "slot_usage": {
-                "format": {
-                    "equals_string": "string",
-                    "ifabsent": "string",
-                    "name": "format",
-                },
-                "value": {"name": "value", "range": "Pid4CatStatus", "required": True},
-            },
-        }
-    )
-
-    format: Optional[Literal["string"]] = Field(
-        "string",
-        description="""The format of the handle data.""",
-        json_schema_extra={
-            "linkml_meta": {
-                "alias": "format",
-                "domain_of": [
-                    "HdlDataUrl",
-                    "HdlDataStatus",
-                    "HdlDataSchemaVer",
-                    "HdlDataLicense",
-                    "HdlDataContact",
-                    "HdlDataResourceInfo",
-                    "HdlDataRelated",
-                    "HdlDataLog",
-                ],
-                "equals_string": "string",
-                "ifabsent": "string",
-            }
-        },
-    )
-    value: Pid4CatStatus = Field(
-        ...,
-        description="""The value of the handle data.""",
-        json_schema_extra={
-            "linkml_meta": {
-                "alias": "value",
-                "domain_of": [
-                    "HdlDataUrl",
-                    "HdlDataStatus",
-                    "HdlDataSchemaVer",
-                    "HdlDataLicense",
-                    "HdlDataContact",
-                    "HdlDataResourceInfo",
-                    "HdlDataRelated",
-                    "HdlDataLog",
-                ],
-            }
-        },
-    )
-
-
-class SCHEMAVER(HandleRecord):
-    """
-    The data element in the handle API for the schema version.
-    """
-
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
-        {
-            "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
-            "slot_usage": {
-                "data": {"name": "data", "range": "HdlDataSchemaVer", "required": True},
-                "index": {
-                    "maximum_value": 3,
-                    "minimum_value": 3,
-                    "name": "index",
-                    "required": True,
-                },
-            },
-        }
-    )
-
-    index: int = Field(
-        ...,
-        description="""The index of the handle record.""",
-        ge=3,
-        le=3,
-        json_schema_extra={
-            "linkml_meta": {
-                "alias": "index",
-                "domain_of": [
-                    "URL",
-                    "STATUS",
-                    "SCHEMA_VER",
-                    "METADATA_LICENSE",
-                    "EMAIL",
-                    "RESOURCE",
-                    "RELATED",
-                    "CHANGES",
-                ],
-            }
-        },
-    )
-    data: HdlDataSchemaVer = Field(
-        ...,
-        description="""The data in the handle record.""",
-        json_schema_extra={
-            "linkml_meta": {
-                "alias": "data",
-                "domain_of": [
-                    "URL",
-                    "STATUS",
-                    "SCHEMA_VER",
-                    "METADATA_LICENSE",
-                    "EMAIL",
-                    "RESOURCE",
-                    "RELATED",
-                    "CHANGES",
-                ],
-            }
-        },
-    )
-    timestamp: datetime = Field(
-        ...,
-        description="""The iso datetime for the last update of the handle data.""",
-        json_schema_extra={
-            "linkml_meta": {"alias": "timestamp", "domain_of": ["HandleRecord"]}
-        },
-    )
-    ttl: Optional[int] = Field(
-        86400,
-        description="""A time to live in seconds for the handle record. Typically: 86400 => 1 day""",
-        json_schema_extra={
-            "linkml_meta": {
-                "alias": "ttl",
-                "domain_of": ["HandleRecord"],
-                "ifabsent": "86400",
-            }
-        },
-    )
-    type: Literal["SCHEMA_VER"] = Field(
-        "SCHEMA_VER",
-        description="""The type of handledata stored in the handle record.""",
-        json_schema_extra={
-            "linkml_meta": {
-                "alias": "type",
-                "designates_type": True,
-                "domain_of": ["HandleRecord", "RelatedIdentifier"],
-            }
-        },
-    )
-
-
-class HdlDataSchemaVer(ConfiguredBaseModel):
-    """
-    The data class for the schema version.
-    """
-
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
-        {
-            "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
-            "slot_usage": {
-                "format": {
-                    "equals_string": "string",
-                    "ifabsent": "string",
-                    "name": "format",
-                },
-                "value": {
-                    "name": "value",
-                    "pattern": "^v\\d+\\.\\d+\\.\\d+$",
-                    "required": True,
-                },
-            },
-        }
-    )
-
-    format: Optional[Literal["string"]] = Field(
-        "string",
-        description="""The format of the handle data.""",
-        json_schema_extra={
-            "linkml_meta": {
-                "alias": "format",
-                "domain_of": [
-                    "HdlDataUrl",
-                    "HdlDataStatus",
-                    "HdlDataSchemaVer",
-                    "HdlDataLicense",
-                    "HdlDataContact",
-                    "HdlDataResourceInfo",
-                    "HdlDataRelated",
-                    "HdlDataLog",
-                ],
-                "equals_string": "string",
-                "ifabsent": "string",
-            }
-        },
-    )
-    value: str = Field(
-        ...,
-        description="""The value of the handle data.""",
-        json_schema_extra={
-            "linkml_meta": {
-                "alias": "value",
-                "domain_of": [
-                    "HdlDataUrl",
-                    "HdlDataStatus",
-                    "HdlDataSchemaVer",
-                    "HdlDataLicense",
-                    "HdlDataContact",
-                    "HdlDataResourceInfo",
-                    "HdlDataRelated",
-                    "HdlDataLog",
-                ],
-            }
-        },
-    )
-
-    @field_validator("value")
-    def pattern_value(cls, v):
-        pattern = re.compile(r"^v\d+\.\d+\.\d+$")
-        if isinstance(v, list):
-            for element in v:
-                if isinstance(v, str) and not pattern.match(element):
-                    raise ValueError(f"Invalid value format: {element}")
-        elif isinstance(v, str):
-            if not pattern.match(v):
-                raise ValueError(f"Invalid value format: {v}")
-        return v
-
-
-class METADATALICENSE(HandleRecord):
-    """
-    The data element in the handle API for the PID metadata license.
-    """
-
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
-        {
-            "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
-            "slot_usage": {
-                "data": {"name": "data", "range": "HdlDataLicense", "required": True},
-                "index": {
-                    "maximum_value": 4,
-                    "minimum_value": 4,
-                    "name": "index",
-                    "required": True,
-                },
-            },
-        }
-    )
-
-    index: int = Field(
-        ...,
-        description="""The index of the handle record.""",
-        ge=4,
-        le=4,
-        json_schema_extra={
-            "linkml_meta": {
-                "alias": "index",
-                "domain_of": [
-                    "URL",
-                    "STATUS",
-                    "SCHEMA_VER",
-                    "METADATA_LICENSE",
-                    "EMAIL",
-                    "RESOURCE",
-                    "RELATED",
-                    "CHANGES",
-                ],
-            }
-        },
-    )
-    data: HdlDataLicense = Field(
-        ...,
-        description="""The data in the handle record.""",
-        json_schema_extra={
-            "linkml_meta": {
-                "alias": "data",
-                "domain_of": [
-                    "URL",
-                    "STATUS",
-                    "SCHEMA_VER",
-                    "METADATA_LICENSE",
-                    "EMAIL",
-                    "RESOURCE",
-                    "RELATED",
-                    "CHANGES",
-                ],
-            }
-        },
-    )
-    timestamp: datetime = Field(
-        ...,
-        description="""The iso datetime for the last update of the handle data.""",
-        json_schema_extra={
-            "linkml_meta": {"alias": "timestamp", "domain_of": ["HandleRecord"]}
-        },
-    )
-    ttl: Optional[int] = Field(
-        86400,
-        description="""A time to live in seconds for the handle record. Typically: 86400 => 1 day""",
-        json_schema_extra={
-            "linkml_meta": {
-                "alias": "ttl",
-                "domain_of": ["HandleRecord"],
-                "ifabsent": "86400",
-            }
-        },
-    )
-    type: Literal["METADATA_LICENSE"] = Field(
-        "METADATA_LICENSE",
-        description="""The type of handledata stored in the handle record.""",
-        json_schema_extra={
-            "linkml_meta": {
-                "alias": "type",
-                "designates_type": True,
-                "domain_of": ["HandleRecord", "RelatedIdentifier"],
-            }
-        },
-    )
-
-
-class HdlDataLicense(ConfiguredBaseModel):
-    """
-    The data class for the PID metadata license.
-    """
-
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
-        {
-            "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
-            "slot_usage": {
-                "format": {
-                    "equals_string": "string",
-                    "ifabsent": "string",
-                    "name": "format",
-                },
-                "value": {
-                    "equals_string": "CC0-1.0",
-                    "name": "value",
-                    "required": True,
-                },
-            },
-        }
-    )
-
-    format: Optional[Literal["string"]] = Field(
-        "string",
-        description="""The format of the handle data.""",
-        json_schema_extra={
-            "linkml_meta": {
-                "alias": "format",
-                "domain_of": [
-                    "HdlDataUrl",
-                    "HdlDataStatus",
-                    "HdlDataSchemaVer",
-                    "HdlDataLicense",
-                    "HdlDataContact",
-                    "HdlDataResourceInfo",
-                    "HdlDataRelated",
-                    "HdlDataLog",
-                ],
-                "equals_string": "string",
-                "ifabsent": "string",
-            }
-        },
-    )
-    value: Literal["CC0-1.0"] = Field(
-        ...,
-        description="""The value of the handle data.""",
-        json_schema_extra={
-            "linkml_meta": {
-                "alias": "value",
-                "domain_of": [
-                    "HdlDataUrl",
-                    "HdlDataStatus",
-                    "HdlDataSchemaVer",
-                    "HdlDataLicense",
-                    "HdlDataContact",
-                    "HdlDataResourceInfo",
-                    "HdlDataRelated",
-                    "HdlDataLog",
-                ],
-                "equals_string": "CC0-1.0",
-            }
-        },
-    )
-
-
 class EMAIL(HandleRecord):
     """
     The data element in the handle API for the contact email.
@@ -1077,8 +600,8 @@ class EMAIL(HandleRecord):
             "slot_usage": {
                 "data": {"name": "data", "range": "HdlDataContact", "required": True},
                 "index": {
-                    "maximum_value": 5,
-                    "minimum_value": 5,
+                    "maximum_value": 10,
+                    "minimum_value": 10,
                     "name": "index",
                     "required": True,
                 },
@@ -1089,17 +612,17 @@ class EMAIL(HandleRecord):
     index: int = Field(
         ...,
         description="""The index of the handle record.""",
-        ge=5,
-        le=5,
+        ge=10,
+        le=10,
         json_schema_extra={
             "linkml_meta": {
                 "alias": "index",
                 "domain_of": [
                     "URL",
+                    "EMAIL",
                     "STATUS",
                     "SCHEMA_VER",
                     "METADATA_LICENSE",
-                    "EMAIL",
                     "RESOURCE",
                     "RELATED",
                     "CHANGES",
@@ -1115,10 +638,10 @@ class EMAIL(HandleRecord):
                 "alias": "data",
                 "domain_of": [
                     "URL",
+                    "EMAIL",
                     "STATUS",
                     "SCHEMA_VER",
                     "METADATA_LICENSE",
-                    "EMAIL",
                     "RESOURCE",
                     "RELATED",
                     "CHANGES",
@@ -1188,10 +711,10 @@ class HdlDataContact(ConfiguredBaseModel):
                 "alias": "format",
                 "domain_of": [
                     "HdlDataUrl",
+                    "HdlDataContact",
                     "HdlDataStatus",
                     "HdlDataSchemaVer",
                     "HdlDataLicense",
-                    "HdlDataContact",
                     "HdlDataResourceInfo",
                     "HdlDataRelated",
                     "HdlDataLog",
@@ -1209,10 +732,10 @@ class HdlDataContact(ConfiguredBaseModel):
                 "alias": "value",
                 "domain_of": [
                     "HdlDataUrl",
+                    "HdlDataContact",
                     "HdlDataStatus",
                     "HdlDataSchemaVer",
                     "HdlDataLicense",
-                    "HdlDataContact",
                     "HdlDataResourceInfo",
                     "HdlDataRelated",
                     "HdlDataLog",
@@ -1234,6 +757,483 @@ class HdlDataContact(ConfiguredBaseModel):
         return v
 
 
+class STATUS(HandleRecord):
+    """
+    The data element in the handle API for the PID status information.
+    """
+
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
+        {
+            "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
+            "slot_usage": {
+                "data": {"name": "data", "range": "HdlDataStatus", "required": True},
+                "index": {
+                    "maximum_value": 11,
+                    "minimum_value": 11,
+                    "name": "index",
+                    "required": True,
+                },
+            },
+        }
+    )
+
+    index: int = Field(
+        ...,
+        description="""The index of the handle record.""",
+        ge=11,
+        le=11,
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "index",
+                "domain_of": [
+                    "URL",
+                    "EMAIL",
+                    "STATUS",
+                    "SCHEMA_VER",
+                    "METADATA_LICENSE",
+                    "RESOURCE",
+                    "RELATED",
+                    "CHANGES",
+                ],
+            }
+        },
+    )
+    data: HdlDataStatus = Field(
+        ...,
+        description="""The data in the handle record.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "data",
+                "domain_of": [
+                    "URL",
+                    "EMAIL",
+                    "STATUS",
+                    "SCHEMA_VER",
+                    "METADATA_LICENSE",
+                    "RESOURCE",
+                    "RELATED",
+                    "CHANGES",
+                ],
+            }
+        },
+    )
+    timestamp: datetime = Field(
+        ...,
+        description="""The iso datetime for the last update of the handle data.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "timestamp", "domain_of": ["HandleRecord"]}
+        },
+    )
+    ttl: Optional[int] = Field(
+        86400,
+        description="""A time to live in seconds for the handle record. Typically: 86400 => 1 day""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "ttl",
+                "domain_of": ["HandleRecord"],
+                "ifabsent": "86400",
+            }
+        },
+    )
+    type: Literal["STATUS"] = Field(
+        "STATUS",
+        description="""The type of handledata stored in the handle record.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "type",
+                "designates_type": True,
+                "domain_of": ["HandleRecord", "RelatedIdentifier"],
+            }
+        },
+    )
+
+
+class HdlDataStatus(ConfiguredBaseModel):
+    """
+    The data class for the PID status information.
+    """
+
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
+        {
+            "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
+            "slot_usage": {
+                "format": {
+                    "equals_string": "string",
+                    "ifabsent": "string",
+                    "name": "format",
+                },
+                "value": {"name": "value", "range": "Pid4CatStatus", "required": True},
+            },
+        }
+    )
+
+    format: Optional[Literal["string"]] = Field(
+        "string",
+        description="""The format of the handle data.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "format",
+                "domain_of": [
+                    "HdlDataUrl",
+                    "HdlDataContact",
+                    "HdlDataStatus",
+                    "HdlDataSchemaVer",
+                    "HdlDataLicense",
+                    "HdlDataResourceInfo",
+                    "HdlDataRelated",
+                    "HdlDataLog",
+                ],
+                "equals_string": "string",
+                "ifabsent": "string",
+            }
+        },
+    )
+    value: Pid4CatStatus = Field(
+        ...,
+        description="""The value of the handle data.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "value",
+                "domain_of": [
+                    "HdlDataUrl",
+                    "HdlDataContact",
+                    "HdlDataStatus",
+                    "HdlDataSchemaVer",
+                    "HdlDataLicense",
+                    "HdlDataResourceInfo",
+                    "HdlDataRelated",
+                    "HdlDataLog",
+                ],
+            }
+        },
+    )
+
+
+class SCHEMAVER(HandleRecord):
+    """
+    The data element in the handle API for the schema version.
+    """
+
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
+        {
+            "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
+            "slot_usage": {
+                "data": {"name": "data", "range": "HdlDataSchemaVer", "required": True},
+                "index": {
+                    "maximum_value": 12,
+                    "minimum_value": 12,
+                    "name": "index",
+                    "required": True,
+                },
+            },
+        }
+    )
+
+    index: int = Field(
+        ...,
+        description="""The index of the handle record.""",
+        ge=12,
+        le=12,
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "index",
+                "domain_of": [
+                    "URL",
+                    "EMAIL",
+                    "STATUS",
+                    "SCHEMA_VER",
+                    "METADATA_LICENSE",
+                    "RESOURCE",
+                    "RELATED",
+                    "CHANGES",
+                ],
+            }
+        },
+    )
+    data: HdlDataSchemaVer = Field(
+        ...,
+        description="""The data in the handle record.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "data",
+                "domain_of": [
+                    "URL",
+                    "EMAIL",
+                    "STATUS",
+                    "SCHEMA_VER",
+                    "METADATA_LICENSE",
+                    "RESOURCE",
+                    "RELATED",
+                    "CHANGES",
+                ],
+            }
+        },
+    )
+    timestamp: datetime = Field(
+        ...,
+        description="""The iso datetime for the last update of the handle data.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "timestamp", "domain_of": ["HandleRecord"]}
+        },
+    )
+    ttl: Optional[int] = Field(
+        86400,
+        description="""A time to live in seconds for the handle record. Typically: 86400 => 1 day""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "ttl",
+                "domain_of": ["HandleRecord"],
+                "ifabsent": "86400",
+            }
+        },
+    )
+    type: Literal["SCHEMA_VER"] = Field(
+        "SCHEMA_VER",
+        description="""The type of handledata stored in the handle record.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "type",
+                "designates_type": True,
+                "domain_of": ["HandleRecord", "RelatedIdentifier"],
+            }
+        },
+    )
+
+
+class HdlDataSchemaVer(ConfiguredBaseModel):
+    """
+    The data class for the schema version.
+    """
+
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
+        {
+            "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
+            "slot_usage": {
+                "format": {
+                    "equals_string": "string",
+                    "ifabsent": "string",
+                    "name": "format",
+                },
+                "value": {
+                    "name": "value",
+                    "pattern": "^v\\d+\\.\\d+\\.\\d+$",
+                    "required": True,
+                },
+            },
+        }
+    )
+
+    format: Optional[Literal["string"]] = Field(
+        "string",
+        description="""The format of the handle data.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "format",
+                "domain_of": [
+                    "HdlDataUrl",
+                    "HdlDataContact",
+                    "HdlDataStatus",
+                    "HdlDataSchemaVer",
+                    "HdlDataLicense",
+                    "HdlDataResourceInfo",
+                    "HdlDataRelated",
+                    "HdlDataLog",
+                ],
+                "equals_string": "string",
+                "ifabsent": "string",
+            }
+        },
+    )
+    value: str = Field(
+        ...,
+        description="""The value of the handle data.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "value",
+                "domain_of": [
+                    "HdlDataUrl",
+                    "HdlDataContact",
+                    "HdlDataStatus",
+                    "HdlDataSchemaVer",
+                    "HdlDataLicense",
+                    "HdlDataResourceInfo",
+                    "HdlDataRelated",
+                    "HdlDataLog",
+                ],
+            }
+        },
+    )
+
+    @field_validator("value")
+    def pattern_value(cls, v):
+        pattern = re.compile(r"^v\d+\.\d+\.\d+$")
+        if isinstance(v, list):
+            for element in v:
+                if isinstance(v, str) and not pattern.match(element):
+                    raise ValueError(f"Invalid value format: {element}")
+        elif isinstance(v, str):
+            if not pattern.match(v):
+                raise ValueError(f"Invalid value format: {v}")
+        return v
+
+
+class METADATALICENSE(HandleRecord):
+    """
+    The data element in the handle API for the PID metadata license.
+    """
+
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
+        {
+            "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
+            "slot_usage": {
+                "data": {"name": "data", "range": "HdlDataLicense", "required": True},
+                "index": {
+                    "maximum_value": 13,
+                    "minimum_value": 13,
+                    "name": "index",
+                    "required": True,
+                },
+            },
+        }
+    )
+
+    index: int = Field(
+        ...,
+        description="""The index of the handle record.""",
+        ge=13,
+        le=13,
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "index",
+                "domain_of": [
+                    "URL",
+                    "EMAIL",
+                    "STATUS",
+                    "SCHEMA_VER",
+                    "METADATA_LICENSE",
+                    "RESOURCE",
+                    "RELATED",
+                    "CHANGES",
+                ],
+            }
+        },
+    )
+    data: HdlDataLicense = Field(
+        ...,
+        description="""The data in the handle record.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "data",
+                "domain_of": [
+                    "URL",
+                    "EMAIL",
+                    "STATUS",
+                    "SCHEMA_VER",
+                    "METADATA_LICENSE",
+                    "RESOURCE",
+                    "RELATED",
+                    "CHANGES",
+                ],
+            }
+        },
+    )
+    timestamp: datetime = Field(
+        ...,
+        description="""The iso datetime for the last update of the handle data.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "timestamp", "domain_of": ["HandleRecord"]}
+        },
+    )
+    ttl: Optional[int] = Field(
+        86400,
+        description="""A time to live in seconds for the handle record. Typically: 86400 => 1 day""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "ttl",
+                "domain_of": ["HandleRecord"],
+                "ifabsent": "86400",
+            }
+        },
+    )
+    type: Literal["METADATA_LICENSE"] = Field(
+        "METADATA_LICENSE",
+        description="""The type of handledata stored in the handle record.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "type",
+                "designates_type": True,
+                "domain_of": ["HandleRecord", "RelatedIdentifier"],
+            }
+        },
+    )
+
+
+class HdlDataLicense(ConfiguredBaseModel):
+    """
+    The data class for the PID metadata license.
+    """
+
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
+        {
+            "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
+            "slot_usage": {
+                "format": {
+                    "equals_string": "string",
+                    "ifabsent": "string",
+                    "name": "format",
+                },
+                "value": {
+                    "equals_string": "CC0-1.0",
+                    "name": "value",
+                    "required": True,
+                },
+            },
+        }
+    )
+
+    format: Optional[Literal["string"]] = Field(
+        "string",
+        description="""The format of the handle data.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "format",
+                "domain_of": [
+                    "HdlDataUrl",
+                    "HdlDataContact",
+                    "HdlDataStatus",
+                    "HdlDataSchemaVer",
+                    "HdlDataLicense",
+                    "HdlDataResourceInfo",
+                    "HdlDataRelated",
+                    "HdlDataLog",
+                ],
+                "equals_string": "string",
+                "ifabsent": "string",
+            }
+        },
+    )
+    value: Literal["CC0-1.0"] = Field(
+        ...,
+        description="""The value of the handle data.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "value",
+                "domain_of": [
+                    "HdlDataUrl",
+                    "HdlDataContact",
+                    "HdlDataStatus",
+                    "HdlDataSchemaVer",
+                    "HdlDataLicense",
+                    "HdlDataResourceInfo",
+                    "HdlDataRelated",
+                    "HdlDataLog",
+                ],
+                "equals_string": "CC0-1.0",
+            }
+        },
+    )
+
+
 class RESOURCE(HandleRecord):
     """
     The data element in the handle API for the resource info.
@@ -1249,8 +1249,8 @@ class RESOURCE(HandleRecord):
                     "required": True,
                 },
                 "index": {
-                    "maximum_value": 6,
-                    "minimum_value": 6,
+                    "maximum_value": 14,
+                    "minimum_value": 14,
                     "name": "index",
                     "required": True,
                 },
@@ -1261,17 +1261,17 @@ class RESOURCE(HandleRecord):
     index: int = Field(
         ...,
         description="""The index of the handle record.""",
-        ge=6,
-        le=6,
+        ge=14,
+        le=14,
         json_schema_extra={
             "linkml_meta": {
                 "alias": "index",
                 "domain_of": [
                     "URL",
+                    "EMAIL",
                     "STATUS",
                     "SCHEMA_VER",
                     "METADATA_LICENSE",
-                    "EMAIL",
                     "RESOURCE",
                     "RELATED",
                     "CHANGES",
@@ -1287,10 +1287,10 @@ class RESOURCE(HandleRecord):
                 "alias": "data",
                 "domain_of": [
                     "URL",
+                    "EMAIL",
                     "STATUS",
                     "SCHEMA_VER",
                     "METADATA_LICENSE",
-                    "EMAIL",
                     "RESOURCE",
                     "RELATED",
                     "CHANGES",
@@ -1356,10 +1356,10 @@ class HdlDataResourceInfo(ConfiguredBaseModel):
                 "alias": "format",
                 "domain_of": [
                     "HdlDataUrl",
+                    "HdlDataContact",
                     "HdlDataStatus",
                     "HdlDataSchemaVer",
                     "HdlDataLicense",
-                    "HdlDataContact",
                     "HdlDataResourceInfo",
                     "HdlDataRelated",
                     "HdlDataLog",
@@ -1377,10 +1377,10 @@ class HdlDataResourceInfo(ConfiguredBaseModel):
                 "alias": "value",
                 "domain_of": [
                     "HdlDataUrl",
+                    "HdlDataContact",
                     "HdlDataStatus",
                     "HdlDataSchemaVer",
                     "HdlDataLicense",
-                    "HdlDataContact",
                     "HdlDataResourceInfo",
                     "HdlDataRelated",
                     "HdlDataLog",
@@ -1401,8 +1401,8 @@ class RELATED(HandleRecord):
             "slot_usage": {
                 "data": {"name": "data", "range": "HdlDataRelated", "required": True},
                 "index": {
-                    "maximum_value": 7,
-                    "minimum_value": 7,
+                    "maximum_value": 15,
+                    "minimum_value": 15,
                     "name": "index",
                     "required": True,
                 },
@@ -1413,17 +1413,17 @@ class RELATED(HandleRecord):
     index: int = Field(
         ...,
         description="""The index of the handle record.""",
-        ge=7,
-        le=7,
+        ge=15,
+        le=15,
         json_schema_extra={
             "linkml_meta": {
                 "alias": "index",
                 "domain_of": [
                     "URL",
+                    "EMAIL",
                     "STATUS",
                     "SCHEMA_VER",
                     "METADATA_LICENSE",
-                    "EMAIL",
                     "RESOURCE",
                     "RELATED",
                     "CHANGES",
@@ -1439,10 +1439,10 @@ class RELATED(HandleRecord):
                 "alias": "data",
                 "domain_of": [
                     "URL",
+                    "EMAIL",
                     "STATUS",
                     "SCHEMA_VER",
                     "METADATA_LICENSE",
-                    "EMAIL",
                     "RESOURCE",
                     "RELATED",
                     "CHANGES",
@@ -1512,10 +1512,10 @@ class HdlDataRelated(ConfiguredBaseModel):
                 "alias": "format",
                 "domain_of": [
                     "HdlDataUrl",
+                    "HdlDataContact",
                     "HdlDataStatus",
                     "HdlDataSchemaVer",
                     "HdlDataLicense",
-                    "HdlDataContact",
                     "HdlDataResourceInfo",
                     "HdlDataRelated",
                     "HdlDataLog",
@@ -1533,10 +1533,10 @@ class HdlDataRelated(ConfiguredBaseModel):
                 "alias": "value",
                 "domain_of": [
                     "HdlDataUrl",
+                    "HdlDataContact",
                     "HdlDataStatus",
                     "HdlDataSchemaVer",
                     "HdlDataLicense",
-                    "HdlDataContact",
                     "HdlDataResourceInfo",
                     "HdlDataRelated",
                     "HdlDataLog",
@@ -1557,8 +1557,8 @@ class CHANGES(HandleRecord):
             "slot_usage": {
                 "data": {"name": "data", "range": "HdlDataLog", "required": True},
                 "index": {
-                    "maximum_value": 8,
-                    "minimum_value": 8,
+                    "maximum_value": 16,
+                    "minimum_value": 16,
                     "name": "index",
                     "required": True,
                 },
@@ -1569,17 +1569,17 @@ class CHANGES(HandleRecord):
     index: int = Field(
         ...,
         description="""The index of the handle record.""",
-        ge=8,
-        le=8,
+        ge=16,
+        le=16,
         json_schema_extra={
             "linkml_meta": {
                 "alias": "index",
                 "domain_of": [
                     "URL",
+                    "EMAIL",
                     "STATUS",
                     "SCHEMA_VER",
                     "METADATA_LICENSE",
-                    "EMAIL",
                     "RESOURCE",
                     "RELATED",
                     "CHANGES",
@@ -1595,10 +1595,10 @@ class CHANGES(HandleRecord):
                 "alias": "data",
                 "domain_of": [
                     "URL",
+                    "EMAIL",
                     "STATUS",
                     "SCHEMA_VER",
                     "METADATA_LICENSE",
-                    "EMAIL",
                     "RESOURCE",
                     "RELATED",
                     "CHANGES",
@@ -1669,10 +1669,10 @@ class HdlDataLog(ConfiguredBaseModel):
                 "alias": "format",
                 "domain_of": [
                     "HdlDataUrl",
+                    "HdlDataContact",
                     "HdlDataStatus",
                     "HdlDataSchemaVer",
                     "HdlDataLicense",
-                    "HdlDataContact",
                     "HdlDataResourceInfo",
                     "HdlDataRelated",
                     "HdlDataLog",
@@ -1690,10 +1690,10 @@ class HdlDataLog(ConfiguredBaseModel):
                 "alias": "value",
                 "domain_of": [
                     "HdlDataUrl",
+                    "HdlDataContact",
                     "HdlDataStatus",
                     "HdlDataSchemaVer",
                     "HdlDataLicense",
-                    "HdlDataContact",
                     "HdlDataResourceInfo",
                     "HdlDataRelated",
                     "HdlDataLog",
@@ -2593,14 +2593,14 @@ HandleAPIRecord.model_rebuild()
 HandleRecord.model_rebuild()
 URL.model_rebuild()
 HdlDataUrl.model_rebuild()
+EMAIL.model_rebuild()
+HdlDataContact.model_rebuild()
 STATUS.model_rebuild()
 HdlDataStatus.model_rebuild()
 SCHEMAVER.model_rebuild()
 HdlDataSchemaVer.model_rebuild()
 METADATALICENSE.model_rebuild()
 HdlDataLicense.model_rebuild()
-EMAIL.model_rebuild()
-HdlDataContact.model_rebuild()
 RESOURCE.model_rebuild()
 HdlDataResourceInfo.model_rebuild()
 RELATED.model_rebuild()

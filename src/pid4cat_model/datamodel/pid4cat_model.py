@@ -1,5 +1,5 @@
 # Auto generated from pid4cat_model.yaml by pythongen.py version: 0.0.1
-# Generation date: 2025-03-09T19:49:53
+# Generation date: 2025-03-10T16:18:15
 # Schema: pid4cat-model
 #
 # id: https://w3id.org/nfdi4cat/pid4cat-model
@@ -208,6 +208,69 @@ class HdlDataUrl(YAMLRoot):
 
 
 @dataclass(repr=False)
+class EMAIL(HandleRecord):
+    """
+    The data element in the handle API for the contact email.
+    """
+
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = PID4CAT_MODEL["EMAIL"]
+    class_class_curie: ClassVar[str] = "pid4cat_model:EMAIL"
+    class_name: ClassVar[str] = "EMAIL"
+    class_model_uri: ClassVar[URIRef] = PID4CAT_MODEL.EMAIL
+
+    timestamp: Union[str, XSDDateTime] = None
+    type: str = None
+    index: int = None
+    data: Union[dict, "HdlDataContact"] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.index):
+            self.MissingRequiredField("index")
+        if not isinstance(self.index, int):
+            self.index = int(self.index)
+
+        if self._is_empty(self.data):
+            self.MissingRequiredField("data")
+        if not isinstance(self.data, HdlDataContact):
+            self.data = HdlDataContact(**as_dict(self.data))
+
+        super().__post_init__(**kwargs)
+        if self._is_empty(self.type):
+            self.MissingRequiredField("type")
+        self.type = str(self.class_name)
+
+
+@dataclass(repr=False)
+class HdlDataContact(YAMLRoot):
+    """
+    The data class for the handle-record contact email.
+    """
+
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = PID4CAT_MODEL["HdlDataContact"]
+    class_class_curie: ClassVar[str] = "pid4cat_model:HdlDataContact"
+    class_name: ClassVar[str] = "HdlDataContact"
+    class_model_uri: ClassVar[URIRef] = PID4CAT_MODEL.HdlDataContact
+
+    value: str = None
+    format: Optional[str] = "string"
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.value):
+            self.MissingRequiredField("value")
+        if not isinstance(self.value, str):
+            self.value = str(self.value)
+
+        if self.format is not None and not isinstance(self.format, str):
+            self.format = str(self.format)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
 class STATUS(HandleRecord):
     """
     The data element in the handle API for the PID status information.
@@ -380,69 +443,6 @@ class HdlDataLicense(YAMLRoot):
     class_class_curie: ClassVar[str] = "pid4cat_model:HdlDataLicense"
     class_name: ClassVar[str] = "HdlDataLicense"
     class_model_uri: ClassVar[URIRef] = PID4CAT_MODEL.HdlDataLicense
-
-    value: str = None
-    format: Optional[str] = "string"
-
-    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self._is_empty(self.value):
-            self.MissingRequiredField("value")
-        if not isinstance(self.value, str):
-            self.value = str(self.value)
-
-        if self.format is not None and not isinstance(self.format, str):
-            self.format = str(self.format)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class EMAIL(HandleRecord):
-    """
-    The data element in the handle API for the contact email.
-    """
-
-    _inherited_slots: ClassVar[List[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = PID4CAT_MODEL["EMAIL"]
-    class_class_curie: ClassVar[str] = "pid4cat_model:EMAIL"
-    class_name: ClassVar[str] = "EMAIL"
-    class_model_uri: ClassVar[URIRef] = PID4CAT_MODEL.EMAIL
-
-    timestamp: Union[str, XSDDateTime] = None
-    type: str = None
-    index: int = None
-    data: Union[dict, "HdlDataContact"] = None
-
-    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self._is_empty(self.index):
-            self.MissingRequiredField("index")
-        if not isinstance(self.index, int):
-            self.index = int(self.index)
-
-        if self._is_empty(self.data):
-            self.MissingRequiredField("data")
-        if not isinstance(self.data, HdlDataContact):
-            self.data = HdlDataContact(**as_dict(self.data))
-
-        super().__post_init__(**kwargs)
-        if self._is_empty(self.type):
-            self.MissingRequiredField("type")
-        self.type = str(self.class_name)
-
-
-@dataclass(repr=False)
-class HdlDataContact(YAMLRoot):
-    """
-    The data class for the handle-record contact email.
-    """
-
-    _inherited_slots: ClassVar[List[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = PID4CAT_MODEL["HdlDataContact"]
-    class_class_curie: ClassVar[str] = "pid4cat_model:HdlDataContact"
-    class_name: ClassVar[str] = "HdlDataContact"
-    class_model_uri: ClassVar[URIRef] = PID4CAT_MODEL.HdlDataContact
 
     value: str = None
     format: Optional[str] = "string"
@@ -2106,6 +2106,43 @@ slots.HdlDataUrl_value = Slot(
     pattern=re.compile(r"^https?:\/\/.*$"),
 )
 
+slots.EMAIL_index = Slot(
+    uri=PID4CAT_MODEL.index,
+    name="EMAIL_index",
+    curie=PID4CAT_MODEL.curie("index"),
+    model_uri=PID4CAT_MODEL.EMAIL_index,
+    domain=EMAIL,
+    range=int,
+)
+
+slots.EMAIL_data = Slot(
+    uri=PID4CAT_MODEL.data,
+    name="EMAIL_data",
+    curie=PID4CAT_MODEL.curie("data"),
+    model_uri=PID4CAT_MODEL.EMAIL_data,
+    domain=EMAIL,
+    range=Union[dict, "HdlDataContact"],
+)
+
+slots.HdlDataContact_format = Slot(
+    uri=PID4CAT_MODEL.format,
+    name="HdlDataContact_format",
+    curie=PID4CAT_MODEL.curie("format"),
+    model_uri=PID4CAT_MODEL.HdlDataContact_format,
+    domain=HdlDataContact,
+    range=Optional[str],
+)
+
+slots.HdlDataContact_value = Slot(
+    uri=PID4CAT_MODEL.value,
+    name="HdlDataContact_value",
+    curie=PID4CAT_MODEL.curie("value"),
+    model_uri=PID4CAT_MODEL.HdlDataContact_value,
+    domain=HdlDataContact,
+    range=str,
+    pattern=re.compile(r"^\S+@[\S+\.]+\S+"),
+)
+
 slots.STATUS_index = Slot(
     uri=PID4CAT_MODEL.index,
     name="STATUS_index",
@@ -2213,43 +2250,6 @@ slots.HdlDataLicense_value = Slot(
     model_uri=PID4CAT_MODEL.HdlDataLicense_value,
     domain=HdlDataLicense,
     range=str,
-)
-
-slots.EMAIL_index = Slot(
-    uri=PID4CAT_MODEL.index,
-    name="EMAIL_index",
-    curie=PID4CAT_MODEL.curie("index"),
-    model_uri=PID4CAT_MODEL.EMAIL_index,
-    domain=EMAIL,
-    range=int,
-)
-
-slots.EMAIL_data = Slot(
-    uri=PID4CAT_MODEL.data,
-    name="EMAIL_data",
-    curie=PID4CAT_MODEL.curie("data"),
-    model_uri=PID4CAT_MODEL.EMAIL_data,
-    domain=EMAIL,
-    range=Union[dict, "HdlDataContact"],
-)
-
-slots.HdlDataContact_format = Slot(
-    uri=PID4CAT_MODEL.format,
-    name="HdlDataContact_format",
-    curie=PID4CAT_MODEL.curie("format"),
-    model_uri=PID4CAT_MODEL.HdlDataContact_format,
-    domain=HdlDataContact,
-    range=Optional[str],
-)
-
-slots.HdlDataContact_value = Slot(
-    uri=PID4CAT_MODEL.value,
-    name="HdlDataContact_value",
-    curie=PID4CAT_MODEL.curie("value"),
-    model_uri=PID4CAT_MODEL.HdlDataContact_value,
-    domain=HdlDataContact,
-    range=str,
-    pattern=re.compile(r"^\S+@[\S+\.]+\S+"),
 )
 
 slots.RESOURCE_index = Slot(

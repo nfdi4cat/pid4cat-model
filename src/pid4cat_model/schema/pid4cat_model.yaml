@@ -120,6 +120,36 @@ classes:
         pattern: '^https?:\/\/.*$'
         required: true
 
+  EMAIL:
+    is_a: HandleRecord
+    description: >-
+      The data element in the handle API for the contact email.
+    slots:
+      - index
+      - data
+    slot_usage:
+      index:
+        minimum_value: 10
+        maximum_value: 10
+        required: true
+      data:
+        range: HdlDataContact
+        required: true
+
+  HdlDataContact:
+    description: >-
+      The data class for the handle-record contact email.
+    slots:
+      - format
+      - value
+    slot_usage:
+      format:
+        equals_string: 'string'
+        ifabsent: 'string'
+      value:
+        pattern: "^\\S+@[\\S+\\.]+\\S+"
+        required: true
+
   STATUS:
     is_a: HandleRecord
     description: >-
@@ -129,8 +159,8 @@ classes:
       - data
     slot_usage:
       index:
-        minimum_value: 2
-        maximum_value: 2
+        minimum_value: 11
+        maximum_value: 11
         required: true
       data:
         range: HdlDataStatus
@@ -159,8 +189,8 @@ classes:
       - data
     slot_usage:
       index:
-        minimum_value: 3
-        maximum_value: 3
+        minimum_value: 12
+        maximum_value: 12
         required: true
       data:
         range: HdlDataSchemaVer
@@ -189,8 +219,8 @@ classes:
       - data
     slot_usage:
       index:
-        minimum_value: 4
-        maximum_value: 4
+        minimum_value: 13
+        maximum_value: 13
         required: true
       data:
         range: HdlDataLicense
@@ -210,36 +240,6 @@ classes:
         equals_string: 'CC0-1.0'
         required: true
 
-  EMAIL:
-    is_a: HandleRecord
-    description: >-
-      The data element in the handle API for the contact email.
-    slots:
-      - index
-      - data
-    slot_usage:
-      index:
-        minimum_value: 5
-        maximum_value: 5
-        required: true
-      data:
-        range: HdlDataContact
-        required: true
-
-  HdlDataContact:
-    description: >-
-      The data class for the handle-record contact email.
-    slots:
-      - format
-      - value
-    slot_usage:
-      format:
-        equals_string: 'string'
-        ifabsent: 'string'
-      value:
-        pattern: "^\\S+@[\\S+\\.]+\\S+"
-        required: true
-
   RESOURCE:
     is_a: HandleRecord
     description: >-
@@ -249,8 +249,8 @@ classes:
       - data
     slot_usage:
       index:
-        minimum_value: 6
-        maximum_value: 6
+        minimum_value: 14
+        maximum_value: 14
         required: true
       data:
         range: HdlDataResourceInfo
@@ -279,8 +279,8 @@ classes:
       - data
     slot_usage:
       index:
-        minimum_value: 7
-        maximum_value: 7
+        minimum_value: 15
+        maximum_value: 15
         required: true
       data:
         range: HdlDataRelated
@@ -309,8 +309,8 @@ classes:
       - data
     slot_usage:
       index:
-        minimum_value: 8
-        maximum_value: 8
+        minimum_value: 16
+        maximum_value: 16
         required: true
       data:
         range: HdlDataLog
