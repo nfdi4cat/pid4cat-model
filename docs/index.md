@@ -1,16 +1,16 @@
-# pid4cat-model
+# Home
 
-A LinkML model for handle-based PIDs for resources in catalysis (pid4cat).
+![pid4cat logo](images/logo-with-text.svg)
+
+**pid4cat** is a persistent identifier (PID) service designed and operated by NFDI4Cat for the catalysis research community.
+The pid4cat service builds upon existing PID infrastructure (Handle System) while providing enhanced capabilities for metadata management and namespace delegation. It enables partner organizations to manage their own sub-namespaces while maintaining a consistent approach to PID metadata management via a LinkML  based model.
 
 **The model is work in progress!** Please don't expect stability before Release 1.0.
 
-- Auto-generated [schema documentation](elements/overview.md)
-- License: MIT
-- Author & contributors: see [README](https://github.com/nfdi4cat/pid4cat-model?tab=readme-ov-file#contributors)
+- [Overview](/overview.md) on pid4cat identifiers
+- [Schema documentation](elements/overview.md) for the metadata model
 
-For more see GitHub [NFDI4Cat/pid4cat-model](https://github.com/nfdi4cat/pid4cat-model/).
-
-![pid4cat logo](images/logo-with-text.svg)
+The pid4cat documentation and the pid4cat-model are developed on GitHub at [NFDI4Cat/pid4cat-model](https://github.com/nfdi4cat/pid4cat-model/).
 
 ## Benefits of using pid4cat
 

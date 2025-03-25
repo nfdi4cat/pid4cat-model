@@ -360,6 +360,8 @@ The development of pid4cat has been guided by the needs of the catalysis researc
 
 # Getting Started
 
+_chapter will be converted to getting-started.md after review_
+
 ## Registration
 
 To use pid4cat services, organizations must apply to become a Sub-Name Assigning Authority (SNAA). The application process involves:
@@ -484,7 +486,7 @@ All metadata is provided under a CC0 1.0 Universal Public Domain Dedication lice
 
 # REST APIs
 
-_chapter will be converted to rest_apis.md after review_
+_chapter will be converted to apis.md after review_
 
 HLRS API (create, read, update)
 
@@ -607,6 +609,8 @@ These are available in the repository under [/project](https://github.com/nfdi4c
 Through LinkML generators pid4cat provides integration code for some programming languages other than Python, see [generated model artifacts](https://github.com/nfdi4cat/pid4cat-model/tree/main/project).
 
 # Policies
+
+_chapter will be converted to policies.md after review_
 
 ## Governance
 

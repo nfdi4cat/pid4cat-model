@@ -1,7 +1,13 @@
 # About pid4cat-model
 
-- License: MIT
-- Author & contributors: see [README](https://github.com/nfdi4cat/pid4cat-model?tab=readme-ov-file#contributors)
+## Authors & contributors
+
+see [README](https://github.com/nfdi4cat/pid4cat-model?tab=readme-ov-file#contributors)
+
+## License
+
+- Source code, data model: MIT
+- Documentation, images:  CC-BY 4.0
 
 ## Acknowledgement
 
