@@ -9,7 +9,7 @@
 
 ## pid4cat metadata model
 
-This repository contains the **pid4cat model** expressed as a [LinkML](https://linkml.io/) model. The model is generic and may be useful beyond catalysis.
+This repository contains the **pid4cat service** documentation and the **pid4cat model** expressed as a [LinkML](https://linkml.io/) model. The model is a generic PID metadata model that may be useful beyond catalysis.
 
 > Status: beta - This is in development and may still change.
 > We are interested in feedback of potential users.
@@ -17,8 +17,9 @@ This repository contains the **pid4cat model** expressed as a [LinkML](https://l
 
 ## Documentation
 
-- [pid4cat model](https://nfdi4cat.github.io/pid4cat-model) documentation
-- [NFDI4Cat PID concept](nfdi4cat_details.md) - more information about the  role and use of this model.
+- [pid4cat](https://nfdi4cat.github.io/pid4cat-model) documentation
+- [pid4cat-model](https://nfdi4cat.github.io/pid4cat-model/latest/elements/) metadata schema documentation
+- [NFDI4Cat PID concept](nfdi4cat_details.md) - (older) information about the role and use of this model in NFDI4Cat.
 
 ## Repository Structure
 
@@ -29,9 +30,7 @@ This repository contains the **pid4cat model** expressed as a [LinkML](https://l
 - [src/](src/) - source files
   - [pid4cat_model](src/pid4cat_model)
     - [schema](src/pid4cat_model/schema) -- LinkML schema
-      (edit this)
-    - [datamodel](src/pid4cat_model/datamodel) -- generated
-      Python datamodel
+    - [datamodel](src/pid4cat_model/datamodel) -- generated Python data models
 - [tests/](tests/) - Python tests
   - [data/](tests/data) - Example data
 
@@ -42,14 +41,22 @@ They are written for the command runner [just](https://github.com/casey/just/). 
 
 ## Contributors
 
-A big thanks to all [contributors](https://github.com/nfdi4cat/pid4cat-model/graphs/contributors).
+A big thanks to all contributors! Without you pid4cat would not exist.
+
+In addition to the [GitHub contributors](https://github.com/nfdi4cat/pid4cat-model/graphs/contributors), several people contributed offline:
+
+- Preston Rodriguez (ORCID: [0000-0002-0377-5018](https://orcid.org/0000-0002-0377-5018)), @prestonrodrigues (implementation of handle API gateway server, operation of handle server)
+- Mark Dörr (ORCID: [0000-0003-3270-6895](https://orcid.org/0000-0003-3270-6895)), @markdoerr (discussions on model and API)
+- Volodymyr Kushnarenko (ORCID: [0000-0001-7427-2410](https://orcid.org/0000-0001-7427-2410)), @vkush (discussions on model, operation of handle server)
+- Hendrik Borgelt (ORCID: [0000-0001-5886-7860](https://orcid.org/0000-0001-5886-7860)), @HendrikBorgelt (discussions on model)
 
 Main author:
-- David Linke (ORCID: 0000-0002-5898-1820) - Idea, initial setup of repository and current maintainer.
+
+- David Linke (ORCID: [0000-0002-5898-1820](https://orcid.org/0000-0002-5898-1820)) - Idea, initial setup of repository, main developer of pid4cat-model, project coordination.
 
 ## License
 
-The code in this repository is distributed under MIT license.
+The code and data model in this repository are distributed under the MIT license. The documentation, images and logos are CC-BY 4.0 licensed.
 
 ## Acknowledgement
 
