@@ -3,11 +3,11 @@ id: https://w3id.org/nfdi4cat/pid4cat-model
 name: pid4cat-model
 title: pid4cat-model
 description: >-
-  A LinkML model for PIDs for resources in catalysis (pid4cat). pid4cat is a
-  handle system based persistent identifier (PID) for digital or physical
-  resources used in the catalysis research process. The handle record is used
-  to store additional metadata about the PID besides the obligatory landing
-  page URL.
+  A LinkML model for persistent identifiers for resources in catalysis
+  (pid4cat). pid4cat are handle based persistent identifiers (PIDs) for digital
+  or physical resources used in the catalysis research process. PID-related
+  metadata besides the obligatory landing page URL are stored directly in the
+  handle records.
 
   The model describes metadata for the PID itself and how to access the
   identified resource. It does not describe the resource itself with the
