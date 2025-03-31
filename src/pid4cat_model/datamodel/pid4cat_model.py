@@ -1,5 +1,5 @@
 # Auto generated from pid4cat_model.yaml by pythongen.py version: 0.0.1
-# Generation date: 2025-03-10T16:18:15
+# Generation date: 2025-03-31T23:16:33
 # Schema: pid4cat-model
 #
 # id: https://w3id.org/nfdi4cat/pid4cat-model
@@ -1149,6 +1149,82 @@ class ExampleIdentifier(RelatedIdentifier):
         self.type = str(self.class_name)
 
 
+@dataclass(repr=False)
+class Pid4CatRecord(YAMLRoot):
+    """
+    A class representing pid4cat identifiers with its metadata as objects. This is a neutral object-oriented
+    representation that does not mirror the record structure of the handle system but is provided as representation
+    that is more convenient to use in programming languages.
+    """
+
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = PID4CAT_MODEL["Pid4CatRecord"]
+    class_class_curie: ClassVar[str] = "pid4cat_model:Pid4CatRecord"
+    class_name: ClassVar[str] = "Pid4CatRecord"
+    class_model_uri: ClassVar[URIRef] = PID4CAT_MODEL.Pid4CatRecord
+
+    landing_page_url: str = None
+    status: Union[str, "Pid4CatStatus"] = None
+    schema_version: Union[dict, HdlDataSchemaVer] = None
+    metadata_license: str = None
+    curation_contact: str = None
+    resource_info: Union[dict, ResourceInfo] = None
+    change_log: Union[Union[dict, LogRecord], List[Union[dict, LogRecord]]] = None
+    related_identifiers: Optional[
+        Union[Union[dict, RelatedIdentifier], List[Union[dict, RelatedIdentifier]]]
+    ] = empty_list()
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.landing_page_url):
+            self.MissingRequiredField("landing_page_url")
+        if not isinstance(self.landing_page_url, str):
+            self.landing_page_url = str(self.landing_page_url)
+
+        if self._is_empty(self.status):
+            self.MissingRequiredField("status")
+        if not isinstance(self.status, Pid4CatStatus):
+            self.status = Pid4CatStatus(self.status)
+
+        if self._is_empty(self.schema_version):
+            self.MissingRequiredField("schema_version")
+        if not isinstance(self.schema_version, HdlDataSchemaVer):
+            self.schema_version = HdlDataSchemaVer(**as_dict(self.schema_version))
+
+        if self._is_empty(self.metadata_license):
+            self.MissingRequiredField("metadata_license")
+        if not isinstance(self.metadata_license, str):
+            self.metadata_license = str(self.metadata_license)
+
+        if self._is_empty(self.curation_contact):
+            self.MissingRequiredField("curation_contact")
+        if not isinstance(self.curation_contact, str):
+            self.curation_contact = str(self.curation_contact)
+
+        if self._is_empty(self.resource_info):
+            self.MissingRequiredField("resource_info")
+        if not isinstance(self.resource_info, ResourceInfo):
+            self.resource_info = ResourceInfo(**as_dict(self.resource_info))
+
+        if self._is_empty(self.change_log):
+            self.MissingRequiredField("change_log")
+        self._normalize_inlined_as_dict(
+            slot_name="change_log",
+            slot_type=LogRecord,
+            key_name="datetime_log",
+            keyed=False,
+        )
+
+        self._normalize_inlined_as_dict(
+            slot_name="related_identifiers",
+            slot_type=RelatedIdentifier,
+            key_name="type",
+            keyed=False,
+        )
+
+        super().__post_init__(**kwargs)
+
+
 # Enumerations
 class ResourceCategory(EnumDefinitionImpl):
     """
@@ -2000,6 +2076,80 @@ slots.identifier = Slot(
     range=Optional[str],
 )
 
+slots.landing_page_url = Slot(
+    uri=PID4CAT_MODEL.landing_page_url,
+    name="landing_page_url",
+    curie=PID4CAT_MODEL.curie("landing_page_url"),
+    model_uri=PID4CAT_MODEL.landing_page_url,
+    domain=None,
+    range=Optional[str],
+)
+
+slots.status = Slot(
+    uri=PID4CAT_MODEL.status,
+    name="status",
+    curie=PID4CAT_MODEL.curie("status"),
+    model_uri=PID4CAT_MODEL.status,
+    domain=None,
+    range=Optional[Union[str, "Pid4CatStatus"]],
+)
+
+slots.schema_version = Slot(
+    uri=PID4CAT_MODEL.schema_version,
+    name="schema_version",
+    curie=PID4CAT_MODEL.curie("schema_version"),
+    model_uri=PID4CAT_MODEL.schema_version,
+    domain=None,
+    range=Optional[Union[dict, HdlDataSchemaVer]],
+)
+
+slots.metadata_license = Slot(
+    uri=PID4CAT_MODEL.metadata_license,
+    name="metadata_license",
+    curie=PID4CAT_MODEL.curie("metadata_license"),
+    model_uri=PID4CAT_MODEL.metadata_license,
+    domain=None,
+    range=Optional[str],
+)
+
+slots.curation_contact = Slot(
+    uri=PID4CAT_MODEL.curation_contact,
+    name="curation_contact",
+    curie=PID4CAT_MODEL.curie("curation_contact"),
+    model_uri=PID4CAT_MODEL.curation_contact,
+    domain=None,
+    range=Optional[str],
+)
+
+slots.resource_info = Slot(
+    uri=PID4CAT_MODEL.resource_info,
+    name="resource_info",
+    curie=PID4CAT_MODEL.curie("resource_info"),
+    model_uri=PID4CAT_MODEL.resource_info,
+    domain=None,
+    range=Optional[Union[dict, ResourceInfo]],
+)
+
+slots.related_identifiers = Slot(
+    uri=PID4CAT_MODEL.related_identifiers,
+    name="related_identifiers",
+    curie=PID4CAT_MODEL.curie("related_identifiers"),
+    model_uri=PID4CAT_MODEL.related_identifiers,
+    domain=None,
+    range=Optional[
+        Union[Union[dict, RelatedIdentifier], List[Union[dict, RelatedIdentifier]]]
+    ],
+)
+
+slots.change_log = Slot(
+    uri=PID4CAT_MODEL.change_log,
+    name="change_log",
+    curie=PID4CAT_MODEL.curie("change_log"),
+    model_uri=PID4CAT_MODEL.change_log,
+    domain=None,
+    range=Optional[Union[dict, LogRecord]],
+)
+
 slots.handleRecordContainer__contains_pids = Slot(
     uri=PID4CAT_MODEL.contains_pids,
     name="handleRecordContainer__contains_pids",
@@ -2583,4 +2733,80 @@ slots.ExampleIdentifier_resolving_url = Slot(
     domain=ExampleIdentifier,
     range=Optional[Union[str, URI]],
     pattern=re.compile(r"^https?:\/\/(.+\.)?example.(org|com)\/.*$"),
+)
+
+slots.Pid4CatRecord_landing_page_url = Slot(
+    uri=PID4CAT_MODEL.landing_page_url,
+    name="Pid4CatRecord_landing_page_url",
+    curie=PID4CAT_MODEL.curie("landing_page_url"),
+    model_uri=PID4CAT_MODEL.Pid4CatRecord_landing_page_url,
+    domain=Pid4CatRecord,
+    range=str,
+    pattern=re.compile(r"^https?:\/\/.*$"),
+)
+
+slots.Pid4CatRecord_status = Slot(
+    uri=PID4CAT_MODEL.status,
+    name="Pid4CatRecord_status",
+    curie=PID4CAT_MODEL.curie("status"),
+    model_uri=PID4CAT_MODEL.Pid4CatRecord_status,
+    domain=Pid4CatRecord,
+    range=Union[str, "Pid4CatStatus"],
+)
+
+slots.Pid4CatRecord_schema_version = Slot(
+    uri=PID4CAT_MODEL.schema_version,
+    name="Pid4CatRecord_schema_version",
+    curie=PID4CAT_MODEL.curie("schema_version"),
+    model_uri=PID4CAT_MODEL.Pid4CatRecord_schema_version,
+    domain=Pid4CatRecord,
+    range=Union[dict, HdlDataSchemaVer],
+)
+
+slots.Pid4CatRecord_metadata_license = Slot(
+    uri=PID4CAT_MODEL.metadata_license,
+    name="Pid4CatRecord_metadata_license",
+    curie=PID4CAT_MODEL.curie("metadata_license"),
+    model_uri=PID4CAT_MODEL.Pid4CatRecord_metadata_license,
+    domain=Pid4CatRecord,
+    range=str,
+)
+
+slots.Pid4CatRecord_curation_contact = Slot(
+    uri=PID4CAT_MODEL.curation_contact,
+    name="Pid4CatRecord_curation_contact",
+    curie=PID4CAT_MODEL.curie("curation_contact"),
+    model_uri=PID4CAT_MODEL.Pid4CatRecord_curation_contact,
+    domain=Pid4CatRecord,
+    range=str,
+    pattern=re.compile(r"^\S+@[\S+\.]+\S+"),
+)
+
+slots.Pid4CatRecord_resource_info = Slot(
+    uri=PID4CAT_MODEL.resource_info,
+    name="Pid4CatRecord_resource_info",
+    curie=PID4CAT_MODEL.curie("resource_info"),
+    model_uri=PID4CAT_MODEL.Pid4CatRecord_resource_info,
+    domain=Pid4CatRecord,
+    range=Union[dict, ResourceInfo],
+)
+
+slots.Pid4CatRecord_related_identifiers = Slot(
+    uri=PID4CAT_MODEL.related_identifiers,
+    name="Pid4CatRecord_related_identifiers",
+    curie=PID4CAT_MODEL.curie("related_identifiers"),
+    model_uri=PID4CAT_MODEL.Pid4CatRecord_related_identifiers,
+    domain=Pid4CatRecord,
+    range=Optional[
+        Union[Union[dict, RelatedIdentifier], List[Union[dict, RelatedIdentifier]]]
+    ],
+)
+
+slots.Pid4CatRecord_change_log = Slot(
+    uri=PID4CAT_MODEL.change_log,
+    name="Pid4CatRecord_change_log",
+    curie=PID4CAT_MODEL.curie("change_log"),
+    model_uri=PID4CAT_MODEL.Pid4CatRecord_change_log,
+    domain=Pid4CatRecord,
+    range=Union[Union[dict, LogRecord], List[Union[dict, LogRecord]]],
 )

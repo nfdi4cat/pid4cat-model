@@ -718,6 +718,92 @@
             "title": "Pid4CatAgentRole",
             "type": "string"
         },
+        "Pid4CatRecord": {
+            "additionalProperties": false,
+            "description": "A class representing pid4cat identifiers with its metadata as objects. This is a neutral object-oriented representation that does not mirror the record structure of the handle system but is provided as representation that is more convenient to use in programming languages.",
+            "properties": {
+                "change_log": {
+                    "description": "The change log of the pid4cat record. The change log contains information about the changes made to the pid4cat record.",
+                    "items": {
+                        "$ref": "#/$defs/LogRecord"
+                    },
+                    "type": "array"
+                },
+                "curation_contact": {
+                    "description": "The email address of the person responsible for the curation of the pid4cat record.",
+                    "pattern": "^\\S+@[\\S+\\.]+\\S+",
+                    "type": "string"
+                },
+                "landing_page_url": {
+                    "description": "The URL of the landing page of the resource identified by the PID.",
+                    "pattern": "^https?:\\/\\/.*$",
+                    "type": "string"
+                },
+                "metadata_license": {
+                    "const": "CC0-1.0",
+                    "description": "The license of the metadata of the pid4cat record. The license is set to \"CC0-1.0\" by default.",
+                    "type": "string"
+                },
+                "related_identifiers": {
+                    "description": "The related identifiers of the pid4cat record. The related identifiers are used to link the pid4cat record to other resources.",
+                    "items": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/$defs/RelatedIdentifier"
+                            },
+                            {
+                                "$ref": "#/$defs/PurlIdentifier"
+                            },
+                            {
+                                "$ref": "#/$defs/DoiIdentifier"
+                            },
+                            {
+                                "$ref": "#/$defs/HandleIdentifier"
+                            },
+                            {
+                                "$ref": "#/$defs/ArkIdentifier"
+                            },
+                            {
+                                "$ref": "#/$defs/UrnIdentifier"
+                            },
+                            {
+                                "$ref": "#/$defs/GtinIdentifier"
+                            },
+                            {
+                                "$ref": "#/$defs/ExampleIdentifier"
+                            }
+                        ]
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "resource_info": {
+                    "$ref": "#/$defs/ResourceInfo",
+                    "description": "The resource info of the pid4cat record. The resource info contains information about the resource identified by the PID."
+                },
+                "schema_version": {
+                    "$ref": "#/$defs/HdlDataSchemaVer",
+                    "description": "The version of the pid4cat-model used to create the pid4cat record."
+                },
+                "status": {
+                    "$ref": "#/$defs/Pid4CatStatus",
+                    "description": "The status of the pid4cat record. The status is set to \"SUBMITTED\" when the handle is reserved but the resource is not yet linked. The status is set to \"REGISTERED\" when the handle is linked to a concrete resource."
+                }
+            },
+            "required": [
+                "landing_page_url",
+                "status",
+                "schema_version",
+                "metadata_license",
+                "curation_contact",
+                "resource_info",
+                "change_log"
+            ],
+            "title": "Pid4CatRecord",
+            "type": "object"
+        },
         "Pid4CatRelation": {
             "additionalProperties": false,
             "description": "Data class for a relation to another resource identified by a pid4cat handle or another PID type.",

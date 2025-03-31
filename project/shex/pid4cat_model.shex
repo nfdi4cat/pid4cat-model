@@ -242,6 +242,21 @@ linkml:Sparqlpath xsd:string
     )
 }
 
+<Pid4CatRecord> CLOSED {
+    (  $<Pid4CatRecord_tes> (  <landing_page_url> @linkml:String ;
+          <status> [ <https://w3id.org/nfdi4cat/voc4cat_0005052> <https://w3id.org/nfdi4cat/voc4cat_0005053>
+             <https://w3id.org/nfdi4cat/voc4cat_0005054> <https://w3id.org/nfdi4cat/voc4cat_0005055> ] ;
+          <schema_version> @<HdlDataSchemaVer> ;
+          <metadata_license> @linkml:String ;
+          <curation_contact> @linkml:String ;
+          <resource_info> @<ResourceInfo> ;
+          <related_identifiers> @<RelatedIdentifier> * ;
+          <change_log> @<LogRecord> +
+       ) ;
+       rdf:type [ <Pid4CatRecord> ] ?
+    )
+}
+
 <Pid4CatRelation> CLOSED {
     (  $<Pid4CatRelation_tes> (  <relation_type> [ <https://w3id.org/nfdi4cat/voc4cat_0005019>
              <https://w3id.org/nfdi4cat/voc4cat_0005020> <https://w3id.org/nfdi4cat/voc4cat_0005021>
