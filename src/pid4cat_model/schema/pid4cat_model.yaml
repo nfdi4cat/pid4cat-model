@@ -530,6 +530,43 @@ classes:
       resolving_url:
         pattern: '^https?:\/\/(.+\.)?example.(org|com)\/.*$'
 
+  Pid4CatRecord:
+    description: >-
+      A class representing pid4cat identifiers with its metadata as objects.
+      This is a neutral object-oriented representation that does not mirror the
+      record structure of the handle system but is provided as representation
+      that is more convenient to use in programming languages.
+    slots:
+      - landing_page_url
+      - status
+      - schema_version
+      - metadata_license
+      - curation_contact
+      - resource_info
+      - related_identifiers
+      - change_log
+    slot_usage:
+      landing_page_url:
+        pattern: '^https?:\/\/.*$'
+        required: true
+      status:
+        required: true
+      schema_version:
+        required: true
+      metadata_license:
+        equals_string: CC0-1.0
+        required: true
+      curation_contact:
+        pattern: "^\\S+@[\\S+\\.]+\\S+"
+        required: true
+      resource_info:
+        required: true
+      related_identifiers:
+        multivalued: true
+      change_log:
+        required: true
+        multivalued: true
+
 
 # === S L O T S ==============================================================
 
@@ -660,6 +697,48 @@ slots:
     range: string
     description: The identifier in recommended notation.
 
+  # Slots for Pid4CatRecord
+  landing_page_url:
+    range: string
+    description: >-
+      The URL of the landing page of the resource identified by the PID.
+  status:
+    range: Pid4CatStatus
+    description: >-
+      The status of the pid4cat record. The status is set to "SUBMITTED"
+      when the handle is reserved but the resource is not yet linked.
+      The status is set to "REGISTERED" when the handle is linked to a
+      concrete resource.
+  schema_version:
+    range: HdlDataSchemaVer
+    description: >-
+      The version of the pid4cat-model used to create the pid4cat record.
+  metadata_license:
+    range: string
+    description: >-
+      The license of the metadata of the pid4cat record. The license is
+      set to "CC0-1.0" by default.
+  curation_contact:
+    range: string
+    description: >-
+      The email address of the person responsible for the curation of the
+      pid4cat record.
+  resource_info:
+    range: ResourceInfo
+    description: >-
+      The resource info of the pid4cat record. The resource info contains
+      information about the resource identified by the PID.
+  related_identifiers:
+    range: RelatedIdentifier
+    multivalued: true
+    description: >-
+      The related identifiers of the pid4cat record. The related
+      identifiers are used to link the pid4cat record to other resources.
+  change_log:
+    range: LogRecord
+    description: >-
+      The change log of the pid4cat record. The change log contains
+      information about the changes made to the pid4cat record.
 
 # === E N U M S ==============================================================
 
