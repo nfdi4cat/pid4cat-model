@@ -147,6 +147,18 @@ message METADATALICENSE
   integer index = 0
   hdlDataLicense data = 0
  }
+// A class representing pid4cat identifiers with its metadata as objects. This is a neutral object-oriented representation that does not mirror the record structure of the handle system but is provided as representation that is more convenient to use in programming languages.
+message Pid4CatRecord
+ {
+  string landingPageUrl = 0
+  pid4CatStatus status = 0
+  hdlDataSchemaVer schemaVersion = 0
+  string metadataLicense = 0
+  string curationContact = 0
+  resourceInfo resourceInfo = 0
+ repeated  relatedIdentifier relatedIdentifiers = 0
+ repeated  logRecord changeLog = 0
+ }
 // Data class for a relation to another resource identified by a pid4cat handle or another PID type.
 message Pid4CatRelation
  {

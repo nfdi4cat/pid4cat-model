@@ -159,6 +159,14 @@
 --     * Slot: identifier Description: The identifier in recommended notation.
 --     * Slot: resolving_url Description: The URL that resolves the identifier.
 --     * Slot: type Description: The type of the identifier.
+-- # Class: "Pid4CatRecord" Description: "A class representing pid4cat identifiers with its metadata as objects. This is a neutral object-oriented representation that does not mirror the record structure of the handle system but is provided as representation that is more convenient to use in programming languages."
+--     * Slot: id Description:
+--     * Slot: landing_page_url Description: The URL of the landing page of the resource identified by the PID.
+--     * Slot: status Description: The status of the pid4cat record. The status is set to "SUBMITTED" when the handle is reserved but the resource is not yet linked. The status is set to "REGISTERED" when the handle is linked to a concrete resource.
+--     * Slot: metadata_license Description: The license of the metadata of the pid4cat record. The license is set to "CC0-1.0" by default.
+--     * Slot: curation_contact Description: The email address of the person responsible for the curation of the pid4cat record.
+--     * Slot: schema_version_id Description: The version of the pid4cat-model used to create the pid4cat record.
+--     * Slot: resource_info_id Description: The resource info of the pid4cat record. The resource info contains information about the resource identified by the PID.
 -- # Class: "HandleAPIRecord_values" Description: ""
 --     * Slot: HandleAPIRecord_handle Description: Autocreated FK slot
 --     * Slot: values_id Description: The values of the pid4cat record.
@@ -171,6 +179,12 @@
 -- # Class: "ResourceInfo_representation_variants" Description: ""
 --     * Slot: ResourceInfo_id Description: Autocreated FK slot
 --     * Slot: representation_variants_id Description: The representations of the resource in other media types than text/html.
+-- # Class: "Pid4CatRecord_related_identifiers" Description: ""
+--     * Slot: Pid4CatRecord_id Description: Autocreated FK slot
+--     * Slot: related_identifiers_id Description: The related identifiers of the pid4cat record. The related identifiers are used to link the pid4cat record to other resources.
+-- # Class: "Pid4CatRecord_change_log" Description: ""
+--     * Slot: Pid4CatRecord_id Description: Autocreated FK slot
+--     * Slot: change_log_id Description: The change log of the pid4cat record. The change log contains information about the changes made to the pid4cat record.
 
 CREATE TABLE "HandleRecord" (
 	id INTEGER NOT NULL,
@@ -399,6 +413,18 @@ CREATE TABLE "LogRecord" (
 	PRIMARY KEY (id),
 	FOREIGN KEY(has_agent_id) REFERENCES "Agent" (id)
 );
+CREATE TABLE "Pid4CatRecord" (
+	id INTEGER NOT NULL,
+	landing_page_url TEXT NOT NULL,
+	status VARCHAR(10) NOT NULL,
+	metadata_license TEXT NOT NULL,
+	curation_contact TEXT NOT NULL,
+	schema_version_id INTEGER NOT NULL,
+	resource_info_id INTEGER NOT NULL,
+	PRIMARY KEY (id),
+	FOREIGN KEY(schema_version_id) REFERENCES "HdlDataSchemaVer" (id),
+	FOREIGN KEY(resource_info_id) REFERENCES "ResourceInfo" (id)
+);
 CREATE TABLE "ResourceInfo_representation_variants" (
 	"ResourceInfo_id" INTEGER,
 	representation_variants_id INTEGER NOT NULL,
@@ -436,4 +462,18 @@ CREATE TABLE "HdlDataLog_value" (
 	PRIMARY KEY ("HdlDataLog_id", value_id),
 	FOREIGN KEY("HdlDataLog_id") REFERENCES "HdlDataLog" (id),
 	FOREIGN KEY(value_id) REFERENCES "LogRecord" (id)
+);
+CREATE TABLE "Pid4CatRecord_related_identifiers" (
+	"Pid4CatRecord_id" INTEGER,
+	related_identifiers_id INTEGER,
+	PRIMARY KEY ("Pid4CatRecord_id", related_identifiers_id),
+	FOREIGN KEY("Pid4CatRecord_id") REFERENCES "Pid4CatRecord" (id),
+	FOREIGN KEY(related_identifiers_id) REFERENCES "RelatedIdentifier" (id)
+);
+CREATE TABLE "Pid4CatRecord_change_log" (
+	"Pid4CatRecord_id" INTEGER,
+	change_log_id INTEGER NOT NULL,
+	PRIMARY KEY ("Pid4CatRecord_id", change_log_id),
+	FOREIGN KEY("Pid4CatRecord_id") REFERENCES "Pid4CatRecord" (id),
+	FOREIGN KEY(change_log_id) REFERENCES "LogRecord" (id)
 );

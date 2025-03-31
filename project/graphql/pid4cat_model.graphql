@@ -248,6 +248,18 @@ type METADATALICENSE
     data: HdlDataLicense!
   }
 
+type Pid4CatRecord
+  {
+    landingPageUrl: String!
+    status: Pid4CatStatus!
+    schemaVersion: HdlDataSchemaVer!
+    metadataLicense: String!
+    curationContact: String!
+    resourceInfo: ResourceInfo!
+    relatedIdentifiers: [RelatedIdentifier]
+    changeLog: [LogRecord]!
+  }
+
 type Pid4CatRelation
   {
     relationType: RelationType

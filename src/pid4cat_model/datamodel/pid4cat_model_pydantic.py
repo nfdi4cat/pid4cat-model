@@ -2587,6 +2587,148 @@ class ExampleIdentifier(RelatedIdentifier):
         return v
 
 
+class Pid4CatRecord(ConfiguredBaseModel):
+    """
+    A class representing pid4cat identifiers with its metadata as objects. This is a neutral object-oriented representation that does not mirror the record structure of the handle system but is provided as representation that is more convenient to use in programming languages.
+    """
+
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
+        {
+            "from_schema": "https://w3id.org/nfdi4cat/pid4cat-model",
+            "slot_usage": {
+                "change_log": {
+                    "multivalued": True,
+                    "name": "change_log",
+                    "required": True,
+                },
+                "curation_contact": {
+                    "name": "curation_contact",
+                    "pattern": "^\\S+@[\\S+\\.]+\\S+",
+                    "required": True,
+                },
+                "landing_page_url": {
+                    "name": "landing_page_url",
+                    "pattern": "^https?:\\/\\/.*$",
+                    "required": True,
+                },
+                "metadata_license": {
+                    "equals_string": "CC0-1.0",
+                    "name": "metadata_license",
+                    "required": True,
+                },
+                "related_identifiers": {
+                    "multivalued": True,
+                    "name": "related_identifiers",
+                },
+                "resource_info": {"name": "resource_info", "required": True},
+                "schema_version": {"name": "schema_version", "required": True},
+                "status": {"name": "status", "required": True},
+            },
+        }
+    )
+
+    landing_page_url: str = Field(
+        ...,
+        description="""The URL of the landing page of the resource identified by the PID.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "landing_page_url", "domain_of": ["Pid4CatRecord"]}
+        },
+    )
+    status: Pid4CatStatus = Field(
+        ...,
+        description="""The status of the pid4cat record. The status is set to \"SUBMITTED\" when the handle is reserved but the resource is not yet linked. The status is set to \"REGISTERED\" when the handle is linked to a concrete resource.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "status", "domain_of": ["Pid4CatRecord"]}
+        },
+    )
+    schema_version: HdlDataSchemaVer = Field(
+        ...,
+        description="""The version of the pid4cat-model used to create the pid4cat record.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "schema_version", "domain_of": ["Pid4CatRecord"]}
+        },
+    )
+    metadata_license: Literal["CC0-1.0"] = Field(
+        ...,
+        description="""The license of the metadata of the pid4cat record. The license is set to \"CC0-1.0\" by default.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "metadata_license",
+                "domain_of": ["Pid4CatRecord"],
+                "equals_string": "CC0-1.0",
+            }
+        },
+    )
+    curation_contact: str = Field(
+        ...,
+        description="""The email address of the person responsible for the curation of the pid4cat record.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "curation_contact", "domain_of": ["Pid4CatRecord"]}
+        },
+    )
+    resource_info: ResourceInfo = Field(
+        ...,
+        description="""The resource info of the pid4cat record. The resource info contains information about the resource identified by the PID.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "resource_info", "domain_of": ["Pid4CatRecord"]}
+        },
+    )
+    related_identifiers: Optional[
+        List[
+            Union[
+                RelatedIdentifier,
+                PurlIdentifier,
+                DoiIdentifier,
+                HandleIdentifier,
+                ArkIdentifier,
+                UrnIdentifier,
+                GtinIdentifier,
+                ExampleIdentifier,
+            ]
+        ]
+    ] = Field(
+        None,
+        description="""The related identifiers of the pid4cat record. The related identifiers are used to link the pid4cat record to other resources.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "related_identifiers",
+                "domain_of": ["Pid4CatRecord"],
+            }
+        },
+    )
+    change_log: List[LogRecord] = Field(
+        ...,
+        description="""The change log of the pid4cat record. The change log contains information about the changes made to the pid4cat record.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "change_log", "domain_of": ["Pid4CatRecord"]}
+        },
+    )
+
+    @field_validator("landing_page_url")
+    def pattern_landing_page_url(cls, v):
+        pattern = re.compile(r"^https?:\/\/.*$")
+        if isinstance(v, list):
+            for element in v:
+                if isinstance(v, str) and not pattern.match(element):
+                    raise ValueError(f"Invalid landing_page_url format: {element}")
+        elif isinstance(v, str):
+            if not pattern.match(v):
+                raise ValueError(f"Invalid landing_page_url format: {v}")
+        return v
+
+    @field_validator("curation_contact")
+    def pattern_curation_contact(cls, v):
+        pattern = re.compile(r"^\S+@[\S+\.]+\S+")
+        if isinstance(v, list):
+            for element in v:
+                if isinstance(v, str) and not pattern.match(element):
+                    raise ValueError(f"Invalid curation_contact format: {element}")
+        elif isinstance(v, str):
+            if not pattern.match(v):
+                raise ValueError(f"Invalid curation_contact format: {v}")
+        return v
+
+
 # Model rebuild
 # see https://pydantic-docs.helpmanual.io/usage/models/#rebuilding-a-model
 HandleAPIRecord.model_rebuild()
@@ -2621,3 +2763,4 @@ ArkIdentifier.model_rebuild()
 UrnIdentifier.model_rebuild()
 GtinIdentifier.model_rebuild()
 ExampleIdentifier.model_rebuild()
+Pid4CatRecord.model_rebuild()
