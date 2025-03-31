@@ -1040,6 +1040,98 @@ slots:
     - GtinIdentifier
     - ExampleIdentifier
     range: string
+  landing_page_url:
+    name: landing_page_url
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/landing_page_url
+    description: The URL of the landing page of the resource identified by the PID.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    slot_uri: pid4cat_model:landing_page_url
+    owner: Pid4CatRecord
+    domain_of:
+    - Pid4CatRecord
+    range: string
+  status:
+    name: status
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/status
+    description: The status of the pid4cat record. The status is set to "SUBMITTED"
+      when the handle is reserved but the resource is not yet linked. The status is
+      set to "REGISTERED" when the handle is linked to a concrete resource.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    slot_uri: pid4cat_model:status
+    owner: Pid4CatRecord
+    domain_of:
+    - Pid4CatRecord
+    range: Pid4CatStatus
+  schema_version:
+    name: schema_version
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/schema_version
+    description: The version of the pid4cat-model used to create the pid4cat record.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    slot_uri: pid4cat_model:schema_version
+    owner: Pid4CatRecord
+    domain_of:
+    - Pid4CatRecord
+    range: HdlDataSchemaVer
+    inlined: true
+  metadata_license:
+    name: metadata_license
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/metadata_license
+    description: The license of the metadata of the pid4cat record. The license is
+      set to "CC0-1.0" by default.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    slot_uri: pid4cat_model:metadata_license
+    owner: Pid4CatRecord
+    domain_of:
+    - Pid4CatRecord
+    range: string
+  curation_contact:
+    name: curation_contact
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/curation_contact
+    description: The email address of the person responsible for the curation of the
+      pid4cat record.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    slot_uri: pid4cat_model:curation_contact
+    owner: Pid4CatRecord
+    domain_of:
+    - Pid4CatRecord
+    range: string
+  resource_info:
+    name: resource_info
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/resource_info
+    description: The resource info of the pid4cat record. The resource info contains
+      information about the resource identified by the PID.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    slot_uri: pid4cat_model:resource_info
+    owner: Pid4CatRecord
+    domain_of:
+    - Pid4CatRecord
+    range: ResourceInfo
+    inlined: true
+  related_identifiers:
+    name: related_identifiers
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/related_identifiers
+    description: The related identifiers of the pid4cat record. The related identifiers
+      are used to link the pid4cat record to other resources.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    slot_uri: pid4cat_model:related_identifiers
+    owner: Pid4CatRecord
+    domain_of:
+    - Pid4CatRecord
+    range: RelatedIdentifier
+    multivalued: true
+    inlined: true
+  change_log:
+    name: change_log
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/change_log
+    description: The change log of the pid4cat record. The change log contains information
+      about the changes made to the pid4cat record.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    slot_uri: pid4cat_model:change_log
+    owner: Pid4CatRecord
+    domain_of:
+    - Pid4CatRecord
+    range: LogRecord
+    inlined: true
   handleRecordContainer__contains_pids:
     name: handleRecordContainer__contains_pids
     description: The HandleRecords contained in the container.
@@ -2079,6 +2171,149 @@ slots:
     usage_slot_name: resolving_url
     range: uri
     pattern: ^https?:\/\/(.+\.)?example.(org|com)\/.*$
+  Pid4CatRecord_landing_page_url:
+    name: Pid4CatRecord_landing_page_url
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/landing_page_url
+    description: The URL of the landing page of the resource identified by the PID.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: landing_page_url
+    domain: Pid4CatRecord
+    slot_uri: pid4cat_model:landing_page_url
+    alias: landing_page_url
+    owner: Pid4CatRecord
+    domain_of:
+    - Pid4CatRecord
+    is_usage_slot: true
+    usage_slot_name: landing_page_url
+    range: string
+    required: true
+    pattern: ^https?:\/\/.*$
+  Pid4CatRecord_status:
+    name: Pid4CatRecord_status
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/status
+    description: The status of the pid4cat record. The status is set to "SUBMITTED"
+      when the handle is reserved but the resource is not yet linked. The status is
+      set to "REGISTERED" when the handle is linked to a concrete resource.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: status
+    domain: Pid4CatRecord
+    slot_uri: pid4cat_model:status
+    alias: status
+    owner: Pid4CatRecord
+    domain_of:
+    - Pid4CatRecord
+    is_usage_slot: true
+    usage_slot_name: status
+    range: Pid4CatStatus
+    required: true
+  Pid4CatRecord_schema_version:
+    name: Pid4CatRecord_schema_version
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/schema_version
+    description: The version of the pid4cat-model used to create the pid4cat record.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: schema_version
+    domain: Pid4CatRecord
+    slot_uri: pid4cat_model:schema_version
+    alias: schema_version
+    owner: Pid4CatRecord
+    domain_of:
+    - Pid4CatRecord
+    is_usage_slot: true
+    usage_slot_name: schema_version
+    range: HdlDataSchemaVer
+    required: true
+    inlined: true
+  Pid4CatRecord_metadata_license:
+    name: Pid4CatRecord_metadata_license
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/metadata_license
+    description: The license of the metadata of the pid4cat record. The license is
+      set to "CC0-1.0" by default.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: metadata_license
+    domain: Pid4CatRecord
+    slot_uri: pid4cat_model:metadata_license
+    alias: metadata_license
+    owner: Pid4CatRecord
+    domain_of:
+    - Pid4CatRecord
+    is_usage_slot: true
+    usage_slot_name: metadata_license
+    range: string
+    required: true
+    equals_string: CC0-1.0
+  Pid4CatRecord_curation_contact:
+    name: Pid4CatRecord_curation_contact
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/curation_contact
+    description: The email address of the person responsible for the curation of the
+      pid4cat record.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: curation_contact
+    domain: Pid4CatRecord
+    slot_uri: pid4cat_model:curation_contact
+    alias: curation_contact
+    owner: Pid4CatRecord
+    domain_of:
+    - Pid4CatRecord
+    is_usage_slot: true
+    usage_slot_name: curation_contact
+    range: string
+    required: true
+    pattern: ^\S+@[\S+\.]+\S+
+  Pid4CatRecord_resource_info:
+    name: Pid4CatRecord_resource_info
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/resource_info
+    description: The resource info of the pid4cat record. The resource info contains
+      information about the resource identified by the PID.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: resource_info
+    domain: Pid4CatRecord
+    slot_uri: pid4cat_model:resource_info
+    alias: resource_info
+    owner: Pid4CatRecord
+    domain_of:
+    - Pid4CatRecord
+    is_usage_slot: true
+    usage_slot_name: resource_info
+    range: ResourceInfo
+    required: true
+    inlined: true
+  Pid4CatRecord_related_identifiers:
+    name: Pid4CatRecord_related_identifiers
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/related_identifiers
+    description: The related identifiers of the pid4cat record. The related identifiers
+      are used to link the pid4cat record to other resources.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: related_identifiers
+    domain: Pid4CatRecord
+    slot_uri: pid4cat_model:related_identifiers
+    alias: related_identifiers
+    owner: Pid4CatRecord
+    domain_of:
+    - Pid4CatRecord
+    is_usage_slot: true
+    usage_slot_name: related_identifiers
+    range: RelatedIdentifier
+    multivalued: true
+    inlined: true
+  Pid4CatRecord_change_log:
+    name: Pid4CatRecord_change_log
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/change_log
+    description: The change log of the pid4cat record. The change log contains information
+      about the changes made to the pid4cat record.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: change_log
+    domain: Pid4CatRecord
+    slot_uri: pid4cat_model:change_log
+    alias: change_log
+    owner: Pid4CatRecord
+    domain_of:
+    - Pid4CatRecord
+    is_usage_slot: true
+    usage_slot_name: change_log
+    range: LogRecord
+    required: true
+    multivalued: true
+    inlined: true
 classes:
   HandleAPIRecord:
     name: HandleAPIRecord
@@ -2704,9 +2939,56 @@ classes:
         name: resolving_url
         pattern: ^https?:\/\/(.+\.)?example.(org|com)\/.*$
     class_uri: pid4cat_model:ExampleIdentifier
+  Pid4CatRecord:
+    name: Pid4CatRecord
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/Pid4CatRecord
+    description: A class representing pid4cat identifiers with its metadata as objects.
+      This is a neutral object-oriented representation that does not mirror the record
+      structure of the handle system but is provided as representation that is more
+      convenient to use in programming languages.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    slots:
+    - Pid4CatRecord_landing_page_url
+    - Pid4CatRecord_status
+    - Pid4CatRecord_schema_version
+    - Pid4CatRecord_metadata_license
+    - Pid4CatRecord_curation_contact
+    - Pid4CatRecord_resource_info
+    - Pid4CatRecord_related_identifiers
+    - Pid4CatRecord_change_log
+    slot_usage:
+      landing_page_url:
+        name: landing_page_url
+        required: true
+        pattern: ^https?:\/\/.*$
+      status:
+        name: status
+        required: true
+      schema_version:
+        name: schema_version
+        required: true
+      metadata_license:
+        name: metadata_license
+        required: true
+        equals_string: CC0-1.0
+      curation_contact:
+        name: curation_contact
+        required: true
+        pattern: ^\S+@[\S+\.]+\S+
+      resource_info:
+        name: resource_info
+        required: true
+      related_identifiers:
+        name: related_identifiers
+        multivalued: true
+      change_log:
+        name: change_log
+        required: true
+        multivalued: true
+    class_uri: pid4cat_model:Pid4CatRecord
 metamodel_version: 1.7.0
 source_file: pid4cat_model.yaml
-source_file_date: '2025-03-25T23:13:55'
-source_file_size: 25325
-generation_date: '2025-03-25T23:14:20'
+source_file_date: '2025-03-31T22:02:51'
+source_file_size: 27890
+generation_date: '2025-03-31T22:03:17'
 

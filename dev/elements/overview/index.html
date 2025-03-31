@@ -606,6 +606,10 @@ The model describes metadata for the PID itself and how to access the identified
 <td>Data class for a change log of modification made on a pid4cat handle record starting from its registration.</td>
 </tr>
 <tr>
+<td><a href="../Pid4CatRecord/">Pid4CatRecord</a></td>
+<td>A class representing pid4cat identifiers with its metadata as objects. This is a neutral object-oriented representation that does not mirror the record structure of the handle system but is provided as representation that is more convenient to use in programming languages.</td>
+</tr>
+<tr>
 <td><a href="../Pid4CatRelation/">Pid4CatRelation</a></td>
 <td>Data class for a relation to another resource identified by a pid4cat handle or another PID type.</td>
 </tr>
@@ -665,12 +669,20 @@ The model describes metadata for the PID itself and how to access the identified
 <td>The ROR of the agent's affiliation</td>
 </tr>
 <tr>
+<td><a href="../change_log/">change_log</a></td>
+<td>The change log of the pid4cat record</td>
+</tr>
+<tr>
 <td><a href="../changed_field/">changed_field</a></td>
 <td>The field that was changed</td>
 </tr>
 <tr>
 <td><a href="../contains_pids/">contains_pids</a></td>
 <td>The HandleRecords contained in the container</td>
+</tr>
+<tr>
+<td><a href="../curation_contact/">curation_contact</a></td>
+<td>The email address of the person responsible for the curation of the pid4cat r...</td>
 </tr>
 <tr>
 <td><a href="../data/">data</a></td>
@@ -717,8 +729,16 @@ The model describes metadata for the PID itself and how to access the identified
 <td>A human-readable name for a resource</td>
 </tr>
 <tr>
+<td><a href="../landing_page_url/">landing_page_url</a></td>
+<td>The URL of the landing page of the resource identified by the PID</td>
+</tr>
+<tr>
 <td><a href="../media_type/">media_type</a></td>
 <td>The media type of the representation as defined by [IANA](https://www</td>
+</tr>
+<tr>
+<td><a href="../metadata_license/">metadata_license</a></td>
+<td>The license of the metadata of the pid4cat record</td>
 </tr>
 <tr>
 <td><a href="../name/">name</a></td>
@@ -731,6 +751,10 @@ The model describes metadata for the PID itself and how to access the identified
 <tr>
 <td><a href="../related_identifier/">related_identifier</a></td>
 <td>The related identifier</td>
+</tr>
+<tr>
+<td><a href="../related_identifiers/">related_identifiers</a></td>
+<td>The related identifiers of the pid4cat record</td>
 </tr>
 <tr>
 <td><a href="../relation_type/">relation_type</a></td>
@@ -749,6 +773,10 @@ The model describes metadata for the PID itself and how to access the identified
 <td>The category of the resource</td>
 </tr>
 <tr>
+<td><a href="../resource_info/">resource_info</a></td>
+<td>The resource info of the pid4cat record</td>
+</tr>
+<tr>
 <td><a href="../responseCode/">responseCode</a></td>
 <td>The response code of the handle API</td>
 </tr>
@@ -757,8 +785,16 @@ The model describes metadata for the PID itself and how to access the identified
 <td>The role of the agent relative to the resource</td>
 </tr>
 <tr>
+<td><a href="../schema_version/">schema_version</a></td>
+<td>The version of the pid4cat-model used to create the pid4cat record</td>
+</tr>
+<tr>
 <td><a href="../size/">size</a></td>
 <td>The size of the representation in bytes</td>
+</tr>
+<tr>
+<td><a href="../status/">status</a></td>
+<td>The status of the pid4cat record</td>
 </tr>
 <tr>
 <td><a href="../timestamp/">timestamp</a></td>

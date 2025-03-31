@@ -8,14 +8,14 @@
       
       
       
-        <link rel="canonical" href="https://nfdi4cat.github.io/pid4cat-model/latest/elements/timestamp/">
+        <link rel="canonical" href="https://nfdi4cat.github.io/pid4cat-model/latest/elements/metadata_license/">
       
       <link rel="icon" href="../../images/favicon.svg">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-8.5.10">
     
     
       
-        <title>Slot: timestamp - pid4cat Documentation</title>
+        <title>Slot: metadata_license - pid4cat Documentation</title>
       
     
     
@@ -70,7 +70,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-timestamp" class="md-skip">
+        <a href="#slot-metadata_license" class="md-skip">
           Skip to content
         </a>
       
@@ -106,7 +106,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: timestamp
+              Slot: metadata_license
             
           </span>
         </div>
@@ -445,15 +445,15 @@
                 
                   
 
-  <a href="https://github.com/nfdi4cat/pid4cat-model/edit/master/docs/elements/timestamp.md" title="Edit this page" class="md-content__button md-icon">
+  <a href="https://github.com/nfdi4cat/pid4cat-model/edit/master/docs/elements/metadata_license.md" title="Edit this page" class="md-content__button md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
   </a>
 
 
-<h1 id="slot-timestamp">Slot: timestamp</h1>
-<p><em>The iso datetime for the last update of the handle data.</em></p>
-<p>URI: <a href="https://w3id.org/nfdi4cat/pid4cat-model/timestamp">pid4cat_model:timestamp</a></p>
+<h1 id="slot-metadata_license">Slot: metadata_license</h1>
+<p><em>The license of the metadata of the pid4cat record. The license is set to "CC0-1.0" by default.</em></p>
+<p>URI: <a href="https://w3id.org/nfdi4cat/pid4cat-model/metadata_license">pid4cat_model:metadata_license</a></p>
 <!-- no inheritance hierarchy -->
 
 <h2 id="applicable-classes">Applicable Classes</h2>
@@ -467,55 +467,15 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../URL/">URL</a></td>
-<td>The data element in the handle API for the landing page URL</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../EMAIL/">EMAIL</a></td>
-<td>The data element in the handle API for the contact email</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../STATUS/">STATUS</a></td>
-<td>The data element in the handle API for the PID status information</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../RESOURCE/">RESOURCE</a></td>
-<td>The data element in the handle API for the resource info</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../CHANGES/">CHANGES</a></td>
-<td>The data element in the handle API for the change log</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../RELATED/">RELATED</a></td>
-<td>The data element in the handle API for related identifiers</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../SCHEMAVER/">SCHEMAVER</a></td>
-<td>The data element in the handle API for the schema version</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../HandleRecord/">HandleRecord</a></td>
-<td>A base class for handle-data classes that represent a handle record in the sa...</td>
+<td><a href="../Pid4CatRecord/">Pid4CatRecord</a></td>
+<td>A class representing pid4cat identifiers with its metadata as objects</td>
 <td>yes</td>
-</tr>
-<tr>
-<td><a href="../METADATALICENSE/">METADATALICENSE</a></td>
-<td>The data element in the handle API for the PID metadata license</td>
-<td>no</td>
 </tr>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
 <ul>
-<li>Range: <a href="../Datetime/">Datetime</a></li>
+<li>Range: <a href="../String/">String</a></li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
@@ -533,25 +493,26 @@
 <tbody>
 <tr>
 <td>self</td>
-<td>pid4cat_model:timestamp</td>
+<td>pid4cat_model:metadata_license</td>
 </tr>
 <tr>
 <td>native</td>
-<td>pid4cat_model:timestamp</td>
+<td>pid4cat_model:metadata_license</td>
 </tr>
 </tbody>
 </table>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 
-<pre><code class="language-yaml">name: timestamp
-description: The iso datetime for the last update of the handle data.
+<pre><code class="language-yaml">name: metadata_license
+description: The license of the metadata of the pid4cat record. The license is set
+  to &quot;CC0-1.0&quot; by default.
 from_schema: https://w3id.org/nfdi4cat/pid4cat-model
 rank: 1000
-alias: timestamp
+alias: metadata_license
 domain_of:
-- HandleRecord
-range: datetime
+- Pid4CatRecord
+range: string
 
 </code></pre>
 
