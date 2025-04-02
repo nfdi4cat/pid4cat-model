@@ -1,0 +1,88 @@
+{
+  "responseCode": 1,
+  "handle": "21.T11978/test/b93k-bkc9",
+  "values": [
+    {
+      "index": 1,
+      "type": "URL",
+      "data": {
+        "format": "string",
+        "value": "http://mytest2.com"
+      },
+      "ttl": 86400,
+      "timestamp": "2025-03-11T10:36:09Z"
+    },
+    {
+      "index": 10,
+      "type": "EMAIL",
+      "data": {
+        "format": "string",
+        "value": "xzy@abc.com"
+      },
+      "ttl": 86400,
+      "timestamp": "2025-03-11T10:38:14Z"
+    },
+    {
+      "index": 11,
+      "type": "STATUS",
+      "data": {
+        "format": "string",
+        "value": "REGISTERED"
+      },
+      "ttl": 86400,
+      "timestamp": "2025-03-11T10:37:49Z"
+    },
+    {
+      "index": 12,
+      "type": "SCHEMA_VER",
+      "data": {
+        "format": "string",
+        "value": "v1.0.1"
+      },
+      "ttl": 86400,
+      "timestamp": "2025-03-11T10:37:28Z"
+    },
+    {
+      "index": 13,
+      "type": "METADATA_LICENSE",
+      "data": {
+        "format": "string",
+        "value": "CC0-1.0"
+      },
+      "ttl": 86400,
+      "timestamp": "2025-03-11T10:39:21Z"
+    },
+    {
+      "index": 14,
+      "type": "RESOURCE",
+      "data": {
+        "format": "string",
+        "value": {
+          "resource_category": "SAMPLE"
+        }
+      },
+      "ttl": 86400,
+      "timestamp": "2025-03-11T10:50:40Z"
+    },
+    {
+      "index": 15,
+      "type": "RELATED",
+      "data": {
+        "format": "string",
+        "value": []
+      },
+      "ttl": 86400,
+      "timestamp": "2025-03-11T10:39:47Z"
+    },
+    {
+      "index": 16,
+      "type": "CHANGES",
+      "data": {
+        "format": "string",
+        "value": []
+      },
+      "ttl": 86400,
+      "timestamp": "2025-03-11T10:40:08Z"
+    }
+  ]
+}
