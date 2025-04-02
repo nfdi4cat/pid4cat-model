@@ -1,0 +1,142 @@
+{
+  "responseCode": 1,
+  "handle": "21.T11978/TEST/KBKA-BEM9",
+  "values": [
+    {
+      "index": 1,
+      "type": "URL",
+      "data": {
+        "format": "string",
+        "value": "http://Mytest2.com"
+      },
+      "ttl": 86400,
+      "timestamp": "2025-03-11T09:43:14Z"
+    },
+    {
+      "index": 10,
+      "type": "EMAIL",
+      "data": {
+        "format": "string",
+        "value": "abc@xyz.com"
+      },
+      "ttl": 86400,
+      "timestamp": "2025-03-11T10:32:45Z"
+    },
+    {
+      "index": 11,
+      "type": "STATUS",
+      "data": {
+        "format": "string",
+        "value": "REGISTERED"
+      },
+      "ttl": 86400,
+      "timestamp": "2025-03-11T10:33:39Z"
+    },
+    {
+      "index": 12,
+      "type": "SCHEMA_VER",
+      "data": {
+        "format": "string",
+        "value": "v1.0.1"
+      },
+      "ttl": 86400,
+      "timestamp": "2025-03-11T10:34:03Z"
+    },
+    {
+      "index": 13,
+      "type": "METADATA_LICENSE",
+      "data": {
+        "format": "string",
+        "value": "CC0-1.0"
+      },
+      "ttl": 86400,
+      "timestamp": "2025-03-11T09:45:25Z"
+    },
+    {
+      "index": 14,
+      "type": "RESOURCE",
+      "data": {
+        "format": "string",
+        "value": {
+          "label": "Resource label",
+          "description": "Resource description",
+          "resource_category": "SAMPLE",
+          "representation_variants": [
+            {
+              "variant_url": "https://example.org/resource",
+              "media_type": "text/turtle",
+              "encoding_format": "UTF-8",
+              "size": 12345
+            }
+          ]
+        }
+      },
+      "ttl": 86400,
+      "timestamp": "2025-03-11T09:45:26Z"
+    },
+    {
+      "index": 15,
+      "type": "RELATED",
+      "data": {
+        "format": "string",
+        "value": [
+          {
+            "relation_type": "IS_PART_OF",
+            "related_identifier": {
+              "type": "ExampleIdentifier",
+              "identifier": "ex:collection1",
+              "resolving_url": "https://example.org/collection1"
+            },
+            "datetime_log": "2024-02-19T00:00:00+00:00"
+          },
+          {
+            "relation_type": "IS_REFERENCED_BY",
+            "related_identifier": {
+              "type": "ExampleIdentifier",
+              "identifier": "ex:referenced1",
+              "resolving_url": "https://example.org/referenced1"
+            },
+            "datetime_log": "2024-02-19T00:00:00+00:00"
+          }
+        ]
+      },
+      "ttl": 86400,
+      "timestamp": "2025-03-11T10:00:50Z"
+    },
+    {
+      "index": 16,
+      "type": "CHANGES",
+      "data": {
+        "format": "string",
+        "value": [
+          {
+            "datetime_log": "2024-02-19T00:00:00+00:00",
+            "has_agent": {
+              "name": "Data Fuzzi",
+              "email_address": "data.fuzzi@example.org",
+              "orcid": "0000-0000-0000-0000",
+              "affiliation_ror": "https://ror.org/029hg0311",
+              "role": "TRUSTEE"
+            },
+            "changed_field": "STATUS",
+            "description": "Registration completed."
+          },
+          {
+            "datetime_log": "2024-05-15T15:51:15+00:00",
+            "has_agent": {
+              "name": "Data Fuzzi",
+              "email_address": "data.fuzzi@example.org",
+              "orcid": "0000-0000-0000-0000",
+              "affiliation_ror": "https://ror.org/029hg0311",
+              "role": "TRUSTEE"
+            },
+            "changed_field": "RESOURCE_INFO",
+            "description": "as requested in issue #234"
+          }
+        ]
+      },
+      "ttl": 86400,
+      "timestamp": "2025-03-11T10:01:38Z"
+    }
+  ]
+}
