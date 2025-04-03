@@ -24,6 +24,7 @@ dynamic = []
 
 dependencies = [
   "linkml-runtime >=1.8.0",
+  "httpx (>=0.28.1,<0.29.0)",
 ]
 
 # Ref.: https://python-poetry.org/docs/
