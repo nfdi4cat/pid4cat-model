@@ -1,3 +1,4 @@
+import json
 import sys
 from datetime import datetime
 from pathlib import Path
@@ -190,3 +191,38 @@ try:
 except Exception as e:
     print(f"Failed to dump to JSON: {e}")
     print("Please use a fixed version of linkml_runtime")
+
+data_json = p1_api.model_dump_json(indent=2)
+with open(script_folder / "example_p1_pydantic.json", "w", encoding="utf-8") as f:
+    f.write(data_json)
+
+print("Dumped to example_p1_pydantic.json")
+
+# Load the data again to pydantic class
+
+print("\nReloading data from JSON")
+
+d = json.loads(data_json)
+
+with Path("tests/data/21.T11978_hdlnet_api/TEST_KBKA-BEM9_decoded.json").open(
+    mode="r", encoding="utf-8"
+) as f:
+    d = json.load(f)
+p1_api_reloaded = p4c.HandleAPIRecord(**d)
+print(p1_api_reloaded)
+
+# Create a Pid4CatRecord object from the data
+data = {}
+data["landing_page_url"] = "https://pid4cat.example.org/lik-1"
+data["curation_contact"] = "datafuzzi@example.org"
+data["status"] = p4c.Pid4CatStatus.REGISTERED
+data["schema_version"] = "v0.1.0"
+data["metadata_license"] = "CC0-1.0"
+data["resource_info"] = p1_res_info
+data["related_identifiers"] = p1_related
+data["change_log"] = p1_log
+
+print("\nTrying to create a Pid4CatRecord object", end="... ")
+rec = p4c.Pid4CatRecord.model_validate(data)
+print("success!")
+print(f"-> Landing page: {rec.landing_page_url}")
