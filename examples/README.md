@@ -1,9 +1,11 @@
 # Examples of using pid4cat-model
 
-This folder contains examples using the datamodel.
+This folder some examples python scripts and jupyter notebooks.
+There are examples for using the data model as well as for making API requests.
 
-The source of the data used in the example is [tests/data](../tests/data/).
+The JSON and YAML files in this directory were created by running the example scripts.
 
-The command `just test` creates different representations of the data in [tests/data](../tests/data/) and writes them to the subfolder `output`.
+However, the the data in subfolder [/output](/output) are created by running the command `just test`,
+which includes a step to generate different representations of the data in [tests/data](../tests/data/).
 It also generates a markdown documentation of the examples which is not very useful in its current form.
 Hence, the `output` sub-folder is git-ignored.
