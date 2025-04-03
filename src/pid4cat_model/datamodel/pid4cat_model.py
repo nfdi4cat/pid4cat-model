@@ -1,9 +1,9 @@
 # Auto generated from pid4cat_model.yaml by pythongen.py version: 0.0.1
-# Generation date: 2025-03-31T23:16:33
+# Generation date: 2025-04-03T15:59:22
 # Schema: pid4cat-model
 #
 # id: https://w3id.org/nfdi4cat/pid4cat-model
-# description: A LinkML model for PIDs for resources in catalysis (pid4cat). pid4cat is a handle system based persistent identifier (PID) for digital or physical resources used in the catalysis research process. The handle record is used to store additional metadata about the PID besides the obligatory landing page URL.
+# description: A LinkML model for persistent identifiers for resources in catalysis (pid4cat). pid4cat are handle based persistent identifiers (PIDs) for digital or physical resources used in the catalysis research process. PID-related metadata besides the obligatory landing page URL are stored directly in the handle records.
 #   The model describes metadata for the PID itself and how to access the identified resource. It does not describe the resource itself with the exception of the resource category, which is a high-level description of what is identified by the pid4cat handle, e.g. a sample or a device.
 # license: MIT
 
@@ -1166,13 +1166,13 @@ class Pid4CatRecord(YAMLRoot):
 
     landing_page_url: str = None
     status: Union[str, "Pid4CatStatus"] = None
-    schema_version: Union[dict, HdlDataSchemaVer] = None
+    schema_version: str = None
     metadata_license: str = None
     curation_contact: str = None
     resource_info: Union[dict, ResourceInfo] = None
     change_log: Union[Union[dict, LogRecord], List[Union[dict, LogRecord]]] = None
     related_identifiers: Optional[
-        Union[Union[dict, RelatedIdentifier], List[Union[dict, RelatedIdentifier]]]
+        Union[Union[dict, Pid4CatRelation], List[Union[dict, Pid4CatRelation]]]
     ] = empty_list()
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
@@ -1188,8 +1188,8 @@ class Pid4CatRecord(YAMLRoot):
 
         if self._is_empty(self.schema_version):
             self.MissingRequiredField("schema_version")
-        if not isinstance(self.schema_version, HdlDataSchemaVer):
-            self.schema_version = HdlDataSchemaVer(**as_dict(self.schema_version))
+        if not isinstance(self.schema_version, str):
+            self.schema_version = str(self.schema_version)
 
         if self._is_empty(self.metadata_license):
             self.MissingRequiredField("metadata_license")
@@ -1215,12 +1215,16 @@ class Pid4CatRecord(YAMLRoot):
             keyed=False,
         )
 
-        self._normalize_inlined_as_dict(
-            slot_name="related_identifiers",
-            slot_type=RelatedIdentifier,
-            key_name="type",
-            keyed=False,
-        )
+        if not isinstance(self.related_identifiers, list):
+            self.related_identifiers = (
+                [self.related_identifiers]
+                if self.related_identifiers is not None
+                else []
+            )
+        self.related_identifiers = [
+            v if isinstance(v, Pid4CatRelation) else Pid4CatRelation(**as_dict(v))
+            for v in self.related_identifiers
+        ]
 
         super().__post_init__(**kwargs)
 
@@ -2100,7 +2104,7 @@ slots.schema_version = Slot(
     curie=PID4CAT_MODEL.curie("schema_version"),
     model_uri=PID4CAT_MODEL.schema_version,
     domain=None,
-    range=Optional[Union[dict, HdlDataSchemaVer]],
+    range=Optional[str],
 )
 
 slots.metadata_license = Slot(
@@ -2137,7 +2141,7 @@ slots.related_identifiers = Slot(
     model_uri=PID4CAT_MODEL.related_identifiers,
     domain=None,
     range=Optional[
-        Union[Union[dict, RelatedIdentifier], List[Union[dict, RelatedIdentifier]]]
+        Union[Union[dict, Pid4CatRelation], List[Union[dict, Pid4CatRelation]]]
     ],
 )
 
@@ -2760,7 +2764,7 @@ slots.Pid4CatRecord_schema_version = Slot(
     curie=PID4CAT_MODEL.curie("schema_version"),
     model_uri=PID4CAT_MODEL.Pid4CatRecord_schema_version,
     domain=Pid4CatRecord,
-    range=Union[dict, HdlDataSchemaVer],
+    range=str,
 )
 
 slots.Pid4CatRecord_metadata_license = Slot(
@@ -2798,7 +2802,7 @@ slots.Pid4CatRecord_related_identifiers = Slot(
     model_uri=PID4CAT_MODEL.Pid4CatRecord_related_identifiers,
     domain=Pid4CatRecord,
     range=Optional[
-        Union[Union[dict, RelatedIdentifier], List[Union[dict, RelatedIdentifier]]]
+        Union[Union[dict, Pid4CatRelation], List[Union[dict, Pid4CatRelation]]]
     ],
 )
 
