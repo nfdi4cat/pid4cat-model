@@ -710,7 +710,7 @@ slots:
       The status is set to "REGISTERED" when the handle is linked to a
       concrete resource.
   schema_version:
-    range: HdlDataSchemaVer
+    range: string
     description: >-
       The version of the pid4cat-model used to create the pid4cat record.
   metadata_license:
@@ -729,10 +729,10 @@ slots:
       The resource info of the pid4cat record. The resource info contains
       information about the resource identified by the PID.
   related_identifiers:
-    range: RelatedIdentifier
+    range: Pid4CatRelation
     multivalued: true
     description: >-
-      The related identifiers of the pid4cat record. The related
+      The related identifiers for the pid4cat record. The related
       identifiers are used to link the pid4cat record to other resources.
   change_log:
     range: LogRecord

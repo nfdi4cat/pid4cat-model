@@ -45,12 +45,12 @@ linkml_meta = LinkMLMeta(
     {
         "default_prefix": "pid4cat_model",
         "default_range": "string",
-        "description": "A LinkML model for PIDs for resources in catalysis (pid4cat). "
-        "pid4cat is a handle system based persistent identifier (PID) "
-        "for digital or physical resources used in the catalysis "
-        "research process. The handle record is used to store "
-        "additional metadata about the PID besides the obligatory "
-        "landing page URL.\n"
+        "description": "A LinkML model for persistent identifiers for resources in "
+        "catalysis (pid4cat). pid4cat are handle based persistent "
+        "identifiers (PIDs) for digital or physical resources used in "
+        "the catalysis research process. PID-related metadata besides "
+        "the obligatory landing page URL are stored directly in the "
+        "handle records.\n"
         "The model describes metadata for the PID itself and how to "
         "access the identified resource. It does not describe the "
         "resource itself with the exception of the resource category, "
@@ -2641,7 +2641,7 @@ class Pid4CatRecord(ConfiguredBaseModel):
             "linkml_meta": {"alias": "status", "domain_of": ["Pid4CatRecord"]}
         },
     )
-    schema_version: HdlDataSchemaVer = Field(
+    schema_version: str = Field(
         ...,
         description="""The version of the pid4cat-model used to create the pid4cat record.""",
         json_schema_extra={
@@ -2673,22 +2673,9 @@ class Pid4CatRecord(ConfiguredBaseModel):
             "linkml_meta": {"alias": "resource_info", "domain_of": ["Pid4CatRecord"]}
         },
     )
-    related_identifiers: Optional[
-        List[
-            Union[
-                RelatedIdentifier,
-                PurlIdentifier,
-                DoiIdentifier,
-                HandleIdentifier,
-                ArkIdentifier,
-                UrnIdentifier,
-                GtinIdentifier,
-                ExampleIdentifier,
-            ]
-        ]
-    ] = Field(
+    related_identifiers: Optional[List[Pid4CatRelation]] = Field(
         None,
-        description="""The related identifiers of the pid4cat record. The related identifiers are used to link the pid4cat record to other resources.""",
+        description="""The related identifiers for the pid4cat record. The related identifiers are used to link the pid4cat record to other resources.""",
         json_schema_extra={
             "linkml_meta": {
                 "alias": "related_identifiers",
