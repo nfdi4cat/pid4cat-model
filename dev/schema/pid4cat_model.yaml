@@ -1071,8 +1071,7 @@ slots:
     owner: Pid4CatRecord
     domain_of:
     - Pid4CatRecord
-    range: HdlDataSchemaVer
-    inlined: true
+    range: string
   metadata_license:
     name: metadata_license
     definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/metadata_license
@@ -1110,14 +1109,14 @@ slots:
   related_identifiers:
     name: related_identifiers
     definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/related_identifiers
-    description: The related identifiers of the pid4cat record. The related identifiers
+    description: The related identifiers for the pid4cat record. The related identifiers
       are used to link the pid4cat record to other resources.
     from_schema: https://w3id.org/nfdi4cat/pid4cat-model
     slot_uri: pid4cat_model:related_identifiers
     owner: Pid4CatRecord
     domain_of:
     - Pid4CatRecord
-    range: RelatedIdentifier
+    range: Pid4CatRelation
     multivalued: true
     inlined: true
   change_log:
@@ -2220,9 +2219,8 @@ slots:
     - Pid4CatRecord
     is_usage_slot: true
     usage_slot_name: schema_version
-    range: HdlDataSchemaVer
+    range: string
     required: true
-    inlined: true
   Pid4CatRecord_metadata_license:
     name: Pid4CatRecord_metadata_license
     definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/metadata_license
@@ -2280,7 +2278,7 @@ slots:
   Pid4CatRecord_related_identifiers:
     name: Pid4CatRecord_related_identifiers
     definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/related_identifiers
-    description: The related identifiers of the pid4cat record. The related identifiers
+    description: The related identifiers for the pid4cat record. The related identifiers
       are used to link the pid4cat record to other resources.
     from_schema: https://w3id.org/nfdi4cat/pid4cat-model
     is_a: related_identifiers
@@ -2292,7 +2290,7 @@ slots:
     - Pid4CatRecord
     is_usage_slot: true
     usage_slot_name: related_identifiers
-    range: RelatedIdentifier
+    range: Pid4CatRelation
     multivalued: true
     inlined: true
   Pid4CatRecord_change_log:
@@ -2988,7 +2986,7 @@ classes:
     class_uri: pid4cat_model:Pid4CatRecord
 metamodel_version: 1.7.0
 source_file: pid4cat_model.yaml
-source_file_date: '2025-03-31T22:02:51'
-source_file_size: 27890
-generation_date: '2025-03-31T22:03:17'
+source_file_date: '2025-04-04T06:45:44'
+source_file_size: 27879
+generation_date: '2025-04-04T06:46:11'
 

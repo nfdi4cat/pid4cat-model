@@ -265,8 +265,8 @@
 
 
 
-    Pid4CatRecord --&gt; "*" RelatedIdentifier : related_identifiers
-    click RelatedIdentifier href "../RelatedIdentifier"
+    Pid4CatRecord --&gt; "*" Pid4CatRelation : related_identifiers
+    click Pid4CatRelation href "../Pid4CatRelation"
 
 
       Pid4CatRecord : resource_info
@@ -279,13 +279,6 @@
 
 
       Pid4CatRecord : schema_version
-
-
-
-
-    Pid4CatRecord --&gt; "1" HdlDataSchemaVer : schema_version
-    click HdlDataSchemaVer href "../HdlDataSchemaVer"
-
 
       Pid4CatRecord : status
 
@@ -324,7 +317,7 @@
 </tr>
 <tr>
 <td><a href="../schema_version/">schema_version</a></td>
-<td>1 <br/> <a href="../HdlDataSchemaVer/">HdlDataSchemaVer</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
 <td>The version of the pid4cat-model used to create the pid4cat record</td>
 <td>direct</td>
 </tr>
@@ -348,8 +341,8 @@
 </tr>
 <tr>
 <td><a href="../related_identifiers/">related_identifiers</a></td>
-<td>* <br/> <a href="../RelatedIdentifier/">RelatedIdentifier</a></td>
-<td>The related identifiers of the pid4cat record</td>
+<td>* <br/> <a href="../Pid4CatRelation/">Pid4CatRelation</a></td>
+<td>The related identifiers for the pid4cat record</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -507,7 +500,7 @@ attributes:
     owner: Pid4CatRecord
     domain_of:
     - Pid4CatRecord
-    range: HdlDataSchemaVer
+    range: string
     required: true
   metadata_license:
     name: metadata_license
@@ -549,7 +542,7 @@ attributes:
     required: true
   related_identifiers:
     name: related_identifiers
-    description: The related identifiers of the pid4cat record. The related identifiers
+    description: The related identifiers for the pid4cat record. The related identifiers
       are used to link the pid4cat record to other resources.
     from_schema: https://w3id.org/nfdi4cat/pid4cat-model
     rank: 1000
@@ -557,7 +550,7 @@ attributes:
     owner: Pid4CatRecord
     domain_of:
     - Pid4CatRecord
-    range: RelatedIdentifier
+    range: Pid4CatRelation
     multivalued: true
   change_log:
     name: change_log
