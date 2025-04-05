@@ -175,7 +175,7 @@ _update-template:
 
 # Update LinkML to latest version
 _update-linkml:
-    uv add linkml --upgrade-package httpx
+    uv add linkml --upgrade-package linkml
 
 # Test schema generation
 _test-schema:
