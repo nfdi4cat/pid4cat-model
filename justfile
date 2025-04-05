@@ -62,7 +62,7 @@ _setup_part2: gen-project gen-doc
 # Install project dependencies
 [group('project management')]
 install:
-    poetry install
+    uv sync --group dev
 
 # Updates project template and LinkML package
 [group('project management')]
@@ -90,12 +90,12 @@ test: _test-schema _test-python _test-examples
 # Run linting
 [group('model development')]
 lint:
-  poetry run linkml-lint {{source_schema_dir}}
+  uv run linkml-lint {{source_schema_dir}}
 
 # Generate md documentation for the schema
 [group('model development')]
 gen-doc: _gen-yaml
-  poetry run gen-doc {{gen_doc_args}} -d {{docdir}} {{source_schema_path}}
+  uv run gen-doc {{gen_doc_args}} -d {{docdir}} {{source_schema_path}}
 
 # Build docs and run test server
 [group('model development')]
@@ -103,22 +103,22 @@ testdoc: gen-doc _serve
 
 # Generate the Python data models (dataclasses & pydantic)
 gen-python:
-  poetry run gen-project -d  {{pymodel}} -I python {{source_schema_path}}
-  poetry run gen-pydantic {{gen_pydantic_args}} {{source_schema_path}} > {{pymodel}}/{{schema_name}}_pydantic.py
+  uv run gen-project -d  {{pymodel}} -I python {{source_schema_path}}
+  uv run gen-pydantic {{gen_pydantic_args}} {{source_schema_path}} > {{pymodel}}/{{schema_name}}_pydantic.py
 
 # Generate project files including Python data model
 [group('model development')]
 gen-project:
-    poetry run gen-project {{config_yaml}} -d {{dest}} {{source_schema_path}}
+    uv run gen-project {{config_yaml}} -d {{dest}} {{source_schema_path}}
     mv {{dest}}/*.py {{pymodel}}
-    poetry run gen-pydantic {{gen_pydantic_args}} {{source_schema_path}} > {{pymodel}}/{{schema_name}}_pydantic.py
-    poetry run gen-java {{gen_java_args}} --output-directory {{dest}}/java/ {{source_schema_path}}
+    uv run gen-pydantic {{gen_pydantic_args}} {{source_schema_path}} > {{pymodel}}/{{schema_name}}_pydantic.py
+    uv run gen-java {{gen_java_args}} --output-directory {{dest}}/java/ {{source_schema_path}}
     @if [ ! ${{gen_owl_args}} ]; then \
       mkdir -p {{dest}}/owl && \
-      poetry run gen-owl {{gen_owl_args}} {{source_schema_path}} > {{dest}}/owl/{{schema_name}}.owl.ttl || true ; \
+      uv run gen-owl {{gen_owl_args}} {{source_schema_path}} > {{dest}}/owl/{{schema_name}}.owl.ttl || true ; \
     fi
     @if [ ! ${{gen_ts_args}} ]; then \
-      poetry run gen-typescript {{gen_ts_args}} {{source_schema_path}} > {{dest}}/typescript/{{schema_name}}.ts || true ; \
+      uv run gen-typescript {{gen_ts_args}} {{source_schema_path}} > {{dest}}/typescript/{{schema_name}}.ts || true ; \
     fi
 
 # ============== Migrations recipes for Copier ==============
@@ -175,19 +175,19 @@ _update-template:
 
 # Update LinkML to latest version
 _update-linkml:
-    poetry add -D linkml@latest
+    uv add linkml --upgrade-package httpx
 
 # Test schema generation
 _test-schema:
-    poetry run gen-project {{config_yaml}} -d tmp {{source_schema_path}}
+    uv run gen-project {{config_yaml}} -d tmp {{source_schema_path}}
 
 # Run Python unit tests with pytest
 _test-python: gen-python
-    poetry run python -m pytest
+    uv run python -m pytest
 
 # Run example tests
 _test-examples: _ensure_examples_output
-    poetry run linkml-run-examples \
+    uv run linkml-run-examples \
         --input-formats json \
         --input-formats yaml \
         --output-formats json \
@@ -199,11 +199,11 @@ _test-examples: _ensure_examples_output
 
 # Generate merged model
 _gen-yaml:
-  poetry run gen-yaml {{source_schema_path}} > {{merged_schema_path}}
+  uv run gen-yaml {{source_schema_path}} > {{merged_schema_path}}
 
 # Run documentation server
 _serve:
-    poetry run mkdocs serve
+    uv run mkdocs serve
 
 # Initialize git repository
 _git-init:
