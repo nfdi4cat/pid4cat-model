@@ -52,6 +52,10 @@ vcs = "git"
 style = "pep440"
 fallback-version = "0.0.0"
 
+# Ref.: https://docs.pytest.org/en/stable/reference/reference.html#configuration-options
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
 # Ref.: https://github.com/codespell-project/codespell
 [tool.codespell]
 skip = [

@@ -62,7 +62,7 @@ _setup_part2: gen-project gen-doc
 # Install project dependencies
 [group('project management')]
 install:
-    uv sync --group dev
+  uv sync --group dev
 
 # Updates project template and LinkML package
 [group('project management')]
@@ -71,8 +71,8 @@ update: _update-template _update-linkml
 # Clean all generated files
 [group('project management')]
 clean: _clean_project
-    rm -rf tmp
-    rm -rf {{docdir}}/*.md
+  rm -rf tmp
+  rm -rf {{docdir}}/*.md
 
 # (Re-)Generate project and documentation locally
 [group('model development')]
@@ -81,7 +81,7 @@ site: gen-project gen-doc
 # Deploy documentation site to Github Pages
 [group('deployment')]
 deploy: site
-    mkd-gh-deploy
+  mkd-gh-deploy
 
 # Run all tests
 [group('model development')]
@@ -109,17 +109,17 @@ gen-python:
 # Generate project files including Python data model
 [group('model development')]
 gen-project:
-    uv run gen-project {{config_yaml}} -d {{dest}} {{source_schema_path}}
-    mv {{dest}}/*.py {{pymodel}}
-    uv run gen-pydantic {{gen_pydantic_args}} {{source_schema_path}} > {{pymodel}}/{{schema_name}}_pydantic.py
-    uv run gen-java {{gen_java_args}} --output-directory {{dest}}/java/ {{source_schema_path}}
-    @if [ ! ${{gen_owl_args}} ]; then \
-      mkdir -p {{dest}}/owl && \
-      uv run gen-owl {{gen_owl_args}} {{source_schema_path}} > {{dest}}/owl/{{schema_name}}.owl.ttl || true ; \
-    fi
-    @if [ ! ${{gen_ts_args}} ]; then \
-      uv run gen-typescript {{gen_ts_args}} {{source_schema_path}} > {{dest}}/typescript/{{schema_name}}.ts || true ; \
-    fi
+  uv run gen-project {{config_yaml}} -d {{dest}} {{source_schema_path}}
+  mv {{dest}}/*.py {{pymodel}}
+  uv run gen-pydantic {{gen_pydantic_args}} {{source_schema_path}} > {{pymodel}}/{{schema_name}}_pydantic.py
+  uv run gen-java {{gen_java_args}} --output-directory {{dest}}/java/ {{source_schema_path}}
+  @if [ ! ${{gen_owl_args}} ]; then \
+    mkdir -p {{dest}}/owl && \
+    uv run gen-owl {{gen_owl_args}} {{source_schema_path}} > {{dest}}/owl/{{schema_name}}.owl.ttl || true ; \
+  fi
+  @if [ ! ${{gen_ts_args}} ]; then \
+    uv run gen-typescript {{gen_ts_args}} {{source_schema_path}} > {{dest}}/typescript/{{schema_name}}.ts || true ; \
+  fi
 
 # ============== Migrations recipes for Copier ==============
 
@@ -127,7 +127,7 @@ gen-project:
 # created with linkml-project-copier v0.1.x to v0.2.0 or newer.
 # Use with care! - It may not work for customized projects.
 _post_upgrade_v020: && _post_upgrade_v020py
-    mv docs/*.md docs/elements
+  mv docs/*.md docs/elements
 
 _post_upgrade_v020py:
     #!{{shebang}}
@@ -156,8 +156,8 @@ _post_upgrade_v020py:
 
 # Show current project status
 _status: _check-config
-    @echo "Project: {{schema_name}}"
-    @echo "Source: {{source_schema_path}}"
+  @echo "Project: {{schema_name}}"
+  @echo "Source: {{source_schema_path}}"
 
 # Check project configuration
 _check-config:
@@ -171,55 +171,56 @@ _check-config:
 
 # Update project template
 _update-template:
-    copier update --trust --skip-answered
+  copier update --trust --skip-answered
 
 # Update LinkML to latest version
 _update-linkml:
-    uv add linkml --upgrade-package linkml
+  uv add linkml --upgrade-package linkml
 
 # Test schema generation
 _test-schema:
-    uv run gen-project {{config_yaml}} -d tmp {{source_schema_path}}
+  uv run gen-project {{config_yaml}} -d tmp {{source_schema_path}}
 
 # Run Python unit tests with pytest
 _test-python: gen-python
-    uv run python -m pytest
+  uv run python -m pytest
 
 # Run example tests
 _test-examples: _ensure_examples_output
-    uv run linkml-run-examples \
-        --input-formats json \
-        --input-formats yaml \
-        --output-formats json \
-        --output-formats yaml \
-        --counter-example-input-directory tests/data/invalid \
-        --input-directory tests/data/valid \
-        --output-directory examples/output \
-        --schema {{source_schema_path}} > examples/output/README.md
+  uv run linkml-run-examples \
+    --input-formats json \
+    --input-formats yaml \
+    --output-formats json \
+    --output-formats yaml \
+    --counter-example-input-directory tests/data/invalid \
+    --input-directory tests/data/valid \
+    --output-directory examples/output \
+    --schema {{source_schema_path}} > examples/output/README.md
 
 # Generate merged model
 _gen-yaml:
+  -mkdir -p docs/schema
   uv run gen-yaml {{source_schema_path}} > {{merged_schema_path}}
 
 # Run documentation server
 _serve:
-    uv run mkdocs serve
+  uv run mkdocs serve
 
 # Initialize git repository
 _git-init:
-    git init
+  git init
 
 # Add files to git
 _git-add:
-    git add .
+  git add .
 
 # Commit files to git
 _git-commit:
-    git commit -m 'chore: just setup was run' -a
+  git commit -m 'chore: just setup was run' -a
 
 # Show git status
 _git-status:
-    git status
+  git status
 
 _clean_project:
     #!{{shebang}}
@@ -240,8 +241,8 @@ _clean_project:
             d.unlink()
 
 _ensure_examples_output:  # Ensure a clean examples/output directory exists
-    -mkdir -p examples/output
-    -rm -rf examples/output/*.*
+  -mkdir -p examples/output
+  -rm -rf examples/output/*.*
 
 # ============== Include project-specific recipes ==============
 
