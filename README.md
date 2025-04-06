@@ -69,7 +69,7 @@ The code and data model in this repository are distributed under the MIT license
 
 ## Acknowledgement
 
-The repository uses [linkml-project-copier](https://github.com/linkml/linkml-project-cookiecutter) as underlying project template.
+This project uses the template [linkml-project-copier](https://github.com/dalito/linkml-project-copier) published as [doi:10.5281/zenodo.15163584](https://doi.org/10.5281/zenodo.15163584).
 
 This project started as an in-kind contribution of [Leibniz-Institut für Katalyse e.V.](https://www.catalysis.de) (Rostock, Germany) to the NFDI4Cat project.
 
