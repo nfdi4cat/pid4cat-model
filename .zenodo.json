@@ -1,0 +1,65 @@
+{
+  "access_right": "open",
+  "communities": [
+    {"identifier": "nfdi4cat"}
+  ],
+  "contributors": [
+    {
+      "name": "Borgelt, Hendrik",
+      "orcid": "0000-0001-5886-7860",
+      "type": "Researcher",
+      "affiliation": "TU Dortmund University"
+    },
+    {
+      "name": "D\u00f6rr, Mark",
+      "orcid": "0000-0003-3270-6895",
+      "type": "Researcher",
+      "affiliation": "University of Greifswald"
+    },
+    {
+      "name": "Kushnarenko, Volodymyr",
+      "orcid": "0000-0001-7427-2410",
+      "type": "Researcher",
+      "affiliation": "High-Performance Computing Center Stuttgart (HLRS), University of Stuttgart"
+    },
+    {
+      "name": "Moustakas, Nikolaos",
+      "orcid": "0000-0002-6242-2167",
+      "type": "Researcher",
+      "affiliation": "Leibniz Institute for Catalysis, Albert-Einstein-Str. 29 A, 18059 Rostock, Germany"
+    },
+    {
+      "name": "Schr\u00f6der, Mirjam",
+      "orcid": "0000-0002-8940-3185",
+      "type": "Researcher",
+      "affiliation": "Leibniz Institute for Catalysis, Albert-Einstein-Str. 29 A, 18059 Rostock, Germany"
+    }
+  ],
+  "creators": [
+    {
+      "name": "Linke, David",
+      "orcid": "0000-0002-5898-1820",
+      "affiliation": "Leibniz Institute for Catalysis, Albert-Einstein-Str. 29 A, 18059 Rostock, Germany"
+    },
+    {
+      "name": "Rodriguez, Preston",
+      "orcid": "0000-0002-0377-5018",
+      "type": "Researcher",
+      "affiliation": "High-Performance Computing Center Stuttgart (HLRS), University of Stuttgart"
+    }
+  ],
+  "description": "<p><strong>pid4cat</strong> is NFDI4Cat´s service for metadata rich, universal persistent identifiers. pid4cat builds upon the handle-system (as DOIs do). pid4cat adds a <strong>custom API</strong> to a handle server and provides a <strong>LinkML model for PID-related metadata</strong>. The metadata are stored in the handle records. <strong>pid4cat</strong> persistent identifiers are used for samples, devices, and more, to ensure consistent tracking, integration, and accessibility of resources across both central and local RDM systems.</p> <p>The published <a href=\"https://github.com/nfdi4cat/pid4cat-model/\"><strong>pid4cat-model</strong></li> repository contains:</p> <ul> <li><strong>pid4cat service</strong> documentation</li> <li><strong>pid4cat model</strong> expressed as a <a href=\"https://linkml.io/\">LinkML</a> model.</li> <li><strong>pid4cat-client</strong> Python package published on PyPI</li> </ul> <p>The model and tools are generic and may be useful beyond the primarily addressed catalysis discipline.</p>",
+  "keywords": [
+    "LinkML", "template", "data modelling", "Python"
+  ],
+  "license": "MIT",
+  "related_identifiers": [
+    {
+      "identifier": "doi:10.5281/zenodo.15163584",
+      "relation": "isDerivedFrom",
+      "resource_type": "software",
+      "scheme": "doi"
+    }
+  ],
+  "upload_type": "software"
+}
