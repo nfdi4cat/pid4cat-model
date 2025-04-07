@@ -4,8 +4,8 @@
 
 A Persistent Identifier (PID) is a long-lasting reference to a digital resource that remains valid regardless of changes in the resource's location or ownership.
 
-pid4cat is a persistent identifier (PID) service designed specifically for the needs of the catalysis research community.
-The pid4cat service builds upon existing PID infrastructure (Handle System) while providing enhanced capabilities for metadata management and namespace delegation.
+pid4cat is a persistent identifier service designed specifically for the needs of the catalysis research community.
+The pid4cat service builds upon existing PID infrastructure ([Handle System](https://www.handle.net/)) while providing enhanced capabilities for metadata management and namespace delegation.
 It enables partner organizations to manage their own sub-namespaces while maintaining a consistent approach to identifier creation and metadata management.
 It consists of three main components:
 
@@ -17,30 +17,30 @@ It consists of three main components:
 
 For the PID system:
 
-- Provide PIDs for NFDI4Cat and its tool & services
+- Provide PIDs for NFDI4Cat and its tools & services
 - Low cost per PID
 - Managed and operated by one main authority (HLRS)
-- Sub ID-spaces for sub name assigning authorities (SNAAs)
-- Allow each SNAA to create IDs according to own pattern
+- Sub ID-spaces for sub name assigning authorities (SNAA)
+- Allow each SNAA to create IDs according to self-defined patterns
   (with some constraints on allowed characters)
-- Custom REST-API-access with authorization for PID-management by SNAAs
+- Custom REST-API access with authorization for PID-management by SNAAs
 - Use of a single common handle prefix
 - Open tools & open data (CC-0 for PID metadata, MIT or Apache-2-license for code)
 
-For the PID meta data model:
+For the PID metadata model:
 
-- Pre-dominantly metadata about the PID (status, changes, contact)
+- Predominantly metadata about the PID (status, changes, contact)
 - Low post-creation update work for metadata
 - Minimum information about the resource
   - What is identified? (selection among few types)
   - How to access the resource? (for example which other media type than html can be requested)
-- Relations to other PIDs (reuse relations from DataCite)
+- Relations to other PIDs (reuse relations from DataCite [metadata schema](https://datacite-metadata-schema.readthedocs.io/))
 - linked-data conform to facilitate PID-graph integration/creation
 
 For the pid4cat pattern:
 
 - Recognizable as pid4cat
-- Short meaningless identifier for the namespaces of sub name assigning authorities (SNAAs).
+- Short meaningless identifier for the namespaces of SNAAs.
 - Best-practice guidelines for identifier patterns to help the SNAAs.
 - Within the prefix space, only the combination of identifier for the namespace and SNAA-created ID must be unique to allow offline (uncoordinated & de-centralized) minting of identifiers.
 
@@ -53,8 +53,7 @@ authority, otherwise known as its suffix:
 
 `<Handle> ::= <Handle Naming Authority> "/" <Handle Local Name>`
 
-The naming authority and local name are separated by the ASCII
-character "/".
+The naming authority and local name are separated by the ASCII character “/”.
 
 ```ascii
 21.zzzzz/4cat/638s-k9dx
@@ -63,12 +62,9 @@ character "/".
  prefix      suffix
 ```
 
-The collection of local names under a naming
-authority defines the local handle namespace for that naming
-authority. Any local name must be unique under its local namespace.
-The uniqueness of a naming authority and a local name under that
-authority ensures that any handle is globally unique within the
-context of the Handle System.
+The collection of local names under a naming authority defines the local handle namespace for that naming authority.
+Any local name must be unique under its local namespace.
+The uniqueness of a naming authority and a local name under that authority ensures that any handle is globally unique within the context of the Handle System.
 
 The naming authority for pid4cat handles is HLRS.
 
@@ -78,9 +74,9 @@ Ref.: https://datatracker.ietf.org/doc/html/rfc3650
 
 The handle-suffix part has to fulfill different roles in pid4cat handles.
 First, it should allow the minting of PIDs by different institutions.
-This requires that a part of the PID suffix is used as identifier for an organization using a sub-PID-namespace.
-Second, the suffix must contain an identifier part the makes it unique in each sub-PID-namespace.
-Third, the suffix should make pid4cat handles easily distinguishable from other handles (for humans) [ref?].
+This requires that a part of the PID suffix is used as an identifier for an organization using a sub-PID-namespace.
+Second, the suffix must contain an identifier part that makes it unique in each sub-PID-namespace.
+Third, the suffix should make pid4cat handles easily distinguishable from other handles (for humans) [ref? TODO].
 
 The following scheme was selected for pid4cat handles:
 
@@ -94,36 +90,41 @@ The following scheme was selected for pid4cat handles:
      suffix   ns-suffix
 ```
 
-As branding label we use `4cat` as already done for the dataverse data repository.
+As a branding label we use `4cat` as already done for the dataverse data repository.
 Next comes an identifier `ns-suffix` for the namespace of sub-authorities associated with the PID-subspace followed by the ID-suffix part.
-Regarding uniqueness, it is important to note that only the combination of ns-suffix and id-suffix must be unique. Due to this all sub-NAAs are independent in the IDs they generate. The same id-suffix may be present in different sub namespaces. The different parts are separated by the ASCII character "/".
+Regarding uniqueness, it is important to note that only the combination of ns-suffix and id-suffix must be unique.
+Due to this all SNAAs are independent in the IDs they generate. The same id-suffix may be present in different sub namespaces. The different parts are separated by the ASCII character "/".
 
 Rules for the `<ns-suffix>`:
 
-- For identifying the sub-authority IDs without meaning should be used.
+- To identify the sub-authority, opaque (meaningless) IDs should be used.
   It is suggested to keep the sub-authority identifier short (3 chars)
   and use only the crockford-32 alphabet. This gives 32**3 = 32768 combinations.
 - Sub-namespaces have to be requested at HLRS.
-- The ns-suffixes are generated randomly and should have no meaning (for example they should not match abbreviations of institutions). [ref.]
+- The ns-suffixes are generated randomly and should have no meaning (for example they should not match abbreviations of institutions). [ref.? TODO]
 
 Rules for the `<id-suffix>`:
 
-- The local-ID is managed by the NAA for the sub-namespace.
-  It may contain letters [A-Za-z], numbers [0-9] and symbols [./] as part if the identifier.
+- The local-IDs are managed by the responsible SNAA.
+  It may contain letters [A-Za-z], numbers [0-9] and symbols [./] as part of the identifier.
 - Dashes in this part are ignored.
 - If an optional checksum is included, it must be calculated including the `<ns-suffix>` and ignoring dashes.
 
 Suggested checksum calculations:
 
-- **The ISO 7064 Mod 97, 10 algorithm.** It evaluates the whole identifier as an integer which is valid if the number modulo 97 is 1. It has two check digits and is easy to compute. It is for example used by ROR and DataCite.
-- **The ISO 7064 Mod 37, 36 algorithm.** It uses one alphanumeric check digit and the identifier itself may also be alphanumeric (digit or char). Hence, it is well suited to detect error in  alphanumeric identification numbers. This algorithm is for example used by the [Global Release Identifier](https://en.wikipedia.org/wiki/Global_Release_Identifier).
+- **The ISO 7064 Mod 97, 10 algorithm.** It evaluates the whole identifier as an integer which is valid if the number modulo 97 is 1.
+  It has two check digits and is easy to compute.
+  It is for example used by [ROR](https://ror.org/) and [DataCite](https://datacite.org/).
+- **The ISO 7064 Mod 37, 36 algorithm.** It uses one alphanumeric check digit and the identifier itself may also be alphanumeric (digit or char).
+  Hence, it is well suited to detect error in alphanumeric identification numbers.
+  This algorithm is for example used by the [Global Release Identifier](https://en.wikipedia.org/wiki/Global_Release_Identifier).
 
 Implementation of these algorithms are available in many languages (for example in [python-stdnum](https://arthurdejong.org/python-stdnum/doc/1.20/stdnum.iso7064)).
 
-Open question:
+Open question: TODO!
 
 - Should the ID-suffix be stored as case sensitive string? While this would not be required for numeric, hex or base32 encoded IDs, case sensitivity would be essential to support also base64 encoded ID-suffixes.
-  - Proposal (David): design & program for case-sensitive IDs. My reasoning is that we should not artificially add a significant constraint that will be impossible to remove later. Case-insensitivity may  be specified by individual SNAA for their sub-namespaces but should not be enforced for all created identifiers.
+  - Proposal (David): design & program for case-sensitive IDs. My reasoning is that we should not artificially add a significant constraint that will be impossible to remove later. Case-insensitivity may be specified by individual SNAA for their sub-namespaces but should not be enforced for all created identifiers.
 
 ## Use case: PIDs for samples, devices etc.
 
@@ -138,21 +139,22 @@ pid4cat identifiers can be used for various resources in the catalysis research 
 | DATA_OBJECT  | [voc4cat:0005016](https://w3id.org/nfdi4cat/voc4cat_0005016) | A collection of data available for access or download. A data object might be a data file, a data set, a data collection. |
 | DATA_SERVICE | [voc4cat:0005017](https://w3id.org/nfdi4cat/voc4cat_0005017) | An organized system of operations that provide data processing functions or access to datasets. |
 
-The categories are linked to SKOS concepts defined in the [voc4cat](https://nfdi4cat.github.io/voc4cat/) vocabulary.
-Such mapping to machine readable terminologies facilitate using pid4cat PIDs in linked-data applications and are key to fully realize FAIR data.
+The categories are linked to SKOS concepts defined in the [Voc4Cat](https://nfdi4cat.github.io/voc4cat/) vocabulary.
+Such mapping to machine readable terminologies facilitate the use of pid4cat PIDs in linked-data applications and are key to fully realize FAIR data.
 
 ## Use case: repo4cat
 
-[Repo4cat](https://repository.nfdi4cat.org/) is the data sharing portal created and operated by NFDI4Cat. It build upon [Dateverse](https://dataverse.org/).
-Repo4cat  makes use of pid4cat handles to persistently identify the stored resources.
+[Repo4cat](https://repository.nfdi4cat.org/) is the data sharing portal created and operated by NFDI4Cat.
+It is built upon [Dataverse](https://dataverse.org/).
+Repo4cat makes use of pid4cat handles to persistently identify the stored resources.
 
 Example handle PID for data in the production instance of [repo4cat](https://repository.nfdi4cat.org/):
 
 - [https://hdl.handle.net/21.11165/4cat/638s-k9dx][https://hdl.handle.net/21.11165/4cat/638s-k9dx?noredirect]
-- The shoulder "4cat" is also used as "PID-namespace" for repo4cat PIDs.
+- The shoulder “4cat” is also used as "PID-namespace" for repo4cat PIDs.
 - The `<ns-suffix>` is not present in repo4cat PIDs.
 
-Currently the repo4cat PIDs lack the rich metadata of other pid4cat PIDs due to limitations of Dataverse.
+Currently the PIDs minted by repo4cat lack the rich metadata that are attached to other pid4cat PIDs due to limitations of Dataverse.
 
 ## PID resolution methods
 
@@ -168,11 +170,13 @@ pid4cat identifiers can be resolved using multiple methods:
 
   ```http
   https://pid.nfdi4cat.org/<prefix>/4cat/<ns-suffix>/<id-suffix>
+  or
+  https://handle.nfdi4cat.org/<prefix>/4cat/<ns-suffix>/<id-suffix>
   ```
 
 3. **DOI proxy**:
 
-  The DOI resolver  works also other handles than the DOI 10.*-handles.
+  The DOI resolver also works with other handles than the DOI 10.*-handles.
 
   ```http
   https://doi.org/<prefix>/4cat/<ns-suffix>/<id-suffix>
@@ -222,7 +226,7 @@ SNAAs are encouraged to follow these best practices when designing their local i
 2. **Documentation**: Document your identifier pattern for future reference
 3. **Avoid semantics**: Minimize semantic content that might become outdated.
    - Semantic identifiers contain meaningful information (e.g., `JoeMiller-Sample-LiMg-001`)
-   - Opaque identifiers have no inherent meaning (e.g., `x7z9q2`)
+   - Opaque identifiers have no inherent meaning (e.g., `x7z-9q2`)
 4. **Validation**: Implement validation to ensure identifiers conform to your pattern
 5. **Checksums**: Consider incorporating checksums for error detection
 6. **Future-proofing**: Design for scalability and longevity
@@ -232,12 +236,12 @@ it is strongly suggested to reuse these locally unique identifiers for the ident
 Often these are just integer numbers or type-number combinations.
 
 If you design a new scheme, consider how the IDs are used.
-For example, whenever reading and typing of the id by humans is important consider using character sets (alphabets) designed for this purpose and/or using a checksum.
+For example, whenever reading and typing of the IDs by humans is important, consider using character sets (alphabets) designed for this purpose and/or using a checksum.
 
 - **Base32-encoded sequential number with checksum**:
 
   ```ascii
-  to be added, ...
+  TODO to be added, ...
   ```
 
 For pure machine use and if global uniqueness is important consider using
@@ -262,7 +266,7 @@ Landing pages should:
 
 1. **Be persistent**: Remain accessible for as long as the identifier exists
 2. **Provide metadata**: Display key metadata about the resource
-3. **Offer access**: Provide direct access to the resource or clear instructions for obtaining access
+3. **Offer access information**: Provide direct access to the resource or clear instructions for obtaining access
 4. **Include citation information**: Show how the resource should be cited
 5. **Show provenance**: Include information about the origin and history of the resource
 6. **Be human-readable**: Present information in a user-friendly format
@@ -288,6 +292,8 @@ Recommendations for integrating pid4cat with local systems:
 5. **Monitoring**: Implement monitoring to ensure identifiers remain resolvable
 
 ### Security and Access Control
+
+The SNAAs ensure the security and access control of the data and must secure it with sufficient technical and organisational measures.
 
 #### API Key Management
 
@@ -316,10 +322,10 @@ The development and expansion of pid4cat is planned in several phases:
 
 ### Phase 2: Service Expansion (Current)
 
-- Enhanced API capabilities
-- Improved metadata model
+- Enhance API capabilities
+- Improve metadata model
 - Integration with related services
-- Expansion of documentation
+- Expansion of user and developer documentation
 - Onboarding of initial SNAAs
 
 ### Phase 3: Community Growth (Upcoming)
@@ -331,19 +337,16 @@ The development and expansion of pid4cat is planned in several phases:
 
 ### Phase 4: Sustainability (Future)
 
-- Establishment of sustainable funding model
-- Long-term preservation planning
+- Establish a sustainable funding model
+- Plan long-term preservation
 - Evaluation and improvement of governance model
 
 ## History
 
-The pid4cat service has been developed by the [NFDI4Cat](https://nfid4cat.org/) consortium as a core element of NFDI4Cat service portfolio.
-Fostering the use of PIDs and facilitating the registration of PIDs for all important research resources is key to achieving FAIR data in catalysis research.
+The pid4cat service was developed as part of the NFDI4Cat consortium, a project funded by the German Research Foundation (DFG) to establish a research data infrastructure for catalysis research (see about.md TODO make this a link).
 
 Key milestones in the development of pid4cat:
 
 - **2023**: Initial conceptualization of pid4cat
 - **2024**: Launch of the production handle server
 - **2025**: Launch of pid4cat service; Onboarding of initial SNAAs
-
-The development of pid4cat has been guided by the needs of the catalysis research community and best practices in persistent identifier management.

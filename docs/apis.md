@@ -8,9 +8,9 @@ The pid4cat API provides a RESTful interface for creating, reading, and updating
 
 ### Base URL
 
-```ascii
-https://api.nfdi4cat.org/pid/v2/
-```
+- Production: `https://api.nfdi4cat.org/\<version\>`
+
+- Test: `https://api.nfdi4cat.org/testpid/\<version\>`
 
 ### Authentication
 
@@ -20,15 +20,21 @@ The API uses API key authentication. Each SNAA is issued a unique API key that m
 Authorization: Bearer <api-key>
 ```
 
+Future:
+
+```http
+Authorization: Bearer <api-key>
+```
+
 ### Endpoints
 
-The endpoint are described in that auto-generated [API documentation](https://api.nfdi4cat.org/testpid/v2/index.html).
+The endpoints are described in the auto-generated [API documentation](https://api.nfdi4cat.org/testpid/v2/index.html).
 
 A demo showing how to access all available API endpoints from Python is provided in the [Jupyter](https://jupyter.org/) notebook [examples/api-v2-demo.ipynb](https://github.com/nfdi4cat/pid4cat-model/blob/main/examples/api-v2-demo.ipynb).
 
 ## Handle.net API
 
-In addition to the pid4cat API, identifiers and there metadata can also be accessed through the API of the [HDL.NET Proxy Server System](https://www.handle.net/proxy_servlet.html).
+In addition to the pid4cat API, identifiers and their metadata can also be retrieved through the API of the [HDL.NET Proxy Server System](https://www.handle.net/proxy_servlet.html).
 
 ### Base URL
 
