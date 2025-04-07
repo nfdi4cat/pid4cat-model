@@ -1,6 +1,6 @@
 # Open Data
 
-We plan to make a PID meta data dump available as FAIR data in the future.
+We plan to make a PID metadata dump available as FAIR data in the future.
 
 ## PID Metadata Dump
 
@@ -31,7 +31,7 @@ The metadata dumps can be used for:
 
 ## PID Graph Integration
 
-pid4cat is designed to integrate with the broader PID Graph ecosystem. The PID Graph connects different types of persistent identifiers, creating a rich network of scholarly entities.
+pid4cat is designed to integrate with the broader PID Graph ecosystem. The PID Graph connects different types of persistent identifiers, creating a rich network of scientific and scholarly entities.
 
 pid4cat contributes to this ecosystem by:
 

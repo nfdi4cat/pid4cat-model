@@ -28,7 +28,7 @@ To become a Sub-Name Assigning Authority (SNAA), an organization must:
 
 pid4cat is committed to the persistence of identifiers. Once created, an identifier should remain resolvable indefinitely. This implies:
 
-1. **No deletion**: Identifiers should not be deleted, even if the identified resource is no longer available
+1. **No deletion**: Identifiers must not be deleted, even if the identified resource is no longer available
 2. **Tombstones**: If a resource becomes unavailable, a tombstone page should be provided with information about the resource and its status
 3. **Responsibility**: SNAAs are responsible for maintaining the resolution of identifiers they create
 
@@ -47,12 +47,12 @@ Metadata associated with identifiers can be updated to reflect changes in the re
 ## Access Policy
 
 1. **Landing Pages**: All identifiers must resolve to a landing page or point directly to the resource.
-2. **Resource Access**: If a resource has access restrictions, a landing pages must provide clear information about how to access the resource.
+2. **Resource Access**: If a resource has access restrictions, a landing page must provide clear information about how to access the resource.
 3. **Metadata Access**: Metadata associated with identifiers should be openly accessible.
 
 ## Resource Access
 
-pid4cat does not mandate that identified resources be openly accessible. However:
+pid4cat does not require identified resources to be openly accessible. However:
 
 1. **Landing page requirement**: All identifiers must resolve to a landing page with basic metadata about the resource or point directly to the resource.
 2. **Access information**: If access to the resource is restricted, the landing page must provide information about the restrictions and if/how access can be obtained.
@@ -75,7 +75,7 @@ pid4cat does not mandate that identified resources be openly accessible. However
 
 1. **Landing page requirement**: All identifiers must resolve to a landing page with basic metadata about the resource
 2. **Access information**: If access to the resource is restricted, the landing page must provide clear information about the restrictions and how access can be obtained
-3. **Metadata accessibility**: Metadata associated with identifiers should be openly accessible, even if the resource itself is not
+3. **Metadata accessibility**: Metadata associated with identifiers should be openly accessible, even if the resource itself is not.
 
 ## Licensing
 

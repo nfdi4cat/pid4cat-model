@@ -1,10 +1,10 @@
 # Metadata
 
-For pid4cat handles metadata are stored directly in the handle record in contrast to the DOI-system where metadata are hosted by the DOI-providers like DataCite.
+For pid4cat handles metadata are stored directly in the handle record in contrast to the DOI-system where metadata are managed by the DOI-providers like DataCite in separate data systems.
 
-The metadata for pid4cat include mainly data about the PID and its relation to other PIDs. The relation information should be relate the new PID to relevant existing PIDs. pid4cat allows but does not mandate that PIDs are updated with new relations that come into existence only later after the PID assignment to a resource.
+The metadata for pid4cat mainly include data about the PID and its relation to other PIDs. The relation information should relate the new PID to relevant existing PIDs. pid4cat allows, but does not mandate, that PIDs are updated with new relations that come into existence only later, after the PID assignment to a resource.
 
-The metadata schema for pid4cat is defined as a LinkML schema. From this LinkML schema various representations can be created.
+The metadata schema for pid4cat is defined as a Linked Data Modeling Language (LinkML) schema. From this LinkML schema various representations can be created.
 
 The schema is documented under [overview](/overview).
 
@@ -28,7 +28,7 @@ These metadata elements are stored in the handle records of pid4cat PIDs.
 
 ## Metadata Schema
 
-The pid4cat metadata schema is defined using LinkML (Linked Data Modeling Language), which allows for:
+The pid4cat metadata schema is defined using LinkML, which allows for:
 
 - Clear definition of metadata elements
 - Validation of metadata values
@@ -45,11 +45,11 @@ All metadata submitted to pid4cat is validated against the pid4cat-model schema.
 - Field values conform to expected formats
 - Structural integrity of the metadata
 
-Validation failures result in rejection of the create or update operation, with detailed error messages to assist in correction.
+Validation failures result in rejection of the current operation (create or update), with detailed error messages to assist in their correction.
 
 ## Metadata Access
 
-pid4cat metadata can be accessed through multiple methods:
+pid4cat metadata can be accessed using the following methods:
 
 - Direct API access
 - Handle record retrieval
