@@ -1,6 +1,6 @@
 [![CI - main](https://github.com/nfdi4cat/pid4cat-model/actions/workflows/main.yaml/badge.svg)](https://github.com/nfdi4cat/pid4cat-model/actions/workflows/main.yaml)
 [![CI - docs](https://github.com/nfdi4cat/pid4cat-model/actions/workflows/deploy-docs.yaml/badge.svg?branch=main)](https://github.com/nfdi4cat/pid4cat-model/actions/workflows/deploy-docs.yaml)
-[![PyPI - Version](https://img.shields.io/pypi/v/pid4cat)](https://pypi.org/project/pid4cat)
+[![PyPI - Version](https://img.shields.io/pypi/v/pid4cat-model)](https://pypi.org/project/pid4cat-model)
 [![DOI](https://zenodo.org/badge/598213054.svg)](https://zenodo.org/badge/latestdoi/598213054)
 
 # Python package for pid4cat persistent identifiers
@@ -17,7 +17,7 @@ It moreover includes some helpers to simplify using pid4cat identifiers.
 The pid4cat Python is [published on PyPI](https://pypi.org/project/pid4cat) and can be installed in the usual  way
 
 ```bash
-pip install pid4cat
+pip install pid4cat-model
 ```
 
 ## Documentation
