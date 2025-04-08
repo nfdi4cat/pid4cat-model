@@ -1520,7 +1520,7 @@ wheels = [
 ]
 
 [[package]]
-name = "pid4cat-model"
+name = "pid4cat"
 source = { editable = "." }
 dependencies = [
     { name = "httpx" },

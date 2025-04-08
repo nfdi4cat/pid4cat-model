@@ -1,5 +1,7 @@
 [![CI - main](https://github.com/nfdi4cat/pid4cat-model/actions/workflows/main.yaml/badge.svg)](https://github.com/nfdi4cat/pid4cat-model/actions/workflows/main.yaml)
 [![CI - docs](https://github.com/nfdi4cat/pid4cat-model/actions/workflows/deploy-docs.yaml/badge.svg?branch=main)](https://github.com/nfdi4cat/pid4cat-model/actions/workflows/deploy-docs.yaml)
+[![DOI](https://zenodo.org/badge/598213054.svg)](https://zenodo.org/badge/latestdoi/598213054)
+[![PyPI - Version](https://img.shields.io/pypi/v/pid4cat)](https://pypi.org/project/pid4cat)
 
 # Persistent Identifiers for FAIR data in Catalysis
 
@@ -7,9 +9,15 @@
 
 **pid4cat** is NFDI4Cat´s service for metadata rich, universal persistent identifiers. pid4cat builds upon the handle-system (as DOIs do). pid4cat adds a **custom API** to a handle server and provides a **LinkML model for  PID-related metadata**. The metadata are stored in the handle records. **pid4cat**  persistent identifiers are used for samples, devices, and more, to ensure consistent tracking, integration, and accessibility of resources across both central and local RDM systems.
 
-## pid4cat metadata model
+## Components of pid4cat
 
-This repository contains the **pid4cat service** documentation and the **pid4cat model** expressed as a [LinkML](https://linkml.io/) model. The model is a generic PID metadata model that may be useful beyond catalysis.
+This repository contains
+
+- **pid4cat service** documentation
+- **pid4cat model** expressed as a [LinkML](https://linkml.io/) model.
+- **pid4cat Python package** to interface the pid4cat service and handle the PID metadata
+
+The PID metadata model and tools are generic and may be useful beyond catalysis.
 
 > Status: beta - This is in development and may still change.
 > We are interested in feedback of potential users.
@@ -19,7 +27,7 @@ This repository contains the **pid4cat service** documentation and the **pid4cat
 
 - [pid4cat](https://nfdi4cat.github.io/pid4cat-model) documentation
 - [pid4cat-model](https://nfdi4cat.github.io/pid4cat-model/latest/elements/) metadata schema documentation
-- [NFDI4Cat PID concept](nfdi4cat_details.md) - (older) information about the role and use of this model in NFDI4Cat.
+- [pid4cat Python package](https://nfdi4cat.github.io/pid4cat-model/latest/tools/) metadata schema documentation
 
 ## Repository Structure
 
@@ -31,6 +39,7 @@ This repository contains the **pid4cat service** documentation and the **pid4cat
   - [pid4cat_model](src/pid4cat_model)
     - [schema](src/pid4cat_model/schema) -- LinkML schema
     - [datamodel](src/pid4cat_model/datamodel) -- generated Python data models
+    - other modules included in Python package
 - [tests/](tests/) - Python tests
   - [data/](tests/data) - Example data
 
@@ -52,7 +61,7 @@ In addition to the [GitHub contributors](https://github.com/nfdi4cat/pid4cat-mod
 
 Main author:
 
-- David Linke (ORCID: [0000-0002-5898-1820](https://orcid.org/0000-0002-5898-1820)) - Idea, initial setup of repository, main developer of pid4cat-model, project coordination.
+- David Linke (ORCID: [0000-0002-5898-1820](https://orcid.org/0000-0002-5898-1820)) - Idea, initial setup of repository, main developer of pid4cat-model and Python package, project coordination.
 
 ## License
 

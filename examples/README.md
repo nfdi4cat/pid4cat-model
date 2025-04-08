@@ -1,6 +1,6 @@
 # Examples of using pid4cat-model
 
-This folder some examples python scripts and jupyter notebooks.
+This folder contains some example data and scripts (Python & jupyter notebooks).
 There are examples for using the data model as well as for making API requests.
 
 The JSON and YAML files in this directory were created by running the example scripts.
