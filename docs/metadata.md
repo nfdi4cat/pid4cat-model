@@ -1,6 +1,6 @@
 # Metadata
 
-For pid4cat handles metadata are stored directly in the handle record in contrast to the DOI-system where metadata are managed by the DOI-providers like DataCite in separate data systems.
+For pid4cat handles metadata are stored directly in the handle record. In this respect, pid4cat-handles are similar to [ePIC](http://www.pidconsortium.net/)-handles which also use the handle record to store metadata. The DOI-system is, however, different: Its metadata are managed by the DOI-providers like DataCite in separate data systems.
 
 The metadata for pid4cat mainly include data about the PID and its relation to other PIDs. The relation information should relate the new PID to relevant existing PIDs. pid4cat allows, but does not mandate, that PIDs are updated with new relations that come into existence only later, after the PID assignment to a resource.
 

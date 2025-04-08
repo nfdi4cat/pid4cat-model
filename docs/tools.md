@@ -1,8 +1,8 @@
 # Tools and Services
 
-## pid4cat Python package
+## pid4cat-model Python package
 
-pid4cat is a Python package for
+[pid4cat-model](https://pypi.org/project/pid4cat-model/) is a Python package for
 
 - interacting with the pid4cat API to create, read and update pid4cat identifiers and their metadata.
 - validating pid4cat metadata against the pid4cat-model schema.
