@@ -3,8 +3,8 @@ requires = ["hatchling", "uv-dynamic-versioning"]
 build-backend = "hatchling.build"
 
 [project]
-name = "pid4cat_model"
-description = "LinkML model for handle-based PIDs for resources in catalysis (pid4cat)"
+name = "pid4cat"
+description = "Python model equivalent of LinkML datamodel for handle-based PIDs for resources in catalysis (pid4cat)"
 authors = [
   # Authors sorted by number of commits
   {name = "David Linke", email = "david.linke@catalysis.de"},
@@ -14,7 +14,7 @@ maintainers = [
 ]
 license = "MIT"
 license-files = ["LICENSE"]
-readme = "README.md"
+readme = "README_pypkg.md"
 requires-python = ">=3.11,<4.0"
 dynamic = ["version"]
 
