@@ -3,7 +3,7 @@ requires = ["hatchling", "uv-dynamic-versioning"]
 build-backend = "hatchling.build"
 
 [project]
-name = "pid4cat"
+name = "pid4cat-model"
 description = "Python model equivalent of LinkML datamodel for handle-based PIDs for resources in catalysis (pid4cat)"
 authors = [
   # Authors sorted by number of commits

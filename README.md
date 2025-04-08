@@ -1,7 +1,7 @@
 [![CI - main](https://github.com/nfdi4cat/pid4cat-model/actions/workflows/main.yaml/badge.svg)](https://github.com/nfdi4cat/pid4cat-model/actions/workflows/main.yaml)
 [![CI - docs](https://github.com/nfdi4cat/pid4cat-model/actions/workflows/deploy-docs.yaml/badge.svg?branch=main)](https://github.com/nfdi4cat/pid4cat-model/actions/workflows/deploy-docs.yaml)
 [![DOI](https://zenodo.org/badge/598213054.svg)](https://zenodo.org/badge/latestdoi/598213054)
-[![PyPI - Version](https://img.shields.io/pypi/v/pid4cat)](https://pypi.org/project/pid4cat)
+[![PyPI - Version](https://img.shields.io/pypi/v/pid4cat-model)](https://pypi.org/project/pid4cat-model)
 
 # Persistent Identifiers for FAIR data in Catalysis
 
@@ -15,7 +15,7 @@ This repository contains
 
 - **pid4cat service** documentation
 - **pid4cat model** expressed as a [LinkML](https://linkml.io/) model.
-- **pid4cat Python package** to interface the pid4cat service and handle the PID metadata
+- **pid4cat-model Python package** to interface the pid4cat service and handle the PID metadata
 
 The PID metadata model and tools are generic and may be useful beyond catalysis.
 
