@@ -53,7 +53,7 @@ authority, otherwise known as its suffix:
 
 `<Handle> ::= <Handle Naming Authority> "/" <Handle Local Name>`
 
-The naming authority and local name are separated by the ASCII character “/”.
+The naming authority and local name are separated by the ASCII character ï¿½/ï¿½.
 
 ```ascii
 21.zzzzz/4cat/638s-k9dx
@@ -90,7 +90,7 @@ The following scheme was selected for pid4cat handles:
      suffix   ns-suffix
 ```
 
-As a branding label we use `4cat` as already done for the dataverse data repository.
+As a branding label we use `4cat` as already done for the dataverse [data repository](https://repository.nfdi4cat.org).
 Next comes an identifier `ns-suffix` for the namespace of sub-authorities associated with the PID-subspace followed by the ID-suffix part.
 Regarding uniqueness, it is important to note that only the combination of ns-suffix and id-suffix must be unique.
 Due to this all SNAAs are independent in the IDs they generate. The same id-suffix may be present in different sub namespaces. The different parts are separated by the ASCII character "/".
@@ -108,6 +108,7 @@ Rules for the `<id-suffix>`:
 - The local-IDs are managed by the responsible SNAA.
   It may contain letters [A-Za-z], numbers [0-9] and symbols [./] as part of the identifier.
 - Dashes in this part are ignored.
+- The local-IDs should be kept short and not exceed 36 chars including dashes (which is the length of UUID4).
 - If an optional checksum is included, it must be calculated including the `<ns-suffix>` and ignoring dashes.
 
 Suggested checksum calculations:
@@ -151,7 +152,7 @@ Repo4cat makes use of pid4cat handles to persistently identify the stored resour
 Example handle PID for data in the production instance of [repo4cat](https://repository.nfdi4cat.org/):
 
 - [https://hdl.handle.net/21.11165/4cat/638s-k9dx][https://hdl.handle.net/21.11165/4cat/638s-k9dx?noredirect]
-- The shoulder “4cat” is also used as "PID-namespace" for repo4cat PIDs.
+- The shoulder ï¿½4catï¿½ is also used as "PID-namespace" for repo4cat PIDs.
 - The `<ns-suffix>` is not present in repo4cat PIDs.
 
 Currently the PIDs minted by repo4cat lack the rich metadata that are attached to other pid4cat PIDs due to limitations of Dataverse.
