@@ -27,7 +27,7 @@ The PID metadata model and tools are generic and may be useful beyond catalysis.
 
 - [pid4cat](https://nfdi4cat.github.io/pid4cat-model) documentation
 - [pid4cat-model](https://nfdi4cat.github.io/pid4cat-model/latest/elements/) metadata schema documentation
-- [pid4cat Python package](https://nfdi4cat.github.io/pid4cat-model/latest/tools/) metadata schema documentation
+- [pid4cat Python package](https://nfdi4cat.github.io/pid4cat-model/latest/tools/) metadata schema documentation, see also [README_pypkg](/README_pypkg.md)
 
 ## Repository Structure
 
