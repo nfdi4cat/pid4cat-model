@@ -28,6 +28,9 @@
     
       <link rel="stylesheet" href="../assets/stylesheets/main.4af4bdda.min.css">
       
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
       
 
 
@@ -45,6 +48,8 @@
       
     
     
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
       <link rel="stylesheet" href="../css/ansi-colours.css">
     
       <link rel="stylesheet" href="../css/jupyter-cells.css">
@@ -61,7 +66,14 @@
   </head>
   
   
-    <body dir="ltr">
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -91,9 +103,8 @@
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href=".." title="pid4cat Documentation" class="md-header__button md-logo" aria-label="pid4cat Documentation" data-md-component="logo">
-      
-  <img src="../images/logo-icon.svg" alt="logo">
-
+      <img id="logo_dark_mode" src="../images/logo-icon.svg" alt="logo">
+<img id="logo_light_mode" src="../images/logo-icon.svg" alt="logo">
     </a>
     <label class="md-header__button md-icon" for="__drawer">
       
@@ -115,6 +126,42 @@
         </div>
       </div>
     </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
     
     
       <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
@@ -200,9 +247,8 @@
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href=".." title="pid4cat Documentation" class="md-nav__button md-logo" aria-label="pid4cat Documentation" data-md-component="logo">
-      
-  <img src="../images/logo-icon.svg" alt="logo">
-
+      <img id="logo_dark_mode" src="../images/logo-icon.svg" alt="logo">
+<img id="logo_light_mode" src="../images/logo-icon.svg" alt="logo">
     </a>
     pid4cat Documentation
   </label>
@@ -371,13 +417,51 @@
   
   
   
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Metadata
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Metadata
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
     <li class="md-nav__item">
       <a href="../metadata/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Metadata Basics
+    Basics
     
   </span>
   
@@ -386,9 +470,10 @@
     </li>
   
 
-    
-      
-      
+              
+            
+              
+                
   
   
   
@@ -399,7 +484,7 @@
   
   
   <span class="md-ellipsis">
-    Metadata Schema
+    Schema
     
   </span>
   
@@ -408,9 +493,10 @@
     </li>
   
 
-    
-      
-      
+              
+            
+              
+                
   
   
   
@@ -427,6 +513,14 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -503,9 +597,20 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../about/" class="md-nav__link">
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
         
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
   
   
   <span class="md-ellipsis">
@@ -514,7 +619,65 @@
   </span>
   
 
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            About
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Credits
+    
+  </span>
+  
+
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../policies/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Policies
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -604,8 +767,8 @@
 <h2 id="registration">Registration</h2>
 <p>To use pid4cat services, organizations must apply to become a Sub-Name Assigning Authority (SNAA). The application process involves:</p>
 <ol>
-<li>Submitting an application form to the pid4cat Core Organization</li>
-<li>Agreeing to the pid4cat policies (detailed in the Policies section)</li>
+<li>Submitting an application form to the pid4cat core organization (TODO add contact info)</li>
+<li>Agreeing to the pid4cat policies (detailed in section <a href="../policies/">Policies</a>)</li>
 <li>Demonstrating the capability to maintain the identified resources</li>
 <li>Designating a technical and administrative contact</li>
 </ol>
@@ -613,40 +776,52 @@
 <ul>
 <li>A unique namespace suffix (<code>&lt;ns-suffix&gt;</code>)</li>
 <li>API credentials for accessing the pid4cat API</li>
-<li>Documentation and support for implementation</li>
+<li>Documentation and support for the integration into SNAA-operated services</li>
 </ul>
 <h2 id="creating-identifiers">Creating identifiers</h2>
 <p>Identifiers can be created through the pid4cat API. Partner organizations (SNAAs) have two options:</p>
 <ol>
-<li><strong>Opaque identifiers</strong>: System-generated identifiers with no semantic meaning</li>
-<li><strong>Semantic identifiers</strong>: Custom identifiers created according to local naming conventions</li>
+<li><strong>Generated identifiers</strong>: Identifiers generated by the pid4cat API</li>
+<li><strong>Custom identifiers</strong>: Identifiers created according to SNAA's naming conventions</li>
 </ol>
-<p>To create an identifier:</p>
-<pre><code class="language-http">POST /api/v2/handles/&lt;prefix&gt;/&lt;ns-suffix&gt;/
-</code></pre>
+<div class="admonition warning">
+<p class="admonition-title">The API URLs are not final.</p>
+<p>TODO: Update API urls below before Release 1.0.0.</p>
+</div>
+<p>To request a new identifier generated by pid4cat service:</p>
+<div class="highlight"><pre><span></span><code><span class="err">PUT https://api.nfdi4cat.org/testpid/v2/handles/&lt;prefix&gt;/&lt;ns-suffix&gt;/</span>
+</code></pre></div>
+<p>To create a custom identifier: (Future!)</p>
+<div class="highlight"><pre><span></span><code><span class="err">PUT https://api.nfdi4cat.org/testpid/&lt;version&gt;?customid=xxx-xxx</span>
+</code></pre></div>
 <p>With a payload containing:</p>
 <ul>
 <li>The local identifier (optional for opaque identifiers)</li>
 <li>The URL of the resource</li>
 <li>Required metadata according to the pid4cat-model</li>
 </ul>
-<p>For detailed API documentation, see the <a href="#rest-apis">REST APIs</a> section.</p>
+<p>For detailed API documentation, see the <a href="../apis/#rest-apis">REST APIs</a> section.</p>
 <h2 id="updating-identifiers">Updating identifiers</h2>
 <p>Identifiers and their associated metadata can be updated through the pid4cat API:</p>
-<pre><code class="language-http">PUT /api/v2/handles/&lt;prefix&gt;/&lt;ns-suffix&gt;/&lt;local-id&gt;
-</code></pre>
+<div class="admonition warning">
+<p class="admonition-title">The API URLs are not final.</p>
+<p>TODO: Update API urls below before Release 1.0.0.</p>
+</div>
+<div class="highlight"><pre><span></span><code><span class="err">PUT https://api.nfdi4cat.org/testpid/v2/handles/&lt;prefix&gt;/&lt;ns-suffix&gt;/&lt;local-id&gt;</span>
+</code></pre></div>
 <p>Updates may include:</p>
 <ul>
-<li>Changes to the target URL</li>
+<li>Change of the target URL</li>
 <li>Additions or modifications to metadata</li>
-<li>Changes in access controls</li>
 </ul>
-<p>Note that the identifier itself cannot be changed once created. Only its associated metadata and target URL can be modified.</p>
+<p>Note that the identifier itself cannot be changed once created.
+Only its associated metadata and target URL can be modified.</p>
 <h2 id="resolving-identifiers">Resolving identifiers</h2>
 <p>pid4cat identifiers can be resolved using:</p>
 <ol>
 <li><strong>Direct resolution</strong>: <code>https://hdl.handle.net/&lt;prefix&gt;/&lt;ns-suffix&gt;/&lt;local-id&gt;</code></li>
 <li><strong>pid4cat resolver</strong>: <code>https://pid.nfdi4cat.org/&lt;prefix&gt;/&lt;ns-suffix&gt;/&lt;local-id&gt;</code></li>
+<li><strong>pid4cat resolver</strong>: <code>https://handle.nfdi4cat.org/&lt;prefix&gt;/&lt;ns-suffix&gt;/&lt;local-id&gt;</code></li>
 </ol>
 <p>Resolution will typically redirect to the landing page for the identified resource, which should be maintained by the responsible SNAA.</p>
 
@@ -696,10 +871,12 @@
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
     
     
       
-      <script id="__config" type="application/json">{"base": "..", "features": ["content.tabs.link"], "search": "../assets/javascripts/workers/search.f8cc74c7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"alias": true, "default": ["stable"], "provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"base": "..", "features": ["content.tabs.link", "search.highlight", "navigation.instant", "navigation.instant.progress", "navigation.tracking"], "search": "../assets/javascripts/workers/search.f8cc74c7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"alias": true, "default": ["stable"], "provider": "mike"}}</script>
     
     
       <script src="../assets/javascripts/bundle.c8b220af.min.js"></script>

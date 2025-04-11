@@ -28,6 +28,9 @@
     
       <link rel="stylesheet" href="../assets/stylesheets/main.4af4bdda.min.css">
       
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
       
 
 
@@ -45,6 +48,8 @@
       
     
     
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
       <link rel="stylesheet" href="../css/ansi-colours.css">
     
       <link rel="stylesheet" href="../css/jupyter-cells.css">
@@ -61,7 +66,14 @@
   </head>
   
   
-    <body dir="ltr">
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -91,9 +103,8 @@
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href=".." title="pid4cat Documentation" class="md-header__button md-logo" aria-label="pid4cat Documentation" data-md-component="logo">
-      
-  <img src="../images/logo-icon.svg" alt="logo">
-
+      <img id="logo_dark_mode" src="../images/logo-icon.svg" alt="logo">
+<img id="logo_light_mode" src="../images/logo-icon.svg" alt="logo">
     </a>
     <label class="md-header__button md-icon" for="__drawer">
       
@@ -115,6 +126,42 @@
         </div>
       </div>
     </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
     
     
       <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
@@ -200,9 +247,8 @@
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href=".." title="pid4cat Documentation" class="md-nav__button md-logo" aria-label="pid4cat Documentation" data-md-component="logo">
-      
-  <img src="../images/logo-icon.svg" alt="logo">
-
+      <img id="logo_dark_mode" src="../images/logo-icon.svg" alt="logo">
+<img id="logo_light_mode" src="../images/logo-icon.svg" alt="logo">
     </a>
     pid4cat Documentation
   </label>
@@ -359,6 +405,39 @@
       PID resolution methods
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="PID resolution methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#direct-handle-system-resolution" class="md-nav__link">
+    <span class="md-ellipsis">
+      Direct Handle System resolution
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pid4cat-resolver" class="md-nav__link">
+    <span class="md-ellipsis">
+      pid4cat resolver
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#doi-proxy" class="md-nav__link">
+    <span class="md-ellipsis">
+      DOI proxy
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -575,13 +654,51 @@
   
   
   
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Metadata
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Metadata
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
     <li class="md-nav__item">
       <a href="../metadata/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Metadata Basics
+    Basics
     
   </span>
   
@@ -590,9 +707,10 @@
     </li>
   
 
-    
-      
-      
+              
+            
+              
+                
   
   
   
@@ -603,7 +721,7 @@
   
   
   <span class="md-ellipsis">
-    Metadata Schema
+    Schema
     
   </span>
   
@@ -612,9 +730,10 @@
     </li>
   
 
-    
-      
-      
+              
+            
+              
+                
   
   
   
@@ -631,6 +750,14 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -707,9 +834,20 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../about/" class="md-nav__link">
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
         
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
   
   
   <span class="md-ellipsis">
@@ -718,7 +856,65 @@
   </span>
   
 
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            About
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Credits
+    
+  </span>
+  
+
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../policies/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Policies
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -809,6 +1005,39 @@
       PID resolution methods
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="PID resolution methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#direct-handle-system-resolution" class="md-nav__link">
+    <span class="md-ellipsis">
+      Direct Handle System resolution
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pid4cat-resolver" class="md-nav__link">
+    <span class="md-ellipsis">
+      pid4cat resolver
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#doi-proxy" class="md-nav__link">
+    <span class="md-ellipsis">
+      DOI proxy
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1011,8 +1240,8 @@
 <h1 id="overview">Overview</h1>
 <h2 id="what-is-a-persistent-identifier-and-what-is-pid4cat">What is a Persistent Identifier and what is pid4cat?</h2>
 <p>A Persistent Identifier (PID) is a long-lasting reference to a digital resource that remains valid regardless of changes in the resource's location or ownership.</p>
-<p>pid4cat is a persistent identifier (PID) service designed specifically for the needs of the catalysis research community.
-The pid4cat service builds upon existing PID infrastructure (Handle System) while providing enhanced capabilities for metadata management and namespace delegation.
+<p>pid4cat is a persistent identifier service designed specifically for the needs of the catalysis research community.
+The pid4cat service builds upon existing PID infrastructure (<a href="https://www.handle.net/">Handle System</a>) while providing enhanced capabilities for metadata management and namespace delegation.
 It enables partner organizations to manage their own sub-namespaces while maintaining a consistent approach to identifier creation and metadata management.
 It consists of three main components:</p>
 <ol>
@@ -1023,99 +1252,108 @@ It consists of three main components:</p>
 <h2 id="design-goals">Design goals</h2>
 <p>For the PID system:</p>
 <ul>
-<li>Provide PIDs for NFDI4Cat and its tool &amp; services</li>
+<li>Provide PIDs for NFDI4Cat and its tools &amp; services</li>
 <li>Low cost per PID</li>
 <li>Managed and operated by one main authority (HLRS)</li>
-<li>Sub ID-spaces for sub name assigning authorities (SNAAs)</li>
-<li>Allow each SNAA to create IDs according to own pattern
+<li>Sub ID-spaces for sub name assigning authorities (SNAA)</li>
+<li>Allow each SNAA to create IDs according to self-defined patterns
   (with some constraints on allowed characters)</li>
-<li>Custom REST-API-access with authorization for PID-management by SNAAs</li>
+<li>Custom REST-API access with authorization for PID-management by SNAAs</li>
 <li>Use of a single common handle prefix</li>
 <li>Open tools &amp; open data (CC-0 for PID metadata, MIT or Apache-2-license for code)</li>
 </ul>
-<p>For the PID meta data model:</p>
+<p>For the PID metadata model:</p>
 <ul>
-<li>Pre-dominantly metadata about the PID (status, changes, contact)</li>
+<li>Predominantly metadata about the PID (status, changes, contact)</li>
 <li>Low post-creation update work for metadata</li>
 <li>Minimum information about the resource</li>
 <li>What is identified? (selection among few types)</li>
 <li>How to access the resource? (for example which other media type than html can be requested)</li>
-<li>Relations to other PIDs (reuse relations from DataCite)</li>
+<li>Relations to other PIDs (reuse relations from DataCite <a href="https://datacite-metadata-schema.readthedocs.io/">metadata schema</a>)</li>
 <li>linked-data conform to facilitate PID-graph integration/creation</li>
 </ul>
 <p>For the pid4cat pattern:</p>
 <ul>
 <li>Recognizable as pid4cat</li>
-<li>Short meaningless identifier for the namespaces of sub name assigning authorities (SNAAs).</li>
+<li>Short meaningless identifier for the namespaces of SNAAs.</li>
 <li>Best-practice guidelines for identifier patterns to help the SNAAs.</li>
-<li>Within the prefix space, only the combination of identifier for the namespace and SNAA-created ID must be unique to allow offline (uncoordinated &amp; de-centralized) minting of identifiers.</li>
+<li>Within the prefix space, only the combination of identifier for the namespace
+  and SNAA-created ID must be unique to allow offline (uncoordinated &amp; de-centralized) minting of identifiers.</li>
 </ul>
 <h2 id="handle-system-basics">Handle System Basics</h2>
 <p>Every handle consists of two parts:
 its naming authority, otherwise known as its prefix,
-and a unique local name under the naming
-authority, otherwise known as its suffix:</p>
+and a unique local name under the naming authority, otherwise known as its suffix:<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup></p>
 <p><code>&lt;Handle&gt; ::= &lt;Handle Naming Authority&gt; "/" &lt;Handle Local Name&gt;</code></p>
-<p>The naming authority and local name are separated by the ASCII
-character "/".</p>
-<pre><code class="language-ascii">21.zzzzz/4cat/638s-k9dx
+<p>The naming authority and local name are separated by the ASCII character "/".</p>
+<div class="highlight"><pre><span></span><code>21.zzzzz/4cat/638s-k9dx
 \______/\_____________/
    |           |
  prefix      suffix
-</code></pre>
-<p>The collection of local names under a naming
-authority defines the local handle namespace for that naming
-authority. Any local name must be unique under its local namespace.
-The uniqueness of a naming authority and a local name under that
-authority ensures that any handle is globally unique within the
-context of the Handle System.</p>
+</code></pre></div>
+<p>The collection of local names under a naming authority defines the local handle namespace for that naming authority.
+Any local name must be unique under its local namespace.
+The uniqueness of a naming authority and a local name under that authority ensures that any handle is globally unique within the context of the Handle System.</p>
 <p>The naming authority for pid4cat handles is HLRS.</p>
-<p>Ref.: https://datatracker.ietf.org/doc/html/rfc3650</p>
 <h2 id="identifier-pattern">Identifier pattern</h2>
 <p>The handle-suffix part has to fulfill different roles in pid4cat handles.
 First, it should allow the minting of PIDs by different institutions.
-This requires that a part of the PID suffix is used as identifier for an organization using a sub-PID-namespace.
-Second, the suffix must contain an identifier part the makes it unique in each sub-PID-namespace.
-Third, the suffix should make pid4cat handles easily distinguishable from other handles (for humans) [ref?].</p>
+This requires that a part of the PID suffix is used as an identifier for an organization using a sub-PID-namespace.
+Second, the suffix must contain an identifier part that makes it unique in each sub-PID-namespace.
+Third, the suffix should make pid4cat handles easily distinguishable from other handles (for humans).</p>
 <p>The following scheme was selected for pid4cat handles:</p>
 <ul>
 <li><code>&lt;handle-prefix&gt; / &lt;branding-suffix&gt; / &lt;ns-suffix&gt; / &lt;id-suffix&gt;</code></li>
 </ul>
-<pre><code class="language-ascii">21.zzzzz/4cat/xxx/723-hk-09
+<div class="highlight"><pre><span></span><code>21.zzzzz/4cat/xxx/723-hk-09
         \___/\__/\________/
           |    |      |
    branding    |     id-suffix
      suffix   ns-suffix
-</code></pre>
-<p>As branding label we use <code>4cat</code> as already done for the dataverse data repository.
+</code></pre></div>
+<p>As a branding label we use <code>4cat</code> to make pid4cat handles easily distinguishable.<sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup>
+This has as already been implemented for NFDI4Cat´s <a href="https://repository.nfdi4cat.org">data repository</a>.
 Next comes an identifier <code>ns-suffix</code> for the namespace of sub-authorities associated with the PID-subspace followed by the ID-suffix part.
-Regarding uniqueness, it is important to note that only the combination of ns-suffix and id-suffix must be unique. Due to this all sub-NAAs are independent in the IDs they generate. The same id-suffix may be present in different sub namespaces. The different parts are separated by the ASCII character "/".</p>
+Regarding uniqueness, it is important to note that only the combination of ns-suffix and id-suffix must be unique.
+Due to this all SNAAs are independent in the IDs they generate.
+The same id-suffix may be present in different sub namespaces.
+The different parts are separated by the ASCII character "/".</p>
 <p>Rules for the <code>&lt;ns-suffix&gt;</code>:</p>
 <ul>
-<li>For identifying the sub-authority IDs without meaning should be used.
+<li>To identify the sub-authority, opaque (meaningless) IDs should be used.
   It is suggested to keep the sub-authority identifier short (3 chars)
   and use only the crockford-32 alphabet. This gives 32**3 = 32768 combinations.</li>
 <li>Sub-namespaces have to be requested at HLRS.</li>
-<li>The ns-suffixes are generated randomly and should have no meaning (for example they should not match abbreviations of institutions). [ref.]</li>
+<li>The ns-suffixes are generated randomly and should have no meaning (for example they should not match abbreviations of institutions).<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup></li>
 </ul>
 <p>Rules for the <code>&lt;id-suffix&gt;</code>:</p>
 <ul>
-<li>The local-ID is managed by the NAA for the sub-namespace.
-  It may contain letters [A-Za-z], numbers [0-9] and symbols [./] as part if the identifier.</li>
+<li>The local-IDs are managed by the responsible SNAA.
+  It may contain letters [A-Za-z], numbers [0-9] and symbols [./] as part of the identifier.</li>
 <li>Dashes in this part are ignored.</li>
+<li>The local-IDs should be kept short and not exceed 36 chars including dashes (which is the length of UUID4).</li>
 <li>If an optional checksum is included, it must be calculated including the <code>&lt;ns-suffix&gt;</code> and ignoring dashes.</li>
 </ul>
 <p>Suggested checksum calculations:</p>
 <ul>
-<li><strong>The ISO 7064 Mod 97, 10 algorithm.</strong> It evaluates the whole identifier as an integer which is valid if the number modulo 97 is 1. It has two check digits and is easy to compute. It is for example used by ROR and DataCite.</li>
-<li><strong>The ISO 7064 Mod 37, 36 algorithm.</strong> It uses one alphanumeric check digit and the identifier itself may also be alphanumeric (digit or char). Hence, it is well suited to detect error in  alphanumeric identification numbers. This algorithm is for example used by the <a href="https://en.wikipedia.org/wiki/Global_Release_Identifier">Global Release Identifier</a>.</li>
+<li><strong>The ISO 7064 Mod 97, 10 algorithm.</strong> It evaluates the whole identifier as an integer which is valid if the number modulo 97 is 1.
+  It has two check digits and is easy to compute. Strings may be handled by replacing the letters with a number, e.g. its ascii-code,
+  before applying the algorithm.
+  It is for example used by <a href="https://ror.org/">ROR</a> and <a href="https://datacite.org/">DataCite</a>.</li>
+<li><strong>The ISO 7064 Mod 37, 36 algorithm.</strong> It uses one alphanumeric check digit and the identifier itself may also be alphanumeric (digit or char).
+  Hence, it is well suited to detect error in alphanumeric identification numbers.
+  This algorithm is for example used by the <a href="https://en.wikipedia.org/wiki/Global_Release_Identifier">Global Release Identifier</a>.</li>
 </ul>
-<p>Implementation of these algorithms are available in many languages (for example in <a href="https://arthurdejong.org/python-stdnum/doc/1.20/stdnum.iso7064">python-stdnum</a>).</p>
-<p>Open question:</p>
-<ul>
-<li>Should the ID-suffix be stored as case sensitive string? While this would not be required for numeric, hex or base32 encoded IDs, case sensitivity would be essential to support also base64 encoded ID-suffixes.</li>
-<li>Proposal (David): design &amp; program for case-sensitive IDs. My reasoning is that we should not artificially add a significant constraint that will be impossible to remove later. Case-insensitivity may  be specified by individual SNAA for their sub-namespaces but should not be enforced for all created identifiers.</li>
-</ul>
+<p>Implementation of these algorithms are available in many languages (for example in <a href="https://arthurdejong.org/python-stdnum/doc/1.20/stdnum.iso7064">python-stdnum</a>,
+<a href="https://pypi.org/project/base32-lib/">base32-lib</a> for Python or <a href="https://github.com/LiosK/cdigit">cdigit</a> for JavaScript).</p>
+<div class="admonition warning">
+<p class="admonition-title">Open question on supporting case sensitivity for identifier suffix.</p>
+<p>TODO: Update after poll: <a href="https://github.com/nfdi4cat/pid4cat-model/issues/114">Do you need case-sensitive ID handling?</a></p>
+<p>While case sensitive strings would not be required for numeric, hex or base32 encoded IDs,
+case sensitivity would be essential to support also base64 encoded ID-suffixes.
+Case-insensitivity could only be enabled for certain sub-namespaces upon SNAA request.
+It should not be enforced for all created identifiers and case-insensitive should be the default.</p>
+</div>
 <h2 id="use-case-pids-for-samples-devices-etc">Use case: PIDs for samples, devices etc.</h2>
 <p>pid4cat identifiers can be used for various resources in the catalysis research domain:</p>
 <table>
@@ -1159,36 +1397,34 @@ Regarding uniqueness, it is important to note that only the combination of ns-su
 </tr>
 </tbody>
 </table>
-<p>The categories are linked to SKOS concepts defined in the <a href="https://nfdi4cat.github.io/voc4cat/">voc4cat</a> vocabulary.
-Such mapping to machine readable terminologies facilitate using pid4cat PIDs in linked-data applications and are key to fully realize FAIR data.</p>
+<p>The categories are linked to SKOS concepts defined in the <a href="https://nfdi4cat.github.io/voc4cat/">Voc4Cat</a> vocabulary.
+Such mapping to machine readable terminologies facilitate the use of pid4cat PIDs in linked-data applications and are key to fully realize FAIR data.</p>
 <h2 id="use-case-repo4cat">Use case: repo4cat</h2>
-<p><a href="https://repository.nfdi4cat.org/">Repo4cat</a> is the data sharing portal created and operated by NFDI4Cat. It build upon <a href="https://dataverse.org/">Dateverse</a>.
-Repo4cat  makes use of pid4cat handles to persistently identify the stored resources.</p>
+<p><a href="https://repository.nfdi4cat.org/">Repo4cat</a> is the data sharing portal created and operated by NFDI4Cat.
+It is built upon <a href="https://dataverse.org/">Dataverse</a>.
+Repo4cat makes use of pid4cat handles to persistently identify the stored resources.</p>
 <p>Example handle PID for data in the production instance of <a href="https://repository.nfdi4cat.org/">repo4cat</a>:</p>
 <ul>
-<li>[https://hdl.handle.net/21.11165/4cat/638s-k9dx][https://hdl.handle.net/21.11165/4cat/638s-k9dx?noredirect]</li>
-<li>The shoulder "4cat" is also used as "PID-namespace" for repo4cat PIDs.</li>
+<li><a href="https://hdl.handle.net/21.11165/4cat/638s-k9dx?noredirect">https://hdl.handle.net/21.11165/4cat/638s-k9dx</a></li>
+<li>The shoulder <code>4cat/</code> is also used as "PID-namespace" for repo4cat PIDs.</li>
 <li>The <code>&lt;ns-suffix&gt;</code> is not present in repo4cat PIDs.</li>
 </ul>
-<p>Currently the repo4cat PIDs lack the rich metadata of other pid4cat PIDs due to limitations of Dataverse.</p>
+<p>Currently the PIDs minted by repo4cat lack the rich metadata that are attached to other pid4cat PIDs due to limitations of Dataverse.</p>
 <h2 id="pid-resolution-methods">PID resolution methods</h2>
 <p>pid4cat identifiers can be resolved using multiple methods:</p>
-<ol>
-<li><strong>Direct Handle System resolution</strong>:</li>
-</ol>
-<p><code>http
-  https://hdl.handle.net/&lt;prefix&gt;/4cat/&lt;ns-suffix&gt;/&lt;id-suffix&gt;</code></p>
-<ol>
-<li><strong>pid4cat resolver</strong>:</li>
-</ol>
-<p><code>http
-  https://pid.nfdi4cat.org/&lt;prefix&gt;/4cat/&lt;ns-suffix&gt;/&lt;id-suffix&gt;</code></p>
-<ol>
-<li><strong>DOI proxy</strong>:</li>
-</ol>
-<p>The DOI resolver  works also other handles than the DOI 10.*-handles.</p>
-<p><code>http
-  https://doi.org/&lt;prefix&gt;/4cat/&lt;ns-suffix&gt;/&lt;id-suffix&gt;</code></p>
+<h3 id="direct-handle-system-resolution">Direct Handle System resolution</h3>
+<div class="highlight"><pre><span></span><code><span class="err">https://hdl.handle.net/&lt;prefix&gt;/4cat/&lt;ns-suffix&gt;/&lt;id-suffix&gt;</span>
+</code></pre></div>
+<h3 id="pid4cat-resolver">pid4cat resolver</h3>
+<div class="highlight"><pre><span></span><code><span class="err">https://pid.nfdi4cat.org/&lt;prefix&gt;/4cat/&lt;ns-suffix&gt;/&lt;id-suffix&gt;</span>
+</code></pre></div>
+<p>or alternatively</p>
+<div class="highlight"><pre><span></span><code><span class="err">https://handle.nfdi4cat.org/&lt;prefix&gt;/4cat/&lt;ns-suffix&gt;/&lt;id-suffix&gt;</span>
+</code></pre></div>
+<h3 id="doi-proxy">DOI proxy</h3>
+<p>The DOI resolver also works with other handles than the DOI 10.*-handles.</p>
+<div class="highlight"><pre><span></span><code><span class="err">https://doi.org/&lt;prefix&gt;/4cat/&lt;ns-suffix&gt;/&lt;id-suffix&gt;</span>
+</code></pre></div>
 <h2 id="logos-display-guidelines">Logos &amp; display guidelines</h2>
 <p>The pid4cat identifier should be displayed consistently across all platforms to ensure recognition and proper use.</p>
 <h3 id="display-format">Display Format</h3>
@@ -1225,7 +1461,7 @@ Repo4cat  makes use of pid4cat handles to persistently identify the stored resou
 <li><strong>Documentation</strong>: Document your identifier pattern for future reference</li>
 <li><strong>Avoid semantics</strong>: Minimize semantic content that might become outdated.</li>
 <li>Semantic identifiers contain meaningful information (e.g., <code>JoeMiller-Sample-LiMg-001</code>)</li>
-<li>Opaque identifiers have no inherent meaning (e.g., <code>x7z9q2</code>)</li>
+<li>Opaque identifiers have no inherent meaning (e.g., <code>x7z-9q2</code>)</li>
 <li><strong>Validation</strong>: Implement validation to ensure identifiers conform to your pattern</li>
 <li><strong>Checksums</strong>: Consider incorporating checksums for error detection</li>
 <li><strong>Future-proofing</strong>: Design for scalability and longevity</li>
@@ -1234,30 +1470,31 @@ Repo4cat  makes use of pid4cat handles to persistently identify the stored resou
 it is strongly suggested to reuse these locally unique identifiers for the identifier part in the pid4cat identifier.
 Often these are just integer numbers or type-number combinations.</p>
 <p>If you design a new scheme, consider how the IDs are used.
-For example, whenever reading and typing of the id by humans is important consider using character sets (alphabets) designed for this purpose and/or using a checksum.</p>
+For example, whenever reading and typing of the IDs by humans is important, consider using character sets (alphabets) designed for this purpose and/or using a checksum.</p>
 <ul>
 <li><strong>Base32-encoded sequential number with checksum</strong>:</li>
 </ul>
-<p><code>ascii
-  to be added, ...</code></p>
+<p>For example, base32-encoding the number "123456789" with ISO 7064-Mod97-10 checksum gives the ID:</p>
+<div class="highlight"><pre><span></span><code>3FZ-2J9
+</code></pre></div>
 <p>For pure machine use and if global uniqueness is important consider using</p>
 <ul>
 <li><strong>UUID4-based identifiers</strong> (unordered):</li>
 </ul>
-<p><code>ascii
-  40944082-40ed-4f66-9e8f-66fbcd3908a9</code></p>
+<div class="highlight"><pre><span></span><code>40944082-40ed-4f66-9e8f-66fbcd3908a9
+</code></pre></div>
 <ul>
 <li><strong>UUID7-based identifiers</strong> (time-ordered):</li>
 </ul>
-<p><code>ascii
-  0195c559-4b8a-7201-a7ab-f1a5d06687e0</code></p>
-<p>See also <a href="#pid4cat suffix design">pid4cat suffix design</a> section.</p>
+<div class="highlight"><pre><span></span><code>0195c559-4b8a-7201-a7ab-f1a5d06687e0
+</code></pre></div>
+<p>See also suffix design in <a href="#identifier-pattern">identifier pattern</a> section and PID literature<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup>^,^<sup id="fnref2:4"><a class="footnote-ref" href="#fn:4">4</a></sup>.</p>
 <h3 id="landing-pages">Landing Pages</h3>
 <p>Landing pages should:</p>
 <ol>
 <li><strong>Be persistent</strong>: Remain accessible for as long as the identifier exists</li>
 <li><strong>Provide metadata</strong>: Display key metadata about the resource</li>
-<li><strong>Offer access</strong>: Provide direct access to the resource or clear instructions for obtaining access</li>
+<li><strong>Offer access information</strong>: Provide direct access to the resource or clear instructions for obtaining access</li>
 <li><strong>Include citation information</strong>: Show how the resource should be cited</li>
 <li><strong>Show provenance</strong>: Include information about the origin and history of the resource</li>
 <li><strong>Be human-readable</strong>: Present information in a user-friendly format</li>
@@ -1281,6 +1518,7 @@ For example, whenever reading and typing of the id by humans is important consid
 <li><strong>Monitoring</strong>: Implement monitoring to ensure identifiers remain resolvable</li>
 </ol>
 <h3 id="security-and-access-control">Security and Access Control</h3>
+<p>The SNAAs ensure the security and access control of the data and must secure it with sufficient technical and organisational measures.</p>
 <h4 id="api-key-management">API Key Management</h4>
 <ol>
 <li>Keep your API key secure</li>
@@ -1306,10 +1544,10 @@ For example, whenever reading and typing of the id by humans is important consid
 </ul>
 <h3 id="phase-2-service-expansion-current">Phase 2: Service Expansion (Current)</h3>
 <ul>
-<li>Enhanced API capabilities</li>
-<li>Improved metadata model</li>
+<li>Enhance API capabilities</li>
+<li>Improve metadata model</li>
 <li>Integration with related services</li>
-<li>Expansion of documentation</li>
+<li>Expansion of user and developer documentation</li>
 <li>Onboarding of initial SNAAs</li>
 </ul>
 <h3 id="phase-3-community-growth-upcoming">Phase 3: Community Growth (Upcoming)</h3>
@@ -1321,20 +1559,36 @@ For example, whenever reading and typing of the id by humans is important consid
 </ul>
 <h3 id="phase-4-sustainability-future">Phase 4: Sustainability (Future)</h3>
 <ul>
-<li>Establishment of sustainable funding model</li>
-<li>Long-term preservation planning</li>
+<li>Establish a sustainable funding model</li>
+<li>Plan long-term preservation</li>
 <li>Evaluation and improvement of governance model</li>
 </ul>
 <h2 id="history">History</h2>
-<p>The pid4cat service has been developed by the <a href="https://nfid4cat.org/">NFDI4Cat</a> consortium as a core element of NFDI4Cat service portfolio.
-Fostering the use of PIDs and facilitating the registration of PIDs for all important research resources is key to achieving FAIR data in catalysis research.</p>
+<p>The pid4cat service has been developed within NFDI4Cat, a project funded by the German Research Foundation (DFG) to establish a research data infrastructure for catalysis research (see <a href="../about/">About</a>).</p>
 <p>Key milestones in the development of pid4cat:</p>
 <ul>
 <li><strong>2023</strong>: Initial conceptualization of pid4cat</li>
 <li><strong>2024</strong>: Launch of the production handle server</li>
 <li><strong>2025</strong>: Launch of pid4cat service; Onboarding of initial SNAAs</li>
 </ul>
-<p>The development of pid4cat has been guided by the needs of the catalysis research community and best practices in persistent identifier management.</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>Larry Lannom and Lt. Col. Brian P. Boesch and Sam Sun, RFC 3650: Handle System Overview, 2003.
+  https://datatracker.ietf.org/doc/html/rfc3650&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>Fenner, M. (2016). ‘Cool DOI's’, DataCite Blog, https://doi.org/10.5438/55E5-T5C0&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:3">
+<p>McMurry JA, Juty N, Blomberg N, Burdett T, Conlin T, Conte N, et al. (2017) ‘Identifiers for the 21stcentury: How to design, provision, andreuse persistent identifiers to maximize utility and impact of lifescience data’. PLoS Biol15(6): e2001414. https://doi.org/10.1371/journal.pbio.2001414&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+<li id="fn:4">
+<p>Philipson, Joakim. ‘Identifying PIDs Playing FAIR’. Data Science 2, no. 1–2 (1 January 2019): 229–44. https://doi.org/10.3233/DS-190024.&#160;<a class="footnote-backref" href="#fnref:4" title="Jump back to footnote 4 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:4" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
 
 
 
@@ -1382,10 +1636,12 @@ Fostering the use of PIDs and facilitating the registration of PIDs for all impo
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
     
     
       
-      <script id="__config" type="application/json">{"base": "..", "features": ["content.tabs.link"], "search": "../assets/javascripts/workers/search.f8cc74c7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"alias": true, "default": ["stable"], "provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"base": "..", "features": ["content.tabs.link", "search.highlight", "navigation.instant", "navigation.instant.progress", "navigation.tracking"], "search": "../assets/javascripts/workers/search.f8cc74c7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"alias": true, "default": ["stable"], "provider": "mike"}}</script>
     
     
       <script src="../assets/javascripts/bundle.c8b220af.min.js"></script>
