@@ -53,7 +53,7 @@ authority, otherwise known as its suffix:
 
 `<Handle> ::= <Handle Naming Authority> "/" <Handle Local Name>`
 
-The naming authority and local name are separated by the ASCII character �/�.
+The naming authority and local name are separated by the ASCII character "/".
 
 ```ascii
 21.zzzzz/4cat/638s-k9dx
@@ -114,13 +114,15 @@ Rules for the `<id-suffix>`:
 Suggested checksum calculations:
 
 - **The ISO 7064 Mod 97, 10 algorithm.** It evaluates the whole identifier as an integer which is valid if the number modulo 97 is 1.
-  It has two check digits and is easy to compute.
+  It has two check digits and is easy to compute. Strings may be handled by replacing the letters with a number, e.g. its ascii-code,
+  before applying the algorithm.
   It is for example used by [ROR](https://ror.org/) and [DataCite](https://datacite.org/).
 - **The ISO 7064 Mod 37, 36 algorithm.** It uses one alphanumeric check digit and the identifier itself may also be alphanumeric (digit or char).
   Hence, it is well suited to detect error in alphanumeric identification numbers.
   This algorithm is for example used by the [Global Release Identifier](https://en.wikipedia.org/wiki/Global_Release_Identifier).
 
-Implementation of these algorithms are available in many languages (for example in [python-stdnum](https://arthurdejong.org/python-stdnum/doc/1.20/stdnum.iso7064)).
+Implementation of these algorithms are available in many languages (for example in [python-stdnum](https://arthurdejong.org/python-stdnum/doc/1.20/stdnum.iso7064),
+[base32-lib](https://pypi.org/project/base32-lib/) for Python or [cdigit](https://github.com/LiosK/cdigit) for JavaScript).
 
 Open question: TODO!
 
@@ -151,8 +153,8 @@ Repo4cat makes use of pid4cat handles to persistently identify the stored resour
 
 Example handle PID for data in the production instance of [repo4cat](https://repository.nfdi4cat.org/):
 
-- [https://hdl.handle.net/21.11165/4cat/638s-k9dx][https://hdl.handle.net/21.11165/4cat/638s-k9dx?noredirect]
-- The shoulder �4cat� is also used as "PID-namespace" for repo4cat PIDs.
+- [https://hdl.handle.net/21.11165/4cat/638s-k9dx](https://hdl.handle.net/21.11165/4cat/638s-k9dx?noredirect)
+- The shoulder `4cat/` is also used as "PID-namespace" for repo4cat PIDs.
 - The `<ns-suffix>` is not present in repo4cat PIDs.
 
 Currently the PIDs minted by repo4cat lack the rich metadata that are attached to other pid4cat PIDs due to limitations of Dataverse.
@@ -161,27 +163,31 @@ Currently the PIDs minted by repo4cat lack the rich metadata that are attached t
 
 pid4cat identifiers can be resolved using multiple methods:
 
-1. **Direct Handle System resolution**:
+### Direct Handle System resolution
 
-  ```http
-  https://hdl.handle.net/<prefix>/4cat/<ns-suffix>/<id-suffix>
-  ```
+```http
+https://hdl.handle.net/<prefix>/4cat/<ns-suffix>/<id-suffix>
+```
 
-2. **pid4cat resolver**:
+### pid4cat resolver
 
-  ```http
-  https://pid.nfdi4cat.org/<prefix>/4cat/<ns-suffix>/<id-suffix>
-  or
-  https://handle.nfdi4cat.org/<prefix>/4cat/<ns-suffix>/<id-suffix>
-  ```
+```http
+https://pid.nfdi4cat.org/<prefix>/4cat/<ns-suffix>/<id-suffix>
+```
 
-3. **DOI proxy**:
+or alternatively
 
-  The DOI resolver also works with other handles than the DOI 10.*-handles.
+```http
+https://handle.nfdi4cat.org/<prefix>/4cat/<ns-suffix>/<id-suffix>
+```
 
-  ```http
-  https://doi.org/<prefix>/4cat/<ns-suffix>/<id-suffix>
-  ```
+### DOI proxy
+
+The DOI resolver also works with other handles than the DOI 10.*-handles.
+
+```http
+https://doi.org/<prefix>/4cat/<ns-suffix>/<id-suffix>
+```
 
 ## Logos & display guidelines
 
@@ -241,8 +247,10 @@ For example, whenever reading and typing of the IDs by humans is important, cons
 
 - **Base32-encoded sequential number with checksum**:
 
+For example, base32-encoding the number "123456789" with ISO 7064-Mod97-10 checksum gives the ID:
+
   ```ascii
-  TODO to be added, ...
+  3FZ-2J9
   ```
 
 For pure machine use and if global uniqueness is important consider using
@@ -259,7 +267,7 @@ For pure machine use and if global uniqueness is important consider using
   0195c559-4b8a-7201-a7ab-f1a5d06687e0
   ```
 
-See also [pid4cat suffix design](#pid4cat suffix design) section.
+See also suffix design in [identifier pattern](#identifier-pattern) section.
 
 ### Landing Pages
 
@@ -344,7 +352,7 @@ The development and expansion of pid4cat is planned in several phases:
 
 ## History
 
-The pid4cat service was developed as part of the NFDI4Cat consortium, a project funded by the German Research Foundation (DFG) to establish a research data infrastructure for catalysis research (see about.md TODO make this a link).
+The pid4cat service has been developed within NFDI4Cat, a project funded by the German Research Foundation (DFG) to establish a research data infrastructure for catalysis research (see [About](./about.md)).
 
 Key milestones in the development of pid4cat:
 

@@ -6,9 +6,9 @@ The metadata for pid4cat mainly include data about the PID and its relation to o
 
 The metadata schema for pid4cat is defined as a Linked Data Modeling Language (LinkML) schema. From this LinkML schema various representations can be created.
 
-The schema is documented under [overview](/overview).
+The schema is documented under [overview](./elements/overview.md).
 
-The Python package derived from the schema is described in the section [Tools and Services](#tools-and-services) below.
+The Python package derived from the schema is described in the section [Tools and Services](./tools.md).
 
 ## Core Metadata Elements
 
