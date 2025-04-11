@@ -70,7 +70,7 @@ The naming authority for pid4cat handles is HLRS.
 
 [^1]:
   Larry Lannom and Lt. Col. Brian P. Boesch and Sam Sun, RFC 3650: Handle System Overview, 2003.
-  https://datatracker.ietf.org/doc/html/rfc3650
+  [https://datatracker.ietf.org/doc/html/rfc3650](https://datatracker.ietf.org/doc/html/rfc3650)
 
 ## Identifier pattern
 
@@ -139,7 +139,7 @@ Implementation of these algorithms are available in many languages (for example 
     Case-insensitivity could only be enabled for certain sub-namespaces upon SNAA request.
     It should not be enforced for all created identifiers and case-insensitive should be the default.
 
-[^2]: Fenner, M. (2016). ‘Cool DOI's’, DataCite Blog, https://doi.org/10.5438/55E5-T5C0
+[^2]: Fenner, M. (2016). ‘Cool DOI's’, DataCite Blog, [https://doi.org/10.5438/55E5-T5C0](https://doi.org/10.5438/55E5-T5C0)
 
 ## Use case: PIDs for samples, devices etc.
 
@@ -282,10 +282,13 @@ For pure machine use and if global uniqueness is important consider using
 See also suffix design in [identifier pattern](#identifier-pattern) section and PID literature[^3]^,^[^4].
 
 [^3]:
-  McMurry JA, Juty N, Blomberg N, Burdett T, Conlin T, Conte N, et al. (2017) ‘Identifiers for the 21stcentury: How to design, provision, andreuse persistent identifiers to maximize utility and impact of lifescience data’. PLoS Biol15(6): e2001414. https://doi.org/10.1371/journal.pbio.2001414
+  McMurry JA, Juty N, Blomberg N, Burdett T, Conlin T, Conte N, et al. (2017)
+  ‘Identifiers for the 21stcentury: How to design, provision, and reuse persistent identifiers to maximize utility and impact of life science data’.
+  PLoS Biol15(6): e2001414. [https://doi.org/10.1371/journal.pbio.2001414](https://doi.org/10.1371/journal.pbio.2001414)
 
 [^4]:
-  Philipson, Joakim. ‘Identifying PIDs Playing FAIR’. Data Science 2, no. 1–2 (1 January 2019): 229–44. https://doi.org/10.3233/DS-190024.
+  Philipson, Joakim. ‘Identifying PIDs Playing FAIR’. Data Science 2, no. 1–2 (1 January 2019): 229–44.
+  [https://doi.org/10.3233/DS-190024](https://doi.org/10.3233/DS-190024).
 
 
 ### Landing Pages
