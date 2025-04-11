@@ -73,7 +73,8 @@ jobs:
 
       # yamllint disable rule:line-length
       - name: Build & deploy "dev" docs for a new commit to main
-        if: github.event_name == 'push' && github.ref_type != 'tag'
+
+        if: (github.event_name == 'push' && github.ref_type != 'tag') || github.event_name == 'workflow_dispatch'
         run: |
           export SHORT_SHA=$(echo "${GITHUB_SHA}" | cut -c1-7)
           uv run mike deploy --push --update-aliases --title "dev (${SHORT_SHA})" dev
