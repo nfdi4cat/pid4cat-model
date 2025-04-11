@@ -42,14 +42,14 @@ For the pid4cat pattern:
 - Recognizable as pid4cat
 - Short meaningless identifier for the namespaces of SNAAs.
 - Best-practice guidelines for identifier patterns to help the SNAAs.
-- Within the prefix space, only the combination of identifier for the namespace and SNAA-created ID must be unique to allow offline (uncoordinated & de-centralized) minting of identifiers.
+- Within the prefix space, only the combination of identifier for the namespace
+  and SNAA-created ID must be unique to allow offline (uncoordinated & de-centralized) minting of identifiers.
 
 ## Handle System Basics
 
 Every handle consists of two parts:
 its naming authority, otherwise known as its prefix,
-and a unique local name under the naming
-authority, otherwise known as its suffix:
+and a unique local name under the naming authority, otherwise known as its suffix:[^1]
 
 `<Handle> ::= <Handle Naming Authority> "/" <Handle Local Name>`
 
@@ -68,7 +68,9 @@ The uniqueness of a naming authority and a local name under that authority ensur
 
 The naming authority for pid4cat handles is HLRS.
 
-Ref.: https://datatracker.ietf.org/doc/html/rfc3650
+[^1]:
+  Larry Lannom and Lt. Col. Brian P. Boesch and Sam Sun, RFC 3650: Handle System Overview, 2003.
+  https://datatracker.ietf.org/doc/html/rfc3650
 
 ## Identifier pattern
 
@@ -76,7 +78,7 @@ The handle-suffix part has to fulfill different roles in pid4cat handles.
 First, it should allow the minting of PIDs by different institutions.
 This requires that a part of the PID suffix is used as an identifier for an organization using a sub-PID-namespace.
 Second, the suffix must contain an identifier part that makes it unique in each sub-PID-namespace.
-Third, the suffix should make pid4cat handles easily distinguishable from other handles (for humans) [ref? TODO].
+Third, the suffix should make pid4cat handles easily distinguishable from other handles (for humans).
 
 The following scheme was selected for pid4cat handles:
 
@@ -90,10 +92,13 @@ The following scheme was selected for pid4cat handles:
      suffix   ns-suffix
 ```
 
-As a branding label we use `4cat` as already done for the dataverse [data repository](https://repository.nfdi4cat.org).
+As a branding label we use `4cat` to make pid4cat handles easily distinguishable.[^4]
+This has as already been implemented for NFDI4Cat´s [data repository](https://repository.nfdi4cat.org).
 Next comes an identifier `ns-suffix` for the namespace of sub-authorities associated with the PID-subspace followed by the ID-suffix part.
 Regarding uniqueness, it is important to note that only the combination of ns-suffix and id-suffix must be unique.
-Due to this all SNAAs are independent in the IDs they generate. The same id-suffix may be present in different sub namespaces. The different parts are separated by the ASCII character "/".
+Due to this all SNAAs are independent in the IDs they generate.
+The same id-suffix may be present in different sub namespaces.
+The different parts are separated by the ASCII character "/".
 
 Rules for the `<ns-suffix>`:
 
@@ -101,7 +106,8 @@ Rules for the `<ns-suffix>`:
   It is suggested to keep the sub-authority identifier short (3 chars)
   and use only the crockford-32 alphabet. This gives 32**3 = 32768 combinations.
 - Sub-namespaces have to be requested at HLRS.
-- The ns-suffixes are generated randomly and should have no meaning (for example they should not match abbreviations of institutions). [ref.? TODO]
+- The ns-suffixes are generated randomly and should have no meaning (for example they should not match abbreviations of institutions).[^2]
+
 
 Rules for the `<id-suffix>`:
 
@@ -124,10 +130,16 @@ Suggested checksum calculations:
 Implementation of these algorithms are available in many languages (for example in [python-stdnum](https://arthurdejong.org/python-stdnum/doc/1.20/stdnum.iso7064),
 [base32-lib](https://pypi.org/project/base32-lib/) for Python or [cdigit](https://github.com/LiosK/cdigit) for JavaScript).
 
-Open question: TODO!
+!!! warning "Open question on supporting case sensitivity for identifier suffix."
 
-- Should the ID-suffix be stored as case sensitive string? While this would not be required for numeric, hex or base32 encoded IDs, case sensitivity would be essential to support also base64 encoded ID-suffixes.
-  - Proposal (David): design & program for case-sensitive IDs. My reasoning is that we should not artificially add a significant constraint that will be impossible to remove later. Case-insensitivity may be specified by individual SNAA for their sub-namespaces but should not be enforced for all created identifiers.
+    TODO: Update after poll: [Do you need case-sensitive ID handling?](https://github.com/nfdi4cat/pid4cat-model/issues/114)
+
+    While case sensitive strings would not be required for numeric, hex or base32 encoded IDs,
+    case sensitivity would be essential to support also base64 encoded ID-suffixes.
+    Case-insensitivity could only be enabled for certain sub-namespaces upon SNAA request.
+    It should not be enforced for all created identifiers and case-insensitive should be the default.
+
+[^2]: Fenner, M. (2016). ‘Cool DOI's’, DataCite Blog, https://doi.org/10.5438/55E5-T5C0
 
 ## Use case: PIDs for samples, devices etc.
 
@@ -135,9 +147,9 @@ pid4cat identifiers can be used for various resources in the catalysis research 
 
 | Category   | Definition | Description of use  |
 | :----------- | :-------------- | :------------------------------------------------------------------------------- |
-| COLLECTION   | [voc4cat:0005012](https://w3id.org/nfdi4cat/voc4cat_0005012) | A collection is a group of resources and/or other collections                    |
+| COLLECTION   | [voc4cat:0005012](https://w3id.org/nfdi4cat/voc4cat_0005012) | A collection is a group of resources and/or other collections |
 | SAMPLE       | [voc4cat:0005013](https://w3id.org/nfdi4cat/voc4cat_0005013) | A representative part of a material of interest on which observations are made. |
-| MATERIAL     | [voc4cat:0005014](https://w3id.org/nfdi4cat/voc4cat_0005014) | A material used in the research process (except samples).                         |
+| MATERIAL     | [voc4cat:0005014](https://w3id.org/nfdi4cat/voc4cat_0005014) | A material used in the research process (except samples). |
 | DEVICE       | [voc4cat:0005015](https://w3id.org/nfdi4cat/voc4cat_0005015) | A physical device used in a research or manufacturing process. |
 | DATA_OBJECT  | [voc4cat:0005016](https://w3id.org/nfdi4cat/voc4cat_0005016) | A collection of data available for access or download. A data object might be a data file, a data set, a data collection. |
 | DATA_SERVICE | [voc4cat:0005017](https://w3id.org/nfdi4cat/voc4cat_0005017) | An organized system of operations that provide data processing functions or access to datasets. |
@@ -267,7 +279,14 @@ For pure machine use and if global uniqueness is important consider using
   0195c559-4b8a-7201-a7ab-f1a5d06687e0
   ```
 
-See also suffix design in [identifier pattern](#identifier-pattern) section.
+See also suffix design in [identifier pattern](#identifier-pattern) section and PID literature[^3]^,^[^4].
+
+[^3]:
+  McMurry JA, Juty N, Blomberg N, Burdett T, Conlin T, Conte N, et al. (2017) ‘Identifiers for the 21stcentury: How to design, provision, andreuse persistent identifiers to maximize utility and impact of lifescience data’. PLoS Biol15(6): e2001414. https://doi.org/10.1371/journal.pbio.2001414
+
+[^4]:
+  Philipson, Joakim. ‘Identifying PIDs Playing FAIR’. Data Science 2, no. 1–2 (1 January 2019): 229–44. https://doi.org/10.3233/DS-190024.
+
 
 ### Landing Pages
 

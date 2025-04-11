@@ -1,6 +1,6 @@
 [![CI - main](https://github.com/nfdi4cat/pid4cat-model/actions/workflows/main.yaml/badge.svg)](https://github.com/nfdi4cat/pid4cat-model/actions/workflows/main.yaml)
 [![CI - docs](https://github.com/nfdi4cat/pid4cat-model/actions/workflows/deploy-docs.yaml/badge.svg?branch=main)](https://github.com/nfdi4cat/pid4cat-model/actions/workflows/deploy-docs.yaml)
-[![DOI](https://zenodo.org/badge/598213054.svg)](https://zenodo.org/badge/latestdoi/598213054)
+[![DOI](https://zenodo.org/badge/728357011.svg)](https://doi.org/10.5281/zenodo.15173682)
 [![PyPI - Version](https://img.shields.io/pypi/v/pid4cat-model)](https://pypi.org/project/pid4cat-model)
 
 # Persistent Identifiers for FAIR data in Catalysis

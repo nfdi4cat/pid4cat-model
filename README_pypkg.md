@@ -1,7 +1,7 @@
 [![CI - main](https://github.com/nfdi4cat/pid4cat-model/actions/workflows/main.yaml/badge.svg)](https://github.com/nfdi4cat/pid4cat-model/actions/workflows/main.yaml)
 [![CI - docs](https://github.com/nfdi4cat/pid4cat-model/actions/workflows/deploy-docs.yaml/badge.svg?branch=main)](https://github.com/nfdi4cat/pid4cat-model/actions/workflows/deploy-docs.yaml)
 [![PyPI - Version](https://img.shields.io/pypi/v/pid4cat-model)](https://pypi.org/project/pid4cat-model)
-[![DOI](https://zenodo.org/badge/598213054.svg)](https://zenodo.org/badge/latestdoi/598213054)
+[![DOI](https://zenodo.org/badge/728357011.svg)](https://doi.org/10.5281/zenodo.15173682)
 
 # Python package for pid4cat persistent identifiers
 
@@ -22,7 +22,8 @@ pip install pid4cat-model
 
 ## Documentation
 
-- [pid4cat Python package](https://nfdi4cat.github.io/pid4cat-model/latest/tools/) metadata schema documentation
+- Jupyter notebooks in [examples/](https://github.com/nfdi4cat/pid4cat-model/tree/main/examples) folder.
+- Short introduction in [pid4cat Python package](https://nfdi4cat.github.io/pid4cat-model/latest/tools/#pid4cat-model-python-package) section.
 
 ## Contributors
 
