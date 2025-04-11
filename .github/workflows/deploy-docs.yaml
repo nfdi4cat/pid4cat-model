@@ -58,7 +58,6 @@ jobs:
 
       - name: Generate schema documentation
         run: |
-          # TODO Check if version is injected into the schema.
           just gen-doc
 
       # The if-conditions below make sure to select the right step, depending

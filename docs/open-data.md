@@ -1,7 +1,5 @@
 # Open Data
 
-We plan to make a PID metadata dump available as FAIR data in the future.
-
 ## PID Metadata Dump
 
 As part of our commitment to FAIR data principles, pid4cat will provide regular dumps of PID metadata. These dumps will:

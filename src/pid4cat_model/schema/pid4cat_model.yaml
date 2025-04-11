@@ -383,7 +383,7 @@ classes:
         required: true
       changed_field:
         required: true
-      description:  # TODO discuss if it should be set as required.
+      description:  # Should it be set as required?
         # required: true
 
   Agent:
