@@ -8,11 +8,11 @@ see [README](https://github.com/nfdi4cat/pid4cat-model?tab=readme-ov-file#contri
 
 You may cite the repository containing the pid4cat model, Python package and documentation as:
 
-- Linke, D. et al. (2025). nfdi4cat/pid4cat-model (all versions). Zenodo. https://doi.org/10.5281/zenodo.15173682
+- Linke, D. et al. (2025). nfdi4cat/pid4cat-model (all versions). Zenodo. [https://doi.org/10.5281/zenodo.15173682](https://doi.org/10.5281/zenodo.15173682)
 
 An alternative is to cite a Zenodo-published talk introducing pid4cat:
 
-- Linke, D., & Rodrigues, P. (2025, February 24). pid4cat: Persistent Identifiers for Catalysis Research. PIDs for physical objects, Potsdam. Zenodo. https://doi.org/10.5281/zenodo.14916057
+- Linke, D., & Rodrigues, P. (2025, February 24). pid4cat: Persistent Identifiers for Catalysis Research. PIDs for physical objects, Potsdam. Zenodo. [https://doi.org/10.5281/zenodo.14916057](https://doi.org/10.5281/zenodo.14916057)
 
 ## License
 

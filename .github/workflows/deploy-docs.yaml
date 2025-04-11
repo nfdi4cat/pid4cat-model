@@ -72,7 +72,7 @@ jobs:
           # uv run mkdocs build --strict
 
       # yamllint disable rule:line-length
-      - name: Build & deploy "dev" docs for a new commit to master
+      - name: Build & deploy "dev" docs for a new commit to main
         if: github.event_name == 'push' && github.ref_type != 'tag'
         run: |
           export SHORT_SHA=$(echo "${GITHUB_SHA}" | cut -c1-7)
