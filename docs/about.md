@@ -21,7 +21,7 @@ An alternative is to cite a Zenodo-published talk introducing pid4cat:
 
 ## Acknowledgement
 
-[linkml-project-copier](https://github.com/linkml/linkml-project-cookiecutter) provides the underlying template of the current repository.
+[linkml-project-copier](https://github.com/dalito/linkml-project-copier) provides the underlying template of the current repository.
 
 This project started as an in-kind contribution of [Leibniz-Institut für Katalyse e.V.](https://www.catalysis.de) (Rostock, Germany) to the NFDI4Cat project.
 
