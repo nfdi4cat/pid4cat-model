@@ -3,7 +3,7 @@ title: <div style="font-weight:700;">pid4cat Documentation</div>
 ---
 
 <style>
-  .md-content .md-typeset h1 {
+    .md-content__inner h1 {
     display: none;
   }
 </style>
