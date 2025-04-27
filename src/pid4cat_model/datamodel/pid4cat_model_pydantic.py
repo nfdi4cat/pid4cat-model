@@ -3,13 +3,13 @@ from __future__ import annotations
 import re
 from datetime import datetime
 from enum import Enum
-from typing import Any, ClassVar, Dict, List, Literal, Optional, Union
+from typing import Any, ClassVar, Literal, Optional, Union
 
 from pydantic import BaseModel, ConfigDict, Field, RootModel, field_validator
 
 
 metamodel_version = "None"
-version = "0.0.0"
+version = "0.3.0.post17.dev0+93e88c2"
 
 
 class ConfiguredBaseModel(BaseModel):
@@ -25,7 +25,7 @@ class ConfiguredBaseModel(BaseModel):
 
 
 class LinkMLMeta(RootModel):
-    root: Dict[str, Any] = {}
+    root: dict[str, Any] = {}
     model_config = ConfigDict(frozen=True)
 
     def __getattr__(self, key: str):
@@ -205,19 +205,19 @@ class RelationType(str, Enum):
     HAS_METADATA = "HAS_METADATA"
     # The resource is metadata for another resource.
     IS_METADATA_FOR = "IS_METADATA_FOR"
-    # The resource has a version.
+    # The resource has a version. This is useful to express the relation between a abstract resource to its versioned instances, for example, "Python has_version Python 3.12".
     HAS_VERSION = "HAS_VERSION"
     # The resource is a version of another resource. This is useful to refer to an abstract resource that has different versions, for example, "Python 3.12 is a version of Python".
     IS_VERSION_OF = "IS_VERSION_OF"
-    # The resource is a new version of another resource.
+    # The resource is a new version of another versioned resource. This is useful to refer between versioned resources, for example, "Python 3.12.1 is_new_version_of Python 3.12.0".
     IS_NEW_VERSION_OF = "IS_NEW_VERSION_OF"
-    # The resource is a previous version of another resource.
+    # The resource is a previous version of another versioned resource. This is useful to refer between versioned resources, for example, "Python 3.12.0 is_previous_version_of Python 3.12.1".
     IS_PREVIOUS_VERSION_OF = "IS_PREVIOUS_VERSION_OF"
-    # The resource is part of another resource.
+    # The resource is part of another resource. This relation applies to container-contained type relationships. If the relation refers to publishing one resource as part of another resource, use "IS_PUBLISHED_IN" instead. If the relation refers to a versioned resource and non-versioned resource, use "IS_VERSION_OF" instead.
     IS_PART_OF = "IS_PART_OF"
-    # The resource has part another resource.
+    # The resource has part another resource. This relation applies to container-contained type relationships. If the relation refers to publishing one resource as part of another resource, "IS_PUBLISHED_IN" instead. If the relation refers to a versioned resource and non-versioned resource, use "HAS_VERSION" instead.
     HAS_PART = "HAS_PART"
-    # The resource is published in another resource.
+    # The resource is published in another resource. A resource A that is_published_in a resource B is independent from other resources published in the same resource B.
     IS_PUBLISHED_IN = "IS_PUBLISHED_IN"
     # The resource is referenced by another resource.
     IS_REFERENCED_BY = "IS_REFERENCED_BY"
@@ -227,23 +227,23 @@ class RelationType(str, Enum):
     IS_DOCUMENTED_BY = "IS_DOCUMENTED_BY"
     # The resource documents another resource.
     DOCUMENTS = "DOCUMENTS"
-    # The resource is compiled by another resource.
+    # The resource is compiled by another resource. Resources may be text or software. The compiler may be a computer program or a person.
     IS_COMPILED_BY = "IS_COMPILED_BY"
-    # The resource compiles another resource.
+    # The resource compiles another resource. Resources may be text or software. The compiler may be a computer program or a person.
     COMPILES = "COMPILES"
-    # The resource is variant form of another resource.
+    # The resource is variant form of another resource. This may be used e.g. for relating architecture-specific builds of a a software program to a source-code release. It may also be used to express the relation between data in different formats (e.g. PNG, JPEG) of the same image.
     IS_VARIANT_FORM_OF = "IS_VARIANT_FORM_OF"
-    # The resource is original form of another resource.
+    # The resource is original form of another resource. This may be used e.g. for relating architecture-specific builds of a a software program to a source-code release. It may also be used to express the relation between data in different formats (e.g. PNG, JPEG) of the same image.
     IS_ORIGINAL_FORM_OF = "IS_ORIGINAL_FORM_OF"
-    # The resource is identical to another resource.
+    # The resource is identical to another resource. May be used to indicate the relationship between an exact copy of a resource that is published at another location.
     IS_IDENTICAL_TO = "IS_IDENTICAL_TO"
-    # The resource is derived from another resource.
+    # The resource is derived from another resource. This may be used for relating a new dataset created by data processing to its original source dataset. For samples it may express the relation between the original sample and another sample derived from it by physical or chemical treatment.
     IS_DERIVED_FROM = "IS_DERIVED_FROM"
-    # The resource is source of another resource.
+    # The resource is source of another resource. This may be used for example to express the relation between a source dataset and a new dataset derived from it by data processing. For samples it may express the relation between a sample processed by physical or chemical treatment and the original sample.
     IS_SOURCE_OF = "IS_SOURCE_OF"
-    # The resource is collected by another resource.
+    # The resource is collected by another resource. May be used to indicate the relationship between a dataset and an instrument that is used to collect, measure, obtain, or observe data.
     IS_COLLECTED_BY = "IS_COLLECTED_BY"
-    # The resource collects another resource.
+    # The resource collects another resource. May be used to indicate the relationship between an instrument and where it has been used to collect, measure, obtain, or observe data.
     COLLECTS = "COLLECTS"
     # The resource is required by another resource.
     IS_REQUIRED_BY = "IS_REQUIRED_BY"
@@ -253,6 +253,8 @@ class RelationType(str, Enum):
     IS_OBSOLETED_BY = "IS_OBSOLETED_BY"
     # The resource obsoletes another resource.
     OBSOLETES = "OBSOLETES"
+    # An established standard to which the described resource conforms. This relation should be used to indicate the model, schema, ontology, or profile that the resource content conforms to.
+    CONFORMS_TO = "CONFORMS_TO"
 
 
 class Pid4CatStatus(str, Enum):
@@ -322,20 +324,20 @@ class HandleAPIRecord(ConfiguredBaseModel):
     )
 
     responseCode: Optional[int] = Field(
-        None,
+        default=None,
         description="""The response code of the handle API.""",
         json_schema_extra={
             "linkml_meta": {"alias": "responseCode", "domain_of": ["HandleAPIRecord"]}
         },
     )
     handle: str = Field(
-        ...,
+        default=...,
         description="""The handle of the pid4cat record.""",
         json_schema_extra={
             "linkml_meta": {"alias": "handle", "domain_of": ["HandleAPIRecord"]}
         },
     )
-    values: List[
+    values: list[
         Union[
             HandleRecord,
             URL,
@@ -348,7 +350,7 @@ class HandleAPIRecord(ConfiguredBaseModel):
             CHANGES,
         ]
     ] = Field(
-        ...,
+        default=...,
         description="""The values of the pid4cat record.""",
         json_schema_extra={
             "linkml_meta": {"alias": "values", "domain_of": ["HandleAPIRecord"]}
@@ -391,14 +393,14 @@ class HandleRecord(ConfiguredBaseModel):
     )
 
     timestamp: datetime = Field(
-        ...,
+        default=...,
         description="""The iso datetime for the last update of the handle data.""",
         json_schema_extra={
             "linkml_meta": {"alias": "timestamp", "domain_of": ["HandleRecord"]}
         },
     )
     ttl: Optional[int] = Field(
-        86400,
+        default=86400,
         description="""A time to live in seconds for the handle record. Typically: 86400 => 1 day""",
         json_schema_extra={
             "linkml_meta": {
@@ -409,7 +411,7 @@ class HandleRecord(ConfiguredBaseModel):
         },
     )
     type: Literal["HandleRecord"] = Field(
-        "HandleRecord",
+        default="HandleRecord",
         description="""The type of handledata stored in the handle record.""",
         json_schema_extra={
             "linkml_meta": {
@@ -442,7 +444,7 @@ class URL(HandleRecord):
     )
 
     index: int = Field(
-        ...,
+        default=...,
         description="""The index of the handle record.""",
         ge=1,
         le=1,
@@ -463,7 +465,7 @@ class URL(HandleRecord):
         },
     )
     data: HdlDataUrl = Field(
-        ...,
+        default=...,
         description="""The data in the handle record.""",
         json_schema_extra={
             "linkml_meta": {
@@ -482,14 +484,14 @@ class URL(HandleRecord):
         },
     )
     timestamp: datetime = Field(
-        ...,
+        default=...,
         description="""The iso datetime for the last update of the handle data.""",
         json_schema_extra={
             "linkml_meta": {"alias": "timestamp", "domain_of": ["HandleRecord"]}
         },
     )
     ttl: Optional[int] = Field(
-        86400,
+        default=86400,
         description="""A time to live in seconds for the handle record. Typically: 86400 => 1 day""",
         json_schema_extra={
             "linkml_meta": {
@@ -500,7 +502,7 @@ class URL(HandleRecord):
         },
     )
     type: Literal["URL"] = Field(
-        "URL",
+        default="URL",
         description="""The type of handledata stored in the handle record.""",
         json_schema_extra={
             "linkml_meta": {
@@ -536,7 +538,7 @@ class HdlDataUrl(ConfiguredBaseModel):
     )
 
     format: Optional[Literal["string"]] = Field(
-        "string",
+        default="string",
         description="""The format of the handle data.""",
         json_schema_extra={
             "linkml_meta": {
@@ -557,7 +559,7 @@ class HdlDataUrl(ConfiguredBaseModel):
         },
     )
     value: str = Field(
-        ...,
+        default=...,
         description="""The value of the handle data.""",
         json_schema_extra={
             "linkml_meta": {
@@ -610,7 +612,7 @@ class EMAIL(HandleRecord):
     )
 
     index: int = Field(
-        ...,
+        default=...,
         description="""The index of the handle record.""",
         ge=10,
         le=10,
@@ -631,7 +633,7 @@ class EMAIL(HandleRecord):
         },
     )
     data: HdlDataContact = Field(
-        ...,
+        default=...,
         description="""The data in the handle record.""",
         json_schema_extra={
             "linkml_meta": {
@@ -650,14 +652,14 @@ class EMAIL(HandleRecord):
         },
     )
     timestamp: datetime = Field(
-        ...,
+        default=...,
         description="""The iso datetime for the last update of the handle data.""",
         json_schema_extra={
             "linkml_meta": {"alias": "timestamp", "domain_of": ["HandleRecord"]}
         },
     )
     ttl: Optional[int] = Field(
-        86400,
+        default=86400,
         description="""A time to live in seconds for the handle record. Typically: 86400 => 1 day""",
         json_schema_extra={
             "linkml_meta": {
@@ -668,7 +670,7 @@ class EMAIL(HandleRecord):
         },
     )
     type: Literal["EMAIL"] = Field(
-        "EMAIL",
+        default="EMAIL",
         description="""The type of handledata stored in the handle record.""",
         json_schema_extra={
             "linkml_meta": {
@@ -704,7 +706,7 @@ class HdlDataContact(ConfiguredBaseModel):
     )
 
     format: Optional[Literal["string"]] = Field(
-        "string",
+        default="string",
         description="""The format of the handle data.""",
         json_schema_extra={
             "linkml_meta": {
@@ -725,7 +727,7 @@ class HdlDataContact(ConfiguredBaseModel):
         },
     )
     value: str = Field(
-        ...,
+        default=...,
         description="""The value of the handle data.""",
         json_schema_extra={
             "linkml_meta": {
@@ -778,7 +780,7 @@ class STATUS(HandleRecord):
     )
 
     index: int = Field(
-        ...,
+        default=...,
         description="""The index of the handle record.""",
         ge=11,
         le=11,
@@ -799,7 +801,7 @@ class STATUS(HandleRecord):
         },
     )
     data: HdlDataStatus = Field(
-        ...,
+        default=...,
         description="""The data in the handle record.""",
         json_schema_extra={
             "linkml_meta": {
@@ -818,14 +820,14 @@ class STATUS(HandleRecord):
         },
     )
     timestamp: datetime = Field(
-        ...,
+        default=...,
         description="""The iso datetime for the last update of the handle data.""",
         json_schema_extra={
             "linkml_meta": {"alias": "timestamp", "domain_of": ["HandleRecord"]}
         },
     )
     ttl: Optional[int] = Field(
-        86400,
+        default=86400,
         description="""A time to live in seconds for the handle record. Typically: 86400 => 1 day""",
         json_schema_extra={
             "linkml_meta": {
@@ -836,7 +838,7 @@ class STATUS(HandleRecord):
         },
     )
     type: Literal["STATUS"] = Field(
-        "STATUS",
+        default="STATUS",
         description="""The type of handledata stored in the handle record.""",
         json_schema_extra={
             "linkml_meta": {
@@ -868,7 +870,7 @@ class HdlDataStatus(ConfiguredBaseModel):
     )
 
     format: Optional[Literal["string"]] = Field(
-        "string",
+        default="string",
         description="""The format of the handle data.""",
         json_schema_extra={
             "linkml_meta": {
@@ -889,7 +891,7 @@ class HdlDataStatus(ConfiguredBaseModel):
         },
     )
     value: Pid4CatStatus = Field(
-        ...,
+        default=...,
         description="""The value of the handle data.""",
         json_schema_extra={
             "linkml_meta": {
@@ -930,7 +932,7 @@ class SCHEMAVER(HandleRecord):
     )
 
     index: int = Field(
-        ...,
+        default=...,
         description="""The index of the handle record.""",
         ge=12,
         le=12,
@@ -951,7 +953,7 @@ class SCHEMAVER(HandleRecord):
         },
     )
     data: HdlDataSchemaVer = Field(
-        ...,
+        default=...,
         description="""The data in the handle record.""",
         json_schema_extra={
             "linkml_meta": {
@@ -970,14 +972,14 @@ class SCHEMAVER(HandleRecord):
         },
     )
     timestamp: datetime = Field(
-        ...,
+        default=...,
         description="""The iso datetime for the last update of the handle data.""",
         json_schema_extra={
             "linkml_meta": {"alias": "timestamp", "domain_of": ["HandleRecord"]}
         },
     )
     ttl: Optional[int] = Field(
-        86400,
+        default=86400,
         description="""A time to live in seconds for the handle record. Typically: 86400 => 1 day""",
         json_schema_extra={
             "linkml_meta": {
@@ -988,7 +990,7 @@ class SCHEMAVER(HandleRecord):
         },
     )
     type: Literal["SCHEMA_VER"] = Field(
-        "SCHEMA_VER",
+        default="SCHEMA_VER",
         description="""The type of handledata stored in the handle record.""",
         json_schema_extra={
             "linkml_meta": {
@@ -1024,7 +1026,7 @@ class HdlDataSchemaVer(ConfiguredBaseModel):
     )
 
     format: Optional[Literal["string"]] = Field(
-        "string",
+        default="string",
         description="""The format of the handle data.""",
         json_schema_extra={
             "linkml_meta": {
@@ -1045,7 +1047,7 @@ class HdlDataSchemaVer(ConfiguredBaseModel):
         },
     )
     value: str = Field(
-        ...,
+        default=...,
         description="""The value of the handle data.""",
         json_schema_extra={
             "linkml_meta": {
@@ -1098,7 +1100,7 @@ class METADATALICENSE(HandleRecord):
     )
 
     index: int = Field(
-        ...,
+        default=...,
         description="""The index of the handle record.""",
         ge=13,
         le=13,
@@ -1119,7 +1121,7 @@ class METADATALICENSE(HandleRecord):
         },
     )
     data: HdlDataLicense = Field(
-        ...,
+        default=...,
         description="""The data in the handle record.""",
         json_schema_extra={
             "linkml_meta": {
@@ -1138,14 +1140,14 @@ class METADATALICENSE(HandleRecord):
         },
     )
     timestamp: datetime = Field(
-        ...,
+        default=...,
         description="""The iso datetime for the last update of the handle data.""",
         json_schema_extra={
             "linkml_meta": {"alias": "timestamp", "domain_of": ["HandleRecord"]}
         },
     )
     ttl: Optional[int] = Field(
-        86400,
+        default=86400,
         description="""A time to live in seconds for the handle record. Typically: 86400 => 1 day""",
         json_schema_extra={
             "linkml_meta": {
@@ -1156,7 +1158,7 @@ class METADATALICENSE(HandleRecord):
         },
     )
     type: Literal["METADATA_LICENSE"] = Field(
-        "METADATA_LICENSE",
+        default="METADATA_LICENSE",
         description="""The type of handledata stored in the handle record.""",
         json_schema_extra={
             "linkml_meta": {
@@ -1192,7 +1194,7 @@ class HdlDataLicense(ConfiguredBaseModel):
     )
 
     format: Optional[Literal["string"]] = Field(
-        "string",
+        default="string",
         description="""The format of the handle data.""",
         json_schema_extra={
             "linkml_meta": {
@@ -1213,7 +1215,7 @@ class HdlDataLicense(ConfiguredBaseModel):
         },
     )
     value: Literal["CC0-1.0"] = Field(
-        ...,
+        default=...,
         description="""The value of the handle data.""",
         json_schema_extra={
             "linkml_meta": {
@@ -1259,7 +1261,7 @@ class RESOURCE(HandleRecord):
     )
 
     index: int = Field(
-        ...,
+        default=...,
         description="""The index of the handle record.""",
         ge=14,
         le=14,
@@ -1280,7 +1282,7 @@ class RESOURCE(HandleRecord):
         },
     )
     data: HdlDataResourceInfo = Field(
-        ...,
+        default=...,
         description="""The data in the handle record.""",
         json_schema_extra={
             "linkml_meta": {
@@ -1299,14 +1301,14 @@ class RESOURCE(HandleRecord):
         },
     )
     timestamp: datetime = Field(
-        ...,
+        default=...,
         description="""The iso datetime for the last update of the handle data.""",
         json_schema_extra={
             "linkml_meta": {"alias": "timestamp", "domain_of": ["HandleRecord"]}
         },
     )
     ttl: Optional[int] = Field(
-        86400,
+        default=86400,
         description="""A time to live in seconds for the handle record. Typically: 86400 => 1 day""",
         json_schema_extra={
             "linkml_meta": {
@@ -1317,7 +1319,7 @@ class RESOURCE(HandleRecord):
         },
     )
     type: Literal["RESOURCE"] = Field(
-        "RESOURCE",
+        default="RESOURCE",
         description="""The type of handledata stored in the handle record.""",
         json_schema_extra={
             "linkml_meta": {
@@ -1349,7 +1351,7 @@ class HdlDataResourceInfo(ConfiguredBaseModel):
     )
 
     format: Optional[Literal["string"]] = Field(
-        "string",
+        default="string",
         description="""The format of the handle data.""",
         json_schema_extra={
             "linkml_meta": {
@@ -1370,7 +1372,7 @@ class HdlDataResourceInfo(ConfiguredBaseModel):
         },
     )
     value: ResourceInfo = Field(
-        ...,
+        default=...,
         description="""The value of the handle data.""",
         json_schema_extra={
             "linkml_meta": {
@@ -1411,7 +1413,7 @@ class RELATED(HandleRecord):
     )
 
     index: int = Field(
-        ...,
+        default=...,
         description="""The index of the handle record.""",
         ge=15,
         le=15,
@@ -1432,7 +1434,7 @@ class RELATED(HandleRecord):
         },
     )
     data: HdlDataRelated = Field(
-        ...,
+        default=...,
         description="""The data in the handle record.""",
         json_schema_extra={
             "linkml_meta": {
@@ -1451,14 +1453,14 @@ class RELATED(HandleRecord):
         },
     )
     timestamp: datetime = Field(
-        ...,
+        default=...,
         description="""The iso datetime for the last update of the handle data.""",
         json_schema_extra={
             "linkml_meta": {"alias": "timestamp", "domain_of": ["HandleRecord"]}
         },
     )
     ttl: Optional[int] = Field(
-        86400,
+        default=86400,
         description="""A time to live in seconds for the handle record. Typically: 86400 => 1 day""",
         json_schema_extra={
             "linkml_meta": {
@@ -1469,7 +1471,7 @@ class RELATED(HandleRecord):
         },
     )
     type: Literal["RELATED"] = Field(
-        "RELATED",
+        default="RELATED",
         description="""The type of handledata stored in the handle record.""",
         json_schema_extra={
             "linkml_meta": {
@@ -1505,7 +1507,7 @@ class HdlDataRelated(ConfiguredBaseModel):
     )
 
     format: Optional[Literal["string"]] = Field(
-        "string",
+        default="string",
         description="""The format of the handle data.""",
         json_schema_extra={
             "linkml_meta": {
@@ -1525,8 +1527,8 @@ class HdlDataRelated(ConfiguredBaseModel):
             }
         },
     )
-    value: Optional[List[Pid4CatRelation]] = Field(
-        None,
+    value: Optional[list[Pid4CatRelation]] = Field(
+        default=None,
         description="""The value of the handle data.""",
         json_schema_extra={
             "linkml_meta": {
@@ -1567,7 +1569,7 @@ class CHANGES(HandleRecord):
     )
 
     index: int = Field(
-        ...,
+        default=...,
         description="""The index of the handle record.""",
         ge=16,
         le=16,
@@ -1588,7 +1590,7 @@ class CHANGES(HandleRecord):
         },
     )
     data: HdlDataLog = Field(
-        ...,
+        default=...,
         description="""The data in the handle record.""",
         json_schema_extra={
             "linkml_meta": {
@@ -1607,14 +1609,14 @@ class CHANGES(HandleRecord):
         },
     )
     timestamp: datetime = Field(
-        ...,
+        default=...,
         description="""The iso datetime for the last update of the handle data.""",
         json_schema_extra={
             "linkml_meta": {"alias": "timestamp", "domain_of": ["HandleRecord"]}
         },
     )
     ttl: Optional[int] = Field(
-        86400,
+        default=86400,
         description="""A time to live in seconds for the handle record. Typically: 86400 => 1 day""",
         json_schema_extra={
             "linkml_meta": {
@@ -1625,7 +1627,7 @@ class CHANGES(HandleRecord):
         },
     )
     type: Literal["CHANGES"] = Field(
-        "CHANGES",
+        default="CHANGES",
         description="""The type of handledata stored in the handle record.""",
         json_schema_extra={
             "linkml_meta": {
@@ -1662,7 +1664,7 @@ class HdlDataLog(ConfiguredBaseModel):
     )
 
     format: Optional[Literal["string"]] = Field(
-        "string",
+        default="string",
         description="""The format of the handle data.""",
         json_schema_extra={
             "linkml_meta": {
@@ -1682,8 +1684,8 @@ class HdlDataLog(ConfiguredBaseModel):
             }
         },
     )
-    value: List[LogRecord] = Field(
-        ...,
+    value: list[LogRecord] = Field(
+        default=...,
         description="""The value of the handle data.""",
         json_schema_extra={
             "linkml_meta": {
@@ -1712,8 +1714,8 @@ class HandleRecordContainer(ConfiguredBaseModel):
         {"from_schema": "https://w3id.org/nfdi4cat/pid4cat-model", "tree_root": True}
     )
 
-    contains_pids: Optional[List[HandleAPIRecord]] = Field(
-        None,
+    contains_pids: Optional[list[HandleAPIRecord]] = Field(
+        default=None,
         description="""The HandleRecords contained in the container.""",
         json_schema_extra={
             "linkml_meta": {
@@ -1734,7 +1736,7 @@ class Pid4CatRelation(ConfiguredBaseModel):
     )
 
     relation_type: Optional[RelationType] = Field(
-        None,
+        default=None,
         description="""Relation type between the resources.""",
         json_schema_extra={
             "linkml_meta": {"alias": "relation_type", "domain_of": ["Pid4CatRelation"]}
@@ -1752,7 +1754,7 @@ class Pid4CatRelation(ConfiguredBaseModel):
             ExampleIdentifier,
         ]
     ] = Field(
-        None,
+        default=None,
         description="""The related identifier.""",
         json_schema_extra={
             "linkml_meta": {
@@ -1762,7 +1764,7 @@ class Pid4CatRelation(ConfiguredBaseModel):
         },
     )
     datetime_log: Optional[datetime] = Field(
-        None,
+        default=None,
         description="""The date and time of a log record.""",
         json_schema_extra={
             "linkml_meta": {
@@ -1792,14 +1794,14 @@ class ResourceInfo(ConfiguredBaseModel):
     )
 
     label: Optional[str] = Field(
-        None,
+        default=None,
         description="""A human-readable name for a resource.""",
         json_schema_extra={
             "linkml_meta": {"alias": "label", "domain_of": ["ResourceInfo"]}
         },
     )
     description: Optional[str] = Field(
-        None,
+        default=None,
         description="""A human-readable description for a resource.""",
         json_schema_extra={
             "linkml_meta": {
@@ -1809,14 +1811,14 @@ class ResourceInfo(ConfiguredBaseModel):
         },
     )
     resource_category: ResourceCategory = Field(
-        ...,
+        default=...,
         description="""The category of the resource.""",
         json_schema_extra={
             "linkml_meta": {"alias": "resource_category", "domain_of": ["ResourceInfo"]}
         },
     )
-    representation_variants: List[RepresentationVariant] = Field(
-        ...,
+    representation_variants: list[RepresentationVariant] = Field(
+        default=...,
         description="""The representations of the resource in other media types than text/html.""",
         json_schema_extra={
             "linkml_meta": {
@@ -1845,7 +1847,7 @@ class LogRecord(ConfiguredBaseModel):
     )
 
     datetime_log: datetime = Field(
-        ...,
+        default=...,
         description="""The date and time of a log record.""",
         json_schema_extra={
             "linkml_meta": {
@@ -1855,21 +1857,21 @@ class LogRecord(ConfiguredBaseModel):
         },
     )
     has_agent: Agent = Field(
-        ...,
+        default=...,
         description="""The person who registered or modified the PID record.""",
         json_schema_extra={
             "linkml_meta": {"alias": "has_agent", "domain_of": ["LogRecord"]}
         },
     )
     changed_field: ChangeLogField = Field(
-        ...,
+        default=...,
         description="""The field that was changed.""",
         json_schema_extra={
             "linkml_meta": {"alias": "changed_field", "domain_of": ["LogRecord"]}
         },
     )
     description: Optional[str] = Field(
-        None,
+        default=None,
         description="""A human-readable description for a resource.""",
         json_schema_extra={
             "linkml_meta": {
@@ -1910,31 +1912,31 @@ class Agent(ConfiguredBaseModel):
     )
 
     name: str = Field(
-        ...,
+        default=...,
         description="""The name of the agent that created or modified the PID record.""",
         json_schema_extra={"linkml_meta": {"alias": "name", "domain_of": ["Agent"]}},
     )
     email_address: str = Field(
-        ...,
+        default=...,
         description="""Email address of the agent that created or modified the PID record.""",
         json_schema_extra={
             "linkml_meta": {"alias": "email_address", "domain_of": ["Agent"]}
         },
     )
     orcid: Optional[str] = Field(
-        None,
+        default=None,
         description="""The ORCID of the person""",
         json_schema_extra={"linkml_meta": {"alias": "orcid", "domain_of": ["Agent"]}},
     )
     affiliation_ror: Optional[str] = Field(
-        None,
+        default=None,
         description="""The ROR of the agent's affiliation.""",
         json_schema_extra={
             "linkml_meta": {"alias": "affiliation_ror", "domain_of": ["Agent"]}
         },
     )
     role: Pid4CatAgentRole = Field(
-        ...,
+        default=...,
         description="""The role of the agent relative to the resource""",
         json_schema_extra={"linkml_meta": {"alias": "role", "domain_of": ["Agent"]}},
     )
@@ -1989,7 +1991,7 @@ class RepresentationVariant(ConfiguredBaseModel):
     )
 
     variant_url: Optional[str] = Field(
-        None,
+        default=None,
         description="""The URL of the representation variant.""",
         json_schema_extra={
             "linkml_meta": {
@@ -1999,7 +2001,7 @@ class RepresentationVariant(ConfiguredBaseModel):
         },
     )
     media_type: Optional[MediaTypesEnum] = Field(
-        None,
+        default=None,
         description="""The media type of the representation as defined by [IANA](https://www.iana.org/assignments/media-types/media-types.xhtml)""",
         json_schema_extra={
             "linkml_meta": {
@@ -2009,7 +2011,7 @@ class RepresentationVariant(ConfiguredBaseModel):
         },
     )
     encoding_format: Optional[str] = Field(
-        None,
+        default=None,
         description="""The encoding of the representation. https://encoding.spec.whatwg.org/#names-and-labels""",
         json_schema_extra={
             "linkml_meta": {
@@ -2019,7 +2021,7 @@ class RepresentationVariant(ConfiguredBaseModel):
         },
     )
     size: Optional[int] = Field(
-        None,
+        default=None,
         description="""The size of the representation in bytes.""",
         ge=0,
         json_schema_extra={
@@ -2038,7 +2040,7 @@ class RelatedIdentifier(ConfiguredBaseModel):
     )
 
     type: Literal["RelatedIdentifier"] = Field(
-        "RelatedIdentifier",
+        default="RelatedIdentifier",
         description="""The type of the identifier.""",
         json_schema_extra={
             "linkml_meta": {
@@ -2069,7 +2071,7 @@ class PurlIdentifier(RelatedIdentifier):
     )
 
     resolving_url: str = Field(
-        ...,
+        default=...,
         description="""The URL that resolves the identifier.""",
         json_schema_extra={
             "linkml_meta": {
@@ -2085,7 +2087,7 @@ class PurlIdentifier(RelatedIdentifier):
         },
     )
     type: Literal["PurlIdentifier"] = Field(
-        "PurlIdentifier",
+        default="PurlIdentifier",
         description="""The type of the identifier.""",
         json_schema_extra={
             "linkml_meta": {
@@ -2129,7 +2131,7 @@ class DoiIdentifier(RelatedIdentifier):
     )
 
     resolving_url: str = Field(
-        ...,
+        default=...,
         description="""The URL that resolves the identifier.""",
         json_schema_extra={
             "linkml_meta": {
@@ -2145,7 +2147,7 @@ class DoiIdentifier(RelatedIdentifier):
         },
     )
     identifier: Optional[str] = Field(
-        None,
+        default=None,
         description="""The identifier in recommended notation.""",
         json_schema_extra={
             "linkml_meta": {
@@ -2162,7 +2164,7 @@ class DoiIdentifier(RelatedIdentifier):
         },
     )
     type: Literal["DoiIdentifier"] = Field(
-        "DoiIdentifier",
+        default="DoiIdentifier",
         description="""The type of the identifier.""",
         json_schema_extra={
             "linkml_meta": {
@@ -2221,7 +2223,7 @@ class HandleIdentifier(RelatedIdentifier):
     )
 
     resolving_url: str = Field(
-        ...,
+        default=...,
         description="""The URL that resolves the identifier.""",
         json_schema_extra={
             "linkml_meta": {
@@ -2237,7 +2239,7 @@ class HandleIdentifier(RelatedIdentifier):
         },
     )
     identifier: Optional[str] = Field(
-        None,
+        default=None,
         description="""The identifier in recommended notation.""",
         json_schema_extra={
             "linkml_meta": {
@@ -2254,7 +2256,7 @@ class HandleIdentifier(RelatedIdentifier):
         },
     )
     type: Literal["HandleIdentifier"] = Field(
-        "HandleIdentifier",
+        default="HandleIdentifier",
         description="""The type of the identifier.""",
         json_schema_extra={
             "linkml_meta": {
@@ -2310,7 +2312,7 @@ class ArkIdentifier(RelatedIdentifier):
     )
 
     identifier: Optional[str] = Field(
-        None,
+        default=None,
         description="""The identifier in recommended notation.""",
         json_schema_extra={
             "linkml_meta": {
@@ -2327,7 +2329,7 @@ class ArkIdentifier(RelatedIdentifier):
         },
     )
     resolving_url: str = Field(
-        ...,
+        default=...,
         description="""The URL that resolves the identifier.""",
         json_schema_extra={
             "linkml_meta": {
@@ -2343,7 +2345,7 @@ class ArkIdentifier(RelatedIdentifier):
         },
     )
     type: Literal["ArkIdentifier"] = Field(
-        "ArkIdentifier",
+        default="ArkIdentifier",
         description="""The type of the identifier.""",
         json_schema_extra={
             "linkml_meta": {
@@ -2398,7 +2400,7 @@ class UrnIdentifier(RelatedIdentifier):
     )
 
     identifier: str = Field(
-        ...,
+        default=...,
         description="""The identifier in recommended notation.""",
         json_schema_extra={
             "linkml_meta": {
@@ -2415,7 +2417,7 @@ class UrnIdentifier(RelatedIdentifier):
         },
     )
     type: Literal["UrnIdentifier"] = Field(
-        "UrnIdentifier",
+        default="UrnIdentifier",
         description="""The type of the identifier.""",
         json_schema_extra={
             "linkml_meta": {
@@ -2458,7 +2460,7 @@ class GtinIdentifier(RelatedIdentifier):
     )
 
     identifier: str = Field(
-        ...,
+        default=...,
         description="""The identifier in recommended notation.""",
         json_schema_extra={
             "linkml_meta": {
@@ -2475,7 +2477,7 @@ class GtinIdentifier(RelatedIdentifier):
         },
     )
     type: Literal["GtinIdentifier"] = Field(
-        "GtinIdentifier",
+        default="GtinIdentifier",
         description="""The type of the identifier.""",
         json_schema_extra={
             "linkml_meta": {
@@ -2518,7 +2520,7 @@ class ExampleIdentifier(RelatedIdentifier):
     )
 
     identifier: Optional[str] = Field(
-        None,
+        default=None,
         description="""The identifier in recommended notation.""",
         json_schema_extra={
             "linkml_meta": {
@@ -2535,7 +2537,7 @@ class ExampleIdentifier(RelatedIdentifier):
         },
     )
     resolving_url: Optional[str] = Field(
-        None,
+        default=None,
         description="""The URL that resolves the identifier.""",
         json_schema_extra={
             "linkml_meta": {
@@ -2551,7 +2553,7 @@ class ExampleIdentifier(RelatedIdentifier):
         },
     )
     type: Literal["ExampleIdentifier"] = Field(
-        "ExampleIdentifier",
+        default="ExampleIdentifier",
         description="""The type of the identifier.""",
         json_schema_extra={
             "linkml_meta": {
@@ -2628,28 +2630,28 @@ class Pid4CatRecord(ConfiguredBaseModel):
     )
 
     landing_page_url: str = Field(
-        ...,
+        default=...,
         description="""The URL of the landing page of the resource identified by the PID.""",
         json_schema_extra={
             "linkml_meta": {"alias": "landing_page_url", "domain_of": ["Pid4CatRecord"]}
         },
     )
     status: Pid4CatStatus = Field(
-        ...,
+        default=...,
         description="""The status of the pid4cat record. The status is set to \"SUBMITTED\" when the handle is reserved but the resource is not yet linked. The status is set to \"REGISTERED\" when the handle is linked to a concrete resource.""",
         json_schema_extra={
             "linkml_meta": {"alias": "status", "domain_of": ["Pid4CatRecord"]}
         },
     )
     schema_version: str = Field(
-        ...,
+        default=...,
         description="""The version of the pid4cat-model used to create the pid4cat record.""",
         json_schema_extra={
             "linkml_meta": {"alias": "schema_version", "domain_of": ["Pid4CatRecord"]}
         },
     )
     metadata_license: Literal["CC0-1.0"] = Field(
-        ...,
+        default=...,
         description="""The license of the metadata of the pid4cat record. The license is set to \"CC0-1.0\" by default.""",
         json_schema_extra={
             "linkml_meta": {
@@ -2660,21 +2662,21 @@ class Pid4CatRecord(ConfiguredBaseModel):
         },
     )
     curation_contact: str = Field(
-        ...,
+        default=...,
         description="""The email address of the person responsible for the curation of the pid4cat record.""",
         json_schema_extra={
             "linkml_meta": {"alias": "curation_contact", "domain_of": ["Pid4CatRecord"]}
         },
     )
     resource_info: ResourceInfo = Field(
-        ...,
+        default=...,
         description="""The resource info of the pid4cat record. The resource info contains information about the resource identified by the PID.""",
         json_schema_extra={
             "linkml_meta": {"alias": "resource_info", "domain_of": ["Pid4CatRecord"]}
         },
     )
-    related_identifiers: Optional[List[Pid4CatRelation]] = Field(
-        None,
+    related_identifiers: Optional[list[Pid4CatRelation]] = Field(
+        default=None,
         description="""The related identifiers for the pid4cat record. The related identifiers are used to link the pid4cat record to other resources.""",
         json_schema_extra={
             "linkml_meta": {
@@ -2683,8 +2685,8 @@ class Pid4CatRecord(ConfiguredBaseModel):
             }
         },
     )
-    change_log: List[LogRecord] = Field(
-        ...,
+    change_log: list[LogRecord] = Field(
+        default=...,
         description="""The change log of the pid4cat record. The change log contains information about the changes made to the pid4cat record.""",
         json_schema_extra={
             "linkml_meta": {"alias": "change_log", "domain_of": ["Pid4CatRecord"]}
