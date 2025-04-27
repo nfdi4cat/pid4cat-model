@@ -1,5 +1,5 @@
 # Auto generated from pid4cat_model.yaml by pythongen.py version: 0.0.1
-# Generation date: 2025-04-03T15:59:22
+# Generation date: 2025-04-29T23:35:15
 # Schema: pid4cat-model
 #
 # id: https://w3id.org/nfdi4cat/pid4cat-model
@@ -7,17 +7,13 @@
 #   The model describes metadata for the PID itself and how to access the identified resource. It does not describe the resource itself with the exception of the resource category, which is a high-level description of what is identified by the pid4cat handle, e.g. a sample or a device.
 # license: MIT
 
-import dataclasses
 import re
 from dataclasses import dataclass
-from typing import Any, ClassVar, Dict, List, Optional, Union
+from typing import Any, ClassVar, Optional, Union
 
 from jsonasobj2 import as_dict
 from linkml_runtime.linkml_model.meta import EnumDefinition, PermissibleValue
 from linkml_runtime.utils.curienamespace import CurieNamespace
-from linkml_runtime.utils.dataclass_extensions_376 import (
-    dataclasses_init_fn_with_kwargs,
-)
 from linkml_runtime.utils.enumerations import EnumDefinitionImpl
 from linkml_runtime.utils.metamodelcore import empty_dict, empty_list
 from linkml_runtime.utils.slot import Slot
@@ -27,10 +23,7 @@ from rdflib import URIRef
 from linkml_runtime.utils.metamodelcore import URI, XSDDateTime
 
 metamodel_version = "1.7.0"
-version = "0.0.0"
-
-# Overwrite dataclasses _init_fn to add **kwargs in __init__
-dataclasses._init_fn = dataclasses_init_fn_with_kwargs
+version = "0.3.0.post17.dev0+93e88c2"
 
 # Namespaces
 DATACITE = CurieNamespace("DataCite", "https://purl.org/spar/datacite/")
@@ -60,7 +53,7 @@ class HandleAPIRecord(YAMLRoot):
     A class representing a handle record query response of the REST (json) API of a handle server.
     """
 
-    _inherited_slots: ClassVar[List[str]] = []
+    _inherited_slots: ClassVar[list[str]] = []
 
     class_class_uri: ClassVar[URIRef] = PID4CAT_MODEL["HandleAPIRecord"]
     class_class_curie: ClassVar[str] = "pid4cat_model:HandleAPIRecord"
@@ -68,10 +61,10 @@ class HandleAPIRecord(YAMLRoot):
     class_model_uri: ClassVar[URIRef] = PID4CAT_MODEL.HandleAPIRecord
 
     handle: Union[str, HandleAPIRecordHandle] = None
-    values: Union[Union[dict, "HandleRecord"], List[Union[dict, "HandleRecord"]]] = None
+    values: Union[Union[dict, "HandleRecord"], list[Union[dict, "HandleRecord"]]] = None
     responseCode: Optional[int] = None
 
-    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+    def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.handle):
             self.MissingRequiredField("handle")
         if not isinstance(self.handle, HandleAPIRecordHandle):
@@ -99,7 +92,7 @@ class HandleRecord(YAMLRoot):
     handle server.
     """
 
-    _inherited_slots: ClassVar[List[str]] = []
+    _inherited_slots: ClassVar[list[str]] = []
 
     class_class_uri: ClassVar[URIRef] = PID4CAT_MODEL["HandleRecord"]
     class_class_curie: ClassVar[str] = "pid4cat_model:HandleRecord"
@@ -110,7 +103,7 @@ class HandleRecord(YAMLRoot):
     type: str = None
     ttl: Optional[int] = 86400
 
-    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+    def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.timestamp):
             self.MissingRequiredField("timestamp")
         if not isinstance(self.timestamp, XSDDateTime):
@@ -150,7 +143,7 @@ class URL(HandleRecord):
     The data element in the handle API for the landing page URL.
     """
 
-    _inherited_slots: ClassVar[List[str]] = []
+    _inherited_slots: ClassVar[list[str]] = []
 
     class_class_uri: ClassVar[URIRef] = PID4CAT_MODEL["URL"]
     class_class_curie: ClassVar[str] = "pid4cat_model:URL"
@@ -162,7 +155,7 @@ class URL(HandleRecord):
     index: int = None
     data: Union[dict, "HdlDataUrl"] = None
 
-    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+    def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.index):
             self.MissingRequiredField("index")
         if not isinstance(self.index, int):
@@ -185,7 +178,7 @@ class HdlDataUrl(YAMLRoot):
     The data class for the redirect url.
     """
 
-    _inherited_slots: ClassVar[List[str]] = []
+    _inherited_slots: ClassVar[list[str]] = []
 
     class_class_uri: ClassVar[URIRef] = PID4CAT_MODEL["HdlDataUrl"]
     class_class_curie: ClassVar[str] = "pid4cat_model:HdlDataUrl"
@@ -195,7 +188,7 @@ class HdlDataUrl(YAMLRoot):
     value: str = None
     format: Optional[str] = "string"
 
-    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+    def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.value):
             self.MissingRequiredField("value")
         if not isinstance(self.value, str):
@@ -213,7 +206,7 @@ class EMAIL(HandleRecord):
     The data element in the handle API for the contact email.
     """
 
-    _inherited_slots: ClassVar[List[str]] = []
+    _inherited_slots: ClassVar[list[str]] = []
 
     class_class_uri: ClassVar[URIRef] = PID4CAT_MODEL["EMAIL"]
     class_class_curie: ClassVar[str] = "pid4cat_model:EMAIL"
@@ -225,7 +218,7 @@ class EMAIL(HandleRecord):
     index: int = None
     data: Union[dict, "HdlDataContact"] = None
 
-    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+    def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.index):
             self.MissingRequiredField("index")
         if not isinstance(self.index, int):
@@ -248,7 +241,7 @@ class HdlDataContact(YAMLRoot):
     The data class for the handle-record contact email.
     """
 
-    _inherited_slots: ClassVar[List[str]] = []
+    _inherited_slots: ClassVar[list[str]] = []
 
     class_class_uri: ClassVar[URIRef] = PID4CAT_MODEL["HdlDataContact"]
     class_class_curie: ClassVar[str] = "pid4cat_model:HdlDataContact"
@@ -258,7 +251,7 @@ class HdlDataContact(YAMLRoot):
     value: str = None
     format: Optional[str] = "string"
 
-    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+    def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.value):
             self.MissingRequiredField("value")
         if not isinstance(self.value, str):
@@ -276,7 +269,7 @@ class STATUS(HandleRecord):
     The data element in the handle API for the PID status information.
     """
 
-    _inherited_slots: ClassVar[List[str]] = []
+    _inherited_slots: ClassVar[list[str]] = []
 
     class_class_uri: ClassVar[URIRef] = PID4CAT_MODEL["STATUS"]
     class_class_curie: ClassVar[str] = "pid4cat_model:STATUS"
@@ -288,7 +281,7 @@ class STATUS(HandleRecord):
     index: int = None
     data: Union[dict, "HdlDataStatus"] = None
 
-    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+    def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.index):
             self.MissingRequiredField("index")
         if not isinstance(self.index, int):
@@ -311,7 +304,7 @@ class HdlDataStatus(YAMLRoot):
     The data class for the PID status information.
     """
 
-    _inherited_slots: ClassVar[List[str]] = []
+    _inherited_slots: ClassVar[list[str]] = []
 
     class_class_uri: ClassVar[URIRef] = PID4CAT_MODEL["HdlDataStatus"]
     class_class_curie: ClassVar[str] = "pid4cat_model:HdlDataStatus"
@@ -321,7 +314,7 @@ class HdlDataStatus(YAMLRoot):
     value: Union[str, "Pid4CatStatus"] = None
     format: Optional[str] = "string"
 
-    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+    def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.value):
             self.MissingRequiredField("value")
         if not isinstance(self.value, Pid4CatStatus):
@@ -339,7 +332,7 @@ class SCHEMAVER(HandleRecord):
     The data element in the handle API for the schema version.
     """
 
-    _inherited_slots: ClassVar[List[str]] = []
+    _inherited_slots: ClassVar[list[str]] = []
 
     class_class_uri: ClassVar[URIRef] = PID4CAT_MODEL["SCHEMAVER"]
     class_class_curie: ClassVar[str] = "pid4cat_model:SCHEMAVER"
@@ -351,7 +344,7 @@ class SCHEMAVER(HandleRecord):
     index: int = None
     data: Union[dict, "HdlDataSchemaVer"] = None
 
-    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+    def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.index):
             self.MissingRequiredField("index")
         if not isinstance(self.index, int):
@@ -374,7 +367,7 @@ class HdlDataSchemaVer(YAMLRoot):
     The data class for the schema version.
     """
 
-    _inherited_slots: ClassVar[List[str]] = []
+    _inherited_slots: ClassVar[list[str]] = []
 
     class_class_uri: ClassVar[URIRef] = PID4CAT_MODEL["HdlDataSchemaVer"]
     class_class_curie: ClassVar[str] = "pid4cat_model:HdlDataSchemaVer"
@@ -384,7 +377,7 @@ class HdlDataSchemaVer(YAMLRoot):
     value: str = None
     format: Optional[str] = "string"
 
-    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+    def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.value):
             self.MissingRequiredField("value")
         if not isinstance(self.value, str):
@@ -402,7 +395,7 @@ class METADATALICENSE(HandleRecord):
     The data element in the handle API for the PID metadata license.
     """
 
-    _inherited_slots: ClassVar[List[str]] = []
+    _inherited_slots: ClassVar[list[str]] = []
 
     class_class_uri: ClassVar[URIRef] = PID4CAT_MODEL["METADATALICENSE"]
     class_class_curie: ClassVar[str] = "pid4cat_model:METADATALICENSE"
@@ -414,7 +407,7 @@ class METADATALICENSE(HandleRecord):
     index: int = None
     data: Union[dict, "HdlDataLicense"] = None
 
-    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+    def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.index):
             self.MissingRequiredField("index")
         if not isinstance(self.index, int):
@@ -437,7 +430,7 @@ class HdlDataLicense(YAMLRoot):
     The data class for the PID metadata license.
     """
 
-    _inherited_slots: ClassVar[List[str]] = []
+    _inherited_slots: ClassVar[list[str]] = []
 
     class_class_uri: ClassVar[URIRef] = PID4CAT_MODEL["HdlDataLicense"]
     class_class_curie: ClassVar[str] = "pid4cat_model:HdlDataLicense"
@@ -447,7 +440,7 @@ class HdlDataLicense(YAMLRoot):
     value: str = None
     format: Optional[str] = "string"
 
-    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+    def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.value):
             self.MissingRequiredField("value")
         if not isinstance(self.value, str):
@@ -465,7 +458,7 @@ class RESOURCE(HandleRecord):
     The data element in the handle API for the resource info.
     """
 
-    _inherited_slots: ClassVar[List[str]] = []
+    _inherited_slots: ClassVar[list[str]] = []
 
     class_class_uri: ClassVar[URIRef] = PID4CAT_MODEL["RESOURCE"]
     class_class_curie: ClassVar[str] = "pid4cat_model:RESOURCE"
@@ -477,7 +470,7 @@ class RESOURCE(HandleRecord):
     index: int = None
     data: Union[dict, "HdlDataResourceInfo"] = None
 
-    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+    def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.index):
             self.MissingRequiredField("index")
         if not isinstance(self.index, int):
@@ -500,7 +493,7 @@ class HdlDataResourceInfo(YAMLRoot):
     The data class for the resource info.
     """
 
-    _inherited_slots: ClassVar[List[str]] = []
+    _inherited_slots: ClassVar[list[str]] = []
 
     class_class_uri: ClassVar[URIRef] = PID4CAT_MODEL["HdlDataResourceInfo"]
     class_class_curie: ClassVar[str] = "pid4cat_model:HdlDataResourceInfo"
@@ -510,7 +503,7 @@ class HdlDataResourceInfo(YAMLRoot):
     value: Union[dict, "ResourceInfo"] = None
     format: Optional[str] = "string"
 
-    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+    def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.value):
             self.MissingRequiredField("value")
         if not isinstance(self.value, ResourceInfo):
@@ -528,7 +521,7 @@ class RELATED(HandleRecord):
     The data element in the handle API for related identifiers.
     """
 
-    _inherited_slots: ClassVar[List[str]] = []
+    _inherited_slots: ClassVar[list[str]] = []
 
     class_class_uri: ClassVar[URIRef] = PID4CAT_MODEL["RELATED"]
     class_class_curie: ClassVar[str] = "pid4cat_model:RELATED"
@@ -540,7 +533,7 @@ class RELATED(HandleRecord):
     index: int = None
     data: Union[dict, "HdlDataRelated"] = None
 
-    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+    def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.index):
             self.MissingRequiredField("index")
         if not isinstance(self.index, int):
@@ -563,7 +556,7 @@ class HdlDataRelated(YAMLRoot):
     The data class for related identifiers.
     """
 
-    _inherited_slots: ClassVar[List[str]] = []
+    _inherited_slots: ClassVar[list[str]] = []
 
     class_class_uri: ClassVar[URIRef] = PID4CAT_MODEL["HdlDataRelated"]
     class_class_curie: ClassVar[str] = "pid4cat_model:HdlDataRelated"
@@ -572,10 +565,10 @@ class HdlDataRelated(YAMLRoot):
 
     format: Optional[str] = "string"
     value: Optional[
-        Union[Union[dict, "Pid4CatRelation"], List[Union[dict, "Pid4CatRelation"]]]
+        Union[Union[dict, "Pid4CatRelation"], list[Union[dict, "Pid4CatRelation"]]]
     ] = empty_list()
 
-    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+    def __post_init__(self, *_: str, **kwargs: Any):
         if self.format is not None and not isinstance(self.format, str):
             self.format = str(self.format)
 
@@ -595,7 +588,7 @@ class CHANGES(HandleRecord):
     The data element in the handle API for the change log.
     """
 
-    _inherited_slots: ClassVar[List[str]] = []
+    _inherited_slots: ClassVar[list[str]] = []
 
     class_class_uri: ClassVar[URIRef] = PID4CAT_MODEL["CHANGES"]
     class_class_curie: ClassVar[str] = "pid4cat_model:CHANGES"
@@ -607,7 +600,7 @@ class CHANGES(HandleRecord):
     index: int = None
     data: Union[dict, "HdlDataLog"] = None
 
-    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+    def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.index):
             self.MissingRequiredField("index")
         if not isinstance(self.index, int):
@@ -630,17 +623,17 @@ class HdlDataLog(YAMLRoot):
     The data class for the change log.
     """
 
-    _inherited_slots: ClassVar[List[str]] = []
+    _inherited_slots: ClassVar[list[str]] = []
 
     class_class_uri: ClassVar[URIRef] = PID4CAT_MODEL["HdlDataLog"]
     class_class_curie: ClassVar[str] = "pid4cat_model:HdlDataLog"
     class_name: ClassVar[str] = "HdlDataLog"
     class_model_uri: ClassVar[URIRef] = PID4CAT_MODEL.HdlDataLog
 
-    value: Union[Union[dict, "LogRecord"], List[Union[dict, "LogRecord"]]] = None
+    value: Union[Union[dict, "LogRecord"], list[Union[dict, "LogRecord"]]] = None
     format: Optional[str] = "string"
 
-    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+    def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.value):
             self.MissingRequiredField("value")
         self._normalize_inlined_as_dict(
@@ -659,7 +652,7 @@ class HandleRecordContainer(YAMLRoot):
     A container for all HandleRecords.
     """
 
-    _inherited_slots: ClassVar[List[str]] = []
+    _inherited_slots: ClassVar[list[str]] = []
 
     class_class_uri: ClassVar[URIRef] = PID4CAT_MODEL["HandleRecordContainer"]
     class_class_curie: ClassVar[str] = "pid4cat_model:HandleRecordContainer"
@@ -668,12 +661,12 @@ class HandleRecordContainer(YAMLRoot):
 
     contains_pids: Optional[
         Union[
-            Dict[Union[str, HandleAPIRecordHandle], Union[dict, HandleAPIRecord]],
-            List[Union[dict, HandleAPIRecord]],
+            dict[Union[str, HandleAPIRecordHandle], Union[dict, HandleAPIRecord]],
+            list[Union[dict, HandleAPIRecord]],
         ]
     ] = empty_dict()
 
-    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+    def __post_init__(self, *_: str, **kwargs: Any):
         self._normalize_inlined_as_list(
             slot_name="contains_pids",
             slot_type=HandleAPIRecord,
@@ -690,7 +683,7 @@ class Pid4CatRelation(YAMLRoot):
     Data class for a relation to another resource identified by a pid4cat handle or another PID type.
     """
 
-    _inherited_slots: ClassVar[List[str]] = []
+    _inherited_slots: ClassVar[list[str]] = []
 
     class_class_uri: ClassVar[URIRef] = PID4CAT_MODEL["Pid4CatRelation"]
     class_class_curie: ClassVar[str] = "pid4cat_model:Pid4CatRelation"
@@ -701,7 +694,7 @@ class Pid4CatRelation(YAMLRoot):
     related_identifier: Optional[Union[dict, "RelatedIdentifier"]] = None
     datetime_log: Optional[Union[str, XSDDateTime]] = None
 
-    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+    def __post_init__(self, *_: str, **kwargs: Any):
         if self.relation_type is not None and not isinstance(
             self.relation_type, RelationType
         ):
@@ -728,7 +721,7 @@ class ResourceInfo(YAMLRoot):
     Data class to hold information about the resource and its representation.
     """
 
-    _inherited_slots: ClassVar[List[str]] = []
+    _inherited_slots: ClassVar[list[str]] = []
 
     class_class_uri: ClassVar[URIRef] = PID4CAT_MODEL["ResourceInfo"]
     class_class_curie: ClassVar[str] = "pid4cat_model:ResourceInfo"
@@ -737,12 +730,12 @@ class ResourceInfo(YAMLRoot):
 
     resource_category: Union[str, "ResourceCategory"] = None
     representation_variants: Union[
-        Union[dict, "RepresentationVariant"], List[Union[dict, "RepresentationVariant"]]
+        Union[dict, "RepresentationVariant"], list[Union[dict, "RepresentationVariant"]]
     ] = None
     label: Optional[str] = None
     description: Optional[str] = None
 
-    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+    def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.resource_category):
             self.MissingRequiredField("resource_category")
         if not isinstance(self.resource_category, ResourceCategory):
@@ -778,7 +771,7 @@ class LogRecord(YAMLRoot):
     Data class for a change log of modification made on a pid4cat handle record starting from its registration.
     """
 
-    _inherited_slots: ClassVar[List[str]] = []
+    _inherited_slots: ClassVar[list[str]] = []
 
     class_class_uri: ClassVar[URIRef] = PID4CAT_MODEL["LogRecord"]
     class_class_curie: ClassVar[str] = "pid4cat_model:LogRecord"
@@ -790,7 +783,7 @@ class LogRecord(YAMLRoot):
     changed_field: Union[str, "ChangeLogField"] = None
     description: Optional[str] = None
 
-    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+    def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.datetime_log):
             self.MissingRequiredField("datetime_log")
         if not isinstance(self.datetime_log, XSDDateTime):
@@ -818,7 +811,7 @@ class Agent(YAMLRoot):
     Data class for a person who plays a role relative to PID creation or curation.
     """
 
-    _inherited_slots: ClassVar[List[str]] = []
+    _inherited_slots: ClassVar[list[str]] = []
 
     class_class_uri: ClassVar[URIRef] = PROV["Agent"]
     class_class_curie: ClassVar[str] = "prov:Agent"
@@ -831,7 +824,7 @@ class Agent(YAMLRoot):
     orcid: Optional[str] = None
     affiliation_ror: Optional[Union[str, URI]] = None
 
-    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+    def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.name):
             self.MissingRequiredField("name")
         if not isinstance(self.name, str):
@@ -865,7 +858,7 @@ class RepresentationVariant(YAMLRoot):
     landing_page_url.
     """
 
-    _inherited_slots: ClassVar[List[str]] = []
+    _inherited_slots: ClassVar[list[str]] = []
 
     class_class_uri: ClassVar[URIRef] = PID4CAT_MODEL["RepresentationVariant"]
     class_class_curie: ClassVar[str] = "pid4cat_model:RepresentationVariant"
@@ -877,7 +870,7 @@ class RepresentationVariant(YAMLRoot):
     encoding_format: Optional[str] = None
     size: Optional[int] = None
 
-    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+    def __post_init__(self, *_: str, **kwargs: Any):
         if self.variant_url is not None and not isinstance(self.variant_url, URI):
             self.variant_url = URI(self.variant_url)
 
@@ -903,7 +896,7 @@ class RelatedIdentifier(YAMLRoot):
     A base class for all types of related identifiers.
     """
 
-    _inherited_slots: ClassVar[List[str]] = []
+    _inherited_slots: ClassVar[list[str]] = []
 
     class_class_uri: ClassVar[URIRef] = PID4CAT_MODEL["RelatedIdentifier"]
     class_class_curie: ClassVar[str] = "pid4cat_model:RelatedIdentifier"
@@ -912,7 +905,7 @@ class RelatedIdentifier(YAMLRoot):
 
     type: str = None
 
-    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+    def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.type):
             self.MissingRequiredField("type")
         self.type = str(self.class_name)
@@ -944,7 +937,7 @@ class PurlIdentifier(RelatedIdentifier):
     A PURL (permanent uniform resource locator).
     """
 
-    _inherited_slots: ClassVar[List[str]] = []
+    _inherited_slots: ClassVar[list[str]] = []
 
     class_class_uri: ClassVar[URIRef] = PID4CAT_MODEL["PurlIdentifier"]
     class_class_curie: ClassVar[str] = "pid4cat_model:PurlIdentifier"
@@ -954,7 +947,7 @@ class PurlIdentifier(RelatedIdentifier):
     type: str = None
     resolving_url: Union[str, URI] = None
 
-    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+    def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.resolving_url):
             self.MissingRequiredField("resolving_url")
         if not isinstance(self.resolving_url, URI):
@@ -972,7 +965,7 @@ class DoiIdentifier(RelatedIdentifier):
     A digital object identifier (DOI).
     """
 
-    _inherited_slots: ClassVar[List[str]] = []
+    _inherited_slots: ClassVar[list[str]] = []
 
     class_class_uri: ClassVar[URIRef] = PID4CAT_MODEL["DoiIdentifier"]
     class_class_curie: ClassVar[str] = "pid4cat_model:DoiIdentifier"
@@ -983,7 +976,7 @@ class DoiIdentifier(RelatedIdentifier):
     resolving_url: Union[str, URI] = None
     identifier: Optional[str] = None
 
-    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+    def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.resolving_url):
             self.MissingRequiredField("resolving_url")
         if not isinstance(self.resolving_url, URI):
@@ -1004,7 +997,7 @@ class HandleIdentifier(RelatedIdentifier):
     A handle identifier.
     """
 
-    _inherited_slots: ClassVar[List[str]] = []
+    _inherited_slots: ClassVar[list[str]] = []
 
     class_class_uri: ClassVar[URIRef] = PID4CAT_MODEL["HandleIdentifier"]
     class_class_curie: ClassVar[str] = "pid4cat_model:HandleIdentifier"
@@ -1015,7 +1008,7 @@ class HandleIdentifier(RelatedIdentifier):
     resolving_url: Union[str, URI] = None
     identifier: Optional[str] = None
 
-    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+    def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.resolving_url):
             self.MissingRequiredField("resolving_url")
         if not isinstance(self.resolving_url, URI):
@@ -1036,7 +1029,7 @@ class ArkIdentifier(RelatedIdentifier):
     An ARK (Archival Resource Key).
     """
 
-    _inherited_slots: ClassVar[List[str]] = []
+    _inherited_slots: ClassVar[list[str]] = []
 
     class_class_uri: ClassVar[URIRef] = PID4CAT_MODEL["ArkIdentifier"]
     class_class_curie: ClassVar[str] = "pid4cat_model:ArkIdentifier"
@@ -1047,7 +1040,7 @@ class ArkIdentifier(RelatedIdentifier):
     resolving_url: Union[str, URI] = None
     identifier: Optional[str] = None
 
-    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+    def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.resolving_url):
             self.MissingRequiredField("resolving_url")
         if not isinstance(self.resolving_url, URI):
@@ -1068,7 +1061,7 @@ class UrnIdentifier(RelatedIdentifier):
     A URN (Uniform Resource Name).
     """
 
-    _inherited_slots: ClassVar[List[str]] = []
+    _inherited_slots: ClassVar[list[str]] = []
 
     class_class_uri: ClassVar[URIRef] = PID4CAT_MODEL["UrnIdentifier"]
     class_class_curie: ClassVar[str] = "pid4cat_model:UrnIdentifier"
@@ -1078,7 +1071,7 @@ class UrnIdentifier(RelatedIdentifier):
     type: str = None
     identifier: str = None
 
-    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+    def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.identifier):
             self.MissingRequiredField("identifier")
         if not isinstance(self.identifier, str):
@@ -1097,7 +1090,7 @@ class GtinIdentifier(RelatedIdentifier):
     The identifier is used to identify products. GTINs don't have a resolvable URL.
     """
 
-    _inherited_slots: ClassVar[List[str]] = []
+    _inherited_slots: ClassVar[list[str]] = []
 
     class_class_uri: ClassVar[URIRef] = PID4CAT_MODEL["GtinIdentifier"]
     class_class_curie: ClassVar[str] = "pid4cat_model:GtinIdentifier"
@@ -1107,7 +1100,7 @@ class GtinIdentifier(RelatedIdentifier):
     type: str = None
     identifier: str = None
 
-    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+    def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.identifier):
             self.MissingRequiredField("identifier")
         if not isinstance(self.identifier, str):
@@ -1125,7 +1118,7 @@ class ExampleIdentifier(RelatedIdentifier):
     An example.org test identifier.
     """
 
-    _inherited_slots: ClassVar[List[str]] = []
+    _inherited_slots: ClassVar[list[str]] = []
 
     class_class_uri: ClassVar[URIRef] = PID4CAT_MODEL["ExampleIdentifier"]
     class_class_curie: ClassVar[str] = "pid4cat_model:ExampleIdentifier"
@@ -1136,7 +1129,7 @@ class ExampleIdentifier(RelatedIdentifier):
     identifier: Optional[str] = None
     resolving_url: Optional[Union[str, URI]] = None
 
-    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+    def __post_init__(self, *_: str, **kwargs: Any):
         if self.identifier is not None and not isinstance(self.identifier, str):
             self.identifier = str(self.identifier)
 
@@ -1157,7 +1150,7 @@ class Pid4CatRecord(YAMLRoot):
     that is more convenient to use in programming languages.
     """
 
-    _inherited_slots: ClassVar[List[str]] = []
+    _inherited_slots: ClassVar[list[str]] = []
 
     class_class_uri: ClassVar[URIRef] = PID4CAT_MODEL["Pid4CatRecord"]
     class_class_curie: ClassVar[str] = "pid4cat_model:Pid4CatRecord"
@@ -1170,12 +1163,12 @@ class Pid4CatRecord(YAMLRoot):
     metadata_license: str = None
     curation_contact: str = None
     resource_info: Union[dict, ResourceInfo] = None
-    change_log: Union[Union[dict, LogRecord], List[Union[dict, LogRecord]]] = None
+    change_log: Union[Union[dict, LogRecord], list[Union[dict, LogRecord]]] = None
     related_identifiers: Optional[
-        Union[Union[dict, Pid4CatRelation], List[Union[dict, Pid4CatRelation]]]
+        Union[Union[dict, Pid4CatRelation], list[Union[dict, Pid4CatRelation]]]
     ] = empty_list()
 
-    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+    def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.landing_page_url):
             self.MissingRequiredField("landing_page_url")
         if not isinstance(self.landing_page_url, str):
@@ -1320,7 +1313,7 @@ class RelationType(EnumDefinitionImpl):
     )
     HAS_VERSION = PermissibleValue(
         text="HAS_VERSION",
-        description="The resource has a version.",
+        description="""The resource has a version. This is useful to express the relation between a abstract resource to its versioned instances, for example, \"Python has_version Python 3.12\".""",
         meaning=VOC4CAT["0005027"],
     )
     IS_VERSION_OF = PermissibleValue(
@@ -1330,27 +1323,27 @@ class RelationType(EnumDefinitionImpl):
     )
     IS_NEW_VERSION_OF = PermissibleValue(
         text="IS_NEW_VERSION_OF",
-        description="The resource is a new version of another resource.",
+        description="""The resource is a new version of another versioned resource. This is useful to refer between versioned resources, for example, \"Python 3.12.1 is_new_version_of Python 3.12.0\".""",
         meaning=VOC4CAT["0005029"],
     )
     IS_PREVIOUS_VERSION_OF = PermissibleValue(
         text="IS_PREVIOUS_VERSION_OF",
-        description="The resource is a previous version of another resource.",
+        description="""The resource is a previous version of another versioned resource. This is useful to refer between versioned resources, for example, \"Python 3.12.0 is_previous_version_of Python 3.12.1\".""",
         meaning=VOC4CAT["0005030"],
     )
     IS_PART_OF = PermissibleValue(
         text="IS_PART_OF",
-        description="The resource is part of another resource.",
+        description="""The resource is part of another resource. This relation applies to container-contained type relationships. If the relation refers to publishing one resource as part of another resource, use \"IS_PUBLISHED_IN\" instead. If the relation refers to a versioned resource and non-versioned resource, use \"IS_VERSION_OF\" instead.""",
         meaning=VOC4CAT["0005031"],
     )
     HAS_PART = PermissibleValue(
         text="HAS_PART",
-        description="The resource has part another resource.",
+        description="""The resource has part another resource. This relation applies to container-contained type relationships. If the relation refers to publishing one resource as part of another resource, \"IS_PUBLISHED_IN\" instead. If the relation refers to a versioned resource and non-versioned resource, use \"HAS_VERSION\" instead.""",
         meaning=VOC4CAT["0005032"],
     )
     IS_PUBLISHED_IN = PermissibleValue(
         text="IS_PUBLISHED_IN",
-        description="The resource is published in another resource.",
+        description="""The resource is published in another resource. A resource A that is_published_in a resource B is independent from other resources published in the same resource B.""",
         meaning=VOC4CAT["0005033"],
     )
     IS_REFERENCED_BY = PermissibleValue(
@@ -1375,47 +1368,47 @@ class RelationType(EnumDefinitionImpl):
     )
     IS_COMPILED_BY = PermissibleValue(
         text="IS_COMPILED_BY",
-        description="The resource is compiled by another resource.",
+        description="""The resource is compiled by another resource. Resources may be text or software. The compiler may be a computer program or a person.""",
         meaning=VOC4CAT["0005038"],
     )
     COMPILES = PermissibleValue(
         text="COMPILES",
-        description="The resource compiles another resource.",
+        description="""The resource compiles another resource. Resources may be text or software. The compiler may be a computer program or a person.""",
         meaning=VOC4CAT["0005039"],
     )
     IS_VARIANT_FORM_OF = PermissibleValue(
         text="IS_VARIANT_FORM_OF",
-        description="The resource is variant form of another resource.",
+        description="""The resource is variant form of another resource. This may be used e.g. for relating architecture-specific builds of a a software program to a source-code release. It may also be used to express the relation between data in different formats (e.g. PNG, JPEG) of the same image.""",
         meaning=VOC4CAT["0005040"],
     )
     IS_ORIGINAL_FORM_OF = PermissibleValue(
         text="IS_ORIGINAL_FORM_OF",
-        description="The resource is original form of another resource.",
+        description="""The resource is original form of another resource. This may be used e.g. for relating architecture-specific builds of a a software program to a source-code release. It may also be used to express the relation between data in different formats (e.g. PNG, JPEG) of the same image.""",
         meaning=VOC4CAT["0005041"],
     )
     IS_IDENTICAL_TO = PermissibleValue(
         text="IS_IDENTICAL_TO",
-        description="The resource is identical to another resource.",
+        description="""The resource is identical to another resource. May be used to indicate the relationship between an exact copy of a resource that is published at another location.""",
         meaning=VOC4CAT["0005042"],
     )
     IS_DERIVED_FROM = PermissibleValue(
         text="IS_DERIVED_FROM",
-        description="The resource is derived from another resource.",
+        description="""The resource is derived from another resource. This may be used for relating a new dataset created by data processing to its original source dataset. For samples it may express the relation between the original sample and another sample derived from it by physical or chemical treatment.""",
         meaning=VOC4CAT["0005043"],
     )
     IS_SOURCE_OF = PermissibleValue(
         text="IS_SOURCE_OF",
-        description="The resource is source of another resource.",
+        description="""The resource is source of another resource. This may be used for example to express the relation between a source dataset and a new dataset derived from it by data processing. For samples it may express the relation between a sample processed by physical or chemical treatment and the original sample.""",
         meaning=VOC4CAT["0005044"],
     )
     IS_COLLECTED_BY = PermissibleValue(
         text="IS_COLLECTED_BY",
-        description="The resource is collected by another resource.",
+        description="""The resource is collected by another resource. May be used to indicate the relationship between a dataset and an instrument that is used to collect, measure, obtain, or observe data.""",
         meaning=VOC4CAT["0005045"],
     )
     COLLECTS = PermissibleValue(
         text="COLLECTS",
-        description="The resource collects another resource.",
+        description="""The resource collects another resource. May be used to indicate the relationship between an instrument and where it has been used to collect, measure, obtain, or observe data.""",
         meaning=VOC4CAT["0005046"],
     )
     IS_REQUIRED_BY = PermissibleValue(
@@ -1437,6 +1430,11 @@ class RelationType(EnumDefinitionImpl):
         text="OBSOLETES",
         description="The resource obsoletes another resource.",
         meaning=VOC4CAT["0005050"],
+    )
+    CONFORMS_TO = PermissibleValue(
+        text="CONFORMS_TO",
+        description="""An established standard to which the described resource conforms. This relation should be used to indicate the model, schema, ontology, or profile that the resource content conforms to.""",
+        meaning=VOC4CAT["0005059"],
     )
 
     _defn = EnumDefinition(
@@ -1830,7 +1828,7 @@ slots.values = Slot(
     curie=PID4CAT_MODEL.curie("values"),
     model_uri=PID4CAT_MODEL.values,
     domain=None,
-    range=Optional[Union[Union[dict, HandleRecord], List[Union[dict, HandleRecord]]]],
+    range=Optional[Union[Union[dict, HandleRecord], list[Union[dict, HandleRecord]]]],
 )
 
 slots.timestamp = Slot(
@@ -1958,7 +1956,7 @@ slots.representation_variants = Slot(
     domain=None,
     range=Optional[
         Union[
-            Union[dict, RepresentationVariant], List[Union[dict, RepresentationVariant]]
+            Union[dict, RepresentationVariant], list[Union[dict, RepresentationVariant]]
         ]
     ],
 )
@@ -2141,7 +2139,7 @@ slots.related_identifiers = Slot(
     model_uri=PID4CAT_MODEL.related_identifiers,
     domain=None,
     range=Optional[
-        Union[Union[dict, Pid4CatRelation], List[Union[dict, Pid4CatRelation]]]
+        Union[Union[dict, Pid4CatRelation], list[Union[dict, Pid4CatRelation]]]
     ],
 )
 
@@ -2162,8 +2160,8 @@ slots.handleRecordContainer__contains_pids = Slot(
     domain=None,
     range=Optional[
         Union[
-            Dict[Union[str, HandleAPIRecordHandle], Union[dict, HandleAPIRecord]],
-            List[Union[dict, HandleAPIRecord]],
+            dict[Union[str, HandleAPIRecordHandle], Union[dict, HandleAPIRecord]],
+            list[Union[dict, HandleAPIRecord]],
         ]
     ],
 )
@@ -2193,7 +2191,7 @@ slots.HandleAPIRecord_values = Slot(
     curie=PID4CAT_MODEL.curie("values"),
     model_uri=PID4CAT_MODEL.HandleAPIRecord_values,
     domain=HandleAPIRecord,
-    range=Union[Union[dict, "HandleRecord"], List[Union[dict, "HandleRecord"]]],
+    range=Union[Union[dict, "HandleRecord"], list[Union[dict, "HandleRecord"]]],
 )
 
 slots.HandleRecord_timestamp = Slot(
@@ -2476,7 +2474,7 @@ slots.HdlDataRelated_value = Slot(
     model_uri=PID4CAT_MODEL.HdlDataRelated_value,
     domain=HdlDataRelated,
     range=Optional[
-        Union[Union[dict, "Pid4CatRelation"], List[Union[dict, "Pid4CatRelation"]]]
+        Union[Union[dict, "Pid4CatRelation"], list[Union[dict, "Pid4CatRelation"]]]
     ],
 )
 
@@ -2513,7 +2511,7 @@ slots.HdlDataLog_value = Slot(
     curie=PID4CAT_MODEL.curie("value"),
     model_uri=PID4CAT_MODEL.HdlDataLog_value,
     domain=HdlDataLog,
-    range=Union[Union[dict, "LogRecord"], List[Union[dict, "LogRecord"]]],
+    range=Union[Union[dict, "LogRecord"], list[Union[dict, "LogRecord"]]],
 )
 
 slots.ResourceInfo_resource_category = Slot(
@@ -2532,7 +2530,7 @@ slots.ResourceInfo_representation_variants = Slot(
     model_uri=PID4CAT_MODEL.ResourceInfo_representation_variants,
     domain=ResourceInfo,
     range=Union[
-        Union[dict, "RepresentationVariant"], List[Union[dict, "RepresentationVariant"]]
+        Union[dict, "RepresentationVariant"], list[Union[dict, "RepresentationVariant"]]
     ],
 )
 
@@ -2802,7 +2800,7 @@ slots.Pid4CatRecord_related_identifiers = Slot(
     model_uri=PID4CAT_MODEL.Pid4CatRecord_related_identifiers,
     domain=Pid4CatRecord,
     range=Optional[
-        Union[Union[dict, Pid4CatRelation], List[Union[dict, Pid4CatRelation]]]
+        Union[Union[dict, Pid4CatRelation], list[Union[dict, Pid4CatRelation]]]
     ],
 )
 
@@ -2812,5 +2810,5 @@ slots.Pid4CatRecord_change_log = Slot(
     curie=PID4CAT_MODEL.curie("change_log"),
     model_uri=PID4CAT_MODEL.Pid4CatRecord_change_log,
     domain=Pid4CatRecord,
-    range=Union[Union[dict, LogRecord], List[Union[dict, LogRecord]]],
+    range=Union[Union[dict, LogRecord], list[Union[dict, LogRecord]]],
 )
