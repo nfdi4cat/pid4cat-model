@@ -17,10 +17,7 @@ LINKML_SCHEMA_SOURCE_DIR="src/pid4cat_model/schema"
 LINKML_GENERATORS_CONFIG_YAML=config.yaml
 
 ## pass args if gendoc ignores config.yaml (i.e. --no-mergeimports)
-# It would be nice to separate the docs by type via "--subfolder-type-separation"
-#   but the URIs of classes and slots are not adapted and therefore not
-#   suitable for redirecting via w3id.org. linkml#2561
-LINKML_GENERATORS_DOC_ARGS="--hierarchical-class-view --index-name overview"
+LINKML_GENERATORS_DOC_ARGS="--hierarchical-class-view --subfolder-type-separation --index-name overview"
 
 ## pass args to workaround genowl rdfs config bug (linkml#1453)
 ##   (i.e. --no-type-objects --no-metaclasses --metadata-profile rdfs)
