@@ -762,12 +762,12 @@
 <tr>
 <td>IS_NEW_VERSION_OF</td>
 <td>voc4cat:0005029</td>
-<td>The resource is a new version of another resource</td>
+<td>The resource is a new version of another versioned resource</td>
 </tr>
 <tr>
 <td>IS_PREVIOUS_VERSION_OF</td>
 <td>voc4cat:0005030</td>
-<td>The resource is a previous version of another resource</td>
+<td>The resource is a previous version of another versioned resource</td>
 </tr>
 <tr>
 <td>IS_PART_OF</td>
@@ -869,6 +869,11 @@
 <td>voc4cat:0005050</td>
 <td>The resource obsoletes another resource</td>
 </tr>
+<tr>
+<td>CONFORMS_TO</td>
+<td>voc4cat:0005059</td>
+<td>An established standard to which the described resource conforms</td>
+</tr>
 </tbody>
 </table>
 <h2 id="slots">Slots</h2>
@@ -932,7 +937,9 @@
 <span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">voc4cat:0005026</span>
 <span class="w">  </span><span class="nt">HAS_VERSION</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HAS_VERSION</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The resource has a version.</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The resource has a version. This is useful to express the relation</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">between a abstract resource to its versioned instances, for example, &quot;Python</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">has_version Python 3.12&quot;.</span>
 <span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">voc4cat:0005027</span>
 <span class="w">    </span><span class="nt">close_mappings</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dcterms:hasVersion</span>
@@ -946,27 +953,41 @@
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dcterms:isVersionOf</span>
 <span class="w">  </span><span class="nt">IS_NEW_VERSION_OF</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IS_NEW_VERSION_OF</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The resource is a new version of another resource.</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The resource is a new version of another versioned resource. This</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">is useful to refer between versioned resources, for example, &quot;Python 3.12.1</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">is_new_version_of Python 3.12.0&quot;.</span>
 <span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">voc4cat:0005029</span>
 <span class="w">  </span><span class="nt">IS_PREVIOUS_VERSION_OF</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IS_PREVIOUS_VERSION_OF</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The resource is a previous version of another resource.</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The resource is a previous version of another versioned resource.</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">This is useful to refer between versioned resources, for example, &quot;Python 3.12.0</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">is_previous_version_of Python 3.12.1&quot;.</span>
 <span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">voc4cat:0005030</span>
 <span class="w">  </span><span class="nt">IS_PART_OF</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IS_PART_OF</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The resource is part of another resource.</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The resource is part of another resource. This relation applies to</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">container-contained type relationships. If the relation refers to publishing</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">one resource as part of another resource, use &quot;IS_PUBLISHED_IN&quot; instead. If</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">the relation refers to a versioned resource and non-versioned resource, use</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">&quot;IS_VERSION_OF&quot; instead.</span>
 <span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">voc4cat:0005031</span>
 <span class="w">    </span><span class="nt">close_mappings</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dcterms:isPartOf</span>
 <span class="w">  </span><span class="nt">HAS_PART</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HAS_PART</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The resource has part another resource.</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The resource has part another resource. This relation applies to</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">container-contained type relationships. If the relation refers to publishing</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">one resource as part of another resource, &quot;IS_PUBLISHED_IN&quot; instead. If the</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">relation refers to a versioned resource and non-versioned resource, use &quot;HAS_VERSION&quot;</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">instead.</span>
 <span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">voc4cat:0005032</span>
 <span class="w">    </span><span class="nt">close_mappings</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dcterms:hasPart</span>
 <span class="w">  </span><span class="nt">IS_PUBLISHED_IN</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IS_PUBLISHED_IN</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The resource is published in another resource.</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The resource is published in another resource. A resource A that</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">is_published_in a resource B is independent from other resources published in</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">the same resource B.</span>
 <span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">voc4cat:0005033</span>
 <span class="w">  </span><span class="nt">IS_REFERENCED_BY</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IS_REFERENCED_BY</span>
@@ -988,39 +1009,59 @@
 <span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">voc4cat:0005037</span>
 <span class="w">  </span><span class="nt">IS_COMPILED_BY</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IS_COMPILED_BY</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The resource is compiled by another resource.</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The resource is compiled by another resource. Resources may be text</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">or software. The compiler may be a computer program or a person.</span>
 <span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">voc4cat:0005038</span>
 <span class="w">  </span><span class="nt">COMPILES</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">COMPILES</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The resource compiles another resource.</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The resource compiles another resource. Resources may be text or</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">software. The compiler may be a computer program or a person.</span>
 <span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">voc4cat:0005039</span>
 <span class="w">  </span><span class="nt">IS_VARIANT_FORM_OF</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IS_VARIANT_FORM_OF</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The resource is variant form of another resource.</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The resource is variant form of another resource. This may be used</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">e.g. for relating architecture-specific builds of a a software program to a</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">source-code release. It may also be used to express the relation between data</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">in different formats (e.g. PNG, JPEG) of the same image.</span>
 <span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">voc4cat:0005040</span>
 <span class="w">  </span><span class="nt">IS_ORIGINAL_FORM_OF</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IS_ORIGINAL_FORM_OF</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The resource is original form of another resource.</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The resource is original form of another resource. This may be used</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">e.g. for relating architecture-specific builds of a a software program to a</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">source-code release. It may also be used to express the relation between data</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">in different formats (e.g. PNG, JPEG) of the same image.</span>
 <span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">voc4cat:0005041</span>
 <span class="w">  </span><span class="nt">IS_IDENTICAL_TO</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IS_IDENTICAL_TO</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The resource is identical to another resource.</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The resource is identical to another resource. May be used to indicate</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">the relationship between an exact copy of a resource that is published at another</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">location.</span>
 <span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">voc4cat:0005042</span>
 <span class="w">  </span><span class="nt">IS_DERIVED_FROM</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IS_DERIVED_FROM</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The resource is derived from another resource.</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The resource is derived from another resource. This may be used for</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">relating a new dataset created by data processing to its original source dataset.</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">For samples it may express the relation between the original sample and another</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">sample derived from it by physical or chemical treatment.</span>
 <span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">voc4cat:0005043</span>
 <span class="w">  </span><span class="nt">IS_SOURCE_OF</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IS_SOURCE_OF</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The resource is source of another resource.</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The resource is source of another resource. This may be used for</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">example to express the relation between a source dataset and a new dataset derived</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">from it by data processing. For samples it may express the relation between</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">a sample processed by physical or chemical treatment and the original sample.</span>
 <span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">voc4cat:0005044</span>
 <span class="w">  </span><span class="nt">IS_COLLECTED_BY</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IS_COLLECTED_BY</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The resource is collected by another resource.</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The resource is collected by another resource. May be used to indicate</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">the relationship between a dataset and an instrument that is used to collect,</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">measure, obtain, or observe data.</span>
 <span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">voc4cat:0005045</span>
 <span class="w">  </span><span class="nt">COLLECTS</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">COLLECTS</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The resource collects another resource.</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The resource collects another resource. May be used to indicate the</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">relationship between an instrument and where it has been used to collect, measure,</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">obtain, or observe data.</span>
 <span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">voc4cat:0005046</span>
 <span class="w">  </span><span class="nt">IS_REQUIRED_BY</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IS_REQUIRED_BY</span>
@@ -1038,10 +1079,22 @@
 <span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IS_OBSOLETED_BY</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The resource is obsoleted by another resource.</span>
 <span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">voc4cat:0005049</span>
+<span class="w">    </span><span class="nt">close_mappings</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dcterms:replacedBy</span>
 <span class="w">  </span><span class="nt">OBSOLETES</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OBSOLETES</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The resource obsoletes another resource.</span>
 <span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">voc4cat:0005050</span>
+<span class="w">    </span><span class="nt">close_mappings</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dcterms:replaces</span>
+<span class="w">  </span><span class="nt">CONFORMS_TO</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CONFORMS_TO</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">An established standard to which the described resource conforms.</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">This relation should be used to indicate the model, schema, ontology, or profile</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">that the resource content conforms to.</span>
+<span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">voc4cat:0005059</span>
+<span class="w">    </span><span class="nt">close_mappings</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dcterms:conformsTo</span>
 </code></pre></div>
 </details>
 

@@ -14,7 +14,7 @@ todos:
 see_also:
 - https://nfdi4cat.github.io/pid4cat-model
 id: https://w3id.org/nfdi4cat/pid4cat-model
-version: 0.3.0.post17.dev0+72be3ab
+version: 0.3.0.post18.dev0+c572e0a
 imports:
 - linkml:types
 - media_types
@@ -400,7 +400,9 @@ enums:
         meaning: voc4cat:0005026
       HAS_VERSION:
         text: HAS_VERSION
-        description: The resource has a version.
+        description: The resource has a version. This is useful to express the relation
+          between a abstract resource to its versioned instances, for example, "Python
+          has_version Python 3.12".
         meaning: voc4cat:0005027
         close_mappings:
         - dcterms:hasVersion
@@ -414,27 +416,41 @@ enums:
         - dcterms:isVersionOf
       IS_NEW_VERSION_OF:
         text: IS_NEW_VERSION_OF
-        description: The resource is a new version of another resource.
+        description: The resource is a new version of another versioned resource.
+          This is useful to refer between versioned resources, for example, "Python
+          3.12.1 is_new_version_of Python 3.12.0".
         meaning: voc4cat:0005029
       IS_PREVIOUS_VERSION_OF:
         text: IS_PREVIOUS_VERSION_OF
-        description: The resource is a previous version of another resource.
+        description: The resource is a previous version of another versioned resource.
+          This is useful to refer between versioned resources, for example, "Python
+          3.12.0 is_previous_version_of Python 3.12.1".
         meaning: voc4cat:0005030
       IS_PART_OF:
         text: IS_PART_OF
-        description: The resource is part of another resource.
+        description: The resource is part of another resource. This relation applies
+          to container-contained type relationships. If the relation refers to publishing
+          one resource as part of another resource, use "IS_PUBLISHED_IN" instead.
+          If the relation refers to a versioned resource and non-versioned resource,
+          use "IS_VERSION_OF" instead.
         meaning: voc4cat:0005031
         close_mappings:
         - dcterms:isPartOf
       HAS_PART:
         text: HAS_PART
-        description: The resource has part another resource.
+        description: The resource has part another resource. This relation applies
+          to container-contained type relationships. If the relation refers to publishing
+          one resource as part of another resource, "IS_PUBLISHED_IN" instead. If
+          the relation refers to a versioned resource and non-versioned resource,
+          use "HAS_VERSION" instead.
         meaning: voc4cat:0005032
         close_mappings:
         - dcterms:hasPart
       IS_PUBLISHED_IN:
         text: IS_PUBLISHED_IN
-        description: The resource is published in another resource.
+        description: The resource is published in another resource. A resource A that
+          is_published_in a resource B is independent from other resources published
+          in the same resource B.
         meaning: voc4cat:0005033
       IS_REFERENCED_BY:
         text: IS_REFERENCED_BY
@@ -456,39 +472,60 @@ enums:
         meaning: voc4cat:0005037
       IS_COMPILED_BY:
         text: IS_COMPILED_BY
-        description: The resource is compiled by another resource.
+        description: The resource is compiled by another resource. Resources may be
+          text or software. The compiler may be a computer program or a person.
         meaning: voc4cat:0005038
       COMPILES:
         text: COMPILES
-        description: The resource compiles another resource.
+        description: The resource compiles another resource. Resources may be text
+          or software. The compiler may be a computer program or a person.
         meaning: voc4cat:0005039
       IS_VARIANT_FORM_OF:
         text: IS_VARIANT_FORM_OF
-        description: The resource is variant form of another resource.
+        description: The resource is variant form of another resource. This may be
+          used e.g. for relating architecture-specific builds of a a software program
+          to a source-code release. It may also be used to express the relation between
+          data in different formats (e.g. PNG, JPEG) of the same image.
         meaning: voc4cat:0005040
       IS_ORIGINAL_FORM_OF:
         text: IS_ORIGINAL_FORM_OF
-        description: The resource is original form of another resource.
+        description: The resource is original form of another resource. This may be
+          used e.g. for relating architecture-specific builds of a a software program
+          to a source-code release. It may also be used to express the relation between
+          data in different formats (e.g. PNG, JPEG) of the same image.
         meaning: voc4cat:0005041
       IS_IDENTICAL_TO:
         text: IS_IDENTICAL_TO
-        description: The resource is identical to another resource.
+        description: The resource is identical to another resource. May be used to
+          indicate the relationship between an exact copy of a resource that is published
+          at another location.
         meaning: voc4cat:0005042
       IS_DERIVED_FROM:
         text: IS_DERIVED_FROM
-        description: The resource is derived from another resource.
+        description: The resource is derived from another resource. This may be used
+          for relating a new dataset created by data processing to its original source
+          dataset. For samples it may express the relation between the original sample
+          and another sample derived from it by physical or chemical treatment.
         meaning: voc4cat:0005043
       IS_SOURCE_OF:
         text: IS_SOURCE_OF
-        description: The resource is source of another resource.
+        description: The resource is source of another resource. This may be used
+          for example to express the relation between a source dataset and a new dataset
+          derived from it by data processing. For samples it may express the relation
+          between a sample processed by physical or chemical treatment and the original
+          sample.
         meaning: voc4cat:0005044
       IS_COLLECTED_BY:
         text: IS_COLLECTED_BY
-        description: The resource is collected by another resource.
+        description: The resource is collected by another resource. May be used to
+          indicate the relationship between a dataset and an instrument that is used
+          to collect, measure, obtain, or observe data.
         meaning: voc4cat:0005045
       COLLECTS:
         text: COLLECTS
-        description: The resource collects another resource.
+        description: The resource collects another resource. May be used to indicate
+          the relationship between an instrument and where it has been used to collect,
+          measure, obtain, or observe data.
         meaning: voc4cat:0005046
       IS_REQUIRED_BY:
         text: IS_REQUIRED_BY
@@ -506,10 +543,22 @@ enums:
         text: IS_OBSOLETED_BY
         description: The resource is obsoleted by another resource.
         meaning: voc4cat:0005049
+        close_mappings:
+        - dcterms:replacedBy
       OBSOLETES:
         text: OBSOLETES
         description: The resource obsoletes another resource.
         meaning: voc4cat:0005050
+        close_mappings:
+        - dcterms:replaces
+      CONFORMS_TO:
+        text: CONFORMS_TO
+        description: An established standard to which the described resource conforms.
+          This relation should be used to indicate the model, schema, ontology, or
+          profile that the resource content conforms to.
+        meaning: voc4cat:0005059
+        close_mappings:
+        - dcterms:conformsTo
   Pid4CatStatus:
     name: Pid4CatStatus
     definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/Pid4CatStatus
@@ -2986,7 +3035,7 @@ classes:
     class_uri: pid4cat_model:Pid4CatRecord
 metamodel_version: 1.7.0
 source_file: pid4cat_model.yaml
-source_file_date: '2025-04-29T20:31:06'
-source_file_size: 27883
-generation_date: '2025-04-29T20:31:10'
+source_file_date: '2025-04-29T21:38:36'
+source_file_size: 31566
+generation_date: '2025-04-29T21:38:40'
 
