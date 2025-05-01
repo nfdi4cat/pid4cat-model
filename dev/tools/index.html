@@ -835,7 +835,84 @@
 <ul>
 <li>interacting with the pid4cat API to create, read and update pid4cat identifiers and their metadata.</li>
 <li>validating pid4cat metadata against the pid4cat-model schema.</li>
+<li>calculating and validating ISO 7064 checksums which may be used in local identifier schemes.</li>
 </ul>
+<p><a href="https://www.iso.org/standard/31531.html">ISO/IEC 7064</a> describes eight generic check digit (character) systems for numeric, alphabetic, and alphanumeric strings.
+It specifies two types of systems that use the same algorithm with different parameters:
+Pure systems and Hybrid systems.</p>
+<table>
+<thead>
+<tr>
+<th>Algorithm</th>
+<th>Function name</th>
+<th>Input string</th>
+<th>Check character(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><em>Pure</em></strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ISO/IEC 7064, MOD 11-2</td>
+<td>mod11_2</td>
+<td>Numeric (0-9)</td>
+<td>1 digit or 'X' (0-9X)</td>
+</tr>
+<tr>
+<td>ISO/IEC 7064, MOD 37-2</td>
+<td>mod37_2</td>
+<td>Alphanumeric (0-9A-Z)</td>
+<td>1 digit, letter, or '*' (0-9A-Z*)</td>
+</tr>
+<tr>
+<td>ISO/IEC 7064, MOD 97-10</td>
+<td>mod97_10</td>
+<td>Numeric (0-9)</td>
+<td>2 digits (0-9)</td>
+</tr>
+<tr>
+<td>ISO/IEC 7064, MOD 661-26</td>
+<td>mod661_26</td>
+<td>Alphabetic (A-Z)</td>
+<td>2 letters (A-Z)</td>
+</tr>
+<tr>
+<td>ISO/IEC 7064, MOD 1271-36</td>
+<td>mod1271_36</td>
+<td>Alphanumeric (0-9A-Z)</td>
+<td>2 digits or letters (0-9A-Z)</td>
+</tr>
+<tr>
+<td><strong><em>Hybrid</em></strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ISO/IEC 7064, MOD 11,10</td>
+<td>mod11_10</td>
+<td>Numeric (0-9)</td>
+<td>1 digit (0-9)</td>
+</tr>
+<tr>
+<td>ISO/IEC 7064, MOD 27,26</td>
+<td>mod27_26</td>
+<td>Alphabetic (A-Z)</td>
+<td>1 letter (A-Z)</td>
+</tr>
+<tr>
+<td>ISO/IEC 7064, MOD 37,36</td>
+<td>mod37_36</td>
+<td>Alphanumeric (0-9A-Z)</td>
+<td>1 digit or letter (0-9A-Z)</td>
+</tr>
+</tbody>
+</table>
+<p>The pid4cat_model.iso7064 module contains implementations of all algorithms in the table.</p>
 <h2 id="pid4cat-api">pid4cat API</h2>
 <p>A REST API server that provides the endpoints to create, read and update pid4cat identifiers. It handles authentication of the SNAAs and SNAA-related validation.</p>
 <p>The source code of the software is not yet available as open source but there are plans to release it in the future.</p>
