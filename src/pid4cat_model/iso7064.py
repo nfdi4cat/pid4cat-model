@@ -262,9 +262,7 @@ mod37_36 = ISO7064Hybrid("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
 
 if __name__ == "__main__":
-    import stdnum.iso7064.mod_97_10
-
-    # Example usage of mod97_10
+    # How to use the module? Demo for the mod97_10 algorithm as an example.
     number = "123456789"
     print(f"Number: {number}")
 
@@ -274,13 +272,11 @@ if __name__ == "__main__":
 
     # Computes the check character
     computed = mod97_10.compute(number)
-    stdnum_check_digit = stdnum.iso7064.mod_97_10.calc_check_digits(number)
-    print(f"Computed Check Character: {computed}  ---  stdnum: {stdnum_check_digit}")
+    print(f"Computed Check Character: {computed}")
 
     # Validates the generated number
     is_valid = mod97_10.validate(generated)
-    is_valid_stdnum = stdnum.iso7064.mod_97_10.is_valid(generated)
-    print(f"Is valid: {is_valid}  ---  stdnum: {is_valid_stdnum}")
+    print(f"Is valid: {is_valid}")
 
     # Parses the generated number
     bare, cc = mod97_10.parse(generated)
