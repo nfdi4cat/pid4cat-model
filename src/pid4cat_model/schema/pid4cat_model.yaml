@@ -14,7 +14,7 @@ description: >-
   exception of the resource category, which is a high-level description of
   what is identified by the pid4cat handle, e.g. a sample or a device.
 
-version: "0.0.0"  # Managed by dynamic-versioning. Don't change this line!
+version: "0.3.0.post20.dev0+ef7fe8a"  # Managed by dynamic-versioning. Don't change this line!
 
 todos:
   - none
