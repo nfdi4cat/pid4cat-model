@@ -127,8 +127,8 @@ Suggested checksum calculations:
   Hence, it is well suited to detect error in alphanumeric identification numbers.
   This algorithm is for example used by the [Global Release Identifier](https://en.wikipedia.org/wiki/Global_Release_Identifier).
 
-Implementation of these algorithms are available in many languages (for example in [python-stdnum](https://arthurdejong.org/python-stdnum/doc/1.20/stdnum.iso7064),
-[base32-lib](https://pypi.org/project/base32-lib/) for Python or [cdigit](https://github.com/LiosK/cdigit) for JavaScript).
+Implementation of these algorithms are available in many languages (for example in [python-stdnum](https://arthurdejong.org/python-stdnum/doc/1.20/stdnum.iso7064).The [base32-lib](https://pypi.org/project/base32-lib/) for Python or [cdigit](https://github.com/LiosK/cdigit) for JavaScript).
+We have also added many ISO 7064 checksum algorithms to the [pid4cat-model](https://pypi.org/project/pid4cat-model/) Python package.
 
 !!! warning "Open question on supporting case sensitivity for identifier suffix."
 

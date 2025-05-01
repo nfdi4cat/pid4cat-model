@@ -6,6 +6,26 @@
 
 - interacting with the pid4cat API to create, read and update pid4cat identifiers and their metadata.
 - validating pid4cat metadata against the pid4cat-model schema.
+- calculating and validating ISO 7064 checksums which may be used in local identifier schemes.
+
+[ISO/IEC 7064](https://www.iso.org/standard/31531.html) describes eight generic check digit (character) systems for numeric, alphabetic, and alphanumeric strings.
+It specifies two types of systems that use the same algorithm with different parameters:
+Pure systems and Hybrid systems.
+
+| Algorithm               | Function name | Input string          | Check character(s)                  |
+| ------------------------- | ----------- | --------------------- | ----------------------------------- |
+| ***Pure***                |             |                       |                                     |
+| ISO/IEC 7064, MOD 11-2    | mod11_2     | Numeric (0-9)         | 1 digit or 'X' (0-9X)               |
+| ISO/IEC 7064, MOD 37-2    | mod37_2     | Alphanumeric (0-9A-Z) | 1 digit, letter, or '\*' (0-9A-Z\*) |
+| ISO/IEC 7064, MOD 97-10   | mod97_10    | Numeric (0-9)         | 2 digits (0-9)                      |
+| ISO/IEC 7064, MOD 661-26  | mod661_26   | Alphabetic (A-Z)      | 2 letters (A-Z)                     |
+| ISO/IEC 7064, MOD 1271-36 | mod1271_36  | Alphanumeric (0-9A-Z) | 2 digits or letters (0-9A-Z)        |
+| ***Hybrid***              |             |                       |                                     |
+| ISO/IEC 7064, MOD 11,10   | mod11_10    | Numeric (0-9)         | 1 digit (0-9)                       |
+| ISO/IEC 7064, MOD 27,26   | mod27_26    | Alphabetic (A-Z)      | 1 letter (A-Z)                      |
+| ISO/IEC 7064, MOD 37,36   | mod37_36    | Alphanumeric (0-9A-Z) | 1 digit or letter (0-9A-Z)          |
+
+The pid4cat_model.iso7064 module contains implementations of all algorithms in the table.
 
 ## pid4cat API
 
