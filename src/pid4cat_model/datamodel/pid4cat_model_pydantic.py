@@ -3,13 +3,13 @@ from __future__ import annotations
 import re
 from datetime import datetime
 from enum import Enum
-from typing import Any, ClassVar, Literal, Optional, Union
+from typing import Any, ClassVar, Dict, List, Literal, Optional, Union
 
 from pydantic import BaseModel, ConfigDict, Field, RootModel, field_validator
 
 
 metamodel_version = "None"
-version = "0.3.0.post17.dev0+93e88c2"
+version = "0.3.0.post25.dev0+d2bd0d4"
 
 
 class ConfiguredBaseModel(BaseModel):
@@ -25,7 +25,7 @@ class ConfiguredBaseModel(BaseModel):
 
 
 class LinkMLMeta(RootModel):
-    root: dict[str, Any] = {}
+    root: Dict[str, Any] = {}
     model_config = ConfigDict(frozen=True)
 
     def __getattr__(self, key: str):
@@ -231,9 +231,9 @@ class RelationType(str, Enum):
     IS_COMPILED_BY = "IS_COMPILED_BY"
     # The resource compiles another resource. Resources may be text or software. The compiler may be a computer program or a person.
     COMPILES = "COMPILES"
-    # The resource is variant form of another resource. This may be used e.g. for relating architecture-specific builds of a a software program to a source-code release. It may also be used to express the relation between data in different formats (e.g. PNG, JPEG) of the same image.
+    # The resource is variant form of another resource. This may be used e.g. for relating architecture-specific builds of a software program to a source-code release. It may also be used to express the relation between data in different formats (e.g. PNG, JPEG) of the same image.
     IS_VARIANT_FORM_OF = "IS_VARIANT_FORM_OF"
-    # The resource is original form of another resource. This may be used e.g. for relating architecture-specific builds of a a software program to a source-code release. It may also be used to express the relation between data in different formats (e.g. PNG, JPEG) of the same image.
+    # The resource is original form of another resource. This may be used e.g. for relating architecture-specific builds of a software program to a source-code release. It may also be used to express the relation between data in different formats (e.g. PNG, JPEG) of the same image.
     IS_ORIGINAL_FORM_OF = "IS_ORIGINAL_FORM_OF"
     # The resource is identical to another resource. May be used to indicate the relationship between an exact copy of a resource that is published at another location.
     IS_IDENTICAL_TO = "IS_IDENTICAL_TO"
@@ -337,7 +337,7 @@ class HandleAPIRecord(ConfiguredBaseModel):
             "linkml_meta": {"alias": "handle", "domain_of": ["HandleAPIRecord"]}
         },
     )
-    values: list[
+    values: List[
         Union[
             HandleRecord,
             URL,
@@ -1527,7 +1527,7 @@ class HdlDataRelated(ConfiguredBaseModel):
             }
         },
     )
-    value: Optional[list[Pid4CatRelation]] = Field(
+    value: Optional[List[Pid4CatRelation]] = Field(
         default=None,
         description="""The value of the handle data.""",
         json_schema_extra={
@@ -1684,7 +1684,7 @@ class HdlDataLog(ConfiguredBaseModel):
             }
         },
     )
-    value: list[LogRecord] = Field(
+    value: List[LogRecord] = Field(
         default=...,
         description="""The value of the handle data.""",
         json_schema_extra={
@@ -1714,7 +1714,7 @@ class HandleRecordContainer(ConfiguredBaseModel):
         {"from_schema": "https://w3id.org/nfdi4cat/pid4cat-model", "tree_root": True}
     )
 
-    contains_pids: Optional[list[HandleAPIRecord]] = Field(
+    contains_pids: Optional[List[HandleAPIRecord]] = Field(
         default=None,
         description="""The HandleRecords contained in the container.""",
         json_schema_extra={
@@ -1817,7 +1817,7 @@ class ResourceInfo(ConfiguredBaseModel):
             "linkml_meta": {"alias": "resource_category", "domain_of": ["ResourceInfo"]}
         },
     )
-    representation_variants: list[RepresentationVariant] = Field(
+    representation_variants: List[RepresentationVariant] = Field(
         default=...,
         description="""The representations of the resource in other media types than text/html.""",
         json_schema_extra={
@@ -2675,7 +2675,7 @@ class Pid4CatRecord(ConfiguredBaseModel):
             "linkml_meta": {"alias": "resource_info", "domain_of": ["Pid4CatRecord"]}
         },
     )
-    related_identifiers: Optional[list[Pid4CatRelation]] = Field(
+    related_identifiers: Optional[List[Pid4CatRelation]] = Field(
         default=None,
         description="""The related identifiers for the pid4cat record. The related identifiers are used to link the pid4cat record to other resources.""",
         json_schema_extra={
@@ -2685,7 +2685,7 @@ class Pid4CatRecord(ConfiguredBaseModel):
             }
         },
     )
-    change_log: list[LogRecord] = Field(
+    change_log: List[LogRecord] = Field(
         default=...,
         description="""The change log of the pid4cat record. The change log contains information about the changes made to the pid4cat record.""",
         json_schema_extra={
