@@ -14,7 +14,7 @@ todos:
 see_also:
 - https://nfdi4cat.github.io/pid4cat-model
 id: https://w3id.org/nfdi4cat/pid4cat-model
-version: 0.3.0.post25.dev0+d2bd0d4
+version: 0.3.0.post26.dev0+e73dc8d
 imports:
 - linkml:types
 - media_types
@@ -483,14 +483,14 @@ enums:
       IS_VARIANT_FORM_OF:
         text: IS_VARIANT_FORM_OF
         description: The resource is variant form of another resource. This may be
-          used e.g. for relating architecture-specific builds of a a software program
+          used e.g. for relating architecture-specific builds of a software program
           to a source-code release. It may also be used to express the relation between
           data in different formats (e.g. PNG, JPEG) of the same image.
         meaning: voc4cat:0005040
       IS_ORIGINAL_FORM_OF:
         text: IS_ORIGINAL_FORM_OF
         description: The resource is original form of another resource. This may be
-          used e.g. for relating architecture-specific builds of a a software program
+          used e.g. for relating architecture-specific builds of a software program
           to a source-code release. It may also be used to express the relation between
           data in different formats (e.g. PNG, JPEG) of the same image.
         meaning: voc4cat:0005041
@@ -3035,7 +3035,7 @@ classes:
     class_uri: pid4cat_model:Pid4CatRecord
 metamodel_version: 1.7.0
 source_file: pid4cat_model.yaml
-source_file_date: '2025-05-01T17:37:00'
-source_file_size: 31566
-generation_date: '2025-05-01T17:37:04'
+source_file_date: '2025-05-16T09:02:11'
+source_file_size: 31562
+generation_date: '2025-05-16T09:02:15'
 
