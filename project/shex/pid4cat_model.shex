@@ -1,5 +1,5 @@
 # metamodel_version: 1.7.0
-# version: 0.0.0
+# version: 0.3.0.post26.dev0+e73dc8d
 BASE <https://w3id.org/nfdi4cat/pid4cat-model/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
@@ -246,11 +246,11 @@ linkml:Sparqlpath xsd:string
     (  $<Pid4CatRecord_tes> (  <landing_page_url> @linkml:String ;
           <status> [ <https://w3id.org/nfdi4cat/voc4cat_0005052> <https://w3id.org/nfdi4cat/voc4cat_0005053>
              <https://w3id.org/nfdi4cat/voc4cat_0005054> <https://w3id.org/nfdi4cat/voc4cat_0005055> ] ;
-          <schema_version> @<HdlDataSchemaVer> ;
+          <schema_version> @linkml:String ;
           <metadata_license> @linkml:String ;
           <curation_contact> @linkml:String ;
           <resource_info> @<ResourceInfo> ;
-          <related_identifiers> @<RelatedIdentifier> * ;
+          <related_identifiers> @<Pid4CatRelation> * ;
           <change_log> @<LogRecord> +
        ) ;
        rdf:type [ <Pid4CatRecord> ] ?
@@ -274,7 +274,7 @@ linkml:Sparqlpath xsd:string
              <https://w3id.org/nfdi4cat/voc4cat_0005044> <https://w3id.org/nfdi4cat/voc4cat_0005045>
              <https://w3id.org/nfdi4cat/voc4cat_0005046> <https://w3id.org/nfdi4cat/voc4cat_0005047>
              <https://w3id.org/nfdi4cat/voc4cat_0005048> <https://w3id.org/nfdi4cat/voc4cat_0005049>
-             <https://w3id.org/nfdi4cat/voc4cat_0005050> ] ? ;
+             <https://w3id.org/nfdi4cat/voc4cat_0005050> <https://w3id.org/nfdi4cat/voc4cat_0005059> ] ? ;
           <related_identifier> @<RelatedIdentifier> ? ;
           <datetime_log> @linkml:Datetime ?
        ) ;
