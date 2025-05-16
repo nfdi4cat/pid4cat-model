@@ -1,7 +1,7 @@
  syntax="proto3";
  package
 // metamodel_version: 1.7.0
-// version: 0.0.0
+// version: 0.3.0.post26.dev0+e73dc8d
 // Data class for a person who plays a role relative to PID creation or curation.
 message Agent
  {
@@ -152,11 +152,11 @@ message Pid4CatRecord
  {
   string landingPageUrl = 0
   pid4CatStatus status = 0
-  hdlDataSchemaVer schemaVersion = 0
+  string schemaVersion = 0
   string metadataLicense = 0
   string curationContact = 0
   resourceInfo resourceInfo = 0
- repeated  relatedIdentifier relatedIdentifiers = 0
+ repeated  pid4CatRelation relatedIdentifiers = 0
  repeated  logRecord changeLog = 0
  }
 // Data class for a relation to another resource identified by a pid4cat handle or another PID type.

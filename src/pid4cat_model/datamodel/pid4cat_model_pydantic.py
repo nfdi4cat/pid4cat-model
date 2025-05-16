@@ -3,13 +3,13 @@ from __future__ import annotations
 import re
 from datetime import datetime
 from enum import Enum
-from typing import Any, ClassVar, Dict, List, Literal, Optional, Union
+from typing import Any, ClassVar, Literal, Optional, Union
 
 from pydantic import BaseModel, ConfigDict, Field, RootModel, field_validator
 
 
 metamodel_version = "None"
-version = "0.3.0.post25.dev0+d2bd0d4"
+version = "0.3.0.post26.dev0+e73dc8d"
 
 
 class ConfiguredBaseModel(BaseModel):
@@ -25,7 +25,7 @@ class ConfiguredBaseModel(BaseModel):
 
 
 class LinkMLMeta(RootModel):
-    root: Dict[str, Any] = {}
+    root: dict[str, Any] = {}
     model_config = ConfigDict(frozen=True)
 
     def __getattr__(self, key: str):
@@ -107,62 +107,118 @@ class MediaTypesEnum(str, Enum):
     IANA media types are used to specify the type of data.
     """
 
-    # For data in Electronic Publication Format (EPUB).
     applicationSOLIDUSepubPLUS_SIGNzip = "application/epub+zip"
-    # For data in JavaScript Object Notation (JSON).
+    """
+    For data in Electronic Publication Format (EPUB).
+    """
     applicationSOLIDUSjson = "application/json"
-    # For data in Linked Data json (JSON-LD).
+    """
+    For data in JavaScript Object Notation (JSON).
+    """
     applicationSOLIDUSldPLUS_SIGNjson = "application/ld+json"
-    # For binary data.
+    """
+    For data in Linked Data json (JSON-LD).
+    """
     applicationSOLIDUSoctet_stream = "application/octet-stream"
-    # For data in Portable Document Format (PDF).
+    """
+    For binary data.
+    """
     applicationSOLIDUSpdf = "application/pdf"
-    # For data in ELN ZIP format.
+    """
+    For data in Portable Document Format (PDF).
+    """
     applicationSOLIDUSvndFULL_STOPelnPLUS_SIGNzip = "application/vnd.eln+zip"
-    # For data in PowerPoint pptx format.
+    """
+    For data in ELN ZIP format.
+    """
     applicationSOLIDUSvndFULL_STOPopenxmlformats_officedocumentFULL_STOPpresentationmlFULL_STOPpresentation = "application/vnd.openxmlformats-officedocument.presentationml.presentation"
-    # For data in Excel xlsx format.
+    """
+    For data in PowerPoint pptx format.
+    """
     applicationSOLIDUSvndFULL_STOPopenxmlformats_officedocumentFULL_STOPspreadsheetmlFULL_STOPsheet = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-    # For data in Word docx format.
+    """
+    For data in Excel xlsx format.
+    """
     applicationSOLIDUSvndFULL_STOPopenxmlformats_officedocumentFULL_STOPwordprocessingmlFULL_STOPdocument = "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-    # For generic XML data.
+    """
+    For data in Word docx format.
+    """
     applicationSOLIDUSxml = "application/xml"
-    # For YAML data.
+    """
+    For generic XML data.
+    """
     applicationSOLIDUSyaml = "application/yaml"
-    # For zip archives.
+    """
+    For YAML data.
+    """
     applicationSOLIDUSzip = "application/zip"
-    # For GIF images.
+    """
+    For zip archives.
+    """
     imageSOLIDUSgif = "image/gif"
-    # For JPEG images.
+    """
+    For GIF images.
+    """
     imageSOLIDUSjpeg = "image/jpeg"
-    # For PNG images.
+    """
+    For JPEG images.
+    """
     imageSOLIDUSpng = "image/png"
-    # For SVG images.
+    """
+    For PNG images.
+    """
     imageSOLIDUSsvgPLUS_SIGNxml = "image/svg+xml"
-    # For TIFF images.
+    """
+    For SVG images.
+    """
     imageSOLIDUStiff = "image/tiff"
-    # For WebP images.
+    """
+    For TIFF images.
+    """
     imageSOLIDUSwebp = "image/webp"
-    # For data in comma-separated values (CSV) format.
+    """
+    For WebP images.
+    """
     textSOLIDUScsv = "text/csv"
-    # For html web pages.
+    """
+    For data in comma-separated values (CSV) format.
+    """
     textSOLIDUShtml = "text/html"
-    # For JavaScript code.
+    """
+    For html web pages.
+    """
     textSOLIDUSjavascript = "text/javascript"
-    # For data in markdown text format.
+    """
+    For JavaScript code.
+    """
     textSOLIDUSmarkdown = "text/markdown"
-    # For plain text data (default text media type).
+    """
+    For data in markdown text format.
+    """
     textSOLIDUSplain = "text/plain"
-    # For data in tab-separated values (TSV) format.
+    """
+    For plain text data (default text media type).
+    """
     textSOLIDUStab_separated_values = "text/tab-separated-values"
-    # For data in turtle format.
+    """
+    For data in tab-separated values (TSV) format.
+    """
     textSOLIDUSturtle = "text/turtle"
-    # For XML data.
+    """
+    For data in turtle format.
+    """
     textSOLIDUSxml = "text/xml"
-    # For mp4 video files.
+    """
+    For XML data.
+    """
     videoSOLIDUSmp4 = "video/mp4"
-    # For webm video files.
+    """
+    For mp4 video files.
+    """
     videoSOLIDUSwebm = "video/webm"
+    """
+    For webm video files.
+    """
 
 
 class ResourceCategory(str, Enum):
@@ -170,18 +226,30 @@ class ResourceCategory(str, Enum):
     The ResourceCategory expresses for which type of resource the PID is used, e.g. if the PID is for a sample or a device.
     """
 
-    # A collection is a group of resources and/or other collections.
     COLLECTION = "COLLECTION"
-    # A representative part of a material of interest on which observations are made.
+    """
+    A collection is a group of resources and/or other collections.
+    """
     SAMPLE = "SAMPLE"
-    # A material used in the research process (except samples).
+    """
+    A representative part of a material of interest on which observations are made.
+    """
     MATERIAL = "MATERIAL"
-    # A physical device used in a research or manufacturing process.
+    """
+    A material used in the research process (except samples).
+    """
     DEVICE = "DEVICE"
-    # A collection of data available for access or download. A data object might be a data file, a data set, a data collection.
+    """
+    A physical device used in a research or manufacturing process.
+    """
     DATA_OBJECT = "DATA_OBJECT"
-    # An organized system of operations that provide data processing functions or access to datasets.
+    """
+    A collection of data available for access or download. A data object might be a data file, a data set, a data collection.
+    """
     DATA_SERVICE = "DATA_SERVICE"
+    """
+    An organized system of operations that provide data processing functions or access to datasets.
+    """
 
 
 class RelationType(str, Enum):
@@ -189,72 +257,138 @@ class RelationType(str, Enum):
     The type of relation between two resources referenced by their PIDs.
     """
 
-    # The resource is cited by another resource.
     IS_CITED_BY = "IS_CITED_BY"
-    # The resource cites another resource.
+    """
+    The resource is cited by another resource.
+    """
     CITES = "CITES"
-    # The resource is supplemented by another resource.
+    """
+    The resource cites another resource.
+    """
     IS_SUPPLEMENT_TO = "IS_SUPPLEMENT_TO"
-    # The resource supplements another resource.
+    """
+    The resource is supplemented by another resource.
+    """
     IS_SUPPLEMENTED_BY = "IS_SUPPLEMENTED_BY"
-    # The resource is continued by another resource.
+    """
+    The resource supplements another resource.
+    """
     IS_CONTINUED_BY = "IS_CONTINUED_BY"
-    # The resource continues another resource.
+    """
+    The resource is continued by another resource.
+    """
     CONTINUES = "CONTINUES"
-    # The resource has metadata in another resource.
+    """
+    The resource continues another resource.
+    """
     HAS_METADATA = "HAS_METADATA"
-    # The resource is metadata for another resource.
+    """
+    The resource has metadata in another resource.
+    """
     IS_METADATA_FOR = "IS_METADATA_FOR"
-    # The resource has a version. This is useful to express the relation between a abstract resource to its versioned instances, for example, "Python has_version Python 3.12".
+    """
+    The resource is metadata for another resource.
+    """
     HAS_VERSION = "HAS_VERSION"
-    # The resource is a version of another resource. This is useful to refer to an abstract resource that has different versions, for example, "Python 3.12 is a version of Python".
+    """
+    The resource has a version. This is useful to express the relation between a abstract resource to its versioned instances, for example, "Python has_version Python 3.12".
+    """
     IS_VERSION_OF = "IS_VERSION_OF"
-    # The resource is a new version of another versioned resource. This is useful to refer between versioned resources, for example, "Python 3.12.1 is_new_version_of Python 3.12.0".
+    """
+    The resource is a version of another resource. This is useful to refer to an abstract resource that has different versions, for example, "Python 3.12 is a version of Python".
+    """
     IS_NEW_VERSION_OF = "IS_NEW_VERSION_OF"
-    # The resource is a previous version of another versioned resource. This is useful to refer between versioned resources, for example, "Python 3.12.0 is_previous_version_of Python 3.12.1".
+    """
+    The resource is a new version of another versioned resource. This is useful to refer between versioned resources, for example, "Python 3.12.1 is_new_version_of Python 3.12.0".
+    """
     IS_PREVIOUS_VERSION_OF = "IS_PREVIOUS_VERSION_OF"
-    # The resource is part of another resource. This relation applies to container-contained type relationships. If the relation refers to publishing one resource as part of another resource, use "IS_PUBLISHED_IN" instead. If the relation refers to a versioned resource and non-versioned resource, use "IS_VERSION_OF" instead.
+    """
+    The resource is a previous version of another versioned resource. This is useful to refer between versioned resources, for example, "Python 3.12.0 is_previous_version_of Python 3.12.1".
+    """
     IS_PART_OF = "IS_PART_OF"
-    # The resource has part another resource. This relation applies to container-contained type relationships. If the relation refers to publishing one resource as part of another resource, "IS_PUBLISHED_IN" instead. If the relation refers to a versioned resource and non-versioned resource, use "HAS_VERSION" instead.
+    """
+    The resource is part of another resource. This relation applies to container-contained type relationships. If the relation refers to publishing one resource as part of another resource, use "IS_PUBLISHED_IN" instead. If the relation refers to a versioned resource and non-versioned resource, use "IS_VERSION_OF" instead.
+    """
     HAS_PART = "HAS_PART"
-    # The resource is published in another resource. A resource A that is_published_in a resource B is independent from other resources published in the same resource B.
+    """
+    The resource has part another resource. This relation applies to container-contained type relationships. If the relation refers to publishing one resource as part of another resource, "IS_PUBLISHED_IN" instead. If the relation refers to a versioned resource and non-versioned resource, use "HAS_VERSION" instead.
+    """
     IS_PUBLISHED_IN = "IS_PUBLISHED_IN"
-    # The resource is referenced by another resource.
+    """
+    The resource is published in another resource. A resource A that is_published_in a resource B is independent from other resources published in the same resource B.
+    """
     IS_REFERENCED_BY = "IS_REFERENCED_BY"
-    # The resource references another resource.
+    """
+    The resource is referenced by another resource.
+    """
     REFERENCES = "REFERENCES"
-    # The resource is documented by another resource.
+    """
+    The resource references another resource.
+    """
     IS_DOCUMENTED_BY = "IS_DOCUMENTED_BY"
-    # The resource documents another resource.
+    """
+    The resource is documented by another resource.
+    """
     DOCUMENTS = "DOCUMENTS"
-    # The resource is compiled by another resource. Resources may be text or software. The compiler may be a computer program or a person.
+    """
+    The resource documents another resource.
+    """
     IS_COMPILED_BY = "IS_COMPILED_BY"
-    # The resource compiles another resource. Resources may be text or software. The compiler may be a computer program or a person.
+    """
+    The resource is compiled by another resource. Resources may be text or software. The compiler may be a computer program or a person.
+    """
     COMPILES = "COMPILES"
-    # The resource is variant form of another resource. This may be used e.g. for relating architecture-specific builds of a software program to a source-code release. It may also be used to express the relation between data in different formats (e.g. PNG, JPEG) of the same image.
+    """
+    The resource compiles another resource. Resources may be text or software. The compiler may be a computer program or a person.
+    """
     IS_VARIANT_FORM_OF = "IS_VARIANT_FORM_OF"
-    # The resource is original form of another resource. This may be used e.g. for relating architecture-specific builds of a software program to a source-code release. It may also be used to express the relation between data in different formats (e.g. PNG, JPEG) of the same image.
+    """
+    The resource is variant form of another resource. This may be used e.g. for relating architecture-specific builds of a software program to a source-code release. It may also be used to express the relation between data in different formats (e.g. PNG, JPEG) of the same image.
+    """
     IS_ORIGINAL_FORM_OF = "IS_ORIGINAL_FORM_OF"
-    # The resource is identical to another resource. May be used to indicate the relationship between an exact copy of a resource that is published at another location.
+    """
+    The resource is original form of another resource. This may be used e.g. for relating architecture-specific builds of a software program to a source-code release. It may also be used to express the relation between data in different formats (e.g. PNG, JPEG) of the same image.
+    """
     IS_IDENTICAL_TO = "IS_IDENTICAL_TO"
-    # The resource is derived from another resource. This may be used for relating a new dataset created by data processing to its original source dataset. For samples it may express the relation between the original sample and another sample derived from it by physical or chemical treatment.
+    """
+    The resource is identical to another resource. May be used to indicate the relationship between an exact copy of a resource that is published at another location.
+    """
     IS_DERIVED_FROM = "IS_DERIVED_FROM"
-    # The resource is source of another resource. This may be used for example to express the relation between a source dataset and a new dataset derived from it by data processing. For samples it may express the relation between a sample processed by physical or chemical treatment and the original sample.
+    """
+    The resource is derived from another resource. This may be used for relating a new dataset created by data processing to its original source dataset. For samples it may express the relation between the original sample and another sample derived from it by physical or chemical treatment.
+    """
     IS_SOURCE_OF = "IS_SOURCE_OF"
-    # The resource is collected by another resource. May be used to indicate the relationship between a dataset and an instrument that is used to collect, measure, obtain, or observe data.
+    """
+    The resource is source of another resource. This may be used for example to express the relation between a source dataset and a new dataset derived from it by data processing. For samples it may express the relation between a sample processed by physical or chemical treatment and the original sample.
+    """
     IS_COLLECTED_BY = "IS_COLLECTED_BY"
-    # The resource collects another resource. May be used to indicate the relationship between an instrument and where it has been used to collect, measure, obtain, or observe data.
+    """
+    The resource is collected by another resource. May be used to indicate the relationship between a dataset and an instrument that is used to collect, measure, obtain, or observe data.
+    """
     COLLECTS = "COLLECTS"
-    # The resource is required by another resource.
+    """
+    The resource collects another resource. May be used to indicate the relationship between an instrument and where it has been used to collect, measure, obtain, or observe data.
+    """
     IS_REQUIRED_BY = "IS_REQUIRED_BY"
-    # The resource requires another resource.
+    """
+    The resource is required by another resource.
+    """
     REQUIRES = "REQUIRES"
-    # The resource is obsoleted by another resource.
+    """
+    The resource requires another resource.
+    """
     IS_OBSOLETED_BY = "IS_OBSOLETED_BY"
-    # The resource obsoletes another resource.
+    """
+    The resource is obsoleted by another resource.
+    """
     OBSOLETES = "OBSOLETES"
-    # An established standard to which the described resource conforms. This relation should be used to indicate the model, schema, ontology, or profile that the resource content conforms to.
+    """
+    The resource obsoletes another resource.
+    """
     CONFORMS_TO = "CONFORMS_TO"
+    """
+    An established standard to which the described resource conforms. This relation should be used to indicate the model, schema, ontology, or profile that the resource content conforms to.
+    """
 
 
 class Pid4CatStatus(str, Enum):
@@ -262,14 +396,22 @@ class Pid4CatStatus(str, Enum):
     The usage status of the pid4cat record.
     """
 
-    # The pid4cat handle is reserved but the resource is not yet linked.
     SUBMITTED = "SUBMITTED"
-    # The pid4cat handle is linked to a concrete resource.
+    """
+    The pid4cat handle is reserved but the resource is not yet linked.
+    """
     REGISTERED = "REGISTERED"
-    # The pid4cat handle is obsolete, e.g. because the resource is referenced by another pid4cat.
+    """
+    The pid4cat handle is linked to a concrete resource.
+    """
     OBSOLETED = "OBSOLETED"
-    # The pid4cat record is deprecated, e.g. because the resource can no longer be found.
+    """
+    The pid4cat handle is obsolete, e.g. because the resource is referenced by another pid4cat.
+    """
     DEPRECATED = "DEPRECATED"
+    """
+    The pid4cat record is deprecated, e.g. because the resource can no longer be found.
+    """
 
 
 class Pid4CatAgentRole(str, Enum):
@@ -277,10 +419,14 @@ class Pid4CatAgentRole(str, Enum):
     The role of an agent relative to the resource.
     """
 
-    # The agent is the trustee of the resource.
     TRUSTEE = "TRUSTEE"
-    # The agent is the owner of the resource.
+    """
+    The agent is the trustee of the resource.
+    """
     OWNER = "OWNER"
+    """
+    The agent is the owner of the resource.
+    """
 
 
 class ChangeLogField(str, Enum):
@@ -288,20 +434,34 @@ class ChangeLogField(str, Enum):
     The field of the pid4cat record that was changed.
     """
 
-    # The status of the pid4cat record was changed.
     STATUS = "STATUS"
-    # The URL of the landing page in the pid4cat record was changed.
+    """
+    The status of the pid4cat record was changed.
+    """
     LANDING_PAGE = "LANDING_PAGE"
-    # The resource info of the pid4cat record was changed.
+    """
+    The URL of the landing page in the pid4cat record was changed.
+    """
     RESOURCE_INFO = "RESOURCE_INFO"
-    # The related identifiers of the pid4cat record were changed.
+    """
+    The resource info of the pid4cat record was changed.
+    """
     RELATED_IDS = "RELATED_IDS"
-    # The contact information of the pid4cat record was changed.
+    """
+    The related identifiers of the pid4cat record were changed.
+    """
     CONTACT = "CONTACT"
-    # The license of the pid4cat record was changed.
+    """
+    The contact information of the pid4cat record was changed.
+    """
     LICENSE = "LICENSE"
-    # The pid4cat-model version of the pid4cat record was changed.
+    """
+    The license of the pid4cat record was changed.
+    """
     SCHEMA_VER = "SCHEMA_VER"
+    """
+    The pid4cat-model version of the pid4cat record was changed.
+    """
 
 
 class HandleAPIRecord(ConfiguredBaseModel):
@@ -337,7 +497,7 @@ class HandleAPIRecord(ConfiguredBaseModel):
             "linkml_meta": {"alias": "handle", "domain_of": ["HandleAPIRecord"]}
         },
     )
-    values: List[
+    values: list[
         Union[
             HandleRecord,
             URL,
@@ -362,11 +522,12 @@ class HandleAPIRecord(ConfiguredBaseModel):
         pattern = re.compile(r"^\d{2}\.T?\d{4,}\/.*$")
         if isinstance(v, list):
             for element in v:
-                if isinstance(v, str) and not pattern.match(element):
-                    raise ValueError(f"Invalid handle format: {element}")
-        elif isinstance(v, str):
-            if not pattern.match(v):
-                raise ValueError(f"Invalid handle format: {v}")
+                if isinstance(element, str) and not pattern.match(element):
+                    err_msg = f"Invalid handle format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.match(v):
+            err_msg = f"Invalid handle format: {v}"
+            raise ValueError(err_msg)
         return v
 
 
@@ -583,11 +744,12 @@ class HdlDataUrl(ConfiguredBaseModel):
         pattern = re.compile(r"^https?:\/\/.*$")
         if isinstance(v, list):
             for element in v:
-                if isinstance(v, str) and not pattern.match(element):
-                    raise ValueError(f"Invalid value format: {element}")
-        elif isinstance(v, str):
-            if not pattern.match(v):
-                raise ValueError(f"Invalid value format: {v}")
+                if isinstance(element, str) and not pattern.match(element):
+                    err_msg = f"Invalid value format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.match(v):
+            err_msg = f"Invalid value format: {v}"
+            raise ValueError(err_msg)
         return v
 
 
@@ -751,11 +913,12 @@ class HdlDataContact(ConfiguredBaseModel):
         pattern = re.compile(r"^\S+@[\S+\.]+\S+")
         if isinstance(v, list):
             for element in v:
-                if isinstance(v, str) and not pattern.match(element):
-                    raise ValueError(f"Invalid value format: {element}")
-        elif isinstance(v, str):
-            if not pattern.match(v):
-                raise ValueError(f"Invalid value format: {v}")
+                if isinstance(element, str) and not pattern.match(element):
+                    err_msg = f"Invalid value format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.match(v):
+            err_msg = f"Invalid value format: {v}"
+            raise ValueError(err_msg)
         return v
 
 
@@ -1071,11 +1234,12 @@ class HdlDataSchemaVer(ConfiguredBaseModel):
         pattern = re.compile(r"^v\d+\.\d+\.\d+$")
         if isinstance(v, list):
             for element in v:
-                if isinstance(v, str) and not pattern.match(element):
-                    raise ValueError(f"Invalid value format: {element}")
-        elif isinstance(v, str):
-            if not pattern.match(v):
-                raise ValueError(f"Invalid value format: {v}")
+                if isinstance(element, str) and not pattern.match(element):
+                    err_msg = f"Invalid value format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.match(v):
+            err_msg = f"Invalid value format: {v}"
+            raise ValueError(err_msg)
         return v
 
 
@@ -1527,7 +1691,7 @@ class HdlDataRelated(ConfiguredBaseModel):
             }
         },
     )
-    value: Optional[List[Pid4CatRelation]] = Field(
+    value: Optional[list[Pid4CatRelation]] = Field(
         default=None,
         description="""The value of the handle data.""",
         json_schema_extra={
@@ -1684,7 +1848,7 @@ class HdlDataLog(ConfiguredBaseModel):
             }
         },
     )
-    value: List[LogRecord] = Field(
+    value: list[LogRecord] = Field(
         default=...,
         description="""The value of the handle data.""",
         json_schema_extra={
@@ -1714,7 +1878,7 @@ class HandleRecordContainer(ConfiguredBaseModel):
         {"from_schema": "https://w3id.org/nfdi4cat/pid4cat-model", "tree_root": True}
     )
 
-    contains_pids: Optional[List[HandleAPIRecord]] = Field(
+    contains_pids: Optional[list[HandleAPIRecord]] = Field(
         default=None,
         description="""The HandleRecords contained in the container.""",
         json_schema_extra={
@@ -1817,7 +1981,7 @@ class ResourceInfo(ConfiguredBaseModel):
             "linkml_meta": {"alias": "resource_category", "domain_of": ["ResourceInfo"]}
         },
     )
-    representation_variants: List[RepresentationVariant] = Field(
+    representation_variants: list[RepresentationVariant] = Field(
         default=...,
         description="""The representations of the resource in other media types than text/html.""",
         json_schema_extra={
@@ -1946,11 +2110,12 @@ class Agent(ConfiguredBaseModel):
         pattern = re.compile(r"^\S+@[\S+\.]+\S+")
         if isinstance(v, list):
             for element in v:
-                if isinstance(v, str) and not pattern.match(element):
-                    raise ValueError(f"Invalid email_address format: {element}")
-        elif isinstance(v, str):
-            if not pattern.match(v):
-                raise ValueError(f"Invalid email_address format: {v}")
+                if isinstance(element, str) and not pattern.match(element):
+                    err_msg = f"Invalid email_address format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.match(v):
+            err_msg = f"Invalid email_address format: {v}"
+            raise ValueError(err_msg)
         return v
 
     @field_validator("orcid")
@@ -1958,11 +2123,12 @@ class Agent(ConfiguredBaseModel):
         pattern = re.compile(r"^\d{4}-\d{4}-\d{4}-\d{3}[0-9X]$")
         if isinstance(v, list):
             for element in v:
-                if isinstance(v, str) and not pattern.match(element):
-                    raise ValueError(f"Invalid orcid format: {element}")
-        elif isinstance(v, str):
-            if not pattern.match(v):
-                raise ValueError(f"Invalid orcid format: {v}")
+                if isinstance(element, str) and not pattern.match(element):
+                    err_msg = f"Invalid orcid format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.match(v):
+            err_msg = f"Invalid orcid format: {v}"
+            raise ValueError(err_msg)
         return v
 
     @field_validator("affiliation_ror")
@@ -1970,11 +2136,12 @@ class Agent(ConfiguredBaseModel):
         pattern = re.compile(r"^https:\/\/ror\.org\/0[a-hj-km-np-tv-z|0-9]{6}[0-9]{2}$")
         if isinstance(v, list):
             for element in v:
-                if isinstance(v, str) and not pattern.match(element):
-                    raise ValueError(f"Invalid affiliation_ror format: {element}")
-        elif isinstance(v, str):
-            if not pattern.match(v):
-                raise ValueError(f"Invalid affiliation_ror format: {v}")
+                if isinstance(element, str) and not pattern.match(element):
+                    err_msg = f"Invalid affiliation_ror format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.match(v):
+            err_msg = f"Invalid affiliation_ror format: {v}"
+            raise ValueError(err_msg)
         return v
 
 
@@ -2103,11 +2270,12 @@ class PurlIdentifier(RelatedIdentifier):
         pattern = re.compile(r"^https:\/\/(purl|pida|w3id)\.org\/.*$")
         if isinstance(v, list):
             for element in v:
-                if isinstance(v, str) and not pattern.match(element):
-                    raise ValueError(f"Invalid resolving_url format: {element}")
-        elif isinstance(v, str):
-            if not pattern.match(v):
-                raise ValueError(f"Invalid resolving_url format: {v}")
+                if isinstance(element, str) and not pattern.match(element):
+                    err_msg = f"Invalid resolving_url format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.match(v):
+            err_msg = f"Invalid resolving_url format: {v}"
+            raise ValueError(err_msg)
         return v
 
 
@@ -2180,11 +2348,12 @@ class DoiIdentifier(RelatedIdentifier):
         pattern = re.compile(r"^https:\/\/doi\.org\/10.*$")
         if isinstance(v, list):
             for element in v:
-                if isinstance(v, str) and not pattern.match(element):
-                    raise ValueError(f"Invalid resolving_url format: {element}")
-        elif isinstance(v, str):
-            if not pattern.match(v):
-                raise ValueError(f"Invalid resolving_url format: {v}")
+                if isinstance(element, str) and not pattern.match(element):
+                    err_msg = f"Invalid resolving_url format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.match(v):
+            err_msg = f"Invalid resolving_url format: {v}"
+            raise ValueError(err_msg)
         return v
 
     @field_validator("identifier")
@@ -2192,11 +2361,12 @@ class DoiIdentifier(RelatedIdentifier):
         pattern = re.compile(r"^10\.\d{4,}\/.*$")
         if isinstance(v, list):
             for element in v:
-                if isinstance(v, str) and not pattern.match(element):
-                    raise ValueError(f"Invalid identifier format: {element}")
-        elif isinstance(v, str):
-            if not pattern.match(v):
-                raise ValueError(f"Invalid identifier format: {v}")
+                if isinstance(element, str) and not pattern.match(element):
+                    err_msg = f"Invalid identifier format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.match(v):
+            err_msg = f"Invalid identifier format: {v}"
+            raise ValueError(err_msg)
         return v
 
 
@@ -2272,11 +2442,12 @@ class HandleIdentifier(RelatedIdentifier):
         pattern = re.compile(r"^https:\/\/hdl\.handle\.net\/\d{2}\.T?\d{4,}\/.*$")
         if isinstance(v, list):
             for element in v:
-                if isinstance(v, str) and not pattern.match(element):
-                    raise ValueError(f"Invalid resolving_url format: {element}")
-        elif isinstance(v, str):
-            if not pattern.match(v):
-                raise ValueError(f"Invalid resolving_url format: {v}")
+                if isinstance(element, str) and not pattern.match(element):
+                    err_msg = f"Invalid resolving_url format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.match(v):
+            err_msg = f"Invalid resolving_url format: {v}"
+            raise ValueError(err_msg)
         return v
 
     @field_validator("identifier")
@@ -2284,11 +2455,12 @@ class HandleIdentifier(RelatedIdentifier):
         pattern = re.compile(r"^\d{2}\.T?\d{4,}\/.*$")
         if isinstance(v, list):
             for element in v:
-                if isinstance(v, str) and not pattern.match(element):
-                    raise ValueError(f"Invalid identifier format: {element}")
-        elif isinstance(v, str):
-            if not pattern.match(v):
-                raise ValueError(f"Invalid identifier format: {v}")
+                if isinstance(element, str) and not pattern.match(element):
+                    err_msg = f"Invalid identifier format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.match(v):
+            err_msg = f"Invalid identifier format: {v}"
+            raise ValueError(err_msg)
         return v
 
 
@@ -2361,11 +2533,12 @@ class ArkIdentifier(RelatedIdentifier):
         pattern = re.compile(r"^ark:\/\d{5}/.*$")
         if isinstance(v, list):
             for element in v:
-                if isinstance(v, str) and not pattern.match(element):
-                    raise ValueError(f"Invalid identifier format: {element}")
-        elif isinstance(v, str):
-            if not pattern.match(v):
-                raise ValueError(f"Invalid identifier format: {v}")
+                if isinstance(element, str) and not pattern.match(element):
+                    err_msg = f"Invalid identifier format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.match(v):
+            err_msg = f"Invalid identifier format: {v}"
+            raise ValueError(err_msg)
         return v
 
     @field_validator("resolving_url")
@@ -2373,11 +2546,12 @@ class ArkIdentifier(RelatedIdentifier):
         pattern = re.compile(r"^https?:\/\/.*\/ark:\/\d{5}/.*$")
         if isinstance(v, list):
             for element in v:
-                if isinstance(v, str) and not pattern.match(element):
-                    raise ValueError(f"Invalid resolving_url format: {element}")
-        elif isinstance(v, str):
-            if not pattern.match(v):
-                raise ValueError(f"Invalid resolving_url format: {v}")
+                if isinstance(element, str) and not pattern.match(element):
+                    err_msg = f"Invalid resolving_url format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.match(v):
+            err_msg = f"Invalid resolving_url format: {v}"
+            raise ValueError(err_msg)
         return v
 
 
@@ -2433,11 +2607,12 @@ class UrnIdentifier(RelatedIdentifier):
         pattern = re.compile(r"^urn:[a-zA-Z0-9][a-zA-Z0-9-]{0,31}:[^\s]*$")
         if isinstance(v, list):
             for element in v:
-                if isinstance(v, str) and not pattern.match(element):
-                    raise ValueError(f"Invalid identifier format: {element}")
-        elif isinstance(v, str):
-            if not pattern.match(v):
-                raise ValueError(f"Invalid identifier format: {v}")
+                if isinstance(element, str) and not pattern.match(element):
+                    err_msg = f"Invalid identifier format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.match(v):
+            err_msg = f"Invalid identifier format: {v}"
+            raise ValueError(err_msg)
         return v
 
 
@@ -2493,11 +2668,12 @@ class GtinIdentifier(RelatedIdentifier):
         pattern = re.compile(r"^\d{13}$")
         if isinstance(v, list):
             for element in v:
-                if isinstance(v, str) and not pattern.match(element):
-                    raise ValueError(f"Invalid identifier format: {element}")
-        elif isinstance(v, str):
-            if not pattern.match(v):
-                raise ValueError(f"Invalid identifier format: {v}")
+                if isinstance(element, str) and not pattern.match(element):
+                    err_msg = f"Invalid identifier format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.match(v):
+            err_msg = f"Invalid identifier format: {v}"
+            raise ValueError(err_msg)
         return v
 
 
@@ -2569,11 +2745,12 @@ class ExampleIdentifier(RelatedIdentifier):
         pattern = re.compile(r"^ex:.*$")
         if isinstance(v, list):
             for element in v:
-                if isinstance(v, str) and not pattern.match(element):
-                    raise ValueError(f"Invalid identifier format: {element}")
-        elif isinstance(v, str):
-            if not pattern.match(v):
-                raise ValueError(f"Invalid identifier format: {v}")
+                if isinstance(element, str) and not pattern.match(element):
+                    err_msg = f"Invalid identifier format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.match(v):
+            err_msg = f"Invalid identifier format: {v}"
+            raise ValueError(err_msg)
         return v
 
     @field_validator("resolving_url")
@@ -2581,11 +2758,12 @@ class ExampleIdentifier(RelatedIdentifier):
         pattern = re.compile(r"^https?:\/\/(.+\.)?example.(org|com)\/.*$")
         if isinstance(v, list):
             for element in v:
-                if isinstance(v, str) and not pattern.match(element):
-                    raise ValueError(f"Invalid resolving_url format: {element}")
-        elif isinstance(v, str):
-            if not pattern.match(v):
-                raise ValueError(f"Invalid resolving_url format: {v}")
+                if isinstance(element, str) and not pattern.match(element):
+                    err_msg = f"Invalid resolving_url format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.match(v):
+            err_msg = f"Invalid resolving_url format: {v}"
+            raise ValueError(err_msg)
         return v
 
 
@@ -2675,7 +2853,7 @@ class Pid4CatRecord(ConfiguredBaseModel):
             "linkml_meta": {"alias": "resource_info", "domain_of": ["Pid4CatRecord"]}
         },
     )
-    related_identifiers: Optional[List[Pid4CatRelation]] = Field(
+    related_identifiers: Optional[list[Pid4CatRelation]] = Field(
         default=None,
         description="""The related identifiers for the pid4cat record. The related identifiers are used to link the pid4cat record to other resources.""",
         json_schema_extra={
@@ -2685,7 +2863,7 @@ class Pid4CatRecord(ConfiguredBaseModel):
             }
         },
     )
-    change_log: List[LogRecord] = Field(
+    change_log: list[LogRecord] = Field(
         default=...,
         description="""The change log of the pid4cat record. The change log contains information about the changes made to the pid4cat record.""",
         json_schema_extra={
@@ -2698,11 +2876,12 @@ class Pid4CatRecord(ConfiguredBaseModel):
         pattern = re.compile(r"^https?:\/\/.*$")
         if isinstance(v, list):
             for element in v:
-                if isinstance(v, str) and not pattern.match(element):
-                    raise ValueError(f"Invalid landing_page_url format: {element}")
-        elif isinstance(v, str):
-            if not pattern.match(v):
-                raise ValueError(f"Invalid landing_page_url format: {v}")
+                if isinstance(element, str) and not pattern.match(element):
+                    err_msg = f"Invalid landing_page_url format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.match(v):
+            err_msg = f"Invalid landing_page_url format: {v}"
+            raise ValueError(err_msg)
         return v
 
     @field_validator("curation_contact")
@@ -2710,11 +2889,12 @@ class Pid4CatRecord(ConfiguredBaseModel):
         pattern = re.compile(r"^\S+@[\S+\.]+\S+")
         if isinstance(v, list):
             for element in v:
-                if isinstance(v, str) and not pattern.match(element):
-                    raise ValueError(f"Invalid curation_contact format: {element}")
-        elif isinstance(v, str):
-            if not pattern.match(v):
-                raise ValueError(f"Invalid curation_contact format: {v}")
+                if isinstance(element, str) and not pattern.match(element):
+                    err_msg = f"Invalid curation_contact format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.match(v):
+            err_msg = f"Invalid curation_contact format: {v}"
+            raise ValueError(err_msg)
         return v
 
 

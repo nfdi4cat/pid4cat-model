@@ -745,34 +745,9 @@
                     "type": "string"
                 },
                 "related_identifiers": {
-                    "description": "The related identifiers of the pid4cat record. The related identifiers are used to link the pid4cat record to other resources.",
+                    "description": "The related identifiers for the pid4cat record. The related identifiers are used to link the pid4cat record to other resources.",
                     "items": {
-                        "anyOf": [
-                            {
-                                "$ref": "#/$defs/RelatedIdentifier"
-                            },
-                            {
-                                "$ref": "#/$defs/PurlIdentifier"
-                            },
-                            {
-                                "$ref": "#/$defs/DoiIdentifier"
-                            },
-                            {
-                                "$ref": "#/$defs/HandleIdentifier"
-                            },
-                            {
-                                "$ref": "#/$defs/ArkIdentifier"
-                            },
-                            {
-                                "$ref": "#/$defs/UrnIdentifier"
-                            },
-                            {
-                                "$ref": "#/$defs/GtinIdentifier"
-                            },
-                            {
-                                "$ref": "#/$defs/ExampleIdentifier"
-                            }
-                        ]
+                        "$ref": "#/$defs/Pid4CatRelation"
                     },
                     "type": [
                         "array",
@@ -784,8 +759,8 @@
                     "description": "The resource info of the pid4cat record. The resource info contains information about the resource identified by the PID."
                 },
                 "schema_version": {
-                    "$ref": "#/$defs/HdlDataSchemaVer",
-                    "description": "The version of the pid4cat-model used to create the pid4cat record."
+                    "description": "The version of the pid4cat-model used to create the pid4cat record.",
+                    "type": "string"
                 },
                 "status": {
                     "$ref": "#/$defs/Pid4CatStatus",
@@ -1029,7 +1004,8 @@
                 "IS_REQUIRED_BY",
                 "REQUIRES",
                 "IS_OBSOLETED_BY",
-                "OBSOLETES"
+                "OBSOLETES",
+                "CONFORMS_TO"
             ],
             "title": "RelationType",
             "type": "string"
@@ -1291,5 +1267,5 @@
     },
     "title": "pid4cat-model",
     "type": "object",
-    "version": "0.0.0"
+    "version": "0.3.0.post26.dev0+e73dc8d"
 }

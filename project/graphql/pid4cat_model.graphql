@@ -1,5 +1,5 @@
 # metamodel_version: 1.7.0
-# version: 0.0.0
+# version: 0.3.0.post26.dev0+e73dc8d
 enum ChangeLogField
   {
     STATUS
@@ -91,6 +91,7 @@ enum RelationType
     REQUIRES
     IS_OBSOLETED_BY
     OBSOLETES
+    CONFORMS_TO
   }
 
 enum ResourceCategory
@@ -252,11 +253,11 @@ type Pid4CatRecord
   {
     landingPageUrl: String!
     status: Pid4CatStatus!
-    schemaVersion: HdlDataSchemaVer!
+    schemaVersion: String!
     metadataLicense: String!
     curationContact: String!
     resourceInfo: ResourceInfo!
-    relatedIdentifiers: [RelatedIdentifier]
+    relatedIdentifiers: [Pid4CatRelation]
     changeLog: [LogRecord]!
   }
 
