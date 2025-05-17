@@ -108,7 +108,6 @@ Rules for the `<ns-suffix>`:
 - Sub-namespaces have to be requested at HLRS.
 - The ns-suffixes are generated randomly and should have no meaning (for example they should not match abbreviations of institutions).[^2]
 
-
 Rules for the `<id-suffix>`:
 
 - The local-IDs are managed by the responsible SNAA.
@@ -116,6 +115,12 @@ Rules for the `<id-suffix>`:
 - Dashes in this part are ignored.
 - The local-IDs should be kept short and not exceed 36 chars including dashes (which is the length of UUID4).
 - If an optional checksum is included, it must be calculated including the `<ns-suffix>` and ignoring dashes.
+
+Case-sensitivity:
+
+- The `<ns-suffix>` and `<id-suffix>` part of pid4cat PIDs are case insensitive.[^3]
+- The preferred case is uppercase, see [display guidelines](#display-format).
+- Checksums, if used, must be calculated for the uppercase form.
 
 Suggested checksum calculations:
 
@@ -130,20 +135,13 @@ Suggested checksum calculations:
 Implementation of these algorithms are available in many languages (for example in [python-stdnum](https://arthurdejong.org/python-stdnum/doc/1.20/stdnum.iso7064).The [base32-lib](https://pypi.org/project/base32-lib/) for Python or [cdigit](https://github.com/LiosK/cdigit) for JavaScript).
 We have also added many ISO 7064 checksum algorithms to the [pid4cat-model](https://pypi.org/project/pid4cat-model/) Python package.
 
-!!! warning "Open question on supporting case sensitivity for identifier suffix."
-
-    TODO: Update after poll: [Do you need case-sensitive ID handling?](https://github.com/nfdi4cat/pid4cat-model/issues/114)
-
-    While case sensitive strings would not be required for numeric, hex or base32 encoded IDs,
-    case sensitivity would be essential to support also base64 encoded ID-suffixes.
-    Case-insensitivity could only be enabled for certain sub-namespaces upon SNAA request.
-    It should not be enforced for all created identifiers and case-insensitive should be the default.
-
 [^2]: Fenner, M. (2016). ‘Cool DOI's’, DataCite Blog, [https://doi.org/10.5438/55E5-T5C0](https://doi.org/10.5438/55E5-T5C0)
+[^3]: GitHub, pid4cat-model issue #114, [Do you need case-sensitive ID handling?](https://github.com/nfdi4cat/pid4cat-model/issues/114), 2025.
+
 
 ## Use case: PIDs for samples, devices etc.
 
-pid4cat identifiers can be used for various resources in the catalysis research domain:
+pid4cat identifiers can be used for various resources in the catalysis research domain (table copied from [schema](/pid4cat-model/elements/enums/ResourceCategory/)):
 
 | Category   | Definition | Description of use  |
 | :----------- | :-------------- | :------------------------------------------------------------------------------- |
@@ -211,7 +209,7 @@ When displaying pid4cat identifiers in text:
 
 - Use the full handle identifier including prefix, branding suffix, namespace suffix, and local identifier part
 - Do not abbreviate any part of the identifier
-- Maintain the case sensitivity of the identifier
+- Use uppercase form of the identifier
 
 Example: `21.11165/4cat/ABC/SAMPLE-2023-001`
 
@@ -270,23 +268,23 @@ For pure machine use and if global uniqueness is important consider using
 - **UUID4-based identifiers** (unordered):
 
   ```ascii
-  40944082-40ed-4f66-9e8f-66fbcd3908a9
+  40944082-40ED-4F66-9E8F-66FBCD3908A9
   ```
 
 - **UUID7-based identifiers** (time-ordered):
 
   ```ascii
-  0195c559-4b8a-7201-a7ab-f1a5d06687e0
+  0195C559-4B8A-7201-A7AB-F1A5D06687E0
   ```
 
-See also suffix design in [identifier pattern](#identifier-pattern) section and PID literature[^3]^,^[^4].
+See also suffix design in [identifier pattern](#identifier-pattern) section and PID literature[^4]<sup>,</sup>[^5].
 
-[^3]:
+[^4]:
   McMurry JA, Juty N, Blomberg N, Burdett T, Conlin T, Conte N, et al. (2017)
   ‘Identifiers for the 21stcentury: How to design, provision, and reuse persistent identifiers to maximize utility and impact of life science data’.
   PLoS Biol15(6): e2001414. [https://doi.org/10.1371/journal.pbio.2001414](https://doi.org/10.1371/journal.pbio.2001414)
 
-[^4]:
+[^5]:
   Philipson, Joakim. ‘Identifying PIDs Playing FAIR’. Data Science 2, no. 1–2 (1 January 2019): 229–44.
   [https://doi.org/10.3233/DS-190024](https://doi.org/10.3233/DS-190024).
 
