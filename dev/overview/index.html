@@ -1334,6 +1334,12 @@ The different parts are separated by the ASCII character "/".</p>
 <li>The local-IDs should be kept short and not exceed 36 chars including dashes (which is the length of UUID4).</li>
 <li>If an optional checksum is included, it must be calculated including the <code>&lt;ns-suffix&gt;</code> and ignoring dashes.</li>
 </ul>
+<p>Case-sensitivity:</p>
+<ul>
+<li>The <code>&lt;ns-suffix&gt;</code> and <code>&lt;id-suffix&gt;</code> part of pid4cat PIDs are case insensitive.<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup></li>
+<li>The preferred case is uppercase, see <a href="#display-format">display guidelines</a>.</li>
+<li>Checksums, if used, must be calculated for the uppercase form.</li>
+</ul>
 <p>Suggested checksum calculations:</p>
 <ul>
 <li><strong>The ISO 7064 Mod 97, 10 algorithm.</strong> It evaluates the whole identifier as an integer which is valid if the number modulo 97 is 1.
@@ -1346,16 +1352,8 @@ The different parts are separated by the ASCII character "/".</p>
 </ul>
 <p>Implementation of these algorithms are available in many languages (for example in <a href="https://arthurdejong.org/python-stdnum/doc/1.20/stdnum.iso7064">python-stdnum</a>.The <a href="https://pypi.org/project/base32-lib/">base32-lib</a> for Python or <a href="https://github.com/LiosK/cdigit">cdigit</a> for JavaScript).
 We have also added many ISO 7064 checksum algorithms to the <a href="https://pypi.org/project/pid4cat-model/">pid4cat-model</a> Python package.</p>
-<div class="admonition warning">
-<p class="admonition-title">Open question on supporting case sensitivity for identifier suffix.</p>
-<p>TODO: Update after poll: <a href="https://github.com/nfdi4cat/pid4cat-model/issues/114">Do you need case-sensitive ID handling?</a></p>
-<p>While case sensitive strings would not be required for numeric, hex or base32 encoded IDs,
-case sensitivity would be essential to support also base64 encoded ID-suffixes.
-Case-insensitivity could only be enabled for certain sub-namespaces upon SNAA request.
-It should not be enforced for all created identifiers and case-insensitive should be the default.</p>
-</div>
 <h2 id="use-case-pids-for-samples-devices-etc">Use case: PIDs for samples, devices etc.</h2>
-<p>pid4cat identifiers can be used for various resources in the catalysis research domain:</p>
+<p>pid4cat identifiers can be used for various resources in the catalysis research domain (table copied from <a href="/pid4cat-model/elements/enums/ResourceCategory/">schema</a>):</p>
 <table>
 <thead>
 <tr>
@@ -1432,7 +1430,7 @@ Repo4cat makes use of pid4cat handles to persistently identify the stored resour
 <ul>
 <li>Use the full handle identifier including prefix, branding suffix, namespace suffix, and local identifier part</li>
 <li>Do not abbreviate any part of the identifier</li>
-<li>Maintain the case sensitivity of the identifier</li>
+<li>Use uppercase form of the identifier</li>
 </ul>
 <p>Example: <code>21.11165/4cat/ABC/SAMPLE-2023-001</code></p>
 <p>When creating hyperlinks use the handle.net resolver URL:</p>
@@ -1481,14 +1479,14 @@ For example, whenever reading and typing of the IDs by humans is important, cons
 <ul>
 <li><strong>UUID4-based identifiers</strong> (unordered):</li>
 </ul>
-<div class="highlight"><pre><span></span><code>40944082-40ed-4f66-9e8f-66fbcd3908a9
+<div class="highlight"><pre><span></span><code>40944082-40ED-4F66-9E8F-66FBCD3908A9
 </code></pre></div>
 <ul>
 <li><strong>UUID7-based identifiers</strong> (time-ordered):</li>
 </ul>
-<div class="highlight"><pre><span></span><code>0195c559-4b8a-7201-a7ab-f1a5d06687e0
+<div class="highlight"><pre><span></span><code>0195C559-4B8A-7201-A7AB-F1A5D06687E0
 </code></pre></div>
-<p>See also suffix design in <a href="#identifier-pattern">identifier pattern</a> section and PID literature<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup>^,^<sup id="fnref2:4"><a class="footnote-ref" href="#fn:4">4</a></sup>.</p>
+<p>See also suffix design in <a href="#identifier-pattern">identifier pattern</a> section and PID literature<sup id="fnref2:4"><a class="footnote-ref" href="#fn:4">4</a></sup><sup>,</sup><sup id="fnref:5"><a class="footnote-ref" href="#fn:5">5</a></sup>.</p>
 <h3 id="landing-pages">Landing Pages</h3>
 <p>Landing pages should:</p>
 <ol>
@@ -1582,13 +1580,16 @@ For example, whenever reading and typing of the IDs by humans is important, cons
 <p>Fenner, M. (2016). ‘Cool DOI's’, DataCite Blog, <a href="https://doi.org/10.5438/55E5-T5C0">https://doi.org/10.5438/55E5-T5C0</a>&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
 </li>
 <li id="fn:3">
-<p>McMurry JA, Juty N, Blomberg N, Burdett T, Conlin T, Conte N, et al. (2017)
-  ‘Identifiers for the 21stcentury: How to design, provision, and reuse persistent identifiers to maximize utility and impact of life science data’.
-  PLoS Biol15(6): e2001414. <a href="https://doi.org/10.1371/journal.pbio.2001414">https://doi.org/10.1371/journal.pbio.2001414</a>&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+<p>GitHub, pid4cat-model issue #114, <a href="https://github.com/nfdi4cat/pid4cat-model/issues/114">Do you need case-sensitive ID handling?</a>, 2025.&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
 </li>
 <li id="fn:4">
+<p>McMurry JA, Juty N, Blomberg N, Burdett T, Conlin T, Conte N, et al. (2017)
+  ‘Identifiers for the 21stcentury: How to design, provision, and reuse persistent identifiers to maximize utility and impact of life science data’.
+  PLoS Biol15(6): e2001414. <a href="https://doi.org/10.1371/journal.pbio.2001414">https://doi.org/10.1371/journal.pbio.2001414</a>&#160;<a class="footnote-backref" href="#fnref:4" title="Jump back to footnote 4 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:4" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+</li>
+<li id="fn:5">
 <p>Philipson, Joakim. ‘Identifying PIDs Playing FAIR’. Data Science 2, no. 1–2 (1 January 2019): 229–44.
-  <a href="https://doi.org/10.3233/DS-190024">https://doi.org/10.3233/DS-190024</a>.&#160;<a class="footnote-backref" href="#fnref:4" title="Jump back to footnote 4 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:4" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+  <a href="https://doi.org/10.3233/DS-190024">https://doi.org/10.3233/DS-190024</a>.&#160;<a class="footnote-backref" href="#fnref:5" title="Jump back to footnote 5 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
