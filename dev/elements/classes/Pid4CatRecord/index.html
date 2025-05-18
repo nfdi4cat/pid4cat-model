@@ -417,49 +417,49 @@
 <tr>
 <td><a href="../../slots/landing_page_url/">landing_page_url</a></td>
 <td>1 <br/> <a href="../../types/String/">String</a></td>
-<td>The URL of the landing page of the resource identified by the PID</td>
+<td>The URL of the landing page of the resource identified by the PID.</td>
 <td>direct</td>
 </tr>
 <tr>
 <td><a href="../../slots/status/">status</a></td>
 <td>1 <br/> <a href="../../enums/Pid4CatStatus/">Pid4CatStatus</a></td>
-<td>The status of the pid4cat record</td>
+<td>The status of the pid4cat record. The status is set to "SUBMITTED" when the handle is reserved but the resource is not yet linked. The status is set to "REGISTERED" when the handle is linked to a concrete resource.</td>
 <td>direct</td>
 </tr>
 <tr>
 <td><a href="../../slots/schema_version/">schema_version</a></td>
 <td>1 <br/> <a href="../../types/String/">String</a></td>
-<td>The version of the pid4cat-model used to create the pid4cat record</td>
+<td>The version of the pid4cat-model used to create the pid4cat record.</td>
 <td>direct</td>
 </tr>
 <tr>
 <td><a href="../../slots/metadata_license/">metadata_license</a></td>
 <td>1 <br/> <a href="../../types/String/">String</a></td>
-<td>The license of the metadata of the pid4cat record</td>
+<td>The license of the metadata of the pid4cat record. The license is set to "CC0-1.0" by default.</td>
 <td>direct</td>
 </tr>
 <tr>
 <td><a href="../../slots/curation_contact/">curation_contact</a></td>
 <td>1 <br/> <a href="../../types/String/">String</a></td>
-<td>The email address of the person responsible for the curation of the pid4cat r...</td>
+<td>The email address of the person responsible for the curation of the pid4cat record.</td>
 <td>direct</td>
 </tr>
 <tr>
 <td><a href="../../slots/resource_info/">resource_info</a></td>
 <td>1 <br/> <a href="../ResourceInfo/">ResourceInfo</a></td>
-<td>The resource info of the pid4cat record</td>
+<td>The resource info of the pid4cat record. The resource info contains information about the resource identified by the PID.</td>
 <td>direct</td>
 </tr>
 <tr>
 <td><a href="../../slots/related_identifiers/">related_identifiers</a></td>
 <td>* <br/> <a href="../Pid4CatRelation/">Pid4CatRelation</a></td>
-<td>The related identifiers for the pid4cat record</td>
+<td>The related identifiers for the pid4cat record. The related identifiers are used to link the pid4cat record to other resources.</td>
 <td>direct</td>
 </tr>
 <tr>
 <td><a href="../../slots/change_log/">change_log</a></td>
 <td>1..* <br/> <a href="../LogRecord/">LogRecord</a></td>
-<td>The change log of the pid4cat record</td>
+<td>The change log of the pid4cat record. The change log contains information about the changes made to the pid4cat record.</td>
 <td>direct</td>
 </tr>
 </tbody>
