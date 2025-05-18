@@ -28,7 +28,7 @@ The pid4cat documentation and model are developed on GitHub at [NFDI4Cat/pid4cat
 
 ### Getting Help
 
-- Use NFDI4Cat community [discussions](https://github.com/orgs/nfdi4cat/discussions?discussions_q=label%3Apid4cat+)
+- Use NFDI4Cat community [discussions](https://github.com/orgs/nfdi4cat/discussions?discussions_q=label%3Apid4cat+).
 
 ### Reporting Issues
 
@@ -37,3 +37,4 @@ The pid4cat documentation and model are developed on GitHub at [NFDI4Cat/pid4cat
 ### Contact
 
 - For general enquiries or policy questions contact us via [nfdi4cat.org](https://nfdi4cat.org/en/contact/).
+- For questions regarding the pid4cat-handle service you may directly contact [HLRS](mailto:handles@hlrs.de).
