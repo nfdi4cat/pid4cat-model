@@ -41,6 +41,7 @@ theme:
   features:
     - content.tabs.link
     - search.highlight
+    - navigation.expand
     - navigation.instant
     - navigation.instant.progress
     - navigation.tracking

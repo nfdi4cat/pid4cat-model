@@ -1,5 +1,5 @@
 ---
-title: <div style="font-weight:700;">pid4cat Documentation</div>
+title: **pid4cat Documentation**
 ---
 
 ![pid4cat logo](images/logo-with-text.svg#only-light)
