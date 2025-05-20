@@ -448,6 +448,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#permanent-uris-for-the-metadata-schema" class="md-nav__link">
+    <span class="md-ellipsis">
+      Permanent URIs for the metadata schema
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#metadata-validation" class="md-nav__link">
     <span class="md-ellipsis">
       Metadata Validation
@@ -608,7 +617,9 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
         
           
           <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
@@ -729,6 +740,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#permanent-uris-for-the-metadata-schema" class="md-nav__link">
+    <span class="md-ellipsis">
+      Permanent URIs for the metadata schema
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#metadata-validation" class="md-nav__link">
     <span class="md-ellipsis">
       Metadata Validation
@@ -829,6 +849,18 @@
 <li>Integration with semantic web technologies</li>
 </ul>
 <p>The complete schema is available in the <a href="https://github.com/nfdi4cat/pid4cat-model">pid4cat-model repository</a>.</p>
+<h2 id="permanent-uris-for-the-metadata-schema">Permanent URIs for the metadata schema</h2>
+<p>All elements in the schema (classes, slots, enums) have <a href="https://w3id.org/">w3id.org</a>-URIs.
+These point to the latest schema version released.<BR>For example: <a href="https://w3id.org/nfdi4cat/pid4cat-model/class/HandleRecord">https://w3id.org/nfdi4cat/pid4cat-model/class/HandleRecord</a> is redirected to  <BR> <a href="https://nfdi4cat.github.io/pid4cat-model/latest/elements/classes/HandleRecord/">https://nfdi4cat.github.io/pid4cat-model/latest/elements/classes/HandleRecord/</a>.</p>
+<p>Schema elements from older releases can also be referenced via permanent URIs. For example, to reference the same class but from Release 0.4.0, just insert the release tag into the URI:<BR>
+<a href="https://w3id.org/nfdi4cat/pid4cat-model/v0.4.0/class/HandleRecord">https://w3id.org/nfdi4cat/pid4cat-model/<strong>v0.4.0</strong>/class/HandleRecord</a></p>
+<p>The full LinkML schema in YAML format can be downloaded from <a href="https://w3id.org/nfdi4cat/pid4cat-model/">https://w3id.org/nfdi4cat/pid4cat-model/</a> when specifying the media type <code>application/yaml</code>.</p>
+<p>Example download command for <a href="https://httpie.io/docs/cli">httpie</a>:</p>
+<div class="highlight"><pre><span></span><code>http<span class="w"> </span>-o<span class="w"> </span>pid4cat_model.yaml<span class="w"> </span>--download<span class="w"> </span>https://w3id.org/nfdi4cat/pid4cat-model<span class="w"> </span>Accept:<span class="s2">&quot;application/yaml&quot;</span>
+</code></pre></div>
+<p>for <a href="https://curl.se/">curl</a>:</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-o<span class="w"> </span>pid4cat_model.yaml<span class="w"> </span>-L<span class="w"> </span>-H<span class="w"> </span><span class="s2">&quot;accept:application/yaml&quot;</span><span class="w"> </span>https://w3id.org/nfdi4cat/pid4cat-model
+</code></pre></div>
 <h2 id="metadata-validation">Metadata Validation</h2>
 <p>All metadata submitted to pid4cat is validated against the pid4cat-model schema. This ensures:</p>
 <ul>
@@ -897,7 +929,7 @@
     
     
       
-      <script id="__config" type="application/json">{"base": "..", "features": ["content.tabs.link", "search.highlight", "navigation.instant", "navigation.instant.progress", "navigation.tracking"], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"alias": true, "default": ["stable"], "provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"base": "..", "features": ["content.tabs.link", "search.highlight", "navigation.expand", "navigation.instant", "navigation.instant.progress", "navigation.tracking"], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"alias": true, "default": ["stable"], "provider": "mike"}}</script>
     
     
       <script src="../assets/javascripts/bundle.13a4f30d.min.js"></script>

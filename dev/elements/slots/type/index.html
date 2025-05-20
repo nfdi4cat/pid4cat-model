@@ -344,7 +344,9 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
         
           
           <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
@@ -524,7 +526,9 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
         
           
           <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
@@ -722,36 +726,6 @@ Alias: type</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="../../classes/PurlIdentifier/">PurlIdentifier</a></td>
-<td>A PURL (permanent uniform resource locator).</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/HandleIdentifier/">HandleIdentifier</a></td>
-<td>A handle identifier.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/HandleRecord/">HandleRecord</a></td>
-<td>A base class for handle-data classes that represent a handle record in the same way as in the REST (json) API of a handle server.</td>
-<td>yes</td>
-</tr>
-<tr>
-<td><a href="../../classes/ExampleIdentifier/">ExampleIdentifier</a></td>
-<td>An example.org test identifier.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/EMAIL/">EMAIL</a></td>
-<td>The data element in the handle API for the contact email.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/DoiIdentifier/">DoiIdentifier</a></td>
-<td>A digital object identifier (DOI).</td>
-<td>no</td>
-</tr>
-<tr>
 <td><a href="../../classes/ArkIdentifier/">ArkIdentifier</a></td>
 <td>An ARK (Archival Resource Key).</td>
 <td>no</td>
@@ -762,18 +736,13 @@ Alias: type</p>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../../classes/CHANGES/">CHANGES</a></td>
-<td>The data element in the handle API for the change log.</td>
+<td><a href="../../classes/PurlIdentifier/">PurlIdentifier</a></td>
+<td>A PURL (permanent uniform resource locator).</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../../classes/GtinIdentifier/">GtinIdentifier</a></td>
-<td>A Global Trade Item Number (GTIN) previously called European Article Number (EAN) often encoded as EAN13 barcode. The identifier is used to identify products. GTINs don't have a resolvable URL.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/UrnIdentifier/">UrnIdentifier</a></td>
-<td>A URN (Uniform Resource Name).</td>
+<td><a href="../../classes/METADATALICENSE/">METADATALICENSE</a></td>
+<td>The data element in the handle API for the PID metadata license.</td>
 <td>no</td>
 </tr>
 <tr>
@@ -782,18 +751,13 @@ Alias: type</p>
 <td>no</td>
 </tr>
 <tr>
+<td><a href="../../classes/HandleRecord/">HandleRecord</a></td>
+<td>A base class for handle-data classes that represent a handle record in the same way as in the REST (json) API of a handle server.</td>
+<td>yes</td>
+</tr>
+<tr>
 <td><a href="../../classes/RESOURCE/">RESOURCE</a></td>
 <td>The data element in the handle API for the resource info.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/URL/">URL</a></td>
-<td>The data element in the handle API for the landing page URL.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/RelatedIdentifier/">RelatedIdentifier</a></td>
-<td>A base class for all types of related identifiers.</td>
 <td>no</td>
 </tr>
 <tr>
@@ -802,8 +766,48 @@ Alias: type</p>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../../classes/METADATALICENSE/">METADATALICENSE</a></td>
-<td>The data element in the handle API for the PID metadata license.</td>
+<td><a href="../../classes/RelatedIdentifier/">RelatedIdentifier</a></td>
+<td>A base class for all types of related identifiers.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/CHANGES/">CHANGES</a></td>
+<td>The data element in the handle API for the change log.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/HandleIdentifier/">HandleIdentifier</a></td>
+<td>A handle identifier.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/EMAIL/">EMAIL</a></td>
+<td>The data element in the handle API for the contact email.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/URL/">URL</a></td>
+<td>The data element in the handle API for the landing page URL.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/DoiIdentifier/">DoiIdentifier</a></td>
+<td>A digital object identifier (DOI).</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/GtinIdentifier/">GtinIdentifier</a></td>
+<td>A Global Trade Item Number (GTIN) previously called European Article Number (EAN) often encoded as EAN13 barcode. The identifier is used to identify products. GTINs don't have a resolvable URL.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/ExampleIdentifier/">ExampleIdentifier</a></td>
+<td>An example.org test identifier.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/UrnIdentifier/">UrnIdentifier</a></td>
+<td>A URN (Uniform Resource Name).</td>
 <td>no</td>
 </tr>
 </tbody>
@@ -901,7 +905,7 @@ Alias: type</p>
     
     
       
-      <script id="__config" type="application/json">{"base": "../../..", "features": ["content.tabs.link", "search.highlight", "navigation.instant", "navigation.instant.progress", "navigation.tracking"], "search": "../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"alias": true, "default": ["stable"], "provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["content.tabs.link", "search.highlight", "navigation.expand", "navigation.instant", "navigation.instant.progress", "navigation.tracking"], "search": "../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"alias": true, "default": ["stable"], "provider": "mike"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.13a4f30d.min.js"></script>
