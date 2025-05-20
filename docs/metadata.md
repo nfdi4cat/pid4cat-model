@@ -37,6 +37,28 @@ The pid4cat metadata schema is defined using LinkML, which allows for:
 
 The complete schema is available in the [pid4cat-model repository](https://github.com/nfdi4cat/pid4cat-model).
 
+## Permanent URIs for the metadata schema
+
+All elements in the schema (classes, slots, enums) have [w3id.org](https://w3id.org/)-URIs.
+These point to the latest schema version released.<BR>For example: [https://w3id.org/nfdi4cat/pid4cat-model/class/HandleRecord](https://w3id.org/nfdi4cat/pid4cat-model/class/HandleRecord) is redirected to  <BR> [https://nfdi4cat.github.io/pid4cat-model/latest/elements/classes/HandleRecord/](https://nfdi4cat.github.io/pid4cat-model/latest/elements/classes/HandleRecord/).
+
+Schema elements from older releases can also be referenced via permanent URIs. For example, to reference the same class but from Release 0.4.0, just insert the release tag into the URI:<BR>
+[https://w3id.org/nfdi4cat/pid4cat-model/**v0.4.0**/class/HandleRecord](https://w3id.org/nfdi4cat/pid4cat-model/v0.4.0/class/HandleRecord)
+
+The full LinkML schema in YAML format can be downloaded from [https://w3id.org/nfdi4cat/pid4cat-model/](https://w3id.org/nfdi4cat/pid4cat-model/) when specifying the media type `application/yaml`.
+
+Example download command for [httpie](https://httpie.io/docs/cli):
+
+```bash
+http -o pid4cat_model.yaml --download https://w3id.org/nfdi4cat/pid4cat-model Accept:"application/yaml"
+```
+
+for [curl](https://curl.se/):
+
+```bash
+curl -o pid4cat_model.yaml -L -H "accept:application/yaml" https://w3id.org/nfdi4cat/pid4cat-model
+```
+
 ## Metadata Validation
 
 All metadata submitted to pid4cat is validated against the pid4cat-model schema. This ensures:
