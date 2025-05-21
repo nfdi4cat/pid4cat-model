@@ -1,5 +1,5 @@
 ---
-title: **pid4cat Documentation**
+title: pid4cat Documentation
 ---
 
 ![pid4cat logo](images/logo-with-text.svg#only-light)
