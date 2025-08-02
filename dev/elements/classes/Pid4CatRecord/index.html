@@ -347,7 +347,7 @@
 <p>URI: <a href="https://w3id.org/nfdi4cat/pid4cat-model/class/Pid4CatRecord">pid4cat_model:class/Pid4CatRecord</a></p>
 <pre class="mermaid"><code> classDiagram
     class Pid4CatRecord
-    click Pid4CatRecord href "../Pid4CatRecord"
+    click Pid4CatRecord href "../../classes/Pid4CatRecord/"
       Pid4CatRecord : change_log
 
 
@@ -355,7 +355,7 @@
 
 
         Pid4CatRecord --&gt; "1..*" LogRecord : change_log
-        click LogRecord href "../LogRecord"
+        click LogRecord href "../../classes/LogRecord/"
 
 
 
@@ -372,7 +372,7 @@
 
 
         Pid4CatRecord --&gt; "*" Pid4CatRelation : related_identifiers
-        click Pid4CatRelation href "../Pid4CatRelation"
+        click Pid4CatRelation href "../../classes/Pid4CatRelation/"
 
 
 
@@ -383,7 +383,7 @@
 
 
         Pid4CatRecord --&gt; "1" ResourceInfo : resource_info
-        click ResourceInfo href "../ResourceInfo"
+        click ResourceInfo href "../../classes/ResourceInfo/"
 
 
 
@@ -396,7 +396,7 @@
 
 
         Pid4CatRecord --&gt; "1" Pid4CatStatus : status
-        click Pid4CatStatus href "../Pid4CatStatus"
+        click Pid4CatStatus href "../../enums/Pid4CatStatus/"
 
 
 
