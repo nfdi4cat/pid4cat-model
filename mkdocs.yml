@@ -1,5 +1,6 @@
 ---
 site_name: "pid4cat Documentation"
+site_description: "Persistent identifiers for FAIR catalysis data. pid4cat combines Handle PIDs with structured LinkML metadata for samples, devices, and research resources."
 site_url: https://nfdi4cat.github.io/pid4cat-model
 repo_url: https://github.com/nfdi4cat/pid4cat-model
 
