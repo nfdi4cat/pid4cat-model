@@ -1,0 +1,3 @@
+user-agent: *
+
+sitemap: https://nfdi4cat.github.io/pid4cat-model/latest/sitemap.xml
