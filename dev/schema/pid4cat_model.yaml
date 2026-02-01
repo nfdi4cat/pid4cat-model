@@ -14,7 +14,7 @@ todos:
 see_also:
 - https://nfdi4cat.github.io/pid4cat-model
 id: https://w3id.org/nfdi4cat/pid4cat-model
-version: 0.4.2.post12.dev0+e7acc8a
+version: 0.4.2.post13.dev0+053bcf5
 imports:
 - linkml:types
 - media_types
@@ -3035,7 +3035,7 @@ classes:
     class_uri: pid4cat_model:Pid4CatRecord
 metamodel_version: 1.7.0
 source_file: pid4cat_model.yaml
-source_file_date: '2026-01-17T18:02:16'
+source_file_date: '2026-02-01T12:18:43'
 source_file_size: 31562
-generation_date: '2026-01-17T18:02:21'
+generation_date: '2026-02-01T12:18:48'
 
