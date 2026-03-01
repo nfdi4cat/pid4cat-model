@@ -14,7 +14,7 @@ todos:
 see_also:
 - https://nfdi4cat.github.io/pid4cat-model
 id: https://w3id.org/nfdi4cat/pid4cat-model
-version: 0.4.2.post15.dev0+b657197
+version: 0.4.2.post21.dev0+2ece8ef
 imports:
 - linkml:types
 - media_types
@@ -774,6 +774,7 @@ slots:
     range: HandleRecord
     multivalued: true
     inlined: true
+    inlined_as_list: true
   timestamp:
     name: timestamp
     definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/timestamp
@@ -894,6 +895,7 @@ slots:
     - Pid4CatRelation
     range: RelatedIdentifier
     inlined: true
+    inlined_as_list: true
   datetime_log:
     name: datetime_log
     definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/datetime_log
@@ -948,6 +950,7 @@ slots:
     range: RepresentationVariant
     multivalued: true
     inlined: true
+    inlined_as_list: true
   changed_field:
     name: changed_field
     definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/changed_field
@@ -969,6 +972,7 @@ slots:
     - LogRecord
     range: Agent
     inlined: true
+    inlined_as_list: true
   name:
     name: name
     definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/name
@@ -1155,6 +1159,7 @@ slots:
     - Pid4CatRecord
     range: ResourceInfo
     inlined: true
+    inlined_as_list: true
   related_identifiers:
     name: related_identifiers
     definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/related_identifiers
@@ -1168,6 +1173,7 @@ slots:
     range: Pid4CatRelation
     multivalued: true
     inlined: true
+    inlined_as_list: true
   change_log:
     name: change_log
     definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/change_log
@@ -1180,6 +1186,7 @@ slots:
     - Pid4CatRecord
     range: LogRecord
     inlined: true
+    inlined_as_list: true
   handleRecordContainer__contains_pids:
     name: handleRecordContainer__contains_pids
     description: The HandleRecords contained in the container.
@@ -1241,6 +1248,7 @@ slots:
     required: true
     multivalued: true
     inlined: true
+    inlined_as_list: true
   HandleRecord_timestamp:
     name: HandleRecord_timestamp
     definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/timestamp
@@ -1326,6 +1334,7 @@ slots:
     range: HdlDataUrl
     required: true
     inlined: true
+    inlined_as_list: true
   HdlDataUrl_format:
     name: HdlDataUrl_format
     definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/format
@@ -1395,6 +1404,7 @@ slots:
     range: HdlDataContact
     required: true
     inlined: true
+    inlined_as_list: true
   HdlDataContact_format:
     name: HdlDataContact_format
     definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/format
@@ -1464,6 +1474,7 @@ slots:
     range: HdlDataStatus
     required: true
     inlined: true
+    inlined_as_list: true
   HdlDataStatus_format:
     name: HdlDataStatus_format
     definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/format
@@ -1532,6 +1543,7 @@ slots:
     range: HdlDataSchemaVer
     required: true
     inlined: true
+    inlined_as_list: true
   HdlDataSchemaVer_format:
     name: HdlDataSchemaVer_format
     definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/format
@@ -1601,6 +1613,7 @@ slots:
     range: HdlDataLicense
     required: true
     inlined: true
+    inlined_as_list: true
   HdlDataLicense_format:
     name: HdlDataLicense_format
     definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/format
@@ -1670,6 +1683,7 @@ slots:
     range: HdlDataResourceInfo
     required: true
     inlined: true
+    inlined_as_list: true
   HdlDataResourceInfo_format:
     name: HdlDataResourceInfo_format
     definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/format
@@ -1704,6 +1718,7 @@ slots:
     range: ResourceInfo
     required: true
     inlined: true
+    inlined_as_list: true
   RELATED_index:
     name: RELATED_index
     definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/index
@@ -1739,6 +1754,7 @@ slots:
     range: HdlDataRelated
     required: true
     inlined: true
+    inlined_as_list: true
   HdlDataRelated_format:
     name: HdlDataRelated_format
     definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/format
@@ -1773,6 +1789,7 @@ slots:
     range: Pid4CatRelation
     multivalued: true
     inlined: true
+    inlined_as_list: true
   CHANGES_index:
     name: CHANGES_index
     definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/index
@@ -1808,6 +1825,7 @@ slots:
     range: HdlDataLog
     required: true
     inlined: true
+    inlined_as_list: true
   HdlDataLog_format:
     name: HdlDataLog_format
     definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/format
@@ -1843,6 +1861,7 @@ slots:
     required: true
     multivalued: true
     inlined: true
+    inlined_as_list: true
   ResourceInfo_resource_category:
     name: ResourceInfo_resource_category
     definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/resource_category
@@ -1877,6 +1896,7 @@ slots:
     required: true
     multivalued: true
     inlined: true
+    inlined_as_list: true
   LogRecord_datetime_log:
     name: LogRecord_datetime_log
     definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/datetime_log
@@ -1910,6 +1930,7 @@ slots:
     range: Agent
     required: true
     inlined: true
+    inlined_as_list: true
   LogRecord_changed_field:
     name: LogRecord_changed_field
     definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/changed_field
@@ -2324,6 +2345,7 @@ slots:
     range: ResourceInfo
     required: true
     inlined: true
+    inlined_as_list: true
   Pid4CatRecord_related_identifiers:
     name: Pid4CatRecord_related_identifiers
     definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/related_identifiers
@@ -2342,6 +2364,7 @@ slots:
     range: Pid4CatRelation
     multivalued: true
     inlined: true
+    inlined_as_list: true
   Pid4CatRecord_change_log:
     name: Pid4CatRecord_change_log
     definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/change_log
@@ -2361,6 +2384,7 @@ slots:
     required: true
     multivalued: true
     inlined: true
+    inlined_as_list: true
 classes:
   HandleAPIRecord:
     name: HandleAPIRecord
@@ -3035,7 +3059,7 @@ classes:
     class_uri: pid4cat_model:Pid4CatRecord
 metamodel_version: 1.7.0
 source_file: pid4cat_model.yaml
-source_file_date: '2026-02-01T12:19:55'
+source_file_date: '2026-03-01T22:53:19'
 source_file_size: 31562
-generation_date: '2026-02-01T12:20:00'
+generation_date: '2026-03-01T22:53:24'
 
