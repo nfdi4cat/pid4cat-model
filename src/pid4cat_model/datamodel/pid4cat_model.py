@@ -1,5 +1,5 @@
 # Auto generated from pid4cat_model.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-03-01T13:33:16
+# Generation date: 2026-03-01T20:03:14
 # Schema: pid4cat-model
 #
 # id: https://w3id.org/nfdi4cat/pid4cat-model
@@ -23,7 +23,7 @@ from rdflib import URIRef
 from linkml_runtime.utils.metamodelcore import URI, XSDDateTime
 
 metamodel_version = "1.7.0"
-version = "0.4.2.post15.dev0+b657197"
+version = "0.0.0"
 
 # Namespaces
 DATACITE = CurieNamespace("DataCite", "https://purl.org/spar/datacite/")
@@ -72,7 +72,7 @@ class HandleAPIRecord(YAMLRoot):
 
         if self._is_empty(self.values):
             self.MissingRequiredField("values")
-        self._normalize_inlined_as_dict(
+        self._normalize_inlined_as_list(
             slot_name="values",
             slot_type=HandleRecord,
             key_name="timestamp",
@@ -122,6 +122,7 @@ class HandleRecord(YAMLRoot):
         self.type = str(self.class_name)
 
     def __new__(cls, *args, **kwargs):
+
         type_designator = "type"
         if type_designator not in kwargs:
             return super().__new__(cls, *args, **kwargs)
@@ -636,7 +637,7 @@ class HdlDataLog(YAMLRoot):
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.value):
             self.MissingRequiredField("value")
-        self._normalize_inlined_as_dict(
+        self._normalize_inlined_as_list(
             slot_name="value", slot_type=LogRecord, key_name="datetime_log", keyed=False
         )
 
@@ -916,6 +917,7 @@ class RelatedIdentifier(YAMLRoot):
         self.type = str(self.class_name)
 
     def __new__(cls, *args, **kwargs):
+
         type_designator = "type"
         if type_designator not in kwargs:
             return super().__new__(cls, *args, **kwargs)
@@ -1087,7 +1089,7 @@ class UrnIdentifier(RelatedIdentifier):
 class GtinIdentifier(RelatedIdentifier):
     """
     A Global Trade Item Number (GTIN) previously called European Article Number (EAN) often encoded as EAN13 barcode.
-    The identifier is used to identify products. GTINs don't have a resolvable URL.
+    The identifier is used to identify products. GITNs don't have a resolvable URL.
     """
 
     _inherited_slots: ClassVar[list[str]] = []
@@ -1201,7 +1203,7 @@ class Pid4CatRecord(YAMLRoot):
 
         if self._is_empty(self.change_log):
             self.MissingRequiredField("change_log")
-        self._normalize_inlined_as_dict(
+        self._normalize_inlined_as_list(
             slot_name="change_log",
             slot_type=LogRecord,
             key_name="datetime_log",

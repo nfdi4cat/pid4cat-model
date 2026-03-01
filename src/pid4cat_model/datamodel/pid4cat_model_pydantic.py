@@ -8,12 +8,14 @@ from typing import Any, ClassVar, Literal, Optional, Union
 from pydantic import BaseModel, ConfigDict, Field, RootModel, field_validator
 
 
-metamodel_version = "None"
-version = "0.4.2.post15.dev0+b657197"
+metamodel_version = "1.7.0"
+version = "0.0.0"
 
 
 class ConfiguredBaseModel(BaseModel):
     model_config = ConfigDict(
+        serialize_by_alias=True,
+        validate_by_name=True,
         validate_assignment=True,
         validate_default=True,
         extra="forbid",
@@ -21,7 +23,6 @@ class ConfiguredBaseModel(BaseModel):
         use_enum_values=True,
         strict=False,
     )
-    pass
 
 
 class LinkMLMeta(RootModel):
@@ -486,16 +487,12 @@ class HandleAPIRecord(ConfiguredBaseModel):
     responseCode: Optional[int] = Field(
         default=None,
         description="""The response code of the handle API.""",
-        json_schema_extra={
-            "linkml_meta": {"alias": "responseCode", "domain_of": ["HandleAPIRecord"]}
-        },
+        json_schema_extra={"linkml_meta": {"domain_of": ["HandleAPIRecord"]}},
     )
     handle: str = Field(
         default=...,
         description="""The handle of the pid4cat record.""",
-        json_schema_extra={
-            "linkml_meta": {"alias": "handle", "domain_of": ["HandleAPIRecord"]}
-        },
+        json_schema_extra={"linkml_meta": {"domain_of": ["HandleAPIRecord"]}},
     )
     values: list[
         Union[
@@ -512,9 +509,7 @@ class HandleAPIRecord(ConfiguredBaseModel):
     ] = Field(
         default=...,
         description="""The values of the pid4cat record.""",
-        json_schema_extra={
-            "linkml_meta": {"alias": "values", "domain_of": ["HandleAPIRecord"]}
-        },
+        json_schema_extra={"linkml_meta": {"domain_of": ["HandleAPIRecord"]}},
     )
 
     @field_validator("handle")
@@ -556,19 +551,13 @@ class HandleRecord(ConfiguredBaseModel):
     timestamp: datetime = Field(
         default=...,
         description="""The iso datetime for the last update of the handle data.""",
-        json_schema_extra={
-            "linkml_meta": {"alias": "timestamp", "domain_of": ["HandleRecord"]}
-        },
+        json_schema_extra={"linkml_meta": {"domain_of": ["HandleRecord"]}},
     )
     ttl: Optional[int] = Field(
         default=86400,
         description="""A time to live in seconds for the handle record. Typically: 86400 => 1 day""",
         json_schema_extra={
-            "linkml_meta": {
-                "alias": "ttl",
-                "domain_of": ["HandleRecord"],
-                "ifabsent": "86400",
-            }
+            "linkml_meta": {"domain_of": ["HandleRecord"], "ifabsent": "86400"}
         },
     )
     type: Literal["HandleRecord"] = Field(
@@ -576,7 +565,6 @@ class HandleRecord(ConfiguredBaseModel):
         description="""The type of handledata stored in the handle record.""",
         json_schema_extra={
             "linkml_meta": {
-                "alias": "type",
                 "designates_type": True,
                 "domain_of": ["HandleRecord", "RelatedIdentifier"],
             }
@@ -611,7 +599,6 @@ class URL(HandleRecord):
         le=1,
         json_schema_extra={
             "linkml_meta": {
-                "alias": "index",
                 "domain_of": [
                     "URL",
                     "EMAIL",
@@ -621,7 +608,7 @@ class URL(HandleRecord):
                     "RESOURCE",
                     "RELATED",
                     "CHANGES",
-                ],
+                ]
             }
         },
     )
@@ -630,7 +617,6 @@ class URL(HandleRecord):
         description="""The data in the handle record.""",
         json_schema_extra={
             "linkml_meta": {
-                "alias": "data",
                 "domain_of": [
                     "URL",
                     "EMAIL",
@@ -640,26 +626,20 @@ class URL(HandleRecord):
                     "RESOURCE",
                     "RELATED",
                     "CHANGES",
-                ],
+                ]
             }
         },
     )
     timestamp: datetime = Field(
         default=...,
         description="""The iso datetime for the last update of the handle data.""",
-        json_schema_extra={
-            "linkml_meta": {"alias": "timestamp", "domain_of": ["HandleRecord"]}
-        },
+        json_schema_extra={"linkml_meta": {"domain_of": ["HandleRecord"]}},
     )
     ttl: Optional[int] = Field(
         default=86400,
         description="""A time to live in seconds for the handle record. Typically: 86400 => 1 day""",
         json_schema_extra={
-            "linkml_meta": {
-                "alias": "ttl",
-                "domain_of": ["HandleRecord"],
-                "ifabsent": "86400",
-            }
+            "linkml_meta": {"domain_of": ["HandleRecord"], "ifabsent": "86400"}
         },
     )
     type: Literal["URL"] = Field(
@@ -667,7 +647,6 @@ class URL(HandleRecord):
         description="""The type of handledata stored in the handle record.""",
         json_schema_extra={
             "linkml_meta": {
-                "alias": "type",
                 "designates_type": True,
                 "domain_of": ["HandleRecord", "RelatedIdentifier"],
             }
@@ -703,7 +682,6 @@ class HdlDataUrl(ConfiguredBaseModel):
         description="""The format of the handle data.""",
         json_schema_extra={
             "linkml_meta": {
-                "alias": "format",
                 "domain_of": [
                     "HdlDataUrl",
                     "HdlDataContact",
@@ -724,7 +702,6 @@ class HdlDataUrl(ConfiguredBaseModel):
         description="""The value of the handle data.""",
         json_schema_extra={
             "linkml_meta": {
-                "alias": "value",
                 "domain_of": [
                     "HdlDataUrl",
                     "HdlDataContact",
@@ -734,7 +711,7 @@ class HdlDataUrl(ConfiguredBaseModel):
                     "HdlDataResourceInfo",
                     "HdlDataRelated",
                     "HdlDataLog",
-                ],
+                ]
             }
         },
     )
@@ -780,7 +757,6 @@ class EMAIL(HandleRecord):
         le=10,
         json_schema_extra={
             "linkml_meta": {
-                "alias": "index",
                 "domain_of": [
                     "URL",
                     "EMAIL",
@@ -790,7 +766,7 @@ class EMAIL(HandleRecord):
                     "RESOURCE",
                     "RELATED",
                     "CHANGES",
-                ],
+                ]
             }
         },
     )
@@ -799,7 +775,6 @@ class EMAIL(HandleRecord):
         description="""The data in the handle record.""",
         json_schema_extra={
             "linkml_meta": {
-                "alias": "data",
                 "domain_of": [
                     "URL",
                     "EMAIL",
@@ -809,26 +784,20 @@ class EMAIL(HandleRecord):
                     "RESOURCE",
                     "RELATED",
                     "CHANGES",
-                ],
+                ]
             }
         },
     )
     timestamp: datetime = Field(
         default=...,
         description="""The iso datetime for the last update of the handle data.""",
-        json_schema_extra={
-            "linkml_meta": {"alias": "timestamp", "domain_of": ["HandleRecord"]}
-        },
+        json_schema_extra={"linkml_meta": {"domain_of": ["HandleRecord"]}},
     )
     ttl: Optional[int] = Field(
         default=86400,
         description="""A time to live in seconds for the handle record. Typically: 86400 => 1 day""",
         json_schema_extra={
-            "linkml_meta": {
-                "alias": "ttl",
-                "domain_of": ["HandleRecord"],
-                "ifabsent": "86400",
-            }
+            "linkml_meta": {"domain_of": ["HandleRecord"], "ifabsent": "86400"}
         },
     )
     type: Literal["EMAIL"] = Field(
@@ -836,7 +805,6 @@ class EMAIL(HandleRecord):
         description="""The type of handledata stored in the handle record.""",
         json_schema_extra={
             "linkml_meta": {
-                "alias": "type",
                 "designates_type": True,
                 "domain_of": ["HandleRecord", "RelatedIdentifier"],
             }
@@ -872,7 +840,6 @@ class HdlDataContact(ConfiguredBaseModel):
         description="""The format of the handle data.""",
         json_schema_extra={
             "linkml_meta": {
-                "alias": "format",
                 "domain_of": [
                     "HdlDataUrl",
                     "HdlDataContact",
@@ -893,7 +860,6 @@ class HdlDataContact(ConfiguredBaseModel):
         description="""The value of the handle data.""",
         json_schema_extra={
             "linkml_meta": {
-                "alias": "value",
                 "domain_of": [
                     "HdlDataUrl",
                     "HdlDataContact",
@@ -903,7 +869,7 @@ class HdlDataContact(ConfiguredBaseModel):
                     "HdlDataResourceInfo",
                     "HdlDataRelated",
                     "HdlDataLog",
-                ],
+                ]
             }
         },
     )
@@ -949,7 +915,6 @@ class STATUS(HandleRecord):
         le=11,
         json_schema_extra={
             "linkml_meta": {
-                "alias": "index",
                 "domain_of": [
                     "URL",
                     "EMAIL",
@@ -959,7 +924,7 @@ class STATUS(HandleRecord):
                     "RESOURCE",
                     "RELATED",
                     "CHANGES",
-                ],
+                ]
             }
         },
     )
@@ -968,7 +933,6 @@ class STATUS(HandleRecord):
         description="""The data in the handle record.""",
         json_schema_extra={
             "linkml_meta": {
-                "alias": "data",
                 "domain_of": [
                     "URL",
                     "EMAIL",
@@ -978,26 +942,20 @@ class STATUS(HandleRecord):
                     "RESOURCE",
                     "RELATED",
                     "CHANGES",
-                ],
+                ]
             }
         },
     )
     timestamp: datetime = Field(
         default=...,
         description="""The iso datetime for the last update of the handle data.""",
-        json_schema_extra={
-            "linkml_meta": {"alias": "timestamp", "domain_of": ["HandleRecord"]}
-        },
+        json_schema_extra={"linkml_meta": {"domain_of": ["HandleRecord"]}},
     )
     ttl: Optional[int] = Field(
         default=86400,
         description="""A time to live in seconds for the handle record. Typically: 86400 => 1 day""",
         json_schema_extra={
-            "linkml_meta": {
-                "alias": "ttl",
-                "domain_of": ["HandleRecord"],
-                "ifabsent": "86400",
-            }
+            "linkml_meta": {"domain_of": ["HandleRecord"], "ifabsent": "86400"}
         },
     )
     type: Literal["STATUS"] = Field(
@@ -1005,7 +963,6 @@ class STATUS(HandleRecord):
         description="""The type of handledata stored in the handle record.""",
         json_schema_extra={
             "linkml_meta": {
-                "alias": "type",
                 "designates_type": True,
                 "domain_of": ["HandleRecord", "RelatedIdentifier"],
             }
@@ -1037,7 +994,6 @@ class HdlDataStatus(ConfiguredBaseModel):
         description="""The format of the handle data.""",
         json_schema_extra={
             "linkml_meta": {
-                "alias": "format",
                 "domain_of": [
                     "HdlDataUrl",
                     "HdlDataContact",
@@ -1058,7 +1014,6 @@ class HdlDataStatus(ConfiguredBaseModel):
         description="""The value of the handle data.""",
         json_schema_extra={
             "linkml_meta": {
-                "alias": "value",
                 "domain_of": [
                     "HdlDataUrl",
                     "HdlDataContact",
@@ -1068,7 +1023,7 @@ class HdlDataStatus(ConfiguredBaseModel):
                     "HdlDataResourceInfo",
                     "HdlDataRelated",
                     "HdlDataLog",
-                ],
+                ]
             }
         },
     )
@@ -1101,7 +1056,6 @@ class SCHEMAVER(HandleRecord):
         le=12,
         json_schema_extra={
             "linkml_meta": {
-                "alias": "index",
                 "domain_of": [
                     "URL",
                     "EMAIL",
@@ -1111,7 +1065,7 @@ class SCHEMAVER(HandleRecord):
                     "RESOURCE",
                     "RELATED",
                     "CHANGES",
-                ],
+                ]
             }
         },
     )
@@ -1120,7 +1074,6 @@ class SCHEMAVER(HandleRecord):
         description="""The data in the handle record.""",
         json_schema_extra={
             "linkml_meta": {
-                "alias": "data",
                 "domain_of": [
                     "URL",
                     "EMAIL",
@@ -1130,26 +1083,20 @@ class SCHEMAVER(HandleRecord):
                     "RESOURCE",
                     "RELATED",
                     "CHANGES",
-                ],
+                ]
             }
         },
     )
     timestamp: datetime = Field(
         default=...,
         description="""The iso datetime for the last update of the handle data.""",
-        json_schema_extra={
-            "linkml_meta": {"alias": "timestamp", "domain_of": ["HandleRecord"]}
-        },
+        json_schema_extra={"linkml_meta": {"domain_of": ["HandleRecord"]}},
     )
     ttl: Optional[int] = Field(
         default=86400,
         description="""A time to live in seconds for the handle record. Typically: 86400 => 1 day""",
         json_schema_extra={
-            "linkml_meta": {
-                "alias": "ttl",
-                "domain_of": ["HandleRecord"],
-                "ifabsent": "86400",
-            }
+            "linkml_meta": {"domain_of": ["HandleRecord"], "ifabsent": "86400"}
         },
     )
     type: Literal["SCHEMA_VER"] = Field(
@@ -1157,7 +1104,6 @@ class SCHEMAVER(HandleRecord):
         description="""The type of handledata stored in the handle record.""",
         json_schema_extra={
             "linkml_meta": {
-                "alias": "type",
                 "designates_type": True,
                 "domain_of": ["HandleRecord", "RelatedIdentifier"],
             }
@@ -1193,7 +1139,6 @@ class HdlDataSchemaVer(ConfiguredBaseModel):
         description="""The format of the handle data.""",
         json_schema_extra={
             "linkml_meta": {
-                "alias": "format",
                 "domain_of": [
                     "HdlDataUrl",
                     "HdlDataContact",
@@ -1214,7 +1159,6 @@ class HdlDataSchemaVer(ConfiguredBaseModel):
         description="""The value of the handle data.""",
         json_schema_extra={
             "linkml_meta": {
-                "alias": "value",
                 "domain_of": [
                     "HdlDataUrl",
                     "HdlDataContact",
@@ -1224,7 +1168,7 @@ class HdlDataSchemaVer(ConfiguredBaseModel):
                     "HdlDataResourceInfo",
                     "HdlDataRelated",
                     "HdlDataLog",
-                ],
+                ]
             }
         },
     )
@@ -1270,7 +1214,6 @@ class METADATALICENSE(HandleRecord):
         le=13,
         json_schema_extra={
             "linkml_meta": {
-                "alias": "index",
                 "domain_of": [
                     "URL",
                     "EMAIL",
@@ -1280,7 +1223,7 @@ class METADATALICENSE(HandleRecord):
                     "RESOURCE",
                     "RELATED",
                     "CHANGES",
-                ],
+                ]
             }
         },
     )
@@ -1289,7 +1232,6 @@ class METADATALICENSE(HandleRecord):
         description="""The data in the handle record.""",
         json_schema_extra={
             "linkml_meta": {
-                "alias": "data",
                 "domain_of": [
                     "URL",
                     "EMAIL",
@@ -1299,26 +1241,20 @@ class METADATALICENSE(HandleRecord):
                     "RESOURCE",
                     "RELATED",
                     "CHANGES",
-                ],
+                ]
             }
         },
     )
     timestamp: datetime = Field(
         default=...,
         description="""The iso datetime for the last update of the handle data.""",
-        json_schema_extra={
-            "linkml_meta": {"alias": "timestamp", "domain_of": ["HandleRecord"]}
-        },
+        json_schema_extra={"linkml_meta": {"domain_of": ["HandleRecord"]}},
     )
     ttl: Optional[int] = Field(
         default=86400,
         description="""A time to live in seconds for the handle record. Typically: 86400 => 1 day""",
         json_schema_extra={
-            "linkml_meta": {
-                "alias": "ttl",
-                "domain_of": ["HandleRecord"],
-                "ifabsent": "86400",
-            }
+            "linkml_meta": {"domain_of": ["HandleRecord"], "ifabsent": "86400"}
         },
     )
     type: Literal["METADATA_LICENSE"] = Field(
@@ -1326,7 +1262,6 @@ class METADATALICENSE(HandleRecord):
         description="""The type of handledata stored in the handle record.""",
         json_schema_extra={
             "linkml_meta": {
-                "alias": "type",
                 "designates_type": True,
                 "domain_of": ["HandleRecord", "RelatedIdentifier"],
             }
@@ -1362,7 +1297,6 @@ class HdlDataLicense(ConfiguredBaseModel):
         description="""The format of the handle data.""",
         json_schema_extra={
             "linkml_meta": {
-                "alias": "format",
                 "domain_of": [
                     "HdlDataUrl",
                     "HdlDataContact",
@@ -1383,7 +1317,6 @@ class HdlDataLicense(ConfiguredBaseModel):
         description="""The value of the handle data.""",
         json_schema_extra={
             "linkml_meta": {
-                "alias": "value",
                 "domain_of": [
                     "HdlDataUrl",
                     "HdlDataContact",
@@ -1431,7 +1364,6 @@ class RESOURCE(HandleRecord):
         le=14,
         json_schema_extra={
             "linkml_meta": {
-                "alias": "index",
                 "domain_of": [
                     "URL",
                     "EMAIL",
@@ -1441,7 +1373,7 @@ class RESOURCE(HandleRecord):
                     "RESOURCE",
                     "RELATED",
                     "CHANGES",
-                ],
+                ]
             }
         },
     )
@@ -1450,7 +1382,6 @@ class RESOURCE(HandleRecord):
         description="""The data in the handle record.""",
         json_schema_extra={
             "linkml_meta": {
-                "alias": "data",
                 "domain_of": [
                     "URL",
                     "EMAIL",
@@ -1460,26 +1391,20 @@ class RESOURCE(HandleRecord):
                     "RESOURCE",
                     "RELATED",
                     "CHANGES",
-                ],
+                ]
             }
         },
     )
     timestamp: datetime = Field(
         default=...,
         description="""The iso datetime for the last update of the handle data.""",
-        json_schema_extra={
-            "linkml_meta": {"alias": "timestamp", "domain_of": ["HandleRecord"]}
-        },
+        json_schema_extra={"linkml_meta": {"domain_of": ["HandleRecord"]}},
     )
     ttl: Optional[int] = Field(
         default=86400,
         description="""A time to live in seconds for the handle record. Typically: 86400 => 1 day""",
         json_schema_extra={
-            "linkml_meta": {
-                "alias": "ttl",
-                "domain_of": ["HandleRecord"],
-                "ifabsent": "86400",
-            }
+            "linkml_meta": {"domain_of": ["HandleRecord"], "ifabsent": "86400"}
         },
     )
     type: Literal["RESOURCE"] = Field(
@@ -1487,7 +1412,6 @@ class RESOURCE(HandleRecord):
         description="""The type of handledata stored in the handle record.""",
         json_schema_extra={
             "linkml_meta": {
-                "alias": "type",
                 "designates_type": True,
                 "domain_of": ["HandleRecord", "RelatedIdentifier"],
             }
@@ -1519,7 +1443,6 @@ class HdlDataResourceInfo(ConfiguredBaseModel):
         description="""The format of the handle data.""",
         json_schema_extra={
             "linkml_meta": {
-                "alias": "format",
                 "domain_of": [
                     "HdlDataUrl",
                     "HdlDataContact",
@@ -1540,7 +1463,6 @@ class HdlDataResourceInfo(ConfiguredBaseModel):
         description="""The value of the handle data.""",
         json_schema_extra={
             "linkml_meta": {
-                "alias": "value",
                 "domain_of": [
                     "HdlDataUrl",
                     "HdlDataContact",
@@ -1550,7 +1472,7 @@ class HdlDataResourceInfo(ConfiguredBaseModel):
                     "HdlDataResourceInfo",
                     "HdlDataRelated",
                     "HdlDataLog",
-                ],
+                ]
             }
         },
     )
@@ -1583,7 +1505,6 @@ class RELATED(HandleRecord):
         le=15,
         json_schema_extra={
             "linkml_meta": {
-                "alias": "index",
                 "domain_of": [
                     "URL",
                     "EMAIL",
@@ -1593,7 +1514,7 @@ class RELATED(HandleRecord):
                     "RESOURCE",
                     "RELATED",
                     "CHANGES",
-                ],
+                ]
             }
         },
     )
@@ -1602,7 +1523,6 @@ class RELATED(HandleRecord):
         description="""The data in the handle record.""",
         json_schema_extra={
             "linkml_meta": {
-                "alias": "data",
                 "domain_of": [
                     "URL",
                     "EMAIL",
@@ -1612,26 +1532,20 @@ class RELATED(HandleRecord):
                     "RESOURCE",
                     "RELATED",
                     "CHANGES",
-                ],
+                ]
             }
         },
     )
     timestamp: datetime = Field(
         default=...,
         description="""The iso datetime for the last update of the handle data.""",
-        json_schema_extra={
-            "linkml_meta": {"alias": "timestamp", "domain_of": ["HandleRecord"]}
-        },
+        json_schema_extra={"linkml_meta": {"domain_of": ["HandleRecord"]}},
     )
     ttl: Optional[int] = Field(
         default=86400,
         description="""A time to live in seconds for the handle record. Typically: 86400 => 1 day""",
         json_schema_extra={
-            "linkml_meta": {
-                "alias": "ttl",
-                "domain_of": ["HandleRecord"],
-                "ifabsent": "86400",
-            }
+            "linkml_meta": {"domain_of": ["HandleRecord"], "ifabsent": "86400"}
         },
     )
     type: Literal["RELATED"] = Field(
@@ -1639,7 +1553,6 @@ class RELATED(HandleRecord):
         description="""The type of handledata stored in the handle record.""",
         json_schema_extra={
             "linkml_meta": {
-                "alias": "type",
                 "designates_type": True,
                 "domain_of": ["HandleRecord", "RelatedIdentifier"],
             }
@@ -1675,7 +1588,6 @@ class HdlDataRelated(ConfiguredBaseModel):
         description="""The format of the handle data.""",
         json_schema_extra={
             "linkml_meta": {
-                "alias": "format",
                 "domain_of": [
                     "HdlDataUrl",
                     "HdlDataContact",
@@ -1696,7 +1608,6 @@ class HdlDataRelated(ConfiguredBaseModel):
         description="""The value of the handle data.""",
         json_schema_extra={
             "linkml_meta": {
-                "alias": "value",
                 "domain_of": [
                     "HdlDataUrl",
                     "HdlDataContact",
@@ -1706,7 +1617,7 @@ class HdlDataRelated(ConfiguredBaseModel):
                     "HdlDataResourceInfo",
                     "HdlDataRelated",
                     "HdlDataLog",
-                ],
+                ]
             }
         },
     )
@@ -1739,7 +1650,6 @@ class CHANGES(HandleRecord):
         le=16,
         json_schema_extra={
             "linkml_meta": {
-                "alias": "index",
                 "domain_of": [
                     "URL",
                     "EMAIL",
@@ -1749,7 +1659,7 @@ class CHANGES(HandleRecord):
                     "RESOURCE",
                     "RELATED",
                     "CHANGES",
-                ],
+                ]
             }
         },
     )
@@ -1758,7 +1668,6 @@ class CHANGES(HandleRecord):
         description="""The data in the handle record.""",
         json_schema_extra={
             "linkml_meta": {
-                "alias": "data",
                 "domain_of": [
                     "URL",
                     "EMAIL",
@@ -1768,26 +1677,20 @@ class CHANGES(HandleRecord):
                     "RESOURCE",
                     "RELATED",
                     "CHANGES",
-                ],
+                ]
             }
         },
     )
     timestamp: datetime = Field(
         default=...,
         description="""The iso datetime for the last update of the handle data.""",
-        json_schema_extra={
-            "linkml_meta": {"alias": "timestamp", "domain_of": ["HandleRecord"]}
-        },
+        json_schema_extra={"linkml_meta": {"domain_of": ["HandleRecord"]}},
     )
     ttl: Optional[int] = Field(
         default=86400,
         description="""A time to live in seconds for the handle record. Typically: 86400 => 1 day""",
         json_schema_extra={
-            "linkml_meta": {
-                "alias": "ttl",
-                "domain_of": ["HandleRecord"],
-                "ifabsent": "86400",
-            }
+            "linkml_meta": {"domain_of": ["HandleRecord"], "ifabsent": "86400"}
         },
     )
     type: Literal["CHANGES"] = Field(
@@ -1795,7 +1698,6 @@ class CHANGES(HandleRecord):
         description="""The type of handledata stored in the handle record.""",
         json_schema_extra={
             "linkml_meta": {
-                "alias": "type",
                 "designates_type": True,
                 "domain_of": ["HandleRecord", "RelatedIdentifier"],
             }
@@ -1832,7 +1734,6 @@ class HdlDataLog(ConfiguredBaseModel):
         description="""The format of the handle data.""",
         json_schema_extra={
             "linkml_meta": {
-                "alias": "format",
                 "domain_of": [
                     "HdlDataUrl",
                     "HdlDataContact",
@@ -1853,7 +1754,6 @@ class HdlDataLog(ConfiguredBaseModel):
         description="""The value of the handle data.""",
         json_schema_extra={
             "linkml_meta": {
-                "alias": "value",
                 "domain_of": [
                     "HdlDataUrl",
                     "HdlDataContact",
@@ -1863,7 +1763,7 @@ class HdlDataLog(ConfiguredBaseModel):
                     "HdlDataResourceInfo",
                     "HdlDataRelated",
                     "HdlDataLog",
-                ],
+                ]
             }
         },
     )
@@ -1881,12 +1781,7 @@ class HandleRecordContainer(ConfiguredBaseModel):
     contains_pids: Optional[list[HandleAPIRecord]] = Field(
         default=None,
         description="""The HandleRecords contained in the container.""",
-        json_schema_extra={
-            "linkml_meta": {
-                "alias": "contains_pids",
-                "domain_of": ["HandleRecordContainer"],
-            }
-        },
+        json_schema_extra={"linkml_meta": {"domain_of": ["HandleRecordContainer"]}},
     )
 
 
@@ -1902,9 +1797,7 @@ class Pid4CatRelation(ConfiguredBaseModel):
     relation_type: Optional[RelationType] = Field(
         default=None,
         description="""Relation type between the resources.""",
-        json_schema_extra={
-            "linkml_meta": {"alias": "relation_type", "domain_of": ["Pid4CatRelation"]}
-        },
+        json_schema_extra={"linkml_meta": {"domain_of": ["Pid4CatRelation"]}},
     )
     related_identifier: Optional[
         Union[
@@ -1920,21 +1813,13 @@ class Pid4CatRelation(ConfiguredBaseModel):
     ] = Field(
         default=None,
         description="""The related identifier.""",
-        json_schema_extra={
-            "linkml_meta": {
-                "alias": "related_identifier",
-                "domain_of": ["Pid4CatRelation"],
-            }
-        },
+        json_schema_extra={"linkml_meta": {"domain_of": ["Pid4CatRelation"]}},
     )
     datetime_log: Optional[datetime] = Field(
         default=None,
         description="""The date and time of a log record.""",
         json_schema_extra={
-            "linkml_meta": {
-                "alias": "datetime_log",
-                "domain_of": ["Pid4CatRelation", "LogRecord"],
-            }
+            "linkml_meta": {"domain_of": ["Pid4CatRelation", "LogRecord"]}
         },
     )
 
@@ -1960,36 +1845,22 @@ class ResourceInfo(ConfiguredBaseModel):
     label: Optional[str] = Field(
         default=None,
         description="""A human-readable name for a resource.""",
-        json_schema_extra={
-            "linkml_meta": {"alias": "label", "domain_of": ["ResourceInfo"]}
-        },
+        json_schema_extra={"linkml_meta": {"domain_of": ["ResourceInfo"]}},
     )
     description: Optional[str] = Field(
         default=None,
         description="""A human-readable description for a resource.""",
-        json_schema_extra={
-            "linkml_meta": {
-                "alias": "description",
-                "domain_of": ["ResourceInfo", "LogRecord"],
-            }
-        },
+        json_schema_extra={"linkml_meta": {"domain_of": ["ResourceInfo", "LogRecord"]}},
     )
     resource_category: ResourceCategory = Field(
         default=...,
         description="""The category of the resource.""",
-        json_schema_extra={
-            "linkml_meta": {"alias": "resource_category", "domain_of": ["ResourceInfo"]}
-        },
+        json_schema_extra={"linkml_meta": {"domain_of": ["ResourceInfo"]}},
     )
     representation_variants: list[RepresentationVariant] = Field(
         default=...,
         description="""The representations of the resource in other media types than text/html.""",
-        json_schema_extra={
-            "linkml_meta": {
-                "alias": "representation_variants",
-                "domain_of": ["ResourceInfo"],
-            }
-        },
+        json_schema_extra={"linkml_meta": {"domain_of": ["ResourceInfo"]}},
     )
 
 
@@ -2014,35 +1885,23 @@ class LogRecord(ConfiguredBaseModel):
         default=...,
         description="""The date and time of a log record.""",
         json_schema_extra={
-            "linkml_meta": {
-                "alias": "datetime_log",
-                "domain_of": ["Pid4CatRelation", "LogRecord"],
-            }
+            "linkml_meta": {"domain_of": ["Pid4CatRelation", "LogRecord"]}
         },
     )
     has_agent: Agent = Field(
         default=...,
         description="""The person who registered or modified the PID record.""",
-        json_schema_extra={
-            "linkml_meta": {"alias": "has_agent", "domain_of": ["LogRecord"]}
-        },
+        json_schema_extra={"linkml_meta": {"domain_of": ["LogRecord"]}},
     )
     changed_field: ChangeLogField = Field(
         default=...,
         description="""The field that was changed.""",
-        json_schema_extra={
-            "linkml_meta": {"alias": "changed_field", "domain_of": ["LogRecord"]}
-        },
+        json_schema_extra={"linkml_meta": {"domain_of": ["LogRecord"]}},
     )
     description: Optional[str] = Field(
         default=None,
         description="""A human-readable description for a resource.""",
-        json_schema_extra={
-            "linkml_meta": {
-                "alias": "description",
-                "domain_of": ["ResourceInfo", "LogRecord"],
-            }
-        },
+        json_schema_extra={"linkml_meta": {"domain_of": ["ResourceInfo", "LogRecord"]}},
     )
 
 
@@ -2078,31 +1937,27 @@ class Agent(ConfiguredBaseModel):
     name: str = Field(
         default=...,
         description="""The name of the agent that created or modified the PID record.""",
-        json_schema_extra={"linkml_meta": {"alias": "name", "domain_of": ["Agent"]}},
+        json_schema_extra={"linkml_meta": {"domain_of": ["Agent"]}},
     )
     email_address: str = Field(
         default=...,
         description="""Email address of the agent that created or modified the PID record.""",
-        json_schema_extra={
-            "linkml_meta": {"alias": "email_address", "domain_of": ["Agent"]}
-        },
+        json_schema_extra={"linkml_meta": {"domain_of": ["Agent"]}},
     )
     orcid: Optional[str] = Field(
         default=None,
         description="""The ORCID of the person""",
-        json_schema_extra={"linkml_meta": {"alias": "orcid", "domain_of": ["Agent"]}},
+        json_schema_extra={"linkml_meta": {"domain_of": ["Agent"]}},
     )
     affiliation_ror: Optional[str] = Field(
         default=None,
         description="""The ROR of the agent's affiliation.""",
-        json_schema_extra={
-            "linkml_meta": {"alias": "affiliation_ror", "domain_of": ["Agent"]}
-        },
+        json_schema_extra={"linkml_meta": {"domain_of": ["Agent"]}},
     )
     role: Pid4CatAgentRole = Field(
         default=...,
         description="""The role of the agent relative to the resource""",
-        json_schema_extra={"linkml_meta": {"alias": "role", "domain_of": ["Agent"]}},
+        json_schema_extra={"linkml_meta": {"domain_of": ["Agent"]}},
     )
 
     @field_validator("email_address")
@@ -2160,40 +2015,23 @@ class RepresentationVariant(ConfiguredBaseModel):
     variant_url: Optional[str] = Field(
         default=None,
         description="""The URL of the representation variant.""",
-        json_schema_extra={
-            "linkml_meta": {
-                "alias": "variant_url",
-                "domain_of": ["RepresentationVariant"],
-            }
-        },
+        json_schema_extra={"linkml_meta": {"domain_of": ["RepresentationVariant"]}},
     )
     media_type: Optional[MediaTypesEnum] = Field(
         default=None,
         description="""The media type of the representation as defined by [IANA](https://www.iana.org/assignments/media-types/media-types.xhtml)""",
-        json_schema_extra={
-            "linkml_meta": {
-                "alias": "media_type",
-                "domain_of": ["RepresentationVariant"],
-            }
-        },
+        json_schema_extra={"linkml_meta": {"domain_of": ["RepresentationVariant"]}},
     )
     encoding_format: Optional[str] = Field(
         default=None,
         description="""The encoding of the representation. https://encoding.spec.whatwg.org/#names-and-labels""",
-        json_schema_extra={
-            "linkml_meta": {
-                "alias": "encoding_format",
-                "domain_of": ["RepresentationVariant"],
-            }
-        },
+        json_schema_extra={"linkml_meta": {"domain_of": ["RepresentationVariant"]}},
     )
     size: Optional[int] = Field(
         default=None,
         description="""The size of the representation in bytes.""",
         ge=0,
-        json_schema_extra={
-            "linkml_meta": {"alias": "size", "domain_of": ["RepresentationVariant"]}
-        },
+        json_schema_extra={"linkml_meta": {"domain_of": ["RepresentationVariant"]}},
     )
 
 
@@ -2211,7 +2049,6 @@ class RelatedIdentifier(ConfiguredBaseModel):
         description="""The type of the identifier.""",
         json_schema_extra={
             "linkml_meta": {
-                "alias": "type",
                 "designates_type": True,
                 "domain_of": ["HandleRecord", "RelatedIdentifier"],
             }
@@ -2242,14 +2079,13 @@ class PurlIdentifier(RelatedIdentifier):
         description="""The URL that resolves the identifier.""",
         json_schema_extra={
             "linkml_meta": {
-                "alias": "resolving_url",
                 "domain_of": [
                     "PurlIdentifier",
                     "DoiIdentifier",
                     "HandleIdentifier",
                     "ArkIdentifier",
                     "ExampleIdentifier",
-                ],
+                ]
             }
         },
     )
@@ -2258,7 +2094,6 @@ class PurlIdentifier(RelatedIdentifier):
         description="""The type of the identifier.""",
         json_schema_extra={
             "linkml_meta": {
-                "alias": "type",
                 "designates_type": True,
                 "domain_of": ["HandleRecord", "RelatedIdentifier"],
             }
@@ -2303,14 +2138,13 @@ class DoiIdentifier(RelatedIdentifier):
         description="""The URL that resolves the identifier.""",
         json_schema_extra={
             "linkml_meta": {
-                "alias": "resolving_url",
                 "domain_of": [
                     "PurlIdentifier",
                     "DoiIdentifier",
                     "HandleIdentifier",
                     "ArkIdentifier",
                     "ExampleIdentifier",
-                ],
+                ]
             }
         },
     )
@@ -2319,7 +2153,6 @@ class DoiIdentifier(RelatedIdentifier):
         description="""The identifier in recommended notation.""",
         json_schema_extra={
             "linkml_meta": {
-                "alias": "identifier",
                 "domain_of": [
                     "DoiIdentifier",
                     "HandleIdentifier",
@@ -2327,7 +2160,7 @@ class DoiIdentifier(RelatedIdentifier):
                     "UrnIdentifier",
                     "GtinIdentifier",
                     "ExampleIdentifier",
-                ],
+                ]
             }
         },
     )
@@ -2336,7 +2169,6 @@ class DoiIdentifier(RelatedIdentifier):
         description="""The type of the identifier.""",
         json_schema_extra={
             "linkml_meta": {
-                "alias": "type",
                 "designates_type": True,
                 "domain_of": ["HandleRecord", "RelatedIdentifier"],
             }
@@ -2397,14 +2229,13 @@ class HandleIdentifier(RelatedIdentifier):
         description="""The URL that resolves the identifier.""",
         json_schema_extra={
             "linkml_meta": {
-                "alias": "resolving_url",
                 "domain_of": [
                     "PurlIdentifier",
                     "DoiIdentifier",
                     "HandleIdentifier",
                     "ArkIdentifier",
                     "ExampleIdentifier",
-                ],
+                ]
             }
         },
     )
@@ -2413,7 +2244,6 @@ class HandleIdentifier(RelatedIdentifier):
         description="""The identifier in recommended notation.""",
         json_schema_extra={
             "linkml_meta": {
-                "alias": "identifier",
                 "domain_of": [
                     "DoiIdentifier",
                     "HandleIdentifier",
@@ -2421,7 +2251,7 @@ class HandleIdentifier(RelatedIdentifier):
                     "UrnIdentifier",
                     "GtinIdentifier",
                     "ExampleIdentifier",
-                ],
+                ]
             }
         },
     )
@@ -2430,7 +2260,6 @@ class HandleIdentifier(RelatedIdentifier):
         description="""The type of the identifier.""",
         json_schema_extra={
             "linkml_meta": {
-                "alias": "type",
                 "designates_type": True,
                 "domain_of": ["HandleRecord", "RelatedIdentifier"],
             }
@@ -2488,7 +2317,6 @@ class ArkIdentifier(RelatedIdentifier):
         description="""The identifier in recommended notation.""",
         json_schema_extra={
             "linkml_meta": {
-                "alias": "identifier",
                 "domain_of": [
                     "DoiIdentifier",
                     "HandleIdentifier",
@@ -2496,7 +2324,7 @@ class ArkIdentifier(RelatedIdentifier):
                     "UrnIdentifier",
                     "GtinIdentifier",
                     "ExampleIdentifier",
-                ],
+                ]
             }
         },
     )
@@ -2505,14 +2333,13 @@ class ArkIdentifier(RelatedIdentifier):
         description="""The URL that resolves the identifier.""",
         json_schema_extra={
             "linkml_meta": {
-                "alias": "resolving_url",
                 "domain_of": [
                     "PurlIdentifier",
                     "DoiIdentifier",
                     "HandleIdentifier",
                     "ArkIdentifier",
                     "ExampleIdentifier",
-                ],
+                ]
             }
         },
     )
@@ -2521,7 +2348,6 @@ class ArkIdentifier(RelatedIdentifier):
         description="""The type of the identifier.""",
         json_schema_extra={
             "linkml_meta": {
-                "alias": "type",
                 "designates_type": True,
                 "domain_of": ["HandleRecord", "RelatedIdentifier"],
             }
@@ -2578,7 +2404,6 @@ class UrnIdentifier(RelatedIdentifier):
         description="""The identifier in recommended notation.""",
         json_schema_extra={
             "linkml_meta": {
-                "alias": "identifier",
                 "domain_of": [
                     "DoiIdentifier",
                     "HandleIdentifier",
@@ -2586,7 +2411,7 @@ class UrnIdentifier(RelatedIdentifier):
                     "UrnIdentifier",
                     "GtinIdentifier",
                     "ExampleIdentifier",
-                ],
+                ]
             }
         },
     )
@@ -2595,7 +2420,6 @@ class UrnIdentifier(RelatedIdentifier):
         description="""The type of the identifier.""",
         json_schema_extra={
             "linkml_meta": {
-                "alias": "type",
                 "designates_type": True,
                 "domain_of": ["HandleRecord", "RelatedIdentifier"],
             }
@@ -2618,7 +2442,7 @@ class UrnIdentifier(RelatedIdentifier):
 
 class GtinIdentifier(RelatedIdentifier):
     """
-    A Global Trade Item Number (GTIN) previously called European Article Number (EAN) often encoded as EAN13 barcode. The identifier is used to identify products. GTINs don't have a resolvable URL.
+    A Global Trade Item Number (GTIN) previously called European Article Number (EAN) often encoded as EAN13 barcode. The identifier is used to identify products. GITNs don't have a resolvable URL.
     """
 
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
@@ -2639,7 +2463,6 @@ class GtinIdentifier(RelatedIdentifier):
         description="""The identifier in recommended notation.""",
         json_schema_extra={
             "linkml_meta": {
-                "alias": "identifier",
                 "domain_of": [
                     "DoiIdentifier",
                     "HandleIdentifier",
@@ -2647,7 +2470,7 @@ class GtinIdentifier(RelatedIdentifier):
                     "UrnIdentifier",
                     "GtinIdentifier",
                     "ExampleIdentifier",
-                ],
+                ]
             }
         },
     )
@@ -2656,7 +2479,6 @@ class GtinIdentifier(RelatedIdentifier):
         description="""The type of the identifier.""",
         json_schema_extra={
             "linkml_meta": {
-                "alias": "type",
                 "designates_type": True,
                 "domain_of": ["HandleRecord", "RelatedIdentifier"],
             }
@@ -2700,7 +2522,6 @@ class ExampleIdentifier(RelatedIdentifier):
         description="""The identifier in recommended notation.""",
         json_schema_extra={
             "linkml_meta": {
-                "alias": "identifier",
                 "domain_of": [
                     "DoiIdentifier",
                     "HandleIdentifier",
@@ -2708,7 +2529,7 @@ class ExampleIdentifier(RelatedIdentifier):
                     "UrnIdentifier",
                     "GtinIdentifier",
                     "ExampleIdentifier",
-                ],
+                ]
             }
         },
     )
@@ -2717,14 +2538,13 @@ class ExampleIdentifier(RelatedIdentifier):
         description="""The URL that resolves the identifier.""",
         json_schema_extra={
             "linkml_meta": {
-                "alias": "resolving_url",
                 "domain_of": [
                     "PurlIdentifier",
                     "DoiIdentifier",
                     "HandleIdentifier",
                     "ArkIdentifier",
                     "ExampleIdentifier",
-                ],
+                ]
             }
         },
     )
@@ -2733,7 +2553,6 @@ class ExampleIdentifier(RelatedIdentifier):
         description="""The type of the identifier.""",
         json_schema_extra={
             "linkml_meta": {
-                "alias": "type",
                 "designates_type": True,
                 "domain_of": ["HandleRecord", "RelatedIdentifier"],
             }
@@ -2810,65 +2629,44 @@ class Pid4CatRecord(ConfiguredBaseModel):
     landing_page_url: str = Field(
         default=...,
         description="""The URL of the landing page of the resource identified by the PID.""",
-        json_schema_extra={
-            "linkml_meta": {"alias": "landing_page_url", "domain_of": ["Pid4CatRecord"]}
-        },
+        json_schema_extra={"linkml_meta": {"domain_of": ["Pid4CatRecord"]}},
     )
     status: Pid4CatStatus = Field(
         default=...,
         description="""The status of the pid4cat record. The status is set to \"SUBMITTED\" when the handle is reserved but the resource is not yet linked. The status is set to \"REGISTERED\" when the handle is linked to a concrete resource.""",
-        json_schema_extra={
-            "linkml_meta": {"alias": "status", "domain_of": ["Pid4CatRecord"]}
-        },
+        json_schema_extra={"linkml_meta": {"domain_of": ["Pid4CatRecord"]}},
     )
     schema_version: str = Field(
         default=...,
         description="""The version of the pid4cat-model used to create the pid4cat record.""",
-        json_schema_extra={
-            "linkml_meta": {"alias": "schema_version", "domain_of": ["Pid4CatRecord"]}
-        },
+        json_schema_extra={"linkml_meta": {"domain_of": ["Pid4CatRecord"]}},
     )
     metadata_license: Literal["CC0-1.0"] = Field(
         default=...,
         description="""The license of the metadata of the pid4cat record. The license is set to \"CC0-1.0\" by default.""",
         json_schema_extra={
-            "linkml_meta": {
-                "alias": "metadata_license",
-                "domain_of": ["Pid4CatRecord"],
-                "equals_string": "CC0-1.0",
-            }
+            "linkml_meta": {"domain_of": ["Pid4CatRecord"], "equals_string": "CC0-1.0"}
         },
     )
     curation_contact: str = Field(
         default=...,
         description="""The email address of the person responsible for the curation of the pid4cat record.""",
-        json_schema_extra={
-            "linkml_meta": {"alias": "curation_contact", "domain_of": ["Pid4CatRecord"]}
-        },
+        json_schema_extra={"linkml_meta": {"domain_of": ["Pid4CatRecord"]}},
     )
     resource_info: ResourceInfo = Field(
         default=...,
         description="""The resource info of the pid4cat record. The resource info contains information about the resource identified by the PID.""",
-        json_schema_extra={
-            "linkml_meta": {"alias": "resource_info", "domain_of": ["Pid4CatRecord"]}
-        },
+        json_schema_extra={"linkml_meta": {"domain_of": ["Pid4CatRecord"]}},
     )
     related_identifiers: Optional[list[Pid4CatRelation]] = Field(
         default=None,
         description="""The related identifiers for the pid4cat record. The related identifiers are used to link the pid4cat record to other resources.""",
-        json_schema_extra={
-            "linkml_meta": {
-                "alias": "related_identifiers",
-                "domain_of": ["Pid4CatRecord"],
-            }
-        },
+        json_schema_extra={"linkml_meta": {"domain_of": ["Pid4CatRecord"]}},
     )
     change_log: list[LogRecord] = Field(
         default=...,
         description="""The change log of the pid4cat record. The change log contains information about the changes made to the pid4cat record.""",
-        json_schema_extra={
-            "linkml_meta": {"alias": "change_log", "domain_of": ["Pid4CatRecord"]}
-        },
+        json_schema_extra={"linkml_meta": {"domain_of": ["Pid4CatRecord"]}},
     )
 
     @field_validator("landing_page_url")
