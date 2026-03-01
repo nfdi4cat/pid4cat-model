@@ -108,6 +108,10 @@ quiet-level = 3
 # Ref.: https://github.com/crate-ci/typos (spell checker)
 [tool.typos.default.extend-words]
 linke = "linke"
+
+[tool.typos.default.extend-identifiers]
+GTINs = "GTINs"
+
 [tool.typos.files]
 extend-exclude = [
   "LICENSE",

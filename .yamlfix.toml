@@ -1,0 +1,8 @@
+# Config for the yaml formatter https://github.com/lyz-code/yamlfix
+# install: "uv tool install yamlfix"
+line_length = 88
+sequence_style = "block_style"
+
+# order is important: keep whiteline before section_whitelines
+whitelines = 1
+section_whitelines = 1

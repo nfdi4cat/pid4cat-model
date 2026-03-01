@@ -5,7 +5,7 @@ extends: default
 rules:
   document-start: disable  # Don't check if document has a start marker (---).
   line-length:
-    max: 80
+    max: 88
     level: warning
     allow-non-breakable-words: true
     allow-non-breakable-inline-mappings: true
