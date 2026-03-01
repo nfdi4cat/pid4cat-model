@@ -1,5 +1,5 @@
 # Auto generated from pid4cat_model.yaml by pythongen.py version: 0.0.1
-# Generation date: 2025-05-16T12:16:28
+# Generation date: 2026-03-01T13:33:16
 # Schema: pid4cat-model
 #
 # id: https://w3id.org/nfdi4cat/pid4cat-model
@@ -23,7 +23,7 @@ from rdflib import URIRef
 from linkml_runtime.utils.metamodelcore import URI, XSDDateTime
 
 metamodel_version = "1.7.0"
-version = "0.3.0.post26.dev0+e73dc8d"
+version = "0.4.2.post15.dev0+b657197"
 
 # Namespaces
 DATACITE = CurieNamespace("DataCite", "https://purl.org/spar/datacite/")
