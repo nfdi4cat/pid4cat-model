@@ -7,5 +7,6 @@ rules:
     # permissible_values_upper_case: true
     # class_pattern: snake_case
   canonical_prefixes:
-    # Superfluous warnings for https-refixes, https://github.com/linkml/linkml/issues/2492
+    # Suppress warnings for https-prefixes
+    # related: https://github.com/linkml/linkml/issues/2492
     level: disabled

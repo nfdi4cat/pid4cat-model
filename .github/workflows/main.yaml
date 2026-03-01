@@ -8,9 +8,6 @@ on:  # yamllint disable-line rule:truthy
     branches: [main]
   pull_request:
 
-env:
-  FORCE_COLOR: "1" # Make tools pretty.
-
 permissions: {}
 
 jobs:

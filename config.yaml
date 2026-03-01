@@ -19,10 +19,10 @@ generator_args:
     mergeimports: true
   owl:
     mergeimports: true
-    metaclasses: true
-    type_objects: true
-    # throws 'Cannot handle metadata profile: rdfs'
-    # metadata_profile: rdfs
+    metaclasses: false
+    type_objects: false
+    add_root_classes: true
+    mixins_as_expressions: true
   markdown:
     mergeimports: true
     directory: "docs/elements"
