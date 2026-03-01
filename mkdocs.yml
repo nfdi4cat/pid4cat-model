@@ -1,75 +1,101 @@
 ---
-site_name: "pid4cat Documentation"
-site_description: "Persistent identifiers for FAIR catalysis data. pid4cat combines Handle PIDs with structured LinkML metadata for samples, devices, and research resources."
+site_name: pid4cat Documentation
+site_description: >-
+  Persistent identifiers for FAIR catalysis data. pid4cat combines Handle PIDs
+  with structured LinkML metadata for samples, devices, and research resources.
 site_url: https://nfdi4cat.github.io/pid4cat-model
 repo_url: https://github.com/nfdi4cat/pid4cat-model
 
 theme:
+  # https://www.mkdocs.org/user-guide/configuration/#theme
   name: material
-  # logo-customization: https://github.com/squidfunk/mkdocs-material/discussions/2729
+  # logo-customization
+  # https://github.com/squidfunk/mkdocs-material/discussions/2729
   custom_dir: docs/overrides
-  logo_dark_mode: 'images/logo-icon.svg'
-  logo_light_mode: 'images/logo-icon.svg'
+  logo_dark_mode: images/logo-icon.svg
+  logo_light_mode: images/logo-icon.svg
 
   # Toggling between default/light/dark color schemes
   # https://squidfunk.github.io/mkdocs-material/setup/changing-the-colors/
   palette:
-
     # Palette toggle for automatic mode
-    - media: "(prefers-color-scheme)"
+    - media: (prefers-color-scheme)
       toggle:
         icon: material/brightness-auto
         name: Switch to light mode
 
     # Palette toggle for light mode
-    - media: "(prefers-color-scheme: light)"
+    - media: '(prefers-color-scheme: light)'
       scheme: default
-      primary: 'blue grey'
-      accent: 'indigo'
+      primary: blue grey
+      accent: indigo
       toggle:
         icon: material/brightness-7
         name: Switch to dark mode
 
     # Palette toggle for dark mode
-    - media: "(prefers-color-scheme: dark)"
+    - media: '(prefers-color-scheme: dark)'
       scheme: slate
-      primary: 'blue grey'
-      accent: 'indigo'
+      primary: blue grey
+      accent: indigo
       toggle:
         icon: material/brightness-4
         name: Switch to system preference
-
   features:
     - content.tabs.link
-    - search.highlight
-    - navigation.expand
-    - navigation.instant
+    - content.code.copy  # enable copy to clipboard
+    - header.autohide  # maximum screen space during scrolling
+    - navigation.expand  # optimize user experience
+    - navigation.instant  # optimize user experience
     - navigation.instant.progress
-    - navigation.tracking
+    - navigation.tracking  # update address bar
+    - search.highlight
+    - search.suggest  # suggest good completions
 
-  favicon: 'images/favicon.svg'
+  favicon: images/favicon.svg
 
+# extra css/js see
+# https://www.mkdocs.org/user-guide/customizing-your-theme/
 extra_css:
   - stylesheets/extra.css
+
+# extra_javascript:
+#   - js/extra-loader.js
 
 plugins:
   - search
   - mknotebooks:
       execute: false
   - mermaid2:
-      version: 11.4.1
       # Optionally provide a local copy of mermaid.js (path relative to docs/)
       # javascript: local-js-pkgs/mermaid.min.js
+      version: 11.4.1
+
+  # Multi-version support https://github.com/jimporter/mike
   - mike:
-      # Multi-version support, https://github.com/jimporter/mike
-      canonical_version: "latest"
+      canonical_version: latest
       version_selector: true
 
-  # TODO rebuild docs on schema change see
-  # https://github.com/dalito/linkml-project-copier/issues/39
-  # - gen-files:
-  #     scripts:
-  #       - gen_pages.py  # or any other name or path
+  # https://pypi.org/project/mkdocs-pymdownx-material-extras
+  - mkdocs_pymdownx_material_extras:
+
+markdown_extensions:
+  - admonition
+  - footnotes
+  - pymdownx.details
+  - pymdownx.superfences:
+      # https://mkdocs-mermaid2.readthedocs.io/en/latest/superfences
+      # custom code highlighting rules
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:mermaid2.fence_mermaid_custom
+
+# TODO rebuild docs on schema change
+# https://github.com/dalito/linkml-project-copier/issues/39
+# - gen-files:
+#     scripts:
+#       - gen_pages.py  # or any other name or path
 
 watch:
   - src/pid4cat_model/schema
@@ -82,16 +108,15 @@ nav:
   - Overview: overview.md
   - Getting Started: getting-started.md
   - Metadata:
-    - Basics: metadata.md
-    - Schema: elements/overview.md
-    - Versioning: versioning.md
+      - Basics: metadata.md
+      - Schema: elements/overview.md
+      - Versioning: versioning.md
   - APIs: apis.md
   - Tools & Services: tools.md
   - Open Data: open-data.md
   - About:
-    - Credits: about.md
-    - Policies: policies.md
-
+      - Credits: about.md
+      - Policies: policies.md
 
 # enable version selector for multi-version support
 extra:
@@ -101,15 +126,12 @@ extra:
     default:
       - stable
 
-markdown_extensions:
-  - admonition
-  - footnotes
-  - pymdownx.details
-  - pymdownx.superfences:
-      # make exceptions to highlighting of code:
-      custom_fences:
-        - name: mermaid
-          class: mermaid
-          format: !!python/name:mermaid2.fence_mermaid_custom
 exclude_docs: |
   /templates-linkml/
+
+# Uncomment this block to enable use of Google Analytics.
+# Replace the property value with your own ID.
+# extra:
+#   analytics:
+#     provider: google
+#     property: G-XXXXXXXXXX

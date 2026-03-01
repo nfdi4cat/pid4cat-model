@@ -2,16 +2,18 @@
 # https://pre-commit.com/
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v5.0.0
+    rev: v6.0.0
     hooks:
       - id: check-toml
       - id: check-yaml
+        # mkdocs.yml uses !!python/name tags unsupported by the safe YAML loader
+        exclude: ^mkdocs\.yml$
       - id: end-of-file-fixer
       - id: trailing-whitespace
         args: [--markdown-linebreak-ext=md]
 
   - repo: https://github.com/adrienverge/yamllint.git
-    rev: v1.37.0
+    rev: v1.38.0
     hooks:
       - id: yamllint
         args: [-c=.yamllint.yaml]
@@ -24,13 +26,13 @@ repos:
           - tomli
 
   - repo: https://github.com/crate-ci/typos
-    rev: v1.31.1
+    rev: v1.44.0
     hooks:
       - id: typos
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
     # Ruff version.
-    rev: v0.11.3
+    rev: v0.15.4
     hooks:
       # Run the linter.
       - id: ruff
@@ -40,6 +42,6 @@ repos:
 
   - repo: https://github.com/astral-sh/uv-pre-commit
     # uv version.
-    rev: 0.6.12
+    rev: 0.10.7
     hooks:
       - id: uv-lock
