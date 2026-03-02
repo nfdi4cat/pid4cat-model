@@ -1,8 +1,9 @@
 # ============ Hint for for Windows Users ============
-
-# On Windows the "sh" shell that comes with Git for Windows should be used.
-# If it is not on path, provide the path to the executable in the following line.
-set windows-shell := ["C:/Program Files/Git/usr/bin/sh", "-cu"]
+# Uses Git for Windows' bash wrapper at Git/bin/bash.exe which properly
+# initializes the MSYS2 environment (PATH, etc.). The raw sh at
+# Git/usr/bin/sh does NOT initialize its environment and may fail.
+# If Git is installed elsewhere, adjust this path accordingly.
+set windows-shell := ["C:/Program Files/Git/bin/bash.exe", "-cu"]
 
 # ============ Variables used in recipes ============
 
