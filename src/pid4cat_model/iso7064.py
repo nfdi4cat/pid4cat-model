@@ -39,6 +39,16 @@ class ISO7064Pure:
         self.radix: int = radix
         self.alphabet: str = alphabet
         self.flavor: str = flavor  # "EXTRA_CHAR" or "TWO_CCS"
+        # `self.alphabet` is the full character set, used to render and parse
+        # check characters. `self._input_alphabet` is the subset accepted in
+        # the bare input: for EXTRA_CHAR flavors the trailing character (e.g.
+        # 'X' in mod11_2, '*' in mod37_2) is a check-character-only symbol
+        # and must not appear in the input; for TWO_CCS flavors the two sets
+        # coincide.
+        self._input_alphabet: str = (
+            alphabet[:-1] if flavor == "EXTRA_CHAR" else alphabet
+        )
+        self.char_map: dict = {c: i for i, c in enumerate(self._input_alphabet)}
 
     def compute_from_num_vals(self, ns: List[int]) -> List[int]:
         """
@@ -86,13 +96,12 @@ class ISO7064Pure:
             str: Check character(s) computed from the input string.
         """
         s = s.strip()
-        char_map = {
-            c: i
-            for i, c in enumerate(
-                self.alphabet[:-1] if self.flavor == "EXTRA_CHAR" else self.alphabet
+        invalid = sorted({c for c in s if c not in self.char_map})
+        if invalid:
+            raise ValueError(
+                f"Invalid character(s) {invalid} for alphabet {self._input_alphabet!r}"
             )
-        }
-        ns = [char_map[c] for c in s if c in char_map]
+        ns = [self.char_map[c] for c in s]
 
         cc = self.compute_from_num_vals(ns)
         if self.flavor == "TWO_CCS":
@@ -114,10 +123,9 @@ class ISO7064Pure:
             ValueError: If the check character(s) cannot be found.
         """
         s = s.strip()
-        char_map = {c: i for i, c in enumerate(self.alphabet)}
         n = 2 if self.flavor == "TWO_CCS" else 1
         cc = s[-n:]
-        if len(cc) == n and all(c in char_map for c in cc):
+        if len(cc) == n and all(c in self.alphabet for c in cc):
             return s[:-n], cc
         raise ValueError("Could not find check character(s)")
 
@@ -209,7 +217,12 @@ class ISO7064Hybrid:
             str: Check character(s) computed from the input string.
         """
         s = s.strip()
-        ns = [self.char_map[c] for c in s if c in self.char_map]
+        invalid = sorted({c for c in s if c not in self.char_map})
+        if invalid:
+            raise ValueError(
+                f"Invalid character(s) {invalid} for alphabet {self.alphabet!r}"
+            )
+        ns = [self.char_map[c] for c in s]
 
         cc = self.compute_from_num_vals(ns)
         return self.alphabet[cc[0]]
@@ -229,9 +242,8 @@ class ISO7064Hybrid:
             ValueError: If the check character(s) cannot be found.
         """
         s = s.strip()
-        char_map = {c: i for i, c in enumerate(self.alphabet)}
         cc = s[-1]
-        if cc in char_map:
+        if cc in self.alphabet:
             return s[:-1], cc
         raise ValueError("Could not find check character(s)")
 

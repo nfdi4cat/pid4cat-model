@@ -34,11 +34,11 @@ from src.pid4cat_model.iso7064 import (
         (mod661_26, "BAISDLAFK", "BAISDLAFKBM", "BM"),
         (mod661_26, "GCJFBCIOJTLVO", "GCJFBCIOJTLVOUR", "UR"),
         # mod1271_36
-        (mod1271_36, "ISO 79", "ISO 793W", "3W"),
+        (mod1271_36, "ISO79", "ISO793W", "3W"),
         (mod1271_36, "XVMZN7CD83796I1Q65VVZA", "XVMZN7CD83796I1Q65VVZA0J", "0J"),
-        # input with spaces
-        (mod1271_36, "ISO 79 ", "ISO 793W", "3W"),
-        (mod1271_36, " ISO 79 ", "ISO 793W", "3W"),
+        # leading/trailing whitespace is stripped before checksum
+        (mod1271_36, "ISO79 ", "ISO793W", "3W"),
+
         (mod11_2, " 747633 ", "7476336", "6"),
     ],
 )
@@ -79,11 +79,9 @@ def test_pure_systems_valid(algo, input_str, expected_output, check_chars):
         (mod661_26, "BAISDLAFK", "BAISDLAFKAB", "AB"),
         (mod661_26, "GCJFBCIOJTLVO", "GCJFBCIOJTLVOBI", "BI"),
         # mod1271_36
-        (mod1271_36, "ISO 79", "ISO 7912", "12"),
         (mod1271_36, "ERMSIN9W42JD", "ERMSIN9W42JD98", "98"),
-        # input with spaces
-        (mod1271_36, "ISO 79 ", "ISO 7912", "12"),
-        (mod1271_36, " ISO 79 ", "ISO 7912", "12"),
+        # leading/trailing whitespace is stripped before checksum
+        (mod1271_36, "ISO79 ", "ISO7912", "12"),
         (mod11_2, " 97  ", "97X", "X"),
     ],
 )
@@ -206,3 +204,35 @@ def test_pure_systems_invalid_numbers(algo):
     with pytest.raises(ValueError) as excinfo:
         _ = algo.compute_from_num_vals([100])
     assert "Invalid numerical value detected" in str(excinfo.value)
+
+
+@pytest.mark.parametrize(
+    "algo, bad_input",
+    [
+        # pure systems
+        (mod1271_36, "ISO 79"),  # internal space, alphabet is 0-9A-Z
+        (mod97_10, "123-456"),  # hyphen not in 0-9
+        (mod37_2, "FOO*BAR"),  # * is the extra check char, not input
+        (mod11_2, "12a3"),  # lowercase not in 0-9X
+        # hybrid systems
+        (mod11_10, "12 34"),  # internal space, alphabet is 0-9
+        (mod27_26, "AB CD"),  # internal space, alphabet is A-Z
+    ],
+)
+def test_compute_rejects_chars_outside_alphabet(algo, bad_input):
+    """
+    Characters outside the algorithm's input alphabet must raise ValueError.
+    Since leading/trailing whitespace is stripped, only characters in the
+    interior count.
+    """
+    with pytest.raises(ValueError, match="Invalid character"):
+        algo.compute(bad_input)
+
+    with pytest.raises(ValueError, match="Invalid character"):
+        algo.generate(bad_input)
+
+    # validate() must propagate the ValueError from compute(), not return False
+    # — the bare prefix of the protected string is what compute() sees.
+    bare_with_cc = bad_input + algo.alphabet[0]
+    with pytest.raises(ValueError, match="Invalid character"):
+        algo.validate(bare_with_cc)
