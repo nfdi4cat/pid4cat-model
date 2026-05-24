@@ -83,7 +83,7 @@ classes:
       timestamp:
         required: true
       ttl:
-        ifabsent: 86400
+        ifabsent: "86400"
       type:
         description: >-
           The type of handledata stored in the handle record.
