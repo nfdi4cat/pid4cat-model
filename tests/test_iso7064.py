@@ -36,6 +36,10 @@ from src.pid4cat_model.iso7064 import (
         # mod1271_36
         (mod1271_36, "ISO 79", "ISO 793W", "3W"),
         (mod1271_36, "XVMZN7CD83796I1Q65VVZA", "XVMZN7CD83796I1Q65VVZA0J", "0J"),
+        # input with spaces
+        (mod1271_36, "ISO 79 ", "ISO 793W", "3W"),
+        (mod1271_36, " ISO 79 ", "ISO 793W", "3W"),
+        (mod11_2, " 747633 ", "7476336", "6"),
     ],
 )
 def test_pure_systems_valid(algo, input_str, expected_output, check_chars):
@@ -52,7 +56,7 @@ def test_pure_systems_valid(algo, input_str, expected_output, check_chars):
 
     # Test parse
     bare, cc = algo.parse(expected_output)
-    assert bare == input_str, f"Failed to parse bare string for {algo.name}"
+    assert bare == input_str.strip(), f"Failed to parse bare string for {algo.name}"
     assert cc == check_chars, f"Failed to parse check character for {algo.name}"
     assert algo.compute(input_str) == cc, (
         f"Failed to compute check character for {algo.name}"
@@ -77,6 +81,10 @@ def test_pure_systems_valid(algo, input_str, expected_output, check_chars):
         # mod1271_36
         (mod1271_36, "ISO 79", "ISO 7912", "12"),
         (mod1271_36, "ERMSIN9W42JD", "ERMSIN9W42JD98", "98"),
+        # input with spaces
+        (mod1271_36, "ISO 79 ", "ISO 7912", "12"),
+        (mod1271_36, " ISO 79 ", "ISO 7912", "12"),
+        (mod11_2, " 97  ", "97X", "X"),
     ],
 )
 def test_pure_systems_invalid(algo, input_str, invalid_output, invalid_check_chars):
@@ -93,7 +101,7 @@ def test_pure_systems_invalid(algo, input_str, invalid_output, invalid_check_cha
 
     # Test parse (the invalid output should still be parsed correctly)
     bare, cc = algo.parse(invalid_output)
-    assert bare == input_str
+    assert bare == input_str.strip()
     assert cc == invalid_check_chars
     assert algo.compute(input_str) != cc
 

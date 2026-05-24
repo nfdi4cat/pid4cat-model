@@ -80,10 +80,12 @@ class ISO7064Pure:
 
         Args:
             s (str): Input string without check characters.
+                Trailing or leading whitespace is ignored.
 
         Returns:
             str: Check character(s) computed from the input string.
         """
+        s = s.strip()
         char_map = {
             c: i
             for i, c in enumerate(
@@ -103,6 +105,7 @@ class ISO7064Pure:
 
         Args:
             s (str): Input string with check characters.
+                Trailing or leading whitespace is ignored.
 
         Returns:
             tuple[str, str]: Bare string and check character(s).
@@ -110,6 +113,7 @@ class ISO7064Pure:
         Raises:
             ValueError: If the check character(s) cannot be found.
         """
+        s = s.strip()
         char_map = {c: i for i, c in enumerate(self.alphabet)}
         n = 2 if self.flavor == "TWO_CCS" else 1
         cc = s[-n:]
@@ -123,10 +127,12 @@ class ISO7064Pure:
 
         Args:
             s (str): Input string without check characters.
+                Trailing or leading whitespace is ignored.
 
         Returns:
             str: Protected string with appended check character(s).
         """
+        s = s.strip()
         return f"{s}{self.compute(s)}"
 
     def validate(self, s: str) -> bool:
@@ -135,10 +141,12 @@ class ISO7064Pure:
 
         Args:
             s (str): Input string with check characters.
+                Trailing or leading whitespace is ignored.
 
         Returns:
             bool: True if the string is valid, False otherwise.
         """
+        s = s.strip()
         bare, cc = self.parse(s)
         return self.compute(bare) == cc
 
@@ -195,10 +203,12 @@ class ISO7064Hybrid:
 
         Args:
             s (str): Input string without check characters.
+                Trailing or leading whitespace is ignored.
 
         Returns:
             str: Check character(s) computed from the input string.
         """
+        s = s.strip()
         ns = [self.char_map[c] for c in s if c in self.char_map]
 
         cc = self.compute_from_num_vals(ns)
@@ -210,6 +220,7 @@ class ISO7064Hybrid:
 
         Args:
             s (str): Input string with check characters.
+               Trailing or leading whitespace is ignored.
 
         Returns:
             tuple[str, str]: Bare string and check character(s).
@@ -217,6 +228,7 @@ class ISO7064Hybrid:
         Raises:
             ValueError: If the check character(s) cannot be found.
         """
+        s = s.strip()
         char_map = {c: i for i, c in enumerate(self.alphabet)}
         cc = s[-1]
         if cc in char_map:
@@ -229,10 +241,12 @@ class ISO7064Hybrid:
 
         Args:
             s (str): Input string without check characters.
+                Trailing or leading whitespace is ignored.
 
         Returns:
             str: Protected string with appended check character(s).
         """
+        s = s.strip()
         return f"{s}{self.compute(s)}"
 
     def validate(self, s: str) -> bool:
@@ -241,10 +255,12 @@ class ISO7064Hybrid:
 
         Args:
             s (str): Input string with check characters.
+                Trailing or leading whitespace is ignored.
 
         Returns:
             bool: True if the string is valid, False otherwise.
         """
+        s = s.strip()
         bare, cc = self.parse(s)
         return self.compute(bare) == cc
 
