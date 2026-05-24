@@ -90,6 +90,12 @@ markdown_extensions:
         - name: mermaid
           class: mermaid
           format: !!python/name:mermaid2.fence_mermaid_custom
+  # https://squidfunk.github.io/mkdocs-material/setup/extensions/python-markdown/#attribute-lists
+  # enables use of HTML attributes and CSS classes to applicable elements
+  - attr_list
+  # https://squidfunk.github.io/mkdocs-material/setup/extensions/python-markdown/#markdown-in-html
+  # write markdown inside of HTML
+  - md_in_html
 
 # TODO rebuild docs on schema change
 # https://github.com/dalito/linkml-project-copier/issues/39
