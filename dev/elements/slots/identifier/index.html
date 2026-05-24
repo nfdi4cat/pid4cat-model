@@ -19,7 +19,7 @@
       
       
       <link rel="icon" href="../../../images/favicon.svg">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.5">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
@@ -834,10 +834,9 @@
 
 <h1 id="slot-identifier">Slot: identifier</h1>
 <p><em>The identifier in recommended notation.</em></p>
-<p>URI: <a href="https://w3id.org/nfdi4cat/pid4cat-model/slot/identifier">pid4cat_model:slot/identifier</a>
-Alias: identifier</p>
+<div>
+<p>URI: <a href="https://w3id.org/nfdi4cat/pid4cat-model/slot/identifier">pid4cat_model:slot/identifier</a></p>
 <!-- no inheritance hierarchy -->
-
 <h2 id="applicable-classes">Applicable Classes</h2>
 <table>
 <thead>
@@ -849,18 +848,8 @@ Alias: identifier</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="../../classes/ArkIdentifier/">ArkIdentifier</a></td>
-<td>An ARK (Archival Resource Key).</td>
-<td>yes</td>
-</tr>
-<tr>
-<td><a href="../../classes/ExampleIdentifier/">ExampleIdentifier</a></td>
-<td>An example.org test identifier.</td>
-<td>yes</td>
-</tr>
-<tr>
-<td><a href="../../classes/UrnIdentifier/">UrnIdentifier</a></td>
-<td>A URN (Uniform Resource Name).</td>
+<td><a href="../../classes/DoiIdentifier/">DoiIdentifier</a></td>
+<td>A digital object identifier (DOI).</td>
 <td>yes</td>
 </tr>
 <tr>
@@ -869,13 +858,23 @@ Alias: identifier</p>
 <td>yes</td>
 </tr>
 <tr>
-<td><a href="../../classes/DoiIdentifier/">DoiIdentifier</a></td>
-<td>A digital object identifier (DOI).</td>
+<td><a href="../../classes/ArkIdentifier/">ArkIdentifier</a></td>
+<td>An ARK (Archival Resource Key).</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a href="../../classes/UrnIdentifier/">UrnIdentifier</a></td>
+<td>A URN (Uniform Resource Name).</td>
 <td>yes</td>
 </tr>
 <tr>
 <td><a href="../../classes/GtinIdentifier/">GtinIdentifier</a></td>
 <td>A Global Trade Item Number (GTIN) previously called European Article Number (EAN) often encoded as EAN13 barcode. The identifier is used to identify products. GTINs don't have a resolvable URL.</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a href="../../classes/ExampleIdentifier/">ExampleIdentifier</a></td>
+<td>An example.org test identifier.</td>
 <td>yes</td>
 </tr>
 </tbody>
@@ -945,7 +944,6 @@ Alias: identifier</p>
 <span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The identifier in recommended notation.</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/nfdi4cat/pid4cat-model</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">identifier</span>
 <span class="nt">domain_of</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DoiIdentifier</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HandleIdentifier</span>
@@ -956,12 +954,16 @@ Alias: identifier</p>
 <span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
 </code></pre></div>
 </details>
+</div>
 
 
 
 
 
 
+
+  
+  
 
 
 
