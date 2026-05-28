@@ -1,9 +1,10 @@
 # Changes here will be overwritten by Copier
-_commit: v0.4.2
+_commit: v0.5.0
 _src_path: gh:dalito/linkml-project-copier
 add_example: false
 copyright_year: '2023'
 email: david.linke@catalysis.de
+existing_license_file: ''
 full_name: David Linke
 gh_action_docs_preview: false
 gh_action_pypi: true
@@ -13,3 +14,4 @@ project_description: LinkML model for handle-based PIDs for resources in catalys
     (pid4cat)
 project_name: pid4cat-model
 project_slug: pid4cat_model
+

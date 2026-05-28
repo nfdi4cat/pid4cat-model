@@ -15,7 +15,7 @@ maintainers = [
 license = "MIT"
 license-files = ["LICENSE"]
 readme = "README_pypkg.md"
-requires-python = ">=3.10,<4.0"
+requires-python = ">=3.10"
 dynamic = ["version"]
 
 dependencies = [
@@ -87,6 +87,14 @@ exclude_lines = [
 [tool.coverage.html]
 # Directory where to write the HTML report files.
 directory = ".htmlcov"
+
+# https://docs.astral.sh/ruff/configuration/
+[tool.ruff]
+exclude = [
+    "src/pid4cat_model/_version.py",
+]
+# Set oldest supported Python version
+target-version = "py310"
 
 # Ref.: https://github.com/codespell-project/codespell
 [tool.codespell]

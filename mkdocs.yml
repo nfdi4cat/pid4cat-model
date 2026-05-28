@@ -43,14 +43,14 @@ theme:
         name: Switch to system preference
   features:
     - content.tabs.link
-    - content.code.copy  # enable copy to clipboard
-    - header.autohide  # maximum screen space during scrolling
-    - navigation.expand  # optimize user experience
-    - navigation.instant  # optimize user experience
+    - content.code.copy    # enable copy to clipboard
+    - header.autohide      # maximum screen space during scrolling
+    - navigation.expand    # optimize user experience
+    - navigation.instant   # optimize user experience
     - navigation.instant.progress
     - navigation.tracking  # update address bar
     - search.highlight
-    - search.suggest  # suggest good completions
+    - search.suggest       # suggest good completions
 
   favicon: images/favicon.svg
 
@@ -59,8 +59,7 @@ theme:
 extra_css:
   - stylesheets/extra.css
 
-# extra_javascript:
-#   - js/extra-loader.js
+extra_javascript: []
 
 plugins:
   - search
@@ -80,7 +79,6 @@ plugins:
   - mkdocs_pymdownx_material_extras:
 
 markdown_extensions:
-  - admonition
   - footnotes
   - pymdownx.details
   - pymdownx.superfences:
@@ -89,19 +87,30 @@ markdown_extensions:
       custom_fences:
         - name: mermaid
           class: mermaid
-          format: !!python/name:mermaid2.fence_mermaid_custom
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+  # https://facelessuser.github.io/pymdown-extensions/extensions/magiclink/
+  # auto-link HTML, FTP, and email links
+  - pymdownx.magiclink
+
+  # https://squidfunk.github.io/mkdocs-material/setup/extensions/python-markdown/#admonition
+  # support for call-outs
+  - admonition
+
+  # https://squidfunk.github.io/mkdocs-material/setup/extensions/python-markdown/#tables
+  # create tables
+  - tables
+
   # https://squidfunk.github.io/mkdocs-material/setup/extensions/python-markdown/#attribute-lists
   # enables use of HTML attributes and CSS classes to applicable elements
   - attr_list
+
   # https://squidfunk.github.io/mkdocs-material/setup/extensions/python-markdown/#markdown-in-html
   # write markdown inside of HTML
   - md_in_html
 
-# TODO rebuild docs on schema change
-# https://github.com/dalito/linkml-project-copier/issues/39
-# - gen-files:
-#     scripts:
-#       - gen_pages.py  # or any other name or path
+hooks:
+  - docs/hooks/theme_overrides_priority.py
 
 watch:
   - src/pid4cat_model/schema

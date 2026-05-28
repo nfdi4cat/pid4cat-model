@@ -8,6 +8,9 @@ on:  # yamllint disable-line rule:truthy
     branches: [main]
   pull_request:
 
+env:
+  FORCE_COLOR: "1"  # Make tools pretty.
+
 permissions: {}
 
 jobs:
@@ -16,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.10", "3.11", "3.12", "3.13"]
+        python-version: ["3.10", "3.11", "3.12", "3.13", "3.14"]
       fail-fast: false
 
     steps:
@@ -46,7 +49,7 @@ jobs:
           uv tool install rust-just
 
       - name: Install project
-        run: uv sync --dev
+        run: uv sync --group dev
 
       - name: Run test suite
         run: just test

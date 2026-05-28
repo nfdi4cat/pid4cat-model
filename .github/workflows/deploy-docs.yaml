@@ -61,7 +61,7 @@ jobs:
           uv tool install rust-just
 
       - name: Install dependencies
-        run: uv sync --dev --no-progress
+        run: uv sync --group dev --no-progress
 
       - name: Generate schema documentation
         run: |
