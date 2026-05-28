@@ -11,7 +11,7 @@ name: Publish Python Package
 on:  # yamllint disable-line rule:truthy
   push:
     tags:
-      # GitHub glob matching is limited [1]. So we can't define a pattern matching
+      # GitHub glob matching is limited. So we can't define a pattern matching
       # pep 440 version definition [N!]N(.N)*[{a|b|rc}N][.postN][.devN]
       - 'v[0-9]+.[0-9]+.[0-9]+.?*'
       - 'v[0-9]+.[0-9]+.[0-9]+rc[0-9]'
@@ -93,5 +93,3 @@ jobs:
         uses: pypa/gh-action-pypi-publish@v1.14.0
         with:
           verbose: true
-
-# [1] https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#filter-pattern-cheat-sheet

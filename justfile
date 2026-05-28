@@ -1,11 +1,13 @@
-# ============ Hint for for Windows Users ============
-# Uses Git for Windows' bash wrapper at Git/bin/bash.exe which properly
-# initializes the MSYS2 environment (PATH, etc.). The raw sh at
-# Git/usr/bin/sh does NOT initialize its environment and may fail.
-# If Git is installed elsewhere, adjust this path accordingly.
-set windows-shell := ["C:/Program Files/Git/bin/bash.exe", "-cu"]
+# ============ Shell configuration for Windows ============
+
+# On Windows the "bash" shell from Git for Windows is used.
+# If Git is installed in a non-standard location, edit the path below.
+set windows-shell := ["C:/Program Files/Git/bin/bash", "-cu"]
 
 # ============ Variables used in recipes ============
+
+# Detect WSL2 variable
+_wsl2_check := `[ -n "${WSL_INTEROP:-}" ] && [ -z "${JUST_TEMPDIR:-}" ] && echo "ERROR" || echo "OK"`
 
 # Load environment variables from config.public.mk or specified file
 set dotenv-load := true
@@ -45,11 +47,36 @@ distrib_schema_path := "docs/schema"  # Directory for publishing schema artifact
 
 # List all commands as default command. The prefix "_" hides the command.
 _default: _status
+    @{{ if _wsl2_check == "ERROR" { "echo 'WSL2 detected: run export JUST_TEMPDIR=/tmp'" } else { "" } }}
     @just --list
+
+# WSL2 status check - warns but does not abort (safe to use in _status/_default)
+[private]
+_wsl2_status_check:
+    @if [ -n "${WSL_INTEROP:-}" ] && [ -z "${JUST_TEMPDIR:-}" ]; then \
+      echo "WARNING: WSL2 detected but JUST_TEMPDIR is not set."; \
+      echo "Shebang recipes will fail with 'Permission denied' errors."; \
+      echo "Fix: run 'export JUST_TEMPDIR=/tmp'"; \
+    fi
+
+# WSL2 compatibility check - fails early with helpful message
+[private]
+_wsl2_compat_check:
+    @if [ -n "${WSL_INTEROP:-}" ] && [ -z "${JUST_TEMPDIR:-}" ]; then \
+      echo "ERROR: WSL2 detected but JUST_TEMPDIR is not set."; \
+      echo "Shebang recipes will fail with 'Permission denied' errors."; \
+      echo ""; \
+      echo "Fix: run this command:"; \
+      echo ""; \
+      echo "  export JUST_TEMPDIR=/tmp"; \
+      echo ""; \
+      echo "Or add it to your ~/.bashrc for persistence."; \
+      exit 1; \
+    fi
 
 # Initialize a new project (use this for projects not yet under version control)
 [group('project management')]
-setup: _check-config _git-init install _git-add && _setup_part2
+setup: _wsl2_compat_check _check-config _git-init install _git-add && _setup_part2
   git commit -m "Initialise git with minimal project" -a || true
 
 _setup_part2: gen-project gen-doc
@@ -71,7 +98,7 @@ update: _update-template _update-linkml
 
 # Clean all generated files
 [group('project management')]
-clean: _clean_project
+clean: _wsl2_compat_check _clean_project
   rm -rf tmp
   rm -rf {{docdir}}/*.md
 
@@ -111,7 +138,8 @@ gen-python:
 [group('model development')]
 gen-project:
   uv run gen-project {{config_yaml}} -d {{dest}} {{source_schema_path}}
-  mv {{dest}}/*.py {{pymodel}}
+  mkdir -p {{pymodel}}
+  mv {{dest}}/*.py {{pymodel}}/
   uv run gen-pydantic {{gen_pydantic_args}} {{source_schema_path}} > {{pymodel}}/{{schema_name}}_pydantic.py
 
   @# Some generators ignore config_yaml or cannot create directories, so we run them separately.
@@ -132,7 +160,7 @@ gen-project:
 # Hidden command to adjust the directory layout on upgrading a project
 # created with linkml-project-copier v0.1.x to v0.2.0 or newer.
 # Use with care! - It may not work for customized projects.
-_post_upgrade_v020: && _post_upgrade_v020py
+_post_upgrade_v020: _wsl2_compat_check && _post_upgrade_v020py
   mv docs/*.md docs/elements
 
 _post_upgrade_v020py:
@@ -161,7 +189,7 @@ _post_upgrade_v020py:
 # ============== Hidden internal recipes ==============
 
 # Show current project status
-_status: _check-config
+_status: _wsl2_status_check _check-config
   @echo "Project: {{schema_name}}"
   @echo "Source: {{source_schema_path}}"
 
