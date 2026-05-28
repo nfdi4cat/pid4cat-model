@@ -1,5 +1,5 @@
 #logo_light_mode {
-  display: var(--md-footer-logo-white);
+  display: var(--md-footer-logo-light-mode);
 }
 
 #logo_dark_mode {
@@ -9,6 +9,16 @@
 [data-md-color-scheme="default"] {
   --md-footer-logo-dark-mode: none;
   --md-footer-logo-light-mode: block;
+}
+
+/* The mkdocs_pymdownx_material_extras plugin ships an
+   extra-c6ab11540a.css with a `:root>* { --md-typeset-a-color: #00bcd4; }`
+   rule that forces light-mode links to bright cyan, ignoring the configured
+   accent color. We override it with a higher-specificity selector
+   (body[attr] = 0,1,1 beats :root>* = 0,1,0) so light-mode links use the
+   configured accent color (indigo via mkdocs.yml palette). */
+body[data-md-color-scheme="default"] {
+  --md-typeset-a-color: var(--md-accent-fg-color);
 }
 
 [data-md-color-scheme="slate"] {
