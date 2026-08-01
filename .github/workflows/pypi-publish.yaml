@@ -32,20 +32,20 @@ jobs:
     steps:
       # https://github.com/actions/checkout
       - name: Check out repository
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v7.0.1
         with:
           persist-credentials: false
 
       # https://github.com/astral-sh/setup-uv
       - name: Install uv
-        uses: astral-sh/setup-uv@v8.1.0
+        uses: astral-sh/setup-uv@v9.0.0
         with:
           python-version: ${{ matrix.pyversion }}
           enable-cache: true
 
       # https://github.com/actions/setup-python
       - name: Set up Python
-        uses: actions/setup-python@v6.2.0
+        uses: actions/setup-python@v7.0.0
         with:
           python-version: ${{ matrix.pyversion }}
 
@@ -83,13 +83,13 @@ jobs:
       # https://github.com/pypa/gh-action-pypi-publish
       - name: Publish package 📦 to Test PyPI
         if: github.event_name == 'push'
-        uses: pypa/gh-action-pypi-publish@v1.14.0
+        uses: pypa/gh-action-pypi-publish@v1.14.2
         with:
           repository-url: https://test.pypi.org/legacy/
           verbose: true
 
       - name: Publish package 📦 to PyPI
         if: github.event_name == 'release'
-        uses: pypa/gh-action-pypi-publish@v1.14.0
+        uses: pypa/gh-action-pypi-publish@v1.14.2
         with:
           verbose: true
