@@ -60,6 +60,10 @@ fallback-version = "0.0.0"
 [tool.uv]
 # Cooldown period: ignore releases younger than this when resolving
 exclude-newer = "3 days"
+# Packages exempt from the cooldown, e.g. to get a security fix immediately
+exclude-newer-package = { certifi = false }
+# Lock-only floors for transitive dependencies; not in the package metadata
+constraint-dependencies = ["certifi>=2026.10.19"]
 
 # Ref.: https://docs.pytest.org/en/stable/reference/reference.html#configuration-options
 [tool.pytest.ini_options]
