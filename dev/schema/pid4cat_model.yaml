@@ -14,7 +14,7 @@ todos:
 see_also:
 - https://nfdi4cat.github.io/pid4cat-model
 id: https://w3id.org/nfdi4cat/pid4cat-model
-version: 0.4.3.post3.dev0+6b5b660
+version: 0.4.3.post6.dev0+8df5552
 imports:
 - linkml:types
 - media_types
@@ -2833,7 +2833,7 @@ classes:
     description: Data class for a person who plays a role relative to PID creation
       or curation.
     from_schema: https://w3id.org/nfdi4cat/pid4cat-model
-    mappings:
+    exact_mappings:
     - prov:Agent
     slots:
     - Agent_name
@@ -3057,9 +3057,8 @@ classes:
         required: true
         multivalued: true
     class_uri: pid4cat_model:Pid4CatRecord
-metamodel_version: 1.11.0
+metamodel_version: 1.12.0
 source_file: pid4cat_model.yaml
-source_file_date: '2026-10-01T15:16:34'
+source_file_date: '2026-10-21T23:54:52'
 source_file_size: 31563
-generation_date: '2026-10-01T15:16:51'
 
