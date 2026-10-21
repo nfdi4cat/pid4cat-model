@@ -56,6 +56,11 @@ vcs = "git"
 style = "pep440"
 fallback-version = "0.0.0"
 
+# Ref.: https://docs.astral.sh/uv/reference/settings/
+[tool.uv]
+# Cooldown period: ignore releases younger than this when resolving
+exclude-newer = "3 days"
+
 # Ref.: https://docs.pytest.org/en/stable/reference/reference.html#configuration-options
 [tool.pytest.ini_options]
 testpaths = ["tests"]
