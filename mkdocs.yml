@@ -139,7 +139,7 @@ extra:
     provider: mike
     alias: true
     default:
-      - stable
+      - latest
 
 exclude_docs: |
   /templates-linkml/
