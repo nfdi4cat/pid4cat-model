@@ -106,10 +106,10 @@ clean: _wsl2_compat_check _clean_project
 [group('model development')]
 site: gen-project gen-doc
 
-# Deploy documentation site to Github Pages
+# Deploy documentation site to Github Pages as version "dev" (as CI does)
 [group('deployment')]
 deploy: site
-  mkd-gh-deploy
+  uv run mike deploy --push --update-aliases --title "dev ($(git rev-parse --short=7 HEAD))" dev
 
 # Run all tests
 [group('model development')]

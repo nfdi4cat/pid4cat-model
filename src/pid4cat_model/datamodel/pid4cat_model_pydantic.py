@@ -29,8 +29,8 @@ from pydantic import (
 )
 
 
-metamodel_version = "1.11.0"
-version = "0.4.2.post32.dev0+734c1c2"
+metamodel_version = "1.12.0"
+version = "0.0.0"
 
 
 class ConfiguredBaseModel(BaseModel):
@@ -100,7 +100,7 @@ linkml_meta = LinkMLMeta({'default_prefix': 'pid4cat_model',
                   'voc4cat': {'prefix_prefix': 'voc4cat',
                               'prefix_reference': 'https://w3id.org/nfdi4cat/voc4cat_'}},
      'see_also': ['https://nfdi4cat.github.io/pid4cat-model'],
-     'source_file': 'src/pid4cat_model/schema/pid4cat_model.yaml',
+     'source_file': 'src\\pid4cat_model\\schema\\pid4cat_model.yaml',
      'title': 'pid4cat-model',
      'todos': ['none']} )
 
@@ -480,10 +480,10 @@ class HandleAPIRecord(ConfiguredBaseModel):
         pattern=re.compile(r"^\d{2}\.T?\d{4,}\/.*$")
         if isinstance(v, list):
             for element in v:
-                if isinstance(element, str) and not pattern.match(element):
+                if isinstance(element, str) and not pattern.search(element):
                     err_msg = f"Invalid handle format: {element}"
                     raise ValueError(err_msg)
-        elif isinstance(v, str) and not pattern.match(v):
+        elif isinstance(v, str) and not pattern.search(v):
             err_msg = f"Invalid handle format: {v}"
             raise ValueError(err_msg)
         return v
@@ -577,10 +577,10 @@ class HdlDataUrl(ConfiguredBaseModel):
         pattern=re.compile(r"^https?:\/\/.*$")
         if isinstance(v, list):
             for element in v:
-                if isinstance(element, str) and not pattern.match(element):
+                if isinstance(element, str) and not pattern.search(element):
                     err_msg = f"Invalid value format: {element}"
                     raise ValueError(err_msg)
-        elif isinstance(v, str) and not pattern.match(v):
+        elif isinstance(v, str) and not pattern.search(v):
             err_msg = f"Invalid value format: {v}"
             raise ValueError(err_msg)
         return v
@@ -656,10 +656,10 @@ class HdlDataContact(ConfiguredBaseModel):
         pattern=re.compile(r"^\S+@[\S+\.]+\S+")
         if isinstance(v, list):
             for element in v:
-                if isinstance(element, str) and not pattern.match(element):
+                if isinstance(element, str) and not pattern.search(element):
                     err_msg = f"Invalid value format: {element}"
                     raise ValueError(err_msg)
-        elif isinstance(v, str) and not pattern.match(v):
+        elif isinstance(v, str) and not pattern.search(v):
             err_msg = f"Invalid value format: {v}"
             raise ValueError(err_msg)
         return v
@@ -801,10 +801,10 @@ class HdlDataSchemaVer(ConfiguredBaseModel):
         pattern=re.compile(r"^v\d+\.\d+\.\d+$")
         if isinstance(v, list):
             for element in v:
-                if isinstance(element, str) and not pattern.match(element):
+                if isinstance(element, str) and not pattern.search(element):
                     err_msg = f"Invalid value format: {element}"
                     raise ValueError(err_msg)
-        elif isinstance(v, str) and not pattern.match(v):
+        elif isinstance(v, str) and not pattern.search(v):
             err_msg = f"Invalid value format: {v}"
             raise ValueError(err_msg)
         return v
@@ -1155,10 +1155,10 @@ class Agent(ConfiguredBaseModel):
         pattern=re.compile(r"^\S+@[\S+\.]+\S+")
         if isinstance(v, list):
             for element in v:
-                if isinstance(element, str) and not pattern.match(element):
+                if isinstance(element, str) and not pattern.search(element):
                     err_msg = f"Invalid email_address format: {element}"
                     raise ValueError(err_msg)
-        elif isinstance(v, str) and not pattern.match(v):
+        elif isinstance(v, str) and not pattern.search(v):
             err_msg = f"Invalid email_address format: {v}"
             raise ValueError(err_msg)
         return v
@@ -1168,10 +1168,10 @@ class Agent(ConfiguredBaseModel):
         pattern=re.compile(r"^\d{4}-\d{4}-\d{4}-\d{3}[0-9X]$")
         if isinstance(v, list):
             for element in v:
-                if isinstance(element, str) and not pattern.match(element):
+                if isinstance(element, str) and not pattern.search(element):
                     err_msg = f"Invalid orcid format: {element}"
                     raise ValueError(err_msg)
-        elif isinstance(v, str) and not pattern.match(v):
+        elif isinstance(v, str) and not pattern.search(v):
             err_msg = f"Invalid orcid format: {v}"
             raise ValueError(err_msg)
         return v
@@ -1181,10 +1181,10 @@ class Agent(ConfiguredBaseModel):
         pattern=re.compile(r"^https:\/\/ror\.org\/0[a-hj-km-np-tv-z|0-9]{6}[0-9]{2}$")
         if isinstance(v, list):
             for element in v:
-                if isinstance(element, str) and not pattern.match(element):
+                if isinstance(element, str) and not pattern.search(element):
                     err_msg = f"Invalid affiliation_ror format: {element}"
                     raise ValueError(err_msg)
-        elif isinstance(v, str) and not pattern.match(v):
+        elif isinstance(v, str) and not pattern.search(v):
             err_msg = f"Invalid affiliation_ror format: {v}"
             raise ValueError(err_msg)
         return v
@@ -1233,10 +1233,10 @@ class PurlIdentifier(RelatedIdentifier):
         pattern=re.compile(r"^https:\/\/(purl|pida|w3id)\.org\/.*$")
         if isinstance(v, list):
             for element in v:
-                if isinstance(element, str) and not pattern.match(element):
+                if isinstance(element, str) and not pattern.search(element):
                     err_msg = f"Invalid resolving_url format: {element}"
                     raise ValueError(err_msg)
-        elif isinstance(v, str) and not pattern.match(v):
+        elif isinstance(v, str) and not pattern.search(v):
             err_msg = f"Invalid resolving_url format: {v}"
             raise ValueError(err_msg)
         return v
@@ -1271,10 +1271,10 @@ class DoiIdentifier(RelatedIdentifier):
         pattern=re.compile(r"^https:\/\/doi\.org\/10.*$")
         if isinstance(v, list):
             for element in v:
-                if isinstance(element, str) and not pattern.match(element):
+                if isinstance(element, str) and not pattern.search(element):
                     err_msg = f"Invalid resolving_url format: {element}"
                     raise ValueError(err_msg)
-        elif isinstance(v, str) and not pattern.match(v):
+        elif isinstance(v, str) and not pattern.search(v):
             err_msg = f"Invalid resolving_url format: {v}"
             raise ValueError(err_msg)
         return v
@@ -1284,10 +1284,10 @@ class DoiIdentifier(RelatedIdentifier):
         pattern=re.compile(r"^10\.\d{4,}\/.*$")
         if isinstance(v, list):
             for element in v:
-                if isinstance(element, str) and not pattern.match(element):
+                if isinstance(element, str) and not pattern.search(element):
                     err_msg = f"Invalid identifier format: {element}"
                     raise ValueError(err_msg)
-        elif isinstance(v, str) and not pattern.match(v):
+        elif isinstance(v, str) and not pattern.search(v):
             err_msg = f"Invalid identifier format: {v}"
             raise ValueError(err_msg)
         return v
@@ -1322,10 +1322,10 @@ class HandleIdentifier(RelatedIdentifier):
         pattern=re.compile(r"^https:\/\/hdl\.handle\.net\/\d{2}\.T?\d{4,}\/.*$")
         if isinstance(v, list):
             for element in v:
-                if isinstance(element, str) and not pattern.match(element):
+                if isinstance(element, str) and not pattern.search(element):
                     err_msg = f"Invalid resolving_url format: {element}"
                     raise ValueError(err_msg)
-        elif isinstance(v, str) and not pattern.match(v):
+        elif isinstance(v, str) and not pattern.search(v):
             err_msg = f"Invalid resolving_url format: {v}"
             raise ValueError(err_msg)
         return v
@@ -1335,10 +1335,10 @@ class HandleIdentifier(RelatedIdentifier):
         pattern=re.compile(r"^\d{2}\.T?\d{4,}\/.*$")
         if isinstance(v, list):
             for element in v:
-                if isinstance(element, str) and not pattern.match(element):
+                if isinstance(element, str) and not pattern.search(element):
                     err_msg = f"Invalid identifier format: {element}"
                     raise ValueError(err_msg)
-        elif isinstance(v, str) and not pattern.match(v):
+        elif isinstance(v, str) and not pattern.search(v):
             err_msg = f"Invalid identifier format: {v}"
             raise ValueError(err_msg)
         return v
@@ -1373,10 +1373,10 @@ class ArkIdentifier(RelatedIdentifier):
         pattern=re.compile(r"^ark:\/\d{5}/.*$")
         if isinstance(v, list):
             for element in v:
-                if isinstance(element, str) and not pattern.match(element):
+                if isinstance(element, str) and not pattern.search(element):
                     err_msg = f"Invalid identifier format: {element}"
                     raise ValueError(err_msg)
-        elif isinstance(v, str) and not pattern.match(v):
+        elif isinstance(v, str) and not pattern.search(v):
             err_msg = f"Invalid identifier format: {v}"
             raise ValueError(err_msg)
         return v
@@ -1386,10 +1386,10 @@ class ArkIdentifier(RelatedIdentifier):
         pattern=re.compile(r"^https?:\/\/.*\/ark:\/\d{5}/.*$")
         if isinstance(v, list):
             for element in v:
-                if isinstance(element, str) and not pattern.match(element):
+                if isinstance(element, str) and not pattern.search(element):
                     err_msg = f"Invalid resolving_url format: {element}"
                     raise ValueError(err_msg)
-        elif isinstance(v, str) and not pattern.match(v):
+        elif isinstance(v, str) and not pattern.search(v):
             err_msg = f"Invalid resolving_url format: {v}"
             raise ValueError(err_msg)
         return v
@@ -1417,10 +1417,10 @@ class UrnIdentifier(RelatedIdentifier):
         pattern=re.compile(r"^urn:[a-zA-Z0-9][a-zA-Z0-9-]{0,31}:[^\s]*$")
         if isinstance(v, list):
             for element in v:
-                if isinstance(element, str) and not pattern.match(element):
+                if isinstance(element, str) and not pattern.search(element):
                     err_msg = f"Invalid identifier format: {element}"
                     raise ValueError(err_msg)
-        elif isinstance(v, str) and not pattern.match(v):
+        elif isinstance(v, str) and not pattern.search(v):
             err_msg = f"Invalid identifier format: {v}"
             raise ValueError(err_msg)
         return v
@@ -1448,10 +1448,10 @@ class GtinIdentifier(RelatedIdentifier):
         pattern=re.compile(r"^\d{13}$")
         if isinstance(v, list):
             for element in v:
-                if isinstance(element, str) and not pattern.match(element):
+                if isinstance(element, str) and not pattern.search(element):
                     err_msg = f"Invalid identifier format: {element}"
                     raise ValueError(err_msg)
-        elif isinstance(v, str) and not pattern.match(v):
+        elif isinstance(v, str) and not pattern.search(v):
             err_msg = f"Invalid identifier format: {v}"
             raise ValueError(err_msg)
         return v
@@ -1484,10 +1484,10 @@ class ExampleIdentifier(RelatedIdentifier):
         pattern=re.compile(r"^ex:.*$")
         if isinstance(v, list):
             for element in v:
-                if isinstance(element, str) and not pattern.match(element):
+                if isinstance(element, str) and not pattern.search(element):
                     err_msg = f"Invalid identifier format: {element}"
                     raise ValueError(err_msg)
-        elif isinstance(v, str) and not pattern.match(v):
+        elif isinstance(v, str) and not pattern.search(v):
             err_msg = f"Invalid identifier format: {v}"
             raise ValueError(err_msg)
         return v
@@ -1497,10 +1497,10 @@ class ExampleIdentifier(RelatedIdentifier):
         pattern=re.compile(r"^https?:\/\/(.+\.)?example.(org|com)\/.*$")
         if isinstance(v, list):
             for element in v:
-                if isinstance(element, str) and not pattern.match(element):
+                if isinstance(element, str) and not pattern.search(element):
                     err_msg = f"Invalid resolving_url format: {element}"
                     raise ValueError(err_msg)
-        elif isinstance(v, str) and not pattern.match(v):
+        elif isinstance(v, str) and not pattern.search(v):
             err_msg = f"Invalid resolving_url format: {v}"
             raise ValueError(err_msg)
         return v
@@ -1543,10 +1543,10 @@ class Pid4CatRecord(ConfiguredBaseModel):
         pattern=re.compile(r"^https?:\/\/.*$")
         if isinstance(v, list):
             for element in v:
-                if isinstance(element, str) and not pattern.match(element):
+                if isinstance(element, str) and not pattern.search(element):
                     err_msg = f"Invalid landing_page_url format: {element}"
                     raise ValueError(err_msg)
-        elif isinstance(v, str) and not pattern.match(v):
+        elif isinstance(v, str) and not pattern.search(v):
             err_msg = f"Invalid landing_page_url format: {v}"
             raise ValueError(err_msg)
         return v
@@ -1556,10 +1556,10 @@ class Pid4CatRecord(ConfiguredBaseModel):
         pattern=re.compile(r"^\S+@[\S+\.]+\S+")
         if isinstance(v, list):
             for element in v:
-                if isinstance(element, str) and not pattern.match(element):
+                if isinstance(element, str) and not pattern.search(element):
                     err_msg = f"Invalid curation_contact format: {element}"
                     raise ValueError(err_msg)
-        elif isinstance(v, str) and not pattern.match(v):
+        elif isinstance(v, str) and not pattern.search(v):
             err_msg = f"Invalid curation_contact format: {v}"
             raise ValueError(err_msg)
         return v
