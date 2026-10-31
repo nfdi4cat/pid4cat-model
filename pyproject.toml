@@ -43,13 +43,6 @@ dev = [
 [tool.hatch.version]
 source = "uv-dynamic-versioning"
 
-# Setup injection of the version specifier into the schema file
-# Ref.: https://hatch.pypa.io/latest/plugins/build-hook/version/#pyprojecttoml
-# Backslashes in the regex pattern must be escaped for TOML.
-[tool.hatch.build.hooks.version]
-path = "src/pid4cat_model/schema/pid4cat_model.yaml"
-pattern = """^(?:version:?\\s*\\")(?P<version>\\S*)(?:\\"\\s*# Managed by dynamic-versioning.).*$"""
-
 # Ref.: https://github.com/ninoseki/uv-dynamic-versioning/
 [tool.uv-dynamic-versioning]
 vcs = "git"
