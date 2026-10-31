@@ -493,6 +493,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Versioning
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -509,6 +527,47 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#schema-version-and-package-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Schema version and package version
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#releases-and-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Releases and documentation
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -735,6 +794,36 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#schema-version-and-package-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Schema version and package version
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#releases-and-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Releases and documentation
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -761,8 +850,24 @@
 <li>REVISION when you make a schema change which may prevent interaction with some historical data</li>
 <li>ADDITION when you make a schema change that is compatible with all historical data</li>
 </ul>
-<p>The versions are tagged in git (for example "v1.2.3").
-Based on the tags we also create GitHub releases to provide easy access to all versions and to document the changes between versions.</p>
+<h2 id="schema-version-and-package-version">Schema version and package version</h2>
+<p>The schema version is set in the <code>version</code> of the schema file <code>pid4cat_model.yaml</code> and changes only when the schema changes.
+pid4cat records state the schema version they follow in <code>schema_version</code> (handle record type <code>SCHEMA_VER</code>) with a leading "v", for example "v0.4.3".
+The Python package provides it as <code>pid4cat_model.SCHEMA_VERSION</code>.</p>
+<p>The version of the Python package <code>pid4cat-model</code> has four parts, MODEL.REVISION.ADDITION.N (PEP 440):
+the first three parts are the schema version, and N numbers the releases for that schema, starting at 1.
+For example, package 0.5.0.1 is the first release of schema version 0.5.0, and 0.5.0.2 the next release with changes to code, dependencies or documentation only.</p>
+<p>Releases up to 0.4.3 had three-part package versions.
+Releases 0.4.0 to 0.4.2 changed code only; their schema is the same as schema version 0.4.3.</p>
+<p>The Python classes in <code>pid4cat_model.datamodel</code> are generated from the schema with LinkML.
+The LinkML version used for a release is pinned in <code>uv.lock</code> at its tag.</p>
+<h2 id="releases-and-documentation">Releases and documentation</h2>
+<p>The versions are tagged in git with the package version (for example "v1.2.3.1"), pre-releases with the suffix "rc" and a number (for example "v1.2.3.1rc1").
+Based on the tags we also create GitHub releases to provide easy access to all versions and to document the changes between versions.
+The release workflows refuse a tag that is not the schema version followed by a release number.</p>
+<p>Each release gets its own documentation, named like its tag.
+The schema version ("v1.2.3") is an alias of the documentation of its newest release, and the <a href="https://w3id.org/nfdi4cat/pid4cat-model">w3id.org</a> URIs of a schema version redirect to it.
+Pre-releases do not get this alias.</p>
 
 
 
