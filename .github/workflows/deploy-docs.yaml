@@ -3,8 +3,8 @@ name: Deploy docs
 on:  # yamllint disable-line rule:truthy
   push:
     tags:
-      - 'v[0-9]+.[0-9]+.[0-9]+'
-      - 'v[0-9]+.[0-9]+.[0-9]+rc[0-9]'
+      - 'v[0-9]+.[0-9]+.[0-9]+.[0-9]+'
+      - 'v[0-9]+.[0-9]+.[0-9]+.[0-9]+rc[0-9]+'
     branches:
       - main
   pull_request:
@@ -89,5 +89,8 @@ jobs:
       - name: Build & deploy docs for a new version tag
         if: github.ref_type == 'tag' && github.event_name == 'push'
         run: |
-          uv run mike deploy --push --update-aliases ${{ github.ref_name }} latest
+          # Assigned first: a failing check inside the mike arguments would not stop the step
+          docs_version_and_alias=$(uv run python scripts/check_release_tag.py "${GITHUB_REF_NAME}")
+          # Unquoted on purpose: version and alias are two arguments
+          uv run mike deploy --push --update-aliases ${docs_version_and_alias} latest
           uv run mike set-default latest --push

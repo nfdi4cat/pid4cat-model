@@ -60,7 +60,7 @@ from linkml_runtime.linkml_model.types import Datetime, Integer, String, Uri
 from linkml_runtime.utils.metamodelcore import URI, XSDDateTime
 
 metamodel_version = "1.12.0"
-version = "0.0.0"
+version = "0.4.3"
 
 # Namespaces
 DATACITE = CurieNamespace('DataCite', 'https://purl.org/spar/datacite/')

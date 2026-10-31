@@ -53,6 +53,9 @@ jobs:
         run: |
           uv tool install rust-just
 
+      - name: Check that the tag starts with the schema version
+        run: uv run --no-dev python scripts/check_release_tag.py "${GITHUB_REF_NAME}"
+
       - name: Build source and wheel archives
         run: uv build
 
