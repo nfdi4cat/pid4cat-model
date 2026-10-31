@@ -1,0 +1,6 @@
+---
+# https://docs.zizmor.sh/configuration/
+rules:
+  # Dependabot keeps its default cooldown
+  dependabot-cooldown:
+    disable: true

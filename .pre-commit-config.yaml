@@ -48,3 +48,13 @@ repos:
     rev: 0.11.16
     hooks:
       - id: uv-lock
+
+  - repo: local
+    hooks:
+      # Compares the schema with the newest release; needs the release tags
+      - id: check-schema-version
+        name: check that schema changes bump the schema version
+        entry: uv run --no-dev python scripts/check_schema_version.py
+        language: system
+        files: ^src/pid4cat_model/schema/.*\.yaml$
+        pass_filenames: false

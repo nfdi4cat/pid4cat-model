@@ -13,6 +13,10 @@ The versioning of the pid4cat-model is following the **SchemaVer** scheme propos
 The schema version is set in the `version` of the schema file `pid4cat_model.yaml` and changes only when the schema changes.
 pid4cat records state the schema version they follow in `schema_version` (handle record type `SCHEMA_VER`) with a leading "v", for example "v0.4.3".
 The Python package provides it as `pid4cat_model.SCHEMA_VERSION`.
+CI fails when the schema differs from that of the newest release while its version is unchanged.
+Formatting, comments and documentation-only fields (`description`, `comments`, `notes`, `todos`, `examples`, `see_also`, `title`) do not count;
+for a description change that alters the meaning of an element, raise the version by hand.
+The same check runs as pre-commit hook `check-schema-version` on commits that change the schema; it needs the release tags in the clone (`git fetch --tags`).
 
 The version of the Python package `pid4cat-model` has four parts, MODEL.REVISION.ADDITION.N (PEP 440):
 the first three parts are the schema version, and N numbers the releases for that schema, starting at 1.
