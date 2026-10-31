@@ -16,6 +16,7 @@ The Python package provides it as `pid4cat_model.SCHEMA_VERSION`.
 CI fails when the schema differs from that of the newest release while its version is unchanged.
 Formatting, comments and documentation-only fields (`description`, `comments`, `notes`, `todos`, `examples`, `see_also`, `title`) do not count;
 for a description change that alters the meaning of an element, raise the version by hand.
+The same check runs as pre-commit hook `check-schema-version` on commits that change the schema; it needs the release tags in the clone (`git fetch --tags`).
 
 The version of the Python package `pid4cat-model` has four parts, MODEL.REVISION.ADDITION.N (PEP 440):
 the first three parts are the schema version, and N numbers the releases for that schema, starting at 1.
