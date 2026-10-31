@@ -853,7 +853,11 @@
 <h2 id="schema-version-and-package-version">Schema version and package version</h2>
 <p>The schema version is set in the <code>version</code> of the schema file <code>pid4cat_model.yaml</code> and changes only when the schema changes.
 pid4cat records state the schema version they follow in <code>schema_version</code> (handle record type <code>SCHEMA_VER</code>) with a leading "v", for example "v0.4.3".
-The Python package provides it as <code>pid4cat_model.SCHEMA_VERSION</code>.</p>
+The Python package provides it as <code>pid4cat_model.SCHEMA_VERSION</code>.
+CI fails when the schema differs from that of the newest release while its version is unchanged.
+Formatting, comments and documentation-only fields (<code>description</code>, <code>comments</code>, <code>notes</code>, <code>todos</code>, <code>examples</code>, <code>see_also</code>, <code>title</code>) do not count;
+for a description change that alters the meaning of an element, raise the version by hand.
+The same check runs as pre-commit hook <code>check-schema-version</code> on commits that change the schema; it needs the release tags in the clone (<code>git fetch --tags</code>).</p>
 <p>The version of the Python package <code>pid4cat-model</code> has four parts, MODEL.REVISION.ADDITION.N (PEP 440):
 the first three parts are the schema version, and N numbers the releases for that schema, starting at 1.
 For example, package 0.5.0.1 is the first release of schema version 0.5.0, and 0.5.0.2 the next release with changes to code, dependencies or documentation only.</p>

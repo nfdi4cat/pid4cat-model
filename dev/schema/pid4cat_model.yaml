@@ -3059,6 +3059,6 @@ classes:
     class_uri: pid4cat_model:Pid4CatRecord
 metamodel_version: 1.12.0
 source_file: pid4cat_model.yaml
-source_file_date: '2026-10-31T14:17:03'
+source_file_date: '2026-10-31T14:47:38'
 source_file_size: 31571
 
