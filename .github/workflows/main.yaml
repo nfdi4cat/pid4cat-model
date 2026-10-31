@@ -53,3 +53,27 @@ jobs:
 
       - name: Run test suite
         run: just test
+
+  schema-version:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      # https://github.com/actions/checkout
+      - name: Check out repository
+        uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
+          fetch-depth: 0  # history and tags, to find the newest release
+
+      # https://github.com/astral-sh/setup-uv
+      - name: Install uv
+        uses: astral-sh/setup-uv@v10.2.0
+        with:
+          python-version: "3.13"
+          enable-cache: true
+          cache-dependency-glob: "uv.lock"
+
+      - name: Check that schema changes bump the schema version
+        run: uv run --no-dev python scripts/check_schema_version.py
