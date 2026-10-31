@@ -188,3 +188,12 @@ def test_pre_release_is_not_the_baseline(repo):
     edit(repo, "pid4cat_model.yaml", "range: MediaTypes", "range: string")
     result = run_check(repo)
     assert result.returncode == 0, result.stderr
+
+
+def test_clone_without_release_tag_fails_with_hint(tmp_path):
+    repo = make_repo(tmp_path, "v1.2.3.1")
+    git(repo, "tag", "-d", "v1.2.3.1")
+    result = run_check(repo)
+    assert result.returncode == 1
+    assert "git fetch --tags" in result.stderr
+    assert "Traceback" not in result.stderr

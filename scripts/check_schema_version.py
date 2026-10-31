@@ -116,7 +116,15 @@ def load_tag(tag: str, directory: Path) -> tuple[tuple[int, ...], dict]:
 
 
 def main() -> int:
-    tag = baseline_tag()
+    try:
+        tag = baseline_tag()
+    except subprocess.CalledProcessError:
+        print(
+            "No release tag found to compare the schema with; "
+            "run 'git fetch --tags' (in a shallow clone: 'git fetch --unshallow')",
+            file=sys.stderr,
+        )
+        return 1
     released = tag_schema_version(tag)
     version, schema = load(Path(SCHEMA_DIR) / MAIN_SCHEMA)
     with tempfile.TemporaryDirectory() as directory:
