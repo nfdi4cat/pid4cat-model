@@ -48,6 +48,8 @@ https://hdl.handle.net/api/handles/
 GET  https://hdl.handle.net/api/handles/<prefix>/4cat/<ns-suffix>/<id-suffix>
 ```
 
+The parts of the handle are described in [Structure of pid4cat handles](./getting-started.md#structure-of-pid4cat-handles).
+
 Response:
 
 ```json
@@ -72,7 +74,7 @@ Response:
 
 Tip: To request a tabular HTML view of all data in the pid4cat record you can attach the query parameter `noredirect` to the PID URL, for example
 
-- [https://hdl.handle.net/21.T11978/test/C9K6-C6K9?noredirect](https://hdl.handle.net/21.T11978/test/C9K6-C6K9?noredirect)
+- `https://hdl.handle.net/21.11165/4cat/D4Y/sample-001?noredirect`
 
 ### Limitations
 
