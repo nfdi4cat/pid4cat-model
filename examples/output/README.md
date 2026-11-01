@@ -1,7 +1,7 @@
 ## HandleAPIRecord-002
 ### Input
 ```yaml
-handle: 21.T11978/test/km28-dk21
+handle: 21.T11978/4cat/TEST-D4Y/km28-dk21
 responseCode: 1
 values:
 - data:
@@ -103,7 +103,7 @@ values:
 ## HandleAPIRecord-003
 ### Input
 ```yaml
-handle: 21.T11978/TEST/KBKA-BEM9
+handle: 21.T11978/4cat/TEST-D4Y/kbka-bem9
 responseCode: 1
 values:
 - data:
@@ -205,7 +205,7 @@ values:
 ## HandleAPIRecord-004
 ### Input
 ```yaml
-handle: 21.T11978/TEST/KBKA-BEM9
+handle: 21.T11978/4cat/TEST-D4Y/kbka-bem9
 responseCode: 1
 values:
 - data:
@@ -286,7 +286,7 @@ values:
 ## HandleAPIRecord-004
 ### Input
 ```yaml
-handle: 21.T11978/test/b93k-bkc9
+handle: 21.T11978/4cat/TEST-D4Y/b93k-bkc9
 responseCode: 1
 values:
 - data:
@@ -351,7 +351,7 @@ values:
 ## HandleAPIRecord-001
 ### Input
 ```yaml
-handle: 21.T12995/lik-2
+handle: 21.T12995/4cat/D4Y/lik-2
 responseCode: 1
 values:
 - data:
@@ -445,7 +445,7 @@ values:
 ### Input
 ```yaml
 contains_pids:
-- handle: 21.T12995/lik-1
+- handle: 21.T12995/4cat/D4Y/lik-1
   responseCode: 1
   values:
   - data:

@@ -1,6 +1,6 @@
 {
   "responseCode": 1,
-  "handle": "21.T11978/test/KBKA-BEM9",
+  "handle": "21.T11978/4cat/TEST-D4Y/kbka-bem9",
   "values": [
     {
       "index": 1,
@@ -17,10 +17,10 @@
       "type": "EMAIL",
       "data": {
         "format": "string",
-        "value": "xzy@abc.com"
+        "value": "abc@xyz.com"
       },
       "ttl": 86400,
-      "timestamp": "2025-03-31T08:05:02Z"
+      "timestamp": "2025-03-11T10:32:45Z"
     },
     {
       "index": 11,
@@ -30,7 +30,7 @@
         "value": "REGISTERED"
       },
       "ttl": 86400,
-      "timestamp": "2025-03-31T08:06:05Z"
+      "timestamp": "2025-03-11T10:33:39Z"
     },
     {
       "index": 12,
@@ -64,7 +64,7 @@
           "representation_variants": [
             {
               "variant_url": "https://example.org/resource",
-              "media_type": "textturtle",
+              "media_type": "text/turtle",
               "encoding_format": "UTF-8",
               "size": 12345
             }
@@ -72,7 +72,7 @@
         }
       },
       "ttl": 86400,
-      "timestamp": "2025-03-20T11:41:21Z"
+      "timestamp": "2025-03-11T09:45:26Z"
     },
     {
       "index": 15,

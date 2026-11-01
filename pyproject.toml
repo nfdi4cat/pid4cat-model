@@ -94,6 +94,8 @@ directory = ".htmlcov"
 [tool.ruff]
 exclude = [
     "src/pid4cat_model/_version.py",
+    "src/pid4cat_model/datamodel/pid4cat_model_pydantic.py",
+    "src/pid4cat_model/datamodel/pid4cat_model.py",
 ]
 # Set oldest supported Python version
 target-version = "py310"

@@ -15,7 +15,7 @@ description: >-
   what is identified by the pid4cat handle, e.g. a sample or a device.
 
 # SchemaVer MODEL.REVISION.ADDITION; release tags start with it (docs/versioning.md)
-version: "0.4.3"
+version: "0.4.4"
 
 todos:
   - none
@@ -60,11 +60,9 @@ classes:
       - values
     slot_usage:
       handle:
-        # The pattern should be made more restrictive after agreement on the
-        # handle-suffix anatomy. The prefix values should also be checked.
-        # Here is an example for the NFDI4Cat handle servers:
-        # pattern: '(^21\.T11978\/.*$)|(^21\.11165\/.*$)'
-        pattern: '^\d{2}\.T?\d{4,}\/.*$'
+        # <prefix>/4cat/<ns-suffix>/<id-suffix>, see "Structure of pid4cat
+        # handles" in docs/getting-started.md
+        pattern: '^\d{2}\.T?\d{4,}\/4cat\/(TEST-)?[A-HJKMNP-TV-Z][0-9][0-9A-HJKMNP-TV-Z]\/[a-z0-9.-]{1,36}$'
         required: true
       values:
         required: true
