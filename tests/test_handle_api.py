@@ -11,17 +11,17 @@ def test_HandleNetApi():
     """
     Test the HandleNetAPI class.
     """
-    with Path("tests/data/21.T11978_hdlnet_api/TEST-D4Y_kbka-bem9.json").open(
+    with Path("tests/data/21.T11978_hdlnet_api/test-d4y_kbka-bem9.json").open(
         mode="r", encoding="utf-8"
     ) as f:
         api_data_raw = json.load(f)
-    with Path("tests/data/21.T11978_hdlnet_api/TEST-D4Y_kbka-bem9_decoded.json").open(
+    with Path("tests/data/21.T11978_hdlnet_api/test-d4y_kbka-bem9_decoded.json").open(
         mode="r", encoding="utf-8"
     ) as f:
         api_data_decoded = json.load(f)
 
     # Create a configuration object
-    config = HandleConfig(ns_suffix="TEST-D4Y")
+    config = HandleConfig(ns_suffix="test-d4y")
     requested_urls = []
 
     def respond(request):
@@ -38,7 +38,7 @@ def test_HandleNetApi():
 
     assert handle_api.get_metadata_for_id("kbka-bem9") == api_data_decoded
     assert requested_urls == [
-        "https://hdl.handle.net/api/handles/21.T11978/4cat/TEST-D4Y/kbka-bem9"
+        "https://hdl.handle.net/api/handles/21.T11978/4cat/test-d4y/kbka-bem9"
     ]
 
 
@@ -46,7 +46,7 @@ def test_pid4cat_record_factory():
     """
     Test the pid4cat_record_factory function.
     """
-    with Path("tests/data/21.T11978_hdlnet_api/TEST-D4Y_kbka-bem9_decoded.json").open(
+    with Path("tests/data/21.T11978_hdlnet_api/test-d4y_kbka-bem9_decoded.json").open(
         mode="r", encoding="utf-8"
     ) as f:
         data = json.load(f)

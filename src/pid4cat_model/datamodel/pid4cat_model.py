@@ -1694,7 +1694,7 @@ slots.relatedIdentifier__type = Slot(uri=PID4CAT_MODEL.type, name="relatedIdenti
 
 slots.HandleAPIRecord_handle = Slot(uri=PID4CAT_MODEL.handle, name="HandleAPIRecord_handle", curie=PID4CAT_MODEL.curie('handle'),
                    model_uri=PID4CAT_MODEL.HandleAPIRecord_handle, domain=HandleAPIRecord, range=Union[str, HandleAPIRecordHandle],
-                   pattern=re.compile(r'^\d{2}\.T?\d{4,}\/4cat\/(TEST-)?[A-HJKMNP-TV-Z][0-9][0-9A-HJKMNP-TV-Z]\/[a-z0-9.-]{1,36}$'))
+                   pattern=re.compile(r'^\d{2}\.T?\d{4,}\/4cat\/(test-)?[a-hjkmnp-tv-z][0-9][0-9a-hjkmnp-tv-z]\/[a-z0-9.-]{1,36}$'))
 
 slots.HandleAPIRecord_values = Slot(uri=PID4CAT_MODEL.values, name="HandleAPIRecord_values", curie=PID4CAT_MODEL.curie('values'),
                    model_uri=PID4CAT_MODEL.HandleAPIRecord_values, domain=HandleAPIRecord, range=Union[Union[dict, "HandleRecord"], list[Union[dict, "HandleRecord"]]])

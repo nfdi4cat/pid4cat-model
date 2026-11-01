@@ -111,7 +111,7 @@ Rules for the `<ns-suffix>`:
 Rules for the `<id-suffix>`:
 
 - The local-IDs are managed by the responsible SNAA.
-  It may contain letters [A-Za-z], numbers [0-9] and symbols [./] as part of the identifier.
+  It may contain lower-case letters [a-z], numbers [0-9] and the symbols [.-] as part of the identifier.
 - Dashes in this part are ignored.
 - The local-IDs should be kept short and not exceed 36 chars including dashes (which is the length of UUID4).
 - If an optional checksum is included, it must be calculated including the `<ns-suffix>` and ignoring dashes.
@@ -119,8 +119,8 @@ Rules for the `<id-suffix>`:
 Case-sensitivity:
 
 - The `<ns-suffix>` and `<id-suffix>` part of pid4cat PIDs are case insensitive.[^3]
-- The preferred case is uppercase, see [display guidelines](#display-format).
-- Checksums, if used, must be calculated for the uppercase form.
+- pid4cat PIDs are written in lower case, see [display guidelines](#display-format).
+- Checksums, if used, are case-insensitive; their check characters are written in lower case like the rest of the PID.
 
 Suggested checksum calculations:
 
@@ -209,17 +209,17 @@ When displaying pid4cat identifiers in text:
 
 - Use the full handle identifier including prefix, branding suffix, namespace suffix, and local identifier part
 - Do not abbreviate any part of the identifier
-- Use uppercase form of the identifier
+- Use the lower-case form of the identifier
 
-Example: `21.11165/4cat/ABC/SAMPLE-2023-001`
+Example: `21.11165/4cat/abc/sample-2023-001`
 
 When creating hyperlinks use the handle.net resolver URL:
 
-- `https://hdl.handle.net/21.11165/4cat/ABC/SAMPLE-23-001`
+- `https://hdl.handle.net/21.11165/4cat/abc/sample-23-001`
 
 For using pid4cat identifies in linked-data application we plan to register `pid4cat` as the _preferable prefix_ for `https://pid.nfdi4cat.org/21.11165/4cat/` in [Bioregistry](https://bioregistry.io/). This allows to use the CURIE (compact URI) notation:
 
-- `pid4cat:ABC/SAMPLE-23-001`
+- `pid4cat:abc/sample-23-001`
 
 ### Logo Usage
 
@@ -257,10 +257,10 @@ For example, whenever reading and typing of the IDs by humans is important, cons
 
 - **Base32-encoded sequential number with checksum**:
 
-For example, base32-encoding the number "123456789" with ISO 7064-Mod97-10 checksum gives the ID:
+For example, base32-encoding the number "123456789" and appending its ISO 7064 Mod 97-10 checksum "78", as base32-lib does, gives the ID:
 
   ```ascii
-  3FZ-2J9
+  3nq-k8n-78
   ```
 
 For pure machine use and if global uniqueness is important consider using

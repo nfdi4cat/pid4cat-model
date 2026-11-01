@@ -62,7 +62,7 @@ classes:
       handle:
         # <prefix>/4cat/<ns-suffix>/<id-suffix>, see "Structure of pid4cat
         # handles" in docs/getting-started.md
-        pattern: '^\d{2}\.T?\d{4,}\/4cat\/(TEST-)?[A-HJKMNP-TV-Z][0-9][0-9A-HJKMNP-TV-Z]\/[a-z0-9.-]{1,36}$'
+        pattern: '^\d{2}\.T?\d{4,}\/4cat\/(test-)?[a-hjkmnp-tv-z][0-9][0-9a-hjkmnp-tv-z]\/[a-z0-9.-]{1,36}$'
         required: true
       values:
         required: true
