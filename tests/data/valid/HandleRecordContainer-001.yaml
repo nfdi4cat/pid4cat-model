@@ -1,6 +1,6 @@
 contains_pids:
   - responseCode: 1
-    handle: 21.T12995/lik-1
+    handle: 21.T12995/4cat/D4Y/lik-1
     values:
       - index: 1
         type: URL

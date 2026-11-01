@@ -84,7 +84,7 @@ p1_log = [
 
 p1_api = p4c.HandleAPIRecord(
     responseCode=1,
-    handle="21.T12995/lik-1",
+    handle="21.T12995/4cat/D4Y/lik-1",
     values=[
         # As above, pydantic complains if using HandleRecord directly instead
         # of the designated classes. - A bug? (observed with linkml 1.8.5)
@@ -204,7 +204,7 @@ print("\nReloading data from JSON")
 
 d = json.loads(data_json)
 
-with Path("tests/data/21.T11978_hdlnet_api/TEST_KBKA-BEM9_decoded.json").open(
+with Path("tests/data/21.T11978_hdlnet_api/TEST-D4Y_kbka-bem9_decoded.json").open(
     mode="r", encoding="utf-8"
 ) as f:
     d = json.load(f)

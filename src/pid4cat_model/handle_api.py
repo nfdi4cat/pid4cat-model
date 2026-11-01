@@ -1,6 +1,7 @@
 import json
 import logging
 import re
+import sys
 
 import httpx
 from dataclasses import dataclass, field
@@ -22,15 +23,17 @@ json_str = re.compile(r"(^\{.*\}$)|(^\[.*\]$)")
 class HandleConfig:
     """
     Configuration for the HandleNet API client.
+
+    `ns_suffix` is the namespace of the SNAA, for example "D4Y" or "TEST-D4Y".
     """
 
     api_url: str = "https://hdl.handle.net/api/handles/"
     prefix: str = "21.T11978"
-    ns_suffix: str = "test"
+    ns_suffix: str = field(kw_only=True)
     base_url: str = field(init=False)
 
     def __post_init__(self):
-        self.base_url = f"{self.api_url}{self.prefix}/{self.ns_suffix}/"
+        self.base_url = f"{self.api_url}{self.prefix}/4cat/{self.ns_suffix}/"
 
 
 class HandleNetAPI:
@@ -108,9 +111,11 @@ if __name__ == "__main__":
     # Set logging level (DEBUG, INFO, WARNING, ERROR, CRITICAL)
     logging.basicConfig(level=logging.INFO)
 
-    config = HandleConfig()
+    # Usage: python -m pid4cat_model.handle_api <ns-suffix> <id-suffix>
+    ns_suffix, id_suffix = sys.argv[1:3]
+    config = HandleConfig(ns_suffix=ns_suffix)
     api = HandleNetAPI(config, client=httpx.Client())
-    metadata = api.get_metadata_for_id("KBKA-BEM9")
+    metadata = api.get_metadata_for_id(id_suffix)
 
     print("\nTrying to create a HandleAPIRecord object", end="... ")
     hdl_rec = HandleAPIRecord.model_validate(metadata)
