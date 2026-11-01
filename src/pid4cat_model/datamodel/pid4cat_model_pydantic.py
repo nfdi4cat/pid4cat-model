@@ -467,7 +467,7 @@ class HandleAPIRecord(ConfiguredBaseModel):
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/nfdi4cat/pid4cat-model',
          'slot_usage': {'handle': {'name': 'handle',
-                                   'pattern': '^\\d{2}\\.T?\\d{4,}\\/4cat\\/(TEST-)?[A-HJKMNP-TV-Z][0-9][0-9A-HJKMNP-TV-Z]\\/[a-z0-9.-]{1,36}$',
+                                   'pattern': '^\\d{2}\\.T?\\d{4,}\\/4cat\\/(test-)?[a-hjkmnp-tv-z][0-9][0-9a-hjkmnp-tv-z]\\/[a-z0-9.-]{1,36}$',
                                    'required': True},
                         'values': {'name': 'values', 'required': True}}})
 
@@ -477,7 +477,7 @@ class HandleAPIRecord(ConfiguredBaseModel):
 
     @field_validator('handle')
     def pattern_handle(cls, v):
-        pattern=re.compile(r"^\d{2}\.T?\d{4,}\/4cat\/(TEST-)?[A-HJKMNP-TV-Z][0-9][0-9A-HJKMNP-TV-Z]\/[a-z0-9.-]{1,36}$")
+        pattern=re.compile(r"^\d{2}\.T?\d{4,}\/4cat\/(test-)?[a-hjkmnp-tv-z][0-9][0-9a-hjkmnp-tv-z]\/[a-z0-9.-]{1,36}$")
         if isinstance(v, list):
             for element in v:
                 if isinstance(element, str) and not pattern.search(element):

@@ -16,6 +16,17 @@ Inspired by JavaScript package: https://github.com/LiosK/cdigit (License: MIT)
 from typing import List, Tuple
 
 
+def _any_case(chars: str) -> dict:
+    """Map each character in lower and upper case to its value.
+
+    Checksums are case-insensitive; the alphabets are lower case, so check
+    characters are rendered in lower case.
+    """
+    char_map = {c: i for i, c in enumerate(chars)}
+    char_map.update({c.upper(): i for i, c in enumerate(chars)})
+    return char_map
+
+
 class ISO7064Pure:
     """
     Implements the ISO 7064 pure system recursive method.
@@ -42,13 +53,14 @@ class ISO7064Pure:
         # `self.alphabet` is the full character set, used to render and parse
         # check characters. `self._input_alphabet` is the subset accepted in
         # the bare input: for EXTRA_CHAR flavors the trailing character (e.g.
-        # 'X' in mod11_2, '*' in mod37_2) is a check-character-only symbol
+        # 'x' in mod11_2, '*' in mod37_2) is a check-character-only symbol
         # and must not appear in the input; for TWO_CCS flavors the two sets
         # coincide.
         self._input_alphabet: str = (
             alphabet[:-1] if flavor == "EXTRA_CHAR" else alphabet
         )
-        self.char_map: dict = {c: i for i, c in enumerate(self._input_alphabet)}
+        self.char_map: dict = _any_case(self._input_alphabet)
+        self._check_char_map: dict = _any_case(alphabet)
 
     def compute_from_num_vals(self, ns: List[int]) -> List[int]:
         """
@@ -125,7 +137,7 @@ class ISO7064Pure:
         s = s.strip()
         n = 2 if self.flavor == "TWO_CCS" else 1
         cc = s[-n:]
-        if len(cc) == n and all(c in self.alphabet for c in cc):
+        if len(cc) == n and all(c in self._check_char_map for c in cc):
             return s[:-n], cc
         raise ValueError("Could not find check character(s)")
 
@@ -156,7 +168,7 @@ class ISO7064Pure:
         """
         s = s.strip()
         bare, cc = self.parse(s)
-        return self.compute(bare) == cc
+        return self.compute(bare) == cc.lower()
 
 
 class ISO7064Hybrid:
@@ -173,7 +185,7 @@ class ISO7064Hybrid:
         """
         self.alphabet: str = alphabet
         self.mod = len(self.alphabet)
-        self.char_map = {c: i for i, c in enumerate(self.alphabet)}
+        self.char_map = _any_case(self.alphabet)
         radix = self.mod - 1
         self.name: str = f"mod_{self.mod}_{radix}"
         self.long_name: str = f"ISO/IEC 7064, MOD {int}-{radix}"
@@ -243,7 +255,7 @@ class ISO7064Hybrid:
         """
         s = s.strip()
         cc = s[-1]
-        if cc in self.alphabet:
+        if cc in self.char_map:
             return s[:-1], cc
         raise ValueError("Could not find check character(s)")
 
@@ -274,19 +286,19 @@ class ISO7064Hybrid:
         """
         s = s.strip()
         bare, cc = self.parse(s)
-        return self.compute(bare) == cc
+        return self.compute(bare) == cc.lower()
 
 
 # ISO/IEC 7064 Implementations
-mod11_2 = ISO7064Pure(11, 2, "0123456789X", "EXTRA_CHAR")
-mod37_2 = ISO7064Pure(37, 2, "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ*", "EXTRA_CHAR")
+mod11_2 = ISO7064Pure(11, 2, "0123456789x", "EXTRA_CHAR")
+mod37_2 = ISO7064Pure(37, 2, "0123456789abcdefghijklmnopqrstuvwxyz*", "EXTRA_CHAR")
 mod97_10 = ISO7064Pure(97, 10, "0123456789", "TWO_CCS")
-mod661_26 = ISO7064Pure(661, 26, "ABCDEFGHIJKLMNOPQRSTUVWXYZ", "TWO_CCS")
-mod1271_36 = ISO7064Pure(1271, 36, "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ", "TWO_CCS")
+mod661_26 = ISO7064Pure(661, 26, "abcdefghijklmnopqrstuvwxyz", "TWO_CCS")
+mod1271_36 = ISO7064Pure(1271, 36, "0123456789abcdefghijklmnopqrstuvwxyz", "TWO_CCS")
 
 mod11_10 = ISO7064Hybrid("0123456789")
-mod27_26 = ISO7064Hybrid("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
-mod37_36 = ISO7064Hybrid("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+mod27_26 = ISO7064Hybrid("abcdefghijklmnopqrstuvwxyz")
+mod37_36 = ISO7064Hybrid("0123456789abcdefghijklmnopqrstuvwxyz")
 
 
 if __name__ == "__main__":

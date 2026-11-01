@@ -10,21 +10,24 @@ from pid4cat_model.datamodel.pid4cat_model_pydantic import (
 
 
 def test_load_json_from_handle_net():
-    with Path("tests/data/21.T11978_hdlnet_api/TEST-D4Y_kbka-bem9_decoded.json").open(
+    with Path("tests/data/21.T11978_hdlnet_api/test-d4y_kbka-bem9_decoded.json").open(
         mode="r", encoding="utf-8"
     ) as f:
         data = json.load(f)
     pid = HandleAPIRecord(**data)
-    assert pid.handle == "21.T11978/4cat/TEST-D4Y/kbka-bem9"
+    assert pid.handle == "21.T11978/4cat/test-d4y/kbka-bem9"
 
 
 @pytest.mark.parametrize(
     "handle",
     [
-        "21.T11978/TEST/KBKA-BEM9",  # no 4cat segment
-        "21.T11978/4cat/TEST-D4Y/batch-1/kbka-bem9",  # "/" in the id-suffix
-        "21.T11978/4cat/TEST-D4Y/KBKA-BEM9",  # upper case in the id-suffix
-        "21.T11978/4cat/TEST-I4Y/kbka-bem9",  # I is not in Crockford Base32
+        "21.T11978/test/kbka-bem9",  # no 4cat segment
+        "21.T11978/4cat/test-d4y/batch-1/kbka-bem9",  # "/" in the id-suffix
+        "21.T11978/4cat/test-d4y/KBKA-BEM9",  # upper case in the id-suffix
+        "21.T11978/4cat/D4Y/kbka-bem9",  # upper case in the ns-suffix
+        "21.T11978/4cat/TEST-D4Y/kbka-bem9",  # upper case in a test ns-suffix
+        "21.T11978/4cat/TEST-d4y/kbka-bem9",  # upper case in the test marker
+        "21.T11978/4cat/test-i4y/kbka-bem9",  # i is not in Crockford Base32
     ],
 )
 def test_handle_outside_the_pid4cat_structure(handle):
@@ -47,7 +50,7 @@ def test_load_json_from_handle_net_invalid():
     for HandleAPIRecord" - The pydantic model does not help to detect that only
     the mediatype is invalid (it should be "text/turtle").
     """
-    with Path("tests/data/21.T11978_hdlnet_api/TEST-D4Y_kbka-bem9_invalid.json").open(
+    with Path("tests/data/21.T11978_hdlnet_api/test-d4y_kbka-bem9_invalid.json").open(
         mode="r", encoding="utf-8"
     ) as f:
         data = json.load(f)

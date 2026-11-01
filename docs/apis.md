@@ -74,7 +74,7 @@ Response:
 
 Tip: To request a tabular HTML view of all data in the pid4cat record you can attach the query parameter `noredirect` to the PID URL, for example
 
-- `https://hdl.handle.net/21.11165/4cat/D4Y/sample-001?noredirect`
+- `https://hdl.handle.net/21.11165/4cat/d4y/sample-001?noredirect`
 
 ### Limitations
 

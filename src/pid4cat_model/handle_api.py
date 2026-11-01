@@ -24,7 +24,7 @@ class HandleConfig:
     """
     Configuration for the HandleNet API client.
 
-    `ns_suffix` is the namespace of the SNAA, for example "D4Y" or "TEST-D4Y".
+    `ns_suffix` is the namespace of the SNAA, for example "d4y" or "test-d4y".
     """
 
     api_url: str = "https://hdl.handle.net/api/handles/"

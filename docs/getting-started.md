@@ -18,21 +18,21 @@ Upon approval, the organization will receive:
 ## Structure of pid4cat handles
 
 A pid4cat handle has the form `<prefix>/4cat/<ns-suffix>/<id-suffix>`, for example
-`21.11165/4cat/D4Y/sample-001`:
+`21.11165/4cat/d4y/sample-001`:
 
 - `<prefix>`: the Handle prefix.
 - `4cat`: a fixed segment that marks pid4cat handles.
 - `<ns-suffix>`: the namespace of one SNAA, assigned at registration.
-  It has three upper-case characters from the [Crockford Base32](https://www.crockford.com/base32.html)
-  alphabet (digits and letters without I, L, O and U): a letter, a digit, then a letter or digit, for example `D4Y`.
+  It has three lower-case characters from the [Crockford Base32](https://www.crockford.com/base32.html)
+  alphabet (digits and letters without i, l, o and u): a letter, a digit, then a letter or digit, for example `d4y`.
   Some combinations are reserved and never assigned.
-  Test namespaces have the form `TEST-<ns-suffix>`.
+  Test namespaces have the form `test-<ns-suffix>`.
 - `<id-suffix>`: the identifier within the namespace.
   It has 1 to 36 characters from `a-z`, `0-9`, `.` and `-`.
   It contains no `/`, so every pid4cat handle has exactly four segments.
 
 Handles resolve case-insensitively.
-Upper case in `<ns-suffix>` and lower case in `<id-suffix>` give each handle a single spelling.
+Lower case in `<ns-suffix>` and `<id-suffix>` gives each handle a single spelling.
 
 ## Creating identifiers
 
