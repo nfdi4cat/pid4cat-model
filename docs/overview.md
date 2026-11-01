@@ -257,10 +257,10 @@ For example, whenever reading and typing of the IDs by humans is important, cons
 
 - **Base32-encoded sequential number with checksum**:
 
-For example, base32-encoding the number "123456789" with ISO 7064-Mod97-10 checksum gives the ID:
+For example, base32-encoding the number "123456789" and appending its ISO 7064 Mod 97-10 checksum "78", as base32-lib does, gives the ID:
 
   ```ascii
-  3fz-2j9
+  3nq-k8n-78
   ```
 
 For pure machine use and if global uniqueness is important consider using
