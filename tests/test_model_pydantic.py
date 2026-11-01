@@ -3,7 +3,10 @@ from pathlib import Path
 
 from pydantic import ValidationError
 import pytest
-from pid4cat_model.datamodel.pid4cat_model_pydantic import HandleAPIRecord
+from pid4cat_model.datamodel.pid4cat_model_pydantic import (
+    HandleAPIRecord,
+    RepresentationVariant,
+)
 
 
 def test_load_json_from_handle_net():
@@ -29,6 +32,11 @@ def test_handle_outside_the_pid4cat_structure(handle):
 
     with pytest.raises(ValidationError, match="handle"):
         HandleAPIRecord(**data)
+
+
+def test_representation_variant_requires_media_type():
+    with pytest.raises(ValidationError, match="media_type"):
+        RepresentationVariant(variant_url="https://example.org/resource.ttl")
 
 
 def test_load_json_from_handle_net_invalid():

@@ -30,7 +30,7 @@ from pydantic import (
 
 
 metamodel_version = "1.12.0"
-version = "0.4.4"
+version = "0.4.5"
 
 
 class ConfiguredBaseModel(BaseModel):
@@ -1195,10 +1195,10 @@ class RepresentationVariant(ConfiguredBaseModel):
     Data class for representations of the resource in other media types than text/html which is the default for landing_page_url.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/nfdi4cat/pid4cat-model',
-         'slot_usage': {'media_type': {'name': 'media_type'}}})
+         'slot_usage': {'media_type': {'name': 'media_type', 'required': True}}})
 
     variant_url: Optional[str] = Field(default=None, description="""The URL of the representation variant.""", json_schema_extra = { "linkml_meta": {'domain_of': ['RepresentationVariant']} })
-    media_type: Optional[MediaTypesEnum] = Field(default=None, description="""The media type of the representation as defined by [IANA](https://www.iana.org/assignments/media-types/media-types.xhtml)""", json_schema_extra = { "linkml_meta": {'domain_of': ['RepresentationVariant']} })
+    media_type: MediaTypesEnum = Field(default=..., description="""The media type of the representation as defined by [IANA](https://www.iana.org/assignments/media-types/media-types.xhtml)""", json_schema_extra = { "linkml_meta": {'domain_of': ['RepresentationVariant']} })
     encoding_format: Optional[str] = Field(default=None, description="""The encoding of the representation. https://encoding.spec.whatwg.org/#names-and-labels""", json_schema_extra = { "linkml_meta": {'domain_of': ['RepresentationVariant']} })
     size: Optional[int] = Field(default=None, description="""The size of the representation in bytes.""", ge=0, json_schema_extra = { "linkml_meta": {'domain_of': ['RepresentationVariant']} })
 
@@ -1529,7 +1529,7 @@ class Pid4CatRecord(ConfiguredBaseModel):
                         'schema_version': {'name': 'schema_version', 'required': True},
                         'status': {'name': 'status', 'required': True}}})
 
-    landing_page_url: str = Field(default=..., description="""The URL of the landing page of the resource identified by the PID.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Pid4CatRecord']} })
+    landing_page_url: str = Field(default=..., description="""The URL of the landing page of the resource identified by the PID. The landing page is an HTML page (media type text/html); representations in other media types are listed in representation_variants.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Pid4CatRecord']} })
     status: Pid4CatStatus = Field(default=..., description="""The status of the pid4cat record. The status is set to \"SUBMITTED\" when the handle is reserved but the resource is not yet linked. The status is set to \"REGISTERED\" when the handle is linked to a concrete resource.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Pid4CatRecord']} })
     schema_version: str = Field(default=..., description="""The version of the pid4cat-model used to create the pid4cat record.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Pid4CatRecord']} })
     metadata_license: Literal["CC0-1.0"] = Field(default=..., description="""The license of the metadata of the pid4cat record. The license is set to \"CC0-1.0\" by default.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Pid4CatRecord'], 'equals_string': 'CC0-1.0'} })

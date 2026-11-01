@@ -60,7 +60,7 @@ from linkml_runtime.linkml_model.types import Datetime, Integer, String, Uri
 from linkml_runtime.utils.metamodelcore import URI, XSDDateTime
 
 metamodel_version = "1.12.0"
-version = "0.4.4"
+version = "0.4.5"
 
 # Namespaces
 DATACITE = CurieNamespace('DataCite', 'https://purl.org/spar/datacite/')
@@ -726,9 +726,7 @@ class ResourceInfo(YAMLRoot):
 
         if self._is_empty(self.representation_variants):
             self.MissingRequiredField("representation_variants")
-        if not isinstance(self.representation_variants, list):
-            self.representation_variants = [self.representation_variants] if self.representation_variants is not None else []
-        self.representation_variants = [v if isinstance(v, RepresentationVariant) else RepresentationVariant(**as_dict(v)) for v in self.representation_variants]
+        self._normalize_inlined_as_list(slot_name="representation_variants", slot_type=RepresentationVariant, key_name="media_type", keyed=False)
 
         if self.label is not None and not isinstance(self.label, str):
             self.label = str(self.label)
@@ -834,17 +832,19 @@ class RepresentationVariant(YAMLRoot):
     class_name: ClassVar[str] = "RepresentationVariant"
     class_model_uri: ClassVar[URIRef] = PID4CAT_MODEL.RepresentationVariant
 
+    media_type: Union[str, "MediaTypesEnum"] = None
     variant_url: Optional[Union[str, URI]] = None
-    media_type: Optional[Union[str, "MediaTypesEnum"]] = None
     encoding_format: Optional[str] = None
     size: Optional[int] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
+        if self._is_empty(self.media_type):
+            self.MissingRequiredField("media_type")
+        if not isinstance(self.media_type, MediaTypesEnum):
+            self.media_type = MediaTypesEnum(self.media_type)
+
         if self.variant_url is not None and not isinstance(self.variant_url, URI):
             self.variant_url = URI(self.variant_url)
-
-        if self.media_type is not None and not isinstance(self.media_type, MediaTypesEnum):
-            self.media_type = MediaTypesEnum(self.media_type)
 
         if self.encoding_format is not None and not isinstance(self.encoding_format, str):
             self.encoding_format = str(self.encoding_format)
@@ -1844,7 +1844,7 @@ slots.Agent_role = Slot(uri=PID4CAT_MODEL.role, name="Agent_role", curie=PID4CAT
                    model_uri=PID4CAT_MODEL.Agent_role, domain=Agent, range=Union[str, "Pid4CatAgentRole"])
 
 slots.RepresentationVariant_media_type = Slot(uri=PID4CAT_MODEL.media_type, name="RepresentationVariant_media_type", curie=PID4CAT_MODEL.curie('media_type'),
-                   model_uri=PID4CAT_MODEL.RepresentationVariant_media_type, domain=RepresentationVariant, range=Optional[Union[str, "MediaTypesEnum"]])
+                   model_uri=PID4CAT_MODEL.RepresentationVariant_media_type, domain=RepresentationVariant, range=Union[str, "MediaTypesEnum"])
 
 slots.PurlIdentifier_resolving_url = Slot(uri=PID4CAT_MODEL.resolving_url, name="PurlIdentifier_resolving_url", curie=PID4CAT_MODEL.curie('resolving_url'),
                    model_uri=PID4CAT_MODEL.PurlIdentifier_resolving_url, domain=PurlIdentifier, range=Union[str, URI],

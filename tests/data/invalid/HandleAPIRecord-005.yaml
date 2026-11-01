@@ -1,0 +1,87 @@
+responseCode: 1
+handle: 21.T12995/4cat/D4Y/lik-2
+values:
+  - index: 1
+    type: URL
+    data:
+      format: string
+      value: https://pid4cat.example.org/lik-2
+    ttl: 86400
+    timestamp: '2024-05-15T15:51:15Z'
+  - index: 10
+    type: EMAIL
+    data:
+      format: string
+      value: datafuzzi@example.org
+    ttl: 86400
+    timestamp: '2024-05-15T15:51:15Z'
+  - index: 11
+    type: STATUS
+    data:
+      format: string
+      value: REGISTERED
+    ttl: 86400
+    timestamp: '2024-05-15T15:51:15Z'
+  - index: 12
+    type: SCHEMA_VER
+    data:
+      format: string
+      value: v0.1.0
+    ttl: 86400
+    timestamp: '2024-05-15T15:51:15Z'
+  - index: 13
+    type: METADATA_LICENSE
+    data:
+      format: string
+      value: CC0-1.0
+    ttl: 86400
+    timestamp: '2024-05-15T15:51:15Z'
+  - index: 14
+    type: RESOURCE
+    data:
+      format: string
+      value:
+        label: Resource label
+        description: Resource description
+        resource_category: SAMPLE
+        representation_variants:
+          - variant_url: https://example.org/resource
+            encoding_format: UTF-8
+            size: 12345
+    ttl: 86400
+    timestamp: '2024-05-15T15:51:15Z'
+  - index: 15
+    type: RELATED
+    data:
+      format: string
+      value:
+        - relation_type: IS_PART_OF
+          related_identifier:
+            type: DoiIdentifier
+            identifier: '10.5281/zenodo.8313340'
+            resolving_url: https://doi.org/10.5281/zenodo.8313340
+          datetime_log: '2024-02-19T00:00:00Z'
+        - relation_type: IS_REFERENCED_BY
+          related_identifier:
+            type: ExampleIdentifier
+            identifier: ex:ref123
+            resolving_url: https://example.org/ref123
+          datetime_log: '2024-02-19T00:00:00Z'
+    ttl: 86400
+    timestamp: '2024-05-15T15:51:15Z'
+  - index: 16
+    type: CHANGES
+    data:
+      format: string
+      value:
+        - datetime_log: '2024-02-19T00:00:00Z'
+          has_agent:
+            name: Data Fuzzi
+            email_address: datafuzzi@example.org
+            orcid: 0000-0000-0000-0000
+            affiliation_ror: https://ror.org/029hg0311
+            role: TRUSTEE
+          changed_field: STATUS
+          description: 'as requested in issue #123'
+    ttl: 86400
+    timestamp: '2024-05-15T15:51:15Z'
