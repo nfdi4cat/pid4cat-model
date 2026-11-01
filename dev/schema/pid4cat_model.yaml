@@ -1231,7 +1231,7 @@ slots:
     usage_slot_name: handle
     range: string
     required: true
-    pattern: ^\d{2}\.T?\d{4,}\/4cat\/(TEST-)?[A-HJKMNP-TV-Z][0-9][0-9A-HJKMNP-TV-Z]\/[a-z0-9.-]{1,36}$
+    pattern: ^\d{2}\.T?\d{4,}\/4cat\/(test-)?[a-hjkmnp-tv-z][0-9][0-9a-hjkmnp-tv-z]\/[a-z0-9.-]{1,36}$
   HandleAPIRecord_values:
     name: HandleAPIRecord_values
     definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/values
@@ -2405,7 +2405,7 @@ classes:
       handle:
         name: handle
         required: true
-        pattern: ^\d{2}\.T?\d{4,}\/4cat\/(TEST-)?[A-HJKMNP-TV-Z][0-9][0-9A-HJKMNP-TV-Z]\/[a-z0-9.-]{1,36}$
+        pattern: ^\d{2}\.T?\d{4,}\/4cat\/(test-)?[a-hjkmnp-tv-z][0-9][0-9a-hjkmnp-tv-z]\/[a-z0-9.-]{1,36}$
       values:
         name: values
         required: true
@@ -3065,6 +3065,6 @@ classes:
     class_uri: pid4cat_model:Pid4CatRecord
 metamodel_version: 1.12.0
 source_file: pid4cat_model.yaml
-source_file_date: '2026-11-01T22:26:58'
+source_file_date: '2026-11-01T23:10:33'
 source_file_size: 31421
 

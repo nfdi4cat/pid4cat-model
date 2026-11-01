@@ -1544,7 +1544,7 @@ The different parts are separated by the ASCII character "/".</p>
 <p>Rules for the <code>&lt;id-suffix&gt;</code>:</p>
 <ul>
 <li>The local-IDs are managed by the responsible SNAA.
-  It may contain letters [A-Za-z], numbers [0-9] and symbols [./] as part of the identifier.</li>
+  It may contain lower-case letters [a-z], numbers [0-9] and the symbols [.-] as part of the identifier.</li>
 <li>Dashes in this part are ignored.</li>
 <li>The local-IDs should be kept short and not exceed 36 chars including dashes (which is the length of UUID4).</li>
 <li>If an optional checksum is included, it must be calculated including the <code>&lt;ns-suffix&gt;</code> and ignoring dashes.</li>
@@ -1552,8 +1552,8 @@ The different parts are separated by the ASCII character "/".</p>
 <p>Case-sensitivity:</p>
 <ul>
 <li>The <code>&lt;ns-suffix&gt;</code> and <code>&lt;id-suffix&gt;</code> part of pid4cat PIDs are case insensitive.<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup></li>
-<li>The preferred case is uppercase, see <a href="#display-format">display guidelines</a>.</li>
-<li>Checksums, if used, must be calculated for the uppercase form.</li>
+<li>pid4cat PIDs are written in lower case, see <a href="#display-format">display guidelines</a>.</li>
+<li>Checksums, if used, are case-insensitive; their check characters are written in lower case like the rest of the PID.</li>
 </ul>
 <p>Suggested checksum calculations:</p>
 <ul>
@@ -1645,16 +1645,16 @@ Repo4cat makes use of pid4cat handles to persistently identify the stored resour
 <ul>
 <li>Use the full handle identifier including prefix, branding suffix, namespace suffix, and local identifier part</li>
 <li>Do not abbreviate any part of the identifier</li>
-<li>Use uppercase form of the identifier</li>
+<li>Use the lower-case form of the identifier</li>
 </ul>
-<p>Example: <code>21.11165/4cat/ABC/SAMPLE-2023-001</code></p>
+<p>Example: <code>21.11165/4cat/abc/sample-2023-001</code></p>
 <p>When creating hyperlinks use the handle.net resolver URL:</p>
 <ul>
-<li><code>https://hdl.handle.net/21.11165/4cat/ABC/SAMPLE-23-001</code></li>
+<li><code>https://hdl.handle.net/21.11165/4cat/abc/sample-23-001</code></li>
 </ul>
 <p>For using pid4cat identifies in linked-data application we plan to register <code>pid4cat</code> as the <em>preferable prefix</em> for <code>https://pid.nfdi4cat.org/21.11165/4cat/</code> in <a href="https://bioregistry.io/">Bioregistry</a>. This allows to use the CURIE (compact URI) notation:</p>
 <ul>
-<li><code>pid4cat:ABC/SAMPLE-23-001</code></li>
+<li><code>pid4cat:abc/sample-23-001</code></li>
 </ul>
 <h3 id="logo-usage">Logo Usage</h3>
 <p>When referencing pid4cat in applications, websites, or publications, the following logo guidelines apply:</p>
@@ -1687,8 +1687,8 @@ For example, whenever reading and typing of the IDs by humans is important, cons
 <ul>
 <li><strong>Base32-encoded sequential number with checksum</strong>:</li>
 </ul>
-<p>For example, base32-encoding the number "123456789" with ISO 7064-Mod97-10 checksum gives the ID:</p>
-<div class="highlight"><pre><span></span><code>3FZ-2J9
+<p>For example, base32-encoding the number "123456789" and appending its ISO 7064 Mod 97-10 checksum "78", as base32-lib does, gives the ID:</p>
+<div class="highlight"><pre><span></span><code>3nq-k8n-78
 </code></pre></div>
 <p>For pure machine use and if global uniqueness is important consider using</p>
 <ul>

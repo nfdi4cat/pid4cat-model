@@ -925,21 +925,21 @@
 </ul>
 <h2 id="structure-of-pid4cat-handles">Structure of pid4cat handles</h2>
 <p>A pid4cat handle has the form <code>&lt;prefix&gt;/4cat/&lt;ns-suffix&gt;/&lt;id-suffix&gt;</code>, for example
-<code>21.11165/4cat/D4Y/sample-001</code>:</p>
+<code>21.11165/4cat/d4y/sample-001</code>:</p>
 <ul>
 <li><code>&lt;prefix&gt;</code>: the Handle prefix.</li>
 <li><code>4cat</code>: a fixed segment that marks pid4cat handles.</li>
 <li><code>&lt;ns-suffix&gt;</code>: the namespace of one SNAA, assigned at registration.
-  It has three upper-case characters from the <a href="https://www.crockford.com/base32.html">Crockford Base32</a>
-  alphabet (digits and letters without I, L, O and U): a letter, a digit, then a letter or digit, for example <code>D4Y</code>.
+  It has three lower-case characters from the <a href="https://www.crockford.com/base32.html">Crockford Base32</a>
+  alphabet (digits and letters without i, l, o and u): a letter, a digit, then a letter or digit, for example <code>d4y</code>.
   Some combinations are reserved and never assigned.
-  Test namespaces have the form <code>TEST-&lt;ns-suffix&gt;</code>.</li>
+  Test namespaces have the form <code>test-&lt;ns-suffix&gt;</code>.</li>
 <li><code>&lt;id-suffix&gt;</code>: the identifier within the namespace.
   It has 1 to 36 characters from <code>a-z</code>, <code>0-9</code>, <code>.</code> and <code>-</code>.
   It contains no <code>/</code>, so every pid4cat handle has exactly four segments.</li>
 </ul>
 <p>Handles resolve case-insensitively.
-Upper case in <code>&lt;ns-suffix&gt;</code> and lower case in <code>&lt;id-suffix&gt;</code> give each handle a single spelling.</p>
+Lower case in <code>&lt;ns-suffix&gt;</code> and <code>&lt;id-suffix&gt;</code> gives each handle a single spelling.</p>
 <h2 id="creating-identifiers">Creating identifiers</h2>
 <p>Identifiers can be created through the pid4cat API. Partner organizations (SNAAs) have two options:</p>
 <ol>
