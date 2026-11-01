@@ -1029,6 +1029,7 @@
 <h3 id="request-full-handle-metadata">Request full handle metadata</h3>
 <div class="highlight"><pre><span></span><code><span class="err">GET  https://hdl.handle.net/api/handles/&lt;prefix&gt;/4cat/&lt;ns-suffix&gt;/&lt;id-suffix&gt;</span>
 </code></pre></div>
+<p>The parts of the handle are described in <a href="../getting-started/#structure-of-pid4cat-handles">Structure of pid4cat handles</a>.</p>
 <p>Response:</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">"responseCode"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
@@ -1050,7 +1051,7 @@
 </code></pre></div>
 <p>Tip: To request a tabular HTML view of all data in the pid4cat record you can attach the query parameter <code>noredirect</code> to the PID URL, for example</p>
 <ul>
-<li><a href="https://hdl.handle.net/21.T11978/test/C9K6-C6K9?noredirect">https://hdl.handle.net/21.T11978/test/C9K6-C6K9?noredirect</a></li>
+<li><code>https://hdl.handle.net/21.11165/4cat/D4Y/sample-001?noredirect</code></li>
 </ul>
 <h3 id="limitations">Limitations</h3>
 <p>The Handle.net API provides read-only access to pid4cat identifiers. To create or update identifiers, the pid4cat API must be used.</p>
