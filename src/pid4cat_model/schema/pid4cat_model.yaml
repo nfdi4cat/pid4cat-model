@@ -15,7 +15,7 @@ description: >-
   what is identified by the pid4cat handle, e.g. a sample or a device.
 
 # SchemaVer MODEL.REVISION.ADDITION; release tags start with it (docs/versioning.md)
-version: "0.4.4"
+version: "0.4.5"
 
 todos:
   - none
@@ -422,10 +422,7 @@ classes:
       - size
     slot_usage:
       media_type:
-        # Setting "required: true" causes an exception with linkML 1.8.5
-        # ValueError: Example tests/data/valid\HandleAPIRecord-001.yaml failed
-        #   validation: unhashable type: 'MediaTypesEnum'
-        # required: true
+        required: true
 
   RelatedIdentifier:
     description: >-
@@ -700,7 +697,9 @@ slots:
   landing_page_url:
     range: string
     description: >-
-      The URL of the landing page of the resource identified by the PID.
+      The URL of the landing page of the resource identified by the PID. The
+      landing page is an HTML page (media type text/html); representations in
+      other media types are listed in representation_variants.
   status:
     range: Pid4CatStatus
     description: >-
