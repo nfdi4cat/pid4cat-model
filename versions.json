@@ -1,15 +1,15 @@
 [
   {
     "version": "dev",
-    "title": "dev (01cff1d)",
+    "title": "dev (f28e32b)",
     "aliases": []
   },
   {
     "version": "v0.4.3.1",
     "title": "v0.4.3.1",
     "aliases": [
-      "latest",
-      "v0.4.3"
+      "v0.4.3",
+      "latest"
     ]
   },
   {
