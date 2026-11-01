@@ -14,7 +14,7 @@ todos:
 see_also:
 - https://nfdi4cat.github.io/pid4cat-model
 id: https://w3id.org/nfdi4cat/pid4cat-model
-version: 0.4.4
+version: 0.4.5
 imports:
 - linkml:types
 - media_types
@@ -1097,6 +1097,8 @@ slots:
     name: landing_page_url
     definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/landing_page_url
     description: The URL of the landing page of the resource identified by the PID.
+      The landing page is an HTML page (media type text/html); representations in
+      other media types are listed in representation_variants.
     from_schema: https://w3id.org/nfdi4cat/pid4cat-model
     slot_uri: pid4cat_model:landing_page_url
     owner: Pid4CatRecord
@@ -2058,6 +2060,7 @@ slots:
     is_usage_slot: true
     usage_slot_name: media_type
     range: MediaTypesEnum
+    required: true
   PurlIdentifier_resolving_url:
     name: PurlIdentifier_resolving_url
     definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/resolving_url
@@ -2244,6 +2247,8 @@ slots:
     name: Pid4CatRecord_landing_page_url
     definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/landing_page_url
     description: The URL of the landing page of the resource identified by the PID.
+      The landing page is an HTML page (media type text/html); representations in
+      other media types are listed in representation_variants.
     from_schema: https://w3id.org/nfdi4cat/pid4cat-model
     is_a: landing_page_url
     domain: Pid4CatRecord
@@ -2873,6 +2878,7 @@ classes:
     slot_usage:
       media_type:
         name: media_type
+        required: true
     class_uri: pid4cat_model:RepresentationVariant
   RelatedIdentifier:
     name: RelatedIdentifier
@@ -3059,6 +3065,6 @@ classes:
     class_uri: pid4cat_model:Pid4CatRecord
 metamodel_version: 1.12.0
 source_file: pid4cat_model.yaml
-source_file_date: '2026-11-01T09:44:32'
-source_file_size: 31488
+source_file_date: '2026-11-01T22:26:58'
+source_file_size: 31421
 
