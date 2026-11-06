@@ -1,13 +1,14 @@
 import pytest
+
 from src.pid4cat_model.iso7064 import (
     mod11_2,
+    mod11_10,
+    mod27_26,
     mod37_2,
+    mod37_36,
     mod97_10,
     mod661_26,
     mod1271_36,
-    mod11_10,
-    mod27_26,
-    mod37_36,
 )
 
 # === Tests for pure systems ===
@@ -183,11 +184,11 @@ def test_pure_systems_invalid_chars():
     Test ISO 7064 systems with invalid check char.
     """
     with pytest.raises(ValueError) as excinfo:
-        bare, cc = mod11_2.parse("AB123ß")
+        mod11_2.parse("AB123ß")
     assert "Could not find check character(s)" in str(excinfo.value)
 
     with pytest.raises(ValueError) as excinfo:
-        bare, cc = mod11_10.parse("AB123ß")
+        mod11_10.parse("AB123ß")
     assert "Could not find check character(s)" in str(excinfo.value)
 
 

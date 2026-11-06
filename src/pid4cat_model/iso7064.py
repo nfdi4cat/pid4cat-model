@@ -13,8 +13,6 @@ License: MIT
 Inspired by JavaScript package: https://github.com/LiosK/cdigit (License: MIT)
 """
 
-from typing import List, Tuple
-
 
 def _any_case(chars: str) -> dict:
     """Map each character in lower and upper case to its value.
@@ -62,7 +60,7 @@ class ISO7064Pure:
         self.char_map: dict = _any_case(self._input_alphabet)
         self._check_char_map: dict = _any_case(alphabet)
 
-    def compute_from_num_vals(self, ns: List[int]) -> List[int]:
+    def compute_from_num_vals(self, ns: list[int]) -> list[int]:
         """
         Compute the check character(s) from numerical values.
 
@@ -120,7 +118,7 @@ class ISO7064Pure:
             return self.alphabet[cc[0]] + self.alphabet[cc[1]]
         return self.alphabet[cc[0]]
 
-    def parse(self, s: str) -> Tuple[str, str]:
+    def parse(self, s: str) -> tuple[str, str]:
         """
         Parse the input string into the bare string and check character(s).
 
@@ -190,7 +188,7 @@ class ISO7064Hybrid:
         self.name: str = f"mod_{self.mod}_{radix}"
         self.long_name: str = f"ISO/IEC 7064, MOD {int}-{radix}"
 
-    def compute_from_num_vals(self, ns: List[int]) -> List[int]:
+    def compute_from_num_vals(self, ns: list[int]) -> list[int]:
         """
         Compute the check character(s) from numerical values.
 
@@ -239,7 +237,7 @@ class ISO7064Hybrid:
         cc = self.compute_from_num_vals(ns)
         return self.alphabet[cc[0]]
 
-    def parse(self, s: str) -> Tuple[str, str]:
+    def parse(self, s: str) -> tuple[str, str]:
         """
         Parse the input string into the bare string and check character(s).
 

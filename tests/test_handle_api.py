@@ -1,10 +1,11 @@
-from http import HTTPStatus
 import json
+from http import HTTPStatus
 from pathlib import Path
+
 import httpx
-from pid4cat_model.handle_api import HandleNetAPI, HandleConfig
+
 from pid4cat_model.datamodel.pid4cat_model_pydantic import Pid4CatRecord
-from pid4cat_model.handle_api import pid4cat_record_factory
+from pid4cat_model.handle_api import HandleConfig, HandleNetAPI, pid4cat_record_factory
 
 
 def test_HandleNetApi():

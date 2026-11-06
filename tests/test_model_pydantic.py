@@ -1,8 +1,9 @@
 import json
 from pathlib import Path
 
-from pydantic import ValidationError
 import pytest
+from pydantic import ValidationError
+
 from pid4cat_model.datamodel.pid4cat_model_pydantic import (
     HandleAPIRecord,
     RepresentationVariant,

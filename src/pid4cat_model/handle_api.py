@@ -2,10 +2,9 @@ import json
 import logging
 import re
 import sys
-
-import httpx
 from dataclasses import dataclass, field
 
+import httpx
 from pydantic import ValidationError
 
 from pid4cat_model.datamodel.pid4cat_model_pydantic import (

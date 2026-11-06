@@ -1,7 +1,8 @@
-import os
 import glob
+import os
 
-from linkml_runtime.loaders import yaml_loader, json_loader
+from linkml_runtime.loaders import json_loader, yaml_loader
+
 from pid4cat_model.datamodel.pid4cat_model import HandleAPIRecord, HandleRecordContainer
 
 ROOT = os.path.join(os.path.dirname(__file__), "..")
