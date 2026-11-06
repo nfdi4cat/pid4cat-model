@@ -2,7 +2,9 @@ import json
 import sys
 from datetime import datetime
 from pathlib import Path
+
 from linkml_runtime.dumpers import json_dumper, yaml_dumper
+
 from pid4cat_model.datamodel import pid4cat_model_pydantic as p4c
 
 # Demonstrate the use of Pydantic models
@@ -180,17 +182,10 @@ script_folder = Path(__file__).parent
 with open(script_folder / "example_p1.yaml", "w", encoding="utf-8") as f:
     f.write(yaml_dumper.dumps(c))
 
-try:
-    # Next line fails with linkML 1.8.5 due to a bug in json_dumper.py
-    # which does not convert datetime objects to strings
-    json_dump = json_dumper.dumps(p1_api, inject_type=False)
-    print(json_dump)
-    # write json to file
-    with open(script_folder / "example_p1.json", "w", encoding="utf-8") as f:
-        f.write(json_dump)
-except Exception as e:
-    print(f"Failed to dump to JSON: {e}")
-    print("Please use a fixed version of linkml_runtime")
+json_dump = json_dumper.dumps(p1_api, inject_type=False)
+print(json_dump)
+with open(script_folder / "example_p1.json", "w", encoding="utf-8") as f:
+    f.write(json_dump)
 
 data_json = p1_api.model_dump_json(indent=2)
 with open(script_folder / "example_p1_pydantic.json", "w", encoding="utf-8") as f:

@@ -1,7 +1,9 @@
-from pathlib import Path
 import sys
 from datetime import datetime
+from pathlib import Path
+
 from linkml_runtime.dumpers import json_dumper, yaml_dumper
+
 from pid4cat_model.datamodel import pid4cat_model as p4c
 
 # Demonstrate the use of Python DataClass-based model
