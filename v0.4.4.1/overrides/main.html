@@ -1,0 +1,20 @@
+{#-
+  This file shadows main.html of mkdocs_pymdownx_material_extras, so its
+  libs and announce blocks are repeated here to keep the plugin working.
+-#}
+{% extends "base.html" %}
+
+{% block libs %}
+{{ super() }}
+{% include "partials/libs.html" ignore missing %}
+{% endblock %}
+
+{% block announce %}{% include "announce.html" ignore missing %}{% endblock %}
+
+{# Shown by mike/Material on versions without an alias from extra.version.default #}
+{% block outdated %}
+  You are viewing the documentation of an older or development version.
+  <a href="{{ '../' ~ base_url }}">
+    <strong>Go to the latest release.</strong>
+  </a>
+{% endblock %}
