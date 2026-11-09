@@ -17,6 +17,9 @@ def test_load_json_from_handle_net():
         data = json.load(f)
     pid = HandleAPIRecord(**data)
     assert pid.handle == "21.T11978/4cat/test-d4y/kbka-bem9"
+    admin = pid.values[-1]
+    assert (admin.type, admin.index) == ("HS_ADMIN", 100)
+    assert (admin.data.value.handle, admin.data.value.index) == ("0.NA/21.T11978", 200)
 
 
 @pytest.mark.parametrize(

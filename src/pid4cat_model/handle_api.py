@@ -56,10 +56,10 @@ class HandleNetAPI:
         data = response.json()
         logger.debug(f"Response: {data}")
 
-        # decode records that contain escaped json syntax
+        # decode records that contain escaped json syntax; HS_ADMIN is an object
         for rec in data.get("values", []):
-            value = rec["data"]["value"].strip()
-            if json_str.match(value):
+            value = rec["data"]["value"]
+            if isinstance(value, str) and json_str.match(value := value.strip()):
                 try:
                     parsed = json.loads(value)
                     rec["data"]["value"] = parsed

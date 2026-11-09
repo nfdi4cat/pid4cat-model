@@ -60,7 +60,7 @@ from linkml_runtime.linkml_model.types import Datetime, Integer, String, Uri
 from linkml_runtime.utils.metamodelcore import URI, XSDDateTime
 
 metamodel_version = "1.12.0"
-version = "0.4.4"
+version = "0.4.5"
 
 # Namespaces
 DATACITE = CurieNamespace('DataCite', 'https://purl.org/spar/datacite/')
@@ -648,6 +648,103 @@ class HdlDataLog(YAMLRoot):
 
         if self.format is not None and not isinstance(self.format, str):
             self.format = str(self.format)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class HSADMIN(HandleRecord):
+    """
+    The data element in the handle API for the administrator of the handle. Handle servers return it with every handle
+    record.
+    """
+    _inherited_slots: ClassVar[list[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = PID4CAT_MODEL["HSADMIN"]
+    class_class_curie: ClassVar[str] = "pid4cat_model:HSADMIN"
+    class_name: ClassVar[str] = "HS_ADMIN"
+    class_model_uri: ClassVar[URIRef] = PID4CAT_MODEL.HSADMIN
+
+    timestamp: Union[str, XSDDateTime] = None
+    type: str = None
+    index: int = None
+    data: Union[dict, "HdlDataAdmin"] = None
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+        if self._is_empty(self.index):
+            self.MissingRequiredField("index")
+        if not isinstance(self.index, int):
+            self.index = int(self.index)
+
+        if self._is_empty(self.data):
+            self.MissingRequiredField("data")
+        if not isinstance(self.data, HdlDataAdmin):
+            self.data = HdlDataAdmin(**as_dict(self.data))
+
+        super().__post_init__(**kwargs)
+        if self._is_empty(self.type):
+            self.MissingRequiredField("type")
+        self.type = str(self.class_name)
+
+
+@dataclass(repr=False)
+class HdlDataAdmin(YAMLRoot):
+    """
+    The data class for the administrator of the handle.
+    """
+    _inherited_slots: ClassVar[list[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = PID4CAT_MODEL["HdlDataAdmin"]
+    class_class_curie: ClassVar[str] = "pid4cat_model:HdlDataAdmin"
+    class_name: ClassVar[str] = "HdlDataAdmin"
+    class_model_uri: ClassVar[URIRef] = PID4CAT_MODEL.HdlDataAdmin
+
+    value: Union[dict, "HandleAdminReference"] = None
+    format: Optional[str] = "admin"
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+        if self._is_empty(self.value):
+            self.MissingRequiredField("value")
+        if not isinstance(self.value, HandleAdminReference):
+            self.value = HandleAdminReference(**as_dict(self.value))
+
+        if self.format is not None and not isinstance(self.format, str):
+            self.format = str(self.format)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class HandleAdminReference(YAMLRoot):
+    """
+    The handle value that holds the key of the administrator, and the permissions it grants.
+    """
+    _inherited_slots: ClassVar[list[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = PID4CAT_MODEL["HandleAdminReference"]
+    class_class_curie: ClassVar[str] = "pid4cat_model:HandleAdminReference"
+    class_name: ClassVar[str] = "HandleAdminReference"
+    class_model_uri: ClassVar[URIRef] = PID4CAT_MODEL.HandleAdminReference
+
+    handle: str = None
+    index: int = None
+    permissions: str = None
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+        if self._is_empty(self.handle):
+            self.MissingRequiredField("handle")
+        if not isinstance(self.handle, str):
+            self.handle = str(self.handle)
+
+        if self._is_empty(self.index):
+            self.MissingRequiredField("index")
+        if not isinstance(self.index, int):
+            self.index = int(self.index)
+
+        if self._is_empty(self.permissions):
+            self.MissingRequiredField("permissions")
+        if not isinstance(self.permissions, str):
+            self.permissions = str(self.permissions)
 
         super().__post_init__(**kwargs)
 
@@ -1686,6 +1783,16 @@ slots.related_identifiers = Slot(uri=PID4CAT_MODEL.related_identifiers, name="re
 slots.change_log = Slot(uri=PID4CAT_MODEL.change_log, name="change_log", curie=PID4CAT_MODEL.curie('change_log'),
                    model_uri=PID4CAT_MODEL.change_log, domain=None, range=Optional[Union[dict, LogRecord]])
 
+slots.handleAdminReference__handle = Slot(uri=PID4CAT_MODEL.handle, name="handleAdminReference__handle", curie=PID4CAT_MODEL.curie('handle'),
+                   model_uri=PID4CAT_MODEL.handleAdminReference__handle, domain=None, range=str)
+
+slots.handleAdminReference__index = Slot(uri=PID4CAT_MODEL.index, name="handleAdminReference__index", curie=PID4CAT_MODEL.curie('index'),
+                   model_uri=PID4CAT_MODEL.handleAdminReference__index, domain=None, range=int)
+
+slots.handleAdminReference__permissions = Slot(uri=PID4CAT_MODEL.permissions, name="handleAdminReference__permissions", curie=PID4CAT_MODEL.curie('permissions'),
+                   model_uri=PID4CAT_MODEL.handleAdminReference__permissions, domain=None, range=str,
+                   pattern=re.compile(r'^[01]{12}$'))
+
 slots.handleRecordContainer__contains_pids = Slot(uri=PID4CAT_MODEL.contains_pids, name="handleRecordContainer__contains_pids", curie=PID4CAT_MODEL.curie('contains_pids'),
                    model_uri=PID4CAT_MODEL.handleRecordContainer__contains_pids, domain=None, range=Optional[Union[dict[Union[str, HandleAPIRecordHandle], Union[dict, HandleAPIRecord]], list[Union[dict, HandleAPIRecord]]]])
 
@@ -1806,6 +1913,18 @@ slots.HdlDataLog_format = Slot(uri=PID4CAT_MODEL.format, name="HdlDataLog_format
 
 slots.HdlDataLog_value = Slot(uri=PID4CAT_MODEL.value, name="HdlDataLog_value", curie=PID4CAT_MODEL.curie('value'),
                    model_uri=PID4CAT_MODEL.HdlDataLog_value, domain=HdlDataLog, range=Union[Union[dict, "LogRecord"], list[Union[dict, "LogRecord"]]])
+
+slots.HS_ADMIN_index = Slot(uri=PID4CAT_MODEL.index, name="HS_ADMIN_index", curie=PID4CAT_MODEL.curie('index'),
+                   model_uri=PID4CAT_MODEL.HS_ADMIN_index, domain=HSADMIN, range=int)
+
+slots.HS_ADMIN_data = Slot(uri=PID4CAT_MODEL.data, name="HS_ADMIN_data", curie=PID4CAT_MODEL.curie('data'),
+                   model_uri=PID4CAT_MODEL.HS_ADMIN_data, domain=HSADMIN, range=Union[dict, "HdlDataAdmin"])
+
+slots.HdlDataAdmin_format = Slot(uri=PID4CAT_MODEL.format, name="HdlDataAdmin_format", curie=PID4CAT_MODEL.curie('format'),
+                   model_uri=PID4CAT_MODEL.HdlDataAdmin_format, domain=HdlDataAdmin, range=Optional[str])
+
+slots.HdlDataAdmin_value = Slot(uri=PID4CAT_MODEL.value, name="HdlDataAdmin_value", curie=PID4CAT_MODEL.curie('value'),
+                   model_uri=PID4CAT_MODEL.HdlDataAdmin_value, domain=HdlDataAdmin, range=Union[dict, "HandleAdminReference"])
 
 slots.ResourceInfo_resource_category = Slot(uri=PID4CAT_MODEL.resource_category, name="ResourceInfo_resource_category", curie=PID4CAT_MODEL.curie('resource_category'),
                    model_uri=PID4CAT_MODEL.ResourceInfo_resource_category, domain=ResourceInfo, range=Union[str, "ResourceCategory"])

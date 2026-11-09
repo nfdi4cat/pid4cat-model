@@ -54,4 +54,7 @@ def test_pid4cat_record_factory():
 
     record = pid4cat_record_factory(data)
     assert isinstance(record, Pid4CatRecord)
-    assert record.landing_page_url == "http://Mytest2.com"
+    assert (
+        record.landing_page_url
+        == "https://github.com/nfdi4cat/pid4cat-model/releases/tag/v0.4.4.1"
+    )
