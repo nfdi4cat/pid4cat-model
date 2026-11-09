@@ -30,7 +30,7 @@ from pydantic import (
 
 
 metamodel_version = "1.12.0"
-version = "0.4.4"
+version = "0.4.5"
 
 
 class ConfiguredBaseModel(BaseModel):
@@ -472,8 +472,8 @@ class HandleAPIRecord(ConfiguredBaseModel):
                         'values': {'name': 'values', 'required': True}}})
 
     responseCode: Optional[int] = Field(default=None, description="""The response code of the handle API.""", json_schema_extra = { "linkml_meta": {'domain_of': ['HandleAPIRecord']} })
-    handle: str = Field(default=..., description="""The handle of the pid4cat record.""", json_schema_extra = { "linkml_meta": {'domain_of': ['HandleAPIRecord']} })
-    values: list[Union[HandleRecord,URL,EMAIL,STATUS,SCHEMAVER,METADATALICENSE,RESOURCE,RELATED,CHANGES]] = Field(default=..., description="""The values of the pid4cat record.""", json_schema_extra = { "linkml_meta": {'domain_of': ['HandleAPIRecord']} })
+    handle: str = Field(default=..., description="""The handle of the pid4cat record.""", json_schema_extra = { "linkml_meta": {'domain_of': ['HandleAPIRecord', 'HandleAdminReference']} })
+    values: list[Union[HandleRecord,URL,EMAIL,STATUS,SCHEMAVER,METADATALICENSE,RESOURCE,RELATED,CHANGES,HSADMIN]] = Field(default=..., description="""The values of the pid4cat record.""", json_schema_extra = { "linkml_meta": {'domain_of': ['HandleAPIRecord']} })
 
     @field_validator('handle')
     def pattern_handle(cls, v):
@@ -527,7 +527,9 @@ class URL(HandleRecord):
                        'METADATA_LICENSE',
                        'RESOURCE',
                        'RELATED',
-                       'CHANGES']} })
+                       'CHANGES',
+                       'HS_ADMIN',
+                       'HandleAdminReference']} })
     data: HdlDataUrl = Field(default=..., description="""The data in the handle record.""", json_schema_extra = { "linkml_meta": {'domain_of': ['URL',
                        'EMAIL',
                        'STATUS',
@@ -535,7 +537,8 @@ class URL(HandleRecord):
                        'METADATA_LICENSE',
                        'RESOURCE',
                        'RELATED',
-                       'CHANGES']} })
+                       'CHANGES',
+                       'HS_ADMIN']} })
     timestamp: datetime  = Field(default=..., description="""The iso datetime for the last update of the handle data.""", json_schema_extra = { "linkml_meta": {'domain_of': ['HandleRecord']} })
     ttl: Optional[int] = Field(default=86400, description="""A time to live in seconds for the handle record. Typically: 86400 => 1 day""", json_schema_extra = { "linkml_meta": {'domain_of': ['HandleRecord'], 'ifabsent': '86400'} })
     type: Literal["URL"] = Field(default="URL", description="""The type of handledata stored in the handle record.""", json_schema_extra = { "linkml_meta": {'designates_type': True, 'domain_of': ['HandleRecord', 'RelatedIdentifier']} })
@@ -560,7 +563,8 @@ class HdlDataUrl(ConfiguredBaseModel):
                        'HdlDataLicense',
                        'HdlDataResourceInfo',
                        'HdlDataRelated',
-                       'HdlDataLog'],
+                       'HdlDataLog',
+                       'HdlDataAdmin'],
          'equals_string': 'string',
          'ifabsent': 'string'} })
     value: str = Field(default=..., description="""The value of the handle data.""", json_schema_extra = { "linkml_meta": {'domain_of': ['HdlDataUrl',
@@ -570,7 +574,8 @@ class HdlDataUrl(ConfiguredBaseModel):
                        'HdlDataLicense',
                        'HdlDataResourceInfo',
                        'HdlDataRelated',
-                       'HdlDataLog']} })
+                       'HdlDataLog',
+                       'HdlDataAdmin']} })
 
     @field_validator('value')
     def pattern_value(cls, v):
@@ -606,7 +611,9 @@ class EMAIL(HandleRecord):
                        'METADATA_LICENSE',
                        'RESOURCE',
                        'RELATED',
-                       'CHANGES']} })
+                       'CHANGES',
+                       'HS_ADMIN',
+                       'HandleAdminReference']} })
     data: HdlDataContact = Field(default=..., description="""The data in the handle record.""", json_schema_extra = { "linkml_meta": {'domain_of': ['URL',
                        'EMAIL',
                        'STATUS',
@@ -614,7 +621,8 @@ class EMAIL(HandleRecord):
                        'METADATA_LICENSE',
                        'RESOURCE',
                        'RELATED',
-                       'CHANGES']} })
+                       'CHANGES',
+                       'HS_ADMIN']} })
     timestamp: datetime  = Field(default=..., description="""The iso datetime for the last update of the handle data.""", json_schema_extra = { "linkml_meta": {'domain_of': ['HandleRecord']} })
     ttl: Optional[int] = Field(default=86400, description="""A time to live in seconds for the handle record. Typically: 86400 => 1 day""", json_schema_extra = { "linkml_meta": {'domain_of': ['HandleRecord'], 'ifabsent': '86400'} })
     type: Literal["EMAIL"] = Field(default="EMAIL", description="""The type of handledata stored in the handle record.""", json_schema_extra = { "linkml_meta": {'designates_type': True, 'domain_of': ['HandleRecord', 'RelatedIdentifier']} })
@@ -639,7 +647,8 @@ class HdlDataContact(ConfiguredBaseModel):
                        'HdlDataLicense',
                        'HdlDataResourceInfo',
                        'HdlDataRelated',
-                       'HdlDataLog'],
+                       'HdlDataLog',
+                       'HdlDataAdmin'],
          'equals_string': 'string',
          'ifabsent': 'string'} })
     value: str = Field(default=..., description="""The value of the handle data.""", json_schema_extra = { "linkml_meta": {'domain_of': ['HdlDataUrl',
@@ -649,7 +658,8 @@ class HdlDataContact(ConfiguredBaseModel):
                        'HdlDataLicense',
                        'HdlDataResourceInfo',
                        'HdlDataRelated',
-                       'HdlDataLog']} })
+                       'HdlDataLog',
+                       'HdlDataAdmin']} })
 
     @field_validator('value')
     def pattern_value(cls, v):
@@ -685,7 +695,9 @@ class STATUS(HandleRecord):
                        'METADATA_LICENSE',
                        'RESOURCE',
                        'RELATED',
-                       'CHANGES']} })
+                       'CHANGES',
+                       'HS_ADMIN',
+                       'HandleAdminReference']} })
     data: HdlDataStatus = Field(default=..., description="""The data in the handle record.""", json_schema_extra = { "linkml_meta": {'domain_of': ['URL',
                        'EMAIL',
                        'STATUS',
@@ -693,7 +705,8 @@ class STATUS(HandleRecord):
                        'METADATA_LICENSE',
                        'RESOURCE',
                        'RELATED',
-                       'CHANGES']} })
+                       'CHANGES',
+                       'HS_ADMIN']} })
     timestamp: datetime  = Field(default=..., description="""The iso datetime for the last update of the handle data.""", json_schema_extra = { "linkml_meta": {'domain_of': ['HandleRecord']} })
     ttl: Optional[int] = Field(default=86400, description="""A time to live in seconds for the handle record. Typically: 86400 => 1 day""", json_schema_extra = { "linkml_meta": {'domain_of': ['HandleRecord'], 'ifabsent': '86400'} })
     type: Literal["STATUS"] = Field(default="STATUS", description="""The type of handledata stored in the handle record.""", json_schema_extra = { "linkml_meta": {'designates_type': True, 'domain_of': ['HandleRecord', 'RelatedIdentifier']} })
@@ -718,7 +731,8 @@ class HdlDataStatus(ConfiguredBaseModel):
                        'HdlDataLicense',
                        'HdlDataResourceInfo',
                        'HdlDataRelated',
-                       'HdlDataLog'],
+                       'HdlDataLog',
+                       'HdlDataAdmin'],
          'equals_string': 'string',
          'ifabsent': 'string'} })
     value: Pid4CatStatus = Field(default=..., description="""The value of the handle data.""", json_schema_extra = { "linkml_meta": {'domain_of': ['HdlDataUrl',
@@ -728,7 +742,8 @@ class HdlDataStatus(ConfiguredBaseModel):
                        'HdlDataLicense',
                        'HdlDataResourceInfo',
                        'HdlDataRelated',
-                       'HdlDataLog']} })
+                       'HdlDataLog',
+                       'HdlDataAdmin']} })
 
 
 class SCHEMAVER(HandleRecord):
@@ -751,7 +766,9 @@ class SCHEMAVER(HandleRecord):
                        'METADATA_LICENSE',
                        'RESOURCE',
                        'RELATED',
-                       'CHANGES']} })
+                       'CHANGES',
+                       'HS_ADMIN',
+                       'HandleAdminReference']} })
     data: HdlDataSchemaVer = Field(default=..., description="""The data in the handle record.""", json_schema_extra = { "linkml_meta": {'domain_of': ['URL',
                        'EMAIL',
                        'STATUS',
@@ -759,7 +776,8 @@ class SCHEMAVER(HandleRecord):
                        'METADATA_LICENSE',
                        'RESOURCE',
                        'RELATED',
-                       'CHANGES']} })
+                       'CHANGES',
+                       'HS_ADMIN']} })
     timestamp: datetime  = Field(default=..., description="""The iso datetime for the last update of the handle data.""", json_schema_extra = { "linkml_meta": {'domain_of': ['HandleRecord']} })
     ttl: Optional[int] = Field(default=86400, description="""A time to live in seconds for the handle record. Typically: 86400 => 1 day""", json_schema_extra = { "linkml_meta": {'domain_of': ['HandleRecord'], 'ifabsent': '86400'} })
     type: Literal["SCHEMA_VER"] = Field(default="SCHEMA_VER", description="""The type of handledata stored in the handle record.""", json_schema_extra = { "linkml_meta": {'designates_type': True, 'domain_of': ['HandleRecord', 'RelatedIdentifier']} })
@@ -784,7 +802,8 @@ class HdlDataSchemaVer(ConfiguredBaseModel):
                        'HdlDataLicense',
                        'HdlDataResourceInfo',
                        'HdlDataRelated',
-                       'HdlDataLog'],
+                       'HdlDataLog',
+                       'HdlDataAdmin'],
          'equals_string': 'string',
          'ifabsent': 'string'} })
     value: str = Field(default=..., description="""The value of the handle data.""", json_schema_extra = { "linkml_meta": {'domain_of': ['HdlDataUrl',
@@ -794,7 +813,8 @@ class HdlDataSchemaVer(ConfiguredBaseModel):
                        'HdlDataLicense',
                        'HdlDataResourceInfo',
                        'HdlDataRelated',
-                       'HdlDataLog']} })
+                       'HdlDataLog',
+                       'HdlDataAdmin']} })
 
     @field_validator('value')
     def pattern_value(cls, v):
@@ -830,7 +850,9 @@ class METADATALICENSE(HandleRecord):
                        'METADATA_LICENSE',
                        'RESOURCE',
                        'RELATED',
-                       'CHANGES']} })
+                       'CHANGES',
+                       'HS_ADMIN',
+                       'HandleAdminReference']} })
     data: HdlDataLicense = Field(default=..., description="""The data in the handle record.""", json_schema_extra = { "linkml_meta": {'domain_of': ['URL',
                        'EMAIL',
                        'STATUS',
@@ -838,7 +860,8 @@ class METADATALICENSE(HandleRecord):
                        'METADATA_LICENSE',
                        'RESOURCE',
                        'RELATED',
-                       'CHANGES']} })
+                       'CHANGES',
+                       'HS_ADMIN']} })
     timestamp: datetime  = Field(default=..., description="""The iso datetime for the last update of the handle data.""", json_schema_extra = { "linkml_meta": {'domain_of': ['HandleRecord']} })
     ttl: Optional[int] = Field(default=86400, description="""A time to live in seconds for the handle record. Typically: 86400 => 1 day""", json_schema_extra = { "linkml_meta": {'domain_of': ['HandleRecord'], 'ifabsent': '86400'} })
     type: Literal["METADATA_LICENSE"] = Field(default="METADATA_LICENSE", description="""The type of handledata stored in the handle record.""", json_schema_extra = { "linkml_meta": {'designates_type': True, 'domain_of': ['HandleRecord', 'RelatedIdentifier']} })
@@ -863,7 +886,8 @@ class HdlDataLicense(ConfiguredBaseModel):
                        'HdlDataLicense',
                        'HdlDataResourceInfo',
                        'HdlDataRelated',
-                       'HdlDataLog'],
+                       'HdlDataLog',
+                       'HdlDataAdmin'],
          'equals_string': 'string',
          'ifabsent': 'string'} })
     value: Literal["CC0-1.0"] = Field(default=..., description="""The value of the handle data.""", json_schema_extra = { "linkml_meta": {'domain_of': ['HdlDataUrl',
@@ -873,7 +897,8 @@ class HdlDataLicense(ConfiguredBaseModel):
                        'HdlDataLicense',
                        'HdlDataResourceInfo',
                        'HdlDataRelated',
-                       'HdlDataLog'],
+                       'HdlDataLog',
+                       'HdlDataAdmin'],
          'equals_string': 'CC0-1.0'} })
 
 
@@ -897,7 +922,9 @@ class RESOURCE(HandleRecord):
                        'METADATA_LICENSE',
                        'RESOURCE',
                        'RELATED',
-                       'CHANGES']} })
+                       'CHANGES',
+                       'HS_ADMIN',
+                       'HandleAdminReference']} })
     data: HdlDataResourceInfo = Field(default=..., description="""The data in the handle record.""", json_schema_extra = { "linkml_meta": {'domain_of': ['URL',
                        'EMAIL',
                        'STATUS',
@@ -905,7 +932,8 @@ class RESOURCE(HandleRecord):
                        'METADATA_LICENSE',
                        'RESOURCE',
                        'RELATED',
-                       'CHANGES']} })
+                       'CHANGES',
+                       'HS_ADMIN']} })
     timestamp: datetime  = Field(default=..., description="""The iso datetime for the last update of the handle data.""", json_schema_extra = { "linkml_meta": {'domain_of': ['HandleRecord']} })
     ttl: Optional[int] = Field(default=86400, description="""A time to live in seconds for the handle record. Typically: 86400 => 1 day""", json_schema_extra = { "linkml_meta": {'domain_of': ['HandleRecord'], 'ifabsent': '86400'} })
     type: Literal["RESOURCE"] = Field(default="RESOURCE", description="""The type of handledata stored in the handle record.""", json_schema_extra = { "linkml_meta": {'designates_type': True, 'domain_of': ['HandleRecord', 'RelatedIdentifier']} })
@@ -930,7 +958,8 @@ class HdlDataResourceInfo(ConfiguredBaseModel):
                        'HdlDataLicense',
                        'HdlDataResourceInfo',
                        'HdlDataRelated',
-                       'HdlDataLog'],
+                       'HdlDataLog',
+                       'HdlDataAdmin'],
          'equals_string': 'string',
          'ifabsent': 'string'} })
     value: ResourceInfo = Field(default=..., description="""The value of the handle data.""", json_schema_extra = { "linkml_meta": {'domain_of': ['HdlDataUrl',
@@ -940,7 +969,8 @@ class HdlDataResourceInfo(ConfiguredBaseModel):
                        'HdlDataLicense',
                        'HdlDataResourceInfo',
                        'HdlDataRelated',
-                       'HdlDataLog']} })
+                       'HdlDataLog',
+                       'HdlDataAdmin']} })
 
 
 class RELATED(HandleRecord):
@@ -963,7 +993,9 @@ class RELATED(HandleRecord):
                        'METADATA_LICENSE',
                        'RESOURCE',
                        'RELATED',
-                       'CHANGES']} })
+                       'CHANGES',
+                       'HS_ADMIN',
+                       'HandleAdminReference']} })
     data: HdlDataRelated = Field(default=..., description="""The data in the handle record.""", json_schema_extra = { "linkml_meta": {'domain_of': ['URL',
                        'EMAIL',
                        'STATUS',
@@ -971,7 +1003,8 @@ class RELATED(HandleRecord):
                        'METADATA_LICENSE',
                        'RESOURCE',
                        'RELATED',
-                       'CHANGES']} })
+                       'CHANGES',
+                       'HS_ADMIN']} })
     timestamp: datetime  = Field(default=..., description="""The iso datetime for the last update of the handle data.""", json_schema_extra = { "linkml_meta": {'domain_of': ['HandleRecord']} })
     ttl: Optional[int] = Field(default=86400, description="""A time to live in seconds for the handle record. Typically: 86400 => 1 day""", json_schema_extra = { "linkml_meta": {'domain_of': ['HandleRecord'], 'ifabsent': '86400'} })
     type: Literal["RELATED"] = Field(default="RELATED", description="""The type of handledata stored in the handle record.""", json_schema_extra = { "linkml_meta": {'designates_type': True, 'domain_of': ['HandleRecord', 'RelatedIdentifier']} })
@@ -996,7 +1029,8 @@ class HdlDataRelated(ConfiguredBaseModel):
                        'HdlDataLicense',
                        'HdlDataResourceInfo',
                        'HdlDataRelated',
-                       'HdlDataLog'],
+                       'HdlDataLog',
+                       'HdlDataAdmin'],
          'equals_string': 'string',
          'ifabsent': 'string'} })
     value: Optional[list[Pid4CatRelation]] = Field(default=None, description="""The value of the handle data.""", json_schema_extra = { "linkml_meta": {'domain_of': ['HdlDataUrl',
@@ -1006,7 +1040,8 @@ class HdlDataRelated(ConfiguredBaseModel):
                        'HdlDataLicense',
                        'HdlDataResourceInfo',
                        'HdlDataRelated',
-                       'HdlDataLog']} })
+                       'HdlDataLog',
+                       'HdlDataAdmin']} })
 
 
 class CHANGES(HandleRecord):
@@ -1029,7 +1064,9 @@ class CHANGES(HandleRecord):
                        'METADATA_LICENSE',
                        'RESOURCE',
                        'RELATED',
-                       'CHANGES']} })
+                       'CHANGES',
+                       'HS_ADMIN',
+                       'HandleAdminReference']} })
     data: HdlDataLog = Field(default=..., description="""The data in the handle record.""", json_schema_extra = { "linkml_meta": {'domain_of': ['URL',
                        'EMAIL',
                        'STATUS',
@@ -1037,7 +1074,8 @@ class CHANGES(HandleRecord):
                        'METADATA_LICENSE',
                        'RESOURCE',
                        'RELATED',
-                       'CHANGES']} })
+                       'CHANGES',
+                       'HS_ADMIN']} })
     timestamp: datetime  = Field(default=..., description="""The iso datetime for the last update of the handle data.""", json_schema_extra = { "linkml_meta": {'domain_of': ['HandleRecord']} })
     ttl: Optional[int] = Field(default=86400, description="""A time to live in seconds for the handle record. Typically: 86400 => 1 day""", json_schema_extra = { "linkml_meta": {'domain_of': ['HandleRecord'], 'ifabsent': '86400'} })
     type: Literal["CHANGES"] = Field(default="CHANGES", description="""The type of handledata stored in the handle record.""", json_schema_extra = { "linkml_meta": {'designates_type': True, 'domain_of': ['HandleRecord', 'RelatedIdentifier']} })
@@ -1063,7 +1101,8 @@ class HdlDataLog(ConfiguredBaseModel):
                        'HdlDataLicense',
                        'HdlDataResourceInfo',
                        'HdlDataRelated',
-                       'HdlDataLog'],
+                       'HdlDataLog',
+                       'HdlDataAdmin'],
          'equals_string': 'string',
          'ifabsent': 'string'} })
     value: list[LogRecord] = Field(default=..., description="""The value of the handle data.""", json_schema_extra = { "linkml_meta": {'domain_of': ['HdlDataUrl',
@@ -1073,7 +1112,112 @@ class HdlDataLog(ConfiguredBaseModel):
                        'HdlDataLicense',
                        'HdlDataResourceInfo',
                        'HdlDataRelated',
-                       'HdlDataLog']} })
+                       'HdlDataLog',
+                       'HdlDataAdmin']} })
+
+
+class HSADMIN(HandleRecord):
+    """
+    The data element in the handle API for the administrator of the handle. Handle servers return it with every handle record.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/nfdi4cat/pid4cat-model',
+         'slot_usage': {'data': {'name': 'data',
+                                 'range': 'HdlDataAdmin',
+                                 'required': True},
+                        'index': {'maximum_value': 100,
+                                  'minimum_value': 100,
+                                  'name': 'index',
+                                  'required': True}}})
+
+    index: int = Field(default=..., description="""The index of the handle record.""", ge=100, le=100, json_schema_extra = { "linkml_meta": {'domain_of': ['URL',
+                       'EMAIL',
+                       'STATUS',
+                       'SCHEMA_VER',
+                       'METADATA_LICENSE',
+                       'RESOURCE',
+                       'RELATED',
+                       'CHANGES',
+                       'HS_ADMIN',
+                       'HandleAdminReference']} })
+    data: HdlDataAdmin = Field(default=..., description="""The data in the handle record.""", json_schema_extra = { "linkml_meta": {'domain_of': ['URL',
+                       'EMAIL',
+                       'STATUS',
+                       'SCHEMA_VER',
+                       'METADATA_LICENSE',
+                       'RESOURCE',
+                       'RELATED',
+                       'CHANGES',
+                       'HS_ADMIN']} })
+    timestamp: datetime  = Field(default=..., description="""The iso datetime for the last update of the handle data.""", json_schema_extra = { "linkml_meta": {'domain_of': ['HandleRecord']} })
+    ttl: Optional[int] = Field(default=86400, description="""A time to live in seconds for the handle record. Typically: 86400 => 1 day""", json_schema_extra = { "linkml_meta": {'domain_of': ['HandleRecord'], 'ifabsent': '86400'} })
+    type: Literal["HS_ADMIN"] = Field(default="HS_ADMIN", description="""The type of handledata stored in the handle record.""", json_schema_extra = { "linkml_meta": {'designates_type': True, 'domain_of': ['HandleRecord', 'RelatedIdentifier']} })
+
+
+class HdlDataAdmin(ConfiguredBaseModel):
+    """
+    The data class for the administrator of the handle.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/nfdi4cat/pid4cat-model',
+         'slot_usage': {'format': {'equals_string': 'admin',
+                                   'ifabsent': 'admin',
+                                   'name': 'format'},
+                        'value': {'name': 'value',
+                                  'range': 'HandleAdminReference',
+                                  'required': True}}})
+
+    format: Optional[Literal["admin"]] = Field(default="admin", description="""The format of the handle data.""", json_schema_extra = { "linkml_meta": {'domain_of': ['HdlDataUrl',
+                       'HdlDataContact',
+                       'HdlDataStatus',
+                       'HdlDataSchemaVer',
+                       'HdlDataLicense',
+                       'HdlDataResourceInfo',
+                       'HdlDataRelated',
+                       'HdlDataLog',
+                       'HdlDataAdmin'],
+         'equals_string': 'admin',
+         'ifabsent': 'admin'} })
+    value: HandleAdminReference = Field(default=..., description="""The value of the handle data.""", json_schema_extra = { "linkml_meta": {'domain_of': ['HdlDataUrl',
+                       'HdlDataContact',
+                       'HdlDataStatus',
+                       'HdlDataSchemaVer',
+                       'HdlDataLicense',
+                       'HdlDataResourceInfo',
+                       'HdlDataRelated',
+                       'HdlDataLog',
+                       'HdlDataAdmin']} })
+
+
+class HandleAdminReference(ConfiguredBaseModel):
+    """
+    The handle value that holds the key of the administrator, and the permissions it grants.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/nfdi4cat/pid4cat-model'})
+
+    handle: str = Field(default=..., description="""The handle that holds the administrator's key.""", json_schema_extra = { "linkml_meta": {'domain_of': ['HandleAPIRecord', 'HandleAdminReference']} })
+    index: int = Field(default=..., description="""The index of the key in that handle.""", json_schema_extra = { "linkml_meta": {'domain_of': ['URL',
+                       'EMAIL',
+                       'STATUS',
+                       'SCHEMA_VER',
+                       'METADATA_LICENSE',
+                       'RESOURCE',
+                       'RELATED',
+                       'CHANGES',
+                       'HS_ADMIN',
+                       'HandleAdminReference']} })
+    permissions: str = Field(default=..., description="""The administrator's permissions as a bit mask of 12 flags.""", json_schema_extra = { "linkml_meta": {'domain_of': ['HandleAdminReference']} })
+
+    @field_validator('permissions')
+    def pattern_permissions(cls, v):
+        pattern=re.compile(r"^[01]{12}$")
+        if isinstance(v, list):
+            for element in v:
+                if isinstance(element, str) and not pattern.search(element):
+                    err_msg = f"Invalid permissions format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.search(v):
+            err_msg = f"Invalid permissions format: {v}"
+            raise ValueError(err_msg)
+        return v
 
 
 class HandleRecordContainer(ConfiguredBaseModel):
@@ -1585,6 +1729,9 @@ RELATED.model_rebuild()
 HdlDataRelated.model_rebuild()
 CHANGES.model_rebuild()
 HdlDataLog.model_rebuild()
+HSADMIN.model_rebuild()
+HdlDataAdmin.model_rebuild()
+HandleAdminReference.model_rebuild()
 HandleRecordContainer.model_rebuild()
 Pid4CatRelation.model_rebuild()
 ResourceInfo.model_rebuild()

@@ -15,7 +15,7 @@ description: >-
   what is identified by the pid4cat handle, e.g. a sample or a device.
 
 # SchemaVer MODEL.REVISION.ADDITION; release tags start with it (docs/versioning.md)
-version: "0.4.4"
+version: "0.4.5"
 
 todos:
   - none
@@ -329,6 +329,57 @@ classes:
         range: LogRecord
         multivalued: true
         required: true
+
+  HS_ADMIN:
+    is_a: HandleRecord
+    description: >-
+      The data element in the handle API for the administrator of the handle.
+      Handle servers return it with every handle record.
+    slots:
+      - index
+      - data
+    slot_usage:
+      index:
+        minimum_value: 100
+        maximum_value: 100
+        required: true
+      data:
+        range: HdlDataAdmin
+        required: true
+
+  HdlDataAdmin:
+    description: >-
+      The data class for the administrator of the handle.
+    slots:
+      - format
+      - value
+    slot_usage:
+      format:
+        equals_string: 'admin'
+        ifabsent: 'admin'
+      value:
+        range: HandleAdminReference
+        required: true
+
+  HandleAdminReference:
+    description: >-
+      The handle value that holds the key of the administrator, and the
+      permissions it grants.
+    attributes:
+      handle:
+        range: string
+        required: true
+        description: The handle that holds the administrator's key.
+      index:
+        range: integer
+        required: true
+        description: The index of the key in that handle.
+      permissions:
+        range: string
+        pattern: '^[01]{12}$'
+        required: true
+        description: >-
+          The administrator's permissions as a bit mask of 12 flags.
 
   HandleRecordContainer:
     description: >-
