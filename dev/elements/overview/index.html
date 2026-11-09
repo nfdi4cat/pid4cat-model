@@ -927,6 +927,10 @@ The model describes metadata for the PID itself and how to access the identified
 <td>Data class for a person who plays a role relative to PID creation or curation.</td>
 </tr>
 <tr>
+<td><a href="../classes/HandleAdminReference/">HandleAdminReference</a></td>
+<td>The handle value that holds the key of the administrator, and the permissions it grants.</td>
+</tr>
+<tr>
 <td><a href="../classes/HandleAPIRecord/">HandleAPIRecord</a></td>
 <td>A class representing a handle record query response of the REST (json) API of a handle server.</td>
 </tr>
@@ -941,6 +945,10 @@ The model describes metadata for the PID itself and how to access the identified
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/EMAIL/">EMAIL</a></td>
 <td>The data element in the handle API for the contact email.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/HSADMIN/">HSADMIN</a></td>
+<td>The data element in the handle API for the administrator of the handle. Handle servers return it with every handle record.</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/METADATALICENSE/">METADATALICENSE</a></td>
@@ -969,6 +977,10 @@ The model describes metadata for the PID itself and how to access the identified
 <tr>
 <td><a href="../classes/HandleRecordContainer/">HandleRecordContainer</a></td>
 <td>A container for all HandleRecords.</td>
+</tr>
+<tr>
+<td><a href="../classes/HdlDataAdmin/">HdlDataAdmin</a></td>
+<td>The data class for the administrator of the handle.</td>
 </tr>
 <tr>
 <td><a href="../classes/HdlDataContact/">HdlDataContact</a></td>
@@ -1148,6 +1160,10 @@ The model describes metadata for the PID itself and how to access the identified
 <tr>
 <td><a href="../slots/orcid/">orcid</a></td>
 <td>The ORCID of the person</td>
+</tr>
+<tr>
+<td><a href="../slots/permissions/">permissions</a></td>
+<td>The administrator's permissions as a bit mask of 12 flags.</td>
 </tr>
 <tr>
 <td><a href="../slots/related_identifier/">related_identifier</a></td>

@@ -14,7 +14,7 @@ todos:
 see_also:
 - https://nfdi4cat.github.io/pid4cat-model
 id: https://w3id.org/nfdi4cat/pid4cat-model
-version: 0.4.4
+version: 0.4.5
 imports:
 - linkml:types
 - media_types
@@ -812,7 +812,7 @@ slots:
     description: The index of the handle record.
     from_schema: https://w3id.org/nfdi4cat/pid4cat-model
     slot_uri: pid4cat_model:index
-    owner: CHANGES
+    owner: HS_ADMIN
     domain_of:
     - URL
     - EMAIL
@@ -822,6 +822,7 @@ slots:
     - RESOURCE
     - RELATED
     - CHANGES
+    - HS_ADMIN
     range: integer
   data:
     name: data
@@ -829,7 +830,7 @@ slots:
     description: The data in the handle record.
     from_schema: https://w3id.org/nfdi4cat/pid4cat-model
     slot_uri: pid4cat_model:data
-    owner: CHANGES
+    owner: HS_ADMIN
     domain_of:
     - URL
     - EMAIL
@@ -839,6 +840,7 @@ slots:
     - RESOURCE
     - RELATED
     - CHANGES
+    - HS_ADMIN
     range: string
   format:
     name: format
@@ -846,7 +848,7 @@ slots:
     description: The format of the handle data.
     from_schema: https://w3id.org/nfdi4cat/pid4cat-model
     slot_uri: pid4cat_model:format
-    owner: HdlDataLog
+    owner: HdlDataAdmin
     domain_of:
     - HdlDataUrl
     - HdlDataContact
@@ -856,6 +858,7 @@ slots:
     - HdlDataResourceInfo
     - HdlDataRelated
     - HdlDataLog
+    - HdlDataAdmin
     range: string
   value:
     name: value
@@ -863,7 +866,7 @@ slots:
     description: The value of the handle data.
     from_schema: https://w3id.org/nfdi4cat/pid4cat-model
     slot_uri: pid4cat_model:value
-    owner: HdlDataLog
+    owner: HdlDataAdmin
     domain_of:
     - HdlDataUrl
     - HdlDataContact
@@ -873,6 +876,7 @@ slots:
     - HdlDataResourceInfo
     - HdlDataRelated
     - HdlDataLog
+    - HdlDataAdmin
     range: string
   relation_type:
     name: relation_type
@@ -1189,6 +1193,40 @@ slots:
     range: LogRecord
     inlined: true
     inlined_as_list: true
+  handleAdminReference__handle:
+    name: handleAdminReference__handle
+    description: The handle that holds the administrator's key.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    slot_uri: pid4cat_model:handle
+    alias: handle
+    owner: HandleAdminReference
+    domain_of:
+    - HandleAdminReference
+    range: string
+    required: true
+  handleAdminReference__index:
+    name: handleAdminReference__index
+    description: The index of the key in that handle.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    slot_uri: pid4cat_model:index
+    alias: index
+    owner: HandleAdminReference
+    domain_of:
+    - HandleAdminReference
+    range: integer
+    required: true
+  handleAdminReference__permissions:
+    name: handleAdminReference__permissions
+    description: The administrator's permissions as a bit mask of 12 flags.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    slot_uri: pid4cat_model:permissions
+    alias: permissions
+    owner: HandleAdminReference
+    domain_of:
+    - HandleAdminReference
+    range: string
+    required: true
+    pattern: ^[01]{12}$
   handleRecordContainer__contains_pids:
     name: handleRecordContainer__contains_pids
     description: The HandleRecords contained in the container.
@@ -1862,6 +1900,77 @@ slots:
     range: LogRecord
     required: true
     multivalued: true
+    inlined: true
+    inlined_as_list: true
+  HS_ADMIN_index:
+    name: HS_ADMIN_index
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/index
+    description: The index of the handle record.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: index
+    domain: HS_ADMIN
+    slot_uri: pid4cat_model:index
+    alias: index
+    owner: HS_ADMIN
+    domain_of:
+    - HS_ADMIN
+    is_usage_slot: true
+    usage_slot_name: index
+    range: integer
+    required: true
+    minimum_value: 100
+    maximum_value: 100
+  HS_ADMIN_data:
+    name: HS_ADMIN_data
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/data
+    description: The data in the handle record.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: data
+    domain: HS_ADMIN
+    slot_uri: pid4cat_model:data
+    alias: data
+    owner: HS_ADMIN
+    domain_of:
+    - HS_ADMIN
+    is_usage_slot: true
+    usage_slot_name: data
+    range: HdlDataAdmin
+    required: true
+    inlined: true
+    inlined_as_list: true
+  HdlDataAdmin_format:
+    name: HdlDataAdmin_format
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/format
+    description: The format of the handle data.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: format
+    domain: HdlDataAdmin
+    slot_uri: pid4cat_model:format
+    ifabsent: admin
+    alias: format
+    owner: HdlDataAdmin
+    domain_of:
+    - HdlDataAdmin
+    is_usage_slot: true
+    usage_slot_name: format
+    range: string
+    equals_string: admin
+  HdlDataAdmin_value:
+    name: HdlDataAdmin_value
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/value
+    description: The value of the handle data.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: value
+    domain: HdlDataAdmin
+    slot_uri: pid4cat_model:value
+    alias: value
+    owner: HdlDataAdmin
+    domain_of:
+    - HdlDataAdmin
+    is_usage_slot: true
+    usage_slot_name: value
+    range: HandleAdminReference
+    required: true
     inlined: true
     inlined_as_list: true
   ResourceInfo_resource_category:
@@ -2762,6 +2871,76 @@ classes:
         required: true
         multivalued: true
     class_uri: pid4cat_model:HdlDataLog
+  HS_ADMIN:
+    name: HS_ADMIN
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/HSADMIN
+    description: The data element in the handle API for the administrator of the handle.
+      Handle servers return it with every handle record.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    is_a: HandleRecord
+    slots:
+    - HandleRecord_timestamp
+    - HandleRecord_ttl
+    - HandleRecord_type
+    - HS_ADMIN_index
+    - HS_ADMIN_data
+    slot_usage:
+      index:
+        name: index
+        required: true
+        minimum_value: 100
+        maximum_value: 100
+      data:
+        name: data
+        range: HdlDataAdmin
+        required: true
+    class_uri: pid4cat_model:HSADMIN
+  HdlDataAdmin:
+    name: HdlDataAdmin
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/HdlDataAdmin
+    description: The data class for the administrator of the handle.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    slots:
+    - HdlDataAdmin_format
+    - HdlDataAdmin_value
+    slot_usage:
+      format:
+        name: format
+        ifabsent: admin
+        equals_string: admin
+      value:
+        name: value
+        range: HandleAdminReference
+        required: true
+    class_uri: pid4cat_model:HdlDataAdmin
+  HandleAdminReference:
+    name: HandleAdminReference
+    definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/HandleAdminReference
+    description: The handle value that holds the key of the administrator, and the
+      permissions it grants.
+    from_schema: https://w3id.org/nfdi4cat/pid4cat-model
+    slots:
+    - handleAdminReference__handle
+    - handleAdminReference__index
+    - handleAdminReference__permissions
+    attributes:
+      handle:
+        name: handle
+        description: The handle that holds the administrator's key.
+        range: string
+        required: true
+      index:
+        name: index
+        description: The index of the key in that handle.
+        range: integer
+        required: true
+      permissions:
+        name: permissions
+        description: The administrator's permissions as a bit mask of 12 flags.
+        range: string
+        required: true
+        pattern: ^[01]{12}$
+    class_uri: pid4cat_model:HandleAdminReference
   HandleRecordContainer:
     name: HandleRecordContainer
     definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/HandleRecordContainer
@@ -3065,6 +3244,6 @@ classes:
     class_uri: pid4cat_model:Pid4CatRecord
 metamodel_version: 1.12.0
 source_file: pid4cat_model.yaml
-source_file_date: '2026-11-06T18:06:33'
-source_file_size: 31421
+source_file_date: '2026-11-09T23:58:06'
+source_file_size: 32706
 

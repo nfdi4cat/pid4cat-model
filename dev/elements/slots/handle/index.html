@@ -867,6 +867,11 @@
 <td>A class representing a handle record query response of the REST (json) API of a handle server.</td>
 <td>yes</td>
 </tr>
+<tr>
+<td><a href="../../classes/HandleAdminReference/">HandleAdminReference</a></td>
+<td>The handle value that holds the key of the administrator, and the permissions it grants.</td>
+<td>no</td>
+</tr>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
@@ -885,7 +890,7 @@
 </tr>
 <tr>
 <td>Domain Of</td>
-<td><a href="../../classes/HandleAPIRecord/">HandleAPIRecord</a></td>
+<td><a href="../../classes/HandleAPIRecord/">HandleAPIRecord</a>, <a href="../../classes/HandleAdminReference/">HandleAdminReference</a></td>
 </tr>
 <tr>
 <td>### Cardinality and Requirements</td>
@@ -955,6 +960,7 @@
 <span class="nt">identifier</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="nt">domain_of</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HandleAPIRecord</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HandleAdminReference</span>
 <span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
 <span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </code></pre></div>
