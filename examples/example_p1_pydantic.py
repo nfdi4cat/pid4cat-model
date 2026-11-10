@@ -1,5 +1,4 @@
 import json
-import sys
 from datetime import datetime
 from pathlib import Path
 
@@ -9,10 +8,6 @@ from pid4cat_model.datamodel import pid4cat_model_pydantic as p4c
 
 # Demonstrate the use of Pydantic models
 
-if sys.version_info < (3, 11):
-    raise RuntimeError(
-        "Python >= 3.11 is required until merging of https://github.com/linkml/linkml-runtime/pull/357"
-    )
 
 p1_Agent = p4c.Agent(
     name="Data Fuzzi",
