@@ -8,6 +8,8 @@ ignore:
   - .copier-answers.yml
   # Ignore schema files that may not conform due to imports.
   - docs/schema/*.yaml
+  # Example outputs written by yaml_dumper, which does not indent sequences.
+  - examples/example_p1_*.yaml
 
 rules:
   document-start: disable  # Don't check if document has a start marker (---).

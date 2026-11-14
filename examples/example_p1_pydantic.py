@@ -174,20 +174,23 @@ c = p4c.HandleRecordContainer(contains_pids=[p1_api])
 print(yaml_dumper.dumps(c))
 
 script_folder = Path(__file__).parent
-with open(script_folder / "example_p1.yaml", "w", encoding="utf-8") as f:
+# newline="\n" keeps the committed outputs identical on all platforms.
+with open(
+    script_folder / "example_p1_pydantic.yaml", "w", encoding="utf-8", newline="\n"
+) as f:
     f.write(yaml_dumper.dumps(c))
 
 # Workaround for linkml/linkml#4250: json_dumper writes pydantic datetimes with a space.
 json_dump = json_dumper.dumps(p1_api.model_dump(mode="json"), inject_type=False)
 print(json_dump)
-with open(script_folder / "example_p1.json", "w", encoding="utf-8") as f:
-    f.write(json_dump)
+with open(
+    script_folder / "example_p1_pydantic.json", "w", encoding="utf-8", newline="\n"
+) as f:
+    f.write(json_dump + "\n")
 
 data_json = p1_api.model_dump_json(indent=2)
-with open(script_folder / "example_p1_pydantic.json", "w", encoding="utf-8") as f:
-    f.write(data_json)
 
-print("Dumped to example_p1_pydantic.json")
+print("Dumped to example_p1_pydantic.yaml and example_p1_pydantic.json")
 
 # Load the data again to pydantic class
 
