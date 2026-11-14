@@ -3,7 +3,7 @@
   "handle": "21.T12995/4cat/d4y/lik-1",
   "values": [
     {
-      "timestamp": "2024-05-15T15:51:15+00:00",
+      "timestamp": "2024-05-15T15:51:15Z",
       "ttl": 86400,
       "type": "URL",
       "index": 1,
@@ -13,7 +13,7 @@
       }
     },
     {
-      "timestamp": "2024-05-15T15:51:15+00:00",
+      "timestamp": "2024-05-15T15:51:15Z",
       "ttl": 86400,
       "type": "EMAIL",
       "index": 10,
@@ -23,7 +23,7 @@
       }
     },
     {
-      "timestamp": "2024-05-15T15:51:15+00:00",
+      "timestamp": "2024-05-15T15:51:15Z",
       "ttl": 86400,
       "type": "STATUS",
       "index": 11,
@@ -33,7 +33,7 @@
       }
     },
     {
-      "timestamp": "2024-05-15T15:51:15+00:00",
+      "timestamp": "2024-05-15T15:51:15Z",
       "ttl": 86400,
       "type": "SCHEMA_VER",
       "index": 12,
@@ -43,7 +43,7 @@
       }
     },
     {
-      "timestamp": "2024-05-15T15:51:15+00:00",
+      "timestamp": "2024-05-15T15:51:15Z",
       "ttl": 86400,
       "type": "METADATA_LICENSE",
       "index": 13,
@@ -53,7 +53,7 @@
       }
     },
     {
-      "timestamp": "2024-05-15T15:51:15+00:00",
+      "timestamp": "2024-05-15T15:51:15Z",
       "ttl": 86400,
       "type": "RESOURCE",
       "index": 14,
@@ -75,7 +75,7 @@
       }
     },
     {
-      "timestamp": "2024-05-15T15:51:15+00:00",
+      "timestamp": "2024-05-15T15:51:15Z",
       "ttl": 86400,
       "type": "RELATED",
       "index": 15,
@@ -89,7 +89,7 @@
               "identifier": "ex:collection1",
               "resolving_url": "https://example.org/collection1"
             },
-            "datetime_log": "2024-02-19T00:00:00+00:00"
+            "datetime_log": "2024-02-19T00:00:00Z"
           },
           {
             "relation_type": "IS_REFERENCED_BY",
@@ -98,13 +98,13 @@
               "identifier": "ex:referenced1",
               "resolving_url": "https://example.org/referenced1"
             },
-            "datetime_log": "2024-02-19T00:00:00+00:00"
+            "datetime_log": "2024-02-19T00:00:00Z"
           }
         ]
       }
     },
     {
-      "timestamp": "2024-05-15T15:51:15+00:00",
+      "timestamp": "2024-05-15T15:51:15Z",
       "ttl": 86400,
       "type": "CHANGES",
       "index": 16,
@@ -112,7 +112,7 @@
         "format": "string",
         "value": [
           {
-            "datetime_log": "2024-02-19T00:00:00+00:00",
+            "datetime_log": "2024-02-19T00:00:00Z",
             "has_agent": {
               "name": "Data Fuzzi",
               "email_address": "data.fuzzi@example.org",
@@ -124,7 +124,7 @@
             "description": "Registration completed."
           },
           {
-            "datetime_log": "2024-05-15T15:51:15+00:00",
+            "datetime_log": "2024-05-15T15:51:15Z",
             "has_agent": {
               "name": "Data Fuzzi",
               "email_address": "data.fuzzi@example.org",

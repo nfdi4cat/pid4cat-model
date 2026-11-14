@@ -177,7 +177,8 @@ script_folder = Path(__file__).parent
 with open(script_folder / "example_p1.yaml", "w", encoding="utf-8") as f:
     f.write(yaml_dumper.dumps(c))
 
-json_dump = json_dumper.dumps(p1_api, inject_type=False)
+# Workaround for linkml/linkml#4250: json_dumper writes pydantic datetimes with a space.
+json_dump = json_dumper.dumps(p1_api.model_dump(mode="json"), inject_type=False)
 print(json_dump)
 with open(script_folder / "example_p1.json", "w", encoding="utf-8") as f:
     f.write(json_dump)
