@@ -164,9 +164,13 @@ print(json_dumper.dumps(p1_api))
 
 container = p4c.HandleRecordContainer(contains_pids=[p1_api])
 
-# write json to file
+# write json and yaml to file; newline="\n" keeps them identical on all platforms
 script_folder = Path(__file__).parent
-with open(script_folder / "example_p1.json", "w", encoding="utf-8") as f:
-    f.write(json_dumper.dumps(container, inject_type=False))
-with open(script_folder / "example_p1.yaml", "w", encoding="utf-8") as f:
+with open(
+    script_folder / "example_p1_dataclasses.json", "w", encoding="utf-8", newline="\n"
+) as f:
+    f.write(json_dumper.dumps(container, inject_type=False) + "\n")
+with open(
+    script_folder / "example_p1_dataclasses.yaml", "w", encoding="utf-8", newline="\n"
+) as f:
     f.write(yaml_dumper.dumps(container))
