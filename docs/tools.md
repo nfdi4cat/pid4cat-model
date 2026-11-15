@@ -4,7 +4,7 @@
 
 [pid4cat-model](https://pypi.org/project/pid4cat-model/) is a Python package for
 
-- interacting with the pid4cat API to create, read and update pid4cat identifiers and their metadata.
+- reading pid4cat records from the [Handle.net API](./apis.md#handlenet-api) (module `pid4cat_model.handle_api`).
 - validating pid4cat metadata against the pid4cat-model schema.
 - calculating and validating ISO 7064 checksums which may be used in local identifier schemes.
 
@@ -28,27 +28,20 @@ Pure systems and Hybrid systems.
 The pid4cat_model.iso7064 module contains implementations of all algorithms in the table.
 They accept letters in either case and return check characters in lower case.
 
-## pid4cat API
+## pid4cat registry
 
-A REST API server that provides the endpoints to create, read and update pid4cat identifiers. It handles authentication of the SNAAs and SNAA-related validation.
+The pid4cat registry is the service with which SNAAs create and manage the PIDs in their namespaces.
+It authenticates the SNAAs, validates PIDs and their metadata against the pid4cat-model, and registers the PIDs on the Handle server.
+Its main features are:
 
-The source code of the software is not yet available as open source but there are plans to release it in the future.
+- Create, read, update and state changes of PIDs in the SNAA's namespaces
+- Test namespaces on a separate test Handle server
+- Search across the PIDs a user can access
+- Periodic checks that landing pages and representation variants are reachable
+- A [status dashboard](https://pid.nfdi4cat.org/dashboard)
 
-For usage instructions, see [pid4cat API](#pid4cat-api).
-
-### Features
-
-- Sub-namespace management
-- Create, read, update operation on single pid4cat handles
-- Bulk operations (future)
-- Reporting (future)
-- Monitoring (future)
-
-### Access
-
-The pid4cat-admin tool is available only to the core organization and authorized administrators.
-
-Integration with NFDI Base4IAM is ongoing in order to use NFDI identification and authorisation services for access control to the pid4cat API gateway.
+The source code is not yet published. It will be released in 2027 under Apache 2.0 licence.
+For usage, see [pid4cat registry API](./apis.md#pid4cat-registry-api).
 
 ## pid4cat in Django
 
