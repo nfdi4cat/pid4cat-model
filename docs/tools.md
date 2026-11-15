@@ -49,9 +49,5 @@ A Django application [django-pid](https://gitlab.com/opensourcelab/scientificdat
 
 ## Schema representations
 
-Through LinkML generators we provide other schema representations that are automatically derived from the pid4cat-model.
-These are available in the repository under [/project](https://github.com/nfdi4cat/pid4cat-model/tree/main/project), and are, for example JSON-schema, SHACL shapes, SQL.
-
-## Integration Libraries
-
-Through LinkML generators, pid4cat provides integration code for some programming languages other than Python, see [generated model artifacts](https://github.com/nfdi4cat/pid4cat-model/tree/main/project).
+LinkML generators derive other representations from the pid4cat-model, for example JSON Schema, SHACL shapes, SQL and code for programming languages other than Python.
+They are in the [/project](https://github.com/nfdi4cat/pid4cat-model/tree/main/project) folder of the repository.

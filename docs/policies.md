@@ -7,14 +7,6 @@ pid4cat is governed by a two-tiered structure:
 1. **pid4cat Core Organization**: Responsible for the overall governance, technical operation, and sustainability of the pid4cat service
 2. **Sub-Name Assigning Authorities (SNAAs)**: Partner organizations responsible for managing identifiers within their assigned sub-namespaces
 
-## Governance Principles
-
-1. **Transparency**: All policies, procedures, and decisions are documented and publicly available
-2. **Inclusivity**: The governance process includes input from all stakeholders
-3. **Sustainability**: Governance structures are designed to ensure the long-term viability of the service
-4. **Accountability**: Clear responsibilities and reporting mechanisms are established
-5. **Community-driven**: Governance is responsive to community needs and priorities
-
 ## Registration as SNAA
 
 To become a Sub-Name Assigning Authority (SNAA), an organization must:
@@ -44,19 +36,13 @@ Metadata associated with identifiers can be updated to reflect changes in the re
 4. **Provenance**: All metadata updates are recorded with provenance information
 5. **Metadata License**: All metadata is made available under CC0 1.0 Universal Public Domain Dedication
 
-## Access Policy
-
-1. **Landing Pages**: All identifiers must resolve to a landing page or point directly to the resource.
-2. **Resource Access**: If a resource has access restrictions, a landing page must provide clear information about how to access the resource.
-3. **Metadata Access**: Metadata associated with identifiers should be openly accessible.
-
 ## Resource Access
 
 pid4cat does not require identified resources to be openly accessible. However:
 
 1. **Landing page requirement**: All identifiers must resolve to a landing page with basic metadata about the resource or point directly to the resource.
 2. **Access information**: If access to the resource is restricted, the landing page must provide information about the restrictions and if/how access can be obtained.
-3. **Metadata accessibility**: Metadata associated with identifiers should be openly accessible, even if the resource itself is not
+3. **Metadata accessibility**: Metadata associated with identifiers is openly accessible, even if the resource itself is not.
 
 ## SNAA Responsibilities
 
@@ -69,14 +55,6 @@ Each SNAA is responsible for:
 5. **Contact Information**: Maintaining up-to-date technical and administrative contacts
 6. **Sustainability**: Contributing to the long-term sustainability of pid4cat
 
-## Resource Access
-
-pid4cat does not mandate that identified resources be openly accessible. However:
-
-1. **Landing page requirement**: All identifiers must resolve to a landing page with basic metadata about the resource
-2. **Access information**: If access to the resource is restricted, the landing page must provide clear information about the restrictions and how access can be obtained
-3. **Metadata accessibility**: Metadata associated with identifiers should be openly accessible, even if the resource itself is not.
-
 ## Licensing
 
 pid4cat adopts the following licensing policies:
@@ -87,7 +65,7 @@ pid4cat adopts the following licensing policies:
    - This allows for unrestricted reuse of metadata, promoting interoperability and discovery
 3. **Resource licensing**:
    - pid4cat does not mandate specific licenses for identified resources
-   - SNAAs should include clear license information in the metadata
+   - SNAAs should state the license of the resource on its landing page
    - Recommended licenses include Creative Commons licenses, Open Data Commons licenses, and other open licenses
 
 ## Sustainability
