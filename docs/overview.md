@@ -10,7 +10,7 @@ It enables partner organizations to manage their own sub-namespaces while mainta
 It consists of three main components:
 
 1. **pid4cat-model**: A data model for metadata of persistent identifiers
-2. **pid4cat API**: A REST API for creating, updating, and retrieving PIDs and their associated metadata
+2. **pid4cat registry**: A service with a REST API for creating, updating, and retrieving PIDs and their associated metadata
 3. **pid4cat hosting**: Operation of a production handle system with an officially registered permanent handle-prefix 21.11165 and of an analogous test system with the demo prefix 21.T11978.
 
 ## Design goals

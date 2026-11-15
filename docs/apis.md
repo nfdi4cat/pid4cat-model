@@ -1,54 +1,94 @@
 # REST APIs
 
-HLRS API (create, read, update)
+Two APIs give access to pid4cat handles:
 
-## pid4cat API
+- The **pid4cat registry API** creates and changes PIDs. Only namespace owners (SNAAs) can use it.
+- The **Handle.net API** returns the current handle record of any PID. It is public and read-only.
 
-The pid4cat API provides a RESTful interface for creating, reading, and updating pid4cat identifiers and their associated metadata.
+## pid4cat registry API
 
-### Base URL
+!!! warning "The registry is in pre-production testing."
 
-- Production: `https://api.nfdi4cat.org/\<version\>`
+    URLs and behaviour may change until the service is launched.
 
-- Test: `https://api.nfdi4cat.org/testpid/\<version\>`
+The registry is the reference for its own API:
+[Swagger UI](https://pid.nfdi4cat.org/docs) to try requests,
+[ReDoc](https://pid.nfdi4cat.org/redoc) with full-text search,
+and the OpenAPI specification as [YAML](https://pid.nfdi4cat.org/openapi.yaml) or [JSON](https://pid.nfdi4cat.org/openapi.json).
+This section gives an overview.
+
+The base URL is `https://pid.nfdi4cat.org/api/v1`.
+A PID `<prefix>/4cat/<ns-suffix>/<id-suffix>` (see [Structure of pid4cat handles](./getting-started.md#structure-of-pid4cat-handles)) has the path
+
+```http
+https://pid.nfdi4cat.org/api/v1/pids/<prefix>/4cat/<ns-suffix>/<id-suffix>
+```
 
 ### Authentication
 
-The API uses API key authentication. Each SNAA is issued a unique API key that must be included in all requests:
+Each namespace owner receives an API key from the pid4cat administrators.
+The API key is exchanged for short-lived tokens:
+
+1. `POST /api/v1/auth/login` with `{"api_key": "…"}` returns an `access_token`, a `refresh_token` and the lifetime of the access token in seconds (`expires_in`).
+2. Every request sends the access token in the header `Authorization: Bearer <access_token>`.
+3. `POST /api/v1/auth/refresh` with `{"refresh_token": "…"}` returns a new token pair.
+   A refresh token works only once.
+
+### Creating a PID
+
+The namespace owner chooses the `<id-suffix>` and creates the PID with a `POST` to its path:
 
 ```http
-Authorization: Bearer <api-key>
+POST https://pid.nfdi4cat.org/api/v1/pids/<prefix>/4cat/<ns-suffix>/<id-suffix>
+Authorization: Bearer <access_token>
+Content-Type: application/json
+
+{
+  "landing_page_url": "https://example.org/samples/s-001",
+  "status": "REGISTERED",
+  "curation_contact": "pid-curator@example.org",
+  "resource_info": {
+    "resource_category": "SAMPLE",
+    "representation_variants": []
+  }
+}
 ```
 
-Future:
+The fields follow the [pid4cat metadata model](./metadata.md).
+A PID that already exists gets the status 409.
 
-```http
-Authorization: Bearer <api-key>
-```
+### PID states
 
-### Endpoints
+| State | Meaning | On the Handle server |
+| ----- | ------- | -------------------- |
+| SUBMITTED | Reserved; not yet linked to a resource | Not present |
+| REGISTERED | Linked to a resource | Resolves to the landing page |
+| DEPRECATED | Deprecated, for example because the resource can no longer be found | Kept, with status DEPRECATED |
+| OBSOLETED | Obsolete, for example because another PID replaces it, or deleted | Kept if the PID was ever REGISTERED |
 
-The endpoints are described in the auto-generated [API documentation](https://api.nfdi4cat.org/testpid/v2/index.html).
+A new PID is SUBMITTED unless the request sets `"status": "REGISTERED"` and gives a landing page.
+`POST …/activate` registers a SUBMITTED PID.
+DEPRECATED and OBSOLETED are final.
 
-A demo showing how to access all available API endpoints from Python is provided in the [Jupyter](https://jupyter.org/) notebook [examples/api-v2-demo.ipynb](https://github.com/nfdi4cat/pid4cat-model/blob/main/examples/api-v2-demo.ipynb).
+### Changing a PID
+
+Each part of the metadata has its own path below the PID, for example `…/landing-page`, `…/contact`, `…/resource-info` and `…/relations`.
+`GET` reads the part, `PUT` replaces it, and `POST …/relations` adds one relation.
+The `<id-suffix>` of a PID cannot be changed.
+
+### Test namespaces
+
+Each namespace `<ns-suffix>` has a test namespace `test-<ns-suffix>`.
+Its PIDs are registered on a separate test Handle server, so an integration can be tried out without creating real PIDs.
 
 ## Handle.net API
 
-In addition to the pid4cat API, identifiers and their metadata can also be retrieved through the API of the [HDL.NET Proxy Server System](https://www.handle.net/proxy_servlet.html).
-
-### Base URL
-
-```http
-https://hdl.handle.net/api/handles/
-```
-
-### Request full handle metadata
+The [HDL.NET Proxy Server System](https://www.handle.net/proxy_servlet.html) returns the handle record of every pid4cat PID on the Handle server.
+It needs no authentication.
 
 ```http
-GET  https://hdl.handle.net/api/handles/<prefix>/4cat/<ns-suffix>/<id-suffix>
+GET https://hdl.handle.net/api/handles/<prefix>/4cat/<ns-suffix>/<id-suffix>
 ```
-
-The parts of the handle are described in [Structure of pid4cat handles](./getting-started.md#structure-of-pid4cat-handles).
 
 Response:
 
@@ -72,10 +112,8 @@ Response:
 }
 ```
 
-Tip: To request a tabular HTML view of all data in the pid4cat record you can attach the query parameter `noredirect` to the PID URL, for example
+The query parameter `noredirect` shows the handle record as an HTML table, for example
 
 - `https://hdl.handle.net/21.11165/4cat/d4y/sample-001?noredirect`
 
-### Limitations
-
-The Handle.net API provides read-only access to pid4cat identifiers. To create or update identifiers, the pid4cat API must be used.
+The Jupyter notebook [examples/hdl-net-api-demo.ipynb](https://github.com/nfdi4cat/pid4cat-model/blob/main/examples/hdl-net-api-demo.ipynb) reads pid4cat records with the `pid4cat_model.handle_api` module of the [pid4cat-model package](./tools.md#pid4cat-model-python-package).
