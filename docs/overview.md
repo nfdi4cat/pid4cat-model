@@ -262,5 +262,5 @@ Key milestones in the development of pid4cat:
 
 - **2023**: Initial conceptualization of pid4cat
 - **2024**: Launch of the production handle server
-- **2025**: Launch of pid4cat service; Onboarding of initial SNAAs
-- **2026**: Pre-production testing of the pid4cat registry
+- **2025**: Launch of pid4cat service
+- **2026**: Pre-production testing of the pid4cat registry; Onboarding of initial SNAAs
