@@ -888,13 +888,8 @@
 
 <h1 id="getting-started">Getting Started</h1>
 <h2 id="registration">Registration</h2>
-<p>To use pid4cat services, organizations must apply to become a Sub-Name Assigning Authority (SNAA). The application process involves:</p>
-<ol>
-<li>Submitting an application form to the pid4cat core organization (TODO add contact info)</li>
-<li>Agreeing to the pid4cat policies (detailed in section <a href="../policies/">Policies</a>)</li>
-<li>Demonstrating the capability to maintain the identified resources</li>
-<li>Designating a technical and administrative contact</li>
-</ol>
+<p>To use pid4cat services, an organization applies to <a href="mailto:handles@hlrs.de">HLRS</a> to become a Sub-Name Assigning Authority (SNAA).
+The requirements are listed in <a href="../policies/#registration-as-snaa">Registration as SNAA</a>.</p>
 <p>Upon approval, the organization will receive:</p>
 <ul>
 <li>A unique namespace suffix (<code>&lt;ns-suffix&gt;</code>)</li>
@@ -933,8 +928,9 @@ The test namespace <code>test-&lt;ns-suffix&gt;</code> allows trying this out wi
 <li><strong>Direct resolution</strong>: <code>https://hdl.handle.net/&lt;prefix&gt;/4cat/&lt;ns-suffix&gt;/&lt;id-suffix&gt;</code></li>
 <li><strong>pid4cat resolver</strong>: <code>https://pid.nfdi4cat.org/&lt;prefix&gt;/4cat/&lt;ns-suffix&gt;/&lt;id-suffix&gt;</code></li>
 <li><strong>pid4cat resolver</strong>: <code>https://handle.nfdi4cat.org/&lt;prefix&gt;/4cat/&lt;ns-suffix&gt;/&lt;id-suffix&gt;</code></li>
+<li><strong>DOI proxy</strong>: <code>https://doi.org/&lt;prefix&gt;/4cat/&lt;ns-suffix&gt;/&lt;id-suffix&gt;</code>; the DOI resolver also resolves handles other than DOIs.</li>
 </ol>
-<p>Resolution will typically redirect to the landing page for the identified resource, which should be maintained by the responsible SNAA.</p>
+<p>Resolution redirects to the landing page of the identified resource, which the responsible SNAA maintains.</p>
 
 
 

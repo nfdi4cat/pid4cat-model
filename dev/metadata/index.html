@@ -499,17 +499,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#metadata-schema" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Metadata Schema
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#permanent-uris-for-the-metadata-schema" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -845,17 +834,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#metadata-schema" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Metadata Schema
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#permanent-uris-for-the-metadata-schema" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -909,11 +887,12 @@
 
 
 <h1 id="metadata">Metadata</h1>
-<p>For pid4cat handles metadata are stored directly in the handle record. In this respect, pid4cat-handles are similar to <a href="http://www.pidconsortium.net/">ePIC</a>-handles which also use the handle record to store metadata. The DOI-system is, however, different: Its metadata are managed by the DOI-providers like DataCite in separate data systems.</p>
-<p>The metadata for pid4cat mainly include data about the PID and its relation to other PIDs. The relation information should relate the new PID to relevant existing PIDs. pid4cat allows, but does not mandate, that PIDs are updated with new relations that come into existence only later, after the PID assignment to a resource.</p>
-<p>The metadata schema for pid4cat is defined as a Linked Data Modeling Language (LinkML) schema. From this LinkML schema various representations can be created.</p>
-<p>The schema is documented under <a href="../elements/overview/">overview</a>.</p>
-<p>The Python package derived from the schema is described in the section <a href="../tools/">Tools and Services</a>.</p>
+<p>pid4cat handles store their metadata directly in the handle record, as <a href="http://www.pidconsortium.net/">ePIC</a> handles do.
+DOI metadata, in contrast, are managed by DOI providers such as DataCite in separate systems.</p>
+<p>The metadata describe the PID and its relations to other PIDs.
+Relations to relevant existing PIDs should be given when the PID is created; relations that come into existence later may be added, but this is not required.</p>
+<p>The metadata schema is defined in the Linked Data Modeling Language (LinkML) and documented in <a href="../elements/overview/">Schema</a>.
+The Python package derived from the schema is described in <a href="../tools/">Tools and Services</a>.</p>
 <h2 id="core-metadata-elements">Core Metadata Elements</h2>
 <p>pid4cat requires a set of core metadata elements for each identifier:</p>
 <table>
@@ -926,8 +905,13 @@
 </thead>
 <tbody>
 <tr>
+<td><code>URL</code></td>
+<td>Landing page URL</td>
+<td>Yes</td>
+</tr>
+<tr>
 <td><code>EMAIL</code></td>
-<td>Contact email of PID curator in responsible SNAA.</td>
+<td>Contact email of PID curator in responsible SNAA</td>
 <td>Yes</td>
 </tr>
 <tr>
@@ -963,15 +947,6 @@
 </tbody>
 </table>
 <p>These metadata elements are stored in the handle records of pid4cat PIDs.</p>
-<h2 id="metadata-schema">Metadata Schema</h2>
-<p>The pid4cat metadata schema is defined using LinkML, which allows for:</p>
-<ul>
-<li>Clear definition of metadata elements</li>
-<li>Validation of metadata values</li>
-<li>Generation of various schema representations (JSON Schema, SHACL, etc.)</li>
-<li>Integration with semantic web technologies</li>
-</ul>
-<p>The complete schema is available in the <a href="https://github.com/nfdi4cat/pid4cat-model">pid4cat-model repository</a>.</p>
 <h2 id="permanent-uris-for-the-metadata-schema">Permanent URIs for the metadata schema</h2>
 <p>All elements in the schema (classes, slots, enums) have <a href="https://w3id.org/">w3id.org</a>-URIs.
 These point to the latest schema version released.<BR>For example: <a href="https://w3id.org/nfdi4cat/pid4cat-model/class/HandleRecord">https://w3id.org/nfdi4cat/pid4cat-model/class/HandleRecord</a> is redirected to  <BR> <a href="https://nfdi4cat.github.io/pid4cat-model/latest/elements/classes/HandleRecord/">https://nfdi4cat.github.io/pid4cat-model/latest/elements/classes/HandleRecord/</a>.</p>
@@ -985,21 +960,11 @@ These point to the latest schema version released.<BR>For example: <a href="http
 <div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-o<span class="w"> </span>pid4cat_model.yaml<span class="w"> </span>-L<span class="w"> </span>-H<span class="w"> </span><span class="s2">"accept:application/yaml"</span><span class="w"> </span>https://w3id.org/nfdi4cat/pid4cat-model
 </code></pre></div>
 <h2 id="metadata-validation">Metadata Validation</h2>
-<p>All metadata submitted to pid4cat is validated against the pid4cat-model schema. This ensures:</p>
-<ul>
-<li>Required fields are present</li>
-<li>Field values conform to expected formats</li>
-<li>Structural integrity of the metadata</li>
-</ul>
-<p>Validation failures result in rejection of the current operation (create or update), with detailed error messages to assist in their correction.</p>
+<p>The pid4cat registry validates all metadata against the pid4cat-model schema.
+A request with invalid metadata is rejected with an error message for each problem.</p>
 <h2 id="metadata-access">Metadata Access</h2>
-<p>pid4cat metadata can be accessed using the following methods:</p>
-<ul>
-<li>Direct API access</li>
-<li>Handle record retrieval</li>
-<li>Metadata dumps (for bulk analysis)</li>
-</ul>
-<p>All metadata is provided under a CC0 1.0 Universal Public Domain Dedication license, enabling unrestricted reuse.</p>
+<p>pid4cat metadata can be read with the <a href="../apis/#pid4cat-registry-api">pid4cat registry API</a> and, for PIDs on the Handle server, publicly with the <a href="../apis/#handlenet-api">Handle.net API</a>.
+All metadata is provided under the CC0 1.0 Universal Public Domain Dedication, enabling unrestricted reuse.</p>
 
 
 
