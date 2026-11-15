@@ -617,41 +617,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#pid4cat-api" class="md-nav__link">
+  <a href="#pid4cat-registry" class="md-nav__link">
     <span class="md-ellipsis">
       
-        pid4cat API
+        pid4cat registry
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="pid4cat API">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#features" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Features
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#access" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Access
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -873,41 +845,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#pid4cat-api" class="md-nav__link">
+  <a href="#pid4cat-registry" class="md-nav__link">
     <span class="md-ellipsis">
       
-        pid4cat API
+        pid4cat registry
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="pid4cat API">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#features" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Features
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#access" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Access
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -968,7 +912,7 @@
 <h2 id="pid4cat-model-python-package">pid4cat-model Python package</h2>
 <p><a href="https://pypi.org/project/pid4cat-model/">pid4cat-model</a> is a Python package for</p>
 <ul>
-<li>interacting with the pid4cat API to create, read and update pid4cat identifiers and their metadata.</li>
+<li>reading pid4cat records from the <a href="../apis/#handlenet-api">Handle.net API</a> (module <code>pid4cat_model.handle_api</code>).</li>
 <li>validating pid4cat metadata against the pid4cat-model schema.</li>
 <li>calculating and validating ISO 7064 checksums which may be used in local identifier schemes.</li>
 </ul>
@@ -1049,21 +993,19 @@ Pure systems and Hybrid systems.</p>
 </table>
 <p>The pid4cat_model.iso7064 module contains implementations of all algorithms in the table.
 They accept letters in either case and return check characters in lower case.</p>
-<h2 id="pid4cat-api">pid4cat API</h2>
-<p>A REST API server that provides the endpoints to create, read and update pid4cat identifiers. It handles authentication of the SNAAs and SNAA-related validation.</p>
-<p>The source code of the software is not yet available as open source but there are plans to release it in the future.</p>
-<p>For usage instructions, see <a href="#pid4cat-api">pid4cat API</a>.</p>
-<h3 id="features">Features</h3>
+<h2 id="pid4cat-registry">pid4cat registry</h2>
+<p>The pid4cat registry is the service with which SNAAs create and manage the PIDs in their namespaces.
+It authenticates the SNAAs, validates PIDs and their metadata against the pid4cat-model, and registers the PIDs on the Handle server.
+Its main features are:</p>
 <ul>
-<li>Sub-namespace management</li>
-<li>Create, read, update operation on single pid4cat handles</li>
-<li>Bulk operations (future)</li>
-<li>Reporting (future)</li>
-<li>Monitoring (future)</li>
+<li>Create, read, update and state changes of PIDs in the SNAA's namespaces</li>
+<li>Test namespaces on a separate test Handle server</li>
+<li>Search across the PIDs a user can access</li>
+<li>Periodic checks that landing pages and representation variants are reachable</li>
+<li>A <a href="https://pid.nfdi4cat.org/dashboard">status dashboard</a></li>
 </ul>
-<h3 id="access">Access</h3>
-<p>The pid4cat-admin tool is available only to the core organization and authorized administrators.</p>
-<p>Integration with NFDI Base4IAM is ongoing in order to use NFDI identification and authorisation services for access control to the pid4cat API gateway.</p>
+<p>The source code is not yet published. It will be released in 2027 under Apache 2.0 licence.
+For usage, see <a href="../apis/#pid4cat-registry-api">pid4cat registry API</a>.</p>
 <h2 id="pid4cat-in-django">pid4cat in Django</h2>
 <p>A Django application <a href="https://gitlab.com/opensourcelab/scientificdata/pid/django-pid">django-pid</a> to integrate pid4cat in django-based ELNs/LIMS solutions is in development (pre-alpha state).</p>
 <h2 id="schema-representations">Schema representations</h2>
