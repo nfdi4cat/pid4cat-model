@@ -2,12 +2,8 @@
 
 ## Registration
 
-To use pid4cat services, organizations must apply to become a Sub-Name Assigning Authority (SNAA). The application process involves:
-
-1. Submitting an application form to the pid4cat core organization (TODO add contact info)
-2. Agreeing to the pid4cat policies (detailed in section [Policies](./policies.md))
-3. Demonstrating the capability to maintain the identified resources
-4. Designating a technical and administrative contact
+To use pid4cat services, an organization applies to [HLRS](mailto:handles@hlrs.de) to become a Sub-Name Assigning Authority (SNAA).
+The requirements are listed in [Registration as SNAA](./policies.md#registration-as-snaa).
 
 Upon approval, the organization will receive:
 
@@ -55,5 +51,6 @@ pid4cat identifiers can be resolved using:
 1. **Direct resolution**: `https://hdl.handle.net/<prefix>/4cat/<ns-suffix>/<id-suffix>`
 2. **pid4cat resolver**: `https://pid.nfdi4cat.org/<prefix>/4cat/<ns-suffix>/<id-suffix>`
 3. **pid4cat resolver**: `https://handle.nfdi4cat.org/<prefix>/4cat/<ns-suffix>/<id-suffix>`
+4. **DOI proxy**: `https://doi.org/<prefix>/4cat/<ns-suffix>/<id-suffix>`; the DOI resolver also resolves handles other than DOIs.
 
-Resolution will typically redirect to the landing page for the identified resource, which should be maintained by the responsible SNAA.
+Resolution redirects to the landing page of the identified resource, which the responsible SNAA maintains.

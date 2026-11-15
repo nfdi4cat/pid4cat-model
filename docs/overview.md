@@ -4,9 +4,7 @@
 
 A Persistent Identifier (PID) is a long-lasting reference to a digital resource that remains valid regardless of changes in the resource's location or ownership.
 
-pid4cat is a persistent identifier service designed specifically for the needs of the catalysis research community.
-The pid4cat service builds upon existing PID infrastructure ([Handle System](https://www.handle.net/)) while providing enhanced capabilities for metadata management and namespace delegation.
-It enables partner organizations to manage their own sub-namespaces while maintaining a consistent approach to identifier creation and metadata management.
+pid4cat is a PID service for the catalysis research community, built on the [Handle System](https://www.handle.net/).
 It consists of three main components:
 
 1. **pid4cat-model**: A data model for metadata of persistent identifiers
@@ -66,7 +64,8 @@ The collection of local names under a naming authority defines the local handle 
 Any local name must be unique under its local namespace.
 The uniqueness of a naming authority and a local name under that authority ensures that any handle is globally unique within the context of the Handle System.
 
-The naming authority for pid4cat handles is HLRS.
+HLRS administers the pid4cat prefixes.
+pid4cat handles resolve through the Handle System proxy, the DOI proxy and the pid4cat resolvers; see [Resolving identifiers](./getting-started.md#resolving-identifiers).
 
 [^1]:
   Larry Lannom and Lt. Col. Brian P. Boesch and Sam Sun, RFC 3650: Handle System Overview, 2003.
@@ -93,7 +92,7 @@ The following scheme was selected for pid4cat handles:
 ```
 
 As a branding label we use `4cat` to make pid4cat handles easily distinguishable.[^4]
-This has as already been implemented for NFDI4Cat´s [data repository](https://repository.nfdi4cat.org).
+This has already been implemented for NFDI4Cat's [data repository](https://repository.nfdi4cat.org).
 Next comes an identifier `ns-suffix` for the namespace of sub-authorities associated with the PID-subspace followed by the ID-suffix part.
 Regarding uniqueness, it is important to note that only the combination of ns-suffix and id-suffix must be unique.
 Due to this all SNAAs are independent in the IDs they generate.
@@ -102,18 +101,15 @@ The different parts are separated by the ASCII character "/".
 
 Rules for the `<ns-suffix>`:
 
-- To identify the sub-authority, opaque (meaningless) IDs should be used.
-  It is suggested to keep the sub-authority identifier short (3 chars)
-  and use only the crockford-32 alphabet. This gives 32**3 = 32768 combinations.
+- The ns-suffix is short and opaque; its exact format is given in [Structure of pid4cat handles](./getting-started.md#structure-of-pid4cat-handles).
 - Sub-namespaces have to be requested at HLRS.
-- The ns-suffixes are generated randomly and should have no meaning (for example they should not match abbreviations of institutions).[^2]
+- The ns-suffixes are generated randomly and have no meaning (for example they do not match abbreviations of institutions).[^2]
 
 Rules for the `<id-suffix>`:
 
-- The local-IDs are managed by the responsible SNAA.
-  It may contain lower-case letters [a-z], numbers [0-9] and the symbols [.-] as part of the identifier.
-- Dashes in this part are ignored.
-- The local-IDs should be kept short and not exceed 36 chars including dashes (which is the length of UUID4).
+- The local IDs are managed by the responsible SNAA.
+  They may contain lower-case letters [a-z], numbers [0-9] and the symbols [.-].
+- The local IDs have at most 36 characters including dashes (the length of a UUID).
 - If an optional checksum is included, it must be calculated including the `<ns-suffix>` and ignoring dashes.
 
 Case-sensitivity:
@@ -132,7 +128,7 @@ Suggested checksum calculations:
   Hence, it is well suited to detect error in alphanumeric identification numbers.
   This algorithm is for example used by the [Global Release Identifier](https://en.wikipedia.org/wiki/Global_Release_Identifier).
 
-Implementation of these algorithms are available in many languages (for example in [python-stdnum](https://arthurdejong.org/python-stdnum/doc/1.20/stdnum.iso7064).The [base32-lib](https://pypi.org/project/base32-lib/) for Python or [cdigit](https://github.com/LiosK/cdigit) for JavaScript).
+Implementations of these algorithms are available in many languages, for example [python-stdnum](https://arthurdejong.org/python-stdnum/doc/1.20/stdnum.iso7064) and [base32-lib](https://pypi.org/project/base32-lib/) for Python or [cdigit](https://github.com/LiosK/cdigit) for JavaScript.
 We have also added many ISO 7064 checksum algorithms to the [pid4cat-model](https://pypi.org/project/pid4cat-model/) Python package.
 
 [^2]: Fenner, M. (2016). ‘Cool DOI's’, DataCite Blog, [https://doi.org/10.5438/55E5-T5C0](https://doi.org/10.5438/55E5-T5C0)
@@ -141,7 +137,7 @@ We have also added many ISO 7064 checksum algorithms to the [pid4cat-model](http
 
 ## Use case: PIDs for samples, devices etc.
 
-pid4cat identifiers can be used for various resources in the catalysis research domain (table copied from [schema](/pid4cat-model/elements/enums/ResourceCategory/)):
+pid4cat identifiers can be used for various resources in the catalysis research domain (table copied from [schema](./elements/enums/ResourceCategory.md)):
 
 | Category   | Definition | Description of use  |
 | :----------- | :-------------- | :------------------------------------------------------------------------------- |
@@ -153,7 +149,7 @@ pid4cat identifiers can be used for various resources in the catalysis research 
 | DATA_SERVICE | [voc4cat:0005017](https://w3id.org/nfdi4cat/voc4cat_0005017) | An organized system of operations that provide data processing functions or access to datasets. |
 
 The categories are linked to SKOS concepts defined in the [Voc4Cat](https://nfdi4cat.github.io/voc4cat/) vocabulary.
-Such mapping to machine readable terminologies facilitate the use of pid4cat PIDs in linked-data applications and are key to fully realize FAIR data.
+Such mappings to machine-readable terminologies facilitate the use of pid4cat PIDs in linked-data applications and are key to fully realize FAIR data.
 
 ## Use case: repo4cat
 
@@ -169,36 +165,6 @@ Example handle PID for data in the production instance of [repo4cat](https://rep
 
 Currently the PIDs minted by repo4cat lack the rich metadata that are attached to other pid4cat PIDs due to limitations of Dataverse.
 
-## PID resolution methods
-
-pid4cat identifiers can be resolved using multiple methods:
-
-### Direct Handle System resolution
-
-```http
-https://hdl.handle.net/<prefix>/4cat/<ns-suffix>/<id-suffix>
-```
-
-### pid4cat resolver
-
-```http
-https://pid.nfdi4cat.org/<prefix>/4cat/<ns-suffix>/<id-suffix>
-```
-
-or alternatively
-
-```http
-https://handle.nfdi4cat.org/<prefix>/4cat/<ns-suffix>/<id-suffix>
-```
-
-### DOI proxy
-
-The DOI resolver also works with other handles than the DOI 10.*-handles.
-
-```http
-https://doi.org/<prefix>/4cat/<ns-suffix>/<id-suffix>
-```
-
 ## Logos & display guidelines
 
 The pid4cat identifier should be displayed consistently across all platforms to ensure recognition and proper use.
@@ -211,15 +177,15 @@ When displaying pid4cat identifiers in text:
 - Do not abbreviate any part of the identifier
 - Use the lower-case form of the identifier
 
-Example: `21.11165/4cat/abc/sample-2023-001`
+Example: `21.11165/4cat/d4y/sample-001`
 
 When creating hyperlinks use the handle.net resolver URL:
 
-- `https://hdl.handle.net/21.11165/4cat/abc/sample-23-001`
+- `https://hdl.handle.net/21.11165/4cat/d4y/sample-001`
 
-For using pid4cat identifies in linked-data application we plan to register `pid4cat` as the _preferable prefix_ for `https://pid.nfdi4cat.org/21.11165/4cat/` in [Bioregistry](https://bioregistry.io/). This allows to use the CURIE (compact URI) notation:
+For using pid4cat identifiers in linked-data applications we plan to register `pid4cat` as the _preferable prefix_ for `https://pid.nfdi4cat.org/21.11165/4cat/` in [Bioregistry](https://bioregistry.io/). This allows to use the CURIE (compact URI) notation:
 
-- `pid4cat:abc/sample-23-001`
+- `pid4cat:d4y/sample-001`
 
 ### Logo Usage
 
@@ -229,9 +195,8 @@ When referencing pid4cat in applications, websites, or publications, the followi
 - Maintain the aspect ratio of the logo
 - Do not modify or alter the logo
 - Ensure sufficient clear space around the logo
-- Use the full-color version on light backgrounds and the inverted version on dark backgrounds
 
-The official pid4cat logos can be downloaded from [URL to be provided].
+The official pid4cat logos can be downloaded from the [docs/images](https://github.com/nfdi4cat/pid4cat-model/tree/main/docs/images) folder of the pid4cat-model repository: `logo-with-text.svg` for light and `logo-with-text-dark.svg` for dark backgrounds.
 
 ## Best Practices
 
@@ -268,107 +233,26 @@ For pure machine use and if global uniqueness is important consider using
 - **UUID4-based identifiers** (unordered):
 
   ```ascii
-  40944082-40ED-4F66-9E8F-66FBCD3908A9
+  40944082-40ed-4f66-9e8f-66fbcd3908a9
   ```
 
 - **UUID7-based identifiers** (time-ordered):
 
   ```ascii
-  0195C559-4B8A-7201-A7AB-F1A5D06687E0
+  0195c559-4b8a-7201-a7ab-f1a5d06687e0
   ```
 
 See also suffix design in [identifier pattern](#identifier-pattern) section and PID literature[^4]<sup>,</sup>[^5].
 
 [^4]:
   McMurry JA, Juty N, Blomberg N, Burdett T, Conlin T, Conte N, et al. (2017)
-  ‘Identifiers for the 21stcentury: How to design, provision, and reuse persistent identifiers to maximize utility and impact of life science data’.
-  PLoS Biol15(6): e2001414. [https://doi.org/10.1371/journal.pbio.2001414](https://doi.org/10.1371/journal.pbio.2001414)
+  ‘Identifiers for the 21st century: How to design, provision, and reuse persistent identifiers to maximize utility and impact of life science data’.
+  PLoS Biol 15(6): e2001414. [https://doi.org/10.1371/journal.pbio.2001414](https://doi.org/10.1371/journal.pbio.2001414)
 
 [^5]:
   Philipson, Joakim. ‘Identifying PIDs Playing FAIR’. Data Science 2, no. 1–2 (1 January 2019): 229–44.
   [https://doi.org/10.3233/DS-190024](https://doi.org/10.3233/DS-190024).
 
-
-### Landing Pages
-
-Landing pages should:
-
-1. **Be persistent**: Remain accessible for as long as the identifier exists
-2. **Provide metadata**: Display key metadata about the resource
-3. **Offer access information**: Provide direct access to the resource or clear instructions for obtaining access
-4. **Include citation information**: Show how the resource should be cited
-5. **Show provenance**: Include information about the origin and history of the resource
-6. **Be human-readable**: Present information in a user-friendly format
-7. **Be machine-readable**: Include structured metadata (e.g., JSON-LD, RDFa)
-
-### Metadata Quality
-
-To maintain high-quality metadata:
-
-1. **Completeness**: Provide as many relevant metadata elements as possible
-2. **Accuracy**: Ensure metadata correctly describes the resource
-3. **Timeliness**: Update metadata when the resource changes
-4. **Relationships**: Document relationships to other resources
-
-### Integrating with Local Systems
-
-Recommendations for integrating pid4cat with local systems:
-
-1. **Automated workflows**: Implement workflows that automatically create identifiers at appropriate points in research data lifecycles
-2. **Metadata harvesting**: Set up processes to harvest metadata from local systems for pid4cat
-3. **User interfaces**: Provide user-friendly interfaces for creating and managing identifiers
-4. **Authentication integration**: Integrate local authentication systems with pid4cat API access
-5. **Monitoring**: Implement monitoring to ensure identifiers remain resolvable
-
-### Security and Access Control
-
-The SNAAs ensure the security and access control of the data and must secure it with sufficient technical and organisational measures.
-
-#### API Key Management
-
-1. Keep your API key secure
-2. Rotate keys periodically (recommended every 90 days)
-3. Use separate keys for different environments (development, production)
-4. Revoke compromised keys immediately
-
-#### Access Policies
-
-1. Only authorized personnel should have access to create and modify PIDs
-2. Implement internal approval workflows for PID creation
-3. Maintain an audit log of all PID operations
-4. Review access permissions quarterly
-
-## Roadmap
-
-The development and expansion of pid4cat is planned in several phases:
-
-### Phase 1: Infrastructure Establishment (Completed)
-
-- Handle prefix registration
-- Basic API implementation
-- Core metadata model development
-- Initial documentation
-
-### Phase 2: Service Expansion (Current)
-
-- Enhance API capabilities
-- Improve metadata model
-- Integration with related services
-- Expansion of user and developer documentation
-- Onboarding of initial SNAAs
-
-### Phase 3: Community Growth (Upcoming)
-
-- Outreach to potential SNAAs
-- Development of additional tools and services
-- Integration with the broader PID ecosystem
-- Community building activities
-
-### Phase 4: Sustainability (Future)
-
-- Establish a sustainable funding model
-- Plan long-term preservation
-- Evaluation and improvement of governance model
 
 ## History
 
@@ -378,4 +262,5 @@ Key milestones in the development of pid4cat:
 
 - **2023**: Initial conceptualization of pid4cat
 - **2024**: Launch of the production handle server
-- **2025**: Launch of pid4cat service; Onboarding of initial SNAAs
+- **2025**: Launch of pid4cat service
+- **2026**: Pre-production testing of the pid4cat registry; Onboarding of initial SNAAs
