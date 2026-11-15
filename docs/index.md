@@ -8,6 +8,11 @@ title: pid4cat Documentation
 **pid4cat** is a persistent identifier (PID) service designed and operated by NFDI4Cat for the catalysis research community.
 The pid4cat service builds upon existing PID infrastructure (Handle System) while providing enhanced capabilities for metadata management and namespace delegation. It enables partner organizations to manage their own sub-namespaces while maintaining a consistent approach to PID metadata management via a LinkML-based model.
 
+!!! info "The pid4cat registry is in final pre-production testing."
+
+    The production launch is planned for Q1 2027.
+    Organizations interested in becoming an SNAA can [contact HLRS](mailto:handles@hlrs.de) now.
+
 - [Overview](./overview.md) on pid4cat identifiers
 - [Schema documentation](./elements/overview.md) for the metadata model
 - [Versioning](./versioning.md) of the model and how schema changes are signalled
