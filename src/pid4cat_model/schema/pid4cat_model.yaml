@@ -15,7 +15,7 @@ description: >-
   what is identified by the pid4cat handle, e.g. a sample or a device.
 
 # SchemaVer MODEL.REVISION.ADDITION; release tags start with it (docs/versioning.md)
-version: "0.4.5"
+version: "0.4.6"
 
 todos:
   - none
@@ -433,8 +433,7 @@ classes:
         required: true
       changed_field:
         required: true
-      description:  # Should it be set as required?
-        # required: true
+      description:  # Should it be set as required (required: true)?
 
   Agent:
     class_uri: prov:Agent
@@ -671,7 +670,11 @@ slots:
     description: The related identifier.
   datetime_log:
     range: datetime
-    description: The date and time of a log record.
+    description: >-
+      The date and time of a log record, in UTC with whole seconds,
+      e.g. 2026-11-23T13:25:43Z.
+    # The generated pydantic model does not check this pattern (linkml/linkml#4269).
+    pattern: '^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$'
 
   # Slots for ResourceInfo
   label:

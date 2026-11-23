@@ -87,7 +87,7 @@
               "identifier": "ex:collection1",
               "resolving_url": "https://example.org/collection1"
             },
-            "datetime_log": "2024-02-19T00:00:00+00:00"
+            "datetime_log": "2024-02-19T00:00:00Z"
           },
           {
             "relation_type": "IS_REFERENCED_BY",
@@ -96,7 +96,7 @@
               "identifier": "ex:referenced1",
               "resolving_url": "https://example.org/referenced1"
             },
-            "datetime_log": "2024-02-19T00:00:00+00:00"
+            "datetime_log": "2024-02-19T00:00:00Z"
           }
         ]
       },
@@ -110,7 +110,7 @@
         "format": "string",
         "value": [
           {
-            "datetime_log": "2024-02-19T00:00:00+00:00",
+            "datetime_log": "2024-02-19T00:00:00Z",
             "has_agent": {
               "name": "Data Fuzzi",
               "email_address": "data.fuzzi@example.org",
@@ -122,7 +122,7 @@
             "description": "Registration completed."
           },
           {
-            "datetime_log": "2024-05-15T15:51:15+00:00",
+            "datetime_log": "2024-05-15T15:51:15Z",
             "has_agent": {
               "name": "Data Fuzzi",
               "email_address": "data.fuzzi@example.org",

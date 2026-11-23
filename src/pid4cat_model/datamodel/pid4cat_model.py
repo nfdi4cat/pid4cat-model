@@ -60,7 +60,7 @@ from linkml_runtime.linkml_model.types import Datetime, Integer, String, Uri
 from linkml_runtime.utils.metamodelcore import URI, XSDDateTime
 
 metamodel_version = "1.12.0"
-version = "0.4.5"
+version = "0.4.6"
 
 # Namespaces
 DATACITE = CurieNamespace('DataCite', 'https://purl.org/spar/datacite/')
@@ -1706,7 +1706,8 @@ slots.related_identifier = Slot(uri=PID4CAT_MODEL.related_identifier, name="rela
                    model_uri=PID4CAT_MODEL.related_identifier, domain=None, range=Optional[Union[dict, RelatedIdentifier]])
 
 slots.datetime_log = Slot(uri=PID4CAT_MODEL.datetime_log, name="datetime_log", curie=PID4CAT_MODEL.curie('datetime_log'),
-                   model_uri=PID4CAT_MODEL.datetime_log, domain=None, range=Optional[Union[str, XSDDateTime]])
+                   model_uri=PID4CAT_MODEL.datetime_log, domain=None, range=Optional[Union[str, XSDDateTime]],
+                   pattern=re.compile(r'^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$'))
 
 slots.label = Slot(uri=PID4CAT_MODEL.label, name="label", curie=PID4CAT_MODEL.curie('label'),
                    model_uri=PID4CAT_MODEL.label, domain=None, range=Optional[str])
@@ -1933,7 +1934,8 @@ slots.ResourceInfo_representation_variants = Slot(uri=PID4CAT_MODEL.representati
                    model_uri=PID4CAT_MODEL.ResourceInfo_representation_variants, domain=ResourceInfo, range=Union[Union[dict, "RepresentationVariant"], list[Union[dict, "RepresentationVariant"]]])
 
 slots.LogRecord_datetime_log = Slot(uri=PID4CAT_MODEL.datetime_log, name="LogRecord_datetime_log", curie=PID4CAT_MODEL.curie('datetime_log'),
-                   model_uri=PID4CAT_MODEL.LogRecord_datetime_log, domain=LogRecord, range=Union[str, XSDDateTime])
+                   model_uri=PID4CAT_MODEL.LogRecord_datetime_log, domain=LogRecord, range=Union[str, XSDDateTime],
+                   pattern=re.compile(r'^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$'))
 
 slots.LogRecord_has_agent = Slot(uri=PID4CAT_MODEL.has_agent, name="LogRecord_has_agent", curie=PID4CAT_MODEL.curie('has_agent'),
                    model_uri=PID4CAT_MODEL.LogRecord_has_agent, domain=LogRecord, range=Union[dict, "Agent"])
