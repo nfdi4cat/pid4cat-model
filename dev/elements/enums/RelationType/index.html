@@ -835,12 +835,12 @@
 <tr>
 <td>IS_SUPPLEMENT_TO</td>
 <td>voc4cat:0005021</td>
-<td>The resource is supplemented by another resource.</td>
+<td>The resource supplements another resource.</td>
 </tr>
 <tr>
 <td>IS_SUPPLEMENTED_BY</td>
 <td>voc4cat:0005022</td>
-<td>The resource supplements another resource.</td>
+<td>The resource is supplemented by another resource.</td>
 </tr>
 <tr>
 <td>IS_CONTINUED_BY</td>
@@ -945,12 +945,12 @@
 <tr>
 <td>IS_DERIVED_FROM</td>
 <td>voc4cat:0005043</td>
-<td>The resource is derived from another resource. This may be used for relating a new dataset created by data processing to its original source dataset. For samples it may express the relation between the original sample and another sample derived from it by physical or chemical treatment.</td>
+<td>The resource is derived from another resource. This may be used for relating a new dataset created by data processing to its original source dataset. For samples it may express the relation between a sample processed by physical or chemical treatment and the original sample.</td>
 </tr>
 <tr>
 <td>IS_SOURCE_OF</td>
 <td>voc4cat:0005044</td>
-<td>The resource is source of another resource. This may be used for example to express the relation between a source dataset and a new dataset derived from it by data processing. For samples it may express the relation between a sample processed by physical or chemical treatment and the original sample.</td>
+<td>The resource is source of another resource. This may be used for example to express the relation between a source dataset and a new dataset derived from it by data processing. For samples it may express the relation between the original sample and another sample derived from it by physical or chemical treatment.</td>
 </tr>
 <tr>
 <td>IS_COLLECTED_BY</td>
@@ -1026,11 +1026,11 @@
 <span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">voc4cat:0005020</span>
 <span class="w">  </span><span class="nt">IS_SUPPLEMENT_TO</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IS_SUPPLEMENT_TO</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The resource is supplemented by another resource.</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The resource supplements another resource.</span>
 <span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">voc4cat:0005021</span>
 <span class="w">  </span><span class="nt">IS_SUPPLEMENTED_BY</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IS_SUPPLEMENTED_BY</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The resource supplements another resource.</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The resource is supplemented by another resource.</span>
 <span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">voc4cat:0005022</span>
 <span class="w">  </span><span class="nt">IS_CONTINUED_BY</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IS_CONTINUED_BY</span>
@@ -1154,15 +1154,16 @@
 <span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IS_DERIVED_FROM</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The resource is derived from another resource. This may be used for</span>
 <span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">relating a new dataset created by data processing to its original source dataset.</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">For samples it may express the relation between the original sample and another</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">sample derived from it by physical or chemical treatment.</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">For samples it may express the relation between a sample processed by physical</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">or chemical treatment and the original sample.</span>
 <span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">voc4cat:0005043</span>
 <span class="w">  </span><span class="nt">IS_SOURCE_OF</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IS_SOURCE_OF</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The resource is source of another resource. This may be used for</span>
 <span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">example to express the relation between a source dataset and a new dataset derived</span>
 <span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">from it by data processing. For samples it may express the relation between</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">a sample processed by physical or chemical treatment and the original sample.</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">the original sample and another sample derived from it by physical or chemical</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">treatment.</span>
 <span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">voc4cat:0005044</span>
 <span class="w">  </span><span class="nt">IS_COLLECTED_BY</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IS_COLLECTED_BY</span>

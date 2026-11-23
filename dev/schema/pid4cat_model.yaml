@@ -376,11 +376,11 @@ enums:
         meaning: voc4cat:0005020
       IS_SUPPLEMENT_TO:
         text: IS_SUPPLEMENT_TO
-        description: The resource is supplemented by another resource.
+        description: The resource supplements another resource.
         meaning: voc4cat:0005021
       IS_SUPPLEMENTED_BY:
         text: IS_SUPPLEMENTED_BY
-        description: The resource supplements another resource.
+        description: The resource is supplemented by another resource.
         meaning: voc4cat:0005022
       IS_CONTINUED_BY:
         text: IS_CONTINUED_BY
@@ -504,16 +504,16 @@ enums:
         text: IS_DERIVED_FROM
         description: The resource is derived from another resource. This may be used
           for relating a new dataset created by data processing to its original source
-          dataset. For samples it may express the relation between the original sample
-          and another sample derived from it by physical or chemical treatment.
+          dataset. For samples it may express the relation between a sample processed
+          by physical or chemical treatment and the original sample.
         meaning: voc4cat:0005043
       IS_SOURCE_OF:
         text: IS_SOURCE_OF
         description: The resource is source of another resource. This may be used
           for example to express the relation between a source dataset and a new dataset
           derived from it by data processing. For samples it may express the relation
-          between a sample processed by physical or chemical treatment and the original
-          sample.
+          between the original sample and another sample derived from it by physical
+          or chemical treatment.
         meaning: voc4cat:0005044
       IS_COLLECTED_BY:
         text: IS_COLLECTED_BY
@@ -3248,6 +3248,6 @@ classes:
     class_uri: pid4cat_model:Pid4CatRecord
 metamodel_version: 1.12.0
 source_file: pid4cat_model.yaml
-source_file_date: '2026-11-23T23:29:28'
+source_file_date: '2026-11-23T23:32:05'
 source_file_size: 32906
 
