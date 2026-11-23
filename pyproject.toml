@@ -17,12 +17,29 @@ license-files = ["LICENSE"]
 readme = "README_pypkg.md"
 requires-python = ">=3.11"
 dynamic = ["version"]
+keywords = ["catalysis", "handle", "linkml", "persistent identifier", "pid"]
+classifiers = [
+  "Intended Audience :: Science/Research",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
+  "Topic :: Scientific/Engineering :: Chemistry",
+]
 
 dependencies = [
   "linkml-runtime>=1.9.4",
   "httpx (>=0.28.1,<0.29.0)",
   "click (>8.2.0)",
 ]
+
+[project.urls]
+Homepage = "https://nfdi4cat.github.io/pid4cat-model"
+Documentation = "https://nfdi4cat.github.io/pid4cat-model"
+Repository = "https://github.com/nfdi4cat/pid4cat-model"
+Issues = "https://github.com/nfdi4cat/pid4cat-model/issues"
+Changelog = "https://github.com/nfdi4cat/pid4cat-model/releases"
 
 [dependency-groups]
 dev = [
