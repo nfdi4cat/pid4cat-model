@@ -30,7 +30,7 @@ from pydantic import (
 
 
 metamodel_version = "1.12.0"
-version = "0.4.5"
+version = "0.4.6"
 
 
 class ConfiguredBaseModel(BaseModel):
@@ -1237,7 +1237,20 @@ class Pid4CatRelation(ConfiguredBaseModel):
 
     relation_type: Optional[RelationType] = Field(default=None, description="""Relation type between the resources.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Pid4CatRelation']} })
     related_identifier: Optional[Union[RelatedIdentifier,PurlIdentifier,DoiIdentifier,HandleIdentifier,ArkIdentifier,UrnIdentifier,GtinIdentifier,ExampleIdentifier]] = Field(default=None, description="""The related identifier.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Pid4CatRelation']} })
-    datetime_log: Optional[datetime ] = Field(default=None, description="""The date and time of a log record.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Pid4CatRelation', 'LogRecord']} })
+    datetime_log: Optional[datetime ] = Field(default=None, description="""The date and time of a log record, in UTC with whole seconds, e.g. 2026-11-23T13:25:43Z.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Pid4CatRelation', 'LogRecord']} })
+
+    @field_validator('datetime_log')
+    def pattern_datetime_log(cls, v):
+        pattern=re.compile(r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$")
+        if isinstance(v, list):
+            for element in v:
+                if isinstance(element, str) and not pattern.search(element):
+                    err_msg = f"Invalid datetime_log format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.search(v):
+            err_msg = f"Invalid datetime_log format: {v}"
+            raise ValueError(err_msg)
+        return v
 
 
 class ResourceInfo(ConfiguredBaseModel):
@@ -1266,10 +1279,23 @@ class LogRecord(ConfiguredBaseModel):
                         'description': {'name': 'description'},
                         'has_agent': {'name': 'has_agent', 'required': True}}})
 
-    datetime_log: datetime  = Field(default=..., description="""The date and time of a log record.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Pid4CatRelation', 'LogRecord']} })
+    datetime_log: datetime  = Field(default=..., description="""The date and time of a log record, in UTC with whole seconds, e.g. 2026-11-23T13:25:43Z.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Pid4CatRelation', 'LogRecord']} })
     has_agent: Agent = Field(default=..., description="""The person who registered or modified the PID record.""", json_schema_extra = { "linkml_meta": {'domain_of': ['LogRecord']} })
     changed_field: ChangeLogField = Field(default=..., description="""The field that was changed.""", json_schema_extra = { "linkml_meta": {'domain_of': ['LogRecord']} })
     description: Optional[str] = Field(default=None, description="""A human-readable description for a resource.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ResourceInfo', 'LogRecord']} })
+
+    @field_validator('datetime_log')
+    def pattern_datetime_log(cls, v):
+        pattern=re.compile(r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$")
+        if isinstance(v, list):
+            for element in v:
+                if isinstance(element, str) and not pattern.search(element):
+                    err_msg = f"Invalid datetime_log format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.search(v):
+            err_msg = f"Invalid datetime_log format: {v}"
+            raise ValueError(err_msg)
+        return v
 
 
 class Agent(ConfiguredBaseModel):

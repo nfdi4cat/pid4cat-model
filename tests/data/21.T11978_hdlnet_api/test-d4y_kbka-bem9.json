@@ -37,10 +37,10 @@
       "type": "SCHEMA_VER",
       "data": {
         "format": "string",
-        "value": "v0.4.4"
+        "value": "v0.4.5"
       },
       "ttl": 86400,
-      "timestamp": "2026-11-09T23:32:54Z"
+      "timestamp": "2026-11-23T23:07:11Z"
     },
     {
       "index": 13,
@@ -77,10 +77,10 @@
       "type": "CHANGES",
       "data": {
         "format": "string",
-        "value": "[{\"datetime_log\": \"2026-11-09 23:32:54+00:00\", \"has_agent\": {\"name\": \"pid4cat admin\", \"email_address\": \"admin@pid4cat.org\", \"orcid\": null, \"affiliation_ror\": null, \"role\": \"TRUSTEE\"}, \"changed_field\": \"STATUS\", \"description\": \"Demo handle for pid4cat-model#185\"}]"
+        "value": "[{\"datetime_log\": \"2026-11-09T23:32:54Z\", \"has_agent\": {\"name\": \"pid4cat admin\", \"email_address\": \"admin@pid4cat.org\", \"orcid\": null, \"affiliation_ror\": null, \"role\": \"TRUSTEE\"}, \"changed_field\": \"STATUS\", \"description\": \"Demo handle for pid4cat-model#185\"}]"
       },
       "ttl": 86400,
-      "timestamp": "2026-11-09T23:32:54Z"
+      "timestamp": "2026-11-23T23:07:11Z"
     },
     {
       "index": 100,
