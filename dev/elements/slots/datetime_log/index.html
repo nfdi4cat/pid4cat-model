@@ -837,7 +837,7 @@
 
 
 <h1 id="slot-datetime_log">Slot: datetime_log</h1>
-<p><em>The date and time of a log record.</em></p>
+<p><em>The date and time of a log record, in UTC with whole seconds, e.g. 2026-11-23T13:25:43Z.</em></p>
 <div>
 <p>URI: <a href="https://w3id.org/nfdi4cat/pid4cat-model/slot/datetime_log">pid4cat_model:slot/datetime_log</a></p>
 <!-- no inheritance hierarchy -->
@@ -881,6 +881,24 @@
 <td>Domain Of</td>
 <td><a href="../../classes/Pid4CatRelation/">Pid4CatRelation</a>, <a href="../../classes/LogRecord/">LogRecord</a></td>
 </tr>
+<tr>
+<td>### Value Constraints</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Regex Pattern</td>
+<td><code>^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$</code></td>
+</tr>
 </tbody>
 </table>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
@@ -910,13 +928,14 @@
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">datetime_log</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The date and time of a log record.</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The date and time of a log record, in UTC with whole seconds, e.g. 2026-11-23T13:25:43Z.</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/nfdi4cat/pid4cat-model</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="nt">domain_of</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Pid4CatRelation</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">LogRecord</span>
 <span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">datetime</span>
+<span class="nt">pattern</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$</span>
 </code></pre></div>
 </details>
 </div>

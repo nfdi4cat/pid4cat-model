@@ -14,7 +14,7 @@ todos:
 see_also:
 - https://nfdi4cat.github.io/pid4cat-model
 id: https://w3id.org/nfdi4cat/pid4cat-model
-version: 0.4.5
+version: 0.4.6
 imports:
 - linkml:types
 - media_types
@@ -903,7 +903,8 @@ slots:
   datetime_log:
     name: datetime_log
     definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/datetime_log
-    description: The date and time of a log record.
+    description: The date and time of a log record, in UTC with whole seconds, e.g.
+      2026-11-23T13:25:43Z.
     from_schema: https://w3id.org/nfdi4cat/pid4cat-model
     slot_uri: pid4cat_model:datetime_log
     owner: LogRecord
@@ -911,6 +912,7 @@ slots:
     - Pid4CatRelation
     - LogRecord
     range: datetime
+    pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$
   label:
     name: label
     definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/label
@@ -2011,7 +2013,8 @@ slots:
   LogRecord_datetime_log:
     name: LogRecord_datetime_log
     definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/datetime_log
-    description: The date and time of a log record.
+    description: The date and time of a log record, in UTC with whole seconds, e.g.
+      2026-11-23T13:25:43Z.
     from_schema: https://w3id.org/nfdi4cat/pid4cat-model
     is_a: datetime_log
     domain: LogRecord
@@ -2024,6 +2027,7 @@ slots:
     usage_slot_name: datetime_log
     range: datetime
     required: true
+    pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$
   LogRecord_has_agent:
     name: LogRecord_has_agent
     definition_uri: https://w3id.org/nfdi4cat/pid4cat-model/has_agent
@@ -3244,6 +3248,6 @@ classes:
     class_uri: pid4cat_model:Pid4CatRecord
 metamodel_version: 1.12.0
 source_file: pid4cat_model.yaml
-source_file_date: '2026-11-15T00:54:31'
-source_file_size: 32706
+source_file_date: '2026-11-23T23:20:29'
+source_file_size: 32906
 
