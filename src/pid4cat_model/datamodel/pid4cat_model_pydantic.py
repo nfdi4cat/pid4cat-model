@@ -266,11 +266,11 @@ class RelationType(str, Enum):
     """
     IS_SUPPLEMENT_TO = "IS_SUPPLEMENT_TO"
     """
-    The resource is supplemented by another resource.
+    The resource supplements another resource.
     """
     IS_SUPPLEMENTED_BY = "IS_SUPPLEMENTED_BY"
     """
-    The resource supplements another resource.
+    The resource is supplemented by another resource.
     """
     IS_CONTINUED_BY = "IS_CONTINUED_BY"
     """
@@ -354,11 +354,11 @@ class RelationType(str, Enum):
     """
     IS_DERIVED_FROM = "IS_DERIVED_FROM"
     """
-    The resource is derived from another resource. This may be used for relating a new dataset created by data processing to its original source dataset. For samples it may express the relation between the original sample and another sample derived from it by physical or chemical treatment.
+    The resource is derived from another resource. This may be used for relating a new dataset created by data processing to its original source dataset. For samples it may express the relation between a sample processed by physical or chemical treatment and the original sample.
     """
     IS_SOURCE_OF = "IS_SOURCE_OF"
     """
-    The resource is source of another resource. This may be used for example to express the relation between a source dataset and a new dataset derived from it by data processing. For samples it may express the relation between a sample processed by physical or chemical treatment and the original sample.
+    The resource is source of another resource. This may be used for example to express the relation between a source dataset and a new dataset derived from it by data processing. For samples it may express the relation between the original sample and another sample derived from it by physical or chemical treatment.
     """
     IS_COLLECTED_BY = "IS_COLLECTED_BY"
     """

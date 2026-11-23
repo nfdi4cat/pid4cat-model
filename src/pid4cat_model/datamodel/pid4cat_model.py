@@ -1313,11 +1313,11 @@ class RelationType(EnumDefinitionImpl):
         meaning=VOC4CAT["0005020"])
     IS_SUPPLEMENT_TO = PermissibleValue(
         text="IS_SUPPLEMENT_TO",
-        description="The resource is supplemented by another resource.",
+        description="The resource supplements another resource.",
         meaning=VOC4CAT["0005021"])
     IS_SUPPLEMENTED_BY = PermissibleValue(
         text="IS_SUPPLEMENTED_BY",
-        description="The resource supplements another resource.",
+        description="The resource is supplemented by another resource.",
         meaning=VOC4CAT["0005022"])
     IS_CONTINUED_BY = PermissibleValue(
         text="IS_CONTINUED_BY",
@@ -1401,11 +1401,11 @@ class RelationType(EnumDefinitionImpl):
         meaning=VOC4CAT["0005042"])
     IS_DERIVED_FROM = PermissibleValue(
         text="IS_DERIVED_FROM",
-        description="""The resource is derived from another resource. This may be used for relating a new dataset created by data processing to its original source dataset. For samples it may express the relation between the original sample and another sample derived from it by physical or chemical treatment.""",
+        description="""The resource is derived from another resource. This may be used for relating a new dataset created by data processing to its original source dataset. For samples it may express the relation between a sample processed by physical or chemical treatment and the original sample.""",
         meaning=VOC4CAT["0005043"])
     IS_SOURCE_OF = PermissibleValue(
         text="IS_SOURCE_OF",
-        description="""The resource is source of another resource. This may be used for example to express the relation between a source dataset and a new dataset derived from it by data processing. For samples it may express the relation between a sample processed by physical or chemical treatment and the original sample.""",
+        description="""The resource is source of another resource. This may be used for example to express the relation between a source dataset and a new dataset derived from it by data processing. For samples it may express the relation between the original sample and another sample derived from it by physical or chemical treatment.""",
         meaning=VOC4CAT["0005044"])
     IS_COLLECTED_BY = PermissibleValue(
         text="IS_COLLECTED_BY",
