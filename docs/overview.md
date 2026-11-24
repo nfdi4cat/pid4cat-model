@@ -65,7 +65,7 @@ Any local name must be unique under its local namespace.
 The uniqueness of a naming authority and a local name under that authority ensures that any handle is globally unique within the context of the Handle System.
 
 HLRS administers the pid4cat prefixes.
-pid4cat handles resolve through the Handle System proxy, the DOI proxy and the pid4cat resolvers; see [Resolving identifiers](./getting-started.md#resolving-identifiers).
+pid4cat handles resolve through the Handle System proxy, the DOI proxy and the pid4cat resolver; see [Resolving identifiers](./getting-started.md#resolving-identifiers).
 
 [^1]:
   Larry Lannom and Lt. Col. Brian P. Boesch and Sam Sun, RFC 3650: Handle System Overview, 2003.
@@ -183,7 +183,7 @@ When creating hyperlinks use the handle.net resolver URL:
 
 - `https://hdl.handle.net/21.11165/4cat/d4y/sample-001`
 
-For using pid4cat identifiers in linked-data applications we plan to register `pid4cat` as the _preferable prefix_ for `https://pid.nfdi4cat.org/21.11165/4cat/` in [Bioregistry](https://bioregistry.io/). This allows to use the CURIE (compact URI) notation:
+For using pid4cat identifiers in linked-data applications we plan to register `pid4cat` as the _preferable prefix_ for `https://hdl.handle.net/21.11165/4cat/` in [Semantic Farm](https://semantic.farm/) (formerly Bioregistry). This allows to use the CURIE (compact URI) notation:
 
 - `pid4cat:d4y/sample-001`
 
