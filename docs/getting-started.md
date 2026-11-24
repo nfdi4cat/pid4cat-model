@@ -48,9 +48,8 @@ The test namespace `test-<ns-suffix>` allows trying this out without creating re
 
 pid4cat identifiers can be resolved using:
 
-1. **Direct resolution**: `https://hdl.handle.net/<prefix>/4cat/<ns-suffix>/<id-suffix>`
-2. **pid4cat resolver**: `https://pid.nfdi4cat.org/<prefix>/4cat/<ns-suffix>/<id-suffix>`
-3. **pid4cat resolver**: `https://handle.nfdi4cat.org/<prefix>/4cat/<ns-suffix>/<id-suffix>`
-4. **DOI proxy**: `https://doi.org/<prefix>/4cat/<ns-suffix>/<id-suffix>`; the DOI resolver also resolves handles other than DOIs.
+1. **Handle System proxy** (preferred): `https://hdl.handle.net/<prefix>/4cat/<ns-suffix>/<id-suffix>`
+2. **pid4cat resolver**: `https://handle.nfdi4cat.org/<prefix>/4cat/<ns-suffix>/<id-suffix>`
+3. **DOI proxy**: `https://doi.org/<prefix>/4cat/<ns-suffix>/<id-suffix>`; the DOI resolver also resolves handles other than DOIs.
 
 Resolution redirects to the landing page of the identified resource, which the responsible SNAA maintains.
