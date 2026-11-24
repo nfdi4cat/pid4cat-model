@@ -15,7 +15,7 @@ maintainers = [
 license = "MIT"
 license-files = ["LICENSE"]
 readme = "README_pypkg.md"
-requires-python = ">=3.11"
+requires-python = ">=3.11.5"
 dynamic = ["version"]
 keywords = ["catalysis", "handle", "linkml", "persistent identifier", "pid"]
 classifiers = [
